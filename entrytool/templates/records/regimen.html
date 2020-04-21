@@ -1,0 +1,13 @@
+<span ng-show="item.lot">
+    <strong>LoT </strong>[[ item.lot ]]
+     <strong>Regimen </strong>[[ item.regimen ]]
+   <br />
+</span>
+<span ng-show="item.start_date">
+    <strong>Start </strong>[[ item.start_date | displayDate ]]
+   <br />
+</span>
+<span ng-show="item.end_date">
+    <strong>End </strong>[[ item.end_date | displayDate ]]
+   <br />
+</span>

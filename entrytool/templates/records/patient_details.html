@@ -1,0 +1,57 @@
+<span ng-show="item.hospital">
+    <strong>Hospital </strong>[[ item.hospital ]]
+   <br />
+</span>
+<span ng-show="item.status">
+    <strong>Status </strong>[[ item.status]]
+   <br />
+</span>
+
+<span ng-show="item.diag_date">
+    <strong>Diagnosis Date </strong>[[ item.diag_date | displayDate ]]
+   <br />
+</span>
+<span ng-show="item.smm_history">
+    <strong>SMM History </strong>[[ item.smm_history ]]
+   <br />
+</span>
+<span ng-show="item.smm_history == 'Yes'">
+    <strong>SMM Diagnosis </strong>[[ item.smm_history_date | displayDate ]]
+   <br />
+</span>
+<span ng-show="item.mgus_history">
+    <strong>MGUS History </strong>[[ item.mgus_history | displayDate ]]
+   <br />
+</span>
+<span ng-show="item.mgus_history == 'Yes'">
+    <strong>MGUS Diagnosis </strong>[[ item.smm_history_date | displayDate ]]
+   <br />
+</span>
+<span ng-show="item.r_iss_stage">
+    <strong>R-ISS Stage</strong>[[ item.r_iss_stage ]]
+   <br />
+</span>
+<span ng-show="item.pp_type">
+    <strong>PP type</strong>[[ item.pp_type ]]
+   <br />
+</span>
+<span ng-show="item.del_17p">
+    <strong>Del(17p) </strong>[[ item.del_17p ]]
+   <br />
+</span>
+<span ng-show="item.t4_14">
+    <strong>t(4;14)</strong>[[ item.t4_14 ]]
+   <br />
+</span>
+<span ng-show="item.t4_16">
+    <strong>t(4;16)</strong>[[ item.t4_16 ]]
+   <br />
+</span>
+<span ng-show="item.death_date">
+    <strong>Death Date </strong>[[ item.death_date | displayDate ]]
+   <br />
+</span>
+<span ng-show="item.death_date">
+    <strong>Cause of Death </strong>[[ item.death_cause ]]
+   <br />
+</span>

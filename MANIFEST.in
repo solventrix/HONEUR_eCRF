@@ -1,0 +1,3 @@
+recursive-include entrytool/static *
+recursive-include entrytool/assets *
+recursive-include entrytool/templates *
