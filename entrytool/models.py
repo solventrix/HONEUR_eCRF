@@ -3,35 +3,12 @@ entrytool models.
 """
 from django.db.models import fields
 
-from django.db import models as django_models
-
 from opal import models
 from opal.core import lookuplists
 
 from opal.core.fields import ForeignKeyOrFreeText
 
-from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
-
-"""
-Validators
-"""
-
-
-def validate_positive(value):
-    if value < 0:
-        raise ValidationError(
-            _("%(value)s is not a positive number"),
-            params={"value": value},
-        )
-
-
-def validate_emptystring(value):
-    if value == "":
-        raise ValidationError(
-            _("%(value)s should not be empty"),
-            params={"value": value},
-        )
 
 
 """
@@ -174,10 +151,9 @@ class Regimen(models.EpisodeSubrecord):
         verbose_name=_("Number of Cycles"),
         null=True,
         blank=True,
-        validators=[validate_positive],
     )
     start_date = fields.DateField(
-        verbose_name=_("Start Date"), validators=[validate_emptystring]
+        verbose_name=_("Start Date"),
     )
     end_date = fields.DateField(verbose_name=_("End Date"), blank=True, null=True)
     regimen = ForeignKeyOrFreeText(RegimenList, verbose_name=_("Regimen"))
