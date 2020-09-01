@@ -36,3 +36,4 @@ wincertstore==0.2
 # required for heroku
 dj-database-url==0.2.1
 psycopg2==2.7.6.1
+gunicorn==0.17.4
