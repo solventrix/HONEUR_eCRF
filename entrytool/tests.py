@@ -5,10 +5,12 @@ from opal.core.test import OpalTestCase
 
 from entrytool import models, patient_lists
 
+
 class WeHaveSomeModelsTestCase(OpalTestCase):
     def test_there_is_a_model(self):
-        demographics = models.Demographics(first_name='Larry')
-        self.assertEqual('Larry', demographics.first_name)
+        demographics = models.Demographics(first_name="Larry")
+        self.assertEqual("Larry", demographics.first_name)
+
 
 class PatientListTestCase(OpalTestCase):
     def test_queryset(self):
