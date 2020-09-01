@@ -13,8 +13,6 @@ from opal.core.fields import ForeignKeyOrFreeText
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 
-from auditlog.registry import auditlog
-
 """
 Validators
 """
@@ -38,10 +36,7 @@ Core Opal models - these inherit from the abstract data models in
 opal.models but can be customised here with extra / altered fields.
 """
 class Demographics(models.Demographics): pass
-auditlog.register(Demographics)
-    
 class Location(models.Location): pass
-auditlog.register(Location)
 class Allergies(models.Allergies): pass
 class Diagnosis(models.Diagnosis): pass
 class PastMedicalHistory(models.PastMedicalHistory): pass
@@ -49,13 +44,8 @@ class Treatment(models.Treatment): pass
 class SymptomComplex(models.SymptomComplex): pass
 class PatientConsultation(models.PatientConsultation): pass
 class Episode(models.Episode): pass
-auditlog.register(Episode)
 class Patient(models.Patient): pass
-auditlog.register(Patient)
 
-# we commonly need a referral route, ie how the patient
-# came to the service, but not always.
-# class ReferralRoute(models.ReferralRoute): pass
 
 class SCT(models.EpisodeSubrecord):
     sct_date = fields.DateField(verbose_name = _('Date of SCT'))
@@ -69,8 +59,6 @@ class SCT(models.EpisodeSubrecord):
     class Meta:
         verbose_name = _("Stem Cell Transplant")
         verbose_name_plural = _("Stem Cell Transplants")
-
-auditlog.register(SCT)
 
 # Disease specific details
 class PatientDetails(models.PatientSubrecord):
@@ -108,11 +96,10 @@ class PatientDetails(models.PatientSubrecord):
     death_date = fields.DateField(null = True, verbose_name = _("Date of Death"), blank = True)
     death_cause = fields.CharField(max_length = 100, choices = death_causes, verbose_name = _("Cause of Death"), blank = True, null = True)
 
-auditlog.register(PatientDetails)
 
 class RegimenList(lookuplists.LookupList):pass
 
-# TODO does this need to be kept? Can the line number be an attribute of the episode? 
+# TODO does this need to be kept? Can the line number be an attribute of the episode?
 class TreatmentLine(models.EpisodeSubrecord):
     nb = fields.IntegerField(verbose_name = _("Treatment Line"))
 
@@ -130,7 +117,6 @@ class Regimen(models.EpisodeSubrecord):
     regimen = ForeignKeyOrFreeText(RegimenList, verbose_name = _("Regimen"))
     stop_reason = fields.CharField(verbose_name = _("Reason for Regimen Stop"), max_length = 200, blank = True)
 
-auditlog.register(Regimen)
 
 #  TODO populate list of adverse events
 class AEList(lookuplists.LookupList):pass
@@ -151,8 +137,6 @@ class AdverseEvent(models.EpisodeSubrecord):
     severity = fields.CharField(max_length = 4, choices = sev_choices, verbose_name = _("Severity"))
     ae_date = fields.DateField(verbose_name = _("Date of AE"))
 
-auditlog.register(AdverseEvent)
-
 class Response(models.EpisodeSubrecord):
     responses = [
         ('MR', 'Minimal response'), 
@@ -171,7 +155,6 @@ class Response(models.EpisodeSubrecord):
     response_date = fields.DateField()
     response = fields.CharField(max_length = 50, choices = responses)
 
-auditlog.register(Response)
 
 class FollowUp(models.EpisodeSubrecord):
     _sort = 'followup_date'
@@ -188,8 +171,3 @@ class FollowUp(models.EpisodeSubrecord):
     kappa_lambda_ratio = fields.FloatField(blank = True, null = True)
     bone_lesions = fields.FloatField(blank = True, null = True)
 
-auditlog.register(FollowUp)
-
-"""
-End Opal core models
-"""

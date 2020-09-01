@@ -30,7 +30,6 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'auditlog',
 
     'axes',
     'rest_framework',
@@ -56,7 +55,6 @@ MIDDLEWARE = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'opal.middleware.DjangoReversionWorkaround',
     'reversion.middleware.RevisionMiddleware',
-    'auditlog.middleware.AuditlogMiddleware',
     # 'django.middleware.locale.LocaleMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
