@@ -74,7 +74,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='regimen',
             name='lot',
-            field=models.IntegerField(default=0, validators=[entrytool.models.validate_positive], verbose_name='Line of Treatment'),
+            field=models.IntegerField(default=0, verbose_name='Line of Treatment'),
             preserve_default=False,
         ),
         migrations.AddField(
@@ -86,6 +86,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='regimen',
             name='nbCycles',
-            field=models.IntegerField(blank=True, null=True, validators=[entrytool.models.validate_positive], verbose_name='Number of Cycles'),
+            field=models.IntegerField(blank=True, null=True, verbose_name='Number of Cycles'),
         ),
     ]
