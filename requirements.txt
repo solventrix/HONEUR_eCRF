@@ -32,3 +32,7 @@ six==1.14.0
 smmap==3.0.1
 urllib3==1.25.8
 wincertstore==0.2
+
+# required for heroku
+dj-database-url==0.2.1
+psycopg2==2.7.6.1
