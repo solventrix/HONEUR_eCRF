@@ -37,7 +37,7 @@
                 {% include "detail/default.html" %}
               </div>
             </div>
-            <div class="row" ng-show="episode.category_name === 'Treatment Line'" ng-repeat="episode in patient.episodes">
+            <div class="row" ng-repeat="episode in patient.episodes | filter: { category_name: 'Treatment Line' }">
               <div class="col-md-12">
                 {% include "detail/treatmentline.html" %}
               </div>
