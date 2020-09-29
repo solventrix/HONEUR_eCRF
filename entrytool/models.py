@@ -5,65 +5,23 @@ from django.db.models import fields
 
 from opal import models
 from opal.core import lookuplists
-
-from opal.core.fields import ForeignKeyOrFreeText
-
+from opal.core.fields import ForeignKeyOrFreeText, enum
 from django.utils.translation import gettext_lazy as _
-
-
-"""
-Core Opal models - these inherit from the abstract data models in
-opal.models but can be customised here with extra / altered fields.
-"""
 
 
 class Demographics(models.Demographics):
     pass
 
 
-class Location(models.Location):
-    pass
-
-
-class Allergies(models.Allergies):
-    pass
-
-
-class Diagnosis(models.Diagnosis):
-    pass
-
-
-class PastMedicalHistory(models.PastMedicalHistory):
-    pass
-
-
-class Treatment(models.Treatment):
-    pass
-
-
-class SymptomComplex(models.SymptomComplex):
-    pass
-
-
-class PatientConsultation(models.PatientConsultation):
-    pass
-
-
-class Episode(models.Episode):
-    pass
-
-
-class Patient(models.Patient):
-    pass
-
-
 class SCT(models.EpisodeSubrecord):
+    SCT_TYPES = enum("Allogenic", "Autologous", "Unknown")
+
     sct_date = fields.DateField(verbose_name=_("Date of SCT"))
-
-    SCTTypes = [("1", "Allogenic"), ("2", "Autologous"), ("3", "Unknown")]
-
     sct_type = fields.CharField(
-        max_length=12, verbose_name=_("Type of SCT"), choices=SCTTypes, null=True
+        max_length=12,
+        verbose_name=_("Type of SCT"),
+        choices=SCT_TYPES,
+        null=True
     )
 
     _icon = "fa fa-dna"
@@ -78,53 +36,51 @@ class PatientDetails(models.PatientSubrecord):
     _is_singleton = True  # One entry per patient that is updated
     _icon = "fa fa-medkit"
 
-    statuses = [("T", "Under Treatment"), ("D", "Dead"), ("LFU", "Lost to Follow-up")]
+    STATUSES = enum(
+         "Under Treatment",
+         "Dead",
+         "Lost to Follow-up"
+    )
+
+    CHOICES = enum("Yes", "No", "Unknown")
+    DEATH_CAUSES = enum("Disease", "Complications of Disease", "Other")
+    R_ISS_STAGES = enum("Stage I", "Stage II", "Stage III")
+    PP_TYPE_CHOICES = enum("IgG", "IgA", "IgE", "Light Chain Myeloma")
 
     hospital = fields.CharField(max_length=200)
     status = fields.CharField(
-        max_length=100, choices=statuses, verbose_name=_("Patient Status")
+        max_length=100, choices=STATUSES, verbose_name=_("Patient Status")
     )
-
-    choices = [("Y", "Yes"), ("N", "No"), ("U", "Unknown")]
-    death_causes = [("D", "Disease"), ("C", "Complications of Disease"), ("O", "Other")]
-    r_iss_stages = [("1", "Stage I"), ("2", "Stage II"), ("3", "Stage III")]
-    pp_type_choices = [
-        ("IgG", "IgG"),
-        ("IgA", "IgA"),
-        ("IgE", "IgE"),
-        ("LCM", "Light Chain Myeloma"),
-    ]
-
     diag_date = fields.DateField(
         blank=False, null=True, verbose_name=_("Date of Diagnosis")
     )
     smm_history = fields.CharField(
-        max_length=10, choices=choices, verbose_name=_("History of SMM")
+        max_length=10, choices=CHOICES, verbose_name=_("History of SMM")
     )
     smm_history_date = fields.DateField(
         null=True, verbose_name=_("Date of SMM diagnosis")
     )
     mgus_history = fields.CharField(
-        max_length=10, choices=choices, verbose_name=_("History of MGUS")
+        max_length=10, choices=CHOICES, verbose_name=_("History of MGUS")
     )
     mgus_history_date = fields.DateField(
         null=True, verbose_name=_("Date of MGUS Diagnosis")
     )
     r_iss_stage = fields.CharField(
-        max_length=10, choices=r_iss_stages, verbose_name=_("R-ISS Stage")
+        max_length=10, choices=R_ISS_STAGES, verbose_name=_("R-ISS Stage")
     )
     pp_type = fields.CharField(
-        max_length=50, choices=pp_type_choices, verbose_name="PP Type"
+        max_length=50, choices=PP_TYPE_CHOICES, verbose_name="PP Type"
     )
-    del_17p = fields.CharField(max_length=10, choices=choices, verbose_name="del(17)p")
-    t4_14 = fields.CharField(max_length=10, choices=choices, verbose_name="t(4;14)")
-    t4_16 = fields.CharField(max_length=10, choices=choices, verbose_name="t(4;16)")
+    del_17p = fields.CharField(max_length=10, choices=CHOICES, verbose_name="del(17)p")
+    t4_14 = fields.CharField(max_length=10, choices=CHOICES, verbose_name="t(4;14)")
+    t4_16 = fields.CharField(max_length=10, choices=CHOICES, verbose_name="t(4;16)")
     death_date = fields.DateField(
         null=True, verbose_name=_("Date of Death"), blank=True
     )
     death_cause = fields.CharField(
         max_length=100,
-        choices=death_causes,
+        choices=DEATH_CAUSES,
         verbose_name=_("Cause of Death"),
         blank=True,
         null=True,
@@ -169,13 +125,13 @@ class AEList(lookuplists.LookupList):
 
 class AdverseEvent(models.EpisodeSubrecord):
     _icon = "fa fa-heartbeat"
-    sev_choices = [("1", "I"), ("2", "II"), ("3", "III"), ("4", "IV"), ("5", "V")]
+    SEV_CHOICES = enum("I", "II", "III", "IV", "V")
 
     lot = fields.IntegerField(verbose_name=_("Line of Treatment"))
 
     adverse_event = ForeignKeyOrFreeText(AEList, verbose_name=_("Adverse Event"))
     severity = fields.CharField(
-        max_length=4, choices=sev_choices, verbose_name=_("Severity")
+        max_length=4, choices=SEV_CHOICES, verbose_name=_("Severity")
     )
     ae_date = fields.DateField(verbose_name=_("Date of AE"))
 
