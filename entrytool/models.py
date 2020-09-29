@@ -13,6 +13,14 @@ class Demographics(models.Demographics):
     pass
 
 
+class Location(models.Location):
+    pass
+
+
+class Diagnosis(models.Diagnosis):
+    pass
+
+
 class SCT(models.EpisodeSubrecord):
     SCT_TYPES = enum("Allogenic", "Autologous", "Unknown")
 
