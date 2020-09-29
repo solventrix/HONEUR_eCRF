@@ -1,6 +1,9 @@
 {% load panels %}
 <div class="row">
-  <div class="col-md-12">
-    {% record_panel models.PatientDetails %}
+  <div class="col-md-3">
+    {% include 'partials/_demographics_panel.html' %}
+  </div>
+  <div class="col-md-9">
+    {% record_panel models.PatientDetails full_width=True %}
   </div>
 </div>
