@@ -1,2 +1,11 @@
-{% extends 'detail/detail_base.html' %}
-
+{% load panels %}
+<div class="row">
+  <div class="col-md-6">
+    {% record_panel models.Regimen %}
+    {% record_panel models.SCT %}
+  </div>
+  <div class="col-md-6">
+    {% record_panel models.Response %}
+    {% record_panel models.AdverseEvent %}
+  </div>
+</div>
