@@ -1,8 +1,8 @@
 
 <div class="follow-up-table">
-  <div ng-repeat="item in episode.follow_up | orderBy: '-follow_up_date' track by $index">
+  <div ng-repeat="item in episode.follow_up | orderBy: '-follow_up_date' as followups">
     <div
-      ng-show="$index === 0 || episode.follow_up[$index-1].hospital !== item.hospital"
+      ng-show="$index === 0 || followups[$index-1].hospital !== item.hospital"
       class="row"
     >
       <div class="col-md-12">
