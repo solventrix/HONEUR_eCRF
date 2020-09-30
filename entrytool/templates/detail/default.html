@@ -1,16 +1,9 @@
-{% extends 'detail/detail_base.html' %}
 {% load panels %}
-
-{% block left_column %}
-  <!-- {% include 'detail/_demographics_location_panels.html' %}
-  {% record_panel models.Allergies %}
-  {% record_panel models.PastMedicalHistory %} -->
-  {% record_panel models.Regimen %}
-  {% record_panel models.SCT %}
-{% endblock %}
-{% block right_column %}
-    {% record_panel models.Response %}
-    {% record_panel models.AdverseEvent %}
-  <!-- {% record_panel models.Diagnosis %}
-  {% record_panel models.Treatment %} -->
-{% endblock %}
+<div class="row">
+  <div class="col-md-3">
+    {% include 'partials/_demographics_panel.html' %}
+  </div>
+  <div class="col-md-9">
+    {% record_panel models.PatientDetails full_width=True %}
+  </div>
+</div>
