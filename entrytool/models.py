@@ -32,8 +32,6 @@ class SCT(models.EpisodeSubrecord):
         null=True
     )
 
-    _icon = "fa fa-dna"
-
     class Meta:
         verbose_name = _("Stem Cell Transplant")
         verbose_name_plural = _("Stem Cell Transplants")
@@ -42,7 +40,6 @@ class SCT(models.EpisodeSubrecord):
 # Disease specific details
 class PatientDetails(models.PatientSubrecord):
     _is_singleton = True  # One entry per patient that is updated
-    _icon = "fa fa-medkit"
 
     STATUSES = enum(
          "Under Treatment",
@@ -106,7 +103,6 @@ class TreatmentLine(models.EpisodeSubrecord):
 
 class Regimen(models.EpisodeSubrecord):
     _sort = "start_date"
-    _icon = "fa fa-flask"
 
     # lot = ForeignKeyOrFreeText(TreatmentLine, verbose_name = 'Line of Treatment')
     # line = django_models.ForeignKey(TreatmentLine, on_delete=django_models.CASCADE, default = 1)
@@ -132,7 +128,6 @@ class AEList(lookuplists.LookupList):
 
 
 class AdverseEvent(models.EpisodeSubrecord):
-    _icon = "fa fa-heartbeat"
     SEV_CHOICES = enum("I", "II", "III", "IV", "V")
 
     lot = fields.IntegerField(verbose_name=_("Line of Treatment"))
