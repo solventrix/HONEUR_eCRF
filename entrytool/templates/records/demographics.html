@@ -1,8 +1,12 @@
 {% load i18n %}
 
 <strong>{% trans "ID" %} </strong> [[ item.id ]]
-      <br>
-   <strong>Sex </strong> [[ item.sex ]]
-    <br>
-    <strong>Birth Date </strong> [[ item.date_of_birth | displayDate]]
+<br>
+<span ng-show="item.hospital_number">
+  <b>Hospital #</b> [[ item.hospital_number]]
+  <br>
+</span>
+<strong>Sex </strong> [[ item.sex ]]
+<br>
+<strong>Birth Date </strong> [[ item.date_of_birth | displayDate]]
 
