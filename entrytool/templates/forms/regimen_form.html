@@ -1,8 +1,8 @@
 
     {% load forms %}
+    {% select field="Regimen.hospital" required=True %}
     {% input field="Regimen.lot" help="The number of the treatment line" %}
     {% input field="Regimen.nbCycles" required=True %}
-
     {% select field="Regimen.regimen" %}
     {% datepicker field="Regimen.start_date" %}
     {% datepicker field="Regimen.end_date" %}
