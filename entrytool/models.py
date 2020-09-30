@@ -165,7 +165,7 @@ class Response(models.EpisodeSubrecord):
     response = fields.CharField(max_length=50, choices=responses)
 
 
-class FollowUp(models.EpisodeSubrecord):
+class FollowUp(models.PatientSubrecord):
     _sort = "followup_date"
     _icon = "fa fa-stethoscope"
 
