@@ -170,7 +170,7 @@ class FollowUp(models.EpisodeSubrecord):
     _icon = "fa fa-stethoscope"
 
     hospital = models.ForeignKeyOrFreeText(Hospital)
-    followup_date = fields.DateField(verbose_name=_("Visit date"), default="1999-12-12")
+    follow_up_date = fields.DateField(verbose_name=_("Visit date"))
 
     LDH = fields.IntegerField(blank=True, null=True)
     beta2m = fields.IntegerField(blank=True, null=True)
