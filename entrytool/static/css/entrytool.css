@@ -3,4 +3,12 @@
 .entry-tool .list-group-item i.delete {
   display: block;
 }
+
+a.disabled {
+  opacity: 0.5;
+}
+
+a.disabled:hover {
+  color: inherit;
+}
 /*# sourceMappingURL=entrytool.css.map */
