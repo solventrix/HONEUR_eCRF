@@ -14,6 +14,10 @@ class Application(application.OpalApplication):
         'js/entrytool/routes.js',
     ]
 
+    styles = [
+        "css/entrytool.css"
+    ]
+
     default_episode_category=Default.display_name
 
     menuitems = [
