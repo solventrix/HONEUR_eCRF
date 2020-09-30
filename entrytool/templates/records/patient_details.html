@@ -11,7 +11,7 @@
     <span ng-show="item.status">
       <strong>Status </strong>[[ item.status]]
       <span ng-show="item.death_date || item.death_cause">
-        ( [[ item.death_date | displayDate ]] [[ item.death_cause ]] )
+        ([[ item.death_date | displayDate ]] [[ item.death_cause ]])
       </span>
       <br />
     </span>
@@ -27,7 +27,7 @@
     <span ng-show="item.smm_history">
       <strong>MGUS History </strong>[[ item.mgus_history ]]
       <span ng-show="item.mgus_history_date"
-        >(([[ item.mgus_history_date | displayDate ]]))</span
+        >([[ item.mgus_history_date | displayDate ]])</span
       >
       <br />
     </span>
