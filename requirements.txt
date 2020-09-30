@@ -22,7 +22,7 @@ kombu==3.0.37
 letter==0.5
 lxml==4.5.0
 MarkupSafe==1.1.1
-opal==0.18.3
+-e git+https://github.com/openhealthcare/opal.git@v0.18.4#egg=opal
 python-dateutil==2.6.0
 pytz==2019.3
 rcssmin==1.0.6
