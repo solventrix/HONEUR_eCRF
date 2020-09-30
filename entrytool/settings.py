@@ -263,6 +263,10 @@ CONTACT_EMAIL = []
 DEFAULT_FROM_EMAIL = "hello@example.com"
 DEFAULT_DOMAIN = "http://entrytool.com/"
 
+OPAL_DEFAULT_SEARCH_FIELDS = [
+    "demographics__hospital_number",
+    "id"
+]
 
 # ========== PROJECT ==========
 OPAL_BRAND_NAME = "HONEUR Data Entry"
