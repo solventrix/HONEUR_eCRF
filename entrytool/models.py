@@ -21,10 +21,15 @@ class Diagnosis(models.Diagnosis):
     pass
 
 
+class Hospital(lookuplists.LookupList):
+    pass
+
+
 class SCT(models.EpisodeSubrecord):
     SCT_TYPES = enum("Allogenic", "Autologous", "Unknown")
 
     sct_date = fields.DateField(verbose_name=_("Date of SCT"))
+    hospital = models.ForeignKeyOrFreeText(Hospital)
     sct_type = fields.CharField(
         max_length=12,
         verbose_name=_("Type of SCT"),
@@ -46,6 +51,7 @@ class PatientDetails(models.PatientSubrecord):
          "Dead",
          "Lost to Follow-up"
     )
+    hospital = models.ForeignKeyOrFreeText(Hospital)
 
     CHOICES = enum("Yes", "No", "Unknown")
     DEATH_CAUSES = enum("Disease", "Complications of Disease", "Other")
@@ -107,6 +113,7 @@ class Regimen(models.EpisodeSubrecord):
     # lot = ForeignKeyOrFreeText(TreatmentLine, verbose_name = 'Line of Treatment')
     # line = django_models.ForeignKey(TreatmentLine, on_delete=django_models.CASCADE, default = 1)
     lot = fields.IntegerField(verbose_name=_("Line of Treatment"))
+    hospital = models.ForeignKeyOrFreeText(Hospital)
     nbCycles = fields.IntegerField(
         verbose_name=_("Number of Cycles"),
         null=True,
@@ -162,6 +169,7 @@ class FollowUp(models.EpisodeSubrecord):
     _sort = "followup_date"
     _icon = "fa fa-stethoscope"
 
+    hospital = models.ForeignKeyOrFreeText(Hospital)
     followup_date = fields.DateField(verbose_name=_("Visit date"), default="1999-12-12")
 
     LDH = fields.IntegerField(blank=True, null=True)

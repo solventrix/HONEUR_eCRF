@@ -9,6 +9,7 @@
     {% ifequal style "horizontal" %}
     class="col-sm-8"
     {% endifequal %}
+    ng-class="{'has-error': {{ formname }}.$submitted && {{ formname }}[{{ element_name }}].$error.required}"
     >
     {% if user_options %}
       <div class="input-group">
@@ -37,11 +38,8 @@
          </span>
        </div>
      {% endif %}
-     {% if required %}
-     <span class="help-block" ng-show="({{ formname }}[{{ element_name }}].$dirty || {{ formname }}.$submitted) && {{ formname }}[{{ element_name }}].$error.required">
+     <span class="help-block" ng-show="{{ formname }}.$submitted && {{ formname }}[{{ element_name }}].$error.required">
        {{ label }} is required
      </span>
-     {% endif %}
-
   </div>
 </div>

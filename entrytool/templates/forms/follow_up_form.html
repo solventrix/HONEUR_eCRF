@@ -1,5 +1,6 @@
 {% load forms %}
 {% datepicker field="FollowUp.followup_date" required=True %}
+{% select field="FollowUp.hospital" required=True %}
 {% input field="FollowUp.LDH" unit="units/L" %}
 {% input field="FollowUp.beta2m" %}
 {% input field="FollowUp.albumin" %}

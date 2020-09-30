@@ -1,7 +1,10 @@
-<span ng-show="item.lot">
-    <strong>LoT </strong>[[ item.lot ]]
-     <strong>Regimen </strong>[[ item.regimen ]]
-   <br />
+<span ng-show="item.hospital">
+  <strong>Hospital </strong>[[ item.hospital ]]
+  <br />
+</span>
+<span ng-show="item.regimen">
+  <strong>Regimen </strong>[[ item.regimen ]]
+  <br />
 </span>
 <span ng-show="item.start_date">
     <strong>Start </strong>[[ item.start_date | displayDate ]]
