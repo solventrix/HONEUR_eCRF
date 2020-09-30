@@ -268,6 +268,9 @@ DEFAULT_DOMAIN = "http://entrytool.com/"
 OPAL_BRAND_NAME = "HONEUR Data Entry"
 VERSION_NUMBER = "0.0.1"
 
+if os.environ.get('HEROKU_SLUG_COMMIT'):
+    VERSION_NUMBER = '{} ({})'.format(VERSION_NUMBER, os.environ.get('HEROKU_SLUG_COMMIT'))
+
 # if you want sass, uncomment the below and gem install sass
 # COMPRESS_PRECOMPILERS = (
 #     ('text/x-scss', 'sass --scss {infile} {outfile}'),
