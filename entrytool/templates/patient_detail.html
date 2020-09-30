@@ -37,6 +37,14 @@
                 {% include "detail/default.html" %}
               </div>
             </div>
+            <div class="row">
+              <div ng-controller="LineOfTreatmentCreator as lineOfTreatmentCreator" class="col-md-12 text-right">
+                <btn ng-disabled="lineOfTreatmentCreator.loading" ng-click="lineOfTreatmentCreator.create(patient)" class="btn btn-lg btn-primary">
+                  <i class="fa fa-plus"></i>
+                  Create line of treatment
+                </btn>
+              </div>
+            </div>
             <div class="row" ng-repeat="episode in patient.episodes | filter: { category_name: 'Treatment Line' } | orderBy: '-id' as lot_episodes">
               <div class="col-md-12">
                 {% include "detail/treatmentline.html" %}

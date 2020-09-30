@@ -12,6 +12,7 @@ class Application(application.OpalApplication):
 
     javascripts   = [
         'js/entrytool/routes.js',
+        "js/entrytool/controllers/lot_creator.js",
     ]
 
     styles = [
