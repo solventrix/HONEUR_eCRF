@@ -51,13 +51,15 @@
                 {% include "detail/treatmentline.html" %}
               </div>
             </div>
-            <div class="col-md-12">
-              <h2>Follow ups
-                <a ng-click="episode.recordEditor.newItem('{{ models.FollowUp.get_api_name }}')">
-                  <i class="fa fa-plus-circle edit pointer"></i>
-                </a>
-              </h2>
-              {% include "detail/followups.html" %}
+            <div class="row">
+              <div class="col-md-12">
+                <h2>Follow ups
+                  <a ng-click="episode.recordEditor.newItem('{{ models.FollowUp.get_api_name }}')">
+                    <i class="fa fa-plus-circle edit pointer"></i>
+                  </a>
+                </h2>
+                {% include "detail/followups.html" %}
+              </div>
             </div>
           </div>
         {% endblock content %}
