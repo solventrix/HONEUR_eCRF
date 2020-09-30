@@ -17,7 +17,7 @@ angular.module('opal.controllers').controller(
         deferred.resolve();
       });
 
-      return deferred;
+      return deferred.promise;
     };
   }
 );
