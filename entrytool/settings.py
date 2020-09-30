@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     "entrytool",
     # 'languages',
     "django.contrib.admin",
+    'dev',
 ]
 
 MIDDLEWARE = (
