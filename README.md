@@ -1,4 +1,8 @@
-This is entrytool - an [Opal](https://github.com/openhealthcare/opal) project.
+This is Honeur eCRF - an application for patient treatment data.
+
+This project is built using the [Opal](https://github.com/openhealthcare/opal) framework.
+
+## Installation And Setup
 
 To get started, run the following commands:
 
@@ -43,12 +47,12 @@ For simple cases, this can be done using the `{% custom_datepicker %}` templatet
 
 Date validation requires two arguments:
 
-* date_after a javascript reference to the other date value that we would like to validate against
-* date_after_message a string that should be displayed when the date entered is invalid
+* `date_after` a javascript reference to the other date value that we would like to validate against
+* `date_after_message` a string that should be displayed when the date entered is invalid
 
 An optional third argument allows for an offset to be specified
 
-* date_after_diff which is a number that will be used as an offset when validating
+* `date_after_diff` which is a number that will be used as an offset when validating
 
 The same options are also available for date_before.
 
