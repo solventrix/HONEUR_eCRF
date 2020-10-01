@@ -1,16 +1,75 @@
-<span ng-show="item.hospital">
-  <strong>Hospital </strong>[[ item.hospital ]]
-  <br />
-</span>
-<span ng-show="item.regimen">
-  <strong>Regimen </strong>[[ item.regimen ]]
-  <br />
-</span>
-<span ng-show="item.start_date">
-    <strong>Start </strong>[[ item.start_date | displayDate ]]
-   <br />
-</span>
-<span ng-show="item.end_date">
-    <strong>End </strong>[[ item.end_date | displayDate ]]
-   <br />
-</span>
+<div class="row">
+  <div class="col-md-5">
+    <span class="display-label">
+    </span>
+  </div>
+  <div class="col-md-7">
+  </div>
+</div>
+
+
+<div class="row" ng-show="item.hospital">
+  <div class="col-md-5">
+    <span class="display-label">
+      Hospital
+    </span>
+  </div>
+  <div class="col-md-7">
+    [[ item.hospital ]]
+  </div>
+</div>
+
+<div class="row" ng-show="item.nb_cycles">
+  <div class="col-md-5">
+    <span class="display-label">
+      Cycles
+    </span>
+  </div>
+  <div class="col-md-7">
+    [[ item.nb_cycles] ]
+  </div>
+</div>
+
+<div class="row" ng-show="item.regimen">
+  <div class="col-md-5">
+    <span class="display-label">
+      Regimen
+    </span>
+  </div>
+  <div class="col-md-7">
+    [[ item.regimen ]]
+  </div>
+</div>
+
+<div class="row" ng-show="item.start_date">
+  <div class="col-md-5">
+    <span class="display-label">
+      Start
+    </span>
+  </div>
+  <div class="col-md-7">
+    [[ item.start_date | displayDate ]]
+  </div>
+</div>
+
+<div class="row" ng-show="item.end_date">
+  <div class="col-md-5">
+    <span class="display-label">
+      End
+    </span>
+  </div>
+  <div class="col-md-7">
+    [[ item.end_date | displayDate ]]
+  </div>
+</div>
+
+<div class="row" ng-show="item.stop_reason">
+  <div class="col-md-5">
+    <span class="display-label">
+      Reason
+    </span>
+  </div>
+  <div class="col-md-7">
+    [[ item.stop_reason ]]
+  </div>
+</div>

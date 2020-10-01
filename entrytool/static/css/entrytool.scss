@@ -1,13 +1,23 @@
+
+$black: rgb(26, 26, 26);
+$white: white;
+$grey : rgb(77, 77, 77);
+$red  : rgb(255, 51, 9);
+$red2 : rgb(255, 101, 9);
+
 .entry-tool{
     .panel-heading i.edit,
     .list-group-item i.edit,
     .list-group-item i.delete{
-        display:block
+        // display:block
+    }
+    .edit a i {
+        color: $black;
     }
     a.disabled{
         opacity: 0.5;
     }
-    
+
     a.disabled:hover{
         color: inherit;
     }
@@ -24,5 +34,147 @@
 }
 
 
+// utility
 
+.padding0 {
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
 
+.pt6 {
+    padding-top: 6px;
+}
+
+.mb6 {
+    margin-bottom: 6px;
+}
+
+// Opal Resets
+
+body {
+  background: $white;
+  color: $grey;
+}
+
+h1, h2 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    // font-family: 'Times New Roman', serif;
+    color: $black;
+}
+
+h1 small {
+    color: $black;
+}
+
+h3 {
+    font-size: 18px;
+}
+
+h3 i.edit {
+    font-size: 22px;
+}
+
+.loading {
+    background-color: $white;
+}
+
+.container {
+  width: 100%;
+}
+
+.navbar-brand {
+    text-transform: uppercase;
+    font-size: 2.5rem;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: $black;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+}
+
+.navbar-default .navbar-brand {
+    color: $black;
+}
+
+.panel {
+  border: none;
+}
+
+.panel.panel-primary .panel-heading {
+    text-transform: uppercase;
+    color: $black;
+    background: inherit;
+    border-color: $red;
+    border-bottom-width: 2px;
+}
+
+.panel-footer{
+    background: $white;
+    border-top: none;
+    border-bottom: none;
+}
+
+.modal-header {
+    background-color: $red;
+    color: $white;
+    text-transform: uppercase;
+}
+
+.form-control {
+    border-radius: 0px;
+}
+
+.control-label {
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+}
+
+.list-group-item {
+    border: none;
+}
+
+.panel-pathway, .modal-body {
+    input,
+    select {
+        max-width: 300px;
+    }
+}
+
+.btn-primary {
+  background-color: $red;
+  border-color: $red;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  border-radius: 0px;
+}
+
+.btn-primary:hover {
+  background-color: $red2;
+  border-color: $red2;
+}
+
+.btn-cancel, .btn-secondary {
+    border-radius: 0px;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+}
+
+// Entrytool
+
+.display-label {
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 0.1rem;
+}
+
+.table-row i {
+    font-size: 16px; padding-top: 10px;
+}
+
+.header-row.display-label {
+  font-size: 0.8em;
+}
