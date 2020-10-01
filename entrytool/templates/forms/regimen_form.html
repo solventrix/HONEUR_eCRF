@@ -1,8 +1,8 @@
 {% load forms %}
+{% load custom_forms %}
 {% select field="Regimen.hospital" required=True %}
 {% input field="Regimen.nbCycles" required=True %}
 {% select field="Regimen.regimen" %}
-{% datepicker field="Regimen.start_date" %}
-{% datepicker field="Regimen.end_date" %}
+{% custom_datepicker field="Regimen.start_date" date_after="the_episode.demographics[0].date_of_birth" date_after_message="Start Date must be after the patient's DOB" %}
+{% custom_datepicker field="Regimen.end_date" date_after='editing.regimen.start_date' date_after_message='End Date must be after the Start Date' date_after_diff="0" %}
 {% input field="Regimen.stop_reason" %}
-
