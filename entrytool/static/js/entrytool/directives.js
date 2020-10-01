@@ -36,8 +36,8 @@ directives.directive('dateAfter', function($parse, toMomentFilter) {
               return false;
             }
           }
-          return true;
         }
+        return true;
       }
     }
   };
@@ -83,8 +83,8 @@ directives.directive('dateBefore', function($parse, toMomentFilter) {
               return false;
             }
           }
-          return true;
         }
+        return true;
       }
     }
   };
