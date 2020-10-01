@@ -1,4 +1,4 @@
 {% load forms %}
-{% input field="AdverseEvent.adverse_event" required=True %}
+{% select field="AdverseEvent.adverse_event" required=True %}
 {% select field="AdverseEvent.severity" required=True %}
 {% datepicker field="AdverseEvent.ae_date" required=True %}
