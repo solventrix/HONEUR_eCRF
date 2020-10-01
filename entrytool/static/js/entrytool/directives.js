@@ -1,10 +1,17 @@
 directives.directive('dateAfter', function($parse, toMomentFilter) {
   /*
-  * checks the model attatched to the field is after the field passed in
-  * e.g. if the model is endDate, date-after="startDate"
-  *
-  * if the model should be 30 days after the start date
-  * date-after="startDate" date-after-diff="30"
+
+    This data validation directive is intended for use with the
+    custom datepicker field.
+
+    It will invalidate the field if the value of the input this
+    directive is attached to is after the date in another field.
+
+    It takes an argument of a second date field to compare with, and
+    an optional offset when comparing.
+
+    date-after="startDate" date-after-diff="30"
+
   */
   return {
     require: 'ngModel',
@@ -39,11 +46,18 @@ directives.directive('dateAfter', function($parse, toMomentFilter) {
 
 directives.directive('dateBefore', function($parse, toMomentFilter) {
   /*
-  * checks the model attatched to the field is before the field passed in
-  * e.g. if the model is startDate, date-before="endDate"
-  *
-  * if the model should be 30 days before the end date
-  * date-before="endDate" date-before-diff="30"
+
+    This data validation directive is intended for use with the
+    custom datepicker field.
+
+    It will invalidate the field if the value of the input this
+    directive is attached to is before the date in another field.
+
+    It takes an argument of a second date field to compare with, and
+    an optional offset when comparing.
+
+    date-before="startDate" date-before-diff="30"
+
   */
   return {
     require: 'ngModel',
@@ -75,4 +89,3 @@ directives.directive('dateBefore', function($parse, toMomentFilter) {
     }
   };
 });
-
