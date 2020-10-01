@@ -89,3 +89,81 @@ directives.directive('dateBefore', function($parse, toMomentFilter) {
     }
   };
 });
+
+directives.directive('regimenBetween', function(toMomentFilter) {
+  /*
+  * Make sure the model date is not between the other regimen start dates
+  */
+  return {
+    require: 'ngModel',
+    link: function(scope, elm, attrs, ctrl) {
+      ctrl.$validators.regimenBetween = function(modelValue, viewValue){
+        error = true;
+        viewValue = toMomentFilter(viewValue);
+        if(!viewValue){
+          return true;
+        }
+        _.each(scope.$root.patient.episodes, function(episode){
+          _.each(episode.regimen, function(r){
+            if(scope.editing.regimen.id === r.id){
+              // ignore it if its the one we are talking about.
+              return;
+            }
+            if(r.start_date && r.end_date){
+              if(viewValue > r.start_date && viewValue < r.end_date){
+                error = false
+              }
+            }
+          });
+        });
+        return error;
+      }
+    }
+  };
+});
+
+
+directives.directive('regimenEnd', function(toMomentFilter) {
+  /*
+  * Make sure that the regimen end, once added is not then around
+  * another regimen. Its a niche case...
+  *
+  * Step 1. Create a regimen A but don't but an end date on it with
+  * start time Monday.
+  * Step 2. Create a regimen B that lasts between Tuesday-Wednesday
+  * Step 3. The add an end date on A of Thursday. It should error.
+  */
+  return {
+    require: 'ngModel',
+    link: function(scope, elm, attrs, ctrl) {
+      ctrl.$validators.regimenEnd = function(modelValue, viewValue){
+        viewValue = toMomentFilter(viewValue);
+        error = true;
+        if(!viewValue){
+          return false;
+        }
+        startDate = toMomentFilter(scope.editing.regimen.start_date);
+        if(!startDate){
+          return false
+        }
+        _.each(scope.$root.patient.episodes, function(episode){
+          _.each(episode.regimen, function(r){
+            if(scope.editing.regimen.id === r.id){
+              // ignore it if its the one we are talking about.
+              return;
+            }
+            if(r.start_date && r.end_date){
+              if(startDate < r.start_date && viewValue > r.end_date){
+                error = false;
+              }
+            }
+          });
+        });
+
+        return error;
+      }
+    }
+  };
+});
+
+
