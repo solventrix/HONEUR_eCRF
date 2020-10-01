@@ -1,4 +1,5 @@
 {% load forms %}
+{% load custom_forms %}
 {% select field="AdverseEvent.adverse_event" required=True %}
 {% select field="AdverseEvent.severity" required=True %}
-{% datepicker field="AdverseEvent.ae_date" required=True %}
+{% custom_datepicker field="AdverseEvent.ae_date" date_after="the_episode.regimen[0].start_date" date_after_message="Adverse event must be on or after the regimen start date" date_after_diff="0"  date_before="the_episode.regimen[0].end_date" date_before_message="Adverse event must be before 30 days after the regimen end date" date_before_diff="31" required=True %}
