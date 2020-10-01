@@ -1,0 +1,41 @@
+<div class="follow-up-table">
+  <div class="col-md-12">
+    <div class="row header-row">
+      <div class="col-sm-3 header"></div>
+      <div class="col-sm-1 header">LDH</div>
+      <div class="col-sm-1 header">Beta2m</div>
+      <div class="col-sm-1 header">Albumin</div>
+      <div class="col-sm-1 header">Creatinin</div>
+      <div class="col-sm-1 header">MCV</div>
+      <div class="col-sm-1 header">Hb</div>
+      <div class="col-sm-1 header">Kappa/Lambda Ratio</div>
+      <div class="col-sm-1 header">Bone Lesions</div>
+    </div>
+  </div>
+
+
+  <div ng-repeat="item in episode.follow_up | orderBy: '-follow_up_date' as followups">
+    <div
+      ng-show="$index === 0 || followups[$index-1].hospital !== item.hospital"
+      class="row"
+      >
+
+    </div>
+    <div class="row table-row" >
+      <div class="col-sm-3 first-column text-right">
+        [[ item.hospital ]] [[ item.follow_up_date | displayDate ]]
+      </div>
+      <div class="col-sm-1 column">[[ item.LDH ]]</div>
+      <div class="col-sm-1 column">[[ item.beta2m ]]</div>
+      <div class="col-sm-1 column">[[ item.albumin ]]</div>
+      <div class="col-sm-1 column">[[ item.creatinin ]]</div>
+      <div class="col-sm-1 column">[[ item.MCV ]]</div>
+      <div class="col-sm-1 column">[[ item.Hb ]]</div>
+      <div class="col-sm-1 column">[[ item.kappa_lambda_ratio ]]</div>
+      <div class="col-sm-1 column">[[ item.bone_lesions ]]</div>
+      <div class="col-sm-1 text-left">
+        <i ng-click="episode.recordEditor.editItem('{{ models.FollowUp.get_api_name }}', item)" class="fa fa-pencil edit pointer"></i>
+      </div>
+    </div>
+  </div>
+</div>

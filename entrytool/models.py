@@ -165,12 +165,12 @@ class Response(models.EpisodeSubrecord):
     response = fields.CharField(max_length=50, choices=responses)
 
 
-class FollowUp(models.EpisodeSubrecord):
+class FollowUp(models.PatientSubrecord):
     _sort = "followup_date"
     _icon = "fa fa-stethoscope"
 
     hospital = models.ForeignKeyOrFreeText(Hospital)
-    followup_date = fields.DateField(verbose_name=_("Visit date"), default="1999-12-12")
+    follow_up_date = fields.DateField(verbose_name=_("Visit date"))
 
     LDH = fields.IntegerField(blank=True, null=True)
     beta2m = fields.IntegerField(blank=True, null=True)

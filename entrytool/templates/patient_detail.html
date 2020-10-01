@@ -38,16 +38,27 @@
               </div>
             </div>
             <div class="row">
-              <div ng-controller="LineOfTreatmentCreator as lineOfTreatmentCreator" class="col-md-12 text-right">
-                <btn ng-disabled="lineOfTreatmentCreator.loading" ng-click="lineOfTreatmentCreator.create(patient)" class="btn btn-lg btn-primary">
-                  <i class="fa fa-plus"></i>
-                  Create line of treatment
-                </btn>
+              <div ng-controller="LineOfTreatmentCreator as lineOfTreatmentCreator" class="col-md-12">
+                <h2>Treatment Lines
+                  <a ng-class="{disabled: lineOfTreatmentCreator.loading}" ng-click="!lineOfTreatmentCreator.loading && lineOfTreatmentCreator.create(patient)">
+                    <i class="fa fa-plus-circle edit pointer"></i>
+                  </a>
+                </h2>
               </div>
             </div>
             <div class="row" ng-repeat="episode in patient.episodes | filter: { category_name: 'Treatment Line' } | orderBy: '-id' as lot_episodes">
               <div class="col-md-12">
                 {% include "detail/treatmentline.html" %}
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <h2>Follow ups
+                  <a ng-click="episode.recordEditor.newItem('{{ models.FollowUp.get_api_name }}')">
+                    <i class="fa fa-plus-circle edit pointer"></i>
+                  </a>
+                </h2>
+                {% include "detail/followups.html" %}
               </div>
             </div>
           </div>

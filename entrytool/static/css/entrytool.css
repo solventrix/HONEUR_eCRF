@@ -3,4 +3,24 @@
 .entry-tool .list-group-item i.delete {
   display: block;
 }
+
+.entry-tool a.disabled {
+  opacity: 0.5;
+}
+
+.entry-tool a.disabled:hover {
+  color: inherit;
+}
+
+.entry-tool .follow-up-table {
+  text-align: center;
+}
+
+.entry-tool .follow-up-table .column {
+  border-top: 1px solid #dee2e6;
+}
+
+.entry-tool .follow-up-table .column, .entry-tool .follow-up-table .first-column, .entry-tool .follow-up-table .header {
+  padding: 8px;
+}
 /*# sourceMappingURL=entrytool.css.map */

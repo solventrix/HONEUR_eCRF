@@ -4,4 +4,25 @@
     .list-group-item i.delete{
         display:block
     }
+    a.disabled{
+        opacity: 0.5;
+    }
+    
+    a.disabled:hover{
+        color: inherit;
+    }
+
+    .follow-up-table{
+        text-align: center;
+        .column{
+            border-top: 1px solid #dee2e6;
+        }
+        .column, .first-column, .header{
+            padding: 8px;
+        }
+    }
 }
+
+
+
+
