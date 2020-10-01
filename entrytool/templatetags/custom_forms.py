@@ -6,6 +6,7 @@ from django import template
 from django.db import models
 from opal.core.subrecords import get_subrecord_from_model_name
 from opal.core import fields
+from opal.utils import camelcase_to_underscore
 from opal.core.serialization import OpalSerializer
 from opal.templatetags import forms
 from opal.templatetags.forms import get_style
@@ -29,7 +30,11 @@ def custom_datepicker(*args, **kwargs):
 
     context["user_options"] = kwargs.pop("user_options", False)
     context['ngrequired'] = kwargs.pop('ngrequired', '')
+    validators = json.loads(
+        kwargs.pop("custom_validators", "{}")
+    )
+    context["custom_validators"] = []
+    for k, v in validators.items():
+        kebab = camelcase_to_underscore(k).replace("_", "-")
+        context["custom_validators"].append((k, kebab, v,))
     return context
-
-
-

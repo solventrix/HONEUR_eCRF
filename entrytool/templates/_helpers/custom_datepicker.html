@@ -47,6 +47,9 @@
                {% if date_before_diff %}
                date-before-diff="{{ date_before_diff }}"
                {% endif %}
+               {% for _, kebab_directive, _ in custom_validators %}
+               {{ kebab_directive }}
+               {% endfor %}
                />
      {% if user_options %}
          <span class="input-group-btn">
@@ -68,5 +71,10 @@
       {{ date_before_message }}
      </span>
      {% endif %}
+     {% for directive, kebab, message in custom_validators %}
+     <span class="help-block" ng-show="{{ formname }}.$submitted && {{ formname }}[{{ element_name }}].$error.{{ directive }}">
+      {{ message }}
+     </span>
+     {% endfor %}
   </div>
 </div>
