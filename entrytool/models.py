@@ -115,17 +115,24 @@ class TreatmentLine(models.EpisodeSubrecord):
 class Regimen(models.EpisodeSubrecord):
     _sort = "start_date"
 
+    REGIMEN_TYPES = enum(
+        _("Induction"),
+        _("Maintenance"),
+        _("Conditioning")
+    )
+
     hospital = models.ForeignKeyOrFreeText(Hospital)
     nbCycles = fields.IntegerField(
         verbose_name=_("Number of Cycles"),
         null=True,
         blank=True,
     )
-    start_date = fields.DateField(
+    start_date  = fields.DateField(
         verbose_name=_("Start Date"),
     )
-    end_date = fields.DateField(verbose_name=_("End Date"), blank=True, null=True)
-    regimen = ForeignKeyOrFreeText(RegimenList, verbose_name=_("Regimen"))
+    end_date    = fields.DateField(verbose_name=_("End Date"), blank=True, null=True)
+    regimen     = ForeignKeyOrFreeText(RegimenList, verbose_name=_("Regimen"))
+    category    = fields.CharField(max_length=40, choices=REGIMEN_TYPES, verbose_name="Regimen Type")
     stop_reason = ForeignKeyOrFreeText(
         StopReason, verbose_name=_("Reason for Regimen Stop")
     )
