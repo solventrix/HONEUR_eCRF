@@ -8,9 +8,10 @@ angular.module('opal.controllers').controller(
       var deferred = $q.defer();
       var url = "/entrytool/v0.1/new_line_of_treatment_episode/" + patient.id + "/";
       $http.put(url).then(function(){
-        self.loading = false;
-        deferred.resolve();
-        $scope.refresh();
+        $scope.refresh().then(function(){
+          self.loading = false;
+          deferred.resolve();
+        });
       }, function(){
         self.loading = false;
         alert("Unable to create a line of treatment");
