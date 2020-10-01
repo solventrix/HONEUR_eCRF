@@ -110,9 +110,6 @@ class TreatmentLine(models.EpisodeSubrecord):
 class Regimen(models.EpisodeSubrecord):
     _sort = "start_date"
 
-    # lot = ForeignKeyOrFreeText(TreatmentLine, verbose_name = 'Line of Treatment')
-    # line = django_models.ForeignKey(TreatmentLine, on_delete=django_models.CASCADE, default = 1)
-    lot = fields.IntegerField(verbose_name=_("Line of Treatment"))
     hospital = models.ForeignKeyOrFreeText(Hospital)
     nbCycles = fields.IntegerField(
         verbose_name=_("Number of Cycles"),
@@ -137,8 +134,6 @@ class AEList(lookuplists.LookupList):
 class AdverseEvent(models.EpisodeSubrecord):
     SEV_CHOICES = enum("I", "II", "III", "IV", "V")
 
-    lot = fields.IntegerField(verbose_name=_("Line of Treatment"))
-
     adverse_event = ForeignKeyOrFreeText(AEList, verbose_name=_("Adverse Event"))
     severity = fields.CharField(
         max_length=4, choices=SEV_CHOICES, verbose_name=_("Severity")
@@ -160,7 +155,6 @@ class Response(models.EpisodeSubrecord):
         ("RU", "Response unknown"),
     ]
 
-    lot = fields.IntegerField(verbose_name=_("Line of Treatment"))
     response_date = fields.DateField()
     response = fields.CharField(max_length=50, choices=responses)
 
