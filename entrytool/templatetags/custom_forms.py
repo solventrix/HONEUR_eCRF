@@ -18,6 +18,15 @@ def custom_datepicker(*args, **kwargs):
     context = forms._input(*args, **kwargs)
     if 'mindate' in kwargs:
         context['mindate'] = kwargs['mindate']
+
+    context["date_after"] = kwargs.pop("date_after", "")
+    context["date_after_diff"] = kwargs.pop("date_after_diff", "")
+    context["date_after_message"] = kwargs.pop("date_after_message", "")
+
+    context["date_before"] = kwargs.pop("date_before", "")
+    context["date_before_diff"] = kwargs.pop("date_before_diff", "")
+    context["date_before_message"] = kwargs.pop("date_before_message", "")
+
     context["user_options"] = kwargs.pop("user_options", False)
     context['ngrequired'] = kwargs.pop('ngrequired', '')
     return context

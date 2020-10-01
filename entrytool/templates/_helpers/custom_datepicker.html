@@ -9,7 +9,7 @@
     {% ifequal style "horizontal" %}
     class="col-sm-8"
     {% endifequal %}
-    ng-class="{'has-error': {{ formname }}.$submitted && {{ formname }}[{{ element_name }}].$error.required}"
+    ng-class="{'has-error': {{ formname }}.$submitted && {{ formname }}[{{ element_name }}].$invalid}"
     >
     {% if user_options %}
       <div class="input-group">
@@ -30,6 +30,18 @@
                ng-change="{{ change }}"
                {% endif %}
                ng-required="{{ ngrequired }}"
+               {% if date_after %}
+               date-after="{{ date_after }}"
+               {% endif %}
+               {% if date_after_diff %}
+               date-after-diff="{{ date_after_diff }}"
+               {% endif %}
+               {% if date_before %}
+               date-before="{{ date_before }}"
+               {% endif %}
+               {% if date_before_diff %}
+               date-before-diff="{{ date_before_diff }}"
+               {% endif %}
                />
      {% if user_options %}
          <span class="input-group-btn">
@@ -41,5 +53,15 @@
      <span class="help-block" ng-show="{{ formname }}.$submitted && {{ formname }}[{{ element_name }}].$error.required">
        {{ label }} is required
      </span>
+     {% if date_after_message %}
+     <span class="help-block" ng-show="{{ formname }}.$submitted && {{ formname }}[{{ element_name }}].$error.dateAfter">
+      {{ date_after_message }}
+     </span>
+     {% endif %}
+     {% if date_before_message %}
+     <span class="help-block" ng-show="{{ formname }}.$submitted && {{ formname }}[{{ element_name }}].$error.dateBefore">
+      {{ date_before_message }}
+     </span>
+     {% endif %}
   </div>
 </div>
