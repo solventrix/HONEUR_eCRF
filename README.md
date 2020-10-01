@@ -1,4 +1,4 @@
-This is Honeur eCRF - an application for patient treatment data.
+This is Honeur eCRF - an application for recording patient treatment data.
 
 This project is built using the [Opal](https://github.com/openhealthcare/opal) framework.
 
