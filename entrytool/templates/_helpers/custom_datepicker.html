@@ -26,10 +26,15 @@
                datepicker-options="{startingDay: 1}"
                ng-focus="{{ formname }}[{{ element_name }} + '_open']=true"
                close-text="Close"
+
                {% if change %}
                ng-change="{{ change }}"
                {% endif %}
+               {% if required %}
+               required
+               {% else %}
                ng-required="{{ ngrequired }}"
+               {% endif %}
                {% if date_after %}
                date-after="{{ date_after }}"
                {% endif %}
