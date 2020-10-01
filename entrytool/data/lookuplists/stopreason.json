@@ -1,3 +1,22 @@
 {
-  "stopreason": []
+  "stopreason": [
+    {
+      "name": "Adverse event"
+    },
+    {
+      "name": "End of Phase/Line"
+    },
+    {
+      "name": "Patient Request"
+    },
+    {
+      "name": "Refractory disease"
+    },
+    {
+      "name": "Other reason"
+    },
+    {
+      "name": "Relapse"
+    }
+  ]
 }

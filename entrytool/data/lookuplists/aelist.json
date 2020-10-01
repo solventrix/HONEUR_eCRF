@@ -1,7 +1,22 @@
 {
   "aelist": [
     {
-      "name": "headache"
+      "name": "Headache"
+    },
+    {
+      "name": "Nausea"
+    },
+    {
+      "name": "Diarrhea"
+    },
+    {
+      "name": "Fever"
+    },
+    {
+      "name": "Rash"
+    },
+    {
+      "name": "Weight Loss"
     }
   ]
 }
