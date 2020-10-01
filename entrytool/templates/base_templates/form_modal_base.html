@@ -1,7 +1,7 @@
 {% extends 'base_templates/modal_base.html' %}
   {% block title %}
   {{ column.get_display_name }}
-  ([[ item.episode.demographics[0].patient_id ]])
+  (Patient [[ item.episode.demographics[0].patient_id ]])
   {% endblock %}
   {% block modal_body %}
     <form name="form" ng-submit="" class="form-horizontal" novalidate>

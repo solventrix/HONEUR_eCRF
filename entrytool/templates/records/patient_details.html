@@ -1,57 +1,86 @@
 <div class="row">
-  <div class="col-md-4">
-    <span ng-show="item.hospital">
-      <strong>Hospital </strong>[[ item.hospital ]]
-      <br />
-    </span>
-    <span ng-show="item.diag_date">
-      <strong>Diagnosis Date </strong>[[ item.diag_date | displayDate ]]
-      <br />
-    </span>
-    <span ng-show="item.status">
-      <strong>Status </strong>[[ item.status]]
-      <span ng-show="item.death_date || item.death_cause">
-        ([[ item.death_date | displayDate ]] [[ item.death_cause ]])
-      </span>
-      <br />
+  <div class="col-md-2">
+    <span class="display-label">Diagnosis Date </span>
+  </div>
+  <div class="col-md-2">
+    [[ item.diag_date | displayDate ]]
+  </div>
+  <div class="col-md-2">
+    <span class="display-label">SMM History </span>
+  </div>
+  <div class="col-md-2">
+    [[ item.smm_history ]]
+    <span ng-show="item.smm_history_date">([[ item.smm_history_date | displayDate ]])</span>
+  </div>
+  <div class="col-md-2">
+    <span class="display-label">PP type</span>
+  </div>
+  <div class="col-md-2">
+    [[ item.pp_type ]]
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-md-2">
+    <span class="display-label">Status </span>
+  </div>
+  <div class="col-md-2">
+    [[ item.status]]
+  </div>
+  <div class="col-md-2">
+    <span class="display-label">MGUS History </span>
+  </div>
+  <div class="col-md-2">
+    [[ item.mgus_history ]]
+    <span ng-show="item.mgus_history_date">([[ item.mgus_history_date | displayDate ]])</span>
+  </div>
+  <div class="col-md-2">
+    <span class="display-label">Del(17p) </span>
+  </div>
+  <div class="col-md-2">
+    [[ item.del_17p ]]
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-2">
+    <span ng-show="item.death_date || item.death_cause">
+      <span class="display-label">Death</span>
     </span>
   </div>
-  <div class="col-md-4">
-    <span ng-show="item.smm_history">
-      <strong>SMM History </strong>[[ item.smm_history ]]
-      <span ng-show="item.smm_history_date"
-        >([[ item.smm_history_date | displayDate ]])</span
-      >
-      <br />
-    </span>
-    <span ng-show="item.smm_history">
-      <strong>MGUS History </strong>[[ item.mgus_history ]]
-      <span ng-show="item.mgus_history_date"
-        >([[ item.mgus_history_date | displayDate ]])</span
-      >
-      <br />
-    </span>
-    <span ng-show="item.r_iss_stage">
-      <strong>R-ISS Stage</strong>[[ item.r_iss_stage ]]
-      <br />
+  <div class="col-md-2">
+    <span ng-show="item.death_date || item.death_cause">
+      ([[ item.death_date | displayDate ]] [[ item.death_cause ]])
     </span>
   </div>
-  <div class="col-md-4">
-    <span ng-show="item.pp_type">
-      <strong>PP type</strong>[[ item.pp_type ]]
-      <br />
-    </span>
-    <span ng-show="item.del_17p">
-      <strong>Del(17p) </strong>[[ item.del_17p ]]
-      <br />
-    </span>
-    <span ng-show="item.t4_14">
-      <strong>t(4;14)</strong>[[ item.t4_14 ]]
-      <br />
-    </span>
-    <span ng-show="item.t4_16">
-      <strong>t(4;16)</strong>[[ item.t4_16 ]]
-      <br />
-    </span>
+  <div class="col-md-2">
+    <span class="display-label">R-ISS Stage</span>
+  </div>
+  <div class="col-md-2">
+    [[ item.r_iss_stage ]]
+  </div>
+  <div class="col-md-2">
+    <span class="display-label">t(4;14)</span>
+  </div>
+  <div class="col-md-2">
+    [[ item.t4_14 ]]
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-2">
+  </div>
+  <div class="col-md-2">
+  </div>
+  <div class="col-md-2">
+  </div>
+  <div class="col-md-2">
+  </div>
+  <div class="col-md-2">
+    <span class="display-label">t(4;16)</span>
+  </div>
+  <div class="col-md-2">
+    [[ item.t4_16 ]]
   </div>
 </div>

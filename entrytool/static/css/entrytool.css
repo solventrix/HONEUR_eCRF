@@ -1,7 +1,5 @@
-.entry-tool .panel-heading i.edit,
-.entry-tool .list-group-item i.edit,
-.entry-tool .list-group-item i.delete {
-  display: block;
+.entry-tool .edit a i {
+  color: #1a1a1a;
 }
 
 .entry-tool a.disabled {
@@ -22,5 +20,145 @@
 
 .entry-tool .follow-up-table .column, .entry-tool .follow-up-table .first-column, .entry-tool .follow-up-table .header {
   padding: 8px;
+}
+
+.padding0 {
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.pt6 {
+  padding-top: 6px;
+}
+
+.mb6 {
+  margin-bottom: 6px;
+}
+
+body {
+  background: white;
+  color: #4d4d4d;
+}
+
+h1, h2 {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  color: #1a1a1a;
+}
+
+h1 small {
+  color: #1a1a1a;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h3 i.edit {
+  font-size: 22px;
+}
+
+.loading {
+  background-color: white;
+}
+
+.container {
+  width: 100%;
+}
+
+.navbar-brand {
+  text-transform: uppercase;
+  font-size: 2.5rem;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: #1a1a1a;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+}
+
+.navbar-default .navbar-brand {
+  color: #1a1a1a;
+}
+
+.panel {
+  border: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.panel.panel-primary .panel-heading {
+  text-transform: uppercase;
+  color: #1a1a1a;
+  background: inherit;
+  border-color: #ff3309;
+  border-bottom-width: 2px;
+}
+
+.panel-footer {
+  background: white;
+  border-top: none;
+  border-bottom: none;
+}
+
+.modal-header {
+  background-color: #ff3309;
+  color: white;
+  text-transform: uppercase;
+}
+
+.form-control {
+  border-radius: 0px;
+}
+
+.control-label {
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+}
+
+.list-group-item {
+  border: none;
+}
+
+.panel-pathway input,
+.panel-pathway select, .modal-body input,
+.modal-body select {
+  max-width: 300px;
+}
+
+.btn-primary {
+  background-color: #ff3309;
+  border-color: #ff3309;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  border-radius: 0px;
+}
+
+.btn-primary:hover {
+  background-color: #ff6509;
+  border-color: #ff6509;
+}
+
+.btn-cancel, .btn-secondary {
+  border-radius: 0px;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+}
+
+.display-label {
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 0.1rem;
+}
+
+.table-row i {
+  font-size: 16px;
+  padding-top: 10px;
+}
+
+.header-row.display-label {
+  font-size: 0.8em;
 }
 /*# sourceMappingURL=entrytool.css.map */

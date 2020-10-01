@@ -1,15 +1,20 @@
 {% load panels %}
-<h2 class="content-offset-below-25 content-offset-25 text-muted text-center">
-  Line [[ lot_episodes.length - $index ]]
-</h2>
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-1 text-center">
+    <h2 class="pt6">
+      [[ lot_episodes.length - $index ]]
+    </h2>
+  </div>
+  <div class="col-md-3">
     {% record_panel models.Regimen %}
+  </div>
+  <div class="col-md-2">
+    {% record_panel models.Response %}
+  </div>
+  <div class="col-md-3">
     {% record_panel models.SCT %}
   </div>
-  <div class="col-md-6">
-    {% record_panel models.Response %}
+  <div class="col-md-2">
     {% record_panel models.AdverseEvent %}
   </div>
 </div>
-<hr ng-show="lot_episodes.length !== $index + 1" class="text-muted content-offset">
