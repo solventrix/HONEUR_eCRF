@@ -103,6 +103,10 @@ class RegimenList(lookuplists.LookupList):
     pass
 
 
+class StopReason(lookuplists.LookupList):
+    pass
+
+
 # TODO does this need to be kept? Can the line number be an attribute of the episode?
 class TreatmentLine(models.EpisodeSubrecord):
     nb = fields.IntegerField(verbose_name=_("Treatment Line"))
@@ -122,8 +126,8 @@ class Regimen(models.EpisodeSubrecord):
     )
     end_date = fields.DateField(verbose_name=_("End Date"), blank=True, null=True)
     regimen = ForeignKeyOrFreeText(RegimenList, verbose_name=_("Regimen"))
-    stop_reason = fields.CharField(
-        verbose_name=_("Reason for Regimen Stop"), max_length=200, blank=True
+    stop_reason = ForeignKeyOrFreeText(
+        StopReason, verbose_name=_("Reason for Regimen Stop")
     )
 
 
