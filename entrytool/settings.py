@@ -270,8 +270,8 @@ OPAL_DEFAULT_SEARCH_FIELDS = [
 ]
 
 # ========== PROJECT ==========
-OPAL_BRAND_NAME = "HONEUR Data Entry"
-VERSION_NUMBER = "0.0.1"
+OPAL_BRAND_NAME = "HONEUR ecrf"
+VERSION_NUMBER = "0.2"
 
 if os.environ.get('HEROKU_SLUG_COMMIT'):
     VERSION_NUMBER = '{} ({})'.format(VERSION_NUMBER, os.environ.get('HEROKU_SLUG_COMMIT'))
