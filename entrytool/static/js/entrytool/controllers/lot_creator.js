@@ -1,8 +1,17 @@
 angular.module('opal.controllers').controller(
-  "LineOfTreatmentCreator", function($scope, $http, $q){
+  "LineOfTreatmentCreator", function($scope, $http, $q, UserProfile){
     "use strict";
     var self = this;
     this.loading = false;
+    this.readonly = false;
+    UserProfile.load().then(function(profile){
+      self.readonly = profile.readonly;
+    });
+
+    this.canEdit = function(){
+      return !this.loading && !this.readonly;
+    }
+
     this.create = function(patient){
       this.loading = true;
       var deferred = $q.defer();

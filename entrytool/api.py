@@ -1,3 +1,4 @@
+from rest_framework import status
 from opal.core.api import LoginRequiredViewset
 from opal.models import Patient
 from opal.core.api import OPALRouter, patient_from_pk
@@ -11,6 +12,12 @@ class NewLineOfTreatmentEpisode(LoginRequiredViewset):
 
     @patient_from_pk
     def update(self, request, patient):
+        profile = request.user.profile
+        if profile.readonly:
+            return json_response(
+                {'error': 'User is read only'},
+                status_code=status.HTTP_401_UNAUTHORIZED
+            )
         patient.episode_set.create(category_name=LineOfTreatmentEpisode.display_name)
         return json_response(True)
 

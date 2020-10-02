@@ -30,3 +30,24 @@ class CreateNewTestCase(OpalTestCase):
             self.patient.episode_set.last().category_name,
             LineOfTreatmentEpisode.display_name
         )
+
+    def test_create_new_lot_read_only(self):
+        url = reverse(
+            "new_line_of_treatment_episode-detail",
+            kwargs={"pk": self.patient.pk}
+        )
+        read_only = self.make_user("password", username="readonly")
+        profile = read_only.profile
+        profile.readonly = True
+        profile.save()
+
+        self.assertTrue(
+            self.client.login(
+                username="readonly", password="password"
+            )
+        )
+        response = self.client.put(url)
+        self.assertEqual(response.status_code, 401)
+        self.assertEqual(
+            self.patient.episode_set.all().count(), 1
+        )
