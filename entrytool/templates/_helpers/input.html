@@ -9,10 +9,11 @@
     {% if icon %}<i class="{{icon}}"></i> {% endif %}
     {{ label }}
   </label>
-  <div ng-class="{{ formname }}.$submitted && {{ formname }}[{{ element_name }}].$error.required"
+  <div
        {% ifequal style "horizontal" %}
        class="col-sm-{% if unit %}2{% else %}8{% endif %}"
        {% endifequal %}
+       ng-class="{'has-error': {{ formname }}.$submitted && {{ formname }}[{{ element_name }}].$invalid}"
        >
 
 	<input class="form-control" type="{{ element_type }}" ng-model="{{ model }}"
