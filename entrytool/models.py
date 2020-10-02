@@ -69,13 +69,13 @@ class PatientDetails(models.PatientSubrecord):
         max_length=10, choices=CHOICES, verbose_name=_("History of SMM")
     )
     smm_history_date = fields.DateField(
-        null=True, verbose_name=_("Date of SMM diagnosis")
+        blank=True, null=True, verbose_name=_("Date of SMM diagnosis")
     )
     mgus_history = fields.CharField(
         max_length=10, choices=CHOICES, verbose_name=_("History of MGUS")
     )
     mgus_history_date = fields.DateField(
-        null=True, verbose_name=_("Date of MGUS Diagnosis")
+        blank=True, null=True, verbose_name=_("Date of MGUS Diagnosis")
     )
     r_iss_stage = fields.CharField(
         max_length=10, choices=R_ISS_STAGES, verbose_name=_("R-ISS Stage")
