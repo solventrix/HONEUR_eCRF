@@ -31,13 +31,12 @@
             </div>
 
             <section ng-show="episode.patient_details[0].consistency_token"> <!-- Treatment lines, follow ups -->
-
               <div class="panel mb6">
                 <div class="panel-heading" >
                   <h3>
                     Lines Of Treatment
                     <span class="pull-right pointer edit" ng-controller="LineOfTreatmentCreator as lineOfTreatmentCreator">
-                      <a ng-class="{disabled: lineOfTreatmentCreator.loading}" ng-click="!lineOfTreatmentCreator.loading && lineOfTreatmentCreator.create(patient)">
+                      <a ng-click="lineOfTreatmentCreator.canEdit() && lineOfTreatmentCreator.create(patient)">
                         <i class="fa fa-plus-circle edit pointer"></i>
                       </a>
                     </span>
