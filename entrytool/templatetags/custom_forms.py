@@ -32,4 +32,11 @@ def custom_datepicker(*args, **kwargs):
     return context
 
 
+@register.inclusion_tag('_helpers/custom_select.html')
+def custom_select(*args, **kwargs):
+    ctx = forms.select(*args, **kwargs)
+    ctx["ngrequired"] = kwargs.pop("ngrequired")
+    return ctx
+
+
 
