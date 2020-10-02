@@ -158,7 +158,7 @@ h3 i.edit {
   border-color: $red2;
 }
 
-.btn-cancel, .btn-secondary {
+.btn-cancel, .btn-secondary, .btn {
     border-radius: 0px;
     text-transform: uppercase;
     letter-spacing: 0.1rem;
@@ -181,5 +181,14 @@ h3 i.edit {
 }
 
 .delete-lot{
-    font-size: 18px;
+    i{
+        font-size: 18px;
+        visibility: hidden;
+    }
+
+    &:hover{
+        i{
+            visibility: visible;
+        }
+    }
 }

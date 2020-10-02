@@ -141,7 +141,7 @@ h3 i.edit {
   border-color: #ff6509;
 }
 
-.btn-cancel, .btn-secondary {
+.btn-cancel, .btn-secondary, .btn {
   border-radius: 0px;
   text-transform: uppercase;
   letter-spacing: 0.1rem;
@@ -162,7 +162,12 @@ h3 i.edit {
   font-size: 0.8em;
 }
 
-.delete-lot {
+.delete-lot i {
   font-size: 18px;
+  visibility: hidden;
+}
+
+.delete-lot:hover i {
+  visibility: visible;
 }
 /*# sourceMappingURL=entrytool.css.map */

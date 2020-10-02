@@ -154,6 +154,7 @@ class AdverseEvent(models.EpisodeSubrecord):
 
 
 class Response(models.EpisodeSubrecord):
+    _sort = "response_date"
     responses = [
         ("MR", "Minimal response"),
         ("PR", "Partial response"),
