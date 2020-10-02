@@ -1,5 +1,5 @@
 angular.module('opal.controllers').controller(
-  "LineOfTreatmentCreator", function($scope, $http, $q, UserProfile){
+  "LineOfTreatmentCreator", function($scope, $http, $q, $modal, UserProfile){
     "use strict";
     var self = this;
     this.loading = false;
@@ -28,6 +28,30 @@ angular.module('opal.controllers').controller(
       });
 
       return deferred.promise;
+    };
+
+    this.delete = function(episode){
+      if(self.readonly){
+        return;
+      }
+      var deferred = $q.defer();
+      var deleteModal =  $modal.open({
+          templateUrl: '/templates/delete_lot_modal.html',
+          controller: 'DeleteLOTConfirmationCtrl',
+          resolve: {
+              episode: function() {
+                  return episode;
+              }
+          }
+      });
+      deleteModal.result.then(function(result){
+        if(result === "deleted"){
+          $scope.refresh().then(deferred.resolve());
+        }
+        else{
+          deferred.resolve();
+        }
+      });
     };
   }
 );

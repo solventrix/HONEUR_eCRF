@@ -9,11 +9,11 @@ from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
 
 class Application(application.OpalApplication):
-
     javascripts   = [
         'js/entrytool/routes.js',
         "js/entrytool/directives.js",
         "js/entrytool/controllers/lot_creator.js",
+        "js/entrytool/controllers/delete_lot.js",
     ]
 
     styles = [
