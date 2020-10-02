@@ -59,7 +59,6 @@ class PatientDetails(models.PatientSubrecord):
     R_ISS_STAGES = enum("Stage I", "Stage II", "Stage III")
     PP_TYPE_CHOICES = enum("IgG", "IgA", "IgE", "Light Chain Myeloma")
 
-    hospital = fields.CharField(max_length=200)
     status = fields.CharField(
         max_length=100, choices=STATUSES, verbose_name=_("Patient Status")
     )
