@@ -9,9 +9,9 @@ angular.module('opal.controllers').controller(
         alert("Unable to create a line of treatment");
         $modalInstance.close('cancel');
     });
+  }
 
-    $scope.cancel = function() {
-        $modalInstance.close('cancel');
-    };
+  $scope.cancel = function() {
+    $modalInstance.close('cancel');
   }
 });
