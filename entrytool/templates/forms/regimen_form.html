@@ -3,9 +3,12 @@
 {% select field="Regimen.hospital" required=True %}
 {% select field="Regimen.category" %}
 <div ng-if="editing.regimen.category !== 'Watch and wait'">
-  {% select field="Regimen.regimen" required=True %}
+  {% select field="Regimen.regimen" required=True%}
   {% input field="Regimen.nbCycles" required=True %}
 </div>
 {% custom_datepicker field="Regimen.start_date" date_after="the_episode.demographics[0].date_of_birth" date_after_message="Start Date must be after the patient's DOB" %}
-{% custom_datepicker field="Regimen.end_date" date_after='editing.regimen.start_date' date_after_message='End Date must be after the Start Date' date_after_diff="0" %}
-{% custom_select field="Regimen.stop_reason" ngrequired="editing.regimen.end_date" %}
+{# if the datepicker is set to null set the regimen stop reason to null #}
+{% custom_datepicker change="editing.regimen.stop_reason = editing.regimen.end_date ? editing.regimen.stop_reason : ''" field="Regimen.end_date" date_after='editing.regimen.start_date' date_after_message='End Date must be after the Start Date' date_after_diff="0" %}
+<div ng-if="editing.regimen.end_date">
+  {% select field="Regimen.stop_reason" required=True %}
+</div>
