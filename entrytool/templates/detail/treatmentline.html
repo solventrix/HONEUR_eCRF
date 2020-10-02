@@ -1,8 +1,9 @@
 {% load panels %}
 <div class="row">
   <div class="col-md-1 text-center">
-    <h2 class="pt6">
+    <h2 ng-controller="LineOfTreatmentCreator as lineOfTreatmentCreator" class="pt6 delete-lot">
       [[ lot_episodes.length - $index ]]
+      <i class="fa fa-trash-o delete-lot pointer" ng-click="lineOfTreatmentCreator.delete(episode)"></i>
     </h2>
   </div>
   <div class="col-md-3">

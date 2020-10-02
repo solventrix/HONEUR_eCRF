@@ -179,3 +179,16 @@ h3 i.edit {
 .header-row.display-label {
   font-size: 0.8em;
 }
+
+.delete-lot{
+    i{
+        font-size: 18px;
+        visibility: hidden;
+    }
+
+    &:hover{
+        i{
+            visibility: visible;
+        }
+    }
+}
