@@ -117,7 +117,8 @@ class Regimen(models.EpisodeSubrecord):
     REGIMEN_TYPES = enum(
         _("Induction"),
         _("Maintenance"),
-        _("Conditioning")
+        _("Conditioning"),
+        _("Watch and wait"),
     )
 
     hospital = models.ForeignKeyOrFreeText(Hospital)
