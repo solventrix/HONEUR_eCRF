@@ -29,12 +29,12 @@
 
         ctrl.$validators.dateAfter = function (modelValue, viewValue) {
           var before = toMomentFilter($parse(attrs.dateAfter)(scope));
-          dateAfterDiff = 1;
+          var dateAfterDiff = 1;
           if (attrs.dateAfterDiff) {
             dateAfterDiff = parseInt(attrs.dateAfterDiff);
           }
           if (before) {
-            b = before.add(dateAfterDiff, "d");
+            var b = before.add(dateAfterDiff, "d");
             if (viewValue) {
               viewValue = toMomentFilter(viewValue);
               if (viewValue < b) {
@@ -96,4 +96,5 @@
       },
     };
   });
+
 })();
