@@ -9,16 +9,16 @@
       class="form-control"
       uib-datepicker-popup="dd/MM/yyyy"
       ng-model="editing.regimen.end_date"
-      is-open="form[ regimen_end + '_open']"
+      is-open="form.regimen_end_open"
       show-button-bar="false"
       show-weeks="false"
       name="regimen_end"
       datepicker-options="{startingDay: 1}"
-      ng-focus="form[regimen_end + '_open']=true"
+      ng-focus="form.regimen_end_open=true"
       close-text="Close"
       required
       regimen-end
-      date-after="the_episode.demographics[0].date_of_birth"
+      date-after="editing.regimen.start_date"
     />
     <span
       class="help-block"
@@ -30,19 +30,19 @@
       class="help-block"
       ng-show="form.$submitted && form.regimen_end.$error.dateAfter"
     >
-      End Date must be after the patient's DOB
+      End Date must be after the start date
     </span>
     <span
       class="help-block"
       ng-show="form.$submitted && form.regimen_end.$error.regimenDateBetween"
     >
-      End Date cannot overlap with another regimen
+    The regimen cannot overlap with another regimen
     </span>
     <span
       class="help-block"
       ng-show="form.$submitted && form.regimen_end.$error.regimenSurrounds"
     >
-      End Date cannot overlap with another regimen
+      The regimen cannot overlap with another regimen
     </span>
   </div>
 </div>

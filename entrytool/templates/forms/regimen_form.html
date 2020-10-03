@@ -7,8 +7,7 @@
   {% input field="Regimen.nbCycles" required=True %}
 </div>
 {% include "fields/regimen_start_field.html" %}
-{# if the datepicker is set to null set the regimen stop reason to null #}
-{% custom_datepicker change="editing.regimen.stop_reason = editing.regimen.end_date ? editing.regimen.stop_reason : ''" field="Regimen.end_date" date_after='editing.regimen.start_date' date_after_message='End Date must be after the Start Date' date_after_diff="0" %}
+{% include "fields/regimen_end_field.html" %}
 <div ng-if="editing.regimen.end_date">
   {% select field="Regimen.stop_reason" required=True %}
 </div>

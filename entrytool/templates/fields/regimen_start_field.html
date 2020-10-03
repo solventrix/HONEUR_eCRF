@@ -9,12 +9,12 @@
       class="form-control"
       uib-datepicker-popup="dd/MM/yyyy"
       ng-model="editing.regimen.start_date"
-      is-open="form[ regimen_start + '_open']"
+      is-open="form.regimen_start_open"
       show-button-bar="false"
       show-weeks="false"
       name="regimen_start"
       datepicker-options="{startingDay: 1}"
-      ng-focus="form[regimen_start + '_open']=true"
+      ng-focus="form.regimen_start_open=true"
       close-text="Close"
       required
       regimen-start

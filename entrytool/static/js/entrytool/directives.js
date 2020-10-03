@@ -174,4 +174,27 @@
       },
     };
   });
+
+  directives.directive("regimenEnd", function ($parse, toMomentFilter) {
+    var VALIDATORS = {
+      regimenDateBetween: regimenDateBetween,
+      regimenSurrounds: regimenSurrounds
+    };
+    return {
+      require: "ngModel",
+      link: function (scope, elm, attrs, ctrl, ngModel) {
+        _.each(VALIDATORS, function (v, k) {
+          ctrl.$validators[k] = function (modelValue, viewValue) {
+            var viewDate = toMomentFilter(viewValue);
+            return !v(
+              viewDate,
+              scope.item,
+              scope.the_episode,
+              scope.$root.patient
+            );
+          };
+        });
+      },
+    };
+  });
 })();
