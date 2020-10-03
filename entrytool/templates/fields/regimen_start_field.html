@@ -17,6 +17,7 @@
       ng-focus="form[regimen_start + '_open']=true"
       close-text="Close"
       required
+      regimen-start
       date-after="the_episode.demographics[0].date_of_birth"
     />
     <span
@@ -30,6 +31,12 @@
       ng-show="form.$submitted && form.regimen_start.$error.dateAfter"
     >
       Start Date must be after the patient's DOB
+    </span>
+    <span
+      class="help-block"
+      ng-show="form.$submitted && form.regimen_start.$error.regimenDateBetween"
+    >
+      Start Date cannot overlap with another regimen
     </span>
   </div>
 </div>

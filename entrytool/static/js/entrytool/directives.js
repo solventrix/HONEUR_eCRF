@@ -97,4 +97,42 @@
     };
   });
 
+  var regimenDateBetween = function (fieldValue, instance, episode, patient) {
+    /*
+     * Takes in a field value (a moment), instance(a regimen) and a patient
+     * Returns true if the field is between start/end of two
+     * regimen dates and is not the same regimen
+     */
+    var error = false;
+    _.each(patient.episodes, function (episode) {
+      _.each(episode.regimen, function (r) {
+        if(r.id !== instance.id){
+          if (r.start_date && r.end_date) {
+            if (fieldValue >= r.start_date && fieldValue <= r.end_date) {
+              error = true;
+            }
+          }
+        }
+      });
+    });
+
+    return error
+  };
+
+  directives.directive("regimenStart", function ($parse, toMomentFilter) {
+    var VALIDATORS = {
+      regimenDateBetween: regimenDateBetween
+    }
+    return {
+      require: "ngModel",
+      link: function (scope, elm, attrs, ctrl, ngModel) {
+        _.each(VALIDATORS, function(v, k){
+          ctrl.$validators[k] = function (modelValue, viewValue) {
+            var viewDate = toMomentFilter(viewValue);
+            return !v(viewDate, scope.item, scope.the_episode, scope.$root.patient);
+          }
+        });
+      }
+    };
+  });
 })();
