@@ -1,5 +1,7 @@
-directives.directive('dateAfter', function($parse, toMomentFilter) {
-  /*
+!(function () {
+  "use strict";
+  directives.directive("dateAfter", function ($parse, toMomentFilter) {
+    /*
 
     This data validation directive is intended for use with the
     custom datepicker field.
@@ -13,39 +15,41 @@ directives.directive('dateAfter', function($parse, toMomentFilter) {
     date-after="startDate" date-after-diff="30"
 
   */
-  return {
-    require: 'ngModel',
-    link: function(scope, elm, attrs, ctrl, ngModel) {
-      scope.$watch(function () {
-        return $parse(attrs.dateAfter)(scope);
-      }, function () {
-          ctrl.$validate();
-      });
+    return {
+      require: "ngModel",
+      link: function (scope, elm, attrs, ctrl, ngModel) {
+        scope.$watch(
+          function () {
+            return $parse(attrs.dateAfter)(scope);
+          },
+          function () {
+            ctrl.$validate();
+          }
+        );
 
-      ctrl.$validators.dateAfter = function(modelValue, viewValue){
-        var before = toMomentFilter($parse(attrs.dateAfter)(scope));
-        dateAfterDiff = 1;
-        if(attrs.dateAfterDiff){
-          dateAfterDiff = parseInt(attrs.dateAfterDiff);
-        }
-        if(before){
-          b = before.add(dateAfterDiff, "d");
-          if(viewValue){
-            viewValue = toMomentFilter(viewValue);
-            if(viewValue < b){
-              return false;
+        ctrl.$validators.dateAfter = function (modelValue, viewValue) {
+          var before = toMomentFilter($parse(attrs.dateAfter)(scope));
+          dateAfterDiff = 1;
+          if (attrs.dateAfterDiff) {
+            dateAfterDiff = parseInt(attrs.dateAfterDiff);
+          }
+          if (before) {
+            b = before.add(dateAfterDiff, "d");
+            if (viewValue) {
+              viewValue = toMomentFilter(viewValue);
+              if (viewValue < b) {
+                return false;
+              }
             }
           }
-        }
-        return true;
-      }
-    }
-  };
-});
+          return true;
+        };
+      },
+    };
+  });
 
-
-directives.directive('dateBefore', function($parse, toMomentFilter) {
-  /*
+  directives.directive("dateBefore", function ($parse, toMomentFilter) {
+    /*
 
     This data validation directive is intended for use with the
     custom datepicker field.
@@ -59,33 +63,37 @@ directives.directive('dateBefore', function($parse, toMomentFilter) {
     date-before="startDate" date-before-diff="30"
 
   */
-  return {
-    require: 'ngModel',
-    link: function(scope, elm, attrs, ctrl, ngModel) {
-      scope.$watch(function () {
-        return $parse(attrs.dateBefore)(scope);
-      }, function () {
-          ctrl.$validate();
-      });
+    return {
+      require: "ngModel",
+      link: function (scope, elm, attrs, ctrl, ngModel) {
+        scope.$watch(
+          function () {
+            return $parse(attrs.dateBefore)(scope);
+          },
+          function () {
+            ctrl.$validate();
+          }
+        );
 
-      ctrl.$validators.dateBefore = function(modelValue, viewValue){
-        var before = toMomentFilter($parse(attrs.dateBefore)(scope));
-        dateBeforeDiff = 1;
-        if(attrs.dateBeforeDiff){
-          dateBeforeDiff = parseInt(attrs.dateBeforeDiff);
-        }
+        ctrl.$validators.dateBefore = function (modelValue, viewValue) {
+          var before = toMomentFilter($parse(attrs.dateBefore)(scope));
+          dateBeforeDiff = 1;
+          if (attrs.dateBeforeDiff) {
+            dateBeforeDiff = parseInt(attrs.dateBeforeDiff);
+          }
 
-        if(before){
-          b = before.add(dateBeforeDiff, "d");
-          if(viewValue){
-            viewValue = toMomentFilter(viewValue);
-            if(viewValue > b){
-              return false;
+          if (before) {
+            b = before.add(dateBeforeDiff, "d");
+            if (viewValue) {
+              viewValue = toMomentFilter(viewValue);
+              if (viewValue > b) {
+                return false;
+              }
             }
           }
-        }
-        return true;
-      }
-    }
-  };
-});
+          return true;
+        };
+      },
+    };
+  });
+})();
