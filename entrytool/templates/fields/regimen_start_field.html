@@ -1,0 +1,35 @@
+<div class="form-group">
+  <label class="control-label col-sm-3">Regimen Start </label>
+  <div
+    class="col-sm-8"
+    ng-class="{'has-error': form.$submitted && form.regimen_start.$invalid}"
+  >
+    <input
+      type="text"
+      class="form-control"
+      uib-datepicker-popup="dd/MM/yyyy"
+      ng-model="editing.regimen.start_date"
+      is-open="form[ regimen_start + '_open']"
+      show-button-bar="false"
+      show-weeks="false"
+      name="regimen_start"
+      datepicker-options="{startingDay: 1}"
+      ng-focus="form[regimen_start + '_open']=true"
+      close-text="Close"
+      required
+      date-after="the_episode.demographics[0].date_of_birth"
+    />
+    <span
+      class="help-block"
+      ng-show="form.$submitted && form.regimen_start.$error.required"
+    >
+      Start Date is required
+    </span>
+    <span
+      class="help-block"
+      ng-show="form.$submitted && form.regimen_start.$error.dateAfter"
+    >
+      Start Date must be after the patient's DOB
+    </span>
+  </div>
+</div>
