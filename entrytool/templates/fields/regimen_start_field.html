@@ -19,6 +19,7 @@
       required
       regimen-start
       date-after="the_episode.demographics[0].date_of_birth"
+      date-before="editing.regimen.end_date"
     />
     <span
       class="help-block"
@@ -31,6 +32,12 @@
       ng-show="form.$submitted && form.regimen_start.$error.dateAfter"
     >
       Start Date must be after the patient's DOB
+    </span>
+    <span
+      class="help-block"
+      ng-show="form.$submitted && form.regimen_start.$error.dateBefore"
+    >
+      Start Date must be before the end date
     </span>
     <span
       class="help-block"

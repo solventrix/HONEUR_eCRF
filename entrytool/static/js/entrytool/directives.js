@@ -77,13 +77,13 @@
 
         ctrl.$validators.dateBefore = function (modelValue, viewValue) {
           var before = toMomentFilter($parse(attrs.dateBefore)(scope));
-          dateBeforeDiff = 1;
+          var dateBeforeDiff = 1;
           if (attrs.dateBeforeDiff) {
             dateBeforeDiff = parseInt(attrs.dateBeforeDiff);
           }
 
           if (before) {
-            b = before.add(dateBeforeDiff, "d");
+            var b = before.add(dateBeforeDiff, "d");
             if (viewValue) {
               viewValue = toMomentFilter(viewValue);
               if (viewValue > b) {
