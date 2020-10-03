@@ -36,7 +36,13 @@
       class="help-block"
       ng-show="form.$submitted && form.regimen_start.$error.regimenDateBetween"
     >
-      Start Date cannot overlap with another regimen
+      The regimen cannot overlap with another regimen
+    </span>
+    <span
+      class="help-block"
+      ng-show="form.$submitted && form.regimen_start.$error.regimenSurrounds"
+    >
+      The regimen ccannot overlap with another regimen
     </span>
   </div>
 </div>

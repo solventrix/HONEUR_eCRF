@@ -104,9 +104,12 @@
      * regimen dates and is not the same regimen
      */
     var error = false;
+    if (!fieldValue) {
+      return error;
+    }
     _.each(patient.episodes, function (episode) {
       _.each(episode.regimen, function (r) {
-        if(r.id !== instance.id){
+        if (r.id !== instance.id) {
           if (r.start_date && r.end_date) {
             if (fieldValue >= r.start_date && fieldValue <= r.end_date) {
               error = true;
@@ -116,23 +119,59 @@
       });
     });
 
-    return error
+    return error;
+  };
+
+  var regimenSurrounds = function (fieldValue, instance, episode, patient) {
+    /*
+     * Make sure that when a regimen date is changed, the regimen does not
+     * now encompass another regimen
+     *
+     * Step 1. Create a regimen A but don't but an end date on it with
+     * start time Monday.
+     * Step 2. Create a regimen B that lasts between Tuesday-Wednesday
+     * Step 3. The add an end date on A of Thursday. It should error.
+     */
+    var error = false;
+    var startDate = instance.start_date;
+    var endDate = instance.end_date;
+    if(!startDate && !endDate){
+      return error;
+    }
+    _.each(patient.episodes, function (episode) {
+      _.each(episode.regimen, function (r) {
+        if (r.id !== instance.id) {
+          if (r.start_date && r.end_date) {
+            if (startDate < r.start_date && endDate > r.end_date) {
+              error = true;
+            }
+          }
+        }
+      });
+    });
+    return error;
   };
 
   directives.directive("regimenStart", function ($parse, toMomentFilter) {
     var VALIDATORS = {
-      regimenDateBetween: regimenDateBetween
-    }
+      regimenDateBetween: regimenDateBetween,
+      regimenSurrounds: regimenSurrounds
+    };
     return {
       require: "ngModel",
       link: function (scope, elm, attrs, ctrl, ngModel) {
-        _.each(VALIDATORS, function(v, k){
+        _.each(VALIDATORS, function (v, k) {
           ctrl.$validators[k] = function (modelValue, viewValue) {
             var viewDate = toMomentFilter(viewValue);
-            return !v(viewDate, scope.item, scope.the_episode, scope.$root.patient);
-          }
+            return !v(
+              viewDate,
+              scope.item,
+              scope.the_episode,
+              scope.$root.patient
+            );
+          };
         });
-      }
+      },
     };
   });
 })();
