@@ -28,6 +28,11 @@ angular
           var errorTypes = ["errors", "warnings"]
           _.each(errorTypes, function(errorType){
             _.each(errorTypeToFunctionList[errorType], function (someFunc) {
+              if(!someFunc){
+                return;
+              }
+              // if there was a previous error, let's use the first
+              // we hit.
               if(result){
                 return;
               }
@@ -39,6 +44,7 @@ angular
             else{
               delete self[errorType][fieldName];
             }
+            result = null;
           })
         }
         self[fieldName] = checkError;
