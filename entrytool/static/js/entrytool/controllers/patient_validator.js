@@ -167,9 +167,6 @@ angular
         var regimens = _.reject(episode.regimen, {id: instance.id});
         regimens.push(instance);
         _.each(episode.response, function(response){
-          if(response.id === instance.id){
-            return
-          }
           if(response.response_date){
             _.each(regimens, function(regimen){
               var within = responseDateWithRegimen(response.response_date, regimen);
