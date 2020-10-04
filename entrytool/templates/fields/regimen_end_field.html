@@ -40,5 +40,10 @@
     >
       [[ $root.patientValidator.errors.regimen_end ]]
     </span>
+    <span
+    class="help-block" ng-show="$root.patientValidator.warnings.regimen_end"
+  >
+    [[ $root.patientValidator.warnings.regimen_end ]]
+  </span>
   </div>
 </div>
