@@ -6,8 +6,8 @@
   {% select field="Regimen.regimen" required=True%}
   {% input field="Regimen.nbCycles" required=True %}
 </div>
-{% include "fields/regimen_start_field.html" %}
-{% include "fields/regimen_end_field.html" %}
+{% custom_datepicker field="Regimen.start_date" change="$root.patientValidator.regimen_start(editing.regimen.start_date, editing.regimen, the_episode); $root.patientValidator.regimen_end(editing.regimen.end_date, editing.regimen, the_episode);" date_after="$root.patientValidator.patient.patient_details[0].diag_date" date_after_diff="0" date_after_message="Start Date must be after the patient date of diagnosis" validator="regimen_start" required=True %}
+{% custom_datepicker field="Regimen.end_date" change="$root.patientValidator.regimen_start(editing.regimen.start_date, editing.regimen, the_episode); $root.patientValidator.regimen_end(editing.regimen.end_date, editing.regimen, the_episode);" date_after="editing.regimen.start_date" date_after_diff="0" date_after_message="End Date must be after the start date" validator="regimen_end" required=True %}
 <div ng-if="editing.regimen.end_date">
   {% select field="Regimen.stop_reason" required=True %}
 </div>
