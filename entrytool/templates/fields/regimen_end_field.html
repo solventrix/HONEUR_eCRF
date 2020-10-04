@@ -1,0 +1,44 @@
+<div class="form-group">
+  <label class="control-label col-sm-3">Regimen End </label>
+  <div
+    class="col-sm-8"
+    ng-class="{'has-error': form.$submitted && (form.regimen_end.$invalid || $root.patientValidator.errors.regimen_end)}"
+  >
+    <input
+      type="text"
+      class="form-control"
+      uib-datepicker-popup="dd/MM/yyyy"
+      ng-model="editing.regimen.end_date"
+      is-open="form.regimen_end_open"
+      show-button-bar="false"
+      show-weeks="false"
+      name="regimen_end"
+      datepicker-options="{startingDay: 1}"
+      ng-focus="form.regimen_end_open=true"
+      {# some of the validators encompass both regimen start and regimen end so run both validators #}
+      ng-change="$root.patientValidator.regimen_start(editing.regimen.start_date, editing.regimen, the_episode); $root.patientValidator.regimen_end(editing.regimen.end_date, editing.regimen, the_episode);"
+      close-text="Close"
+      required
+      regimen
+      date-after="editing.regimen.start_date"
+      date-after-diff="0"
+    />
+    <span
+      class="help-block"
+      ng-show="form.$submitted && form.regimen_end.$error.required"
+    >
+      End Date is required
+    </span>
+    <span
+      class="help-block"
+      ng-show="form.$submitted && form.regimen_end.$error.dateAfter"
+    >
+      End Date must be after the start date
+    </span>
+    <span
+      class="help-block" ng-show="form.$submitted && $root.patientValidator.errors.regimen_end"
+    >
+      [[ $root.patientValidator.errors.regimen_end ]]
+    </span>
+  </div>
+</div>

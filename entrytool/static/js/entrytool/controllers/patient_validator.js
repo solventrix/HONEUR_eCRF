@@ -44,6 +44,72 @@ angular
         self[fieldName] = checkError;
       };
 
+      var validateRegimenDateBetween = function (
+        fieldValue,
+        instance
+      ) {
+        /*
+         * Takes in a field value (a moment), instance(a regimen)
+         * Returns true if the field is between start/end of two
+         * regimen dates and is not the same regimen
+         */
+        var error = false;
+        if (!fieldValue) {
+          return error;
+        }
+        _.each(self.patient.episodes, function (episode) {
+          _.each(episode.regimen, function (r) {
+            if (r.id !== instance.id) {
+              if (r.start_date && r.end_date) {
+                if (fieldValue >= r.start_date && fieldValue <= r.end_date) {
+                  error = true;
+                }
+              }
+            }
+          });
+        });
+
+        if (error) {
+          return "The regimen cannot overlap with another regimen";
+        }
+      };
+
+      var validateRegimenSurrounds = function (
+        fieldValue,
+        instance
+      ) {
+        /*
+         * Make sure that when a regimen date is changed, the regimen does not
+         * now encompass another regimen
+         *
+         * Step 1. Create a regimen A but don't but an end date on it with
+         * start time Monday.
+         * Step 2. Create a regimen B that lasts between Tuesday-Wednesday
+         * Step 3. The add an end date on A of Thursday. It should error.
+         */
+        var error = false;
+        if (!fieldValue) {
+          return;
+        }
+        _.each(self.patient.episodes, function (episode) {
+          _.each(episode.regimen, function (r) {
+            if (r.id !== instance.id) {
+              if (r.start_date && r.end_date) {
+                if (
+                  instance.start_date < r.start_date &&
+                  instance.end_date > r.end_date
+                ) {
+                  error = true;
+                }
+              }
+            }
+          });
+        });
+        if (error) {
+          return "The regimen cannot overlap with another regimen";
+        }
+      };
+
       this.clean = function(){
         self.errors = {};
         self.warnings = {};
@@ -56,6 +122,12 @@ angular
         this.hasError = function () {
           return _.size(self.errors);
         };
+        this.createValidator(
+          "regimen_start", {errors: [validateRegimenDateBetween, validateRegimenSurrounds]},
+        )
+        this.createValidator(
+          "regimen_end", {errors: [validateRegimenDateBetween, validateRegimenSurrounds]}
+        );
       };
       this.setUp();
     };
