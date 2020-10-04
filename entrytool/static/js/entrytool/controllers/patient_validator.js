@@ -245,6 +245,48 @@ angular
        }
       }
 
+      var validateDateOfDiagnosis = function(val, instance, episode){
+        /*
+        * Date of diagnosis must be below all SCT/Regimen/response dates.
+        * We don't need to validate against ae date as this is included
+        * in the ae -> regimen date validation (it has to be after)
+        */
+        var error_msg = null;
+        _.each(self.patient.episodes, function(episode){
+          _.each(episode.regimen, function(regimen){
+            if(regimen.start_date < val){
+              error_msg = "Date of diagnosis is greater than a regimen start date";
+            }
+          });
+        })
+        if(error_msg){
+          return error_msg
+        }
+        var error_msg = null;
+        _.each(self.patient.episodes, function(episode){
+          _.each(episode.sct, function(sct){
+            if(sct.sct_date < val){
+              error_msg = "Date of diagnosis is greater than an SCT date";
+            }
+          });
+        })
+        if(error_msg){
+          return error_msg
+        }
+
+        var error_msg = null;
+        _.each(self.patient.episodes, function(episode){
+          _.each(episode.response, function(response){
+            if(response.response_date < val){
+              error_msg = "Date of diagnosis is greater than a response date";
+            }
+          });
+        })
+        if(error_msg){
+          return error_msg
+        }
+      };
+
       this.clean = function(){
         self.errors = {};
         self.warnings = {};
@@ -277,6 +319,11 @@ angular
         this.createValidator(
           "ae_date", {
             warnings: [validateAdverseEventToRegimen]
+          }
+        );
+        this.createValidator(
+          "diagnosis_date", {
+            errors: [validateDateOfDiagnosis]
           }
         );
       };
