@@ -9,7 +9,11 @@
     {% ifequal style "horizontal" %}
     class="col-sm-8"
     {% endifequal %}
+    {% if validator %}
+    ng-class="{'has-error': {{ formname }}.$submitted && (form[{{ element_name }}].$invalid || $root.patientValidator.errors.{{ validator }})}"
+    {% else %}
     ng-class="{'has-error': {{ formname }}.$submitted && {{ formname }}[{{ element_name }}].$invalid}"
+    {% endif %}
     >
     {% if user_options %}
       <div class="input-group">
