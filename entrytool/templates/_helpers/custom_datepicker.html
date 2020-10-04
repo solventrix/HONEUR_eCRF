@@ -29,6 +29,8 @@
 
                {% if change %}
                ng-change="{{ change }}"
+               {% elif validator %}
+               ng-change="$root.patientValidator.{{ validator }}({{ model }}, editing.regimen, the_episode)"
                {% endif %}
                {% if required %}
                required
@@ -68,5 +70,17 @@
       {{ date_before_message }}
      </span>
      {% endif %}
+     {% if validator %}
+     <span
+        class="help-block" ng-show="form.$submitted && $root.patientValidator.errors.{{ validator }}"
+        >
+          [[ $root.patientValidator.errors.{{ validator }} ]]
+        </span>
+        <span
+        class="warning-block" ng-show="$root.patientValidator.warnings.{{ validator }}"
+      >
+        [[ $root.patientValidator.warnings.{{ validator }} ]]
+      </span>
+      {% endif %}
   </div>
 </div>
