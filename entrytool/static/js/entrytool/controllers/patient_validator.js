@@ -45,8 +45,8 @@ angular
       };
 
       this.clean = function(){
-        this.errors = {};
-        this.warnings = {};
+        self.errors = {};
+        self.warnings = {};
       }
 
       this.setUp = function () {
