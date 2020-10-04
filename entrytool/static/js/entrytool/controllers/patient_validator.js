@@ -117,6 +117,10 @@ angular
       };
 
       var responseDateWithRegimen = function(fieldValue, regimen){
+        /*
+        * An adverse event date can be start_date - 30 days or
+        * end_date + 30 days and anything in between.
+        */
         var allowedStartDate = moment(regimen.start_date,).add(-30, "d")
         var allowedEndDate = null;
         var withinParams = false;
@@ -136,8 +140,8 @@ angular
 
       var validateResponseToRegimens = function(val, instance, episode){
         /*
-        * From the perspective of a response, validates that there
-        * is a response related to it.
+        * From the perspective of a response_date, validates that there
+        * is a regimen related to it.
         */
         var withinRegimen = false;
         _.each(episode.regimen, function(regimen){
@@ -180,6 +184,70 @@ angular
         }
       }
 
+      var adverseEventDateWithinRegimen = function(fieldValue, ae){
+        /*
+        * An adverse event date can be start_date or
+        * end_date + 30 days and anything in between.
+        */
+        var allowedStartDate = ae.start_date;
+        var allowedEndDate = null;
+        var withinParams = false;
+        if(ae.end_date){
+          allowedEndDate = moment(ae.end_date).add(30, "d")
+          if(fieldValue >= allowedStartDate && fieldValue <= allowedEndDate){
+            withinParams = true;
+          }
+        }
+        else{
+          if(fieldValue >= allowedStartDate){
+            withinParams = true
+          }
+        }
+        return withinParams
+      }
+
+      var validateAdverseEventToRegimen = function(val, instance, episode){
+        /*
+        * From the perspective of an adverse event date, validates that there
+        * is a response related to it.
+        */
+       var withinRegimen = false;
+       _.each(episode.regimen, function(regimen){
+         var within = adverseEventDateWithinRegimen(val, regimen);
+         if(within){
+           withinRegimen = true;
+         }
+       });
+       if(!withinRegimen){
+         return "This date is not connected to a regimen";
+       }
+      }
+
+      var validateRegimenToAdverseEvents = function(val, instance, episode){
+        /*
+        * From the perspective of regimens, validates that
+        * there are no AEs that are not connected
+        */
+       var withinRegimen = false;
+       // we may be editing things so ignore version of regimen
+       // we are using that is attatched to the episode.
+       var regimens = _.reject(episode.regimen, {id: instance.id});
+       regimens.push(instance);
+       _.each(episode.adverse_event, function(adverse_event){
+         if(adverse_event.ae_date){
+           _.each(regimens, function(regimen){
+             var within = adverseEventDateWithinRegimen(adverse_event.ae_date, regimen);
+             if(within){
+               withinRegimen = true;
+             }
+           });
+         }
+       });
+       if(!withinRegimen){
+         return "An adverse event is not connected to a regimen";
+       }
+      }
+
       this.clean = function(){
         self.errors = {};
         self.warnings = {};
@@ -195,20 +263,25 @@ angular
         this.createValidator(
           "regimen_start", {
             errors: [validateRegimenDateBetween, validateRegimenSurrounds],
-            warnings: [validateRegimenToResponses]
+            warnings: [validateRegimenToResponses, validateRegimenToAdverseEvents]
           }
         )
         this.createValidator(
           "regimen_end", {
             errors: [validateRegimenDateBetween, validateRegimenSurrounds],
-            warnings: [validateRegimenToResponses]
+            warnings: [validateRegimenToResponses, validateRegimenToAdverseEvents]
           }
         );
         this.createValidator(
           "response_date", {
             warnings: [validateResponseToRegimens]
           }
-        )
+        );
+        this.createValidator(
+          "ae_date", {
+            warnings: [validateAdverseEventToRegimen]
+          }
+        );
       };
       this.setUp();
     };
