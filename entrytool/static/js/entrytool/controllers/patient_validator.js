@@ -134,7 +134,29 @@ angular
         return withinParams
       }
 
-      var validateResponses = function(val, instance, episode){
+      var validateResponseToRegimens = function(val, instance, episode){
+        /*
+        * From the perspective of a response, validates that there
+        * is a response related to it.
+        */
+        var withinRegimen = false;
+        _.each(episode.regimen, function(regimen){
+          var within = responseDateWithRegimen(val, regimen);
+          if(within){
+            withinRegimen = true;
+          }
+        });
+        if(!withinRegimen){
+          return "A response date is not connected to this regimen";
+        }
+      }
+
+      var validateRegimenToResponses = function(val, instance, episode){
+        /*
+        * From the perspective of a regimen, validates that the
+        * responses are connected to either other regimens
+        * or the regimen in the form.
+        */
         var withinRegimen = false;
         // we may be editing things so ignore version of regimen
         // we are using that is attatched to the episode.
@@ -173,15 +195,20 @@ angular
         this.createValidator(
           "regimen_start", {
             errors: [validateRegimenDateBetween, validateRegimenSurrounds],
-            warnings: [validateResponses]
+            warnings: [validateRegimenToResponses]
           }
         )
         this.createValidator(
           "regimen_end", {
             errors: [validateRegimenDateBetween, validateRegimenSurrounds],
-            warnings: [validateResponses]
+            warnings: [validateRegimenToResponses]
           }
         );
+        this.createValidator(
+          "response_date", {
+            warnings: [validateResponseToRegimens]
+          }
+        )
       };
       this.setUp();
     };
