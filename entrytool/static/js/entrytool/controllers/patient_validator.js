@@ -116,6 +116,48 @@ angular
         }
       };
 
+      var responseDateWithRegimen = function(fieldValue, regimen){
+        var allowedStartDate = moment(regimen.start_date,).add(-30, "d")
+        var allowedEndDate = null;
+        var withinParams = false;
+        if(regimen.end_date){
+          allowedEndDate = moment(regimen.end_date).add(30, "d")
+          if(fieldValue >= allowedStartDate && fieldValue <= allowedEndDate){
+            withinParams = true;
+          }
+        }
+        else{
+          if(fieldValue >= allowedStartDate){
+            withinParams = true
+          }
+        }
+        return withinParams
+      }
+
+      var validateResponses = function(val, instance, episode){
+        var withinRegimen = false;
+        // we may be editing things so ignore version of regimen
+        // we are using that is attatched to the episode.
+        var regimens = _.reject(episode.regimen, {id: instance.id});
+        regimens.push(instance);
+        _.each(episode.response, function(response){
+          if(response.id === instance.id){
+            return
+          }
+          if(response.response_date){
+            _.each(regimens, function(regimen){
+              var within = responseDateWithRegimen(response.response_date, regimen);
+              if(within){
+                withinRegimen = true;
+              }
+            });
+          }
+        });
+        if(!withinRegimen){
+          return "A response date is not connected to a regimen";
+        }
+      }
+
       this.clean = function(){
         self.errors = {};
         self.warnings = {};
@@ -129,10 +171,16 @@ angular
           return _.size(self.errors);
         };
         this.createValidator(
-          "regimen_start", {errors: [validateRegimenDateBetween, validateRegimenSurrounds]},
+          "regimen_start", {
+            errors: [validateRegimenDateBetween, validateRegimenSurrounds],
+            warnings: [validateResponses]
+          }
         )
         this.createValidator(
-          "regimen_end", {errors: [validateRegimenDateBetween, validateRegimenSurrounds]}
+          "regimen_end", {
+            errors: [validateRegimenDateBetween, validateRegimenSurrounds],
+            warnings: [validateResponses]
+          }
         );
       };
       this.setUp();
