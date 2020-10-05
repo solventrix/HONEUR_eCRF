@@ -9,7 +9,11 @@
     {% ifequal style "horizontal" %}
     class="col-sm-8"
     {% endifequal %}
+    {% if validator %}
+    ng-class="{'has-error': {{ formname }}.$submitted && (form[{{ element_name }}].$invalid || $root.patientValidator.errors.{{ validator }})}"
+    {% else %}
     ng-class="{'has-error': {{ formname }}.$submitted && {{ formname }}[{{ element_name }}].$invalid}"
+    {% endif %}
     >
     {% if user_options %}
       <div class="input-group">
@@ -29,6 +33,8 @@
 
                {% if change %}
                ng-change="{{ change }}"
+               {% elif validator %}
+               ng-change="$root.patientValidator.{{ validator }}({{ model }}, {{ model_name }}, the_episode)"
                {% endif %}
                {% if required %}
                required
@@ -68,5 +74,17 @@
       {{ date_before_message }}
      </span>
      {% endif %}
+     {% if validator %}
+     <span
+        class="help-block" ng-show="form.$submitted && $root.patientValidator.errors.{{ validator }}"
+        >
+          [[ $root.patientValidator.errors.{{ validator }} ]]
+        </span>
+        <span
+        class="warning-block" ng-show="$root.patientValidator.warnings.{{ validator }}"
+      >
+        [[ $root.patientValidator.warnings.{{ validator }} ]]
+      </span>
+      {% endif %}
   </div>
 </div>
