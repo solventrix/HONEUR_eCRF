@@ -4,11 +4,12 @@ from django.core.management.base import BaseCommand
 from django.db import transaction
 from opal.models import Patient
 from entrytool import episode_categories
-from entrytool.models import (
-    Regimen, StopReason, AEList, AdverseEvent, Response, SCT
-)
+from entrytool.models import Regimen, StopReason, AEList, AdverseEvent, Response, SCT
 from entrytool.management.commands.load_utils import (
-    translate_date, get_and_check, get_and_check_ll, int_or_non
+    translate_date,
+    get_and_check,
+    get_and_check_ll,
+    int_or_non,
 )
 
 
@@ -17,7 +18,7 @@ def get_severity(some_value):
     if not some_value:
         return
     options = [i[0] for i in AdverseEvent.SEV_CHOICES]
-    return options[int(some_value)-1]
+    return options[int(some_value) - 1]
 
 
 class Command(BaseCommand):
@@ -31,24 +32,31 @@ class Command(BaseCommand):
             rows = list(csv.DictReader(f))
             for row in rows:
                 # skip empty rows
-                if not(any(row.values())):
+                if not (any(row.values())):
                     continue
 
                 hn = row["Hospital_patient_ID"].strip()
                 lot_number = row["LOT"].strip()
                 if not hn or not lot_number:
-                    raise ValueError('hospital number and lot number are required')
+                    raise ValueError("hospital number and lot number are required")
 
-                by_lot[(hn, lot_number,)].append(row)
+                by_lot[
+                    (
+                        hn,
+                        lot_number,
+                    )
+                ].append(row)
 
         for key, treatment_lots in by_lot.items():
             hn = key[0]
-            patient = Patient.objects.get(
-                demographics__hospital_number=hn
-            )
+            patient = Patient.objects.get(demographics__hospital_number=hn)
             episode = patient.episode_set.create(
                 category_name=episode_categories.LineOfTreatmentEpisode.display_name
             )
+            regimen_saved = 0
+            response_saved = 0
+            ae_saved = 0
+            sct_saved = 0
             for treatment_lot in treatment_lots:
                 regimen_fields = {
                     "regimen": get_and_check(
@@ -57,7 +65,9 @@ class Command(BaseCommand):
                     "start_date": translate_date(treatment_lot["Start_date"]),
                     "end_date": translate_date(treatment_lot["end_date"]),
                     "cycles": int_or_non(treatment_lot["cycles"]),
-                    "stop_reason": get_and_check_ll(treatment_lot["stop_reason"], StopReason),
+                    "stop_reason": get_and_check_ll(
+                        treatment_lot["stop_reason"], StopReason
+                    ),
                 }
                 if any(regimen_fields.values()):
                     regimen = Regimen(episode=episode)
@@ -65,10 +75,13 @@ class Command(BaseCommand):
                         setattr(regimen, k, v)
                     regimen.set_consistency_token()
                     regimen.save()
+                    regimen_saved += 1
 
                 response_fields = {
                     "response_date": translate_date(treatment_lot["response_date"]),
-                    "response": get_and_check(treatment_lot["response"], Response.responses)
+                    "response": get_and_check(
+                        treatment_lot["response"], Response.responses
+                    ),
                 }
                 if any(response_fields.values()):
                     response = Response(episode=episode)
@@ -76,11 +89,12 @@ class Command(BaseCommand):
                         setattr(response, k, v)
                     response.set_consistency_token()
                     response.save()
+                    response_saved += 1
 
                 ae_fields = {
                     "adverse_event": get_and_check_ll(treatment_lot["AE"], AEList),
                     "ae_date": translate_date(treatment_lot["AE_date"]),
-                    "severity": get_severity(treatment_lot["AE_severity"])
+                    "severity": get_severity(treatment_lot["AE_severity"]),
                 }
 
                 if any(ae_fields.values()):
@@ -89,10 +103,11 @@ class Command(BaseCommand):
                         setattr(ae, k, v)
                     ae.set_consistency_token()
                     ae.save()
+                    ae_saved += 1
 
                 sct_fields = {
                     "sct_date": translate_date(treatment_lot["SCT_date"]),
-                    "sct_type": get_and_check(treatment_lot["SCT_type"], SCT.SCT_TYPES)
+                    "sct_type": get_and_check(treatment_lot["SCT_type"], SCT.SCT_TYPES),
                 }
                 if any(sct_fields.values()):
                     sct = SCT(episode=episode)
@@ -100,4 +115,14 @@ class Command(BaseCommand):
                         setattr(sct, k, v)
                     sct.set_consistency_token()
                     sct.save()
-
+                    sct_saved += 1
+            self.stdout.write(
+                self.style.SUCCESS("Imported {} Regimens".format(regimen_saved))
+            )
+            self.stdout.write(
+                self.style.SUCCESS("Imported {} Responses".format(response_saved))
+            )
+            self.stdout.write(
+                self.style.SUCCESS("Imported {} Adverse effects".format(ae_saved))
+            )
+            self.stdout.write(self.style.SUCCESS("Imported {} SCT".format(sct_saved)))
