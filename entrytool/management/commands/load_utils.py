@@ -34,9 +34,25 @@ def no_yes_unknown(row_value):
     return NO_YES_UNKNOWN.get(int(row_value))
 
 
+def get_and_check_ll(row_value, ll):
+    row_value = row_value.strip()
+    if not row_value:
+        return
+    if not ll.objects.filter(name=row_value).exists():
+        raise ValueError("{} not in {}".format(row_value, ll))
+    return row_value
+
+
 def get_or_create_ll(row_value, ll):
     row_value = row_value.strip()
     if not row_value:
         return
     ll.objects.get_or_create(name=row_value)
     return row_value
+
+
+def int_or_non(row_value):
+    row_value = row_value.strip()
+    if not row_value:
+        return
+    return int(row_value)
