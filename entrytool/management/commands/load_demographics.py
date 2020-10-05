@@ -32,7 +32,7 @@ class Command(BaseCommand):
                 date_of_birth = translate_date(row["date_of_birth"])
 
                 patient_details = {
-                    "hospital": row["Hospital"].strip(),
+                    "hospital": get_or_create_ll(row["Hospital"], Hospital),
                     "diag_date": translate_date(row["date_of_diagnosis"]),
                     "smm_history": no_yes_unknown(row["SMM_history"]),
                     "smm_history_date": translate_date(row["SMM_History_date"]),

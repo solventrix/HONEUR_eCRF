@@ -32,3 +32,11 @@ def no_yes_unknown(row_value):
         0: "No", 1: "Yes", 2: "Unknown"
     }
     return NO_YES_UNKNOWN.get(int(row_value))
+
+
+def get_or_create_ll(row_value, ll):
+    row_value = row_value.strip()
+    if not row_value:
+        return
+    ll.objects.get_or_create(name=row_value)
+    return row_value
