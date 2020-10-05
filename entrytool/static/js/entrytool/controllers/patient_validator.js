@@ -151,7 +151,7 @@ angular
           }
         });
         if(!withinRegimen){
-          return "A response date is not connected to this regimen";
+          return "No regimen is connected to this response";
         }
       }
 
