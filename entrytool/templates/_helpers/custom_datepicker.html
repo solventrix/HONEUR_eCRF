@@ -34,7 +34,7 @@
                {% if change %}
                ng-change="{{ change }}"
                {% elif validator %}
-               ng-change="$root.patientValidator.{{ validator }}({{ model }}, editing.regimen, the_episode)"
+               ng-change="$root.patientValidator.{{ validator }}({{ model }}, {{ model }}, the_episode)"
                {% endif %}
                {% if required %}
                required
