@@ -15,6 +15,7 @@ class Command(BaseCommand):
     @transaction.atomic()
     def handle(self, *args, **options):
         with open(options["file_name"], encoding="utf-8-sig") as f:
+            demographics_saved = 0
             rows = list(csv.DictReader(f))
             for row in rows:
                 # skip empty rows
@@ -49,15 +50,18 @@ class Command(BaseCommand):
                     "death_cause": get_and_check(
                         row["cause_of_death"], PatientDetails.DEATH_CAUSES
                     ),
-                    "consistency_token": "1111"
                 }
                 patient = Patient.objects.create()
                 patient.create_episode()
                 patient_detail = patient.patientdetails_set.get()
                 for i, v in patient_details.items():
                     setattr(patient_detail, i, v)
+                patient_detail.set_consistency_token()
                 patient_detail.save()
-                patient.demographics_set.update(
-                    date_of_birth=date_of_birth,
-                    hospital_number=hospital_number
-                )
+                demographics = patient.demographics()
+                demographics.date_of_birth = date_of_birth
+                demographics.hospital_number = hospital_number
+                demographics.set_consistency_token()
+                demographics.save()
+                demographics_saved += 1
+            self.stdout.write(self.style.SUCCESS("Imported {} demographics".format(demographics_saved)))
