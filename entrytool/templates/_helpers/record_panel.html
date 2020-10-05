@@ -23,7 +23,7 @@
       </h3>
     </div>
     <ul class="list-group">
-      <li class="list-group-item" ng-show="parent.{{ name }}.length && parent.{{ name }}[0].consistency_token" ng-repeat="item in parent.{{ name }}"
+      <li class="list-group-item" ng-show="parent.{{ name }}.length && parent.{{ name }}[0].consistency_token" ng-repeat="item in parent.{{ name }}{% if model.order_by %} | orderBy: '{{ model.order_by }}'{% endif %}"
       {% if angular_filter %}
       ng-show="{{ angular_filter }}">
       {% else %}

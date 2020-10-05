@@ -28,6 +28,7 @@ class Hospital(lookuplists.LookupList):
 
 class SCT(models.EpisodeSubrecord):
     SCT_TYPES = enum("Allogenic", "Autologous", "Unknown")
+    order_by = "-sct_date"
 
     sct_date = fields.DateField(verbose_name=_("Date of SCT"))
     hospital = models.ForeignKeyOrFreeText(Hospital)
@@ -113,6 +114,7 @@ class TreatmentLine(models.EpisodeSubrecord):
 
 class Regimen(models.EpisodeSubrecord):
     _sort = "start_date"
+    order_by = "-start_date"
 
     REGIMEN_TYPES = enum(
         _("Induction"),
@@ -144,6 +146,8 @@ class AEList(lookuplists.LookupList):
 
 
 class AdverseEvent(models.EpisodeSubrecord):
+    order_by = "-ae_date"
+
     SEV_CHOICES = enum("I", "II", "III", "IV", "V")
 
     adverse_event = ForeignKeyOrFreeText(AEList, verbose_name=_("Adverse Event"))
@@ -155,6 +159,7 @@ class AdverseEvent(models.EpisodeSubrecord):
 
 class Response(models.EpisodeSubrecord):
     _sort = "response_date"
+    order_by = "-response_date"
     responses = [
         ("MR", "Minimal response"),
         ("PR", "Partial response"),
@@ -175,7 +180,6 @@ class Response(models.EpisodeSubrecord):
 class FollowUp(models.PatientSubrecord):
     _sort = "followup_date"
     _icon = "fa fa-stethoscope"
-
     hospital = models.ForeignKeyOrFreeText(Hospital)
     follow_up_date = fields.DateField(verbose_name=_("Visit date"))
 
