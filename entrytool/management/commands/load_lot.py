@@ -13,12 +13,43 @@ from entrytool.management.commands.load_utils import (
 )
 
 
+# db field -> csv column title mapping
+field_map = dict(
+    # lot number, not stored in our db just used as a grouping identifier
+    lot="LOT",
+
+    # Demographics fields
+    hospital_number="Hospital_patient_ID",
+
+    # Regimen fields
+    regimen="Regimen",
+    start_date="Start_date",
+    end_date="end_date",
+    cycles="cycles",
+    stop_reason="stop_reason",
+
+    # Response fields
+    response_date="response_date",
+    response="response",
+
+    # Adverse event fields
+    adverse_event="AE",
+    ae_date="AE_date",
+    severity="AE_severity",
+
+    # SCT fields
+    sct_date="SCT_date",
+    sct_type="SCT_type"
+)
+
+
 def get_severity(some_value):
     some_value = some_value.strip()
     if not some_value:
         return
     options = [i[0] for i in AdverseEvent.SEV_CHOICES]
     return options[int(some_value) - 1]
+
 
 
 class Command(BaseCommand):
@@ -35,8 +66,8 @@ class Command(BaseCommand):
                 if not (any(row.values())):
                     continue
 
-                hn = row["Hospital_patient_ID"].strip()
-                lot_number = row["LOT"].strip()
+                hn = row[field_map["hospital_number"]].strip()
+                lot_number = row[field_map["lot"]].strip()
                 if not hn or not lot_number:
                     raise ValueError("hospital number and lot number are required")
 
@@ -60,13 +91,13 @@ class Command(BaseCommand):
             for treatment_lot in treatment_lots:
                 regimen_fields = {
                     "regimen": get_and_check(
-                        treatment_lot["Regimen"], Regimen.REGIMEN_TYPES
+                        treatment_lot[field_map["regimen"]], Regimen.REGIMEN_TYPES
                     ),
-                    "start_date": translate_date(treatment_lot["Start_date"]),
-                    "end_date": translate_date(treatment_lot["end_date"]),
-                    "cycles": int_or_non(treatment_lot["cycles"]),
+                    "start_date": translate_date(treatment_lot[field_map["start_date"]]),
+                    "end_date": translate_date(treatment_lot[field_map["end_date"]]),
+                    "cycles": int_or_non(treatment_lot[field_map["cycles"]]),
                     "stop_reason": get_and_check_ll(
-                        treatment_lot["stop_reason"], StopReason
+                        treatment_lot[field_map["stop_reason"]], StopReason
                     ),
                 }
                 if any(regimen_fields.values()):
@@ -78,9 +109,9 @@ class Command(BaseCommand):
                     regimen_saved += 1
 
                 response_fields = {
-                    "response_date": translate_date(treatment_lot["response_date"]),
+                    "response_date": translate_date(treatment_lot[field_map["response_date"]]),
                     "response": get_and_check(
-                        treatment_lot["response"], Response.responses
+                        treatment_lot[field_map["response"]], Response.responses
                     ),
                 }
                 if any(response_fields.values()):
@@ -92,9 +123,9 @@ class Command(BaseCommand):
                     response_saved += 1
 
                 ae_fields = {
-                    "adverse_event": get_and_check_ll(treatment_lot["AE"], AEList),
-                    "ae_date": translate_date(treatment_lot["AE_date"]),
-                    "severity": get_severity(treatment_lot["AE_severity"]),
+                    "adverse_event": get_and_check_ll(treatment_lot[field_map["adverse_event"]], AEList),
+                    "ae_date": translate_date(treatment_lot[field_map["ae_date"]]),
+                    "severity": get_severity(treatment_lot[field_map["severity"]]),
                 }
 
                 if any(ae_fields.values()):
@@ -106,8 +137,8 @@ class Command(BaseCommand):
                     ae_saved += 1
 
                 sct_fields = {
-                    "sct_date": translate_date(treatment_lot["SCT_date"]),
-                    "sct_type": get_and_check(treatment_lot["SCT_type"], SCT.SCT_TYPES),
+                    "sct_date": translate_date(treatment_lot[field_map["sct_date"]]),
+                    "sct_type": get_and_check(treatment_lot[field_map["sct_type"]], SCT.SCT_TYPES),
                 }
                 if any(sct_fields.values()):
                     sct = SCT(episode=episode)
