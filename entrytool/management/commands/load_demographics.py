@@ -1,7 +1,7 @@
 import csv
 from django.core.management.base import BaseCommand
 from django.db import transaction
-from entrytool.management.commands.load_utils import (
+from entrytool.load_utils import (
     translate_date, get_and_check, no_yes_unknown, get_or_create_ll
 )
 from entrytool.models import PatientDetails, Hospital

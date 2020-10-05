@@ -5,7 +5,7 @@ from django.db import transaction
 from opal.models import Patient
 from entrytool import episode_categories
 from entrytool.models import Regimen, StopReason, AEList, AdverseEvent, Response, SCT
-from entrytool.management.commands.load_utils import (
+from entrytool.load_utils import (
     translate_date,
     get_and_check,
     get_and_check_ll,

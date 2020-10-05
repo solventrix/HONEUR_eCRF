@@ -4,7 +4,7 @@ from django.core.management.base import BaseCommand
 from django.db import transaction
 from opal.models import Patient
 from entrytool.models import FollowUp
-from entrytool.management.commands.load_utils import (
+from entrytool.load_utils import (
     translate_date, int_or_non
 )
 
