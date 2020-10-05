@@ -2,7 +2,7 @@ import csv
 from django.core.management.base import BaseCommand
 from django.db import transaction
 from entrytool.load_utils import (
-    translate_date, get_and_check, no_yes_unknown, get_or_create_ll
+    translate_date, get_and_check, no_yes_unknown, get_and_check_ll
 )
 from entrytool.models import PatientDetails, Hospital
 from opal.models import Patient
@@ -57,7 +57,7 @@ class Command(BaseCommand):
                 date_of_birth = translate_date(row["date_of_birth"])
 
                 patient_details = {
-                    "hospital": get_or_create_ll(row[field_map["hospital"]], Hospital),
+                    "hospital": get_and_check_ll(row[field_map["hospital"]], Hospital),
                     "diag_date": translate_date(row[field_map["diag_date"]]),
                     "smm_history": no_yes_unknown(row[field_map["smm_history"]]),
                     "smm_history_date": translate_date(row[field_map["smm_history_date"]]),
