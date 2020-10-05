@@ -160,21 +160,20 @@ class AdverseEvent(models.EpisodeSubrecord):
 class Response(models.EpisodeSubrecord):
     _sort = "response_date"
     order_by = "-response_date"
-    responses = [
-        ("MR", "Minimal response"),
-        ("PR", "Partial response"),
-        ("VGPR", "Very good partial response"),
-        ("CR", "Complete response"),
-        ("SCR", "Stringent complete response"),
-        ("NCR", "Near complete response"),
-        ("ICR", "Immunophenotypic complete response"),
-        ("SD", "Stable disease"),
-        ("PD", "Progressive disease"),
-        ("RU", "Response unknown"),
-    ]
-
+    RESPONSES = enum(
+        "Minimal response",
+        "Partial response",
+        "Very good partial response",
+        "Complete response",
+        "Stringent complete response",
+        "Near complete response",
+        "Immunophenotypic complete response",
+        "Stable disease",
+        "Progressive disease",
+        "Response unknown"
+    )
     response_date = fields.DateField()
-    response = fields.CharField(max_length=50, choices=responses)
+    response = fields.CharField(max_length=50, choices=RESPONSES)
 
 
 class FollowUp(models.PatientSubrecord):

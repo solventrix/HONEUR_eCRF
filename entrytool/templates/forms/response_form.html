@@ -1,5 +1,5 @@
 {% load forms %}
 {% load custom_forms %}
-{% custom_datepicker field="Response.response_date" date_after="the_episode.regimen[0].start_date" date_after_message="Response must be after 30 days before the regimen start date" date_after_diff="-30"  date_before="the_episode.regimen[0].end_date" date_before_message="Response must be before 30 days after the regimen end date" date_before_diff="31" required=True %}
+{% custom_datepicker field="Response.response_date" date_after="$root.patientValidator.patient.patient_details[0].diag_date" date_after_diff="0" date_after_message="The response should be after the date of diagnosis" validator="response_date" required=True %}
 {% select field="Response.response" %}
 

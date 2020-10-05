@@ -18,6 +18,9 @@ def custom_datepicker(*args, **kwargs):
     context = forms._input(*args, **kwargs)
     if 'mindate' in kwargs:
         context['mindate'] = kwargs['mindate']
+    model, _ = forms._model_and_field_from_path(kwargs["field"])
+
+    context["model_name"] = "editing.{}".format(model.get_api_name())
 
     context["date_after"] = kwargs.pop("date_after", "")
     context["date_after_diff"] = kwargs.pop("date_after_diff", "")
@@ -29,6 +32,7 @@ def custom_datepicker(*args, **kwargs):
 
     context["user_options"] = kwargs.pop("user_options", False)
     context['ngrequired'] = kwargs.pop('ngrequired', '')
+    context['validator'] = kwargs.pop('validator', '')
     return context
 
 

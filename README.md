@@ -17,6 +17,17 @@ python manage.py createopalsuperuser
 python manage.py runserver
 ```
 
+## Loading data
+
+To load in data we expect 3 csvs. Patients are connected by the hospital
+number column (headed `Hospital_patient_ID`).
+
+```
+python manage.py load_demographics {{ path_to_demographics_csv }}
+python manage.py load_lot {{ path_to_treatments.csv }}
+python manage.py load_followup {{ path_to_followup_csv }}
+```
+
 ## Application Administration
 
 ### Adding a user
