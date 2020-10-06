@@ -181,4 +181,8 @@ h1 img {
   margin-bottom: 10px;
   color: gray;
 }
+
+.hide-unit .control-label small {
+  visibility: hidden;
+}
 /*# sourceMappingURL=entrytool.css.map */

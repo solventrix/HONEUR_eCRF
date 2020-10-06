@@ -203,3 +203,9 @@ h1 img {
     margin-bottom: 10px;
     color: lighten($grey, 20%);
 }
+
+.hide-unit{
+    .control-label small{
+        visibility: hidden;
+    }
+}
