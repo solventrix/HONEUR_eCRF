@@ -324,15 +324,17 @@ angular
         var min = toMomentFilter(instance.start_date);
         var max = toMomentFilter(instance.end_date);
 
-        var ourEpisodeMinMax = episodeRegimenMinMaxDates(episode);
-        if(ourEpisodeMinMax[0].isBefore(min, "d")){
-          min = ourEpisodeMinMax[0];
-        }
-        if(!max){
-          max = ourEpisodeMinMax[1];
-        }
-        else if (ourEpisodeMinMax[1] && ourEpisodeMinMax[1].isAfter(max, "d")){
-          max = ourEpisodeMinMax[1];
+        if(episode.regimen.length){
+          var ourEpisodeMinMax = episodeRegimenMinMaxDates(episode);
+          if(ourEpisodeMinMax[0].isBefore(min, "d")){
+            min = ourEpisodeMinMax[0];
+          }
+          if(!max){
+            max = ourEpisodeMinMax[1];
+          }
+          else if (ourEpisodeMinMax[1] && ourEpisodeMinMax[1].isAfter(max, "d")){
+            max = ourEpisodeMinMax[1];
+          }
         }
 
         var error = null;
@@ -352,7 +354,7 @@ angular
           var episodeMin = episodeMinMax[0];
           var episodeMax = episodeMinMax[1];
           // other episode ends before our episode starts
-          if(episodeMax.isBefore(min, "d")){
+          if(episodeMax && episodeMax.isBefore(min, "d")){
             return;
           }
           // other episode does not have a start but starts before our episode starts
