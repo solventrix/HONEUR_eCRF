@@ -1,5 +1,5 @@
 angular.module('opal.controllers').controller(
-  "LineOfTreatmentCreator", function($scope, $http, $q, $modal, UserProfile){
+  "LineOfTreatmentManager", function($scope, $http, $q, $modal, UserProfile){
     "use strict";
     var self = this;
     this.loading = false;
