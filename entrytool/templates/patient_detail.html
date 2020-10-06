@@ -45,7 +45,7 @@
                 </div>
               </div>
 
-              <div class="row" ng-repeat="episode in patient.episodes | filter: { category_name: 'Treatment Line' } | orderBy: '-id' as lot_episodes">
+              <div class="row" ng-repeat="episode in patient.episodes | filter: { category_name: 'Treatment Line' } | orderBy:$root.patientValidator.lineOfTreatmentOrder:true as lot_episodes">
                 <div class="col-md-12 inline-panels">
                   {% include "detail/treatmentline.html" %}
                 </div>
