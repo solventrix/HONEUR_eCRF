@@ -47,11 +47,11 @@ Customising fields in the application is intended to be a reasonably simple proc
 
 Note: In this document sequences of $ALLCAPS beginning with a $ sign refer to ‘variables’ - that is to say you should substitute in values relevant to the context in question. This will almost never be in CAPITALS. There will mostly be other examples of such code within the application you can refer to as a reference.
 
-Customising particular deployments
+### Customising particular deployments
 
 In this section we will consider a number of potential likely use cases that have been outlined for customising individual deployments of the application.
 
-Hiding fields
+#### Hiding fields
 
 First we will need to examine the model declaration for the field in question - this will be a property of a class in the file `entrytool/models.py`. It is recommended to not alter the database and remove fields from the core application if they are being hidden in a particular deployment in order to avoid unnecessary database migration history conflicts. If the field declared in the `models.py` file has the argument `null=True` then we need to take no action here. If this argument is missing or set to `null=False` we will have to change this by:
 
@@ -63,7 +63,7 @@ We will need to remove the field from the form template. This will be located in
 
 We should also ensure that there are no display artefacts related to the field. The display template for a model is found in a file based on the name of the model at `entrytool/templates/records/$MODELNAME.html`. That file will render the data from instances of that model using the syntax `[[ item.$FIELDNAME ]] ` you should search for this declaration and remove it to avoid unnecessary clutter in the display template.
 
-Adding a field to a model
+#### Adding a field to a model
 
 First we will need to find the model declaration in `entrytool/modelspy` and add a new field declaration to the model. This process is extensively documented by Django itself and many other examples can be seen within the `models.py` file itself. Once the field has been declared in the models.py file we should update the database to match:
 
@@ -78,7 +78,7 @@ We will now be required to update the display template for the model to include 
 <h1>[[ item.$FIELDNAME ]]</h1>
 ```
 
-Adding a new set of data to lines of treatment
+#### Adding a new set of data to lines of treatment
 
 Adding an entirely new set of data will require creating a new model in `entrytool.models.py`. This is a python class the inherits from `opal.models.EpisodeSubrecord` that generates a new table in the database. This process is documented extensively by Django, Opal specific alterations (mostly additional properties that are available) are documented in the Opal documentation, and the models `SCT`, `Regimen`, `Response` and `AdverseEvent` provide examples within this application.
 
