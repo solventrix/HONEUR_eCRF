@@ -61,7 +61,7 @@ class Command(BaseCommand):
                 patient_details = {
                     "hospital": get_and_check_ll(row[field_map["hospital"]], Hospital),
                     "diag_date": translate_date(row[field_map["diag_date"]]),
-                    "smm_history": row[field_map["smm_history"]],
+                    "smm_history": no_yes_unknown(row[field_map["smm_history"]]),
                     "smm_history_date": translate_date(row[field_map["smm_history_date"]]),
                     "mgus_history": no_yes_unknown(row[field_map["mgus_history"]]),
                     "mgus_history_date": translate_date(row[field_map["mgus_history_date"]]),
