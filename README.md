@@ -67,8 +67,8 @@ We should also ensure that there are no display artefacts related to the field. 
 
 First we will need to find the model declaration in `entrytool/modelspy` and add a new field declaration to the model. This process is extensively documented by Django itself and many other examples can be seen within the `models.py` file itself. Once the field has been declared in the models.py file we should update the database to match:
 
-`python manage.py makemigrations`
-`python manage.py migrate`
+1. `python manage.py makemigrations`
+2. `python manage.py migrate`
 
 We will now need to add a widget for our field to the form for this model. This will be located in a file with a name based on the name of the model at `entrytool/templates/forms/$MODELNAME_form.html`. We then add a template tag matching the widget we would like - for instance to add a text box `{% input field=“$MODELNAME.$FIELDNAME” %}. You can see many examples in the form templates within this application, and additional documentation is available on the Opal website.
 
@@ -84,8 +84,8 @@ Adding an entirely new set of data will require creating a new model in `entryto
 
 Once the model is created the database needs to be updated:
 
-`python manage.py makemigrations`
-`python manage.py migrate`
+1. `python manage.py makemigrations`
+2. `python manage.py migrate`
 
 We can then create form and display templates for this model by running `python manage.py scaffold` this will create the templates in `entrytool/templates/records/$MODELNAME.html` and `entrytool/templates/forms/$MODELNAME_form.html`. These can be edited to adjust widgets in use, or refine the layout of individual records. The other templates in the folders `entrytool/templates/records/` and `entrytool/templates/forms` should serve as an example of how these can be adjusted.
 
