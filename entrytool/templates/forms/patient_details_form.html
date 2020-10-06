@@ -34,7 +34,7 @@
     </div>
   </div>
   <div ng-show="editing.patient_details.smm_history == 'Yes'" class="col-sm-4">
-    {% custom_datepicker label="Date" field="PatientDetails.smm_history_date" ngrequired="editing.patient_details.smm_history == 'Yes'" date_after="the_episode.demographics[0].date_of_birth" date_after_message="Date of diagnosis must be after the patient's DOB" %}
+    {% custom_datepicker label="Date" field="PatientDetails.smm_history_date" ngrequired="editing.patient_details.smm_history == 'Yes'" date_after="editing.patient_details.diag_date" date_after_message="Date must be after the date of diagnosis" %}
   </div>
 </div>
 
@@ -53,7 +53,7 @@
     </div>
   </div>
   <div ng-show="editing.patient_details.mgus_history == 'Yes'" class="col-sm-4">
-    {% custom_datepicker label="Date" field="PatientDetails.mgus_history_date" ngrequired="editing.patient_details.mgus_history == 'Yes'" date_after="the_episode.demographics[0].date_of_birth" date_after_message="Date of diagnosis must be after the patient's DOB" %}
+    {% custom_datepicker label="Date" field="PatientDetails.mgus_history_date" ngrequired="editing.patient_details.mgus_history == 'Yes'" date_after="editing.patient_details.diag_date"  date_after_message="Date must be after the date of diagnosis" %}
   </div>
 </div>
 {% radio field="PatientDetails.r_iss_stage" %}
