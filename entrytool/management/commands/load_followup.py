@@ -3,9 +3,9 @@ from collections import defaultdict
 from django.core.management.base import BaseCommand
 from django.db import transaction
 from opal.models import Patient
-from entrytool.models import FollowUp
+from entrytool.models import FollowUp, Hospital
 from entrytool.load_utils import (
-    translate_date, int_or_non
+    translate_date, float_or_none, get_and_check_ll
 )
 
 # field -> csv column title mapping
@@ -16,13 +16,16 @@ field_map = dict(
 
     # Follow up fields
     follow_up_date="followup_date",
-    LDH="measurement1",
-    beta2m="measurement2",
-    albumin="measurement3",
-    creatinin="measurement4",
-    MCV="measurement5",
+    LDH="LDH",
+    beta2m="beta2m",
+    albumin="albumin",
+    creatinin="creatinin",
+    MCV="MCV",
+    Hb="Hb",
+    kappa_lambda_ratio="kappa_lambda_ratio",
+    bone_lesions="bone_lesions",
+    hospital="hospital"
 )
-
 
 
 class Command(BaseCommand):
@@ -52,11 +55,15 @@ class Command(BaseCommand):
                 follow_up = FollowUp(patient=patient)
                 followup_fields = {
                     "follow_up_date": translate_date(follow_up_row[field_map["follow_up_date"]]),
-                    "LDH": int_or_non(follow_up_row[field_map["LDH"]]),
-                    "beta2m": int_or_non(follow_up_row[field_map["beta2m"]]),
-                    "albumin": int_or_non(follow_up_row[field_map["albumin"]]),
-                    "creatinin": int_or_non(follow_up_row[field_map["creatinin"]]),
-                    "MCV": int_or_non(follow_up_row[field_map["MCV"]]),
+                    "LDH": float_or_none(follow_up_row[field_map["LDH"]]),
+                    "beta2m": float_or_none(follow_up_row[field_map["beta2m"]]),
+                    "albumin": float_or_none(follow_up_row[field_map["albumin"]]),
+                    "creatinin": float_or_none(follow_up_row[field_map["creatinin"]]),
+                    "MCV": float_or_none(follow_up_row[field_map["MCV"]]),
+                    "Hb": float_or_none(follow_up_row[field_map["Hb"]]),
+                    "kappa_lambda_ratio": float_or_none(follow_up_row[field_map["kappa_lambda_ratio"]]),
+                    "bone_lesions": float_or_none(follow_up_row[field_map["bone_lesions"]]),
+                    "hospital": get_and_check_ll(row[field_map["hospital"]], Hospital),
                 }
                 for k, v in followup_fields.items():
                     setattr(follow_up, k, v)

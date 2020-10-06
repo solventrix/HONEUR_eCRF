@@ -42,11 +42,15 @@ def get_and_check_ll(row_value, ll):
         raise ValueError("{} not in {}".format(row_value, ll))
 
 
-def int_or_non(row_value):
+def int_or_none(row_value):
     row_value = row_value.strip()
     if not row_value:
         return
     return int(row_value)
 
 
-
+def float_or_none(row_value):
+    row_value = row_value.strip()
+    if not row_value:
+        return
+    return float(row_value)
