@@ -53,6 +53,12 @@
                {% if date_before_diff %}
                date-before-diff="{{ date_before_diff }}"
                {% endif %}
+               {% if before_death %}
+               before-death
+               {% endif %}
+               {% if no_future %}
+               no-future
+               {% endif %}
                />
      {% if user_options %}
          <span class="input-group-btn">
@@ -72,6 +78,16 @@
      {% if date_before_message %}
      <span class="help-block" ng-show="{{ formname }}.$submitted && {{ formname }}[{{ element_name }}].$error.dateBefore">
       {{ date_before_message }}
+     </span>
+     {% endif %}
+     {% if before_death %}
+     <span class="help-block" ng-show="{{ formname }}.$submitted && {{ formname }}[{{ element_name }}].$error.beforeDeath">
+        {{ label }} is after the date of death
+     </span>
+     {% endif %}
+     {% if no_future %}
+     <span class="help-block" ng-show="{{ formname }}.$submitted && {{ formname }}[{{ element_name }}].$error.noFuture">
+        {{ label }} is in the future
      </span>
      {% endif %}
      {% if validator %}
