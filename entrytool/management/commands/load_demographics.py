@@ -5,7 +5,7 @@ from entrytool.load_utils import (
     translate_date, get_and_check, no_yes_unknown, get_and_check_ll
 )
 from entrytool.models import PatientDetails, Hospital
-from opal.models import Patient
+from opal.models import Patient, Gender
 
 
 # field -> csv column title mapping
@@ -14,6 +14,7 @@ field_map = dict(
     # Demographics fields
     date_of_birth="date_of_birth",
     hospital_number="Hospital_patient_ID",
+    sex="Gender",
 
     # Patient Detail fields
     hospital="Hospital",
@@ -54,16 +55,19 @@ class Command(BaseCommand):
                         raise ValueError(
                             "Patient {} already extitledists".format(hospital_number)
                         )
-                date_of_birth = translate_date(row["date_of_birth"])
+                date_of_birth = translate_date(row[field_map["date_of_birth"]])
+                sex = get_and_check_ll(row[field_map["sex"]], Gender)
 
                 patient_details = {
                     "hospital": get_and_check_ll(row[field_map["hospital"]], Hospital),
                     "diag_date": translate_date(row[field_map["diag_date"]]),
-                    "smm_history": no_yes_unknown(row[field_map["smm_history"]]),
+                    "smm_history": row[field_map["smm_history"]],
                     "smm_history_date": translate_date(row[field_map["smm_history_date"]]),
                     "mgus_history": no_yes_unknown(row[field_map["mgus_history"]]),
                     "mgus_history_date": translate_date(row[field_map["mgus_history_date"]]),
-                    "r_iss_stage": no_yes_unknown(row[field_map["r_iss_stage"]]),
+                    "r_iss_stage": get_and_check(
+                        row[field_map["r_iss_stage"]], PatientDetails.R_ISS_STAGES
+                    ),
                     "pp_type": get_and_check(
                         row[field_map["pp_type"]], PatientDetails.PP_TYPE_CHOICES
                     ),
@@ -85,6 +89,7 @@ class Command(BaseCommand):
                 demographics = patient.demographics()
                 demographics.date_of_birth = date_of_birth
                 demographics.hospital_number = hospital_number
+                demographics.sex = sex
                 demographics.set_consistency_token()
                 demographics.save()
                 demographics_saved += 1
