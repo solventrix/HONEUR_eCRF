@@ -49,6 +49,71 @@
     };
   });
 
+  directives.directive("noFuture", function (toMomentFilter) {
+    /*
+     * A directive that will error if the field is in the future
+     */
+    return {
+      require: "ngModel",
+      link: function (scope, elm, attrs, ctrl, ngModel) {
+        ctrl.$validators.noFuture = function (modelValue, viewValue) {
+          var viewValue = toMomentFilter(viewValue);
+          if(!viewValue){
+            return true
+          }
+          var now = moment();
+          if (viewValue.isAfter(now, "d")) {
+            return false;
+          }
+          return true;
+        };
+      },
+    };
+  });
+
+  directives.directive("beforeDeath", function(toMomentFilter){
+    /*
+    * A directive that will error if the field is > date of death
+    */
+    return {
+      require: "ngModel",
+      link: function (scope, elm, attrs, ctrl, ngModel) {
+
+        if(scope.editing.patient_details){
+          // if we are editing the patient details recalculate
+          // the validation if the death_date changes.
+          scope.$watch("editing.patient_details.death_date", function(){
+            ctrl.$validate();
+          });
+        }
+
+        ctrl.$validators.beforeDeath = function (modelValue, viewValue) {
+          var viewValue = toMomentFilter(viewValue);
+          if(!viewValue){
+            return true;
+          }
+          var deathDate;
+          // if we're editing patient details then look
+          // at what is in the form at present.
+          if(scope.editing.patient_details){
+            deathDate = scope.editing.patient_details.death_date;
+          }
+          else{
+            deathDate = scope.the_episode.patient_details[0].death_date;
+          }
+          if(!deathDate){
+            return true
+          }
+          var viewValue = toMomentFilter(viewValue);
+          if (viewValue.isAfter(deathDate, "d")) {
+            return false;
+          }
+          return true;
+        };
+      },
+    };
+  });
+
   directives.directive("dateBefore", function ($parse, toMomentFilter) {
     /*
 
