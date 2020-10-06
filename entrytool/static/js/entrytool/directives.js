@@ -84,7 +84,7 @@
           }
 
           if (before) {
-            var b = before.add(dateBeforeDiff, "d");
+            var b = before.subtract(dateBeforeDiff, "d");
             if (viewValue) {
               viewValue = toMomentFilter(viewValue);
               if (viewValue > b) {
