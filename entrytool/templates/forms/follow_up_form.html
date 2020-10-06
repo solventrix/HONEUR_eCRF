@@ -1,5 +1,6 @@
 {% load forms %}
-{% datepicker field="FollowUp.follow_up_date" %}
+{% load custom_forms %}
+{% custom_datepicker field="FollowUp.follow_up_date" date_after="the_episode.demographics[0].date_of_birth" date_after_message="Visit date must be after the patient's DOB" %}
 {% select field="FollowUp.hospital" required=True %}
 {% input field="FollowUp.LDH" unit="L" %}
 {% input field="FollowUp.beta2m" unit="mg/L" %}
