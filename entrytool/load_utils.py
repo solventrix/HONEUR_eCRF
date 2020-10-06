@@ -20,7 +20,9 @@ def get_and_check(row_value, choices):
         result = c[0]
         if result.lower() == row_value.lower():
             return result
-    raise ValueError("{} not in {}".format(row_value, choices))
+    raise ValueError(
+        "{} not in {}".format(row_value, [i[0] for i in choices])
+    )
 
 
 def no_yes_unknown(row_value):
