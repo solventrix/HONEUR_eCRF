@@ -1,11 +1,13 @@
 {% load forms %}
 {% datepicker field="FollowUp.follow_up_date" %}
 {% select field="FollowUp.hospital" required=True %}
-{% input field="FollowUp.LDH" unit="units/L" %}
-{% input field="FollowUp.beta2m" %}
-{% input field="FollowUp.albumin" %}
-{% input field="FollowUp.creatinin" %}
-{% input field="FollowUp.MCV" %}
-{% input field="FollowUp.Hb" %}
-{% input field="FollowUp.kappa_lambda_ratio" %}
-{% input field="FollowUp.bone_lesions" %}
+{% input field="FollowUp.LDH" unit="L" %}
+{% input field="FollowUp.beta2m" unit="mg/L" %}
+{% input field="FollowUp.albumin" unit="g/dL" %}
+{% input field="FollowUp.creatinin" unit="mg/dL"  %}
+{% input field="FollowUp.MCV" unit="fL" %}
+{% input field="FollowUp.Hb" unit="g/dL"  %}
+<div class="hide-unit">
+  {% input field="FollowUp.kappa_lambda_ratio"  unit="ratio" %}
+  {% input field="FollowUp.bone_lesions"  unit="number" %}
+</div>
