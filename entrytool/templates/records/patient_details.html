@@ -1,9 +1,9 @@
 <div class="row">
   <div class="col-md-2">
-    <span class="display-label">Diagnosis Date </span>
+    <span class="display-label">External #</span>
   </div>
   <div class="col-md-2">
-    [[ item.diag_date | displayDate ]]
+    [[ item.external_identifier ]]
   </div>
   <div class="col-md-2">
     <span class="display-label">SMM History </span>
@@ -19,14 +19,12 @@
     [[ item.pp_type ]]
   </div>
 </div>
-
-
 <div class="row">
   <div class="col-md-2">
-    <span class="display-label">Status </span>
+    <span class="display-label">Diagnosis Date </span>
   </div>
   <div class="col-md-2">
-    [[ item.status]]
+    [[ item.diag_date | displayDate ]]
   </div>
   <div class="col-md-2">
     <span class="display-label">MGUS History </span>
@@ -45,14 +43,10 @@
 
 <div class="row">
   <div class="col-md-2">
-    <span ng-show="item.death_date || item.death_cause">
-      <span class="display-label">Death</span>
-    </span>
+    <span class="display-label">Status </span>
   </div>
   <div class="col-md-2">
-    <span ng-show="item.death_date || item.death_cause">
-      ([[ item.death_date | displayDate ]] [[ item.death_cause ]])
-    </span>
+    [[ item.status]]
   </div>
   <div class="col-md-2">
     <span class="display-label">R-ISS Stage</span>
@@ -70,8 +64,14 @@
 
 <div class="row">
   <div class="col-md-2">
+    <span ng-show="item.death_date || item.death_cause">
+      <span class="display-label">Death</span>
+    </span>
   </div>
   <div class="col-md-2">
+    <span ng-show="item.death_date || item.death_cause">
+      ([[ item.death_date | displayDate ]] [[ item.death_cause ]])
+    </span>
   </div>
   <div class="col-md-2">
   </div>

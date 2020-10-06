@@ -54,6 +54,9 @@ class PatientDetails(models.PatientSubrecord):
          "Lost to Follow-up"
     )
     hospital = models.ForeignKeyOrFreeText(Hospital)
+    external_identifier = fields.CharField(
+        max_length=256, blank=True, null=True
+    )
 
     CHOICES = enum("Yes", "No", "Unknown")
     DEATH_CAUSES = enum("Disease", "Complications of Disease", "Other")

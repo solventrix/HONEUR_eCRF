@@ -1,11 +1,12 @@
 {% load forms %}
 {% load custom_forms %}
+{% input field="PatientDetails.external_identifier" %}
 {% select field="PatientDetails.status" change="editing.patient_details.death_cause = null; editing.patient_details.death_date = null" %}
 <div ng-show="editing.patient_details.status === 'Dead'" class="form-group">
   <label class="control-label col-sm-3">
     Cause of Death
   </label>
-  <div ng-class="{'has-error': form.$submitted && form.cause_of_death.$error.required }" class="col-sm-4">
+  <div ng-class="{'has-error': form.$submitted && form.cause_of_death.$serror.required }" class="col-sm-4">
     <select name="cause_of_death" class="form-control" ng-required="editing.patient_details.status === 'Dead'" ng-model="editing.patient_details.death_cause">
       <option value="" selected>---------</option>
       <option ng-repeat='i in ["Disease", "Complications of Disease", "Other"] track by $index'>[[ i ]]</option>

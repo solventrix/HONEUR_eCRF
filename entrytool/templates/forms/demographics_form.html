@@ -1,5 +1,3 @@
 {% load forms %}
-{% load custom_forms %}
-{% input field="Demographics.hospital_number" %}
-{% date_of_birth_field field="Demographics.date_of_birth" required=True %}
+{% input field="Demographics.date_of_birth" element_type="date" required=True %}
 {% select field="Demographics.sex" required=True %}
