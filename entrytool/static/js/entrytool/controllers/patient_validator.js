@@ -3,6 +3,7 @@ angular
   .controller("PatientValidator", function (
     $scope,
     $rootScope,
+    toMomentFilter
   ) {
     "use strict";
 
@@ -293,6 +294,84 @@ angular
         }
       };
 
+      var episodeRegimenMinMaxDates = function (episode) {
+        // returns the first start date and the last end date
+        // note end date may be null;
+
+        // pluck the regimen start dates, sort them and return the first
+        var episodeMin = _.pluck(episode.regimen, "start_date").sort()[0];
+
+        var episodeMax = null;
+        // regimen end date is not required, remove the nulls and
+        // make sure any of them are populated
+        var episodeMaxVals = _.compact(_.pluck(episode.regimen, "end_date"));
+        if (episodeMaxVals.length) {
+          episodeMax = _.sortBy(episodeMaxVals).reverse()[0];
+        }
+        return [episodeMin, episodeMax];
+      };
+
+      var validateRegimenToOtherLOTRegimens = function (
+        val,
+        instance,
+        episode
+      ) {
+        /*
+         * for an episode's regimens they should not overlap another episodes
+         * regimens
+         */
+        // check vs the instance dates as these may have changed.
+        var min = toMomentFilter(instance.start_date);
+        var max = toMomentFilter(instance.end_date);
+
+        var ourEpisodeMinMax = episodeRegimenMinMaxDates(episode);
+        if(ourEpisodeMinMax[0].isBefore(min, "d")){
+          min = ourEpisodeMinMax[0];
+        }
+        if(!max){
+          max = ourEpisodeMinMax[1];
+        }
+        else if (ourEpisodeMinMax[1] && ourEpisodeMinMax[1].isAfter(max, "d")){
+          max = ourEpisodeMinMax[1];
+        }
+
+        var error = null;
+
+        _.each(self.patient.episodes, function (otherEpisode) {
+          if (error) {
+            return;
+          }
+          // ignore this episode
+          if (episode.id === otherEpisode.id) {
+            return;
+          }
+          if (!otherEpisode.regimen.length) {
+            return;
+          }
+          var episodeMinMax = episodeRegimenMinMaxDates(otherEpisode);
+          var episodeMin = episodeMinMax[0];
+          var episodeMax = episodeMinMax[1];
+          // other episode ends before our episode starts
+          if(episodeMax.isBefore(min, "d")){
+            return;
+          }
+          // other episode does not have a start but starts before our episode starts
+          if(!episodeMax && episodeMin.isBefore(min, "d")){
+            return;
+          }
+          // our episode ends before other episode starts
+          if(max && max.isBefore(episodeMin, "d")){
+            return;
+          }
+          // our episode has no end but starts before other episode starts
+          if(!max && min.isBefore(episodeMin, "d")){
+            return;
+          }
+          error = "This regimen overlaps with another line of treatment";
+        });
+        return error;
+      };
+
       this.clean = function(){
         self.errors = {};
         self.warnings = {};
@@ -307,13 +386,13 @@ angular
         };
         this.createValidator(
           "regimen_start", {
-            errors: [validateRegimenDateBetween, validateRegimenSurrounds],
+            errors: [validateRegimenDateBetween, validateRegimenSurrounds, validateRegimenToOtherLOTRegimens],
             warnings: [validateRegimenToResponses, validateRegimenToAdverseEvents]
           }
         )
         this.createValidator(
           "regimen_end", {
-            errors: [validateRegimenDateBetween, validateRegimenSurrounds],
+            errors: [validateRegimenDateBetween, validateRegimenSurrounds, validateRegimenToOtherLOTRegimens],
             warnings: [validateRegimenToResponses, validateRegimenToAdverseEvents]
           }
         );
