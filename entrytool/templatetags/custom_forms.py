@@ -36,4 +36,9 @@ def custom_datepicker(*args, **kwargs):
     return context
 
 
-
+@register.inclusion_tag('_helpers/number.html')
+def number(*args, **kwargs):
+    context = forms._input(*args, **kwargs)
+    context["min_value"] = kwargs.get("min_value", "")
+    context["max_value"] = kwargs.get("max_value", "")
+    return context
