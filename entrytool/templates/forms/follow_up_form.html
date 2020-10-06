@@ -2,11 +2,11 @@
 {% load custom_forms %}
 {% custom_datepicker field="FollowUp.follow_up_date" date_after="the_episode.demographics[0].date_of_birth" date_after_message="Visit date must be after the patient's birth date" %}
 {% select field="FollowUp.hospital" required=True %}
-{% number field="FollowUp.LDH" unit="L" %}
-{% number field="FollowUp.beta2m" unit="mg/L" %}
-{% number field="FollowUp.albumin" unit="g/dL" %}
-{% number field="FollowUp.creatinin" unit="mg/dL"  %}
-{% number field="FollowUp.MCV" unit="fL" %}
-{% number field="FollowUp.Hb" unit="g/dL"  %}
-{% number field="FollowUp.kappa_lambda_ratio"  unit="ratio" %}
-{% number field="FollowUp.bone_lesions"  unit="number" %}
+{% number field="FollowUp.LDH" min_value="0" max_value="1000" unit="L" %}
+{% number field="FollowUp.beta2m" min_value="0" max_value="1000" unit="mg/L" %}
+{% number field="FollowUp.albumin" min_value="0" max_value="1000" unit="g/dL" %}
+{% number field="FollowUp.creatinin" min_value="0" max_value="1000" unit="mg/dL"  %}
+{% number field="FollowUp.MCV" min_value="0" max_value="1000" unit="fL" %}
+{% number field="FollowUp.Hb" min_value="0" max_value="1000" unit="g/dL"  %}
+{% number field="FollowUp.kappa_lambda_ratio" min_value="0" max_value="1000" unit="ratio" %}
+{% number field="FollowUp.bone_lesions" min_value="0" max_value="1000" unit="number" %}
