@@ -2,13 +2,11 @@
 {% load custom_forms %}
 {% custom_datepicker field="FollowUp.follow_up_date" date_after="the_episode.demographics[0].date_of_birth" date_after_message="Visit date must be after the patient's DOB" %}
 {% select field="FollowUp.hospital" required=True %}
-{% input field="FollowUp.LDH" unit="L" %}
-{% input field="FollowUp.beta2m" unit="mg/L" %}
-{% input field="FollowUp.albumin" unit="g/dL" %}
-{% input field="FollowUp.creatinin" unit="mg/dL"  %}
-{% input field="FollowUp.MCV" unit="fL" %}
-{% input field="FollowUp.Hb" unit="g/dL"  %}
-<div class="hide-unit">
-  {% input field="FollowUp.kappa_lambda_ratio"  unit="ratio" %}
-  {% input field="FollowUp.bone_lesions"  unit="number" %}
-</div>
+{% number field="FollowUp.LDH" unit="L" %}
+{% number field="FollowUp.beta2m" unit="mg/L" %}
+{% number field="FollowUp.albumin" unit="g/dL" %}
+{% number field="FollowUp.creatinin" unit="mg/dL"  %}
+{% number field="FollowUp.MCV" unit="fL" %}
+{% number field="FollowUp.Hb" unit="g/dL"  %}
+{% number field="FollowUp.kappa_lambda_ratio"  unit="ratio" %}
+{% number field="FollowUp.bone_lesions"  unit="number" %}
