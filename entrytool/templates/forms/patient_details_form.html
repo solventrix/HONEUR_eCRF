@@ -15,10 +15,10 @@
     </span>
   </div>
   <div class="col-sm-4">
-    {% custom_datepicker label="Date" field="PatientDetails.death_date" ngrequired="editing.patient_details.status === 'Dead'" date_after="the_episode.demographics[0].date_of_birth" date_after_message="Date of death must be after the patient's DOB" %}
+    {% custom_datepicker label="Date" field="PatientDetails.death_date" ngrequired="editing.patient_details.status === 'Dead'" date_after="the_episode.demographics[0].date_of_birth" date_after_message="Date of death must be after the patient's birth date" %}
   </div>
 </div>
-{% custom_datepicker field="PatientDetails.diag_date" validator="diagnosis_date" date_after="the_episode.demographics[0].date_of_birth" date_after_message="Date of diagnosis must be after the patient's DOB" required=True %}
+{% custom_datepicker field="PatientDetails.diag_date" validator="diagnosis_date" date_after="the_episode.demographics[0].date_of_birth" date_after_message="Date of diagnosis must be after the patient's birth date" required=True %}
 <div class="form-group" >
   <label for="" class="control-label col-sm-3">History of SMM</label>
   <div class="col-sm-3" ng-class="{'has-error': form.$submitted && form.mgus.$error.required}">
