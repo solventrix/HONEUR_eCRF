@@ -161,6 +161,9 @@ angular
         * responses are connected to either other regimens
         * or the regimen in the form.
         */
+       if(!val || !episode.response.length){
+          return;
+       }
         var withinRegimen = false;
         // we may be editing things so ignore version of regimen
         // we are using that is attatched to the episode.
@@ -225,6 +228,9 @@ angular
         * From the perspective of regimens, validates that
         * there are no AEs that are not connected
         */
+       if(!val || !episode.adverse_event.length){
+        return;
+      }
        var withinRegimen = false;
        // we may be editing things so ignore version of regimen
        // we are using that is attatched to the episode.
