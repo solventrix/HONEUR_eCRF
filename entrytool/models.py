@@ -16,14 +16,6 @@ class Demographics(models.Demographics):
     )
 
 
-class Location(models.Location):
-    pass
-
-
-class Diagnosis(models.Diagnosis):
-    pass
-
-
 class Hospital(lookuplists.LookupList):
     pass
 
