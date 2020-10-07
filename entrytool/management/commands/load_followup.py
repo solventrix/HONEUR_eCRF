@@ -12,7 +12,7 @@ from entrytool.load_utils import (
 field_map = dict(
 
     # Demographics fields
-    hospital_number="Hospital_patient_ID",
+    external_identifier="Hospital_patient_ID",
 
     # Follow up fields
     follow_up_date="followup_date",
@@ -34,7 +34,7 @@ class Command(BaseCommand):
 
     @transaction.atomic()
     def handle(self, *args, **options):
-        by_hospital_number = defaultdict(list)
+        by_external_identifier = defaultdict(list)
         saved = 0
         with open(options["file_name"], encoding="utf-8-sig") as f:
             rows = list(csv.DictReader(f))
@@ -42,15 +42,15 @@ class Command(BaseCommand):
                 # empty row, skip it
                 if not any(row.values()):
                     continue
-                hn = row[field_map["hospital_number"]].strip()
+                hn = row[field_map["external_identifier"]].strip()
                 if not hn:
-                    raise ValueError('hospital number is required for the follow up load')
-                by_hospital_number[hn].append(row)
+                    raise ValueError('External identifier is required for the follow up load')
+                by_external_identifier[hn].append(row)
 
-        for hn, followups in by_hospital_number.items():
+        for hn, followups in by_external_identifier.items():
             for follow_up_row in followups:
                 patient = Patient.objects.get(
-                    demographics__hospital_number=hn
+                    demographics__external_identifier=hn
                 )
                 follow_up = FollowUp(patient=patient)
                 followup_fields = {

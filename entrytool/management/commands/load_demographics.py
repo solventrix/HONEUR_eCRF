@@ -13,7 +13,7 @@ field_map = dict(
 
     # Demographics fields
     date_of_birth="date_of_birth",
-    hospital_number="Hospital_patient_ID",
+    external_identifier="Hospital_patient_ID",
     sex="Gender",
 
     # Patient Detail fields
@@ -46,14 +46,14 @@ class Command(BaseCommand):
                 # skip empty rows
                 if not any(row.values()):
                     continue
-                hospital_number = row[field_map["hospital_number"]].strip()
-                if hospital_number:
+                external_identifier = row[field_map["external_identifier"]].strip()
+                if external_identifier:
                     patients = Patient.objects.filter(
-                        demographics__hospital_number=hospital_number
+                        demographics__external_identifier=external_identifier
                     )
                     if patients.exists():
                         raise ValueError(
-                            "Patient {} already extitledists".format(hospital_number)
+                            "Patient {} already exists".format(external_identifier)
                         )
                 date_of_birth = translate_date(row[field_map["date_of_birth"]])
                 sex = get_and_check_ll(row[field_map["sex"]], Gender)
@@ -88,7 +88,7 @@ class Command(BaseCommand):
                 patient_detail.save()
                 demographics = patient.demographics()
                 demographics.date_of_birth = date_of_birth
-                demographics.hospital_number = hospital_number
+                demographics.external_identifier = external_identifier
                 demographics.sex = sex
                 demographics.set_consistency_token()
                 demographics.save()

@@ -21,7 +21,7 @@ field_map = dict(
     lot="LOT",
 
     # Demographics fields
-    hospital_number="Hospital_patient_ID",
+    external_identifier="Hospital_patient_ID",
 
     # Regimen fields
     regimen="Regimen",
@@ -68,7 +68,7 @@ class Command(BaseCommand):
                 if not (any(row.values())):
                     continue
 
-                hn = row[field_map["hospital_number"]].strip()
+                hn = row[field_map["external_identifier"]].strip()
                 lot_number = row[field_map["lot"]].strip()
                 if not hn or not lot_number:
                     raise ValueError("hospital number and lot number are required")
@@ -86,7 +86,7 @@ class Command(BaseCommand):
 
         for key, treatment_lots in by_lot.items():
             hn = key[0]
-            patient = Patient.objects.get(demographics__hospital_number=hn)
+            patient = Patient.objects.get(demographics__external_identifier=hn)
             episode = patient.episode_set.create(
                 category_name=episode_categories.LineOfTreatmentEpisode.display_name
             )
