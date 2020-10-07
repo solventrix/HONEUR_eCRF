@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Honeur ECRF\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-07 17:06+0000\n"
-"PO-Revision-Date: 2020-10-07 18:08-0000\n"
+"POT-Creation-Date: 2020-10-07 18:17+0000\n"
+"PO-Revision-Date: 2020-10-07 19:17-0000\n"
 "Last-Translator: David Miller <david@openhealthcare.org.uk>\n"
 "Language-Team: Development <LL@li.org>\n"
 "Language: he\n"
@@ -279,11 +279,11 @@ msgstr "שְׁלוֹשָׁה"
 
 #: entrytool/models.py:198
 msgid "IV"
-msgstr ""
+msgstr "ארבע"
 
 #: entrytool/models.py:199
 msgid "V"
-msgstr ""
+msgstr "חָמֵשׁ"
 
 #: entrytool/models.py:201 entrytool/models.py:208 entrytool/models.py:209
 msgid "Adverse Event"
@@ -536,6 +536,27 @@ msgstr "מִין"
 msgid "Django site admin"
 msgstr "מנהל אתר ג'נגו"
 
+#: entrytool/opal/templates/partials/_nav_search.html:39
+#: entrytool/templates/search.html:32 entrytool/templates/welcome.html:33
+msgid "Search"
+msgstr "לחפש"
+
+#: entrytool/opal/templates/registration/login.html:23
+msgid "Your username and password didn't match. Please try again."
+msgstr "שם המשתמש והסיסמה שלך לא תואמים. בבקשה נסה שוב."
+
+#: entrytool/opal/templates/registration/login.html:30
+msgid "Username"
+msgstr "להתחבר"
+
+#: entrytool/opal/templates/registration/login.html:40
+msgid "Password"
+msgstr "סיסמה"
+
+#: entrytool/opal/templates/registration/login.html:47
+msgid "Sign in"
+msgstr "להתחבר"
+
 #: entrytool/settings.py:147
 msgid "English"
 msgstr "אנגלית"
@@ -635,10 +656,6 @@ msgstr "מצב החולה"
 msgid "External Identifier Or ID"
 msgstr "מזהה חיצוני או מזהה"
 
-#: entrytool/templates/search.html:32 entrytool/templates/welcome.html:33
-msgid "Search"
-msgstr "לחפש"
-
 #: entrytool/templates/search.html:48
 msgid "We couldn't find any results for your search."
 msgstr "לא הצלחנו למצוא תוצאות לחיפושך."
@@ -646,6 +663,10 @@ msgstr "לא הצלחנו למצוא תוצאות לחיפושך."
 #: entrytool/templates/welcome.html:9
 msgid "Home"
 msgstr "בית"
+
+#: entrytool/templates/welcome.html:23
+msgid "Patient ID or Hospital Number"
+msgstr "תעודת זהות או מספר בית חולים"
 
 #: entrytool/wow_strings.py:5 entrytool/wow_strings.py:13
 msgid "Frankfurt Clinic"
