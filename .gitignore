@@ -13,3 +13,5 @@ htmlcov
 libpeerconnection.log
 .vscode
 .sass-cache
+.DS_Store
+entrytool/local_settings.py
