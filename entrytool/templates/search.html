@@ -1,3 +1,4 @@
+{% load i18n %}
 <div class="container content-offset search-container">
 
   <div class="panel panel-primary search-panel panel-container">
@@ -5,7 +6,7 @@
     <div class="panel-heading">
       <h2>
         <i class="fa fa-search"></i>
-        Patient Search
+        {% trans "Patient Search" %}
       </h2>
     </div>
     <div class="panel-body">
@@ -17,7 +18,7 @@
                      slash-key-focus="!state || state==='normal'"
                      ng-blur="enableShortcuts()"
                      ng-focus="disableShortcuts()"
-                     placeholder="Name or Hospital Number"
+                     placeholder='{% trans "External Identifier Or ID %}'
                      ng-model="query.searchTerm"
                      class="form-control"
                      autocomplete="off"
@@ -28,7 +29,7 @@
             <div class="col-sm-4 col-sm-push-4 text-center">
                 <a ng-click="search()" class="btn btn-lg btn-primary content-offset-25">
                     <i class="glyphicon glyphicon-search"></i>
-                    Search
+                    {% trans "Search" %}
                 </a>
             </div>
         </div>
@@ -44,7 +45,7 @@
       <div class="row">
         <div class="col-sm-4 col-sm-push-4 lead text-center">
           <p>
-            We couldn't find any results for your search.
+            {% trans "We couldn't find any results for your search." %}
             </p>
         </div>
       </div>

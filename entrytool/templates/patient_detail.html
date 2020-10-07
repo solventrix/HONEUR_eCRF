@@ -1,13 +1,14 @@
 {% load honeur_panels %}
 {% load forms %}
+{% load i18n %}
 <div ng-show="patient == null" class="container-fluid content-offset">
   <h1 class="text-center content-offset">
-    Patient not found
+    {% trans "Patient not found" %}
   </h1>
   <p class="lead text-center content-offset">
-    We're sorry but we couldn't find the patient you're looking for.
+    {% trans "We're sorry but we couldn't find the patient you're looking for." %}
     <br />
-    Perhaps try searching for them instead?
+    {% trans "Perhaps try searching for them instead?" %}
   </p>
 </div>
 <div class="entry-tool container-fluid content-offset {% block container_classes %}{% endblock %}"
@@ -16,7 +17,7 @@
     <!-- Default panel contents -->
     <div class="panel-heading patient-detail-heading">
       <h2>
-        {% block heading %}Patient [[ patient.id ]]{% endblock %}
+        {% block heading %}{% trans "Patient" %} [[ patient.id ]]{% endblock %}
       </h2>
     </div>
 
@@ -38,7 +39,7 @@
                 <div class="panel mb6">
                   <div class="panel-heading" >
                     <h3>
-                      Lines Of Treatment
+                      {% trans "Lines Of Treatment" %}
                       <span class="pull-right pointer edit" >
                         <a ng-click="lineOfTreatmentManager.canEdit() && lineOfTreatmentManager.create(patient)">
                           <i class="fa fa-plus-circle edit pointer"></i>
@@ -58,7 +59,7 @@
               <div class="panel mb6">
                 <div class="panel-heading">
                   <h3>
-                    Follow Ups
+                    {% trans "Follow Ups" %}
                     <span class="pull-right pointer edit">
                       <a ng-click="episode.recordEditor.newItem('{{ models.FollowUp.get_api_name }}')">
                         <i class="fa fa-plus-circle edit pointer"></i>
