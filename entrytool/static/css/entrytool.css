@@ -56,7 +56,7 @@ h3 i.edit {
 }
 
 h1 img {
-  display: none;
+  padding-bottom: 4px;
 }
 
 .loading {
@@ -99,7 +99,7 @@ h1 img {
 }
 
 .ngProgressLiteBar {
-  background-color: #002562;
+  background-color: #0794e0;
   box-shadow: 0 0 10px 0;
   /* Inherits the font color */
   top: 50px;
