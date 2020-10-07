@@ -17,12 +17,12 @@
           [[ patient.id ]]
         </div>
       </div>
-      <div ng-show="patient.demographics[0].hospital_number" class="row">
+      <div ng-show="patient.demographics[0].external_identifier" class="row">
         <div class="col-md-6">
-          <span class="display-label">Hospital #</span>
+          <span class="display-label">External identifier</span>
         </div>
         <div class="col-md-6">
-          [[ patient.demographics[0].hospital_number ]]
+          [[ patient.demographics[0].external_identifier ]]
         </div>
       </div>
       <div class="row">

@@ -11,7 +11,9 @@ from django.utils.translation import gettext_lazy as _
 
 class Demographics(models.Demographics):
     _icon = ''
-    pass
+    external_identifier = fields.CharField(
+        blank=True, null=True, max_length=256, unique=True
+    )
 
 
 class Location(models.Location):
