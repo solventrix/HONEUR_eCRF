@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Honeur ECRF\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-07 11:31+0000\n"
-"PO-Revision-Date: 2020-10-07 12:44-0000\n"
+"POT-Creation-Date: 2020-10-07 13:48+0000\n"
+"PO-Revision-Date: 2020-10-07 14:50-0000\n"
 "Last-Translator: David Miller <david@openhealthcare.org.uk>\n"
 "Language-Team: Development <LL@li.org>\n"
 "Language: he\n"
@@ -142,7 +142,89 @@ msgstr "אנגלית"
 msgid "Spanish"
 msgstr "ספרדית"
 
+#: entrytool/settings.py:149
+msgid "Hebrew"
+msgstr "עִברִית"
+
 #: entrytool/templates/partials/_demographics_panel.html:14
 #: entrytool/templates/records/demographics.html:3
 msgid "ID"
 msgstr "תְעוּדַת זֶהוּת"
+
+#: entrytool/wow_strings.py:5
+msgid "Dara"
+msgstr ""
+
+#: entrytool/wow_strings.py:7
+msgid "Kd"
+msgstr ""
+
+#: entrytool/wow_strings.py:9
+msgid "VCD"
+msgstr ""
+
+#: entrytool/wow_strings.py:11
+msgid "VMP"
+msgstr ""
+
+#: entrytool/wow_strings.py:13
+msgid "VTD"
+msgstr ""
+
+#: entrytool/wow_strings.py:15
+msgid "Vd"
+msgstr ""
+
+#: entrytool/wow_strings.py:17
+#, fuzzy
+#| msgid "Adverse Event"
+msgid "Adverse event"
+msgstr "תופעת לוואי"
+
+#: entrytool/wow_strings.py:19
+msgid "End of Phase/Line"
+msgstr "סוף שלב / קו"
+
+#: entrytool/wow_strings.py:21
+msgid "Other reason"
+msgstr "סיבה אחרת"
+
+#: entrytool/wow_strings.py:23
+#, fuzzy
+#| msgid "Patient Status"
+msgid "Patient Request"
+msgstr "מצב החולה"
+
+#: entrytool/wow_strings.py:25
+msgid "Refractory disease"
+msgstr "מחלה עקשן"
+
+#: entrytool/wow_strings.py:27
+msgid "Relapse"
+msgstr "לְהָרֵע"
+
+#: entrytool/wow_strings.py:29
+msgid "Diarrhea"
+msgstr "שִׁלשׁוּל"
+
+#: entrytool/wow_strings.py:31
+#, fuzzy
+#| msgid "Severity"
+msgid "Fever"
+msgstr "חוּמרָה"
+
+#: entrytool/wow_strings.py:33
+msgid "Headache"
+msgstr "כְּאֵב רֹאשׁ"
+
+#: entrytool/wow_strings.py:35
+msgid "Nausea"
+msgstr "בחילה"
+
+#: entrytool/wow_strings.py:37
+msgid "Rash"
+msgstr "פריחה"
+
+#: entrytool/wow_strings.py:39
+msgid "Weight Loss"
+msgstr "ירידה במשקל"
