@@ -1,8 +1,9 @@
 {% load forms %}
+{% load i18n %}
 {% load custom_forms %}
 <div class="form-group">
   <label class="control-label col-sm-3">
-    Patient Status
+    {% trans "Patient Status" %}
   </label>
   <div ng-class="{'has-error': form.$submitted && form.status.$error.required }" class="col-sm-4">
     <select required name="status" class="form-control" ng-change="editing.patient_details.lost_to_follow_up_date = null; editing.patient_details.death_cause = null; editing.patient_details.death_date = null" ng-model="editing.patient_details.status">
@@ -36,7 +37,9 @@
 </div>
 {% custom_datepicker field="PatientDetails.diag_date" validator="diagnosis_date" date_after="the_episode.demographics[0].date_of_birth" date_after_message="Date of diagnosis must be after the patient's birth date" required=True %}
 <div class="form-group" >
-  <label for="" class="control-label col-sm-3">History of SMM</label>
+  <label for="" class="control-label col-sm-3">
+    {% trans "History of SMM" %}
+  </label>
   <div class="col-sm-3" ng-class="{'has-error': form.$submitted && form.mgus.$error.required}">
     <label class="radio-inline" ng-repeat='item in ["Yes", "No", "Unknown"]'>
       <input required type="radio" name="smm" value="[[ item ]]" ng-change='editing.patient_details.smm_history_date = null' ng-model="editing.patient_details.smm_history"> [[ item ]]
@@ -55,7 +58,9 @@
 </div>
 
 <div class="form-group" >
-  <label for="" class="control-label col-sm-3">History of MGUS</label>
+  <label for="" class="control-label col-sm-3">
+    {% trans "History of MGUS" %}
+  </label>
   <div class="col-sm-3" ng-class="{'has-error': form.$submitted && form.mgus.$error.required}">
     <label class="radio-inline" ng-repeat='item in ["Yes", "No", "Unknown"]'>
       <input required type="radio" name="mgus" value="[[ item ]]" ng-change='editing.patient_details.mgus_history_date = null' ng-model="editing.patient_details.mgus_history"> [[ item ]]
@@ -77,4 +82,3 @@
 {% radio field="PatientDetails.del_17p" %}
 {% radio field="PatientDetails.t4_14" %}
 {% radio field="PatientDetails.t4_16" %}
-

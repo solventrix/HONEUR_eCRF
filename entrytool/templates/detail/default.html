@@ -1,9 +1,17 @@
 {% load panels %}
+{% load i18n %}
 <div class="row">
   <div class="col-md-3">
     {% include 'partials/_demographics_panel.html' %}
   </div>
   <div class="col-md-9">
-    {% record_panel models.PatientDetails full_width=True noentries="Please complete details for this patient to continue." %}
+    {% record_panel models.PatientDetails full_width=True  %}
+    <div class="row">
+      <div class="col-md-9 text-center">
+        <p ng-hide="episode.patient_details[0].consistency_token">
+          {% trans "Please complete details for this patient to continue." %}
+        </p>
+      </div>
+    </div>
   </div>
 </div>
