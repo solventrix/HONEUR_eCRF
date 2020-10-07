@@ -2,7 +2,7 @@
 {% load i18n %}
   {% block title %}
   {{ column.get_display_name }}
-  ({% trans "Patient" %}hello [[ item.episode.demographics[0].patient_id ]])
+  ({% trans "Patient" %} [[ item.episode.demographics[0].patient_id ]])
   {% endblock %}
   {% block modal_body %}
   <form name="form" ng-submit="" class="form-horizontal" novalidate>

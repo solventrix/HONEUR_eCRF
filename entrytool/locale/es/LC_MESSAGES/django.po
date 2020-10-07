@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-07 15:14+0200\n"
+"POT-Creation-Date: 2020-10-07 14:30+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,133 +17,376 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: .\entrytool\__init__.py:22 .\entrytool\pathways.py:8
+#: entrytool/__init__.py:37 entrytool/pathways.py:8
 msgid "Add Patient"
 msgstr "Add patient in spanish"
 
-#: .\entrytool\__init__.py:28 .\entrytool\pathways.py:19
-#, fuzzy
-#| msgid "Add Patient"
-msgid "Add Treatment Line"
-msgstr "Add patient in spanish"
-
-#: .\entrytool\models.py:25
-#, python-format
-msgid "%(value)s is not a positive number"
+#: entrytool/__init__.py:41
+msgid "Log Out"
 msgstr ""
 
-#: .\entrytool\models.py:32
-#, python-format
-msgid "%(value)s should not be empty"
+#: entrytool/models.py:21 entrytool/models.py:35 entrytool/models.py:59
+#: entrytool/models.py:158 entrytool/models.py:234
+msgid "Hospital"
+msgstr "Hospital in spanish"
+
+#: entrytool/models.py:22
+msgid "Hospitals"
 msgstr ""
 
-#: .\entrytool\models.py:61
+#: entrytool/models.py:27
+msgid "Allogenic"
+msgstr ""
+
+#: entrytool/models.py:28
+msgid "Autologous"
+msgstr ""
+
+#: entrytool/models.py:29 entrytool/models.py:65
+msgid "Unknown"
+msgstr ""
+
+#: entrytool/models.py:33
 msgid "Date of SCT"
 msgstr ""
 
-#: .\entrytool\models.py:65
+#: entrytool/models.py:39
 msgid "Type of SCT"
 msgstr ""
 
-#: .\entrytool\models.py:70
+#: entrytool/models.py:45
 msgid "Stem Cell Transplant"
 msgstr "Spanish Stem Cell Transplant"
 
-#: .\entrytool\models.py:71
+#: entrytool/models.py:46
 #, fuzzy
 #| msgid "Stem Cell Transplant"
 msgid "Stem Cell Transplants"
 msgstr "Spanish Stem Cell Transplant"
 
-#: .\entrytool\models.py:86
+#: entrytool/models.py:54
+#, fuzzy
+#| msgid "Add Patient"
+msgid "Under Treatment"
+msgstr "Add patient in spanish"
+
+#: entrytool/models.py:55
+msgid "Dead"
+msgstr ""
+
+#: entrytool/models.py:56
+msgid "Lost to Follow-up"
+msgstr ""
+
+#: entrytool/models.py:63
+msgid "Yes"
+msgstr ""
+
+#: entrytool/models.py:64
+msgid "No"
+msgstr ""
+
+#: entrytool/models.py:68
+msgid "Disease"
+msgstr ""
+
+#: entrytool/models.py:69
+msgid "Complications of Disease"
+msgstr ""
+
+#: entrytool/models.py:70
+msgid "Other"
+msgstr ""
+
+#: entrytool/models.py:73
+msgid "Stage I"
+msgstr ""
+
+#: entrytool/models.py:74
+msgid "Stage II"
+msgstr ""
+
+#: entrytool/models.py:75
+msgid "Stage III"
+msgstr ""
+
+#: entrytool/models.py:78
+msgid "IgG"
+msgstr ""
+
+#: entrytool/models.py:79
+msgid "IgA"
+msgstr ""
+
+#: entrytool/models.py:80
+msgid "IgE"
+msgstr ""
+
+#: entrytool/models.py:81
+msgid "Light Chain Myeloma"
+msgstr ""
+
+#: entrytool/models.py:84
 msgid "Patient Status"
 msgstr ""
 
-#: .\entrytool\models.py:97
+#: entrytool/models.py:87
 msgid "Date of Diagnosis"
 msgstr ""
 
-#: .\entrytool\models.py:98
+#: entrytool/models.py:90
 msgid "History of SMM"
 msgstr "Historia de SMM"
 
-#: .\entrytool\models.py:99
+#: entrytool/models.py:93
 msgid "Date of SMM diagnosis"
 msgstr ""
 
-#: .\entrytool\models.py:100
+#: entrytool/models.py:96
 msgid "History of MGUS"
 msgstr ""
 
-#: .\entrytool\models.py:101
+#: entrytool/models.py:99
 msgid "Date of MGUS Diagnosis"
 msgstr ""
 
-#: .\entrytool\models.py:102
+#: entrytool/models.py:102
 msgid "R-ISS Stage"
 msgstr ""
 
-#: .\entrytool\models.py:107
+#: entrytool/models.py:105
+msgid "PP Type"
+msgstr ""
+
+#: entrytool/models.py:107
+msgid "del(17)p"
+msgstr ""
+
+#: entrytool/models.py:108
+msgid "t(4;14)"
+msgstr ""
+
+#: entrytool/models.py:109
+msgid "t(4;16)"
+msgstr ""
+
+#: entrytool/models.py:111
 msgid "Date of Death"
 msgstr ""
 
-#: .\entrytool\models.py:108
+#: entrytool/models.py:116
 msgid "Cause of Death"
 msgstr ""
 
-#: .\entrytool\models.py:115
+#: entrytool/models.py:122 entrytool/models.py:123
+msgid "Patient Details"
+msgstr ""
+
+#: entrytool/models.py:128 entrytool/models.py:129
+msgid "Regimen List"
+msgstr ""
+
+#: entrytool/models.py:134 entrytool/models.py:135
+msgid "Stop Reason"
+msgstr ""
+
+#: entrytool/models.py:140 entrytool/models.py:143
 msgid "Treatment Line"
+msgstr "Treatment Line in spanish"
+
+#: entrytool/models.py:144
+#, fuzzy
+#| msgid "Add Patient"
+msgid "Treatment Lines"
+msgstr "Treatment Lines in spanish"
+
+#: entrytool/models.py:152
+msgid "Induction"
 msgstr ""
 
-#: .\entrytool\models.py:124 .\entrytool\models.py:145
-#: .\entrytool\models.py:167
-msgid "Line of Treatment"
+#: entrytool/models.py:153
+msgid "Maintenance"
 msgstr ""
 
-#: .\entrytool\models.py:125
+#: entrytool/models.py:154
+msgid "Conditioning"
+msgstr ""
+
+#: entrytool/models.py:155
+msgid "Watch and wait"
+msgstr ""
+
+#: entrytool/models.py:160
 msgid "Number of Cycles"
 msgstr ""
 
-#: .\entrytool\models.py:126
+#: entrytool/models.py:165
 msgid "Start Date"
 msgstr ""
 
-#: .\entrytool\models.py:127
+#: entrytool/models.py:167
 msgid "End Date"
 msgstr ""
 
-#: .\entrytool\models.py:128
+#: entrytool/models.py:168 entrytool/models.py:175
 msgid "Regimen"
 msgstr ""
 
-#: .\entrytool\models.py:129
+#: entrytool/models.py:171
 msgid "Reason for Regimen Stop"
 msgstr ""
 
-#: .\entrytool\models.py:147
+#: entrytool/models.py:176
+msgid "Regimens"
+msgstr ""
+
+#: entrytool/models.py:182 entrytool/models.py:183
+msgid "AE List"
+msgstr ""
+
+#: entrytool/models.py:191
+#, fuzzy
+#| msgid "ID"
+msgid "I"
+msgstr "Identificacion"
+
+#: entrytool/models.py:192
+msgid "II"
+msgstr ""
+
+#: entrytool/models.py:193
+msgid "III"
+msgstr ""
+
+#: entrytool/models.py:194
+msgid "IV"
+msgstr ""
+
+#: entrytool/models.py:195
+msgid "V"
+msgstr ""
+
+#: entrytool/models.py:197 entrytool/models.py:204 entrytool/models.py:205
 msgid "Adverse Event"
 msgstr ""
 
-#: .\entrytool\models.py:148
+#: entrytool/models.py:199
 msgid "Severity"
 msgstr ""
 
-#: .\entrytool\models.py:149
+#: entrytool/models.py:201
 msgid "Date of AE"
 msgstr ""
 
-#: .\entrytool\models.py:177
+#: entrytool/models.py:212
+msgid "Minimal response"
+msgstr ""
+
+#: entrytool/models.py:213
+msgid "Partial response"
+msgstr ""
+
+#: entrytool/models.py:214
+msgid "Very good partial response"
+msgstr ""
+
+#: entrytool/models.py:215
+msgid "Complete response"
+msgstr ""
+
+#: entrytool/models.py:216
+msgid "Stringent complete response"
+msgstr ""
+
+#: entrytool/models.py:217
+msgid "Near complete response"
+msgstr ""
+
+#: entrytool/models.py:218
+msgid "Immunophenotypic complete response"
+msgstr ""
+
+#: entrytool/models.py:219
+msgid "Stable disease"
+msgstr ""
+
+#: entrytool/models.py:220
+msgid "Progressive disease"
+msgstr ""
+
+#: entrytool/models.py:221
+msgid "Response unknown)"
+msgstr ""
+
+#: entrytool/models.py:223
+msgid "Response Date"
+msgstr ""
+
+#: entrytool/models.py:224 entrytool/models.py:227
+msgid "Response"
+msgstr "Response in Spanish"
+
+#: entrytool/models.py:228
+msgid "Responses"
+msgstr ""
+
+#: entrytool/models.py:235
 msgid "Visit date"
 msgstr ""
 
-#: .\entrytool\settings.py:149
+#: entrytool/models.py:237
+msgid "LDH"
+msgstr ""
+
+#: entrytool/models.py:238
+msgid "beta2m"
+msgstr ""
+
+#: entrytool/models.py:239
+msgid "Albumin"
+msgstr ""
+
+#: entrytool/models.py:240
+msgid "Creatinin"
+msgstr ""
+
+#: entrytool/models.py:241
+msgid "MCV"
+msgstr ""
+
+#: entrytool/models.py:242
+msgid "Hb"
+msgstr ""
+
+#: entrytool/models.py:243
+msgid "Kappa Lambda Ratio"
+msgstr ""
+
+#: entrytool/models.py:244
+msgid "Bone Lesions"
+msgstr ""
+
+#: entrytool/models.py:247
+msgid "Follow-up"
+msgstr ""
+
+#: entrytool/models.py:248
+msgid "Follow-ups"
+msgstr ""
+
+#: entrytool/settings.py:147
 msgid "English"
 msgstr ""
 
-#: .\entrytool\settings.py:150
+#: entrytool/settings.py:148
 msgid "Spanish"
 msgstr ""
 
-#: .\entrytool\templates\records\demographics.html:3
+#: entrytool/settings.py:149
+msgid "Hebrew"
+msgstr ""
+
+#: entrytool/templates/partials/_demographics_panel.html:14
+#: entrytool/templates/records/demographics.html:3
 msgid "ID"
 msgstr "Identificacion"
