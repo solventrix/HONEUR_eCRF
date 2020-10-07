@@ -1,6 +1,22 @@
 {% load forms %}
 {% load custom_forms %}
-{% select field="PatientDetails.status" change="editing.patient_details.death_cause = null; editing.patient_details.death_date = null" %}
+<div class="form-group">
+  <label class="control-label col-sm-3">
+    Patient Status
+  </label>
+  <div ng-class="{'has-error': form.$submitted && form.status.$error.required }" class="col-sm-4">
+    <select required name="status" class="form-control" ng-change="editing.patient_details.lost_to_follow_up_date = null; editing.patient_details.death_cause = null; editing.patient_details.death_date = null" ng-model="editing.patient_details.status">
+      <option value="" selected>---------</option>
+      <option ng-repeat='i in ["Under Treatment", "Dead", "Lost to Follow-up"] track by $index'>[[ i ]]</option>
+    </select>
+    <span ng-show="form.$submitted && form.status.$error.required" class="help-block">
+      Status is required
+    </span>
+  </div>
+  <div ng-show="editing.patient_details.status === 'Lost to Follow-up'" class="col-sm-4">
+    {% custom_datepicker label="Date" field="PatientDetails.lost_to_follow_up_date" ngrequired="editing.patient_details.status === 'Lost to Follow-up'" date_after="the_episode.demographics[0].date_of_birth" date_after_message="Follow up date must be after the patient's birth date" %}
+  </div>
+</div>
 <div ng-show="editing.patient_details.status === 'Dead'" class="form-group">
   <label class="control-label col-sm-3">
     Cause of Death
