@@ -146,6 +146,7 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGES = (
     ("en-us", _("English")),
     ("es", _("Spanish")),
+    ("he", _("Hebrew")),
 )
 
 LANGUAGE_CODE = "en-us"
@@ -282,6 +283,8 @@ if os.environ.get('HEROKU_SLUG_COMMIT'):
 # )
 
 try:
-    from local_settings import *
+    from entrytool.local_settings import *
 except ImportError:
     pass
+
+print(LANGUAGE_CODE)
