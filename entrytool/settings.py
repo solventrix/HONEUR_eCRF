@@ -34,7 +34,7 @@ INSTALLED_APPS = [
     "opal.core.search",
     "opal.core.pathway",
     "reversion",
-    "opal.core.referencedata",
+#    "opal.core.referencedata",
     "entrytool",
     # 'languages',
     "django.contrib.admin",
