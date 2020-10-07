@@ -119,7 +119,7 @@ class PatientDetails(models.PatientSubrecord):
         null=True,
     )
     lost_to_follow_up_date = fields.DateField(
-        blank=True, null=True, verbose_name=_("Lost to Follow-up ")
+        blank=True, null=True, verbose_name=_("Lost to Follow-up")
     )
 
     class Meta:

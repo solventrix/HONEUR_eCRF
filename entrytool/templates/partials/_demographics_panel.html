@@ -2,7 +2,7 @@
 <div class="panel panel-default">
   <div class="panel-heading">
     <h3>
-      Demographics
+      {{ models.Demographics.get_display_name }}
       <i class="fa fa-pencil edit pull-right pointer"
          ng-click="patient.recordEditor.editItem('demographics', patient.demographics[0])"></i>
     </h3>
@@ -19,7 +19,7 @@
       </div>
       <div ng-show="patient.demographics[0].external_identifier" class="row">
         <div class="col-md-6">
-          <span class="display-label">External identifier</span>
+          <span class="display-label">{% trans "External identifier" %}</span>
         </div>
         <div class="col-md-6">
           [[ patient.demographics[0].external_identifier ]]
@@ -27,7 +27,7 @@
       </div>
       <div class="row">
         <div class="col-md-6">
-          <span class="display-label">Birth Date</span>
+          <span class="display-label">{% trans "Birth Date" %}</span>
         </div>
         <div class="col-md-6">
           [[ patient.demographics[0].date_of_birth | displayDate ]]
@@ -35,7 +35,7 @@
       </div>
       <div class="row">
         <div class="col-md-6">
-          <span class="display-label">Sex</span>
+          <span class="display-label">{% trans "Sex" %}</span>
         </div>
         <div class="col-md-6">
           [[ patient.demographics[0].sex ]]

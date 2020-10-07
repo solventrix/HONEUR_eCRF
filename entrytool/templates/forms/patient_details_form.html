@@ -1,8 +1,9 @@
 {% load forms %}
 {% load custom_forms %}
+{% load i18n %}
 <div class="form-group">
   <label class="control-label col-sm-3">
-    Patient Status
+    {% trans "Patient Status" %}
   </label>
   <div ng-class="{'has-error': form.$submitted && form.status.$error.required }" class="col-sm-4">
     <select required name="status" class="form-control" ng-change="editing.patient_details.lost_to_follow_up_date = null; editing.patient_details.death_cause = null; editing.patient_details.death_date = null" ng-model="editing.patient_details.status">
@@ -10,16 +11,15 @@
       <option ng-repeat='i in ["Under Treatment", "Dead", "Lost to Follow-up"] track by $index'>[[ i ]]</option>
     </select>
     <span ng-show="form.$submitted && form.status.$error.required" class="help-block">
-      Status is required
-    </span>
+      {% trans "Status is required" %}</span>
   </div>
   <div ng-show="editing.patient_details.status === 'Lost to Follow-up'" class="col-sm-4">
-    {% custom_datepicker label="Date" field="PatientDetails.lost_to_follow_up_date" ngrequired="editing.patient_details.status === 'Lost to Follow-up'" date_after="the_episode.demographics[0].date_of_birth" date_after_message="Follow up date must be after the patient's birth date" %}
+    {% custom_datepicker label=_("Date") field="PatientDetails.lost_to_follow_up_date" ngrequired="editing.patient_details.status === 'Lost to Follow-up'" date_after="the_episode.demographics[0].date_of_birth" date_after_message="Follow up date must be after the patient's birth date" %}
   </div>
 </div>
 <div ng-show="editing.patient_details.status === 'Dead'" class="form-group">
   <label class="control-label col-sm-3">
-    Cause of Death
+    {% trans "Cause of Death" %}
   </label>
   <div ng-class="{'has-error': form.$submitted && form.cause_of_death.$error.required }" class="col-sm-4">
     <select name="cause_of_death" class="form-control" ng-required="editing.patient_details.status === 'Dead'" ng-model="editing.patient_details.death_cause">
@@ -27,16 +27,18 @@
       <option ng-repeat='i in ["Disease", "Complications of Disease", "Other"] track by $index'>[[ i ]]</option>
     </select>
     <span ng-show="form.$submitted && form.cause_of_death.$error.required" class="help-block">
-      Cause of Death is required
+      {% trans "Cause of Death is required" %}
     </span>
   </div>
   <div class="col-sm-4">
-    {% custom_datepicker label="Date" field="PatientDetails.death_date" ngrequired="editing.patient_details.status === 'Dead'" date_after="the_episode.demographics[0].date_of_birth" date_after_message="Date of death must be after the patient's birth date" %}
+    {% custom_datepicker label=_("Date") field="PatientDetails.death_date" ngrequired="editing.patient_details.status === 'Dead'" date_after="the_episode.demographics[0].date_of_birth" date_after_message="Date of death must be after the patient's birth date" %}
   </div>
 </div>
 {% custom_datepicker field="PatientDetails.diag_date" validator="diagnosis_date" date_after="the_episode.demographics[0].date_of_birth" date_after_message="Date of diagnosis must be after the patient's birth date" required=True %}
 <div class="form-group" >
-  <label for="" class="control-label col-sm-3">History of SMM</label>
+  <label for="" class="control-label col-sm-3">
+    {% trans "History of SMM" %}
+  </label>
   <div class="col-sm-3" ng-class="{'has-error': form.$submitted && form.mgus.$error.required}">
     <label class="radio-inline" ng-repeat='item in ["Yes", "No", "Unknown"]'>
       <input required type="radio" name="smm" value="[[ item ]]" ng-change='editing.patient_details.smm_history_date = null' ng-model="editing.patient_details.smm_history"> [[ item ]]
@@ -44,18 +46,18 @@
     <div class="row" ng-show="form.$submitted && form.smm.$error.required" ng-class="{'has-error': form.$submitted && form.mgus.$error.required}">
       <div class="col-md-12">
         <span class="help-block" >
-          History of SMM is required
+          {% trans "History of SMM is required" %}
         </span>
       </div>
     </div>
   </div>
   <div ng-show="editing.patient_details.smm_history == 'Yes'" class="col-sm-4">
-    {% custom_datepicker label="Date" field="PatientDetails.smm_history_date" ngrequired="editing.patient_details.smm_history == 'Yes'" date_before="editing.patient_details.diag_date" date_before_message="Date must be before the date of diagnosis"  date_before_diff="0" %}
+    {% custom_datepicker label=_("Date") field="PatientDetails.smm_history_date" ngrequired="editing.patient_details.smm_history == 'Yes'" date_before="editing.patient_details.diag_date" date_before_message="Date must be before the date of diagnosis"  date_before_diff="0" %}
   </div>
 </div>
 
 <div class="form-group" >
-  <label for="" class="control-label col-sm-3">History of MGUS</label>
+  <label for="" class="control-label col-sm-3">{% trans "History of MGUS" %}</label>
   <div class="col-sm-3" ng-class="{'has-error': form.$submitted && form.mgus.$error.required}">
     <label class="radio-inline" ng-repeat='item in ["Yes", "No", "Unknown"]'>
       <input required type="radio" name="mgus" value="[[ item ]]" ng-change='editing.patient_details.mgus_history_date = null' ng-model="editing.patient_details.mgus_history"> [[ item ]]
@@ -63,13 +65,13 @@
     <div class="row" ng-show="form.$submitted && form.mgus.$error.required" ng-class="{'has-error': form.$submitted && form.mgus.$error.required}">
       <div class="col-md-12">
         <span class="help-block" >
-          History of MGUS is required
+          {% trans "History of MGUS is required" %}
         </span>
       </div>
     </div>
   </div>
   <div ng-show="editing.patient_details.mgus_history == 'Yes'" class="col-sm-4">
-    {% custom_datepicker label="Date" field="PatientDetails.mgus_history_date" ngrequired="editing.patient_details.mgus_history == 'Yes'" date_before="editing.patient_details.diag_date"  date_before_message="Date must be before the date of diagnosis" date_before_diff="0" %}
+    {% custom_datepicker label=_("Date") field="PatientDetails.mgus_history_date" ngrequired="editing.patient_details.mgus_history == 'Yes'" date_before="editing.patient_details.diag_date"  date_before_message="Date must be before the date of diagnosis" date_before_diff="0" %}
   </div>
 </div>
 {% radio field="PatientDetails.r_iss_stage" %}
