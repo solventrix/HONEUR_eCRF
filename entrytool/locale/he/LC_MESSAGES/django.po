@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Honeur ECRF\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-07 18:17+0000\n"
-"PO-Revision-Date: 2020-10-07 19:17-0000\n"
+"POT-Creation-Date: 2020-10-07 18:22+0000\n"
+"PO-Revision-Date: 2020-10-07 19:23-0000\n"
 "Last-Translator: David Miller <david@openhealthcare.org.uk>\n"
 "Language-Team: Development <LL@li.org>\n"
 "Language: he\n"
@@ -502,10 +502,9 @@ msgid "Title"
 msgstr "כותרת"
 
 #: entrytool/opal/models.py:1277
-#, fuzzy
 #| msgid "Date of Death"
 msgid "Date of Birth"
-msgstr "תאריך פטירה"
+msgstr "תאריך לידה"
 
 #: entrytool/opal/models.py:1285
 msgid "Post Code"
@@ -531,6 +530,16 @@ msgstr "מחוון מוות"
 #: entrytool/templates/partials/_demographics_panel.html:40
 msgid "Sex"
 msgstr "מִין"
+
+#: entrytool/opal/templates/_helpers/date_of_birth_field.html:3
+#: entrytool/opal/templates/_helpers/date_of_birth_field.html:9
+#| msgid "Date of Death"
+msgid "Date Of Birth"
+msgstr "תאריך לידה"
+
+#: entrytool/opal/templates/_helpers/date_of_birth_field.html:13
+msgid "Please enter a valid date of birth in the format DD/MM/YYYY"
+msgstr "אנא הזן תאריך לידה תקף בפורמט יום / חודש / שנה"
 
 #: entrytool/opal/templates/admin/base_site.html:4
 msgid "Django site admin"
