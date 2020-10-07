@@ -1,5 +1,5 @@
 angular.module('opal.controllers').controller(
-  "LineOfTreatmentCreator", function($scope, $http, $q, $modal, UserProfile){
+  "LineOfTreatmentManager", function($scope, $http, $q, $modal, UserProfile){
     "use strict";
     var self = this;
     this.loading = false;
@@ -52,6 +52,20 @@ angular.module('opal.controllers').controller(
           deferred.resolve();
         }
       });
+    };
+
+    this.lineOfTreatmentOrder = function(lot){
+      /*
+      * Orders the line of treatments in the patient detail page
+      * by the earliest regimen date of that episode.
+      */
+      var regiments = _.sortBy(lot.regimen, function(regimen){
+        return regimen.start_date
+      });
+      if(!regiments.length){
+        return 0;
+      }
+      return regiments[0].start_date;
     };
   }
 );

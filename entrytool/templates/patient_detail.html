@@ -32,25 +32,29 @@
             </div>
 
             <section ng-show="patient.patient_details[0].consistency_token"> <!-- Treatment lines, follow ups -->
-              <div class="panel mb6">
-                <div class="panel-heading" >
-                  <h3>
-                    Lines Of Treatment
-                    <span class="pull-right pointer edit" ng-controller="LineOfTreatmentCreator as lineOfTreatmentCreator">
-                      <a ng-click="lineOfTreatmentCreator.canEdit() && lineOfTreatmentCreator.create(patient)">
-                        <i class="fa fa-plus-circle edit pointer"></i>
-                      </a>
-                    </span>
-                  </h3>
-                </div>
-              </div>
 
-              <div class="row" ng-repeat="episode in patient.episodes | filter: { category_name: 'Treatment Line' } | orderBy: '-id' as lot_episodes">
-                <div class="col-md-12 inline-panels">
-                  {% include "detail/treatmentline.html" %}
+              <!-- Line of treatments -->
+              <section ng-controller="LineOfTreatmentManager as lineOfTreatmentManager">
+                <div class="panel mb6">
+                  <div class="panel-heading" >
+                    <h3>
+                      Lines Of Treatment
+                      <span class="pull-right pointer edit" >
+                        <a ng-click="lineOfTreatmentManager.canEdit() && lineOfTreatmentManager.create(patient)">
+                          <i class="fa fa-plus-circle edit pointer"></i>
+                        </a>
+                      </span>
+                    </h3>
+                  </div>
                 </div>
-              </div>
+                <div class="row" ng-repeat="episode in patient.episodes | filter: { category_name: 'Treatment Line' } | orderBy:lineOfTreatmentManager.lineOfTreatmentOrder:true as lot_episodes">
+                  <div class="col-md-12 inline-panels">
+                    {% include "detail/treatmentline.html" %}
+                  </div>
+                </div>
+              </section>
 
+              <!-- Follow ups -->
               <div class="panel mb6">
                 <div class="panel-heading">
                   <h3>
