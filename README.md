@@ -29,6 +29,20 @@ To add a user you must have a user account with relevant privileges.
 4. Complete the user details and an initial password for the user
 5. Click the Save button
 
+### Deployment Notes
+
+Deploying Opal applications should be broadly similar to deploying any Django application. We include here some specific notes to consider when designing that process.
+
+It is expected that you will generate a new Django secret key on deployment as the one in the current `settings.py` file is linked to the Opal version rather than generated randomly at project start time.
+
+In addition to standard Django deployment management commands (e.g. `collectstatic`) we would recommend you run the following command at deploy time:
+
+`python manage.py load_lookup_lists`
+
+This ensures reference data in the database contains all the values required.
+
+Production deployments would not be expected to run sqlite, which is only suited to development environments. Example configuration for PostgreSQL can be found in the [Django documentation](https://docs.djangoproject.com/en/2.2/ref/settings/#std:setting-HOST). The section on [deploying Django](https://docs.djangoproject.com/en/3.1/howto/deployment/) will also be helpful.
+
 ## Customising the fields in the application
 
 
@@ -175,4 +189,91 @@ for row in rows:
     )
     follow_up.wcc = int_or_none(row['wcc'])
     follow_up.save()
+```
+
+## Managing multiple customised versions
+
+Maintaining and deploying many slightly different versions of an application is not a trivial task, and it is unlikely that any strategy can completely remove the complexity and need to think carefully when making and merging changes.
+
+### Suggested strategy
+
+Use master as the ‘core’ application, and then maintain a branch from that for each deployment. Using Git tags, use numbered releases on master and make merges out into each deployment branch at each tagged release. Re-tag each deployment at merge time.
+
+### An example: minor customisation for two deployments.
+
+First set up release tagging for your master branch.
+
+```
+git checkout master
+git tag 1.0
+```
+
+Then create a deployment branch and an initial deployment branch release tag.
+
+```
+git checkout -b deployment1
+git tag deployment1-1.0
+```
+
+Alter the `OPAL_BRAND_NAME` setting to include the name of the deployment.
+
+Now alter this deployment by hide LDH: by editing form and display template.
+
+Commit these changes and tag the deployment release.
+
+```
+git commit -a -m "Hide LDH; brand name.”
+git tag deployment1-1.0.1
+```
+
+Now create a second deployment branch
+
+```
+git checkout master
+git checkout -b deployment2
+```
+
+Alter the `OPAL_BRAND_NAME setting to include the name of the deployment.
+
+then:
+
+```
+git commit -a -m "Alter brand name”
+git tag deployment2-1.0.1
+```
+
+Now we will make a change to the core application.
+
+```
+git checkout master
+```
+
+Add the code `alert('HELLO WORLD THIS IS VERSION 2.0.x!’);` on the line below the code `OPAL.run(app);` in the file `entrytool/static/js/entrytool/app.js`
+
+Now commit these changes and create a new release tag:
+
+```
+git commit -a -m “Alert everyone about the version”
+git tag 2.0
+```
+
+Update our deployments to merge in the core
+
+```
+git checkout deployment1
+git merge master
+git tag deployment1-2.0
+```
+
+```
+git checkout deployment2
+git merge master
+git tag deployment2-2.0
+```
+
+At deploy time, checkout the deployment version tag you want before running deployment scripts.
+
+```
+git checkout deployment2-2.0
+# set up app
 ```
