@@ -42,15 +42,15 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = (
-    "django.middleware.common.CommonMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    'django.middleware.locale.LocaleMiddleware',
+    "django.middleware.common.CommonMiddleware",
     "opal.middleware.AngularCSRFRename",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "opal.middleware.DjangoReversionWorkaround",
     "reversion.middleware.RevisionMiddleware",
-    # 'django.middleware.locale.LocaleMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )

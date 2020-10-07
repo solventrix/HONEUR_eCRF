@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Honeur ECRF\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-07 13:54+0000\n"
-"PO-Revision-Date: 2020-10-07 14:50-0000\n"
+"POT-Creation-Date: 2020-10-07 17:06+0000\n"
+"PO-Revision-Date: 2020-10-07 18:08-0000\n"
 "Last-Translator: David Miller <david@openhealthcare.org.uk>\n"
 "Language-Team: Development <LL@li.org>\n"
 "Language: he\n"
@@ -26,113 +26,515 @@ msgstr "הוסף חולה"
 msgid "Log Out"
 msgstr "להתנתק"
 
-#: entrytool/models.py:35
+#: entrytool/__init__.py:47
+msgid "Admin"
+msgstr "מנהל"
+
+#: entrytool/models.py:16
+msgid "External Identifier"
+msgstr "מזהה חיצוני"
+
+#: entrytool/models.py:22 entrytool/models.py:36 entrytool/models.py:60
+#: entrytool/models.py:162 entrytool/models.py:238
+msgid "Hospital"
+msgstr "בית חולים"
+
+#: entrytool/models.py:23
+msgid "Hospitals"
+msgstr "בתי חולים"
+
+#: entrytool/models.py:28
+msgid "Allogenic"
+msgstr "אלוגני"
+
+#: entrytool/models.py:29
+msgid "Autologous"
+msgstr "אוטולוגי"
+
+#: entrytool/models.py:30 entrytool/models.py:66
+msgid "Unknown"
+msgstr "לא ידוע"
+
+#: entrytool/models.py:34
 msgid "Date of SCT"
 msgstr "תאריך הטיפול בתאי גזע"
 
-#: entrytool/models.py:39
+#: entrytool/models.py:40
 msgid "Type of SCT"
 msgstr "סוג הטיפול בתאי גזע"
 
-#: entrytool/models.py:45
+#: entrytool/models.py:46
 msgid "Stem Cell Transplant"
 msgstr "השתלת תאי גזע"
 
-#: entrytool/models.py:46
+#: entrytool/models.py:47
 msgid "Stem Cell Transplants"
 msgstr "השתלות תאי גזע"
 
-#: entrytool/models.py:66
+#: entrytool/models.py:55
+#, fuzzy
+#| msgid "Treatment Line"
+msgid "Under Treatment"
+msgstr "קו טיפול"
+
+#: entrytool/models.py:56
+msgid "Dead"
+msgstr "מֵת"
+
+#: entrytool/models.py:57
+msgid "Lost to Follow-up"
+msgstr "לא הצלחתי לעקוב"
+
+#: entrytool/models.py:64
+msgid "Yes"
+msgstr "כן"
+
+#: entrytool/models.py:65
+msgid "No"
+msgstr "לא"
+
+#: entrytool/models.py:69
+msgid "Disease"
+msgstr "מַחֲלָה"
+
+#: entrytool/models.py:70
+msgid "Complications of Disease"
+msgstr "סיבוכים של מחלה"
+
+#: entrytool/models.py:71
+msgid "Other"
+msgstr "אַחֵר"
+
+#: entrytool/models.py:74
+msgid "Stage I"
+msgstr "שלב ראשון"
+
+#: entrytool/models.py:75
+msgid "Stage II"
+msgstr "שלב שני"
+
+#: entrytool/models.py:76
+msgid "Stage III"
+msgstr "שלב שלישי"
+
+#: entrytool/models.py:79
+msgid "IgG"
+msgstr ""
+
+#: entrytool/models.py:80
+msgid "IgA"
+msgstr "איגה"
+
+#: entrytool/models.py:81
+msgid "IgE"
+msgstr ""
+
+#: entrytool/models.py:82
+msgid "Light Chain Myeloma"
+msgstr "מיאלומה של שרשרת קלה"
+
+#: entrytool/models.py:85
 msgid "Patient Status"
 msgstr "מצב החולה"
 
-#: entrytool/models.py:69
+#: entrytool/models.py:88
 msgid "Date of Diagnosis"
 msgstr "תאריך האבחון"
 
-#: entrytool/models.py:72
+#: entrytool/models.py:91
 msgid "History of SMM"
 msgstr "היסטוריה של מיאלומה נפוצה"
 
-#: entrytool/models.py:75
+#: entrytool/models.py:94
 msgid "Date of SMM diagnosis"
 msgstr "מועד אבחון מיאלומה נפוצה"
 
-#: entrytool/models.py:78
+#: entrytool/models.py:97
 msgid "History of MGUS"
 msgstr "היסטוריה של גמופתיה חד-שבטית בעלת משמעות לא קבועה"
 
-#: entrytool/models.py:81
+#: entrytool/models.py:100
 msgid "Date of MGUS Diagnosis"
 msgstr "תאריך גמופתיה חד שבטית באבחון משמעות לא קבוע"
 
-#: entrytool/models.py:84
+#: entrytool/models.py:103
 msgid "R-ISS Stage"
 msgstr "שלב פרוגנוזה של מיאלומה נפוצה"
 
-#: entrytool/models.py:93
+#: entrytool/models.py:106
+msgid "PP Type"
+msgstr ""
+
+#: entrytool/models.py:108
+msgid "del(17)p"
+msgstr ""
+
+#: entrytool/models.py:109
+msgid "t(4;14)"
+msgstr ""
+
+#: entrytool/models.py:110
+msgid "t(4;16)"
+msgstr ""
+
+#: entrytool/models.py:112 entrytool/opal/models.py:1282
 msgid "Date of Death"
 msgstr "תאריך פטירה"
 
-#: entrytool/models.py:98
+#: entrytool/models.py:117
 msgid "Cause of Death"
 msgstr "סיבת המוות"
 
-#: entrytool/models.py:114
+#: entrytool/models.py:122
+msgid "Lost to Follow-up "
+msgstr "לא הצלחתי לעקוב"
+
+#: entrytool/models.py:126 entrytool/models.py:127
+#, fuzzy
+#| msgid "Patient Status"
+msgid "Patient Details"
+msgstr "מצב החולה"
+
+#: entrytool/models.py:132 entrytool/models.py:133
+#, fuzzy
+#| msgid "Regimen"
+msgid "Regimen List"
+msgstr "מִשׁטָר"
+
+#: entrytool/models.py:138 entrytool/models.py:139
+#, fuzzy
+#| msgid "Other reason"
+msgid "Stop Reason"
+msgstr "סיבה אחרת"
+
+#: entrytool/models.py:144 entrytool/models.py:147
 msgid "Treatment Line"
 msgstr "קו טיפול"
 
-#: entrytool/models.py:122
+#: entrytool/models.py:148
+#, fuzzy
+#| msgid "Treatment Line"
+msgid "Treatment Lines"
+msgstr "קו טיפול"
+
+#: entrytool/models.py:156
 msgid "Induction"
 msgstr "הַשׁרָאָה"
 
-#: entrytool/models.py:123
+#: entrytool/models.py:157
 msgid "Maintenance"
 msgstr "תחזוקה"
 
-#: entrytool/models.py:124
+#: entrytool/models.py:158
 msgid "Conditioning"
 msgstr "הַתנָיָה"
 
-#: entrytool/models.py:125
+#: entrytool/models.py:159
 msgid "Watch and wait"
 msgstr "צפו וחכו"
 
-#: entrytool/models.py:130
+#: entrytool/models.py:164
 msgid "Number of Cycles"
 msgstr "מספר מחזורים"
 
-#: entrytool/models.py:135
+#: entrytool/models.py:169
 msgid "Start Date"
 msgstr "תאריך התחלה"
 
-#: entrytool/models.py:137
+#: entrytool/models.py:171
 msgid "End Date"
 msgstr "תאריך סיום"
 
-#: entrytool/models.py:138
+#: entrytool/models.py:172 entrytool/models.py:179
 msgid "Regimen"
 msgstr "מִשׁטָר"
 
-#: entrytool/models.py:141
+#: entrytool/models.py:175
 msgid "Reason for Regimen Stop"
 msgstr "הסיבה להפסקת המשטר"
 
-#: entrytool/models.py:155
+#: entrytool/models.py:180
+#, fuzzy
+#| msgid "Regimen"
+msgid "Regimens"
+msgstr "מִשׁטָר"
+
+#: entrytool/models.py:186 entrytool/models.py:187
+msgid "AE List"
+msgstr "רשימת אירועים שליליים"
+
+#: entrytool/models.py:195
+#, fuzzy
+#| msgid "ID"
+msgid "I"
+msgstr "תְעוּדַת זֶהוּת"
+
+#: entrytool/models.py:196
+msgid "II"
+msgstr "שתיים"
+
+#: entrytool/models.py:197
+msgid "III"
+msgstr "שְׁלוֹשָׁה"
+
+#: entrytool/models.py:198
+msgid "IV"
+msgstr ""
+
+#: entrytool/models.py:199
+msgid "V"
+msgstr ""
+
+#: entrytool/models.py:201 entrytool/models.py:208 entrytool/models.py:209
 msgid "Adverse Event"
 msgstr "תופעת לוואי"
 
-#: entrytool/models.py:157
+#: entrytool/models.py:203
 msgid "Severity"
 msgstr "חוּמרָה"
 
-#: entrytool/models.py:159
+#: entrytool/models.py:205
 msgid "Date of AE"
 msgstr "תאריך האירוע השלילי"
 
-#: entrytool/models.py:185
+#: entrytool/models.py:216
+msgid "Minimal response"
+msgstr "תגובה מינימלית"
+
+#: entrytool/models.py:217
+msgid "Partial response"
+msgstr "תגובה חלקית"
+
+#: entrytool/models.py:218
+msgid "Very good partial response"
+msgstr "תגובה חלקית טובה מאוד"
+
+#: entrytool/models.py:219
+msgid "Complete response"
+msgstr "תגובה מלאה"
+
+#: entrytool/models.py:220
+msgid "Stringent complete response"
+msgstr "תגובה שלמה מחמירה"
+
+#: entrytool/models.py:221
+msgid "Near complete response"
+msgstr "תגובה כמעט מלאה"
+
+#: entrytool/models.py:222
+msgid "Immunophenotypic complete response"
+msgstr "תגובה שלמה אימונופנוטיפ"
+
+#: entrytool/models.py:223
+msgid "Stable disease"
+msgstr "מחלה יציבה"
+
+#: entrytool/models.py:224
+msgid "Progressive disease"
+msgstr "מחלה מתקדמת"
+
+#: entrytool/models.py:225
+msgid "Response unknown"
+msgstr "תגובה לא ידועה"
+
+#: entrytool/models.py:227
+msgid "Response Date"
+msgstr "תאריך תגובה"
+
+#: entrytool/models.py:228 entrytool/models.py:231
+msgid "Response"
+msgstr "תְגוּבָה"
+
+#: entrytool/models.py:232
+msgid "Responses"
+msgstr "תגובות"
+
+#: entrytool/models.py:239
 msgid "Visit date"
 msgstr "תאריך ביקור"
+
+#: entrytool/models.py:241
+msgid "LDH"
+msgstr ""
+
+#: entrytool/models.py:242
+msgid "beta2m"
+msgstr ""
+
+#: entrytool/models.py:243
+msgid "Albumin"
+msgstr "תגובות"
+
+#: entrytool/models.py:244
+#, fuzzy
+#| msgid "Treatment Line"
+msgid "Creatinin"
+msgstr "קו טיפול"
+
+#: entrytool/models.py:245
+msgid "MCV"
+msgstr ""
+
+#: entrytool/models.py:246
+msgid "Hb"
+msgstr ""
+
+#: entrytool/models.py:247
+msgid "Kappa Lambda Ratio"
+msgstr "יחס קאפה למבדה"
+
+#: entrytool/models.py:248
+msgid "Bone Lesions"
+msgstr "נגעי עצם"
+
+#: entrytool/models.py:251
+msgid "Follow-up"
+msgstr "מעקב"
+
+#: entrytool/models.py:252
+msgid "Follow-ups"
+msgstr "מעקב"
+
+#: entrytool/opal/models.py:472 entrytool/opal/models.py:686
+#: entrytool/opal/models.py:1065
+#: entrytool/templates/base_templates/form_modal_base.html:5
+#: entrytool/templates/partials/_patient_summary_list.html:19
+#: entrytool/templates/patient_detail.html:20
+#, fuzzy
+#| msgid "Add Patient"
+msgid "Patient"
+msgstr "הוסף חולה"
+
+#: entrytool/opal/models.py:473
+#, fuzzy
+#| msgid "Add Patient"
+msgid "Patients"
+msgstr "הוסף חולה"
+
+#: entrytool/opal/models.py:606
+msgid "External System"
+msgstr "מערכת חיצונית"
+
+#: entrytool/opal/models.py:612
+msgid "Extenal Identifier"
+msgstr "מזהה חיצוני"
+
+#: entrytool/opal/models.py:630
+msgid "Created"
+msgstr "נוצר"
+
+#: entrytool/opal/models.py:633
+msgid "Updated"
+msgstr "מְעוּדכָּן"
+
+#: entrytool/opal/models.py:639
+msgid "Created By"
+msgstr "נוצר על ידי"
+
+#: entrytool/opal/models.py:645
+msgid "Updated By"
+msgstr "עודכן על ידי"
+
+#: entrytool/opal/models.py:683
+msgid "Category Name"
+msgstr "שם קטגוריה"
+
+#: entrytool/opal/models.py:689
+msgid "Active"
+msgstr "פָּעִיל"
+
+#: entrytool/opal/models.py:692
+#, fuzzy
+#| msgid "Start Date"
+msgid "Start"
+msgstr "תאריך התחלה"
+
+#: entrytool/opal/models.py:695
+msgid "End"
+msgstr "סוֹף"
+
+#: entrytool/opal/models.py:698 entrytool/opal/models.py:907
+msgid "Consistency Token"
+msgstr "אסימון עקביות"
+
+#: entrytool/opal/models.py:704
+#, fuzzy
+#| msgid "R-ISS Stage"
+msgid "Stage"
+msgstr "שלב פרוגנוזה של מיאלומה נפוצה"
+
+#: entrytool/opal/models.py:708 entrytool/opal/models.py:1078
+msgid "Episode"
+msgstr "פרק"
+
+#: entrytool/opal/models.py:709
+msgid "Episodes"
+msgstr "פרקים"
+
+#: entrytool/opal/models.py:1259
+msgid "The unique identifier for this patient at the hospital."
+msgstr "המזהה הייחודי לחולה זה בבית החולים."
+
+#: entrytool/opal/models.py:1260 entrytool/opal/models.py:1308
+#: entrytool/opal/models.py:1309
+#: entrytool/templates/partials/_demographics_panel.html:5
+msgid "Demographics"
+msgstr "דמוגרפיה"
+
+#: entrytool/opal/models.py:1263
+msgid "NHS Number"
+msgstr "דמוגרפיה"
+
+#: entrytool/opal/models.py:1267
+msgid "Surname"
+msgstr "שֵׁם מִשׁפָּחָה"
+
+#: entrytool/opal/models.py:1270
+msgid "First Name"
+msgstr "שם פרטי"
+
+#: entrytool/opal/models.py:1273
+msgid "Middle Name"
+msgstr "שם אמצעי"
+
+#: entrytool/opal/models.py:1275
+msgid "Title"
+msgstr "כותרת"
+
+#: entrytool/opal/models.py:1277
+#, fuzzy
+#| msgid "Date of Death"
+msgid "Date of Birth"
+msgstr "תאריך פטירה"
+
+#: entrytool/opal/models.py:1285
+msgid "Post Code"
+msgstr "מיקוד"
+
+#: entrytool/opal/models.py:1289
+msgid "GP Practice Code"
+msgstr "קוד תרגול"
+
+#: entrytool/opal/models.py:1292
+msgid "Country of Birth"
+msgstr "ארץ לידה"
+
+#: entrytool/opal/models.py:1293
+msgid "Ethnicity"
+msgstr "מוצא אתני"
+
+#: entrytool/opal/models.py:1297
+msgid "Death Indicator"
+msgstr "מחוון מוות"
+
+#: entrytool/opal/models.py:1300
+#: entrytool/templates/partials/_demographics_panel.html:40
+msgid "Sex"
+msgstr "מִין"
+
+#: entrytool/opal/templates/admin/base_site.html:4
+msgid "Django site admin"
+msgstr "מנהל אתר ג'נגו"
 
 #: entrytool/settings.py:147
 msgid "English"
@@ -146,16 +548,110 @@ msgstr "ספרדית"
 msgid "Hebrew"
 msgstr "עִברִית"
 
+#: entrytool/templates/base_templates/form_modal_base.html:19
+msgid "Delete"
+msgstr "לִמְחוֹק"
+
+#: entrytool/templates/base_templates/form_modal_base.html:24
+msgid "Cancel"
+msgstr "לְבַטֵל"
+
+#: entrytool/templates/base_templates/form_modal_base.html:31
+msgid "Save"
+msgstr "להציל"
+
 #: entrytool/templates/partials/_demographics_panel.html:14
 #: entrytool/templates/records/demographics.html:3
 msgid "ID"
 msgstr "תְעוּדַת זֶהוּת"
 
-#: entrytool/wow_strings.py:5 entrytool/wow_strings.py:11
+#: entrytool/templates/partials/_demographics_panel.html:22
+#, fuzzy
+#| msgid "External Identifier"
+msgid "External identifier"
+msgstr "מזהה חיצוני"
+
+#: entrytool/templates/partials/_demographics_panel.html:31
+#, fuzzy
+#| msgid "Start Date"
+msgid "Birth Date"
+msgstr "תאריך התחלה"
+
+#: entrytool/templates/partials/_patient_summary_list.html:5
+msgid "We've found"
+msgstr "מצאנו"
+
+#: entrytool/templates/partials/_patient_summary_list.html:6
+#, fuzzy
+#| msgid "Patient Status"
+msgid "patients"
+msgstr "מצב החולה"
+
+#: entrytool/templates/partials/_patient_summary_list.html:7
+#, fuzzy
+#| msgid "Add Patient"
+msgid "patient"
+msgstr "הוסף חולה"
+
+#: entrytool/templates/patient_detail.html:6
+#, fuzzy
+#| msgid "Patient Status"
+msgid "Patient not found"
+msgstr "מצב החולה"
+
+#: entrytool/templates/patient_detail.html:9
+msgid "We're sorry but we couldn't find the patient you're looking for."
+msgstr "אנו מצטערים אך לא מצאנו את המטופל אותו חיפשת."
+
+#: entrytool/templates/patient_detail.html:11
+msgid "Perhaps try searching for them instead?"
+msgstr "אולי נסה לחפש אותם במקום זאת?"
+
+#: entrytool/templates/patient_detail.html:42
+msgid "Lines Of Treatment"
+msgstr "קווי טיפול"
+
+#: entrytool/templates/patient_detail.html:62
+msgid "Follow Ups"
+msgstr "מעקב אחרי"
+
+#: entrytool/templates/records/patient_details.html:5
+msgid "Diagnosis Date"
+msgstr "תאריך אבחון"
+
+#: entrytool/templates/records/patient_details.html:30
+#, fuzzy
+#| msgid "Patient Status"
+msgid "Status"
+msgstr "מצב החולה"
+
+#: entrytool/templates/search.html:9
+#, fuzzy
+#| msgid "Patient Status"
+msgid "Patient Search"
+msgstr "מצב החולה"
+
+#: entrytool/templates/search.html:21
+msgid "External Identifier Or ID"
+msgstr "מזהה חיצוני או מזהה"
+
+#: entrytool/templates/search.html:32 entrytool/templates/welcome.html:33
+msgid "Search"
+msgstr "לחפש"
+
+#: entrytool/templates/search.html:48
+msgid "We couldn't find any results for your search."
+msgstr "לא הצלחנו למצוא תוצאות לחיפושך."
+
+#: entrytool/templates/welcome.html:9
+msgid "Home"
+msgstr "בית"
+
+#: entrytool/wow_strings.py:5 entrytool/wow_strings.py:13
 msgid "Frankfurt Clinic"
 msgstr ""
 
-#: entrytool/wow_strings.py:7 entrytool/wow_strings.py:13
+#: entrytool/wow_strings.py:7 entrytool/wow_strings.py:11
 msgid "St Jane's"
 msgstr ""
 
@@ -164,27 +660,27 @@ msgid "The Lisbon Apothecary"
 msgstr ""
 
 #: entrytool/wow_strings.py:17
-msgid "Dara"
-msgstr ""
-
-#: entrytool/wow_strings.py:19
-msgid "Kd"
-msgstr ""
-
-#: entrytool/wow_strings.py:21
-msgid "VCD"
-msgstr ""
-
-#: entrytool/wow_strings.py:23
 msgid "VMP"
 msgstr ""
 
-#: entrytool/wow_strings.py:25
+#: entrytool/wow_strings.py:19
+msgid "VCD"
+msgstr ""
+
+#: entrytool/wow_strings.py:21
 msgid "VTD"
 msgstr ""
 
-#: entrytool/wow_strings.py:27
+#: entrytool/wow_strings.py:23
 msgid "Vd"
+msgstr ""
+
+#: entrytool/wow_strings.py:25
+msgid "Dara"
+msgstr ""
+
+#: entrytool/wow_strings.py:27
+msgid "Kd"
 msgstr ""
 
 #: entrytool/wow_strings.py:29
@@ -198,40 +694,40 @@ msgid "End of Phase/Line"
 msgstr "סוף שלב / קו"
 
 #: entrytool/wow_strings.py:33
-msgid "Other reason"
-msgstr "סיבה אחרת"
-
-#: entrytool/wow_strings.py:35
 #, fuzzy
 #| msgid "Patient Status"
 msgid "Patient Request"
 msgstr "מצב החולה"
 
-#: entrytool/wow_strings.py:37
+#: entrytool/wow_strings.py:35
 msgid "Refractory disease"
 msgstr "מחלה עקשן"
+
+#: entrytool/wow_strings.py:37
+msgid "Other reason"
+msgstr "סיבה אחרת"
 
 #: entrytool/wow_strings.py:39
 msgid "Relapse"
 msgstr "לְהָרֵע"
 
 #: entrytool/wow_strings.py:41
-msgid "Diarrhea"
-msgstr "שִׁלשׁוּל"
+msgid "Headache"
+msgstr "כְּאֵב רֹאשׁ"
 
 #: entrytool/wow_strings.py:43
+msgid "Nausea"
+msgstr "בחילה"
+
+#: entrytool/wow_strings.py:45
+msgid "Diarrhea"
+msgstr "שִׁלשׁוּל"
+
+#: entrytool/wow_strings.py:47
 #, fuzzy
 #| msgid "Severity"
 msgid "Fever"
 msgstr "חוּמרָה"
-
-#: entrytool/wow_strings.py:45
-msgid "Headache"
-msgstr "כְּאֵב רֹאשׁ"
-
-#: entrytool/wow_strings.py:47
-msgid "Nausea"
-msgstr "בחילה"
 
 #: entrytool/wow_strings.py:49
 msgid "Rash"
