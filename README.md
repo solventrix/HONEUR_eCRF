@@ -17,17 +17,6 @@ python manage.py createopalsuperuser
 python manage.py runserver
 ```
 
-## Loading data
-
-To load in data we expect 3 csvs. Patients are connected by the hospital
-number column (headed `Hospital_patient_ID`).
-
-```
-python manage.py load_demographics {{ path_to_demographics_csv }}
-python manage.py load_lot {{ path_to_treatments.csv }}
-python manage.py load_followup {{ path_to_followup_csv }}
-```
-
 ## Application Administration
 
 ### Adding a user
@@ -129,4 +118,61 @@ For example:
    date_before_message="Adverse event must be before 30 days after the regimen end date"
    date_before_diff="31"
    required=True %}
+```
+
+## Batch Imports
+
+It is possible to import data into the system using a batch file load. This is currently implemented as a series of Django management commands that process and save CSV files. The standard implementation expects 3 files, covering demographics, lines of treatment, and follow up visits/lab measurements. Patients are connected by the hospital number column (headed `Hospital_patient_ID`).
+
+These importers can be run using the following commands:
+
+```
+python manage.py load_demographics $PATH_TO_FILE
+python manage.py load_lot $PATH_TO_FILE
+python manage.py load_followup $PATH_TO_FILE
+```
+
+### Altering the importers
+
+Simple alterations to the importers can be made by altering the field mappings at the top of each file. This is a variable named `field_map` which contains a python dictionary specifying the model field that each column name from the CSV that relates to.
+
+#### Adding a new field to an importer
+
+Should we wish to add an entire new field to an importer, we would first need to add that field to the application itself. This is covered in the section on customisation elsewhere in this document.
+
+For this example we will assume that a new field `wcc` has been added to the `FollowUpVisit` model that records the white cell count for the patient at that time. The importer can also be adjusted to add that field. We would first alter our CSV files by adding a new column, headed `wcc` with those values.
+
+Next we would add that field to the `field_map` variable in `entrytool/management/commands/load_followup.py` using `wcc=“wcc”` - a dictionary key and a string representing the header value.
+
+Finally we add the new field to the Follow up creation - in this case a variable named `followup_fields` that contains a mapping of field names to values for individual rows in the CSV just before they are saved. We would add to this dictionary using a string representing the model field name (“wcc”) mapping to the value we would like to use. The row from the CSV is stored in the variable `follow_up_row` which is a python dictionary that can be accessed using the CSV headers as keys. We use our `field_map` variable to source these.
+
+We may also like to do some data sanitisation and cast the CSV data to an appropriate type at this stage - a group of utility functions for this exist in the module `entrytool.load_utils`. In this instance we would be likely to use the `float_or_none` function. The line we would add to the `followup_fields` dictionary would be something like:
+
+`”wcc”: float_or_none(follow_up_row[field_map[“wcc”]]),`
+
+#### Adding a new reading to Followups That already exist
+
+Although we have not written a management command for this task explicitly, the import script for this would likely be short and simple to create. The basic version would require 10 lines of python, plus some boilerplate required by Django. Using our example of adding White Cell Count from above, should we wish to add this to existing follow up entries, we would generate a CSV containing the fields `external_identifier`, `date`, `wcc`.
+
+Django management commands are python files in the directory `entrytool/management/commands` and contain a class inheriting from `BaseCommand`. The command runs the code in the `handle` method. A simple management command to print a CSV is available as an example in the file `entrytool/management/commands/print_csv.py`.
+
+To add WCC readings to existing follow ups we would create a new management command using this as a template - a file named `entrytool/management/commands/load_wcc.py`. We must then alter our process_rows method to:
+
+Find the correct followup
+Save the new reading
+
+This code might read as follows:
+
+```python
+from entrytool.models import FollowUp, Demographics
+from entrytool.load_utils import translate_date, int_or_none
+
+for row in rows:
+    patient = Demographics.objects.get(
+        external_identifier=row['external_identifier']).patient
+    follow_up = FollowUp.objects.get(
+        patient=patient, follow_up_date=translate_date(row['date'])
+    )
+    follow_up.wcc = int_or_none(row['wcc'])
+    follow_up.save()
 ```
