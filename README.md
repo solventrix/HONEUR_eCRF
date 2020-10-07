@@ -29,6 +29,18 @@ To add a user you must have a user account with relevant privileges.
 4. Complete the user details and an initial password for the user
 5. Click the Save button
 
+### Deployment Notes
+
+Deploying Opal applications should be broadly similar to deploying any Django application. We include here some specific notes to consider when designing that process.
+
+It is expected that you will generate a new Django secret key on deployment as the one in the current `settings.py` file is linked to the Opal version rather than generated randomly at project start time.
+
+In addition to standard Django deployment management commands (e.g. `collectstatic`) we would recommend you run the following command at deploy time:
+
+`python manage.py load_lookup_lists`
+
+This ensures reference data in the database contains all the values required.
+
 ## Customising the fields in the application
 
 
