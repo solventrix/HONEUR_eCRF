@@ -41,6 +41,8 @@ In addition to standard Django deployment management commands (e.g. `collectstat
 
 This ensures reference data in the database contains all the values required.
 
+Production deployments would not be expected to run sqlite, which is only suited to development environments. Example configuration for PostgreSQL can be found in the (Django documentation)[https://docs.djangoproject.com/en/2.2/ref/settings/#std:setting-HOST]. The section on (deploying Django)[https://docs.djangoproject.com/en/3.1/howto/deployment/] will also be helpful.
+
 ## Customising the fields in the application
 
 
