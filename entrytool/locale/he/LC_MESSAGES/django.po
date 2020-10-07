@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Honeur ECRF\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-07 13:48+0000\n"
+"POT-Creation-Date: 2020-10-07 13:54+0000\n"
 "PO-Revision-Date: 2020-10-07 14:50-0000\n"
 "Last-Translator: David Miller <david@openhealthcare.org.uk>\n"
 "Language-Team: Development <LL@li.org>\n"
@@ -151,80 +151,92 @@ msgstr "עִברִית"
 msgid "ID"
 msgstr "תְעוּדַת זֶהוּת"
 
-#: entrytool/wow_strings.py:5
-msgid "Dara"
+#: entrytool/wow_strings.py:5 entrytool/wow_strings.py:11
+msgid "Frankfurt Clinic"
 msgstr ""
 
-#: entrytool/wow_strings.py:7
-msgid "Kd"
+#: entrytool/wow_strings.py:7 entrytool/wow_strings.py:13
+msgid "St Jane's"
 msgstr ""
 
-#: entrytool/wow_strings.py:9
-msgid "VCD"
-msgstr ""
-
-#: entrytool/wow_strings.py:11
-msgid "VMP"
-msgstr ""
-
-#: entrytool/wow_strings.py:13
-msgid "VTD"
-msgstr ""
-
-#: entrytool/wow_strings.py:15
-msgid "Vd"
+#: entrytool/wow_strings.py:9 entrytool/wow_strings.py:15
+msgid "The Lisbon Apothecary"
 msgstr ""
 
 #: entrytool/wow_strings.py:17
+msgid "Dara"
+msgstr ""
+
+#: entrytool/wow_strings.py:19
+msgid "Kd"
+msgstr ""
+
+#: entrytool/wow_strings.py:21
+msgid "VCD"
+msgstr ""
+
+#: entrytool/wow_strings.py:23
+msgid "VMP"
+msgstr ""
+
+#: entrytool/wow_strings.py:25
+msgid "VTD"
+msgstr ""
+
+#: entrytool/wow_strings.py:27
+msgid "Vd"
+msgstr ""
+
+#: entrytool/wow_strings.py:29
 #, fuzzy
 #| msgid "Adverse Event"
 msgid "Adverse event"
 msgstr "תופעת לוואי"
 
-#: entrytool/wow_strings.py:19
+#: entrytool/wow_strings.py:31
 msgid "End of Phase/Line"
 msgstr "סוף שלב / קו"
 
-#: entrytool/wow_strings.py:21
+#: entrytool/wow_strings.py:33
 msgid "Other reason"
 msgstr "סיבה אחרת"
 
-#: entrytool/wow_strings.py:23
+#: entrytool/wow_strings.py:35
 #, fuzzy
 #| msgid "Patient Status"
 msgid "Patient Request"
 msgstr "מצב החולה"
 
-#: entrytool/wow_strings.py:25
+#: entrytool/wow_strings.py:37
 msgid "Refractory disease"
 msgstr "מחלה עקשן"
 
-#: entrytool/wow_strings.py:27
+#: entrytool/wow_strings.py:39
 msgid "Relapse"
 msgstr "לְהָרֵע"
 
-#: entrytool/wow_strings.py:29
+#: entrytool/wow_strings.py:41
 msgid "Diarrhea"
 msgstr "שִׁלשׁוּל"
 
-#: entrytool/wow_strings.py:31
+#: entrytool/wow_strings.py:43
 #, fuzzy
 #| msgid "Severity"
 msgid "Fever"
 msgstr "חוּמרָה"
 
-#: entrytool/wow_strings.py:33
+#: entrytool/wow_strings.py:45
 msgid "Headache"
 msgstr "כְּאֵב רֹאשׁ"
 
-#: entrytool/wow_strings.py:35
+#: entrytool/wow_strings.py:47
 msgid "Nausea"
 msgstr "בחילה"
 
-#: entrytool/wow_strings.py:37
+#: entrytool/wow_strings.py:49
 msgid "Rash"
 msgstr "פריחה"
 
-#: entrytool/wow_strings.py:39
+#: entrytool/wow_strings.py:51
 msgid "Weight Loss"
 msgstr "ירידה במשקל"
