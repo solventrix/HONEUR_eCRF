@@ -195,7 +195,7 @@ Maintaining and deploying many slightly different versions of an application is 
 
 ### Suggested strategy
 
-Use master as the ‘core’ application, and then maintain a branches from that for each deployment. Using Git tags, use numbered releases on master and make merges down into each deployment branch at each tagged release. Re-tag each deployment at merge time.
+Use master as the ‘core’ application, and then maintain a branch from that for each deployment. Using Git tags, use numbered releases on master and make merges out into each deployment branch at each tagged release. Re-tag each deployment at merge time.
 
 ### An example: minor customisation for two deployments.
 
@@ -240,7 +240,11 @@ git commit -a -m "Alter brand name”
 git tag deployment2-1.0.1
 ```
 
-Now we will make a change to the core application.n
+Now we will make a change to the core application.
+
+```
+git checkout master
+```
 
 Add the code `alert('HELLO WORLD THIS IS VERSION 2.0.x!’);` on the line below the code `OPAL.run(app);` in the file `entrytool/static/js/entrytool/app.js`
 
@@ -268,6 +272,6 @@ git tag deployment2-2.0
 At deploy time, checkout the deployment version tag you want before running deployment scripts.
 
 ```
-git checkout deployment2.2.0
+git checkout deployment2-2.0
 # set up app
 ```
