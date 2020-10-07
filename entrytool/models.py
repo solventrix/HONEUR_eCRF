@@ -5,19 +5,22 @@ from django.db.models import fields
 
 from opal import models
 from opal.core import lookuplists
-from opal.core.fields import ForeignKeyOrFreeText, enum
+from opal.core.fields import ForeignKeyOrFreeText
 from django.utils.translation import gettext_lazy as _
 
 
 class Demographics(models.Demographics):
     _icon = ''
     external_identifier = fields.CharField(
-        blank=True, null=True, max_length=256, unique=True
+        blank=True, null=True, max_length=256, unique=True,
+        verbose_name=_("External Identifier")
     )
 
 
 class Hospital(lookuplists.LookupList):
-    pass
+    class Meta:
+        verbose_name = _("Hospital")
+        verbose_name_plural = _("Hospitals")
 
 
 class SCT(models.EpisodeSubrecord):
@@ -116,18 +119,30 @@ class PatientDetails(models.PatientSubrecord):
         null=True,
     )
 
+    class Meta:
+        verbose_name = _("Patient Details")
+        verbose_name_plural = _("Patient Details")
+
 
 class RegimenList(lookuplists.LookupList):
-    pass
+    class Meta:
+        verbose_name = _("Regimen List")
+        verbose_name_plural = _("Regimen List")
 
 
 class StopReason(lookuplists.LookupList):
-    pass
+    class Meta:
+        verbose_name = _("Stop Reason")
+        verbose_name_plural = _("Stop Reason")
 
 
 # TODO does this need to be kept? Can the line number be an attribute of the episode?
 class TreatmentLine(models.EpisodeSubrecord):
     nb = fields.IntegerField(verbose_name=_("Treatment Line"))
+
+    class Meta:
+        verbose_name = _("Treatment Line")
+        verbose_name_plural = _("Treatment Lines")
 
 
 class Regimen(models.EpisodeSubrecord):
@@ -157,9 +172,16 @@ class Regimen(models.EpisodeSubrecord):
         StopReason, verbose_name=_("Reason for Regimen Stop")
     )
 
+    class Meta:
+        verbose_name = _("Regimen")
+        verbose_name_plural = _("Regimens")
+
 
 #  TODO populate list of adverse events
 class AEList(lookuplists.LookupList):
+    class Meta:
+        verbose_name =_ ("AE List")
+        verbose_name_plural = _("AE List")
     pass
 
 
@@ -179,11 +201,15 @@ class AdverseEvent(models.EpisodeSubrecord):
     )
     ae_date = fields.DateField(verbose_name=_("Date of AE"))
 
+    class Meta:
+        verbose_name = _("Adverse Event")
+        verbose_name_plural = _("Adverse Event")
+
 
 class Response(models.EpisodeSubrecord):
     _sort = "response_date"
     order_by = "-response_date"
-    RESPONSES = enum(
+    RESPONSES = (
         ("Minimal response", _("Minimal response")),
         ("Partial response", _("Partial response")),
         ("Very good partial response", _("Very good partial response")),
@@ -193,10 +219,14 @@ class Response(models.EpisodeSubrecord):
         ("Immunophenotypic complete response", _("Immunophenotypic complete response")),
         ("Stable disease", _("Stable disease")),
         ("Progressive disease", _("Progressive disease")),
-        ("Response unknown", _("Response unknown)"))
+        ("Response unknown", _("Response unknown"))
     )
     response_date = fields.DateField(verbose_name=_("Response Date"))
     response = fields.CharField(max_length=50, choices=RESPONSES, verbose_name=_("Response"))
+
+    class Meta:
+        verbose_name = _("Response")
+        verbose_name_plural = _("Responses")
 
 
 class FollowUp(models.PatientSubrecord):
@@ -213,3 +243,7 @@ class FollowUp(models.PatientSubrecord):
     Hb = fields.FloatField(blank=True, null=True, verbose_name=_("Hb"))
     kappa_lambda_ratio = fields.FloatField(blank=True, null=True, verbose_name=_("Kappa Lambda Ratio"))
     bone_lesions = fields.FloatField(blank=True, null=True, verbose_name=_("Bone Lesions"))
+
+    class Meta:
+        verbose_name = _("Follow-up")
+        verbose_name_plural = _("Follow-ups")
