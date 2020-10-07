@@ -170,7 +170,7 @@ class Regimen(models.EpisodeSubrecord):
     )
     end_date    = fields.DateField(verbose_name=_("End Date"), blank=True, null=True)
     regimen     = ForeignKeyOrFreeText(RegimenList, verbose_name=_("Regimen"))
-    category    = fields.CharField(max_length=40, choices=REGIMEN_TYPES, verbose_name="Regimen Type")
+    category    = fields.CharField(max_length=40, choices=REGIMEN_TYPES, verbose_name=_("Regimen Type"))
     stop_reason = ForeignKeyOrFreeText(
         StopReason, verbose_name=_("Reason for Regimen Stop")
     )
