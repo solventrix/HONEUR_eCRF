@@ -271,7 +271,7 @@ OPAL_DEFAULT_SEARCH_FIELDS = [
 ]
 
 # ========== PROJECT ==========
-OPAL_BRAND_NAME = "HONEUR ecrf"
+OPAL_BRAND_NAME = "ecrf"
 VERSION_NUMBER = "0.2"
 
 if os.environ.get('HEROKU_SLUG_COMMIT'):
