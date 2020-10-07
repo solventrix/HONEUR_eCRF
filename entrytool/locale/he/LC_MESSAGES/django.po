@@ -367,3 +367,5 @@ msgstr "מזהה חיצוני"
 msgid "Sign in"
 msgstr "להתחבר"
 
+msgid "Username"
+msgstr "שם משתמש"
