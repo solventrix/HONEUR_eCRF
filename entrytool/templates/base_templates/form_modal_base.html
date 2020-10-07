@@ -1,7 +1,8 @@
 {% extends 'base_templates/modal_base.html' %}
+{% load i18n %}
   {% block title %}
   {{ column.get_display_name }}
-  (Patient [[ item.episode.demographics[0].patient_id ]])
+  ({% trans "Patient" %} [[ item.episode.demographics[0].patient_id ]])
   {% endblock %}
   {% block modal_body %}
   <form name="form" ng-submit="" class="form-horizontal" novalidate>
@@ -11,12 +12,23 @@
   </form>
   {% include "partials/_item_created_updated_by.html" %}
   {% endblock %}
+  {% block modal_delete %}
+  <span class="float-left" ng-show="editingMode()">
+      <button class="btn btn-secondary btn-delete" ng-click="delete('delete')">
+        <i class="fa fa-trash-o"></i>
+          {% trans "Delete" %}
+       </button>
+   </span>
+  {% endblock %}
+  {% block modal_cancel %}
+  <button class="btn btn-cancel" ng-click="cancel()">{% trans "Cancel" %}</button>
+  {% endblock %}
   {% block modal_save %}
     <span ng-show="form">
       <button ng-disabled="form.$submitted && (!form.$valid || $root.patientValidator.hasError())" class="btn btn-primary" ng-click="form.$setSubmitted() || (form.$valid && !$root.patientValidator.hasError() && save('save'))">
         <i class="fa fa-save"></i>
         {% block modal_save_button_text %}
-        Save
+        {% trans "Save" %}
         {% endblock %}
       </button>
     </span>

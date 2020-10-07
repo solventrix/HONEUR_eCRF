@@ -1,7 +1,10 @@
+{% load i18n %}
 <div class="row">
   <div class="col-sm-4 col-sm-push-4">
     <h4>
-      We've found <strong>[[ paginator.totalCount ]]</strong> patient<span ng-if="results.length != 1">s</span>
+      {% trans "We've found" %} <strong>[[ paginator.totalCount ]]</strong>
+      <span ng-if="results.length != 1">{% trans "patients" %}</span>
+      <span ng-if="results.length === 1">{% trans "patient" %}</span>
     </h4>
   </div>
 </div>
@@ -13,7 +16,7 @@
         <div>
           <h4 class="inline">
             <a class="orange-link" ng-href="[[ result.link ]]">
-              Patient [[ result.patientId ]]
+              {% trans "Patient" %} [[ result.patientId ]]
             </a>
           </h4>
           <span ng-show="result.hospitalNumber">
