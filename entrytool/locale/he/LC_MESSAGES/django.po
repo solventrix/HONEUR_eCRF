@@ -369,3 +369,6 @@ msgstr "להתחבר"
 
 msgid "Username"
 msgstr "שם משתמש"
+
+msgid "Please complete details for this patient to continue."
+msgstr "אנא מלא פרטים להמשך חולה זה."
