@@ -12,6 +12,7 @@ class Application(application.OpalApplication):
     javascripts   = [
         'js/entrytool/routes.js',
         "js/entrytool/directives.js",
+        'js/entrytool/filters.js',
         "js/entrytool/controllers/lot_creator.js",
         "js/entrytool/controllers/delete_lot.js",
         "js/entrytool/controllers/patient_validator.js",
