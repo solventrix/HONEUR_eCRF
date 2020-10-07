@@ -1,23 +1,18 @@
 .entry-tool .edit a i {
   color: #1a1a1a;
 }
-
 .entry-tool a.disabled {
   opacity: 0.5;
 }
-
 .entry-tool a.disabled:hover {
   color: inherit;
 }
-
 .entry-tool .follow-up-table {
   text-align: center;
 }
-
 .entry-tool .follow-up-table .column {
   border-top: 1px solid #dee2e6;
 }
-
 .entry-tool .follow-up-table .column, .entry-tool .follow-up-table .first-column, .entry-tool .follow-up-table .header {
   padding: 8px;
 }
@@ -83,21 +78,47 @@ h1 img {
   letter-spacing: 0.2rem;
 }
 
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:focus,
+.navbar-default .navbar-nav > li > a:hover {
+  background-color: #0794e0;
+  color: white;
+}
+
+.navbar-nav li:hover,
+.navbar-nav li:hover a,
+.navbar-nav li.active a,
+.navbar-nav li.active {
+  background: #0794e0;
+  color: white;
+}
+
+.pagination > .active > a {
+  background-color: #0794e0;
+  border-color: #0794e0;
+}
+
+.ngProgressLiteBar {
+  background-color: #002562;
+  box-shadow: 0 0 10px 0;
+  /* Inherits the font color */
+  top: 50px;
+}
+
 .navbar-default .navbar-brand {
   color: #1a1a1a;
 }
 
 .panel {
   border: none;
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
 }
 
 .panel.panel-primary .panel-heading {
   text-transform: uppercase;
   color: #1a1a1a;
   background: inherit;
-  border-color: #ff3309;
+  border-color: #002562;
   border-bottom-width: 2px;
 }
 
@@ -108,7 +129,7 @@ h1 img {
 }
 
 .modal-header {
-  background-color: #ff3309;
+  background-color: #002562;
   color: white;
   text-transform: uppercase;
 }
@@ -133,16 +154,16 @@ h1 img {
 }
 
 .btn-primary {
-  background-color: #ff3309;
-  border-color: #ff3309;
+  background-color: #002562;
+  border-color: #002562;
   text-transform: uppercase;
   letter-spacing: 0.2rem;
   border-radius: 0px;
 }
 
 .btn-primary:hover {
-  background-color: #ff6509;
-  border-color: #ff6509;
+  background-color: #0794e0;
+  border-color: #0794e0;
 }
 
 .btn-cancel, .btn-secondary, .btn {
@@ -170,7 +191,6 @@ h1 img {
   font-size: 18px;
   visibility: hidden;
 }
-
 .delete-lot:hover i {
   visibility: visible;
 }
@@ -181,4 +201,5 @@ h1 img {
   margin-bottom: 10px;
   color: gray;
 }
+
 /*# sourceMappingURL=entrytool.css.map */
