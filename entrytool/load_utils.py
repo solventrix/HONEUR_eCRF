@@ -1,61 +1,56 @@
 import datetime
+from entrytool.models import PatientDetails
 
 
 def translate_date(some_str):
     """
     We expect day/month/year
-
-    We don't use strptime because we don't have leading 0s
     """
+    some_str = some_str.strip()
     if not some_str:
         return None
-    day, month, year = some_str.strip().split("/")
-    if int(year) > datetime.date.today().year:
-        year = "19{}".format(year)
-    else:
-        year = "20{}".format(year)
-
-    return datetime.date(int(year), int(month), int(day))
+    return datetime.datetime.strptime(some_str, "%d/%m/%Y").date()
 
 
 def get_and_check(row_value, choices):
     row_value = row_value.strip()
     if not row_value:
         return None
-    if row_value not in [i[0] for i in choices]:
-        raise ValueError("{} not in {}".format(row_value, choices))
-    return row_value
+    for c in choices:
+        result = c[0]
+        if result.lower() == row_value.lower():
+            return result
+    raise ValueError(
+        "{} not in {}".format(row_value, [i[0] for i in choices])
+    )
 
 
 def no_yes_unknown(row_value):
-    NO_YES_UNKNOWN = {
-        0: "No", 1: "Yes", 2: "Unknown"
-    }
-    return NO_YES_UNKNOWN.get(int(row_value))
+    return get_and_check(row_value, PatientDetails.CHOICES)
 
 
 def get_and_check_ll(row_value, ll):
     row_value = row_value.strip()
     if not row_value:
         return
-    if not ll.objects.filter(name=row_value).exists():
+
+    # do a case insensitive lookup and return what we expect
+    result = ll.objects.filter(name__iexact=row_value)
+    if result.exists():
+        return result.get().name
+    else:
         raise ValueError("{} not in {}".format(row_value, ll))
-    return row_value
 
 
-def get_or_create_ll(row_value, ll):
-    row_value = row_value.strip()
-    if not row_value:
-        return
-    ll.objects.get_or_create(name=row_value)
-    return row_value
-
-
-def int_or_non(row_value):
+def int_or_none(row_value):
     row_value = row_value.strip()
     if not row_value:
         return
     return int(row_value)
 
 
-
+def float_or_none(row_value):
+    row_value = row_value.strip()
+    if not row_value:
+        return
+    return float(row_value)

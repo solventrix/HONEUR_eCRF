@@ -11,7 +11,9 @@ from django.utils.translation import gettext_lazy as _
 
 class Demographics(models.Demographics):
     _icon = ''
-    pass
+    external_identifier = fields.CharField(
+        blank=True, null=True, max_length=256, unique=True
+    )
 
 
 class Location(models.Location):
@@ -182,11 +184,11 @@ class FollowUp(models.PatientSubrecord):
     hospital = models.ForeignKeyOrFreeText(Hospital)
     follow_up_date = fields.DateField(verbose_name=_("Visit date"))
 
-    LDH = fields.IntegerField(blank=True, null=True)
-    beta2m = fields.IntegerField(blank=True, null=True)
-    albumin = fields.IntegerField(blank=True, null=True)
-    creatinin = fields.IntegerField(blank=True, null=True)
-    MCV = fields.IntegerField(blank=True, null=True)
-    Hb = fields.IntegerField(blank=True, null=True)
+    LDH = fields.FloatField(blank=True, null=True)
+    beta2m = fields.FloatField(blank=True, null=True)
+    albumin = fields.FloatField(blank=True, null=True)
+    creatinin = fields.FloatField(blank=True, null=True)
+    MCV = fields.FloatField(blank=True, null=True)
+    Hb = fields.FloatField(blank=True, null=True)
     kappa_lambda_ratio = fields.FloatField(blank=True, null=True)
     bone_lesions = fields.FloatField(blank=True, null=True)

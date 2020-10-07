@@ -4,12 +4,14 @@ from django.core.management.base import BaseCommand
 from django.db import transaction
 from opal.models import Patient
 from entrytool import episode_categories
-from entrytool.models import Regimen, StopReason, AEList, AdverseEvent, Response, SCT
+from entrytool.models import (
+    Regimen, StopReason, AEList, AdverseEvent, Response, SCT, RegimenList
+)
 from entrytool.load_utils import (
     translate_date,
     get_and_check,
     get_and_check_ll,
-    int_or_non,
+    int_or_none,
 )
 
 
@@ -23,6 +25,7 @@ field_map = dict(
 
     # Regimen fields
     regimen="Regimen",
+    category="category",
     start_date="Start_date",
     end_date="end_date",
     cycles="cycles",
@@ -51,7 +54,6 @@ def get_severity(some_value):
     return options[int(some_value) - 1]
 
 
-
 class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument("file_name", help="Specify import file")
@@ -77,6 +79,10 @@ class Command(BaseCommand):
                         lot_number,
                     )
                 ].append(row)
+        regimen_saved = 0
+        response_saved = 0
+        ae_saved = 0
+        sct_saved = 0
 
         for key, treatment_lots in by_lot.items():
             hn = key[0]
@@ -84,18 +90,19 @@ class Command(BaseCommand):
             episode = patient.episode_set.create(
                 category_name=episode_categories.LineOfTreatmentEpisode.display_name
             )
-            regimen_saved = 0
-            response_saved = 0
-            ae_saved = 0
-            sct_saved = 0
+
             for treatment_lot in treatment_lots:
                 regimen_fields = {
-                    "regimen": get_and_check(
-                        treatment_lot[field_map["regimen"]], Regimen.REGIMEN_TYPES
+                    "regimen": get_and_check_ll(
+                        treatment_lot[field_map["regimen"]], RegimenList
+                    ),
+                    "category": get_and_check(
+                        treatment_lot[field_map["category"]],
+                        Regimen.REGIMEN_TYPES
                     ),
                     "start_date": translate_date(treatment_lot[field_map["start_date"]]),
                     "end_date": translate_date(treatment_lot[field_map["end_date"]]),
-                    "cycles": int_or_non(treatment_lot[field_map["cycles"]]),
+                    "nbCycles": int_or_none(treatment_lot[field_map["cycles"]]),
                     "stop_reason": get_and_check_ll(
                         treatment_lot[field_map["stop_reason"]], StopReason
                     ),
@@ -111,7 +118,7 @@ class Command(BaseCommand):
                 response_fields = {
                     "response_date": translate_date(treatment_lot[field_map["response_date"]]),
                     "response": get_and_check(
-                        treatment_lot[field_map["response"]], Response.responses
+                        treatment_lot[field_map["response"]], Response.RESPONSES
                     ),
                 }
                 if any(response_fields.values()):
@@ -147,13 +154,13 @@ class Command(BaseCommand):
                     sct.set_consistency_token()
                     sct.save()
                     sct_saved += 1
-            self.stdout.write(
-                self.style.SUCCESS("Imported {} Regimens".format(regimen_saved))
-            )
-            self.stdout.write(
-                self.style.SUCCESS("Imported {} Responses".format(response_saved))
-            )
-            self.stdout.write(
-                self.style.SUCCESS("Imported {} Adverse effects".format(ae_saved))
-            )
-            self.stdout.write(self.style.SUCCESS("Imported {} SCT".format(sct_saved)))
+        self.stdout.write(
+            self.style.SUCCESS("Imported {} Regimens".format(regimen_saved))
+        )
+        self.stdout.write(
+            self.style.SUCCESS("Imported {} Responses".format(response_saved))
+        )
+        self.stdout.write(
+            self.style.SUCCESS("Imported {} Adverse effects".format(ae_saved))
+        )
+        self.stdout.write(self.style.SUCCESS("Imported {} SCT".format(sct_saved)))
