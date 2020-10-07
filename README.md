@@ -150,7 +150,7 @@ We may also like to do some data sanitisation and cast the CSV data to an approp
 
 `”wcc”: float_or_none(follow_up_row[field_map[“wcc”]]),`
 
-#### Adding a new reading to Followups That already exist
+#### Adding a new reading to follow ups that already exist
 
 Although we have not written a management command for this task explicitly, the import script for this would likely be short and simple to create. The basic version would require 10 lines of python, plus some boilerplate required by Django. Using our example of adding White Cell Count from above, should we wish to add this to existing follow up entries, we would generate a CSV containing the fields `external_identifier`, `date`, `wcc`.
 
@@ -158,8 +158,8 @@ Django management commands are python files in the directory `entrytool/manageme
 
 To add WCC readings to existing follow ups we would create a new management command using this as a template - a file named `entrytool/management/commands/load_wcc.py`. We must then alter our process_rows method to:
 
-Find the correct followup
-Save the new reading
+* Find the correct followup
+* Save the new reading
 
 This code might read as follows:
 
