@@ -363,3 +363,7 @@ msgstr "נגעי עצם"
 
 msgid "External Identifier"
 msgstr "מזהה חיצוני"
+
+msgid "Sign in"
+msgstr "להתחבר"
+
