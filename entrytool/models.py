@@ -97,6 +97,9 @@ class PatientDetails(models.PatientSubrecord):
         blank=True,
         null=True,
     )
+    lost_to_follow_up_date = fields.DateField(
+        blank=True, null=True, verbose_name=_("Lost to Follow-up ")
+    )
 
 
 class RegimenList(lookuplists.LookupList):
