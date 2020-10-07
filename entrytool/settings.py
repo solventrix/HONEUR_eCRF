@@ -246,7 +246,7 @@ OPAL_LOG_OUT_DURATION = OPAL_LOG_OUT_MINUTES * 60 * 1000
 
 # Uncomment this if you want to swap the logo used by this application.
 # http://opal.openhealthcare.org.uk/docs/v0.10.0/reference/settings/#opal_logo_path
-# OPAL_LOGO_PATH = 'img/ohc-trans.png'
+OPAL_LOGO_PATH = 'img/HONEUR-logo.png'
 
 # Enable/Disable autocomplete from navbar search
 OPAL_AUTOCOMPLETE_SEARCH = False
