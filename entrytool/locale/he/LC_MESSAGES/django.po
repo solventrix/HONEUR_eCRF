@@ -360,3 +360,6 @@ msgstr "מנהל"
 
 msgid "Bone Lesions"
 msgstr "נגעי עצם"
+
+msgid "External Identifier"
+msgstr "מזהה חיצוני"
