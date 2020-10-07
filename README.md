@@ -43,8 +43,18 @@ This ensures reference data in the database contains all the values required.
 
 Production deployments would not be expected to run sqlite, which is only suited to development environments. Example configuration for PostgreSQL can be found in the [Django documentation](https://docs.djangoproject.com/en/2.2/ref/settings/#std:setting-HOST). The section on [deploying Django](https://docs.djangoproject.com/en/3.1/howto/deployment/) will also be helpful.
 
-## Customising the fields in the application
+## Customising the look and feel of the application
 
+The visual style of the application is defined in the template files as HTML structure and Bootstrap CSS classes and in the application specific css. We use [Sass](https://sass-lang.com/) compiled to css in order to take advantage of features such as variables for colors.
+
+Changes to CSS should be made in the file `entrytool/static/css/entrytool.scss` and compiled to css using the sass commandline tool. While changing the scss file, run:
+
+`sass -w entrytool/static/css/entrytool.scss`
+
+This will watch for changes to the scss file and compile them to css whenever the scss file is
+saved. Once you are happy with your changes, commit the updated css, scss and css.map files together.
+
+## Customising the fields in the application
 
 Customising fields in the application is intended to be a reasonably simple process, which will involve some combination of altering templates for display and forms, database structure, and potentially validation. Validation is dealt with in it’s own section within this document and will be omitted here.
 
