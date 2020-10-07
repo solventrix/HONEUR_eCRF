@@ -27,6 +27,7 @@
   </div>
   <div class="col-md-2">
     [[ item.status]]
+
   </div>
   <div class="col-md-2">
     <span class="display-label">MGUS History </span>
@@ -48,11 +49,15 @@
     <span ng-show="item.death_date || item.death_cause">
       <span class="display-label">Death</span>
     </span>
+    <span ng-show="item.lost_to_follow_up_date">
+      <span class="display-label">Lost date</span>
+    </span>
   </div>
   <div class="col-md-2">
     <span ng-show="item.death_date || item.death_cause">
-      ([[ item.death_date | displayDate ]] [[ item.death_cause ]])
+      [[ item.death_cause ]] ([[ item.death_date | displayDate ]])
     </span>
+    <span ng-show="item.lost_to_follow_up_date">[[ item.lost_to_follow_up_date | displayDate ]]</span>
   </div>
   <div class="col-md-2">
     <span class="display-label">R-ISS Stage</span>
