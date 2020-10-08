@@ -3,4 +3,7 @@
 {{ block.super }}
 <script type="text/javascript" src="{% url 'javascript-catalog' %}"></script>
 <script type="text/javascript" src="{% url 'angular-locale' %}"></script>
+<script>
+  moment.lang("{{ LANGUAGE_CODE }}");
+</script>
 {% endblock %}
