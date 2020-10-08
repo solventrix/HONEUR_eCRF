@@ -10,14 +10,14 @@
     <span class="display-label">{% trans "History of SMM" %}</span>
   </div>
   <div class="col-md-2">
-    [[ item.smm_history ]]
+    [[ item.smm_history | translate ]]
     <span ng-show="item.smm_history_date">([[ item.smm_history_date | displayDate ]])</span>
   </div>
   <div class="col-md-2">
     <span class="display-label">{% trans "PP Type" %}</span>
   </div>
   <div class="col-md-2">
-    [[ item.pp_type ]]
+    [[ item.pp_type | translate ]]
   </div>
 </div>
 
@@ -27,20 +27,20 @@
     <span class="display-label">{% trans "Status" %}</span>
   </div>
   <div class="col-md-2">
-    [[ item.status]]
+    [[ item.status | translate ]]
   </div>
   <div class="col-md-2">
     <span class="display-label">{% trans "History of MGUS" %}</span>
   </div>
   <div class="col-md-2">
-    [[ item.mgus_history ]]
+    [[ item.mgus_history | translate ]]
     <span ng-show="item.mgus_history_date">([[ item.mgus_history_date | displayDate ]])</span>
   </div>
   <div class="col-md-2">
     <span class="display-label">{% trans "Del(17p)" %}</span>
   </div>
   <div class="col-md-2">
-    [[ item.del_17p ]]
+    [[ item.del_17p | translate ]]
   </div>
 </div>
 
@@ -55,7 +55,7 @@
   </div>
   <div class="col-md-2">
     <span ng-show="item.death_date || item.death_cause">
-      [[ item.death_cause ]] ([[ item.death_date | displayDate ]])
+      [[ item.death_cause | translate ]] ([[ item.death_date | displayDate ]])
     </span>
     <span ng-show="item.lost_to_follow_up_date">[[ item.lost_to_follow_up_date | displayDate ]]</span>
   </div>
@@ -63,13 +63,13 @@
     <span class="display-label">{% trans "R-ISS Stage" %}</span>
   </div>
   <div class="col-md-2">
-    [[ item.r_iss_stage ]]
+    [[ item.r_iss_stage | translate ]]
   </div>
   <div class="col-md-2">
     <span class="display-label">t(4;14)</span>
   </div>
   <div class="col-md-2">
-    [[ item.t4_14 ]]
+    [[ item.t4_14 | translate ]]
   </div>
 </div>
 
@@ -86,6 +86,6 @@
     <span class="display-label">t(4;16)</span>
   </div>
   <div class="col-md-2">
-    [[ item.t4_16 ]]
+    [[ item.t4_16 | translate ]]
   </div>
 </div>
