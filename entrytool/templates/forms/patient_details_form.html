@@ -14,7 +14,7 @@
       {% trans "Status is required" %}</span>
   </div>
   <div ng-show="editing.patient_details.status === 'Lost to Follow-up'" class="col-sm-4">
-    {% custom_datepicker label=_("Date") field="PatientDetails.lost_to_follow_up_date" ngrequired="editing.patient_details.status === 'Lost to Follow-up'" date_after="the_episode.demographics[0].date_of_birth" date_after_message="Follow up date must be after the patient's birth date" %}
+    {% custom_datepicker label=_("Date") field="PatientDetails.lost_to_follow_up_date" ngrequired="editing.patient_details.status === 'Lost to Follow-up'" date_after="the_episode.demographics[0].date_of_birth" date_after_message=_("Follow up date must be after the patient's birth date") %}
   </div>
 </div>
 <div ng-show="editing.patient_details.status === 'Dead'" class="form-group">
@@ -31,10 +31,10 @@
     </span>
   </div>
   <div class="col-sm-4">
-    {% custom_datepicker label=_("Date") field="PatientDetails.death_date" ngrequired="editing.patient_details.status === 'Dead'" date_after="the_episode.demographics[0].date_of_birth" date_after_message="Date of death must be after the patient's birth date" %}
+    {% custom_datepicker label=_("Date") field="PatientDetails.death_date" ngrequired="editing.patient_details.status === 'Dead'" date_after="the_episode.demographics[0].date_of_birth" date_after_message=_("Date of death must be after the patient's birth date") %}
   </div>
 </div>
-{% custom_datepicker field="PatientDetails.diag_date" validator="diagnosis_date" date_after="the_episode.demographics[0].date_of_birth" date_after_message="Date of diagnosis must be after the patient's birth date" required=True %}
+{% custom_datepicker field="PatientDetails.diag_date" validator="diagnosis_date" date_after="the_episode.demographics[0].date_of_birth" date_after_message=_("Date of diagnosis must be after the patient's birth date") required=True %}
 <div class="form-group" >
   <label for="" class="control-label col-sm-3">
     {% trans "History of SMM" %}
@@ -52,7 +52,7 @@
     </div>
   </div>
   <div ng-show="editing.patient_details.smm_history == 'Yes'" class="col-sm-4">
-    {% custom_datepicker label=_("Date") field="PatientDetails.smm_history_date" ngrequired="editing.patient_details.smm_history == 'Yes'" date_before="editing.patient_details.diag_date" date_before_message="Date must be before the date of diagnosis"  date_before_diff="0" %}
+    {% custom_datepicker label=_("Date") field="PatientDetails.smm_history_date" ngrequired="editing.patient_details.smm_history == 'Yes'" date_before="editing.patient_details.diag_date" date_before_message=_("Date must be before the date of diagnosis")  date_before_diff="0" %}
   </div>
 </div>
 
@@ -71,7 +71,7 @@
     </div>
   </div>
   <div ng-show="editing.patient_details.mgus_history == 'Yes'" class="col-sm-4">
-    {% custom_datepicker label=_("Date") field="PatientDetails.mgus_history_date" ngrequired="editing.patient_details.mgus_history == 'Yes'" date_before="editing.patient_details.diag_date"  date_before_message="Date must be before the date of diagnosis" date_before_diff="0" %}
+    {% custom_datepicker label=_("Date") field="PatientDetails.mgus_history_date" ngrequired="editing.patient_details.mgus_history == 'Yes'" date_before="editing.patient_details.diag_date"  date_before_message=_("Date must be before the date of diagnosis") date_before_diff="0" %}
   </div>
 </div>
 {% radio field="PatientDetails.r_iss_stage" %}
