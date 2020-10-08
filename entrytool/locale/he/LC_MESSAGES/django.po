@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Honeur ECRF\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-08 18:14+0000\n"
+"POT-Creation-Date: 2020-10-08 21:03+0000\n"
 "PO-Revision-Date: 2020-10-07 14:50-0000\n"
 "Last-Translator: David Miller <david@openhealthcare.org.uk>\n"
 "Language-Team: Development <LL@li.org>\n"
@@ -50,15 +50,15 @@ msgstr "בית חולים"
 
 #: entrytool/models.py:28
 msgid "Allogenic"
-msgstr ""
+msgstr "אלוגני"
 
 #: entrytool/models.py:29
 msgid "Autologous"
-msgstr ""
+msgstr "אוטולוגי"
 
 #: entrytool/models.py:30 entrytool/models.py:66
 msgid "Unknown"
-msgstr ""
+msgstr "לא ידוע"
 
 #: entrytool/models.py:34
 msgid "Date of SCT"
@@ -77,14 +77,12 @@ msgid "Stem Cell Transplants"
 msgstr "השתלות תאי גזע"
 
 #: entrytool/models.py:55
-#, fuzzy
-#| msgid "Lines Of Treatment"
 msgid "Under Treatment"
 msgstr "קווי טיפול"
 
 #: entrytool/models.py:56
 msgid "Dead"
-msgstr ""
+msgstr "מֵת"
 
 #: entrytool/models.py:57 entrytool/models.py:122
 msgid "Lost to Follow-up"
@@ -100,15 +98,15 @@ msgstr "לא"
 
 #: entrytool/models.py:69
 msgid "Disease"
-msgstr ""
+msgstr "מַחֲלָה"
 
 #: entrytool/models.py:70
 msgid "Complications of Disease"
-msgstr ""
+msgstr "סיבוכים של מחלה"
 
 #: entrytool/models.py:71
 msgid "Other"
-msgstr ""
+msgstr "אַחֵר"
 
 #: entrytool/models.py:74
 msgid "Stage I"
@@ -270,7 +268,7 @@ msgstr "מִשׁטָר"
 
 #: entrytool/models.py:186 entrytool/models.py:187
 msgid "AE List"
-msgstr ""
+msgstr "רשימת AE"
 
 #: entrytool/models.py:195
 msgid "I"
@@ -306,39 +304,39 @@ msgstr "תאריך האירוע השלילי"
 
 #: entrytool/models.py:216
 msgid "Minimal response"
-msgstr ""
+msgstr "תגובה מינימלית"
 
 #: entrytool/models.py:217
 msgid "Partial response"
-msgstr ""
+msgstr "תגובה חלקית"
 
 #: entrytool/models.py:218
 msgid "Very good partial response"
-msgstr ""
+msgstr "תגובה חלקית טובה מאוד"
 
 #: entrytool/models.py:219
 msgid "Complete response"
-msgstr ""
+msgstr "תגובה מלאה"
 
 #: entrytool/models.py:220
 msgid "Stringent complete response"
-msgstr ""
+msgstr "תגובה שלמה מחמירה"
 
 #: entrytool/models.py:221
 msgid "Near complete response"
-msgstr ""
+msgstr "תגובה כמעט מלאה"
 
 #: entrytool/models.py:222
 msgid "Immunophenotypic complete response"
-msgstr ""
+msgstr "תגובה שלמה אימונופנוטיפ"
 
 #: entrytool/models.py:223
 msgid "Stable disease"
-msgstr ""
+msgstr "מחלה יציבה"
 
 #: entrytool/models.py:224
 msgid "Progressive disease"
-msgstr ""
+msgstr "מחלה מתקדמת"
 
 #: entrytool/models.py:225
 msgid "Response unknown"
@@ -368,7 +366,7 @@ msgstr ""
 
 #: entrytool/models.py:242
 msgid "beta2m"
-msgstr ""
+msgstr "בטא 2 מ '"
 
 #: entrytool/models.py:243 entrytool/templates/detail/followups.html:8
 msgid "Albumin"
@@ -388,7 +386,7 @@ msgstr ""
 
 #: entrytool/models.py:247
 msgid "Kappa Lambda Ratio"
-msgstr ""
+msgstr "יחס קאפה למבדה"
 
 #: entrytool/models.py:248 entrytool/templates/detail/followups.html:13
 msgid "Bone Lesions"
@@ -408,23 +406,23 @@ msgstr "מעקבים"
 
 #: entrytool/opal/core/lookuplists.py:116
 msgid "Name"
-msgstr ""
+msgstr "שֵׁם"
 
 #: entrytool/opal/core/lookuplists.py:118
 msgid "Synonym"
-msgstr ""
+msgstr "שֵׁם נִרדָף"
 
 #: entrytool/opal/core/lookuplists.py:120
 msgid "System"
-msgstr ""
+msgstr "מערכת"
 
 #: entrytool/opal/core/lookuplists.py:123
 msgid "Code"
-msgstr ""
+msgstr "קוד"
 
 #: entrytool/opal/core/lookuplists.py:128
 msgid "Version"
-msgstr ""
+msgstr "גִרְסָה"
 
 #: entrytool/opal/core/search/templates/search.html:9
 #: entrytool/templates/search.html:9
@@ -433,7 +431,7 @@ msgstr "חיפוש מטופלים"
 
 #: entrytool/opal/core/search/templates/search.html:30
 msgid "Advanced"
-msgstr ""
+msgstr "מִתקַדֵם"
 
 #: entrytool/opal/core/search/templates/search.html:38
 #: entrytool/opal/templates/partials/_nav_search.html:39
@@ -485,18 +483,16 @@ msgid "Created By"
 msgstr "נוצר על ידי"
 
 #: entrytool/opal/models.py:645
-#, fuzzy
-#| msgid "Last updated by"
 msgid "Updated By"
 msgstr "עודכן לאחרונה על ידי"
 
 #: entrytool/opal/models.py:683
 msgid "Category Name"
-msgstr ""
+msgstr "שם קטגוריה"
 
 #: entrytool/opal/models.py:689
 msgid "Active"
-msgstr ""
+msgstr "פָּעִיל"
 
 #: entrytool/opal/models.py:692 entrytool/templates/records/regimen.html:59
 msgid "Start"
@@ -508,7 +504,7 @@ msgstr "סוֹף"
 
 #: entrytool/opal/models.py:698 entrytool/opal/models.py:907
 msgid "Consistency Token"
-msgstr ""
+msgstr "אסימון עקביות"
 
 #: entrytool/opal/models.py:704
 #, fuzzy
@@ -518,59 +514,55 @@ msgstr "שלב פרוגנוזה של מיאלומה נפוצה"
 
 #: entrytool/opal/models.py:708 entrytool/opal/models.py:1078
 msgid "Episode"
-msgstr ""
+msgstr "פרק"
 
 #: entrytool/opal/models.py:709
 msgid "Episodes"
-msgstr ""
+msgstr "פרקים"
 
 #: entrytool/opal/models.py:1179
 msgid "Destination"
-msgstr ""
+msgstr "יַעַד"
 
 #: entrytool/opal/models.py:1180
 msgid "Destinations"
-msgstr ""
+msgstr "יעדים"
 
 #: entrytool/opal/models.py:1204 entrytool/opal/models.py:1303
 msgid "Ethnicity"
-msgstr ""
+msgstr "מוצא אתני"
 
 #: entrytool/opal/models.py:1205
 msgid "Ethnicities"
-msgstr ""
+msgstr "אתניות"
 
 #: entrytool/opal/models.py:1210
 msgid "Gender"
-msgstr ""
+msgstr "מִין"
 
 #: entrytool/opal/models.py:1211
 msgid "Genders"
-msgstr ""
+msgstr "מגדרים"
 
 #: entrytool/opal/models.py:1229
-#, fuzzy
-#| msgid "Patient Status"
 msgid "Marital Status"
 msgstr "מצב החולה"
 
 #: entrytool/opal/models.py:1230
-#, fuzzy
-#| msgid "Patient Status"
 msgid "Marital statuses"
 msgstr "מצב החולה"
 
 #: entrytool/opal/models.py:1247 entrytool/opal/models.py:1283
 msgid "Title"
-msgstr ""
+msgstr "כותרת"
 
 #: entrytool/opal/models.py:1248
 msgid "Titles"
-msgstr ""
+msgstr "כותרות"
 
 #: entrytool/opal/models.py:1267
 msgid "The unique identifier for this patient at the hospital."
-msgstr ""
+msgstr "המזהה הייחודי לחולה זה בבית החולים."
 
 #: entrytool/opal/models.py:1268 entrytool/opal/models.py:1318
 #: entrytool/opal/models.py:1319
@@ -579,7 +571,7 @@ msgstr "דמוגרפיה"
 
 #: entrytool/opal/models.py:1271
 msgid "NHS Number"
-msgstr ""
+msgstr "מספר NHS"
 
 #: entrytool/opal/models.py:1275
 #, fuzzy
@@ -589,11 +581,11 @@ msgstr "שם משתמש"
 
 #: entrytool/opal/models.py:1278
 msgid "First Name"
-msgstr ""
+msgstr "שם פרטי"
 
 #: entrytool/opal/models.py:1281
 msgid "Middle Name"
-msgstr ""
+msgstr "שם אמצעי"
 
 #: entrytool/opal/models.py:1285
 #, fuzzy
@@ -615,7 +607,7 @@ msgstr "תאריך אבוד"
 
 #: entrytool/opal/models.py:1299
 msgid "GP Practice Code"
-msgstr ""
+msgstr "קוד תרגול רופא המשפחה"
 
 #: entrytool/opal/models.py:1302
 #, fuzzy
@@ -625,7 +617,7 @@ msgstr "תאריך לידה"
 
 #: entrytool/opal/models.py:1307
 msgid "Death Indicator"
-msgstr ""
+msgstr "קוד תרגול רופא המשפחה"
 
 #: entrytool/opal/models.py:1310
 #: entrytool/templates/partials/_demographics_panel.html:38
@@ -639,7 +631,7 @@ msgstr "תאריך לידה"
 
 #: entrytool/opal/templates/_helpers/date_of_birth_field.html:13
 msgid "Please enter a valid date of birth in the format DD/MM/YYYY"
-msgstr ""
+msgstr "אנא הזן תאריך לידה תקף בפורמט DD / MM / YYYY"
 
 #: entrytool/opal/templates/accounts/banned.html:10
 msgid "Banned Passwords"
@@ -651,11 +643,11 @@ msgstr "רשימה זו של 1000 סיסמאות נפוצות אסורה ליי�
 
 #: entrytool/opal/templates/admin/base_site.html:4
 msgid "Django site admin"
-msgstr ""
+msgstr "מנהל אתר ג'נגו"
 
 #: entrytool/opal/templates/delete_item_confirmation_modal.html:6
 msgid "Delete item?"
-msgstr ""
+msgstr "למחוק פריט?"
 
 #: entrytool/opal/templates/delete_item_confirmation_modal.html:11
 msgid "Do you want to delete this item?"
@@ -664,7 +656,7 @@ msgstr "האם ברצונך למחוק פריט זה?"
 #: entrytool/opal/templates/delete_item_confirmation_modal.html:16
 #: entrytool/templates/base_templates/form_modal_base.html:19
 msgid "Delete"
-msgstr ""
+msgstr "לִמְחוֹק"
 
 #: entrytool/opal/templates/delete_item_confirmation_modal.html:21
 #: entrytool/templates/base_templates/form_modal_base.html:24
@@ -721,7 +713,7 @@ msgstr ""
 #: entrytool/pathways.py:10
 #: entrytool/templates/base_templates/form_modal_base.html:31
 msgid "Save"
-msgstr ""
+msgstr "להציל"
 
 #: entrytool/settings.py:147
 msgid "English"
@@ -740,6 +732,7 @@ msgstr "עִברִית"
 #: entrytool/templates/_helpers/number.html:51
 #: entrytool/templates/_helpers/radio.html:21
 #: entrytool/templates/_helpers/select.html:20
+#, python-format
 msgid "%(label)s is required"
 msgstr "סטטוס נדרש %(label)s"
 
@@ -770,27 +763,27 @@ msgstr "גבוה מדי %(label)s"
 
 #: entrytool/templates/angular_locale.html:4
 msgid "zero"
-msgstr ""
+msgstr "אֶפֶס"
 
 #: entrytool/templates/angular_locale.html:4
 msgid "one"
-msgstr ""
+msgstr "אחד"
 
 #: entrytool/templates/angular_locale.html:4
 msgid "two"
-msgstr ""
+msgstr "שתיים"
 
 #: entrytool/templates/angular_locale.html:4
 msgid "few"
-msgstr ""
+msgstr "מְעַטִים"
 
 #: entrytool/templates/angular_locale.html:4
 msgid "many"
-msgstr ""
+msgstr "רב"
 
 #: entrytool/templates/angular_locale.html:4
 msgid "other"
-msgstr ""
+msgstr "אַחֵר"
 
 #: entrytool/templates/angular_locale.html:26
 msgid "AM"
@@ -802,136 +795,132 @@ msgstr ""
 
 #: entrytool/templates/angular_locale.html:30
 msgid "Sunday"
-msgstr ""
+msgstr "יוֹם רִאשׁוֹן"
 
 #: entrytool/templates/angular_locale.html:31
 msgid "Monday"
-msgstr ""
+msgstr "יוֹם שֵׁנִי"
 
 #: entrytool/templates/angular_locale.html:32
 msgid "Tuesday"
-msgstr ""
+msgstr "יוֹם שְׁלִישִׁי"
 
 #: entrytool/templates/angular_locale.html:33
 msgid "Wednesday"
-msgstr ""
+msgstr "יום רביעי"
 
 #: entrytool/templates/angular_locale.html:34
 msgid "Thursday"
-msgstr ""
+msgstr "יוֹם חֲמִישִׁי"
 
 #: entrytool/templates/angular_locale.html:35
 msgid "Friday"
-msgstr ""
+msgstr "יוֹם שִׁישִׁי"
 
 #: entrytool/templates/angular_locale.html:36
 msgid "Saturday"
-msgstr ""
+msgstr "יום שבת"
 
 #: entrytool/templates/angular_locale.html:39
 msgid "Before Christ"
-msgstr ""
+msgstr "לפני הספירה"
 
 #: entrytool/templates/angular_locale.html:40
 msgid "Anno Domini"
-msgstr ""
+msgstr "מוֹדָעָה"
 
 #: entrytool/templates/angular_locale.html:43
 msgid "BC"
-msgstr ""
+msgstr "לִפנֵי הַסְפִירָה"
 
 #: entrytool/templates/angular_locale.html:44
 msgid "AD"
-msgstr ""
+msgstr "מוֹדָעָה"
 
 #: entrytool/templates/angular_locale.html:48
 #: entrytool/templates/angular_locale.html:85
 msgid "January"
-msgstr ""
+msgstr "יָנוּאָר"
 
 #: entrytool/templates/angular_locale.html:49
 #: entrytool/templates/angular_locale.html:86
 msgid "February"
-msgstr ""
+msgstr "פברואר"
 
 #: entrytool/templates/angular_locale.html:50
 #: entrytool/templates/angular_locale.html:87
-#, fuzzy
-#| msgid "Search"
 msgid "March"
 msgstr "לחפש"
 
 #: entrytool/templates/angular_locale.html:51
 #: entrytool/templates/angular_locale.html:88
 msgid "April"
-msgstr ""
+msgstr "אַפּרִיל"
 
 #: entrytool/templates/angular_locale.html:52
 #: entrytool/templates/angular_locale.html:75
 #: entrytool/templates/angular_locale.html:89
 msgid "May"
-msgstr ""
+msgstr "מאי"
 
 #: entrytool/templates/angular_locale.html:53
 #: entrytool/templates/angular_locale.html:90
 msgid "June"
-msgstr ""
+msgstr "יוני"
 
 #: entrytool/templates/angular_locale.html:54
 #: entrytool/templates/angular_locale.html:91
 msgid "July"
-msgstr ""
+msgstr "יולי"
 
 #: entrytool/templates/angular_locale.html:55
 #: entrytool/templates/angular_locale.html:92
 msgid "August"
-msgstr ""
+msgstr "אוגוסט"
 
 #: entrytool/templates/angular_locale.html:56
 #: entrytool/templates/angular_locale.html:93
 msgid "September"
-msgstr ""
+msgstr "סֶפּטֶמבֶּר"
 
 #: entrytool/templates/angular_locale.html:57
 #: entrytool/templates/angular_locale.html:94
 msgid "October"
-msgstr ""
+msgstr "אוֹקְטוֹבֶּר"
 
 #: entrytool/templates/angular_locale.html:58
 #: entrytool/templates/angular_locale.html:95
 msgid "November"
-msgstr ""
+msgstr "נוֹבֶמבֶּר"
 
 #: entrytool/templates/angular_locale.html:59
 #: entrytool/templates/angular_locale.html:96
 msgid "December"
-msgstr ""
+msgstr "דֵצֶמבֶּר"
 
 #: entrytool/templates/angular_locale.html:62
-#, fuzzy
-#| msgid "Username"
 msgid "Sun"
 msgstr "שם משתמש"
 
 #: entrytool/templates/angular_locale.html:63
 msgid "Mon"
-msgstr ""
+msgstr "שני"
 
 #: entrytool/templates/angular_locale.html:64
 msgid "Tue"
-msgstr ""
+msgstr "יום שלישי"
 
 #: entrytool/templates/angular_locale.html:65
 msgid "Wed"
-msgstr ""
+msgstr "היינו עושים"
 
 #: entrytool/templates/angular_locale.html:66
 msgid "Thu"
-msgstr ""
+msgstr "ה '"
 
 #: entrytool/templates/angular_locale.html:67
 msgid "Fri"
-msgstr ""
+msgstr "יום שישי"
 
 #: entrytool/templates/angular_locale.html:68
 #, fuzzy
@@ -941,51 +930,47 @@ msgstr "הַתחָלָה"
 
 #: entrytool/templates/angular_locale.html:71
 msgid "Jan"
-msgstr ""
+msgstr "יאן"
 
 #: entrytool/templates/angular_locale.html:72
 msgid "Feb"
-msgstr ""
+msgstr "פברואר"
 
 #: entrytool/templates/angular_locale.html:73
 msgid "Mar"
-msgstr ""
+msgstr "לְקַלְקֵל"
 
 #: entrytool/templates/angular_locale.html:74
 msgid "Apr"
-msgstr ""
+msgstr "אפריל"
 
 #: entrytool/templates/angular_locale.html:76
 msgid "Jun"
-msgstr ""
+msgstr "יוני"
 
 #: entrytool/templates/angular_locale.html:77
 msgid "Jul"
-msgstr ""
+msgstr "יול"
 
 #: entrytool/templates/angular_locale.html:78
 msgid "Aug"
-msgstr ""
+msgstr "אוגוסט"
 
 #: entrytool/templates/angular_locale.html:79
-#, fuzzy
-#| msgid "Sex"
 msgid "Sep"
 msgstr "מִין"
 
 #: entrytool/templates/angular_locale.html:80
 msgid "Oct"
-msgstr ""
+msgstr "אוקטובר"
 
 #: entrytool/templates/angular_locale.html:81
-#, fuzzy
-#| msgid "No"
 msgid "Nov"
 msgstr "לא"
 
 #: entrytool/templates/angular_locale.html:82
 msgid "Dec"
-msgstr ""
+msgstr "דצמבר"
 
 #: entrytool/templates/detail/default.html:7
 msgid "Please complete details for this patient to continue."
@@ -1059,6 +1044,48 @@ msgstr "התגובה צריכה להיות לאחר תאריך האבחון"
 #: entrytool/templates/forms/sct_form.html:4
 msgid "The SCT should be after the date of diagnosis"
 msgstr "ה- SCT צריך להיות לאחר תאריך האבחון"
+
+#: entrytool/templates/opal.html:22
+msgid "The regimen cannot overlap with another regimen"
+msgstr "המשטר אינו יכול לחפוף למשטר אחר"
+
+#: entrytool/templates/opal.html:23
+msgid "No regimen is connected to this response"
+msgstr "לתגובה זו לא קשור שום משטר"
+
+#: entrytool/templates/opal.html:24
+msgid "A response date is not connected to a regimen"
+msgstr "תאריך תגובה אינו מחובר למשטר"
+
+#: entrytool/templates/opal.html:25
+msgid "This date is not connected to a regimen"
+msgstr "תאריך זה אינו קשור למשטר"
+
+#: entrytool/templates/opal.html:26
+msgid "An adverse event is not connected to a regimen"
+msgstr "אירוע שלילי אינו קשור למשטר"
+
+#: entrytool/templates/opal.html:27
+#, fuzzy
+#| msgid "Date of diagnosis must be after the patient's birth date"
+msgid "Date of diagnosis is greater than a regimen start date"
+msgstr "תאריך האבחון חייב להיות לאחר תאריך לידתו של המטופל"
+
+#: entrytool/templates/opal.html:28
+#, fuzzy
+#| msgid "Date of diagnosis must be after the patient's birth date"
+msgid "Date of diagnosis is greater than an SCT date"
+msgstr "תאריך האבחון חייב להיות לאחר תאריך לידתו של המטופל"
+
+#: entrytool/templates/opal.html:29
+#, fuzzy
+#| msgid "Date of diagnosis must be after the patient's birth date"
+msgid "Date of diagnosis is greater than a response date"
+msgstr "תאריך האבחון חייב להיות לאחר תאריך לידתו של המטופל"
+
+#: entrytool/templates/opal.html:30
+msgid "This regimen overlaps with another line of treatment"
+msgstr "משטר זה חופף לקו טיפול אחר"
 
 #: entrytool/templates/partials/_demographics_panel.html:14
 #: entrytool/templates/records/demographics.html:3
@@ -1144,7 +1171,7 @@ msgstr "לא הצלחנו למצוא תוצאות לחיפושך."
 
 #: entrytool/templates/welcome.html:9
 msgid "Home"
-msgstr ""
+msgstr "בית"
 
 #: entrytool/wow_strings.py:5
 msgid "Female"
@@ -1156,7 +1183,7 @@ msgstr "זָכָר"
 
 #: entrytool/wow_strings.py:9
 msgid "Not Known"
-msgstr ""
+msgstr "לא ידוע"
 
 #: entrytool/wow_strings.py:11
 msgid "Not Specified"
@@ -1168,7 +1195,7 @@ msgstr "מרפאת פרנקפורט"
 
 #: entrytool/wow_strings.py:15 entrytool/wow_strings.py:19
 msgid "St Jane's"
-msgstr ""
+msgstr "סנט ג'יין"
 
 #: entrytool/wow_strings.py:17 entrytool/wow_strings.py:23
 msgid "The Lisbon Apothecary"
@@ -1176,15 +1203,15 @@ msgstr "בית המרקחת של ליסבון"
 
 #: entrytool/wow_strings.py:25
 msgid "Center 1"
-msgstr ""
+msgstr "מרכז 1"
 
 #: entrytool/wow_strings.py:27
 msgid "Center 2"
-msgstr ""
+msgstr "מרכז 2"
 
 #: entrytool/wow_strings.py:29
 msgid "Center 3"
-msgstr ""
+msgstr "מרכז 3"
 
 #: entrytool/wow_strings.py:31
 #, fuzzy
@@ -1206,15 +1233,15 @@ msgstr "בית חולים"
 
 #: entrytool/wow_strings.py:37
 msgid "Clinic 1"
-msgstr ""
+msgstr "מרפאה 1"
 
 #: entrytool/wow_strings.py:39
 msgid "Clinic 2"
-msgstr ""
+msgstr "מרפאה 2"
 
 #: entrytool/wow_strings.py:41
 msgid "Clinic 3"
-msgstr ""
+msgstr "מרפאה 3"
 
 #: entrytool/wow_strings.py:43
 msgid "VMP"
@@ -1234,11 +1261,11 @@ msgstr ""
 
 #: entrytool/wow_strings.py:51
 msgid "Dara"
-msgstr ""
+msgstr "דארה"
 
 #: entrytool/wow_strings.py:53
 msgid "Kd"
-msgstr ""
+msgstr "אולי"
 
 #: entrytool/wow_strings.py:55
 msgid "Adverse event"
@@ -1279,8 +1306,6 @@ msgid "Diarrhea"
 msgstr "שִׁלשׁוּל"
 
 #: entrytool/wow_strings.py:73
-#, fuzzy
-#| msgid "Severity"
 msgid "Fever"
 msgstr "חוּמרָה"
 
@@ -1337,13 +1362,9 @@ msgstr "ירידה במשקל"
 #~ msgid "IHD"
 #~ msgstr "תְעוּדַת זֶהוּת"
 
-#, fuzzy
-#~| msgid "Induction"
 #~ msgid "Line Infection"
 #~ msgstr "הַשׁרָאָה"
 
-#, fuzzy
-#~| msgid "Refractory disease"
 #~ msgid "Pelvic Inflammatory Disease"
 #~ msgstr "מחלה עקשן"
 
