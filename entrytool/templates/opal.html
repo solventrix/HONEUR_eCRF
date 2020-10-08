@@ -1,0 +1,5 @@
+{% extends 'app_layouts/layout_base.html' %}
+{% block javascripts %}
+{{ block.super }}
+<script type="text/javascript" src="{% url 'javascript-catalog' %}"></script>
+{% endblock %}
