@@ -8,7 +8,7 @@
   <div ng-class="{'has-error': form.$submitted && form.status.$error.required }" class="col-sm-4">
     <select required name="status" class="form-control" ng-change="editing.patient_details.lost_to_follow_up_date = null; editing.patient_details.death_cause = null; editing.patient_details.death_date = null" ng-model="editing.patient_details.status">
       <option value="" selected>---------</option>
-      <option ng-repeat='i in ["Under Treatment", "Dead", "Lost to Follow-up"] track by $index'>[[ i ]]</option>
+      <option ng-repeat='i in ["Under Treatment", "Dead", "Lost to Follow-up"] track by $index'>[[ i | translate ]]</option>
     </select>
     <span ng-show="form.$submitted && form.status.$error.required" class="help-block">
       {% trans "Status is required" %}</span>
@@ -24,7 +24,7 @@
   <div ng-class="{'has-error': form.$submitted && form.cause_of_death.$error.required }" class="col-sm-4">
     <select name="cause_of_death" class="form-control" ng-required="editing.patient_details.status === 'Dead'" ng-model="editing.patient_details.death_cause">
       <option value="" selected>---------</option>
-      <option ng-repeat='i in ["Disease", "Complications of Disease", "Other"] track by $index'>[[ i ]]</option>
+      <option ng-repeat='i in ["Disease", "Complications of Disease", "Other"] track by $index'>[[ i | translate ]]</option>
     </select>
     <span ng-show="form.$submitted && form.cause_of_death.$error.required" class="help-block">
       {% trans "Cause of Death is required" %}
@@ -41,7 +41,7 @@
   </label>
   <div class="col-sm-3" ng-class="{'has-error': form.$submitted && form.mgus.$error.required}">
     <label class="radio-inline" ng-repeat='item in ["Yes", "No", "Unknown"]'>
-      <input required type="radio" name="smm" value="[[ item ]]" ng-change='editing.patient_details.smm_history_date = null' ng-model="editing.patient_details.smm_history"> [[ item ]]
+      <input required type="radio" name="smm" value="[[ item]]" ng-change='editing.patient_details.smm_history_date = null' ng-model="editing.patient_details.smm_history"> [[ item | translate ]]
     </label>
     <div class="row" ng-show="form.$submitted && form.smm.$error.required" ng-class="{'has-error': form.$submitted && form.mgus.$error.required}">
       <div class="col-md-12">
@@ -60,7 +60,7 @@
   <label for="" class="control-label col-sm-3">{% trans "History of MGUS" %}</label>
   <div class="col-sm-3" ng-class="{'has-error': form.$submitted && form.mgus.$error.required}">
     <label class="radio-inline" ng-repeat='item in ["Yes", "No", "Unknown"]'>
-      <input required type="radio" name="mgus" value="[[ item ]]" ng-change='editing.patient_details.mgus_history_date = null' ng-model="editing.patient_details.mgus_history"> [[ item ]]
+      <input required type="radio" name="mgus" value="[[ item ]]" ng-change='editing.patient_details.mgus_history_date = null' ng-model="editing.patient_details.mgus_history"> [[ item | translate ]]
     </label>
     <div class="row" ng-show="form.$submitted && form.mgus.$error.required" ng-class="{'has-error': form.$submitted && form.mgus.$error.required}">
       <div class="col-md-12">
