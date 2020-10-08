@@ -1,15 +1,16 @@
+{% load i18n %}
 <div class="follow-up-table" ng-show="episode.follow_up.length > 0">
   <div class="col-md-12">
     <div class="row header-row display-label">
       <div class="col-sm-3 header"></div>
-      <div class="col-sm-1 header">LDH <br/>(L)</div>
-      <div class="col-sm-1 header">Beta2m <br/>(mg/L)</div>
-      <div class="col-sm-1 header">Albumin <br/>(g/dL)</div>
-      <div class="col-sm-1 header">Creatinin <br/>(mg/dL)</div>
-      <div class="col-sm-1 header">MCV <br/>(fL)</div>
-      <div class="col-sm-1 header">Hb <br/>(g/dL)</div>
+      <div class="col-sm-1 header">{% trans "LDH" %}<br/>(L)</div>
+      <div class="col-sm-1 header">{% trans "Beta2m" %}<br/>(mg/L)</div>
+      <div class="col-sm-1 header">{% trans "Albumin" %}<br/>(g/dL)</div>
+      <div class="col-sm-1 header">{% trans "Creatinin" %}<br/>(mg/dL)</div>
+      <div class="col-sm-1 header">{% trans "MCV" %}<br/>(fL)</div>
+      <div class="col-sm-1 header">{% trans "Hb" %}<br/>(g/dL)</div>
       <div class="col-sm-1 header">&#922;/&#923; Ratio</div>
-      <div class="col-sm-1 header">Bone Lesions</div>
+      <div class="col-sm-1 header">{% trans "Bone Lesions" %}</div>
     </div>
   </div>
 

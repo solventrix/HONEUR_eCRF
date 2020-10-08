@@ -7,6 +7,7 @@ from django.utils.translation import gettext_lazy as _
 class AddPatient(PagePathway):
     display_name = _("Add Patient")
     slug = "add_patient"
+    finish_button_text = _("Save")
 #    icon = "fa-plus"
 
     steps = [

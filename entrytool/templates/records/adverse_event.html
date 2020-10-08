@@ -1,9 +1,9 @@
-
+{% load i18n %}
 <span ng-show="item.ae_date">
     [[ item.ae_date | displayDate ]]: 
 </span>
 <span ng-show="item.severity">
-    Grade [[ item.severity ]]
+    {% trans "Grade" %} [[ item.severity ]]
 </span>
 <span ng-show="item.adverse_event">
     <strong>[[ item.adverse_event ]]</strong>

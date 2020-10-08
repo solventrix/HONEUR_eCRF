@@ -240,3 +240,145 @@ msgstr "פריחה"
 #: entrytool/wow_strings.py:51
 msgid "Weight Loss"
 msgstr "ירידה במשקל"
+
+msgid "External Identifier Or ID"
+msgstr "מזהה חיצוני או מזהה"
+
+msgid "We've found"
+msgstr "מצאנו"
+
+msgid "patients"
+msgstr "חולים"
+
+msgid "Patient"
+msgstr "סבלני"
+
+msgid "Patient Search"
+msgstr "חיפוש מטופלים"
+
+msgid "Date Of Birth"
+msgstr "תאריך לידה"
+
+msgid "Hospital"
+msgstr "בית חולים"
+
+msgid "Response Date"
+msgstr "תאריך תגובה"
+
+msgid "Response"
+msgstr "תְגוּבָה"
+
+msgid "Regimen Type"
+msgstr "סוג משטר"
+
+msgid "Loading"
+msgstr "טוען"
+
+msgid "Last updated"
+msgstr "עודכן לאחרונה"
+
+msgid "Last updated by"
+msgstr "עודכן לאחרונה על ידי"
+
+msgid "Created"
+msgstr "נוצר"
+
+msgid "Created by"
+msgstr "נוצר על ידי"
+
+msgid "Lines Of Treatment"
+msgstr "קווי טיפול"
+
+msgid "Follow Ups"
+msgstr "מעקבים"
+
+msgid "Birth Date"
+msgstr "תאריך לידה"
+
+msgid "Sex"
+msgstr "מִין"
+
+msgid "Demographics"
+msgstr "דמוגרפיה"
+
+msgid "Patient Details"
+msgstr "פרטי המטופל"
+
+msgid "Date"
+msgstr "תַאֲרִיך"
+
+msgid "Lost to Follow-up"
+msgstr "לא הצלחתי לעקוב"
+
+msgid "Status is required"
+msgstr "סטטוס נדרש"
+
+msgid "Cause of Death is required"
+msgstr "נדרשת סיבת מוות"
+
+msgid "History of SMM is required"
+msgstr "יש צורך בהיסטוריה של SMM"
+
+msgid "History of MGUS is required"
+msgstr "יש צורך בהיסטוריה של MGUS"
+
+msgid "Death"
+msgstr "מוות"
+
+msgid "Lost date"
+msgstr "תאריך אבוד"
+
+msgid "PP Type"
+msgstr "סוג PP"
+
+msgid "Cancel"
+msgstr "לְבַטֵל"
+
+msgid "Search"
+msgstr "לחפש"
+
+msgid "Status"
+msgstr "סטָטוּס"
+
+msgid "Cycles"
+msgstr "מחזורים"
+
+msgid "Type"
+msgstr "סוּג"
+
+msgid "Start"
+msgstr "הַתחָלָה"
+
+msgid "End"
+msgstr "סוֹף"
+
+msgid "Reason"
+msgstr "סיבה"
+
+msgid "Admin"
+msgstr "מנהל"
+
+msgid "Bone Lesions"
+msgstr "נגעי עצם"
+
+msgid "External Identifier"
+msgstr "מזהה חיצוני"
+
+msgid "Sign in"
+msgstr "להתחבר"
+
+msgid "Username"
+msgstr "שם משתמש"
+
+msgid "Please complete details for this patient to continue."
+msgstr "אנא מלא פרטים להמשך חולה זה."
+
+msgid "We couldn't find any results for your search."
+msgstr "לא הצלחנו למצוא תוצאות לחיפושך."
+
+msgid "Albumin"
+msgstr "אלבומין"
+
+msgid "Creatinin"
+msgstr "קריאטינין"
+

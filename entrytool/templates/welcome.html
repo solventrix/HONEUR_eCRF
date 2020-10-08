@@ -20,7 +20,7 @@
                          slash-key-focus="!state || state==='normal'"
                          ng-blur="enableShortcuts()"
                          ng-focus="disableShortcuts()"
-                         placeholder="Patient ID or Hospital Number"
+                         placeholder={% trans "External Identifier Or ID" %}
                          ng-model="query.searchTerm"
                          class="form-control"
                          autocomplete="off"

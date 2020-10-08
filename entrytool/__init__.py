@@ -44,7 +44,7 @@ class Application(application.OpalApplication):
                 if user.is_staff:
                     menuitems.append(
                         menus.MenuItem(
-                            href="/admin/", display="Admin",
+                            href="/admin/", display=_("Admin"),
                             index=999
                         )
                     )

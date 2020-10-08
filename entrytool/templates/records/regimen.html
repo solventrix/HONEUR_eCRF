@@ -1,3 +1,4 @@
+{% load i18n %}
 <div class="row">
   <div class="col-md-5">
     <span class="display-label">
@@ -11,7 +12,7 @@
 <div class="row" ng-show="item.hospital">
   <div class="col-md-5">
     <span class="display-label">
-      Hospital
+      {% trans "Hospital" %}
     </span>
   </div>
   <div class="col-md-7">
@@ -22,7 +23,7 @@
 <div class="row" ng-show="item.nbCycles">
   <div class="col-md-5">
     <span class="display-label">
-      Cycles
+      {% trans "Cycles" %}
     </span>
   </div>
   <div class="col-md-7">
@@ -33,7 +34,7 @@
 <div class="row" ng-show="item.regimen">
   <div class="col-md-5">
     <span class="display-label">
-      Regimen
+      {% trans "Regimen" %}
     </span>
   </div>
   <div class="col-md-7">
@@ -44,7 +45,7 @@
 <div class="row" ng-show="item.category">
   <div class="col-md-5">
     <span class="display-label">
-      Type
+      {% trans "Type" %}
     </span>
   </div>
   <div class="col-md-7">
@@ -55,7 +56,7 @@
 <div class="row" ng-show="item.start_date">
   <div class="col-md-5">
     <span class="display-label">
-      Start
+      {% trans "Start" %}
     </span>
   </div>
   <div class="col-md-7">
@@ -66,7 +67,7 @@
 <div class="row" ng-show="item.end_date">
   <div class="col-md-5">
     <span class="display-label">
-      End
+      {% trans "End" %}
     </span>
   </div>
   <div class="col-md-7">
@@ -77,7 +78,7 @@
 <div class="row" ng-show="item.stop_reason">
   <div class="col-md-5">
     <span class="display-label">
-      Reason
+      {% trans "Reason" %}
     </span>
   </div>
   <div class="col-md-7">
