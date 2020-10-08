@@ -19,6 +19,28 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".herokuapp.com"]
 
+AUTHENTICATION_BACKENDS = [
+#    'django_auth_ldap.backend.LDAPBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
+
+# import logging
+
+# logger = logging.getLogger('django_auth_ldap')
+# logger.addHandler(logging.StreamHandler())
+# logger.setLevel(logging.DEBUG)
+
+# import ldap
+# from django_auth_ldap.config import LDAPSearch
+
+# AUTH_LDAP_BIND_DN = "ou=scientists,dc=example,dc=com"
+# AUTH_LDAP_BIND_PASSWORD = "password"
+# AUTH_LDAP_USER_SEARCH = LDAPSearch("ou=users,dc=example,dc=com",
+#     ldap.SCOPE_SUBTREE, "(uid=%(user)s)")
+# AUTH_LDAP_SERVER_URI = "ldap://ldap.example.com"
+
+
+
 INSTALLED_APPS = [
     "django.contrib.auth",
     "django.contrib.contenttypes",
