@@ -372,3 +372,13 @@ msgstr "שם משתמש"
 
 msgid "Please complete details for this patient to continue."
 msgstr "אנא מלא פרטים להמשך חולה זה."
+
+msgid "We couldn't find any results for your search."
+msgstr "לא הצלחנו למצוא תוצאות לחיפושך."
+
+msgid "Albumin"
+msgstr "אלבומין"
+
+msgid "Creatinin"
+msgstr "קריאטינין"
+
