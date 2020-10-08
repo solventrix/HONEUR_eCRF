@@ -3,9 +3,12 @@ angular
   .controller("PatientValidator", function (
     $scope,
     $rootScope,
-    toMomentFilter
+    toMomentFilter,
+    $injector
   ) {
     "use strict";
+
+    var VALDATION_ERRORS = $injector.get('VALDATOR_ERRORS');
 
     var PatientValidator = function () {
       var self = this;
@@ -77,7 +80,7 @@ angular
         });
 
         if (error) {
-          return "The regimen cannot overlap with another regimen";
+          return VALDATION_ERRORS.REGIMEN_OVERLAP;
         }
       };
 
@@ -113,7 +116,7 @@ angular
           });
         });
         if (error) {
-          return "The regimen cannot overlap with another regimen";
+          return VALDATION_ERRORS.REGIMEN_OVERLAP;
         }
       };
 
@@ -152,7 +155,7 @@ angular
           }
         });
         if(!withinRegimen){
-          return "No regimen is connected to this response";
+          return VALDATION_ERRORS.NO_REGIMEN_RESPONSE;
         }
       }
 
@@ -181,7 +184,7 @@ angular
           }
         });
         if(!withinRegimen){
-          return "A response date is not connected to a regimen";
+          return VALDATION_ERRORS.NO_RESONSE_REGIMEN;
         }
       }
 
@@ -220,7 +223,7 @@ angular
          }
        });
        if(!withinRegimen){
-         return "This date is not connected to a regimen";
+         return VALDATION_ERRORS.NO_REGIMEN_ADVERSE;
        }
       }
 
@@ -248,7 +251,7 @@ angular
          }
        });
        if(!withinRegimen){
-         return "An adverse event is not connected to a regimen";
+        return VALDATION_ERRORS.NO_ADVERSE_REGIMEN;
        }
       }
 
@@ -262,7 +265,7 @@ angular
         _.each(self.patient.episodes, function(episode){
           _.each(episode.regimen, function(regimen){
             if(regimen.start_date < val){
-              error_msg = "Date of diagnosis is greater than a regimen start date";
+              error_msg = VALDATION_ERRORS.DIAGNOSIS_OVER_REGIMEN_START
             }
           });
         })
@@ -273,7 +276,7 @@ angular
         _.each(self.patient.episodes, function(episode){
           _.each(episode.sct, function(sct){
             if(sct.sct_date < val){
-              error_msg = "Date of diagnosis is greater than an SCT date";
+              error_msg = VALDATION_ERRORS.DIAGNOSIS_OVER_SCT;
             }
           });
         })
@@ -285,7 +288,7 @@ angular
         _.each(self.patient.episodes, function(episode){
           _.each(episode.response, function(response){
             if(response.response_date < val){
-              error_msg = "Date of diagnosis is greater than a response date";
+              error_msg = VALDATION_ERRORS.DIAGNOSIS_OVER_RESPONSE;
             }
           });
         })
@@ -369,7 +372,7 @@ angular
           if(!max && min.isBefore(episodeMin, "d")){
             return;
           }
-          error = "This regimen overlaps with another line of treatment";
+          error = VALDATION_ERRORS.REGIMEN_OVERLAPS;
         });
         return error;
       };
