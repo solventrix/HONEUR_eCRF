@@ -1,3 +1,4 @@
+{% load i18n %}
 <div class="form-group"
      {% if visibility %} {{ visibility|safe }} {% endif %}
      >
@@ -68,7 +69,7 @@
        </div>
      {% endif %}
      <span class="help-block" ng-show="{{ formname }}.$submitted && {{ formname }}[{{ element_name }}].$error.required">
-       {{ label }} is required
+      {% blocktrans with label=label %}{{ label }} is required{% endblocktrans %}
      </span>
      {% if date_after_message %}
      <span class="help-block" ng-show="{{ formname }}.$submitted && {{ formname }}[{{ element_name }}].$error.dateAfter">
@@ -82,12 +83,12 @@
      {% endif %}
      {% if before_death %}
      <span class="help-block" ng-show="{{ formname }}.$submitted && {{ formname }}[{{ element_name }}].$error.beforeDeath">
-        {{ label }} is after the date of death
+        {% blocktrans with label=label %}{{ label }} is after the date of death{% endblocktrans %}
      </span>
      {% endif %}
      {% if no_future %}
      <span class="help-block" ng-show="{{ formname }}.$submitted && {{ formname }}[{{ element_name }}].$error.noFuture">
-        {{ label }} is in the future
+      {% blocktrans with label=label %}{{ label }} is in the future{% endblocktrans %}
      </span>
      {% endif %}
      {% if validator %}

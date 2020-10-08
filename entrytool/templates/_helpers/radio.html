@@ -1,3 +1,4 @@
+{% load i18n %}
 <div class="form-group"
      {% if visibility %} {{ visibility|safe }} {% endif %}
      >
@@ -17,7 +18,7 @@
       <div class="row" ng-show="{{ formname }}.$submitted && {{ formname }}[{{ element_name }}].$error.required">
         <div class="col-md-12">
           <span class="help-block" >
-            {{ label }} is required
+            {% blocktrans with label=label %}{{ label }} is required{% endblocktrans %}
           </span>
         </div>
       </div>

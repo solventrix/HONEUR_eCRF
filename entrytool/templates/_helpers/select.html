@@ -1,4 +1,5 @@
 {% load forms %}
+{% load i18n %}
 <div class="form-group" {% if visibility %} {{ visibility|safe }} {% endif %} >
   <span ng-class="{ 'errored-state': {{ formname }}[{{ element_name }}].$dirty && !{{ formname }}[{{ element_name }}].$valid }">
     {% if label %}
@@ -16,7 +17,7 @@
       </select>
     {% if required %}
       <span ng-show="{{ formname }}.$submitted && {{ formname }}[{{ element_name }}].$error.required" class="help-block">
-        {{ label }} is required
+        {% blocktrans with label=label %}{{ label }} is required{% endblocktrans %}
       </span>
       {% endif %}
     </div>
