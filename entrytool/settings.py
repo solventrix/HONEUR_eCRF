@@ -252,12 +252,6 @@ OPAL_LOGO_PATH = 'img/HONEUR_logo.png'
 # Enable/Disable autocomplete from navbar search
 OPAL_AUTOCOMPLETE_SEARCH = False
 
-OPAL_DEFAULT_SEARCH_FIELDS = [
-    "demographics__hospital_number",
-    "demographics__first_name",
-    "demographics__surname",
-]
-
 INTEGRATING = False
 
 # OPAL-required Django settings you should edit
