@@ -2,7 +2,7 @@ import datetime
 from entrytool.models import PatientDetails
 
 
-def translate_date(some_str):
+def cast_date(some_str):
     """
     We expect day/month/year
     """

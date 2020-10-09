@@ -5,7 +5,7 @@ from django.db import transaction
 from opal.models import Patient
 from entrytool.models import FollowUp, Hospital
 from entrytool.load_utils import (
-    translate_date, float_or_none, get_and_check_ll
+    cast_date, float_or_none, get_and_check_ll
 )
 
 # field -> csv column title mapping
@@ -54,7 +54,7 @@ class Command(BaseCommand):
                 )
                 follow_up = FollowUp(patient=patient)
                 followup_fields = {
-                    "follow_up_date": translate_date(follow_up_row[field_map["follow_up_date"]]),
+                    "follow_up_date": cast_date(follow_up_row[field_map["follow_up_date"]]),
                     "LDH": float_or_none(follow_up_row[field_map["LDH"]]),
                     "beta2m": float_or_none(follow_up_row[field_map["beta2m"]]),
                     "albumin": float_or_none(follow_up_row[field_map["albumin"]]),

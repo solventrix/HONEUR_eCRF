@@ -189,13 +189,13 @@ This code might read as follows:
 
 ```python
 from entrytool.models import FollowUp, Demographics
-from entrytool.load_utils import translate_date, int_or_none
+from entrytool.load_utils import cast_date, int_or_none
 
 for row in rows:
     patient = Demographics.objects.get(
         external_identifier=row['external_identifier']).patient
     follow_up = FollowUp.objects.get(
-        patient=patient, follow_up_date=translate_date(row['date'])
+        patient=patient, follow_up_date=cast_date(row['date'])
     )
     follow_up.wcc = int_or_none(row['wcc'])
     follow_up.save()
