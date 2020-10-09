@@ -9,7 +9,6 @@
     	'opal.controllers',
       'ui.bootstrap',
       'ui.select',
-      'entrytool.controllers'
   ]);
   OPAL.run(app);
 })();
