@@ -66,13 +66,13 @@ class DeleteLineOfTreatmentEpisodeTestCase(OpalTestCase):
             "delete_line_of_treatment_episode-detail",
             kwargs={"pk": self.episode.pk}
         )
+
+    def test_delete(self):
         self.assertTrue(
             self.client.login(
                 username=self.user.username, password=self.PASSWORD
             )
         )
-
-    def test_delete(self):
         response = self.client.delete(self.url)
         self.assertEqual(response.status_code, 200)
         self.assertFalse(Episode.objects.all().exists())
@@ -83,6 +83,11 @@ class DeleteLineOfTreatmentEpisodeTestCase(OpalTestCase):
         profile.readonly = True
         profile.save()
         response = self.client.delete(self.url)
+        self.assertTrue(
+            self.client.login(
+                username="readonly", password="password"
+            )
+        )
         self.assertEqual(response.status_code, 401)
         self.assertEqual(
             Episode.objects.all().count(), 1
