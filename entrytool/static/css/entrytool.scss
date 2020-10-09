@@ -240,3 +240,15 @@ h1 img {
 .pagination > li > a{
     color: $janssen-blue-light;
 }
+
+.number{
+    .warning-block{
+        display: none;
+    }
+
+    &.warning{
+        .warning-block{
+            display: block;
+        }
+    }
+}

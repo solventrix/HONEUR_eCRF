@@ -217,4 +217,12 @@ h1 img {
 .pagination > li > a {
   color: #0794e0;
 }
+
+.number .warning-block {
+  display: none;
+}
+
+.number.warning .warning-block {
+  display: block;
+}
 /*# sourceMappingURL=entrytool.css.map */
