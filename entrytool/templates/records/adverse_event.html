@@ -3,10 +3,10 @@
     [[ item.ae_date | displayDate ]]: 
 </span>
 <span ng-show="item.severity">
-    {% trans "Grade" %} [[ item.severity ]]
+    {% trans "Grade" %} [[ item.severity | translate ]]
 </span>
 <span ng-show="item.adverse_event">
-    <strong>[[ item.adverse_event ]]</strong>
+    <strong>[[ item.adverse_event | translate ]]</strong>
 </span>
 
 

@@ -1,3 +1,4 @@
+{% load i18n %}
 <div class="form-group">
   <label
     class="control-label col-sm-3"
@@ -45,24 +46,19 @@
            {% endif %}
 
            />
-    {% if maxlength %}
-        <span class="help-block" ng-show="({{ formname }}.$submitted || {{ formname }}[{{ element_name }}].$invalid) && {{ formname }}[{{ element_name }}].$error.maxlength">
-          Maximum length is {{ maxlength }}
-        </span>
-    {% endif %}
     {% if required %}
       <span class="help-block" ng-show="({{ formname }}[{{ element_name }}].$dirty || {{ formname }}.$submitted) && {{ formname }}[{{ element_name }}].$error.required">
-        {{ label }} is required
+        {% blocktrans with label=label %}{{ label }} is required{% endblocktrans %}
       </span>
     {% endif %}
     {% if min_value %}
       <span class="help-block" ng-show="{{ formname }}.$submitted && {{ formname }}[{{ element_name }}].$error.min">
-        {{ label }} is too low
+        {% blocktrans with label=label %}{{ label }} is too low{% endblocktrans %}
       </span>
     {% endif %}
     {% if max_value %}
       <span class="help-block" ng-show="{{ formname }}.$submitted && {{ formname }}[{{ element_name }}].$error.max">
-        {{ label }} is too high
+        {% blocktrans with label=label %}{{ label }} is too high{% endblocktrans %}
       </span>
     {% endif %}
   </div>

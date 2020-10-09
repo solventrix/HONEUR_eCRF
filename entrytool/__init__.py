@@ -16,6 +16,7 @@ class Application(application.OpalApplication):
         "js/entrytool/controllers/lot_manager.js",
         "js/entrytool/controllers/delete_lot.js",
         "js/entrytool/controllers/patient_validator.js",
+        "js/entrytool/moment_lang.js",
     ]
 
     styles = [

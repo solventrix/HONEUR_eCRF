@@ -1,5 +1,34 @@
 {% extends 'app_layouts/layout_base.html' %}
+{% load i18n %}
 {% block javascripts %}
 {{ block.super }}
 <script type="text/javascript" src="{% url 'javascript-catalog' %}"></script>
+<script type="text/javascript" src="{% url 'angular-locale' %}"></script>
+<script>
+
+  {# this is to allow overriding of the language in settings #}
+  {% if LANGUAGE_CODE %}
+  var language = "{{ LANGUAGE_CODE }}";
+  {% else %}
+  var language = navigator.userLanguage || navigator.language;
+  {% endif %}
+  if(moment.langData(language)){
+    moment.lang(language);
+  }
+</script>
+<script>
+  angular.module('opal.config').constant(
+  'VALDATOR_ERRORS', {
+    REGIMEN_OVERLAP: "{% trans "The regimen cannot overlap with another regimen" %}",
+    NO_REGIMEN_RESPONSE: "{% trans "No regimen is connected to this response" %}",
+    NO_RESONSE_REGIMEN: "{% trans "A response date is not connected to a regimen" %}",
+    NO_REGIMEN_ADVERSE: "{% trans "This date is not connected to a regimen" %}",
+    NO_ADVERSE_REGIMEN: "{% trans "An adverse event is not connected to a regimen" %}",
+    DIAGNOSIS_OVER_REGIMEN_START: "{% trans "Date of diagnosis is greater than a regimen start date" %}",
+    DIAGNOSIS_OVER_SCT: "{% trans "Date of diagnosis is greater than an SCT date" %}",
+    DIAGNOSIS_OVER_RESPONSE: "{% trans "Date of diagnosis is greater than a response date" %}",
+    REGIMEN_OVERLAPS: "{% trans "This regimen overlaps with another line of treatment" %}"
+  }
+  );
+</script>
 {% endblock %}

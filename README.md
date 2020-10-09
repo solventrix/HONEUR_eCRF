@@ -123,7 +123,7 @@ For simple cases, this can be done using the `{% custom_datepicker %}` templatet
 Date validation requires two arguments:
 
 * `date_after` a javascript reference to the other date value that we would like to validate against
-* `date_after_message` a string that should be displayed when the date entered is invalid
+* `date_after_message` a string that should be displayed when the date entered is invalid. Wrap it in an an `_()` method call to make sure that it is translated.
 
 An optional third argument allows for an offset to be specified
 
@@ -136,10 +136,10 @@ For example:
 ```
 {% custom_datepicker field="AdverseEvent.ae_date"
    date_after="the_episode.regimen[0].start_date"
-   date_after_message="Adverse event must be on or after the regimen start date"
+   date_after_message=_("Adverse event must be on or after the regimen start date")
    date_after_diff="0"
    date_before="the_episode.regimen[0].end_date"
-   date_before_message="Adverse event must be before 30 days after the regimen end date"
+   date_before_message=_("Adverse event must be before 30 days after the regimen end date")
    date_before_diff="31"
    required=True %}
 ```
