@@ -301,5 +301,3 @@ try:
     from entrytool.local_settings import *
 except ImportError:
     pass
-
-print(LANGUAGE_CODE)
