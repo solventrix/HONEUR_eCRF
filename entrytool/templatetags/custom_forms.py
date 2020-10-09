@@ -59,7 +59,7 @@ def number(*args, **kwargs):
         warn_max_condition = "{} >= {}".format(
             context["model"], warn_max
         )
-    if warn_min_condition and warn_max_condition:
+    if warn_min_condition or warn_max_condition:
         warning = "{} || {}".format(
             warn_min_condition, warn_max_condition
         )
