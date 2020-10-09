@@ -2,7 +2,7 @@ import csv
 from django.core.management.base import BaseCommand
 from django.db import transaction
 from entrytool.load_utils import (
-    translate_date, get_and_check, no_yes_unknown, get_and_check_ll
+    cast_date, get_and_check, no_yes_unknown, get_and_check_ll
 )
 from entrytool.models import PatientDetails, Hospital
 from opal.models import Patient, Gender
@@ -55,16 +55,16 @@ class Command(BaseCommand):
                         raise ValueError(
                             "Patient {} already exists".format(external_identifier)
                         )
-                date_of_birth = translate_date(row[field_map["date_of_birth"]])
+                date_of_birth = cast_date(row[field_map["date_of_birth"]])
                 sex = get_and_check_ll(row[field_map["sex"]], Gender)
 
                 patient_details = {
                     "hospital": get_and_check_ll(row[field_map["hospital"]], Hospital),
-                    "diag_date": translate_date(row[field_map["diag_date"]]),
+                    "diag_date": cast_date(row[field_map["diag_date"]]),
                     "smm_history": no_yes_unknown(row[field_map["smm_history"]]),
-                    "smm_history_date": translate_date(row[field_map["smm_history_date"]]),
+                    "smm_history_date": cast_date(row[field_map["smm_history_date"]]),
                     "mgus_history": no_yes_unknown(row[field_map["mgus_history"]]),
-                    "mgus_history_date": translate_date(row[field_map["mgus_history_date"]]),
+                    "mgus_history_date": cast_date(row[field_map["mgus_history_date"]]),
                     "r_iss_stage": get_and_check(
                         row[field_map["r_iss_stage"]], PatientDetails.R_ISS_STAGES
                     ),
@@ -74,7 +74,7 @@ class Command(BaseCommand):
                     "del_17p": no_yes_unknown(row[field_map["del_17p"]],),
                     "t4_14": no_yes_unknown(row[field_map["t4_14"]],),
                     "t4_16": no_yes_unknown(row[field_map["t4_16"]],),
-                    "death_date": translate_date(row[field_map["death_date"]]),
+                    "death_date": cast_date(row[field_map["death_date"]]),
                     "death_cause": get_and_check(
                         row[field_map["death_cause"]], PatientDetails.DEATH_CAUSES
                     ),

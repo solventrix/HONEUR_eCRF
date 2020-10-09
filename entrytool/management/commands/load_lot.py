@@ -8,7 +8,7 @@ from entrytool.models import (
     Regimen, StopReason, AEList, AdverseEvent, Response, SCT, RegimenList
 )
 from entrytool.load_utils import (
-    translate_date,
+    cast_date,
     get_and_check,
     get_and_check_ll,
     int_or_none,
@@ -100,8 +100,8 @@ class Command(BaseCommand):
                         treatment_lot[field_map["category"]],
                         Regimen.REGIMEN_TYPES
                     ),
-                    "start_date": translate_date(treatment_lot[field_map["start_date"]]),
-                    "end_date": translate_date(treatment_lot[field_map["end_date"]]),
+                    "start_date": cast_date(treatment_lot[field_map["start_date"]]),
+                    "end_date": cast_date(treatment_lot[field_map["end_date"]]),
                     "nbCycles": int_or_none(treatment_lot[field_map["cycles"]]),
                     "stop_reason": get_and_check_ll(
                         treatment_lot[field_map["stop_reason"]], StopReason
@@ -116,7 +116,7 @@ class Command(BaseCommand):
                     regimen_saved += 1
 
                 response_fields = {
-                    "response_date": translate_date(treatment_lot[field_map["response_date"]]),
+                    "response_date": cast_date(treatment_lot[field_map["response_date"]]),
                     "response": get_and_check(
                         treatment_lot[field_map["response"]], Response.RESPONSES
                     ),
@@ -131,7 +131,7 @@ class Command(BaseCommand):
 
                 ae_fields = {
                     "adverse_event": get_and_check_ll(treatment_lot[field_map["adverse_event"]], AEList),
-                    "ae_date": translate_date(treatment_lot[field_map["ae_date"]]),
+                    "ae_date": cast_date(treatment_lot[field_map["ae_date"]]),
                     "severity": get_severity(treatment_lot[field_map["severity"]]),
                 }
 
@@ -144,7 +144,7 @@ class Command(BaseCommand):
                     ae_saved += 1
 
                 sct_fields = {
-                    "sct_date": translate_date(treatment_lot[field_map["sct_date"]]),
+                    "sct_date": cast_date(treatment_lot[field_map["sct_date"]]),
                     "sct_type": get_and_check(treatment_lot[field_map["sct_type"]], SCT.SCT_TYPES),
                 }
                 if any(sct_fields.values()):
