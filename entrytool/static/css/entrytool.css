@@ -1,18 +1,23 @@
 .entry-tool .edit a i {
   color: #1a1a1a;
 }
+
 .entry-tool a.disabled {
   opacity: 0.5;
 }
+
 .entry-tool a.disabled:hover {
   color: inherit;
 }
+
 .entry-tool .follow-up-table {
   text-align: center;
 }
+
 .entry-tool .follow-up-table .column {
   border-top: 1px solid #dee2e6;
 }
+
 .entry-tool .follow-up-table .column, .entry-tool .follow-up-table .first-column, .entry-tool .follow-up-table .header {
   padding: 8px;
 }
@@ -100,7 +105,8 @@ h1 img {
 
 .ngProgressLiteBar {
   background-color: #0794e0;
-  box-shadow: 0 0 10px 0;
+  -webkit-box-shadow: 0 0 10px 0;
+          box-shadow: 0 0 10px 0;
   /* Inherits the font color */
   top: 50px;
 }
@@ -111,7 +117,8 @@ h1 img {
 
 .panel {
   border: none;
-  box-shadow: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
 
 .panel.panel-primary .panel-heading {
@@ -161,7 +168,7 @@ h1 img {
   border-radius: 0px;
 }
 
-.btn-primary:hover {
+.btn-primary:hover, .btn-primary:focus {
   background-color: #0794e0;
   border-color: #0794e0;
 }
@@ -191,6 +198,7 @@ h1 img {
   font-size: 18px;
   visibility: hidden;
 }
+
 .delete-lot:hover i {
   visibility: visible;
 }
@@ -202,4 +210,11 @@ h1 img {
   color: gray;
 }
 
+.orange-link {
+  color: #0794e0;
+}
+
+.pagination > li > a {
+  color: #0794e0;
+}
 /*# sourceMappingURL=entrytool.css.map */
