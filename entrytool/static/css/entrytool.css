@@ -168,7 +168,7 @@ h1 img {
   border-radius: 0px;
 }
 
-.btn-primary:hover {
+.btn-primary:hover, .btn-primary:focus {
   background-color: #0794e0;
   border-color: #0794e0;
 }
