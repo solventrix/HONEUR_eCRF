@@ -188,16 +188,16 @@ angular
         }
       }
 
-      var adverseEventDateWithinRegimen = function(fieldValue, ae){
+      var adverseEventDateWithinRegimen = function(fieldValue, regimen){
         /*
         * An adverse event date can be start_date or
         * end_date + 30 days and anything in between.
         */
-        var allowedStartDate = ae.start_date;
+        var allowedStartDate = regimen.start_date;
         var allowedEndDate = null;
         var withinParams = false;
-        if(ae.end_date){
-          allowedEndDate = moment(ae.end_date).add(30, "d")
+        if(regimen.end_date){
+          allowedEndDate = moment(regimen.end_date).add(30, "d")
           if(fieldValue >= allowedStartDate && fieldValue <= allowedEndDate){
             withinParams = true;
           }
