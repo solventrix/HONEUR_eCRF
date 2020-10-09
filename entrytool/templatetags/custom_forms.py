@@ -46,4 +46,21 @@ def number(*args, **kwargs):
     context = forms._input(*args, **kwargs)
     context["min_value"] = kwargs.get("min_value", "")
     context["max_value"] = kwargs.get("max_value", "")
+    warn_min = kwargs.get("warn_min", "")
+    warn_max = kwargs.get("warn_max", "")
+    warn_min_condition = None
+    warn_max_condition = None
+    if warn_min:
+        warn_min_condition = "{} <= {}".format(
+            context["model"], warn_min
+        )
+    if warn_max:
+        warn_max_condition = "{} >= {}".format(
+            context["model"], warn_max
+        )
+    if warn_min_condition and warn_max_condition:
+        warning = "{} || {}".format(
+            warn_min_condition, warn_max_condition
+        )
+    context["min_max_warning"] = warn_min_condition or warn_max_condition
     return context

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Honeur ECRF\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-08 21:03+0000\n"
+"POT-Creation-Date: 2020-10-09 11:33+0000\n"
 "PO-Revision-Date: 2020-10-07 14:50-0000\n"
 "Last-Translator: David Miller <david@openhealthcare.org.uk>\n"
 "Language-Team: Development <LL@li.org>\n"
@@ -715,21 +715,21 @@ msgstr ""
 msgid "Save"
 msgstr "להציל"
 
-#: entrytool/settings.py:147
+#: entrytool/settings.py:169
 msgid "English"
 msgstr "אנגלית"
 
-#: entrytool/settings.py:148
+#: entrytool/settings.py:170
 msgid "Spanish"
 msgstr "ספרדית"
 
-#: entrytool/settings.py:149
+#: entrytool/settings.py:171
 msgid "Hebrew"
 msgstr "עִברִית"
 
 #: entrytool/templates/_helpers/custom_datepicker.html:72
 #: entrytool/templates/_helpers/input.html:55
-#: entrytool/templates/_helpers/number.html:51
+#: entrytool/templates/_helpers/number.html:50
 #: entrytool/templates/_helpers/radio.html:21
 #: entrytool/templates/_helpers/select.html:20
 #, python-format
@@ -751,15 +751,19 @@ msgstr "נמצא בעתיד %(label)s"
 msgid "Maximum length is %(maxlength)s"
 msgstr "%(maxlength)s אורך מקסימלי הוא"
 
-#: entrytool/templates/_helpers/number.html:56
+#: entrytool/templates/_helpers/number.html:55
 #, python-format
 msgid "%(label)s is too low"
 msgstr "נמוך מדי %(label)s"
 
-#: entrytool/templates/_helpers/number.html:61
+#: entrytool/templates/_helpers/number.html:60
 #, python-format
 msgid "%(label)s is too high"
 msgstr "גבוה מדי %(label)s"
+
+#: entrytool/templates/_helpers/number.html:65
+msgid "%(label)s is outside normal bounds"
+msgstr "נמוך מדי %(label)s"
 
 #: entrytool/templates/angular_locale.html:4
 msgid "zero"

@@ -1,5 +1,5 @@
 {% load i18n %}
-<div class="form-group">
+<div {% if min_max_warning %}ng-class="{warning: {{ min_max_warning }}}"{% endif %} class="form-group number">
   <label
     class="control-label col-sm-3"
     >
@@ -44,7 +44,6 @@
            {% if max_value %}
            ng-max="[[ {{ max_value }}]]"
            {% endif %}
-
            />
     {% if required %}
       <span class="help-block" ng-show="({{ formname }}[{{ element_name }}].$dirty || {{ formname }}.$submitted) && {{ formname }}[{{ element_name }}].$error.required">
@@ -60,6 +59,11 @@
       <span class="help-block" ng-show="{{ formname }}.$submitted && {{ formname }}[{{ element_name }}].$error.max">
         {% blocktrans with label=label %}{{ label }} is too high{% endblocktrans %}
       </span>
+    {% endif %}
+    {% if min_max_warning %}
+    <span class="warning-block">
+      {% blocktrans with label=label %}{{ label }} is outside normal bounds{% endblocktrans %}
+    </span>
     {% endif %}
   </div>
   {% if unit %}

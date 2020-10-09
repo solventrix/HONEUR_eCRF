@@ -112,6 +112,22 @@ models themselves, or in the form templates.
 Some of this validation - for instance fields being required is implemented within Opal,
 while some is implemented with custom form widgets as part of the entrytool application.
 
+### Num ber validation
+We sometimes wish to validate that a number is more or less
+than a number. this can be done using the `{% number %}` templatetag.
+
+Min validation is done with the `min_value` argument, Max_validation is done with the `max_value` argument.
+
+We can also warn a user if a number is outside the usual bounds. This will not error but display a warning message. This is done with the `warn_min` and `warn_max` arguments.
+
+for example
+
+```
+{% number min_value="0" warn_min="5", max_value="100" warn_max="95"}
+```
+
+
+
 ### Relative Date Validation
 
 We sometimes wish to validate that a date is before, or after another date.
