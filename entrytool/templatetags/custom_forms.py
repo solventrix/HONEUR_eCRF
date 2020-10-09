@@ -50,6 +50,7 @@ def number(*args, **kwargs):
     warn_max = kwargs.get("warn_max", "")
     warn_min_condition = None
     warn_max_condition = None
+    warning = None
     if warn_min:
         warn_min_condition = "{} <= {}".format(
             context["model"], warn_min
@@ -62,5 +63,5 @@ def number(*args, **kwargs):
         warning = "{} || {}".format(
             warn_min_condition, warn_max_condition
         )
-    context["min_max_warning"] = warn_min_condition or warn_max_condition
+    context["min_max_warning"] = warning
     return context
