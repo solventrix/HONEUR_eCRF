@@ -252,7 +252,7 @@ Previous versions can be accessed either by the (Reversion Python API)[https://d
 
 Selecting rows related to a specific patient and model can be accomplished directly from the database via PostgreSQL LIKE queries on the JSON formatted data searching for patient/episode ID and model name.
 
-# Internationalisation
+## Internationalisation
 
 Internationalisation is achieved using the Django/Gettext internationalisation toolchain with a few local customisations. We commit both .mo and .po files to the git repo. .po files are non-trivial to perform manual merges on via source control tooling without corrupting the files, so we would encourage only one concurrent work stream per locale.
 
