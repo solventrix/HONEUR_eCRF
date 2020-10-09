@@ -17,6 +17,16 @@ python manage.py createopalsuperuser
 python manage.py runserver
 ```
 
+### Re-setting your database in development
+
+To flush your database and 'start again' in deveopment - for instance to test load scripts for a new deployment, run the following commands:
+
+```
+python manage.py flush
+python manage.py load_lookup_lists
+python manage.py createopalsuperuser
+```
+
 ## Application Administration
 
 ### Adding a user
@@ -53,6 +63,20 @@ Changes to CSS should be made in the file `entrytool/static/css/entrytool.scss` 
 
 This will watch for changes to the scss file and compile them to css whenever the scss file is
 saved. Once you are happy with your changes, commit the updated css, scss and css.map files together.
+
+### Making edit buttons permanently visible
+
+To make editing controls permanently visible, uncomment this line in the `.scss` file and recompile:
+
+```
+
+.entry-tool{
+    .panel-heading i.edit,
+    .list-group-item i.edit,
+    .list-group-item i.delete{
+        // display:block
+    }
+```
 
 ## Customising the fields in the application
 
@@ -323,6 +347,28 @@ Previous values of data from within the application that has been changed via th
 Previous versions can be accessed either by the (Reversion Python API)[https://django-reversion.readthedocs.io/en/stable/api.html#loading-revisions] or by extracting the JSON representation from the reversion_version table. Once deserialised these will contain references to the entry tool unique patient ID of the form "patient": 2416, or to Episode IDs.
 
 Selecting rows related to a specific patient and model can be accomplished directly from the database via PostgreSQL LIKE queries on the JSON formatted data searching for patient/episode ID and model name.
+
+## Internationalisation
+
+Internationalisation is achieved using the Django/Gettext internationalisation toolchain with a few local customisations. We commit both .mo and .po files to the git repo. .po files are non-trivial to perform manual merges on via source control tooling without corrupting the files, so we would encourage only one concurrent work stream per locale.
+
+To generate a messages file for a locale, run
+
+`python manage.py makemessages -l $LANGUAGE_CODE`
+
+If you have edited message files and need to compile the results, run
+
+`python manage.py compilemessages`
+
+To add a new locale you will need to edit the setting `LANGUAGES` to include it following the format in that tuple.
+
+The default language is set via the LANGUAGE_CODE setting.
+
+Most translatable strings are configured by wrapping their declaration in a gettext function call - either `_(“your string”)` in python or `{% trans “your string” %}`in templates.
+
+Rendering translated variables in javascript rendered portions of the page (values rendered with `[[ variable ]]` syntax) can be achieved using the `translate` filter.
+
+Our custom `makemessages` command includes translatable strings from Opal itself in the message files for this application as well as data held in lookuplist tables.
 
 ## Managing multiple customised versions
 
