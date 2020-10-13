@@ -1,0 +1,30 @@
+﻿Hospital_patient_ID,Gender,date_of_birth,Hospital,date_of_diagnosis,SMM_history,SMM_History_date,MGUS_history,MGUS_history_date,R_ISS_stage,PP_type,Del17p,t_4_14,t_4_16,date_of_death,cause_of_death
+1,Male,24/04/1947,Center 1,21/03/2010,Yes,26/12/2004,No,,Stage II,Light Chain Myeloma,Unknown,Yes,No,10/03/2019,Complications of Disease
+2,Male,04/10/1957,Center 1,10/10/2008,Yes,03/07/2001,Unknown,,Stage II,Light Chain Myeloma,No,Unknown,Yes,,
+3,Female,25/11/1957,Center 1,04/04/2009,Yes,04/11/2000,No,,Stage III,IgE,Yes,No,Unknown,,
+4,Female,19/08/1959,Center 1,29/06/2007,Unknown,,Unknown,,Stage III,IgE,No,No,Yes,22/05/2018,Disease
+5,Male,21/09/1946,Clinic 2,14/12/2009,Unknown,,No,,Stage II,IgG,Yes,Unknown,Unknown,,
+6,Male,06/05/1940,Hospital 3,02/11/2009,No,,Unknown,,Stage III,IgE,No,Yes,No,,
+7,Female,28/10/1963,Hospital 3,02/09/2007,No,,Unknown,,Stage II,IgE,No,Yes,No,,
+8,Female,29/08/1940,Clinic 2,30/10/2006,Yes,24/07/2006,Yes,18/09/2003,Stage I,Light Chain Myeloma,No,Yes,No,26/03/2011,Disease
+9,Male,02/07/1945,Center 1,17/01/2008,No,,No,,Stage II,IgE,Unknown,No,Yes,,
+10,Male,17/05/1963,Center 1,12/11/2009,No,,Unknown,,Stage I,IgG,Unknown,Unknown,No,,
+11,Female,13/12/1959,Clinic 2,06/11/2010,Unknown,,Yes,15/10/2010,Stage III,Light Chain Myeloma,Yes,Unknown,Unknown,26/02/2020,Complications of Disease
+12,Male,05/12/1955,Center 1,29/12/2010,Yes,04/12/2007,Unknown,,Stage I,Light Chain Myeloma,Yes,Unknown,Unknown,,
+13,Female,01/10/1949,Hospital 3,07/04/2005,No,,Unknown,,Stage III,IgE,Yes,No,No,,
+14,Female,09/02/1942,Center 1,13/10/2010,No,,No,,Stage II,IgA,No,Unknown,Yes,24/08/2017,Other
+15,Male,22/04/1958,Hospital 3,04/01/2009,No,,Unknown,,Stage II,IgE,Unknown,Yes,Yes,,
+16,Female,29/04/1940,Hospital 3,24/06/2005,Yes,30/04/2002,No,,Stage II,IgE,Unknown,Yes,Unknown,,
+17,Male,29/10/1955,Center 1,27/11/2008,No,,No,,Stage I,Light Chain Myeloma,Yes,Unknown,No,20/06/2013,Other
+18,Male,27/12/1940,Clinic 2,16/04/2008,No,,Yes,05/05/2007,Stage II,IgG,Yes,Yes,Yes,,
+19,Male,21/05/1965,Hospital 3,18/07/2009,Yes,15/05/2000,No,,Stage I,IgE,Unknown,Yes,Yes,,
+20,Female,02/03/1942,Center 1,16/07/2006,Unknown,,Unknown,,Stage I,Light Chain Myeloma,Unknown,Unknown,No,,
+21,Male,11/01/1952,Center 1,29/08/2005,Yes,10/02/2000,No,,Stage III,IgA,No,No,Yes,30/11/2017,Other
+22,Male,24/11/1943,Clinic 2,21/11/2009,No,,No,,Stage III,Light Chain Myeloma,Yes,Unknown,No,19/09/2012,Complications of Disease
+23,Male,25/04/1950,Hospital 3,08/11/2009,Yes,28/08/2006,Yes,12/02/2007,Stage III,IgA,Unknown,Unknown,Yes,,
+24,Male,05/12/1953,Clinic 2,20/09/2009,No,,No,,Stage III,IgE,Unknown,Unknown,No,,
+25,Male,29/09/1955,Clinic 2,04/02/2009,Unknown,,No,,Stage I,IgA,No,Unknown,Unknown,,
+26,Male,21/07/1953,Hospital 3,04/06/2008,No,,Yes,18/02/2001,Stage III,Light Chain Myeloma,Yes,No,No,17/02/2015,Disease
+27,Female,06/02/1955,Hospital 3,30/12/2008,Unknown,,No,,Stage I,IgG,Yes,Yes,Unknown,20/01/2019,Other
+28,Female,04/11/1954,Hospital 3,16/06/2009,Yes,19/06/2001,No,,Stage III,Light Chain Myeloma,Yes,Yes,Unknown,,
+29,Female,20/11/1962,Center 1,01/09/2009,No,,No,,Stage II,IgA,No,No,Yes,,
