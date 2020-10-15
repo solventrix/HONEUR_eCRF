@@ -1,0 +1,1125 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-10-12 15:14+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: entrytool/__init__.py:39 entrytool/pathways.py:8
+msgid "Add Patient"
+msgstr ""
+
+#: entrytool/__init__.py:43
+msgid "Log Out"
+msgstr ""
+
+#: entrytool/__init__.py:49
+msgid "Admin"
+msgstr ""
+
+#: entrytool/models.py:16
+#: entrytool/templates/partials/_demographics_panel.html:22
+msgid "External Identifier"
+msgstr ""
+
+#: entrytool/models.py:22 entrytool/models.py:36 entrytool/models.py:60
+#: entrytool/models.py:162 entrytool/models.py:238
+#: entrytool/templates/records/regimen.html:15
+#: entrytool/templates/records/sct.html:5
+msgid "Hospital"
+msgstr ""
+
+#: entrytool/models.py:23
+msgid "Hospitals"
+msgstr ""
+
+#: entrytool/models.py:28
+msgid "Allogenic"
+msgstr ""
+
+#: entrytool/models.py:29
+msgid "Autologous"
+msgstr ""
+
+#: entrytool/models.py:30 entrytool/models.py:66
+msgid "Unknown"
+msgstr ""
+
+#: entrytool/models.py:34
+msgid "Date of SCT"
+msgstr ""
+
+#: entrytool/models.py:40
+msgid "Type of SCT"
+msgstr ""
+
+#: entrytool/models.py:46
+msgid "Stem Cell Transplant"
+msgstr ""
+
+#: entrytool/models.py:47
+msgid "Stem Cell Transplants"
+msgstr ""
+
+#: entrytool/models.py:55
+msgid "Under Treatment"
+msgstr ""
+
+#: entrytool/models.py:56
+msgid "Dead"
+msgstr ""
+
+#: entrytool/models.py:57 entrytool/models.py:122
+msgid "Lost to Follow-up"
+msgstr ""
+
+#: entrytool/models.py:64
+msgid "Yes"
+msgstr ""
+
+#: entrytool/models.py:65
+msgid "No"
+msgstr ""
+
+#: entrytool/models.py:69
+msgid "Disease"
+msgstr ""
+
+#: entrytool/models.py:70
+msgid "Complications of Disease"
+msgstr ""
+
+#: entrytool/models.py:71
+msgid "Other"
+msgstr ""
+
+#: entrytool/models.py:74
+msgid "Stage I"
+msgstr ""
+
+#: entrytool/models.py:75
+msgid "Stage II"
+msgstr ""
+
+#: entrytool/models.py:76
+msgid "Stage III"
+msgstr ""
+
+#: entrytool/models.py:79
+msgid "IgG"
+msgstr ""
+
+#: entrytool/models.py:80
+msgid "IgA"
+msgstr ""
+
+#: entrytool/models.py:81
+msgid "IgE"
+msgstr ""
+
+#: entrytool/models.py:82
+msgid "Light Chain Myeloma"
+msgstr "Lichte Keten Myeloma"
+
+#: entrytool/models.py:85 entrytool/templates/forms/patient_details_form.html:6
+msgid "Patient Status"
+msgstr ""
+
+#: entrytool/models.py:88 entrytool/templates/records/patient_details.html:4
+msgid "Date of Diagnosis"
+msgstr ""
+
+#: entrytool/models.py:91
+#: entrytool/templates/forms/patient_details_form.html:40
+#: entrytool/templates/records/patient_details.html:10
+msgid "History of SMM"
+msgstr ""
+
+#: entrytool/models.py:94
+msgid "Date of SMM diagnosis"
+msgstr ""
+
+#: entrytool/models.py:97
+#: entrytool/templates/forms/patient_details_form.html:60
+#: entrytool/templates/records/patient_details.html:33
+msgid "History of MGUS"
+msgstr ""
+
+#: entrytool/models.py:100
+msgid "Date of MGUS Diagnosis"
+msgstr ""
+
+#: entrytool/models.py:103 entrytool/templates/records/patient_details.html:63
+msgid "R-ISS Stage"
+msgstr ""
+
+#: entrytool/models.py:106 entrytool/templates/records/patient_details.html:17
+msgid "PP Type"
+msgstr ""
+
+#: entrytool/models.py:108
+msgid "del(17)p"
+msgstr ""
+
+#: entrytool/models.py:109
+msgid "t(4;14)"
+msgstr ""
+
+#: entrytool/models.py:110
+msgid "t(4;16)"
+msgstr ""
+
+#: entrytool/models.py:112 entrytool/opal/models.py:1282
+#: src/opal/opal/models.py:1282
+msgid "Date of Death"
+msgstr ""
+
+#: entrytool/models.py:117
+#: entrytool/templates/forms/patient_details_form.html:22
+msgid "Cause of Death"
+msgstr ""
+
+#: entrytool/models.py:126 entrytool/models.py:127
+msgid "Patient Details"
+msgstr ""
+
+#: entrytool/models.py:132 entrytool/models.py:133
+msgid "Regimen List"
+msgstr ""
+
+#: entrytool/models.py:138 entrytool/models.py:139
+msgid "Stop Reason"
+msgstr ""
+
+#: entrytool/models.py:144 entrytool/models.py:147
+msgid "Treatment Line"
+msgstr ""
+
+#: entrytool/models.py:148
+msgid "Treatment Lines"
+msgstr ""
+
+#: entrytool/models.py:156
+msgid "Induction"
+msgstr ""
+
+#: entrytool/models.py:157
+msgid "Maintenance"
+msgstr ""
+
+#: entrytool/models.py:158
+msgid "Conditioning"
+msgstr ""
+
+#: entrytool/models.py:159
+msgid "Watch and wait"
+msgstr ""
+
+#: entrytool/models.py:164
+msgid "Number of Cycles"
+msgstr ""
+
+#: entrytool/models.py:169
+msgid "Start Date"
+msgstr ""
+
+#: entrytool/models.py:171
+msgid "End Date"
+msgstr ""
+
+#: entrytool/models.py:172 entrytool/models.py:179
+#: entrytool/templates/records/regimen.html:37
+msgid "Regimen"
+msgstr ""
+
+#: entrytool/models.py:173
+msgid "Regimen Type"
+msgstr ""
+
+#: entrytool/models.py:175
+msgid "Reason for Regimen Stop"
+msgstr ""
+
+#: entrytool/models.py:180
+msgid "Regimens"
+msgstr ""
+
+#: entrytool/models.py:186 entrytool/models.py:187
+msgid "AE List"
+msgstr ""
+
+#: entrytool/models.py:195
+msgid "I"
+msgstr ""
+
+#: entrytool/models.py:196
+msgid "II"
+msgstr ""
+
+#: entrytool/models.py:197
+msgid "III"
+msgstr ""
+
+#: entrytool/models.py:198
+msgid "IV"
+msgstr ""
+
+#: entrytool/models.py:199
+msgid "V"
+msgstr ""
+
+#: entrytool/models.py:201 entrytool/models.py:208 entrytool/models.py:209
+msgid "Adverse Event"
+msgstr ""
+
+#: entrytool/models.py:203
+msgid "Severity"
+msgstr ""
+
+#: entrytool/models.py:205
+msgid "Date of AE"
+msgstr ""
+
+#: entrytool/models.py:216
+msgid "Minimal response"
+msgstr ""
+
+#: entrytool/models.py:217
+msgid "Partial response"
+msgstr ""
+
+#: entrytool/models.py:218
+msgid "Very good partial response"
+msgstr ""
+
+#: entrytool/models.py:219
+msgid "Complete response"
+msgstr ""
+
+#: entrytool/models.py:220
+msgid "Stringent complete response"
+msgstr ""
+
+#: entrytool/models.py:221
+msgid "Near complete response"
+msgstr ""
+
+#: entrytool/models.py:222
+msgid "Immunophenotypic complete response"
+msgstr ""
+
+#: entrytool/models.py:223
+msgid "Stable disease"
+msgstr ""
+
+#: entrytool/models.py:224
+msgid "Progressive disease"
+msgstr ""
+
+#: entrytool/models.py:225
+msgid "Response unknown"
+msgstr ""
+
+#: entrytool/models.py:227
+msgid "Response Date"
+msgstr ""
+
+#: entrytool/models.py:228 entrytool/models.py:231
+msgid "Response"
+msgstr ""
+
+#: entrytool/models.py:232
+msgid "Responses"
+msgstr ""
+
+#: entrytool/models.py:239
+msgid "Visit date"
+msgstr ""
+
+#: entrytool/models.py:241 entrytool/templates/detail/followups.html:6
+msgid "LDH"
+msgstr ""
+
+#: entrytool/models.py:242
+msgid "beta2m"
+msgstr ""
+
+#: entrytool/models.py:243 entrytool/templates/detail/followups.html:8
+msgid "Albumin"
+msgstr ""
+
+#: entrytool/models.py:244 entrytool/templates/detail/followups.html:9
+msgid "Creatinin"
+msgstr ""
+
+#: entrytool/models.py:245 entrytool/templates/detail/followups.html:10
+msgid "MCV"
+msgstr ""
+
+#: entrytool/models.py:246 entrytool/templates/detail/followups.html:11
+msgid "Hb"
+msgstr ""
+
+#: entrytool/models.py:247
+msgid "Kappa Lambda Ratio"
+msgstr ""
+
+#: entrytool/models.py:248 entrytool/templates/detail/followups.html:13
+msgid "Bone Lesions"
+msgstr ""
+
+#: entrytool/models.py:251
+msgid "Follow-up"
+msgstr ""
+
+#: entrytool/models.py:252
+msgid "Follow-ups"
+msgstr ""
+
+#: entrytool/opal/models.py:472 entrytool/opal/models.py:686
+#: entrytool/opal/models.py:1065
+#: entrytool/templates/base_templates/form_modal_base.html:5
+#: entrytool/templates/partials/_patient_summary_list.html:19
+#: entrytool/templates/patient_detail.html:20 src/opal/opal/models.py:472
+#: src/opal/opal/models.py:686 src/opal/opal/models.py:1065
+msgid "Patient"
+msgstr ""
+
+#: entrytool/opal/models.py:473 src/opal/opal/models.py:473
+msgid "Patients"
+msgstr ""
+
+#: entrytool/opal/models.py:606 src/opal/opal/models.py:606
+msgid "External System"
+msgstr ""
+
+#: entrytool/opal/models.py:612 src/opal/opal/models.py:612
+msgid "Extenal Identifier"
+msgstr ""
+
+#: entrytool/opal/models.py:630 src/opal/opal/models.py:630
+msgid "Created"
+msgstr ""
+
+#: entrytool/opal/models.py:633 src/opal/opal/models.py:633
+msgid "Updated"
+msgstr ""
+
+#: entrytool/opal/models.py:639 src/opal/opal/models.py:639
+msgid "Created By"
+msgstr ""
+
+#: entrytool/opal/models.py:645 src/opal/opal/models.py:645
+msgid "Updated By"
+msgstr ""
+
+#: entrytool/opal/models.py:683 src/opal/opal/models.py:683
+msgid "Category Name"
+msgstr ""
+
+#: entrytool/opal/models.py:689 src/opal/opal/models.py:689
+msgid "Active"
+msgstr ""
+
+#: entrytool/opal/models.py:692 entrytool/templates/records/regimen.html:59
+#: src/opal/opal/models.py:692
+msgid "Start"
+msgstr ""
+
+#: entrytool/opal/models.py:695 entrytool/templates/records/regimen.html:70
+#: src/opal/opal/models.py:695
+msgid "End"
+msgstr ""
+
+#: entrytool/opal/models.py:698 entrytool/opal/models.py:907
+#: src/opal/opal/models.py:698 src/opal/opal/models.py:907
+msgid "Consistency Token"
+msgstr ""
+
+#: entrytool/opal/models.py:704 src/opal/opal/models.py:704
+msgid "Stage"
+msgstr ""
+
+#: entrytool/opal/models.py:708 entrytool/opal/models.py:1078
+#: src/opal/opal/models.py:708 src/opal/opal/models.py:1078
+msgid "Episode"
+msgstr ""
+
+#: entrytool/opal/models.py:709 src/opal/opal/models.py:709
+msgid "Episodes"
+msgstr ""
+
+#: entrytool/opal/models.py:1259 src/opal/opal/models.py:1259
+msgid "The unique identifier for this patient at the hospital."
+msgstr ""
+
+#: entrytool/opal/models.py:1260 entrytool/opal/models.py:1308
+#: entrytool/opal/models.py:1309 src/opal/opal/models.py:1260
+#: src/opal/opal/models.py:1308 src/opal/opal/models.py:1309
+msgid "Demographics"
+msgstr ""
+
+#: entrytool/opal/models.py:1263 src/opal/opal/models.py:1263
+msgid "NHS Number"
+msgstr ""
+
+#: entrytool/opal/models.py:1267 src/opal/opal/models.py:1267
+msgid "Surname"
+msgstr ""
+
+#: entrytool/opal/models.py:1270 src/opal/opal/models.py:1270
+msgid "First Name"
+msgstr ""
+
+#: entrytool/opal/models.py:1273 src/opal/opal/models.py:1273
+msgid "Middle Name"
+msgstr ""
+
+#: entrytool/opal/models.py:1275 src/opal/opal/models.py:1275
+msgid "Title"
+msgstr ""
+
+#: entrytool/opal/models.py:1277 src/opal/opal/models.py:1277
+msgid "Date of Birth"
+msgstr ""
+
+#: entrytool/opal/models.py:1285 src/opal/opal/models.py:1285
+msgid "Post Code"
+msgstr ""
+
+#: entrytool/opal/models.py:1289 src/opal/opal/models.py:1289
+msgid "GP Practice Code"
+msgstr ""
+
+#: entrytool/opal/models.py:1292 src/opal/opal/models.py:1292
+msgid "Country of Birth"
+msgstr ""
+
+#: entrytool/opal/models.py:1293 src/opal/opal/models.py:1293
+msgid "Ethnicity"
+msgstr ""
+
+#: entrytool/opal/models.py:1297 src/opal/opal/models.py:1297
+msgid "Death Indicator"
+msgstr ""
+
+#: entrytool/opal/models.py:1300
+#: entrytool/templates/partials/_demographics_panel.html:38
+#: src/opal/opal/models.py:1300
+msgid "Sex"
+msgstr ""
+
+#: entrytool/opal/templates/admin/base_site.html:4
+#: src/opal/opal/templates/admin/base_site.html:4
+msgid "Django site admin"
+msgstr ""
+
+#: entrytool/pathways.py:10
+#: entrytool/templates/base_templates/form_modal_base.html:31
+msgid "Save"
+msgstr ""
+
+#: entrytool/settings.py:167
+msgid "English"
+msgstr ""
+
+#: entrytool/settings.py:168
+msgid "Spanish"
+msgstr ""
+
+#: entrytool/settings.py:169
+msgid "Hebrew"
+msgstr ""
+
+#: entrytool/settings.py:170
+msgid "Dutch"
+msgstr ""
+
+#: entrytool/templates/_helpers/custom_datepicker.html:72
+#: entrytool/templates/_helpers/input.html:55
+#: entrytool/templates/_helpers/number.html:50
+#: entrytool/templates/_helpers/radio.html:21
+#: entrytool/templates/_helpers/select.html:20
+#, python-format
+msgid "%(label)s is required"
+msgstr ""
+
+#: entrytool/templates/_helpers/custom_datepicker.html:86
+#, python-format
+msgid "%(label)s is after the date of death"
+msgstr ""
+
+#: entrytool/templates/_helpers/custom_datepicker.html:91
+#, python-format
+msgid "%(label)s is in the future"
+msgstr ""
+
+#: entrytool/templates/_helpers/input.html:50
+#, python-format
+msgid "Maximum length is %(maxlength)s"
+msgstr ""
+
+#: entrytool/templates/_helpers/number.html:55
+#, python-format
+msgid "%(label)s is too low"
+msgstr ""
+
+#: entrytool/templates/_helpers/number.html:60
+#, python-format
+msgid "%(label)s is too high"
+msgstr ""
+
+#: entrytool/templates/_helpers/number.html:65
+#, python-format
+msgid "%(label)s is outside normal bounds"
+msgstr ""
+
+#: entrytool/templates/angular_locale.html:4
+msgid "zero"
+msgstr ""
+
+#: entrytool/templates/angular_locale.html:4
+msgid "one"
+msgstr ""
+
+#: entrytool/templates/angular_locale.html:4
+msgid "two"
+msgstr ""
+
+#: entrytool/templates/angular_locale.html:4
+msgid "few"
+msgstr ""
+
+#: entrytool/templates/angular_locale.html:4
+msgid "many"
+msgstr ""
+
+#: entrytool/templates/angular_locale.html:4
+msgid "other"
+msgstr ""
+
+#: entrytool/templates/angular_locale.html:26
+msgid "AM"
+msgstr ""
+
+#: entrytool/templates/angular_locale.html:27
+msgid "PM"
+msgstr ""
+
+#: entrytool/templates/angular_locale.html:30
+msgid "Sunday"
+msgstr ""
+
+#: entrytool/templates/angular_locale.html:31
+msgid "Monday"
+msgstr ""
+
+#: entrytool/templates/angular_locale.html:32
+msgid "Tuesday"
+msgstr ""
+
+#: entrytool/templates/angular_locale.html:33
+msgid "Wednesday"
+msgstr ""
+
+#: entrytool/templates/angular_locale.html:34
+msgid "Thursday"
+msgstr ""
+
+#: entrytool/templates/angular_locale.html:35
+msgid "Friday"
+msgstr ""
+
+#: entrytool/templates/angular_locale.html:36
+msgid "Saturday"
+msgstr ""
+
+#: entrytool/templates/angular_locale.html:39
+msgid "Before Christ"
+msgstr ""
+
+#: entrytool/templates/angular_locale.html:40
+msgid "Anno Domini"
+msgstr ""
+
+#: entrytool/templates/angular_locale.html:43
+msgid "BC"
+msgstr ""
+
+#: entrytool/templates/angular_locale.html:44
+msgid "AD"
+msgstr ""
+
+#: entrytool/templates/angular_locale.html:48
+#: entrytool/templates/angular_locale.html:85
+msgid "January"
+msgstr ""
+
+#: entrytool/templates/angular_locale.html:49
+#: entrytool/templates/angular_locale.html:86
+msgid "February"
+msgstr ""
+
+#: entrytool/templates/angular_locale.html:50
+#: entrytool/templates/angular_locale.html:87
+msgid "March"
+msgstr ""
+
+#: entrytool/templates/angular_locale.html:51
+#: entrytool/templates/angular_locale.html:88
+msgid "April"
+msgstr ""
+
+#: entrytool/templates/angular_locale.html:52
+#: entrytool/templates/angular_locale.html:75
+#: entrytool/templates/angular_locale.html:89
+msgid "May"
+msgstr ""
+
+#: entrytool/templates/angular_locale.html:53
+#: entrytool/templates/angular_locale.html:90
+msgid "June"
+msgstr ""
+
+#: entrytool/templates/angular_locale.html:54
+#: entrytool/templates/angular_locale.html:91
+msgid "July"
+msgstr ""
+
+#: entrytool/templates/angular_locale.html:55
+#: entrytool/templates/angular_locale.html:92
+msgid "August"
+msgstr ""
+
+#: entrytool/templates/angular_locale.html:56
+#: entrytool/templates/angular_locale.html:93
+msgid "September"
+msgstr ""
+
+#: entrytool/templates/angular_locale.html:57
+#: entrytool/templates/angular_locale.html:94
+msgid "October"
+msgstr ""
+
+#: entrytool/templates/angular_locale.html:58
+#: entrytool/templates/angular_locale.html:95
+msgid "November"
+msgstr ""
+
+#: entrytool/templates/angular_locale.html:59
+#: entrytool/templates/angular_locale.html:96
+msgid "December"
+msgstr ""
+
+#: entrytool/templates/angular_locale.html:62
+msgid "Sun"
+msgstr ""
+
+#: entrytool/templates/angular_locale.html:63
+msgid "Mon"
+msgstr ""
+
+#: entrytool/templates/angular_locale.html:64
+msgid "Tue"
+msgstr ""
+
+#: entrytool/templates/angular_locale.html:65
+msgid "Wed"
+msgstr ""
+
+#: entrytool/templates/angular_locale.html:66
+msgid "Thu"
+msgstr ""
+
+#: entrytool/templates/angular_locale.html:67
+msgid "Fri"
+msgstr ""
+
+#: entrytool/templates/angular_locale.html:68
+msgid "Sat"
+msgstr ""
+
+#: entrytool/templates/angular_locale.html:71
+msgid "Jan"
+msgstr ""
+
+#: entrytool/templates/angular_locale.html:72
+msgid "Feb"
+msgstr ""
+
+#: entrytool/templates/angular_locale.html:73
+msgid "Mar"
+msgstr ""
+
+#: entrytool/templates/angular_locale.html:74
+msgid "Apr"
+msgstr ""
+
+#: entrytool/templates/angular_locale.html:76
+msgid "Jun"
+msgstr ""
+
+#: entrytool/templates/angular_locale.html:77
+msgid "Jul"
+msgstr ""
+
+#: entrytool/templates/angular_locale.html:78
+msgid "Aug"
+msgstr ""
+
+#: entrytool/templates/angular_locale.html:79
+msgid "Sep"
+msgstr ""
+
+#: entrytool/templates/angular_locale.html:80
+msgid "Oct"
+msgstr ""
+
+#: entrytool/templates/angular_locale.html:81
+msgid "Nov"
+msgstr ""
+
+#: entrytool/templates/angular_locale.html:82
+msgid "Dec"
+msgstr ""
+
+#: entrytool/templates/base_templates/form_modal_base.html:19
+msgid "Delete"
+msgstr ""
+
+#: entrytool/templates/base_templates/form_modal_base.html:24
+msgid "Cancel"
+msgstr ""
+
+#: entrytool/templates/detail/default.html:7
+msgid "Please complete details for this patient to continue."
+msgstr ""
+
+#: entrytool/templates/detail/followups.html:7
+msgid "Beta2m"
+msgstr ""
+
+#: entrytool/templates/forms/adverse_event_form.html:5
+msgid "Adverse events should be after the date of diagnosis"
+msgstr ""
+
+#: entrytool/templates/forms/follow_up_form.html:3
+msgid "Visit date must be after the patient's birth date"
+msgstr ""
+
+#: entrytool/templates/forms/patient_details_form.html:14
+msgid "Status is required"
+msgstr ""
+
+#: entrytool/templates/forms/patient_details_form.html:17
+#: entrytool/templates/forms/patient_details_form.html:34
+#: entrytool/templates/forms/patient_details_form.html:55
+#: entrytool/templates/forms/patient_details_form.html:74
+#: entrytool/templates/records/sct.html:16
+msgid "Date"
+msgstr ""
+
+#: entrytool/templates/forms/patient_details_form.html:17
+msgid "Follow up date must be after the patient's birth date"
+msgstr ""
+
+#: entrytool/templates/forms/patient_details_form.html:30
+msgid "Cause of Death is required"
+msgstr ""
+
+#: entrytool/templates/forms/patient_details_form.html:34
+msgid "Date of death must be after the patient's birth date"
+msgstr ""
+
+#: entrytool/templates/forms/patient_details_form.html:37
+msgid "Date of diagnosis must be after the patient's birth date"
+msgstr ""
+
+#: entrytool/templates/forms/patient_details_form.html:49
+msgid "History of SMM is required"
+msgstr ""
+
+#: entrytool/templates/forms/patient_details_form.html:55
+#: entrytool/templates/forms/patient_details_form.html:74
+msgid "Date must be before the date of diagnosis"
+msgstr ""
+
+#: entrytool/templates/forms/patient_details_form.html:68
+msgid "History of MGUS is required"
+msgstr ""
+
+#: entrytool/templates/forms/regimen_form.html:9
+msgid "Start Date must be after the patient date of diagnosis"
+msgstr ""
+
+#: entrytool/templates/forms/regimen_form.html:10
+msgid "End Date must be after the start date"
+msgstr ""
+
+#: entrytool/templates/forms/response_form.html:3
+msgid "The response should be after the date of diagnosis"
+msgstr ""
+
+#: entrytool/templates/forms/sct_form.html:4
+msgid "The SCT should be after the date of diagnosis"
+msgstr ""
+
+#: entrytool/templates/opal.html:22
+msgid "The regimen cannot overlap with another regimen"
+msgstr ""
+
+#: entrytool/templates/opal.html:23
+msgid "No regimen is connected to this response"
+msgstr ""
+
+#: entrytool/templates/opal.html:24
+msgid "A response date is not connected to a regimen"
+msgstr ""
+
+#: entrytool/templates/opal.html:25
+msgid "This date is not connected to a regimen"
+msgstr ""
+
+#: entrytool/templates/opal.html:26
+msgid "An adverse event is not connected to a regimen"
+msgstr ""
+
+#: entrytool/templates/opal.html:27
+msgid "Date of diagnosis is greater than a regimen start date"
+msgstr ""
+
+#: entrytool/templates/opal.html:28
+msgid "Date of diagnosis is greater than an SCT date"
+msgstr ""
+
+#: entrytool/templates/opal.html:29
+msgid "Date of diagnosis is greater than a response date"
+msgstr ""
+
+#: entrytool/templates/opal.html:30
+msgid "This regimen overlaps with another line of treatment"
+msgstr ""
+
+#: entrytool/templates/partials/_demographics_panel.html:14
+#: entrytool/templates/records/demographics.html:3
+msgid "ID"
+msgstr ""
+
+#: entrytool/templates/partials/_demographics_panel.html:30
+msgid "Birth Date"
+msgstr ""
+
+#: entrytool/templates/partials/_patient_summary_list.html:5
+msgid "We've found"
+msgstr ""
+
+#: entrytool/templates/partials/_patient_summary_list.html:6
+msgid "patients"
+msgstr ""
+
+#: entrytool/templates/partials/_patient_summary_list.html:7
+msgid "patient"
+msgstr ""
+
+#: entrytool/templates/patient_detail.html:6
+msgid "Patient not found"
+msgstr ""
+
+#: entrytool/templates/patient_detail.html:9
+msgid "We're sorry but we couldn't find the patient you're looking for."
+msgstr ""
+
+#: entrytool/templates/patient_detail.html:11
+msgid "Perhaps try searching for them instead?"
+msgstr ""
+
+#: entrytool/templates/patient_detail.html:42
+msgid "Lines Of Treatment"
+msgstr ""
+
+#: entrytool/templates/patient_detail.html:62
+msgid "Follow Ups"
+msgstr ""
+
+#: entrytool/templates/records/adverse_event.html:6
+msgid "Grade"
+msgstr ""
+
+#: entrytool/templates/records/patient_details.html:27
+msgid "Status"
+msgstr ""
+
+#: entrytool/templates/records/patient_details.html:40
+msgid "Del(17p)"
+msgstr ""
+
+#: entrytool/templates/records/patient_details.html:50
+msgid "Death"
+msgstr ""
+
+#: entrytool/templates/records/patient_details.html:53
+msgid "Lost date"
+msgstr ""
+
+#: entrytool/templates/records/regimen.html:26
+msgid "Cycles"
+msgstr ""
+
+#: entrytool/templates/records/regimen.html:48
+#: entrytool/templates/records/sct.html:27
+msgid "Type"
+msgstr ""
+
+#: entrytool/templates/records/regimen.html:81
+msgid "Reason"
+msgstr ""
+
+#: entrytool/templates/search.html:9
+msgid "Patient Search"
+msgstr ""
+
+#: entrytool/templates/search.html:21 entrytool/templates/welcome.html:23
+msgid "External Identifier Or ID"
+msgstr ""
+
+#: entrytool/templates/search.html:32 entrytool/templates/welcome.html:33
+msgid "Search"
+msgstr ""
+
+#: entrytool/templates/search.html:48
+msgid "We couldn't find any results for your search."
+msgstr ""
+
+#: entrytool/templates/welcome.html:9
+msgid "Home"
+msgstr ""
+
+#: entrytool/wow_strings.py:5
+msgid "Female"
+msgstr ""
+
+#: entrytool/wow_strings.py:7
+msgid "Male"
+msgstr ""
+
+#: entrytool/wow_strings.py:9
+msgid "Not Known"
+msgstr ""
+
+#: entrytool/wow_strings.py:11 entrytool/wow_strings.py:23
+#: entrytool/wow_strings.py:41
+msgid "Not Specified"
+msgstr ""
+
+#: entrytool/wow_strings.py:13 entrytool/wow_strings.py:35
+msgid "Center 1"
+msgstr ""
+
+#: entrytool/wow_strings.py:15 entrytool/wow_strings.py:37
+msgid "Clinic 2"
+msgstr ""
+
+#: entrytool/wow_strings.py:17 entrytool/wow_strings.py:31
+msgid "Frankfurt Clinic"
+msgstr ""
+
+#: entrytool/wow_strings.py:19 entrytool/wow_strings.py:43
+msgid "Hospital 3"
+msgstr ""
+
+#: entrytool/wow_strings.py:21 entrytool/wow_strings.py:39
+msgid "Hospital 3ß"
+msgstr ""
+
+#: entrytool/wow_strings.py:25 entrytool/wow_strings.py:29
+msgid "St Jane's"
+msgstr ""
+
+#: entrytool/wow_strings.py:27 entrytool/wow_strings.py:33
+msgid "The Lisbon Apothecary"
+msgstr ""
+
+#: entrytool/wow_strings.py:45
+msgid "VMP"
+msgstr ""
+
+#: entrytool/wow_strings.py:47
+msgid "VCD"
+msgstr ""
+
+#: entrytool/wow_strings.py:49
+msgid "VTD"
+msgstr ""
+
+#: entrytool/wow_strings.py:51
+msgid "Vd"
+msgstr ""
+
+#: entrytool/wow_strings.py:53
+msgid "Dara"
+msgstr ""
+
+#: entrytool/wow_strings.py:55
+msgid "Kd"
+msgstr ""
+
+#: entrytool/wow_strings.py:57
+msgid "Adverse event"
+msgstr ""
+
+#: entrytool/wow_strings.py:59
+msgid "End of Phase/Line"
+msgstr ""
+
+#: entrytool/wow_strings.py:61
+msgid "Patient Request"
+msgstr ""
+
+#: entrytool/wow_strings.py:63
+msgid "Refractory disease"
+msgstr ""
+
+#: entrytool/wow_strings.py:65
+msgid "Other reason"
+msgstr ""
+
+#: entrytool/wow_strings.py:67
+msgid "Relapse"
+msgstr ""
+
+#: entrytool/wow_strings.py:69
+msgid "Headache"
+msgstr ""
+
+#: entrytool/wow_strings.py:71
+msgid "Nausea"
+msgstr ""
+
+#: entrytool/wow_strings.py:73
+msgid "Diarrhea"
+msgstr ""
+
+#: entrytool/wow_strings.py:75
+msgid "Fever"
+msgstr ""
+
+#: entrytool/wow_strings.py:77
+msgid "Rash"
+msgstr ""
+
+#: entrytool/wow_strings.py:79
+msgid "Weight Loss"
+msgstr ""
