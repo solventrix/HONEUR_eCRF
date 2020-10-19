@@ -24,9 +24,9 @@ field_map = dict(
     external_identifier="Hospital_patient_ID",
 
     # Regimen fields
-    regimen="Regimen",
+    regimen="regimen",
     category="category",
-    start_date="Start_date",
+    start_date="start_date",
     end_date="end_date",
     cycles="cycles",
     stop_reason="stop_reason",
@@ -41,8 +41,8 @@ field_map = dict(
     severity="AE_severity",
 
     # SCT fields
-    sct_date="SCT_date",
-    sct_type="SCT_type"
+    sct_date="sct_date",
+    sct_type="sct_type"
 )
 
 
@@ -70,7 +70,7 @@ class Command(BaseCommand):
 
                 hn = row[field_map["external_identifier"]].strip()
                 lot_number = row[field_map["lot"]].strip()
-                if not hn or not lot_number:
+                if not hn or not lot_number:\
                     raise ValueError("hospital number and lot number are required")
 
                 by_lot[
@@ -96,16 +96,16 @@ class Command(BaseCommand):
                     "regimen": get_and_check_ll(
                         treatment_lot[field_map["regimen"]], RegimenList
                     ),
-                    "category": get_and_check(
-                        treatment_lot[field_map["category"]],
-                        Regimen.REGIMEN_TYPES
-                    ),
+                    # "category": get_and_check(
+                    #     treatment_lot[field_map["category"]],
+                    #     Regimen.REGIMEN_TYPES
+                    # ),
                     "start_date": cast_date(treatment_lot[field_map["start_date"]]),
                     "end_date": cast_date(treatment_lot[field_map["end_date"]]),
-                    "nbCycles": int_or_none(treatment_lot[field_map["cycles"]]),
-                    "stop_reason": get_and_check_ll(
-                        treatment_lot[field_map["stop_reason"]], StopReason
-                    ),
+                    # "nbCycles": int_or_none(treatment_lot[field_map["cycles"]]),
+                    # "stop_reason": get_and_check_ll(
+                    #     treatment_lot[field_map["stop_reason"]], StopReason
+                    # ),
                 }
                 if any(regimen_fields.values()):
                     regimen = Regimen(episode=episode)
@@ -129,19 +129,19 @@ class Command(BaseCommand):
                     response.save()
                     response_saved += 1
 
-                ae_fields = {
-                    "adverse_event": get_and_check_ll(treatment_lot[field_map["adverse_event"]], AEList),
-                    "ae_date": cast_date(treatment_lot[field_map["ae_date"]]),
-                    "severity": get_severity(treatment_lot[field_map["severity"]]),
-                }
+                # ae_fields = {
+                #     "adverse_event": get_and_check_ll(treatment_lot[field_map["adverse_event"]], AEList),
+                #     "ae_date": cast_date(treatment_lot[field_map["ae_date"]]),
+                #     "severity": get_severity(treatment_lot[field_map["severity"]]),
+                # }
 
-                if any(ae_fields.values()):
-                    ae = AdverseEvent(episode=episode)
-                    for k, v in ae_fields.items():
-                        setattr(ae, k, v)
-                    ae.set_consistency_token()
-                    ae.save()
-                    ae_saved += 1
+                # if any(ae_fields.values()):
+                #     ae = AdverseEvent(episode=episode)
+                #     for k, v in ae_fields.items():
+                #         setattr(ae, k, v)
+                #     ae.set_consistency_token()
+                #     ae.save()
+                #     ae_saved += 1
 
                 sct_fields = {
                     "sct_date": cast_date(treatment_lot[field_map["sct_date"]]),

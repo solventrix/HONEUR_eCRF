@@ -7,34 +7,10 @@
     [[ item.diag_date | displayDate ]]
   </div>
   <div class="col-md-2">
-    <span class="display-label">{% trans "History of SMM" %}</span>
-  </div>
-  <div class="col-md-2">
-    [[ item.smm_history | translate ]]
-    <span ng-show="item.smm_history_date">([[ item.smm_history_date | displayDate ]])</span>
-  </div>
-  <div class="col-md-2">
-    <span class="display-label">{% trans "PP Type" %}</span>
-  </div>
-  <div class="col-md-2">
-    [[ item.pp_type | translate ]]
-  </div>
-</div>
-
-
-<div class="row">
-  <div class="col-md-2">
     <span class="display-label">{% trans "Status" %}</span>
   </div>
   <div class="col-md-2">
     [[ item.status | translate ]]
-  </div>
-  <div class="col-md-2">
-    <span class="display-label">{% trans "History of MGUS" %}</span>
-  </div>
-  <div class="col-md-2">
-    [[ item.mgus_history | translate ]]
-    <span ng-show="item.mgus_history_date">([[ item.mgus_history_date | displayDate ]])</span>
   </div>
   <div class="col-md-2">
     <span class="display-label">{% trans "Del(17p)" %}</span>
@@ -45,25 +21,19 @@
 </div>
 
 <div class="row">
+  
+  
   <div class="col-md-2">
-    <span ng-show="item.death_date || item.death_cause">
-      <span class="display-label">{% trans "Death" %}</span>
-    </span>
-    <span ng-show="item.lost_to_follow_up_date">
-      <span class="display-label">{% trans "Lost date" %}</span>
-    </span>
+    <span class="display-label">{% trans "ISS Stage" %}</span>
   </div>
   <div class="col-md-2">
-    <span ng-show="item.death_date || item.death_cause">
-      [[ item.death_cause | translate ]] ([[ item.death_date | displayDate ]])
-    </span>
-    <span ng-show="item.lost_to_follow_up_date">[[ item.lost_to_follow_up_date | displayDate ]]</span>
+    [[ item.iss_stage | translate ]]
   </div>
   <div class="col-md-2">
-    <span class="display-label">{% trans "R-ISS Stage" %}</span>
+    <span class="display-label">{% trans "DS Stage" %}</span>
   </div>
   <div class="col-md-2">
-    [[ item.r_iss_stage | translate ]]
+    [[ item.ds_stage | translate ]]
   </div>
   <div class="col-md-2">
     <span class="display-label">t(4;14)</span>
@@ -75,17 +45,24 @@
 
 <div class="row">
   <div class="col-md-2">
+    <span ng-show="item.death_date || item.death_cause">
+      <span class="display-label">{% trans "Death" %}</span>
+    </span>
   </div>
+  <div class="col-md-2">
+    <span ng-show="item.death_date || item.death_cause">
+      [[ item.death_cause | translate ]] ([[ item.death_date | displayDate ]])
+    </span>
+  </div>
+ 
   <div class="col-md-2">
   </div>
   <div class="col-md-2">
   </div>
   <div class="col-md-2">
+    <span class="display-label">del13</span>
   </div>
   <div class="col-md-2">
-    <span class="display-label">t(4;16)</span>
-  </div>
-  <div class="col-md-2">
-    [[ item.t4_16 | translate ]]
+    [[ item.del_13 | translate ]]
   </div>
 </div>

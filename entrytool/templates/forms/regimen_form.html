@@ -1,13 +1,13 @@
 {% load forms %}
 {% load custom_forms %}
-{% select field="Regimen.hospital" required=True %}
-{% select field="Regimen.category" %}
+{% select field="Regimen.hospital" required=False %}
+{% select field="Regimen.category" required=False %}
 <div ng-if="editing.regimen.category !== 'Watch and wait'">
   {% select field="Regimen.regimen" required=True%}
-  {% input field="Regimen.nbCycles" required=True %}
+  {% input field="Regimen.nbCycles" required=False %}
 </div>
 {% custom_datepicker field="Regimen.start_date" no_future=False change="$root.patientValidator.regimen_start(editing.regimen.start_date, editing.regimen, the_episode); $root.patientValidator.regimen_end(editing.regimen.end_date, editing.regimen, the_episode);" date_after="$root.patientValidator.patient.patient_details[0].diag_date" date_after_diff="0" date_after_message=_("Start Date must be after the patient date of diagnosis") validator="regimen_start" required=True %}
 {% custom_datepicker field="Regimen.end_date" no_future=False change="$root.patientValidator.regimen_start(editing.regimen.start_date, editing.regimen, the_episode); $root.patientValidator.regimen_end(editing.regimen.end_date, editing.regimen, the_episode);" date_after="editing.regimen.start_date" date_after_diff="0" date_after_message=_("End Date must be after the start date") validator="regimen_end" %}
 <div ng-if="editing.regimen.end_date">
-  {% select field="Regimen.stop_reason" required=True %}
+  {% select field="Regimen.stop_reason" required=False %}
 </div>

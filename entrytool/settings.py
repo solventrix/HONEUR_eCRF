@@ -280,7 +280,7 @@ DEFAULT_FROM_EMAIL = "hello@example.com"
 DEFAULT_DOMAIN = "http://entrytool.com/"
 
 OPAL_DEFAULT_SEARCH_FIELDS = [
-    "demographics__hospital_number",
+    "demographics__external_identifier",
     "id"
 ]
 

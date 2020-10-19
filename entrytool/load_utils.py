@@ -9,7 +9,10 @@ def cast_date(some_str):
     some_str = some_str.strip()
     if not some_str:
         return None
-    return datetime.datetime.strptime(some_str, "%d/%m/%Y").date()
+    try:
+        return datetime.datetime.strptime(some_str, "%d/%m/%Y").date()
+    except:
+        return datetime.datetime.strptime(some_str, "%Y-%m-%d").date()
 
 
 def get_and_check(row_value, choices):
