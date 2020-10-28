@@ -133,8 +133,8 @@ try:
             "NAME": os.environ['OPAL_DB_NAME'],
             "USER": os.environ['OPAL_DB_USER'],
             "PASSWORD": os.environ['OPAL_DB_PASSWORD'],
-            "HOST": "localhost",
-            "PORT": "5432",
+            "HOST": os.environ['OPAL_DB_HOST'],
+            "PORT": os.environ['OPAL_DB_PORT'],
             'OPTIONS': {
                 'options': '-c search_path=opal'
             },
