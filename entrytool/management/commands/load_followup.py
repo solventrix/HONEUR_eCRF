@@ -26,7 +26,8 @@ field_map = dict(
     bone_lesions="bone_lesions",
     hospital="hospital",
     mprotein_serum="mprotein_serum",
-    mprotein_urine="mprotein_urine"
+    mprotein_urine="mprotein_urine",
+    mprotein_24h="mprotein_24h"
 )
 
 
@@ -62,7 +63,7 @@ class Command(BaseCommand):
                     "albumin": float_or_none(follow_up_row[field_map["albumin"]]),
                     "mprotein_serum": float_or_none(follow_up_row[field_map["mprotein_serum"]]),
                     "mprotein_urine": float_or_none(follow_up_row[field_map["mprotein_urine"]]),
-                    
+                    "mprotein_24h": float_or_none(follow_up_row[field_map["mprotein_24h"]]),
                 }
                 for k, v in followup_fields.items():
                     setattr(follow_up, k, v)

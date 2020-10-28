@@ -248,6 +248,7 @@ class FollowUp(models.PatientSubrecord):
     albumin = fields.FloatField(blank=True, null=True, verbose_name=_("Albumin"))
     mprotein_urine = fields.FloatField(blank=True, null=True, verbose_name=_("MProtein Urine"))
     mprotein_serum = fields.FloatField(blank = True, null = True ,verbose_name=("MProtein Serum"))
+    mprotein_24h = fields.FloatField(blank = True, null = True, verbose_name=_("Mprotein in 24 hour urine"))
 
     class Meta:
         verbose_name = _("Follow-up")

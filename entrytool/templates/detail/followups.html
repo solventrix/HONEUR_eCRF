@@ -3,12 +3,12 @@
   <div class="col-md-12">
     <div class="row header-row display-label">
       <div class="col-sm-3 header"></div>
-      <div class="col-sm-1 header">{% trans "LDH" %}<br/>(L)</div>
-      <div class="col-sm-1 header">{% trans "Beta2m" %}<br/>(mg/L)</div>
+      <div class="col-sm-1 header">{% trans "LDH" %}<br/>(u/L)</div>
+      <div class="col-sm-1 header">{% trans "Beta2m" %}<br/>(mg/dL)</div>
       <div class="col-sm-1 header">{% trans "Albumin" %}<br/>(g/dL)</div>
-      <div class="col-sm-1 header">{% trans "M Protein Serum" %}<br/>(g/dL)</div>
-      <div class="col-sm-1 header">{% trans "M Protein Urine" %}<br/>(g/dL)</div>
-
+      <div class="col-sm-1 header">{% trans "M Protein Serum" %}<br/>(mg/dL)</div>
+      <div class="col-sm-1 header">{% trans "M Protein Urine" %}<br/>(mg/dL)</div>
+      <div class="col-sm-1 header">{% trans "M Protein in 24 hour Urine" %}<br/>(mg/24h)</div>
     </div>
   </div>
 
@@ -29,6 +29,7 @@
       <div class="col-sm-1 column">[[ item.albumin ]]</div>
       <div class="col-sm-1 column">[[ item.mprotein_serum ]]</div>
       <div class="col-sm-1 column">[[ item.mprotein_urine ]]</div>
+      <div class="col-sm-1 column">[[ item.mprotein_24h ]]</div>
       <div class="col-sm-1 text-left">
         <i ng-click="episode.recordEditor.editItem('{{ models.FollowUp.get_api_name }}', item)" class="fa fa-pencil edit pointer"></i>
       </div>
