@@ -12,10 +12,10 @@ PROJECT_PATH = os.path.realpath(os.path.dirname(__file__))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = "yfo5r$i&jy!tifn!)adc#3ow*r6)f#2v0z-f!*w@g_^q4&1ree"
+SECRET_KEY = os.environ['OPAL_SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".herokuapp.com"]
 
@@ -128,19 +128,30 @@ try:
     import dj_database_url
 
     DATABASES = {
-        "default": dj_database_url.config(
-            default="sqlite:///" + PROJECT_PATH + "/opal.sqlite"
-        )
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": os.environ['OPAL_DB_NAME'],
+            "USER": os.environ['OPAL_DB_USER'],
+            "PASSWORD": os.environ['OPAL_DB_PASSWORD'],
+            "HOST": "localhost",
+            "PORT": "5432",
+            'OPTIONS': {
+                'options': '-c search_path=opal'
+            },
+        }
     }
 except ImportError:
     DATABASES = {
         "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": os.path.join(PROJECT_PATH, "opal.sqlite"),
-            "USER": "",
-            "PASSWORD": "",
-            "HOST": "",
-            "PORT": "",
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": os.environ['OPAL_DB_NAME'],
+            "USER": os.environ['OPAL_DB_USER'],
+            "PASSWORD": os.environ['OPAL_DB_PASSWORD'],
+            "HOST": "localhost",
+            "PORT": "5432",
+            'OPTIONS': {
+                'options': '-c search_path=opal'
+            },
         }
     }
 
