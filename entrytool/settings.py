@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "axes",
+    "statici18n",
     "rest_framework",
     "rest_framework.authtoken",
     "compressor",
@@ -117,6 +118,7 @@ TEMPLATES = [
             ],
             "loaders": LOADERS,
         },
+        
     },
 ]
 
