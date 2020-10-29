@@ -12,10 +12,10 @@ PROJECT_PATH = os.path.realpath(os.path.dirname(__file__))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = os.environ['OPAL_SECRET_KEY']
+SECRET_KEY = 'keyvalue'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".herokuapp.com"]
 
@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "axes",
+    "statici18n",
     "rest_framework",
     "rest_framework.authtoken",
     "compressor",
@@ -117,6 +118,7 @@ TEMPLATES = [
             ],
             "loaders": LOADERS,
         },
+        
     },
 ]
 
@@ -130,11 +132,11 @@ try:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql",
-            "NAME": os.environ['OPAL_DB_NAME'],
-            "USER": os.environ['OPAL_DB_USER'],
-            "PASSWORD": os.environ['OPAL_DB_PASSWORD'],
-            "HOST": os.environ['OPAL_DB_HOST'],
-            "PORT": os.environ['OPAL_DB_PORT'],
+            "NAME": 'postgres',
+            "USER": 'postgres',
+            "PASSWORD": 'password',
+            "HOST": '192.168.0.121',
+            "PORT": 1234,
             'OPTIONS': {
                 'options': '-c search_path=opal'
             },
@@ -144,11 +146,11 @@ except ImportError:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql",
-            "NAME": os.environ['OPAL_DB_NAME'],
-            "USER": os.environ['OPAL_DB_USER'],
-            "PASSWORD": os.environ['OPAL_DB_PASSWORD'],
-            "HOST": os.environ['OPAL_DB_HOST'],
-            "PORT": os.environ['OPAL_DB_PORT'],
+            "NAME": 'postgres',
+            "USER": 'postgres',
+            "PASSWORD": 'password',
+            "HOST": 'localhost',
+            "PORT": 1234,
             'OPTIONS': {
                 'options': '-c search_path=opal'
             },

@@ -13,6 +13,7 @@ django-jsonfield==1.4.0
 django-reversion==3.0.1
 django-revision==0.1.20
 djangorestframework==3.10.2
+django-statici18n==1.8.2
 ffs==0.0.8.2
 gitdb==4.0.2
 GitPython==3.1.0
