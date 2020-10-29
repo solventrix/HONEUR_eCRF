@@ -12,7 +12,7 @@ PROJECT_PATH = os.path.realpath(os.path.dirname(__file__))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = 'keyvalue'
+SECRET_KEY = os.environ['OPAL_SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -132,25 +132,25 @@ try:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql",
-            "NAME": 'postgres',
-            "USER": 'postgres',
-            "PASSWORD": 'password',
-            "HOST": '192.168.0.121',
-            "PORT": 1234,
+            "NAME": os.env['OPAL_DB_NAME'],
+            "USER": os.environ['OPAL_DB_USER'],
+            "PASSWORD": os.environ['OPAL_DB_PASSWORD'],
+            "HOST": os.environ['OPAL_DB_HOST'],
+            "PORT": os.environ['OPAL_DB_PORT'],
             'OPTIONS': {
                 'options': '-c search_path=opal'
             },
         }
     }
 except ImportError:
-    DATABASES = {
+   DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql",
-            "NAME": 'postgres',
-            "USER": 'postgres',
-            "PASSWORD": 'password',
-            "HOST": 'localhost',
-            "PORT": 1234,
+            "NAME": os.env['OPAL_DB_NAME'],
+            "USER": os.environ['OPAL_DB_USER'],
+            "PASSWORD": os.environ['OPAL_DB_PASSWORD'],
+            "HOST": os.environ['OPAL_DB_HOST'],
+            "PORT": os.environ['OPAL_DB_PORT'],
             'OPTIONS': {
                 'options': '-c search_path=opal'
             },
