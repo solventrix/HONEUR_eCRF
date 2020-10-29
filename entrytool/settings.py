@@ -15,7 +15,7 @@ PROJECT_PATH = os.path.realpath(os.path.dirname(__file__))
 SECRET_KEY = os.environ['OPAL_SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".herokuapp.com"]
 
@@ -132,7 +132,7 @@ try:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql",
-            "NAME": os.env['OPAL_DB_NAME'],
+            "NAME": os.environ['OPAL_DB_NAME'],
             "USER": os.environ['OPAL_DB_USER'],
             "PASSWORD": os.environ['OPAL_DB_PASSWORD'],
             "HOST": os.environ['OPAL_DB_HOST'],
@@ -146,7 +146,7 @@ except ImportError:
    DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql",
-            "NAME": os.env['OPAL_DB_NAME'],
+            "NAME": os.environ['OPAL_DB_NAME'],
             "USER": os.environ['OPAL_DB_USER'],
             "PASSWORD": os.environ['OPAL_DB_PASSWORD'],
             "HOST": os.environ['OPAL_DB_HOST'],
