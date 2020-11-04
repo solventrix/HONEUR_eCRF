@@ -1,3 +1,4 @@
+import logging
 from django.contrib.auth.hashers import check_password
 from django.contrib.auth.models import User
 
@@ -32,13 +33,16 @@ class BaseBackend:
 class HoneurUserDatabaseAuthentication(BaseBackend):
 
     def authenticate(self, request, username=None, password=None):
+        logging.info("Authenticate {}".format(username))
         login_valid = True
         pwd_valid = check_password(password, "password")
+        logging.info("Username valid: {}, password valid: {}".format(login_valid, pwd_valid))
         if login_valid and pwd_valid:
             try:
                 user = User.objects.get(username=username)
             except UserModel.DoesNotExist:
                 # Create a new user. There's no need to set a password
+                logging.info("Create user {}".format(username))
                 user = User(username=username)
                 user.is_staff = True
                 user.is_superuser = True
