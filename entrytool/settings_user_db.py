@@ -20,23 +20,9 @@ COMPRESS_ENABLED = False
 ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".herokuapp.com"]
 
 AUTHENTICATION_BACKENDS = [
-    'django_auth_ldap.backend.LDAPBackend',
+    'entrytool.auth.backend.HoneurUserDatabaseAuthentication',
     'django.contrib.auth.backends.ModelBackend',
 ]
-
-import logging
-
-logger = logging.getLogger('django_auth_ldap')
-logger.addHandler(logging.StreamHandler())
-logger.setLevel(logging.DEBUG)
-
-import ldap
-from django_auth_ldap.config import LDAPSearch
-AUTH_LDAP_SERVER_URI = "ldap://ldap.forumsys.com:389"
-AUTH_LDAP_BIND_DN = "cn=read-only-admin,dc=example,dc=com"
-AUTH_LDAP_BIND_PASSWORD = "password"
-AUTH_LDAP_USER_SEARCH = LDAPSearch("dc=example,dc=com", ldap.SCOPE_SUBTREE, "(uid=%(user)s)")
-
 
 INSTALLED_APPS = [
     "django.contrib.auth",
