@@ -1,6 +1,8 @@
 # Django settings for entrytool project.
 import os
 
+from entrytool.auth.backend import HoneurUserDatabaseAuthentication
+
 from django.utils.translation import gettext_lazy as _
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -14,7 +16,7 @@ PROJECT_PATH = os.path.realpath(os.path.dirname(__file__))
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = os.environ['OPAL_SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 COMPRESS_ENABLED = False
 
 ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".herokuapp.com"]
