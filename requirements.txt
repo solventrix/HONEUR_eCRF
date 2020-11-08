@@ -37,7 +37,10 @@ wincertstore==0.2
 # required for heroku
 dj-database-url==0.2.1
 psycopg2==2.8.5
+#psycopg2-binary
 gunicorn==0.17.4
 
-# Not currently used but for potential LDAP support
+# Used but for LDAP support
 django-auth-ldap==1.6.1
+# Used for user DB support
+bcrypt

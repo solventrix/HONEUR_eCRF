@@ -1,8 +1,9 @@
-import logging
-from django.contrib.auth.hashers import check_password
+import logging, os
 from django.contrib.auth.models import User
 
 from django.contrib.auth import get_user_model
+
+from entrytool.auth.UserDatabase import UserDatabase
 
 UserModel = get_user_model()
 
@@ -32,23 +33,29 @@ class BaseBackend:
 
 class HoneurUserDatabaseAuthentication(BaseBackend):
 
-    def authenticate(self, request, username=None, password=None):
+    def __init__(self):
+        self.user_db = UserDatabase(os.environ['USER_DB_USER'],
+                                    os.environ['USER_DB_PASSWORD'],
+                                    os.environ['USER_DB_HOST'],
+                                    os.environ['USER_DB_PORT'],
+                                    os.environ['USER_DB_NAME'])
+
+    def authenticate(self, request, username, password):
         logging.info("Authenticate {}".format(username))
-        login_valid = True
-        pwd_valid = check_password(password, "password")
-        logging.info("Username valid: {}, password valid: {}".format(login_valid, pwd_valid))
-        if login_valid and pwd_valid:
-            try:
-                user = User.objects.get(username=username)
-            except UserModel.DoesNotExist:
-                # Create a new user. There's no need to set a password
-                logging.info("Create user {}".format(username))
-                user = User(username=username)
-                user.is_staff = True
-                user.is_superuser = True
-                user.save()
-            return user
-        return None
+
+        valid_username_password = self.user_db.check_password(username, password)
+        if not valid_username_password:
+            logging.warning("Invalid username and/or password!")
+            return None
+        try:
+            user = User.objects.get(username=username)
+        except UserModel.DoesNotExist:
+            # Create a new user. There's no need to set a password
+            logging.info("Create user {}".format(username))
+            user = User(username=username)
+            user.is_active = True
+            user.save()
+        return user
 
     def get_user(self, user_id):
         try:
