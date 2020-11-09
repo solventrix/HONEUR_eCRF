@@ -32,10 +32,10 @@ logger.setLevel(logging.DEBUG)
 
 import ldap
 from django_auth_ldap.config import LDAPSearch
-AUTH_LDAP_SERVER_URI = "ldap://ldap.forumsys.com:389"
-AUTH_LDAP_BIND_DN = "cn=read-only-admin,dc=example,dc=com"
-AUTH_LDAP_BIND_PASSWORD = "password"
-AUTH_LDAP_USER_SEARCH = LDAPSearch("dc=example,dc=com", ldap.SCOPE_SUBTREE, "(uid=%(user)s)")
+AUTH_LDAP_SERVER_URI = os.environ["OPAL_LDAP_SERVER_URI"]
+AUTH_LDAP_BIND_DN = os.environ["OPAL_LDAP_BIND_DN"]
+AUTH_LDAP_BIND_PASSWORD = os.environ["OPAL_LDAP_BIND_PASSWORD"]
+AUTH_LDAP_USER_SEARCH = LDAPSearch(os.environ["OPAL_LDAP_USER_SEARCH_DN"], ldap.SCOPE_SUBTREE, "(uid=%(user)s)")
 
 
 INSTALLED_APPS = [
