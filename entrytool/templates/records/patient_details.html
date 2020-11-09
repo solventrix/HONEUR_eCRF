@@ -21,8 +21,6 @@
 </div>
 
 <div class="row">
-  
-  
   <div class="col-md-2">
     <span class="display-label">{% trans "ISS Stage" %}</span>
   </div>
@@ -53,6 +51,14 @@
     <span ng-show="item.death_date || item.death_cause">
       [[ item.death_cause | translate ]] ([[ item.death_date | displayDate ]])
     </span>
+  </div>
+
+  <div class="col-md-2">	
+    <span class="display-label">{% trans "History of SMM" %}</span>	
+  </div>	
+  <div class="col-md-2">	
+    [[ item.smm_history | translate ]]	
+    <span ng-show="item.smm_history_date">([[ item.smm_history_date | displayDate ]])</span>	
   </div>
  
   <div class="col-md-2">

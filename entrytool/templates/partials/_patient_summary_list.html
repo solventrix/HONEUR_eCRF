@@ -19,8 +19,8 @@
               {% trans "Patient" %} [[ result.patientId ]]
             </a>
           </h4>
-          <span ng-show="result.demographics[0].external_identifier">
-            [[ result.demographics[0].external_identifier ]]
+          <span ng-show="result.hospitalNumber">
+            (External ID: [[ result.hospitalNumber ]])
           </span>
           <span ng-show="result.dateOfBirth">
             ([[ result.dateOfBirth | displayDate ]])
