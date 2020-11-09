@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 from entrytool.auth.UserDatabase import UserDatabase
 
+UserModel = get_user_model()
+
 
 class BaseBackend:
 
@@ -31,7 +33,6 @@ class BaseBackend:
 class HoneurUserDatabaseAuthentication(BaseBackend):
 
     def __init__(self):
-        self.UserModel = get_user_model()
         self.user_db = UserDatabase(os.environ['USER_DB_USER'],
                                     os.environ['USER_DB_PASSWORD'],
                                     os.environ['USER_DB_HOST'],
@@ -47,16 +48,18 @@ class HoneurUserDatabaseAuthentication(BaseBackend):
             return None
         try:
             user = User.objects.get(username=username)
-        except self.UserModel.DoesNotExist:
+        except UserModel.DoesNotExist:
             # Create a new user. There's no need to set a password
             logging.info("Create user {}".format(username))
             user = User(username=username)
             user.is_active = True
+            profile = user.get_profile()
+            profile.force_password_change = False
             user.save()
         return user
 
     def get_user(self, user_id):
         try:
             return User.objects.get(pk=user_id)
-        except self.UserModel.DoesNotExist:
+        except UserModel.DoesNotExist:
             return None
