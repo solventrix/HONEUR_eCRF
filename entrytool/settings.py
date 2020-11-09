@@ -17,7 +17,7 @@ SECRET_KEY = os.environ['OPAL_SECRET_KEY']
 DEBUG = False
 COMPRESS_ENABLED = False
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".herokuapp.com"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".honeur.org", ".herokuapp.com"]
 
 
 def str2bool(v):
