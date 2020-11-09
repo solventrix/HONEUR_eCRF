@@ -1,6 +1,8 @@
 import logging, os
 from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
+from opal.models import UserProfile
+
 from entrytool.auth.UserDatabase import UserDatabase
 
 UserModel = get_user_model()
@@ -50,12 +52,17 @@ class HoneurUserDatabaseAuthentication(BaseBackend):
             user = User.objects.get(username=username)
         except UserModel.DoesNotExist:
             # Create a new user. There's no need to set a password
-            logging.info("Create user {}".format(username))
-            user = User(username=username)
-            user.is_active = True
-            profile = user.get_profile()
-            profile.force_password_change = False
-            user.save()
+            user = self._create_user(username)
+        return user
+
+    def _create_user(self, username):
+        logging.info("Create user {}".format(username))
+        user = User(username=username)
+        user.is_active = True
+        user.save()
+        profile, _ = UserProfile.objects.get_or_create(user=user)
+        profile.force_password_change = False
+        profile.save()
         return user
 
     def get_user(self, user_id):
