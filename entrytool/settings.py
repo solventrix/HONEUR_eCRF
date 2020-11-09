@@ -19,27 +19,35 @@ COMPRESS_ENABLED = False
 
 ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".herokuapp.com"]
 
-AUTHENTICATION_BACKENDS = [
-#    'django_auth_ldap.backend.LDAPBackend',
-    'django.contrib.auth.backends.ModelBackend',
-]
 
-# import logging
-
-# logger = logging.getLogger('django_auth_ldap')
-# logger.addHandler(logging.StreamHandler())
-# logger.setLevel(logging.DEBUG)
-
-# import ldap
-# from django_auth_ldap.config import LDAPSearch
-
-# AUTH_LDAP_BIND_DN = "ou=scientists,dc=example,dc=com"
-# AUTH_LDAP_BIND_PASSWORD = "password"
-# AUTH_LDAP_USER_SEARCH = LDAPSearch("ou=users,dc=example,dc=com",
-#     ldap.SCOPE_SUBTREE, "(uid=%(user)s)")
-# AUTH_LDAP_SERVER_URI = "ldap://ldap.example.com"
+def str2bool(v):
+    if not v: return False
+    return v.lower() in ("true", "1")
 
 
+auth_backends = ['django.contrib.auth.backends.ModelBackend', ]
+
+enable_ldap = str2bool(os.environ.get('OPAL_ENABLE_LDAP', 'false'))
+enable_user_db = str2bool(os.environ.get('OPAL_ENABLE_USER_DB', 'false'))
+if enable_ldap:
+    auth_backends = ['django_auth_ldap.backend.LDAPBackend', 'django.contrib.auth.backends.ModelBackend', ]
+    import logging
+
+    logger = logging.getLogger('django_auth_ldap')
+    logger.addHandler(logging.StreamHandler())
+    logger.setLevel(logging.DEBUG)
+    import ldap
+    from django_auth_ldap.config import LDAPSearch
+
+    AUTH_LDAP_SERVER_URI = os.environ["OPAL_LDAP_SERVER_URI"]
+    AUTH_LDAP_BIND_DN = os.environ["OPAL_LDAP_BIND_DN"]
+    AUTH_LDAP_BIND_PASSWORD = os.environ["OPAL_LDAP_BIND_PASSWORD"]
+    AUTH_LDAP_USER_SEARCH = LDAPSearch(os.environ["OPAL_LDAP_USER_SEARCH_DN"], ldap.SCOPE_SUBTREE, "(uid=%(user)s)")
+elif enable_user_db:
+    auth_backends = ['entrytool.auth.backend.HoneurUserDatabaseAuthentication',
+                     'django.contrib.auth.backends.ModelBackend', ]
+
+AUTHENTICATION_BACKENDS = auth_backends
 
 INSTALLED_APPS = [
     "django.contrib.auth",
@@ -57,7 +65,7 @@ INSTALLED_APPS = [
     "opal.core.search",
     "opal.core.pathway",
     "reversion",
-#    "opal.core.referencedata",
+    #    "opal.core.referencedata",
     "entrytool",
     # 'languages',
     "django.contrib.admin",
@@ -118,7 +126,7 @@ TEMPLATES = [
             ],
             "loaders": LOADERS,
         },
-        
+
     },
 ]
 
@@ -143,7 +151,7 @@ try:
         }
     }
 except ImportError:
-   DATABASES = {
+    DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql",
             "NAME": os.environ['OPAL_DB_NAME'],
@@ -174,7 +182,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 LANGUAGES = (
@@ -188,7 +195,6 @@ TIME_ZONE = "UTC"
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
@@ -214,7 +220,6 @@ DATE_FORMAT = "d/m/Y"
 DATE_INPUT_FORMATS = ["%d/%m/%Y"]
 TIME_FORMAT = "H:i:s"
 
-
 # Emails
 # https://docs.djangoproject.com/en/1.10/ref/settings/#email-backend
 EMAIL_BACKEND = os.environ.get(
@@ -230,27 +235,22 @@ else:
     EMAIL_PORT = 1025
     EMAIL_HOST = "localhost"
 
-
 # HTTPS support
 # https://docs.djangoproject.com/en/1.10/ref/settings/#secure-proxy-ssl-header
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
-
 # Sessions
 # https://docs.djangoproject.com/en/1.10/topics/http/sessions/#browser-length-sessions-vs-persistent-sessions
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
-
 
 # CSRF
 # https://docs.djangoproject.com/en/1.10/ref/settings/#csrf-cookie-name
 CSRF_COOKIE_NAME = "XSRF-TOKEN"
 CSRF_FAILURE_VIEW = "opal.views.csrf_failure"
 
-
 # ========== THIRD PARTY ==========
 # Django Axes
 AXES_LOCK_OUT_AT_FAILURE = False
-
 
 # Rest Framework
 REST_FRAMEWORK = {
@@ -259,7 +259,6 @@ REST_FRAMEWORK = {
         "rest_framework.authentication.SessionAuthentication",
     )
 }
-
 
 # ========== OPAL ==========
 # Testing
