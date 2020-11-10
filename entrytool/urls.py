@@ -1,5 +1,3 @@
-import os
-from django.conf.urls import url
 from opal.urls import urlpatterns as opatterns
 
 from django.contrib import admin
@@ -23,7 +21,3 @@ urlpatterns = [
 ]
 
 urlpatterns += opatterns
-
-if os.environ.get('OPAL_CONTEXT_PATH'):
-    pattern = r'^' + os.environ.get('OPAL_CONTEXT_PATH') + '/'
-    urlpatterns = [url(pattern, include(urlpatterns))]
