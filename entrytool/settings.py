@@ -17,8 +17,11 @@ SECRET_KEY = os.environ['OPAL_SECRET_KEY']
 DEBUG = False
 COMPRESS_ENABLED = False
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".honeur.org", ".herokuapp.com"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".honeur.org"]
+USE_X_FORWARDED_HOST = True
 
+if os.environ.get('OPAL_CONTEXT_PATH'):
+    FORCE_SCRIPT_NAME = os.environ.get('OPAL_CONTEXT_PATH')
 
 def str2bool(v):
     if not v: return False
