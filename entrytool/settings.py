@@ -17,7 +17,8 @@ SECRET_KEY = os.environ['OPAL_SECRET_KEY']
 DEBUG = False
 COMPRESS_ENABLED = False
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".honeur.org"]
+#ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".honeur.org"]
+ALLOWED_HOSTS = ["*"]
 
 def str2bool(v):
     if not v: return False
