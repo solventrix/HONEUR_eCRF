@@ -188,6 +188,7 @@ LANGUAGES = (
     ("en-us", _("English")),
     ("es", _("Spanish")),
     ("he", _("Hebrew")),
+    ("ru", _("Russian"))
 )
 
 LANGUAGE_CODE = "en-us"
@@ -298,7 +299,7 @@ OPAL_DEFAULT_SEARCH_FIELDS = [
 ]
 
 # ========== PROJECT ==========
-OPAL_BRAND_NAME = "ecrf"
+OPAL_BRAND_NAME = "ECRF Sint Petersburg"
 VERSION_NUMBER = "0.2"
 
 if os.environ.get('HEROKU_SLUG_COMMIT'):
