@@ -4,11 +4,13 @@ from django.db import transaction
 
 from opal.models import UserProfile
 
+import os
+
 class Command(BaseCommand):
     @transaction.atomic()
     def handle(self, *args, **options):
         user = User(username='super')
-        user.set_password('super1')
+        user.set_password(os.environ['SUPERUSERPASSWORD'])
         user.is_superuser = True
         user.is_staff = True
         user.save()

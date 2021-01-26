@@ -12,19 +12,22 @@ from entrytool.load_utils import (
 field_map = dict(
 
     # Demographics fields
-    external_identifier="Hospital_patient_ID",
+    external_identifier="hospital_patient_id",
 
     # Follow up fields
     follow_up_date="followup_date",
-    LDH="LDH",
-    beta2m="beta2m",
+    LDH="ldh",
+    beta2m="b2m",
     albumin="albumin",
     creatinin="creatinin",
     MCV="MCV",
     Hb="Hb",
     kappa_lambda_ratio="kappa_lambda_ratio",
     bone_lesions="bone_lesions",
-    hospital="hospital"
+    hospital="hospital",
+    mprotein_serum="mprotein_serum",
+    mprotein_urine="mprotein_urine",
+    mprotein_24h="mprotein_24h"
 )
 
 
@@ -58,12 +61,9 @@ class Command(BaseCommand):
                     "LDH": float_or_none(follow_up_row[field_map["LDH"]]),
                     "beta2m": float_or_none(follow_up_row[field_map["beta2m"]]),
                     "albumin": float_or_none(follow_up_row[field_map["albumin"]]),
-                    "creatinin": float_or_none(follow_up_row[field_map["creatinin"]]),
-                    "MCV": float_or_none(follow_up_row[field_map["MCV"]]),
-                    "Hb": float_or_none(follow_up_row[field_map["Hb"]]),
-                    "kappa_lambda_ratio": float_or_none(follow_up_row[field_map["kappa_lambda_ratio"]]),
-                    "bone_lesions": float_or_none(follow_up_row[field_map["bone_lesions"]]),
-                    "hospital": get_and_check_ll(row[field_map["hospital"]], Hospital),
+                    "mprotein_serum": float_or_none(follow_up_row[field_map["mprotein_serum"]]),
+                    "mprotein_urine": float_or_none(follow_up_row[field_map["mprotein_urine"]]),
+                    "mprotein_24h": float_or_none(follow_up_row[field_map["mprotein_24h"]]),
                 }
                 for k, v in followup_fields.items():
                     setattr(follow_up, k, v)

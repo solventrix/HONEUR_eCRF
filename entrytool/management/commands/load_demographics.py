@@ -17,17 +17,20 @@ field_map = dict(
     sex="Gender",
 
     # Patient Detail fields
+    status="status",
     hospital="Hospital",
     diag_date="date_of_diagnosis",
     smm_history="SMM_history",
     smm_history_date="SMM_History_date",
     mgus_history="MGUS_history",
     mgus_history_date="MGUS_history_date",
-    r_iss_stage="R_ISS_stage",
+    iss_stage="ISS_stage",
+    ds_stage="Durie_Salmon_Stage",
     pp_type="PP_type",
-    del_17p="Del17p",
-    t4_14="t_4_14",
+    del_17p="del17p",
+    t4_14="t(4;14)(p16;q32)",
     t4_16="t_4_16",
+    del_13="del13",
     death_date="date_of_death",
     death_cause="cause_of_death"
 )
@@ -59,25 +62,32 @@ class Command(BaseCommand):
                 sex = get_and_check_ll(row[field_map["sex"]], Gender)
 
                 patient_details = {
-                    "hospital": get_and_check_ll(row[field_map["hospital"]], Hospital),
+                    # "hospital": get_and_check_ll(row[field_map["hospital"]], Hospital),
                     "diag_date": cast_date(row[field_map["diag_date"]]),
-                    "smm_history": no_yes_unknown(row[field_map["smm_history"]]),
-                    "smm_history_date": cast_date(row[field_map["smm_history_date"]]),
-                    "mgus_history": no_yes_unknown(row[field_map["mgus_history"]]),
-                    "mgus_history_date": cast_date(row[field_map["mgus_history_date"]]),
-                    "r_iss_stage": get_and_check(
-                        row[field_map["r_iss_stage"]], PatientDetails.R_ISS_STAGES
+                    "status": get_and_check(
+                        row[field_map["status"]], PatientDetails.STATUSES
                     ),
-                    "pp_type": get_and_check(
-                        row[field_map["pp_type"]], PatientDetails.PP_TYPE_CHOICES
+                    # "smm_history": no_yes_unknown(row[field_map["smm_history"]]),
+                    # "smm_history_date": cast_date(row[field_map["smm_history_date"]]),
+                    # "mgus_history": no_yes_unknown(row[field_map["mgus_history"]]),
+                    # "mgus_history_date": cast_date(row[field_map["mgus_history_date"]]),
+                    "iss_stage": get_and_check(
+                        row[field_map["iss_stage"]], PatientDetails.R_ISS_STAGES
                     ),
+                    "ds_stage": get_and_check(
+                        row[field_map["ds_stage"]], PatientDetails.R_ISS_STAGES
+                    ),
+                    # "pp_type": get_and_check(
+                    #     row[field_map["pp_type"]], PatientDetails.PP_TYPE_CHOICES
+                    # ),
                     "del_17p": no_yes_unknown(row[field_map["del_17p"]],),
+                    "del_13": no_yes_unknown(row[field_map["del_13"]],),
                     "t4_14": no_yes_unknown(row[field_map["t4_14"]],),
-                    "t4_16": no_yes_unknown(row[field_map["t4_16"]],),
+                    # "t4_16": no_yes_unknown(row[field_map["t4_16"]],),
                     "death_date": cast_date(row[field_map["death_date"]]),
-                    "death_cause": get_and_check(
-                        row[field_map["death_cause"]], PatientDetails.DEATH_CAUSES
-                    ),
+                    # "death_cause": get_and_check(
+                    #     row[field_map["death_cause"]], PatientDetails.DEATH_CAUSES
+                    # ),
                 }
                 patient = Patient.objects.create()
                 patient.create_episode()

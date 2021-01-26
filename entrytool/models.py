@@ -74,6 +74,7 @@ class PatientDetails(models.PatientSubrecord):
         ("Stage I", _("Stage I")),
         ("Stage II", _("Stage II")),
         ("Stage III", _("Stage III")),
+        ("Unknown", _("Unknown"))
     )
     PP_TYPE_CHOICES = (
         ("IgG", _("IgG")),
@@ -99,13 +100,17 @@ class PatientDetails(models.PatientSubrecord):
     mgus_history_date = fields.DateField(
         blank=True, null=True, verbose_name=_("Date of MGUS Diagnosis")
     )
-    r_iss_stage = fields.CharField(
-        max_length=10, choices=R_ISS_STAGES, verbose_name=_("R-ISS Stage")
+    iss_stage = fields.CharField(
+        max_length=10, choices=R_ISS_STAGES, verbose_name=_("ISS Stage")
+    )
+    ds_stage = fields.CharField(
+        max_length=10, choices=R_ISS_STAGES, verbose_name=_("DS Stage")
     )
     pp_type = fields.CharField(
         max_length=50, choices=PP_TYPE_CHOICES, verbose_name=_("PP Type")
     )
     del_17p = fields.CharField(max_length=10, choices=CHOICES, verbose_name=_("del(17)p"))
+    del_13 = fields.CharField(max_length=10, choices=CHOICES, verbose_name=_("del13"))
     t4_14 = fields.CharField(max_length=10, choices=CHOICES, verbose_name=_("t(4;14)"))
     t4_16 = fields.CharField(max_length=10, choices=CHOICES, verbose_name=_("t(4;16)"))
     death_date = fields.DateField(
@@ -222,7 +227,7 @@ class Response(models.EpisodeSubrecord):
         ("Immunophenotypic complete response", _("Immunophenotypic complete response")),
         ("Stable disease", _("Stable disease")),
         ("Progressive disease", _("Progressive disease")),
-        ("Response unknown", _("Response unknown"))
+        ("Response unknown/NA", _("Response unknown/NA"))
     )
     response_date = fields.DateField(verbose_name=_("Response Date"))
     response = fields.CharField(max_length=50, choices=RESPONSES, verbose_name=_("Response"))
@@ -241,11 +246,9 @@ class FollowUp(models.PatientSubrecord):
     LDH = fields.FloatField(blank=True, null=True, verbose_name=_("LDH"))
     beta2m = fields.FloatField(blank=True, null=True, verbose_name=_("beta2m"))
     albumin = fields.FloatField(blank=True, null=True, verbose_name=_("Albumin"))
-    creatinin = fields.FloatField(blank=True, null=True, verbose_name=_("Creatinin"))
-    MCV = fields.FloatField(blank=True, null=True, verbose_name=_("MCV"))
-    Hb = fields.FloatField(blank=True, null=True, verbose_name=_("Hb"))
-    kappa_lambda_ratio = fields.FloatField(blank=True, null=True, verbose_name=_("Kappa Lambda Ratio"))
-    bone_lesions = fields.FloatField(blank=True, null=True, verbose_name=_("Bone Lesions"))
+    mprotein_urine = fields.FloatField(blank=True, null=True, verbose_name=_("MProtein Urine"))
+    mprotein_serum = fields.FloatField(blank = True, null = True ,verbose_name=("MProtein Serum"))
+    mprotein_24h = fields.FloatField(blank = True, null = True, verbose_name=_("Mprotein in 24 hour urine"))
 
     class Meta:
         verbose_name = _("Follow-up")

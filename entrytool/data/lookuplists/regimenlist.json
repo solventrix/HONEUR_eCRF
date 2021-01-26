@@ -1,22 +1,1384 @@
 {
   "regimenlist": [
     {
-      "name": "VMP"
+      "name": "CTD (Cyclophosphamide.Dexamethasone.Thalidomide)"
     },
-    {
-      "name": "VCD"
-    },
-    {
-      "name": "VTD"
-    },
-    {
-      "name": "Vd"
-    },
-    {
-      "name": "Dara"
-    },
-    {
-      "name": "Kd"
-    }
+{
+  "name": "Etoposide"
+},
+{
+  "name": "Melphalan"
+},
+{
+  "name": "Melphalan.bortezomib.prednisolone"
+},
+{
+  "name": "RD (Dexamethasone.lenalidomide)"
+},
+{
+  "name": "Autologous peripheral blood stem cell transplant"
+},
+{
+  "name": "Dexamethasone.Melphalan"
+},
+{
+  "name": "Vd (Dexamethasone.bortezomib)"
+},
+{
+  "name": "Clarithromycin"
+},
+{
+  "name": "Dexamethasone"
+},
+{
+  "name": "Cyclophosphamide.Dexamethasone"
+},
+{
+  "name": "Dexamethasone.Doxorubicin.Vincristine"
+},
+{
+  "name": "Cyclophosphamide"
+},
+{
+  "name": "Cyclophosphamide.Lomustine.Melphalan.Methylprednisolone.Vincristine"
+},
+{
+  "name": "Dexamethasone.Lomustine"
+},
+{
+  "name": "MPT (Melphalan.Prednisone.Thalidomide)"
+},
+{
+  "name": "Dexamethasone.Melphalan.bortezomib"
+},
+{
+  "name": "Melphalan.prednisolone"
+},
+{
+  "name": "bortezomib.doxorubicin liposome"
+},
+{
+  "name": "PAD"
+},
+{
+  "name": "lenalidomide"
+},
+{
+  "name": "VCD (Cyclophosphamide.Dexamethasone.bortezomib)"
+},
+{
+  "name": "Dexamethasone.bortezomib.doxorubicin liposome"
+},
+{
+  "name": "Melphalan.fludarabine"
+},
+{
+  "name": "Methotrexate"
+},
+{
+  "name": "bortezomib"
+},
+{
+  "name": "bendamustine.prednisolone"
+},
+{
+  "name": "Melphalan.Thalidomide.prednisolone"
+},
+{
+  "name": "INVESTIGATIONAL DRUG"
+},
+{
+  "name": "RVD (Dexamethasone.bortezomib.lenalidomide)"
+},
+{
+  "name": "denosumab"
+},
+{
+  "name": "Dexamethasone.bendamustine.bortezomib"
+},
+{
+  "name": "pomalidomide"
+},
+{
+  "name": "Cyclophosphamide.Lomustine.Methylprednisolone.Vincristine"
+},
+{
+  "name": "Methylprednisolone.Thalidomide"
+},
+{
+  "name": "Cyclophosphamide.Doxorubicin.Lomustine.Melphalan.Thalidomide.Vincristine.prednisolone"
+},
+{
+  "name": "Thalidomide"
+},
+{
+  "name": "VTD (Dexamethasone.Thalidomide.bortezomib)"
+},
+{
+  "name": "VMP (Melphalan.Prednisone.bortezomib)"
+},
+{
+  "name": "Bleomycin.Cyclophosphamide.Melphalan.Vincristine"
+},
+{
+  "name": "Dexamethasone.bendamustine"
+},
+{
+  "name": "Cyclophosphamide.Lomustine.Melphalan.Vincristine.prednisolone"
+},
+{
+  "name": "Cyclophosphamide.Lomustine.Vincristine.prednisolone"
+},
+{
+  "name": "Cyclophosphamide.Doxorubicin.Lomustine.Vincristine.prednisolone"
+},
+{
+  "name": "Cyclophosphamide.Doxorubicin.Prednisone"
+},
+{
+  "name": "Cyclophosphamide.Dexamethasone.lenalidomide"
+},
+{
+  "name": "TD (Dexamethasone.Thalidomide)"
+},
+{
+  "name": "Melphalan.Methylprednisolone.bortezomib"
+},
+{
+  "name": "Clarithromycin.Dexamethasone.lenalidomide"
+},
+{
+  "name": "Cyclophosphamide.Dexamethasone.Doxorubicin"
+},
+{
+  "name": "Interferon Type II"
+},
+{
+  "name": "MP (Melphalan.Prednisone)"
+},
+{
+  "name": "Cyclophosphamide.bortezomib"
+},
+{
+  "name": "Prednisone.bendamustine"
+},
+{
+  "name": "Cyclophosphamide.prednisolone"
+},
+{
+  "name": "Dexamethasone.Melphalan.Thalidomide"
+},
+{
+  "name": "Cyclophosphamide.Dexamethasone.Vincristine"
+},
+{
+  "name": "Cyclophosphamide.Melphalan"
+},
+{
+  "name": "Lomustine.Melphalan.prednisolone"
+},
+{
+  "name": "Cyclophosphamide.Lomustine.Melphalan.prednisolone"
+},
+{
+  "name": "Cyclophosphamide.Dexamethasone.Lomustine"
+},
+{
+  "name": "bendamustine"
+},
+{
+  "name": "Interferon Alfa-2a"
+},
+{
+  "name": "bortezomib.panobinostat"
+},
+{
+  "name": "Cyclophosphamide.Dexamethasone.Doxorubicin.Melphalan.Vincristine.bortezomib.prednisolone"
+},
+{
+  "name": "bendamustine.lenalidomide"
+},
+{
+  "name": "Melphalan.bortezomib"
+},
+{
+  "name": "Cyclophosphamide.Methylprednisolone"
+},
+{
+  "name": "Carmustine.Cyclophosphamide.Melphalan.Vincristine.prednisolone"
+},
+{
+  "name": "prednisolone"
+},
+{
+  "name": "Cyclophosphamide.Prednisone.Thalidomide"
+},
+{
+  "name": "Cyclophosphamide.Prednisone.bortezomib"
+},
+{
+  "name": "Cyclophosphamide.Lomustine.Melphalan.Prednisone.Vincristine"
+},
+{
+  "name": "Cyclophosphamide.Thalidomide.prednisolone"
+},
+{
+  "name": "Cyclophosphamide.Thalidomide.Vincristine.prednisolone"
+},
+{
+  "name": "Cyclophosphamide.Vincristine.prednisolone"
+},
+{
+  "name": "Cyclophosphamide.Melphalan.prednisolone"
+},
+{
+  "name": "Vinblastine"
+},
+{
+  "name": "Cisplatin.Cyclophosphamide.Dexamethasone.Etoposide"
+},
+{
+  "name": "Thalidomide.bortezomib"
+},
+{
+  "name": "Cisplatin.Cyclophosphamide.Dexamethasone.Doxorubicin.Etoposide"
+},
+{
+  "name": "Cyclophosphamide.Lomustine.Melphalan.Vincristine.bortezomib.prednisolone"
+},
+{
+  "name": "Cyclophosphamide.Dexamethasone.doxorubicin liposome"
+},
+{
+  "name": "Dexamethasone.Fotemustine.bortezomib"
+},
+{
+  "name": "Melphalan.Prednisone.Thalidomide.bortezomib"
+},
+{
+  "name": "Cyclophosphamide.Dexamethasone.Melphalan.bortezomib"
+},
+{
+  "name": "Dexamethasone.Doxorubicin"
+},
+{
+  "name": "Cyclophosphamide.lenalidomide.prednisolone"
+},
+{
+  "name": "Carmustine.Cyclophosphamide.Melphalan.prednisolone"
+},
+{
+  "name": "Cyclophosphamide.Lomustine.prednisolone"
+},
+{
+  "name": "Prednisone.Thalidomide.bortezomib"
+},
+{
+  "name": "Prednisone.bortezomib.lenalidomide"
+},
+{
+  "name": "Doxorubicin.Prednisone.bortezomib"
+},
+{
+  "name": "Doxorubicin.bortezomib"
+},
+{
+  "name": "Azacitidine"
+},
+{
+  "name": "Carboplatin.Cytarabine.Dexamethasone.Etoposide"
+},
+{
+  "name": "Cyclophosphamide.Doxorubicin"
+},
+{
+  "name": "Cisplatin.Dexamethasone.Etoposide"
+},
+{
+  "name": "Melphalan.Thiotepa"
+},
+{
+  "name": "Cyclophosphamide.Dexamethasone.Thalidomide.bortezomib"
+},
+{
+  "name": "Doxorubicin.Melphalan.Prednisone.bortezomib"
+},
+{
+  "name": "Cyclophosphamide.Prednisone"
+},
+{
+  "name": "Cyclophosphamide.bortezomib.prednisolone"
+},
+{
+  "name": "bortezomib.prednisolone"
+},
+{
+  "name": "Cyclophosphamide.Doxorubicin.Lomustine.Melphalan.Methylprednisolone"
+},
+{
+  "name": "PanoVD (Dexamethasone.bortezomib.panobinostat)"
+},
+{
+  "name": "Melphalan.Methylprednisolone.Thalidomide"
+},
+{
+  "name": "Methylprednisolone.bendamustine"
+},
+{
+  "name": "Epirubicin.Etoposide.Ifosfamide"
+},
+{
+  "name": "Betamethasone.Cyclophosphamide.Lomustine.Melphalan.Vincristine"
+},
+{
+  "name": "Cyclophosphamide.Lomustine.Melphalan.Triamcinolone.Vincristine"
+},
+{
+  "name": "Cyclophosphamide.Lomustine.Melphalan.Vincristine"
+},
+{
+  "name": "Cyclophosphamide.Dexamethasone.Lomustine.Melphalan.Vincristine"
+},
+{
+  "name": "Cisplatin.Cyclophosphamide.Doxorubicin.Etoposide"
+},
+{
+  "name": "Carmustine.Cyclophosphamide.Melphalan.Prednisone.Vincristine"
+},
+{
+  "name": "Carmustine.Dexamethasone.Doxorubicin.Vincristine"
+},
+{
+  "name": "Cyclophosphamide.Melphalan.Methylprednisolone"
+},
+{
+  "name": "Cyclophosphamide.Lomustine.Melphalan.Vinblastine"
+},
+{
+  "name": "Clarithromycin.Dexamethasone.Thalidomide"
+},
+{
+  "name": "Prednisone.lenalidomide"
+},
+{
+  "name": "fondaparinux"
+},
+{
+  "name": "bortezomib.lenalidomide"
+},
+{
+  "name": "Melphalan.Thalidomide"
+},
+{
+  "name": "Prednisone"
+},
+{
+  "name": "Prednisone.Thalidomide"
+},
+{
+  "name": "Cyclophosphamide.Thalidomide"
+},
+{
+  "name": "Interferon Alfa-2b"
+},
+{
+  "name": "Dexamethasone.pomalidomide"
+},
+{
+  "name": "Methylprednisolone"
+},
+{
+  "name": "Cyclophosphamide.Melphalan.bortezomib.prednisolone"
+},
+{
+  "name": "Melphalan.Methylprednisolone"
+},
+{
+  "name": "Dexamethasone.Etoposide.Lomustine.Vinblastine"
+},
+{
+  "name": "Dexamethasone.bendamustine.lenalidomide"
+},
+{
+  "name": "Cyclophosphamide.vinorelbine"
+},
+{
+  "name": "Doxorubicin"
+},
+{
+  "name": "Betamethasone.Clarithromycin"
+},
+{
+  "name": "Betamethasone"
+},
+{
+  "name": "Etoposide.Methylprednisolone"
+},
+{
+  "name": "Cyclophosphamide.Dexamethasone.Doxorubicin.Vincristine"
+},
+{
+  "name": "Cyclophosphamide.Melphalan.Vincristine.prednisolone"
+},
+{
+  "name": "Cyclophosphamide.Dexamethasone.Doxorubicin.Lomustine"
+},
+{
+  "name": "Dexamethasone.Mitoxantrone.Vincristine"
+},
+{
+  "name": "Dexamethasone.Vinblastine"
+},
+{
+  "name": "Cyclophosphamide.Doxorubicin.Vincristine"
+},
+{
+  "name": "Dexamethasone.bortezomib.doxorubicin liposome.lenalidomide"
+},
+{
+  "name": "Cyclophosphamide.Dexamethasone.Doxorubicin.Prednisone.Vincristine"
+},
+{
+  "name": "Cisplatin.Cyclophosphamide.Dexamethasone.Doxorubicin.Etoposide.Thalidomide.bortezomib"
+},
+{
+  "name": "Cisplatin.Cytarabine.Dexamethasone"
+},
+{
+  "name": "Dexamethasone.bendamustine.bortezomib.lenalidomide"
+},
+{
+  "name": "KRd (Dexamethasone.carfilzomib.lenalidomide)"
+},
+{
+  "name": "Dexamethasone.Melphalan.Prednisone.bortezomib.lenalidomide"
+},
+{
+  "name": "Carmustine.fludarabine"
+},
+{
+  "name": "Cisplatin.Cytarabine.Dexamethasone.Etoposide"
+},
+{
+  "name": "Thalidomide.prednisolone"
+},
+{
+  "name": "Carmustine.Cyclophosphamide.Melphalan.Methylprednisolone.Vincristine"
+},
+{
+  "name": "Chlorambucil.Prednisone"
+},
+{
+  "name": "Doxorubicin.Methylprednisolone.Vincristine"
+},
+{
+  "name": "Cyclophosphamide.Dexamethasone.bortezomib.lenalidomide"
+},
+{
+  "name": "bendamustine.bortezomib"
+},
+{
+  "name": "Carmustine.Cyclophosphamide.Doxorubicin.Melphalan.Prednisone.Vincristine"
+},
+{
+  "name": "Kd (Dexamethasone.carfilzomib)"
+},
+{
+  "name": "Cyclophosphamide.Dexamethasone.pomalidomide"
+},
+{
+  "name": "Cyclophosphamide.Melphalan.Prednisone.Vincristine"
+},
+{
+  "name": "Cyclophosphamide.Melphalan.Prednisone.Vinblastine"
+},
+{
+  "name": "Dexamethasone.Doxorubicin.Prednisone.Vincristine"
+},
+{
+  "name": "Cyclophosphamide.Dexamethasone.Lomustine.Melphalan.Prednisone.Vincristine"
+},
+{
+  "name": "Cyclophosphamide.Melphalan.Methylprednisolone.Prednisone.Vincristine"
+},
+{
+  "name": "Prednisone.bortezomib"
+},
+{
+  "name": "Doxorubicin.Lomustine.Methylprednisolone.Vincristine"
+},
+{
+  "name": "Melphalan.Methylprednisolone.Vincristine"
+},
+{
+  "name": "Cyclophosphamide.Melphalan.Methylprednisolone.Vincristine"
+},
+{
+  "name": "Cyclophosphamide.Dexamethasone.Doxorubicin.bortezomib"
+},
+{
+  "name": "Dexamethasone.Doxorubicin.lenalidomide"
+},
+{
+  "name": "Dexamethasone.INVESTIGATIONAL DRUG"
+},
+{
+  "name": "Dexamethasone.Doxorubicin.Melphalan.Thalidomide.Vincristine"
+},
+{
+  "name": "Melphalan.Prednisone.lenalidomide"
+},
+{
+  "name": "Cyclophosphamide.Lomustine.Melphalan.bortezomib.prednisolone"
+},
+{
+  "name": "Cyclophosphamide.Dexamethasone.Melphalan"
+},
+{
+  "name": "Cisplatin.Cyclophosphamide.Dexamethasone.Doxorubicin.Etoposide.Thalidomide"
+},
+{
+  "name": "Hydrocortisone"
+},
+{
+  "name": "Cytarabine.Mitoxantrone"
+},
+{
+  "name": "Hydrocortisone.bendamustine.rituximab"
+},
+{
+  "name": "carfilzomib"
+},
+{
+  "name": "Carmustine.Cyclophosphamide.Melphalan.Vincristine"
+},
+{
+  "name": "Chlorambucil.Prednisone.Thalidomide"
+},
+{
+  "name": "Cyclophosphamide.Etoposide"
+},
+{
+  "name": "Cyclophosphamide.lenalidomide"
+},
+{
+  "name": "fludarabine"
+},
+{
+  "name": "Cyclophosphamide.Lomustine.Melphalan.Thalidomide.Vincristine.prednisolone"
+},
+{
+  "name": "Cyclophosphamide.Epirubicin.Lomustine.Melphalan.prednisolone"
+},
+{
+  "name": "Carmustine.Cyclophosphamide.Dexamethasone.Doxorubicin.Melphalan.Prednisone.Vincristine"
+},
+{
+  "name": "Dexamethasone.Idarubicin"
+},
+{
+  "name": "Cisplatin.Cyclophosphamide.Doxorubicin.Etoposide.bortezomib"
+},
+{
+  "name": "Dexamethasone.Doxorubicin.Melphalan.bortezomib"
+},
+{
+  "name": "Cyclophosphamide.Dexamethasone.Melphalan.Thalidomide"
+},
+{
+  "name": "Cyclophosphamide.Prednisone.lenalidomide"
+},
+{
+  "name": "Cyclophosphamide.Doxorubicin.Lomustine.Methylprednisolone"
+},
+{
+  "name": "Cyclophosphamide.Doxorubicin.Lomustine.prednisolone"
+},
+{
+  "name": "Cyclophosphamide.Doxorubicin.Lomustine.Vincristine"
+},
+{
+  "name": "Dexamethasone.Thalidomide.bendamustine"
+},
+{
+  "name": "Dexamethasone.Doxorubicin.Thalidomide"
+},
+{
+  "name": "Cyclophosphamide.Methylprednisolone.Thalidomide"
+},
+{
+  "name": "Dexamethasone.Melphalan.bortezomib.prednisolone"
+},
+{
+  "name": "Dexamethasone.Vincristine.doxorubicin liposome"
+},
+{
+  "name": "Melphalan.Methylprednisolone.Thalidomide.bortezomib"
+},
+{
+  "name": "Carmustine.Doxorubicin.bortezomib"
+},
+{
+  "name": "Carmustine.Cyclophosphamide.Doxorubicin.Vincristine"
+},
+{
+  "name": "Cyclophosphamide.Doxorubicin.Lomustine.Melphalan"
+},
+{
+  "name": "Carmustine.Cyclophosphamide.Prednisone.Vinblastine"
+},
+{
+  "name": "Dexamethasone.Melphalan.bortezomib.lenalidomide.prednisolone"
+},
+{
+  "name": "lenalidomide.prednisolone"
+},
+{
+  "name": "Dexamethasone.Melphalan.lenalidomide"
+},
+{
+  "name": "Cyclophosphamide.Dexamethasone.bortezomib.doxorubicin liposome"
+},
+{
+  "name": "Carboplatin.Carmustine.Melphalan"
+},
+{
+  "name": "Cisplatin.Cyclophosphamide.Doxorubicin.Etoposide.Thalidomide"
+},
+{
+  "name": "Methylprednisolone.Mitoxantrone.Vincristine"
+},
+{
+  "name": "INVESTIGATIONAL DRUG.bortezomib"
+},
+{
+  "name": "Cyclophosphamide.Lomustine.Prednisone.Vincristine"
+},
+{
+  "name": "Cyclophosphamide.Dexamethasone.Doxorubicin.Thalidomide.bortezomib"
+},
+{
+  "name": "Cyclophosphamide.Melphalan.Vinblastine.bortezomib.prednisolone"
+},
+{
+  "name": "Carmustine.Cyclophosphamide.Doxorubicin.Prednisone.Vincristine"
+},
+{
+  "name": "COMBINATIONS OF ANTINEOPLASTI"
+},
+{
+  "name": "Doxorubicin.Lomustine.Vincristine.prednisolone"
+},
+{
+  "name": "Cyclophosphamide.Doxorubicin.Lomustine.Methylprednisolone.Vincristine"
+},
+{
+  "name": "Carmustine.Doxorubicin.Methylprednisolone.Vincristine"
+},
+{
+  "name": "Methylprednisolone.lenalidomide"
+},
+{
+  "name": "Cyclophosphamide.Lomustine.Melphalan.Vinblastine.prednisolone"
+},
+{
+  "name": "Methylprednisolone.bendamustine.bortezomib"
+},
+{
+  "name": "Dexamethasone.Melphalan.Thalidomide.bortezomib"
+},
+{
+  "name": "Dexamethasone.Doxorubicin.Thalidomide.Vincristine"
+},
+{
+  "name": "Cyclophosphamide.Doxorubicin.Lomustine.Melphalan.prednisolone"
+},
+{
+  "name": "Cyclophosphamide.Methylprednisolone.lenalidomide"
+},
+{
+  "name": "Cytarabine"
+},
+{
+  "name": "Doxorubicin.Vincristine"
+},
+{
+  "name": "Cyclophosphamide.Dexamethasone.Melphalan.Thalidomide.bortezomib"
+},
+{
+  "name": "Dexamethasone.Idarubicin.bortezomib"
+},
+{
+  "name": "Daunorubicin.Dexamethasone.bortezomib"
+},
+{
+  "name": "bortezomib.lenalidomide.prednisolone"
+},
+{
+  "name": "Cyclophosphamide.Lomustine.bortezomib"
+},
+{
+  "name": "Carmustine.Cyclophosphamide.Etoposide"
+},
+{
+  "name": "Dexamethasone.Melphalan.bortezomib.lenalidomide"
+},
+{
+  "name": "Dexamethasone.Epirubicin.Ifosfamide"
+},
+{
+  "name": "Fluocortolone.Melphalan"
+},
+{
+  "name": "Methylprednisolone.bortezomib"
+},
+{
+  "name": "Cyclophosphamide.Methylprednisolone.bortezomib"
+},
+{
+  "name": "Cyclophosphamide.Dexamethasone.Melphalan.Vincristine"
+},
+{
+  "name": "Dexamethasone.Etoposide.Vincristine"
+},
+{
+  "name": "Busulfan.Thiotepa.fludarabine"
+},
+{
+  "name": "Cyclophosphamide.Prednisone.Vincristine"
+},
+{
+  "name": "Doxorubicin.Lomustine.Prednisone.Vincristine"
+},
+{
+  "name": "Cyclophosphamide.Dexamethasone.Lomustine.Melphalan"
+},
+{
+  "name": "Cyclophosphamide.Dexamethasone.Doxorubicin.Lomustine.Melphalan"
+},
+{
+  "name": "Cyclophosphamide.Doxorubicin.Lomustine.Melphalan.Vincristine"
+},
+{
+  "name": "Interferon Alfa-2a.Thalidomide"
+},
+{
+  "name": "Cisplatin.Dexamethasone.Thalidomide"
+},
+{
+  "name": "Cyclophosphamide.Dexamethasone.Idarubicin.Vincristine"
+},
+{
+  "name": "Cyclophosphamide.Methylprednisolone.Prednisone.Vincristine"
+},
+{
+  "name": "Carmustine.Cyclophosphamide.Dexamethasone.Melphalan.Vincristine"
+},
+{
+  "name": "Cyclophosphamide.Dexamethasone.Doxorubicin.Melphalan.lenalidomide"
+},
+{
+  "name": "Dexamethasone.Prednisone.bendamustine.pomalidomide"
+},
+{
+  "name": "Etoposide.Melphalan"
+},
+{
+  "name": "Cisplatin.Cyclophosphamide.Dexamethasone.Etoposide.bortezomib"
+},
+{
+  "name": "Cisplatin.Etoposide.Hydrocortisone"
+},
+{
+  "name": "Cyclophosphamide.Cytarabine.Methylprednisolone.Vincristine"
+},
+{
+  "name": "Cyclophosphamide.Cytarabine.Dexamethasone.Vincristine"
+},
+{
+  "name": "Cyclophosphamide.Cytarabine.Vincristine.prednisolone"
+},
+{
+  "name": "Cyclophosphamide.Doxorubicin.Lomustine.Melphalan.Vincristine.prednisolone"
+},
+{
+  "name": "Melphalan.treosulfan"
+},
+{
+  "name": "Cyclophosphamide.Doxorubicin.prednisolone"
+},
+{
+  "name": "Chlorambucil"
+},
+{
+  "name": "Dexamethasone.Doxorubicin.Vinblastine"
+},
+{
+  "name": "Carmustine.Melphalan.Prednisone.Vincristine"
+},
+{
+  "name": "Cortisone"
+},
+{
+  "name": "Cyclophosphamide.Dexamethasone.Doxorubicin.Melphalan.bortezomib"
+},
+{
+  "name": "Carmustine.Cyclophosphamide.Dexamethasone.Vincristine"
+},
+{
+  "name": "Betamethasone.Melphalan.bortezomib"
+},
+{
+  "name": "Dexamethasone.Thalidomide.doxorubicin liposome"
+},
+{
+  "name": "Melphalan.Methylprednisolone.Thalidomide.Vincristine"
+},
+{
+  "name": "Dexamethasone.fondaparinux.lenalidomide"
+},
+{
+  "name": "Melphalan.Methylprednisolone.Vinblastine"
+},
+{
+  "name": "Melphalan.Vinblastine.prednisolone"
+},
+{
+  "name": "Cytarabine.Dexamethasone"
+},
+{
+  "name": "Prednisone.Thalidomide.bendamustine"
+},
+{
+  "name": "doxorubicin liposome"
+},
+{
+  "name": "Busulfan.Melphalan"
+},
+{
+  "name": "ENZYME INHIBITORS"
+},
+{
+  "name": "Dexamethasone.Doxorubicin.Vincristine.bortezomib"
+},
+{
+  "name": "bendamustine.bortezomib.prednisolone"
+},
+{
+  "name": "Minocycline"
+},
+{
+  "name": "Cyclophosphamide.Methylprednisolone.Vinblastine"
+},
+{
+  "name": "Cyclophosphamide.Dexamethasone.bortezomib.doxorubicin liposome.lenalidomide"
+},
+{
+  "name": "Cisplatin.Cyclophosphamide.Doxorubicin.bortezomib.lenalidomide"
+},
+{
+  "name": "Interferon Alfa-2b.Prednisone"
+},
+{
+  "name": "Dexamethasone.Vincristine.bendamustine"
+},
+{
+  "name": "Cisplatin.Doxorubicin.Etoposide.Thalidomide.bortezomib"
+},
+{
+  "name": "CISPLATIN W/ETOPOSIDE.Dexamethasone.Doxorubicin.Thalidomide.bortezomib"
+},
+{
+  "name": "Cycloserine.Methotrexate"
+},
+{
+  "name": "Cytarabine.Hydrocortisone.Methotrexate"
+},
+{
+  "name": "Dexamethasone.Melphalan.Vincristine"
+},
+{
+  "name": "Cisplatin.Cyclophosphamide.Dexamethasone.Doxorubicin.Thalidomide"
+},
+{
+  "name": "Dexamethasone.Doxorubicin.Melphalan.Vincristine"
+},
+{
+  "name": "Lomustine.Melphalan.Vincristine"
+},
+{
+  "name": "Busulfan.Idarubicin.Melphalan"
+},
+{
+  "name": "Carmustine.Cyclophosphamide.Doxorubicin.Prednisone"
+},
+{
+  "name": "Cyclophosphamide.Methylprednisolone.Vincristine"
+},
+{
+  "name": "Cisplatin.Cyclophosphamide.Dexamethasone.Doxorubicin"
+},
+{
+  "name": "Dexamethasone.Vincristine"
+},
+{
+  "name": "Vincristine"
+},
+{
+  "name": "Carmustine.Cyclophosphamide.Vincristine.prednisolone"
+},
+{
+  "name": "Cyclophosphamide.Melphalan.Vincristine"
+},
+{
+  "name": "Cyclophosphamide.Vincristine"
+},
+{
+  "name": "Prednisone.bendamustine.bortezomib"
+},
+{
+  "name": "Carmustine.Doxorubicin.Vincristine"
+},
+{
+  "name": "Doxorubicin.Thalidomide"
+},
+{
+  "name": "Cyclophosphamide.Melphalan.Prednisone.Thalidomide.Vincristine"
+},
+{
+  "name": "Dexamethasone.Doxorubicin.bortezomib.lenalidomide"
+},
+{
+  "name": "Cyclophosphamide.Dexamethasone.prednisolone"
+},
+{
+  "name": "Melphalan.Mitoxantrone.prednisolone"
+},
+{
+  "name": "Dexamethasone.Doxorubicin.Melphalan"
+},
+{
+  "name": "Dexamethasone.Melphalan.Mitoxantrone"
+},
+{
+  "name": "Cyclophosphamide.Dexamethasone.Melphalan.bortezomib.lenalidomide"
+},
+{
+  "name": "Carmustine.Cyclophosphamide.Melphalan.Thalidomide.Vincristine"
+},
+{
+  "name": "Doxorubicin.Vincristine.prednisolone"
+},
+{
+  "name": "Dexamethasone.Doxorubicin.Mitoxantrone.bortezomib"
+},
+{
+  "name": "Carmustine.Cyclophosphamide.Melphalan.Prednisone"
+},
+{
+  "name": "Dexamethasone.Interferon Type II"
+},
+{
+  "name": "Dexamethasone.INVESTIGATIONAL DRUG.bortezomib"
+},
+{
+  "name": "Dexamethasone.Thalidomide.bortezomib.doxorubicin liposome"
+},
+{
+  "name": "Dexamethasone.Minocycline.Thalidomide.bortezomib"
+},
+{
+  "name": "Minocycline.Thalidomide.bortezomib"
+},
+{
+  "name": "Cyclophosphamide.Lomustine.Melphalan.Vincristine.bortezomib"
+},
+{
+  "name": "Melphalan.lenalidomide"
+},
+{
+  "name": "Cyclophosphamide.Doxorubicin.Vinblastine"
+},
+{
+  "name": "Lomustine.Prednisone.Vinblastine"
+},
+{
+  "name": "Dexamethasone.Muromonab-CD3.bortezomib"
+},
+{
+  "name": "Cyclophosphamide.Melphalan.Prednisone.bortezomib"
+},
+{
+  "name": "COMBINATIONS OF ANTINEOPLASTI.Dexamethasone.bortezomib.doxorubicin liposome"
+},
+{
+  "name": "Lomustine.Melphalan.bortezomib.prednisolone"
+},
+{
+  "name": "Cyclophosphamide.Doxorubicin.Methylprednisolone"
+},
+{
+  "name": "Melphalan.Thalidomide.bortezomib.prednisolone"
+},
+{
+  "name": "Cyclophosphamide.Doxorubicin.Prednisone.Vincristine"
+},
+{
+  "name": "Doxorubicin.Interferon Type II.bortezomib.lenalidomide"
+},
+{
+  "name": "Doxorubicin.bendamustine"
+},
+{
+  "name": "Carmustine.Cyclophosphamide.Melphalan.Prednisone.bortezomib"
+},
+{
+  "name": "Carmustine.Epirubicin.Methotrexate.Vinblastine"
+},
+{
+  "name": "Cortisone.bortezomib"
+},
+{
+  "name": "Cortisone.Thalidomide"
+},
+{
+  "name": "Cortisone.Thalidomide.bendamustine"
+},
+{
+  "name": "Dexamethasone.Doxorubicin.bendamustine.bortezomib"
+},
+{
+  "name": "Cyclophosphamide.Dexamethasone.Thalidomide.lenalidomide"
+},
+{
+  "name": "Bleomycin.Cyclophosphamide.Prednisone"
+},
+{
+  "name": "Cyclophosphamide.Doxorubicin.Melphalan.Vincristine.prednisolone"
+},
+{
+  "name": "Dexamethasone.Melphalan.Prednisone.bortezomib"
+},
+{
+  "name": "Cyclophosphamide.Dexamethasone.Thalidomide.doxorubicin liposome"
+},
+{
+  "name": "Cyclophosphamide.Dexamethasone.Doxorubicin.Vinblastine"
+},
+{
+  "name": "Cyclophosphamide.Melphalan.Prednisone"
+},
+{
+  "name": "Cytarabine.Dexamethasone.Methotrexate.bendamustine"
+},
+{
+  "name": "Dexamethasone.Epirubicin.Vincristine"
+},
+{
+  "name": "Dexamethasone.Doxorubicin.Thalidomide.bortezomib"
+},
+{
+  "name": "Dexamethasone.Idarubicin.Vincristine"
+},
+{
+  "name": "Melphalan.rituximab"
+},
+{
+  "name": "Dexamethasone.lenalidomide.rituximab"
+},
+{
+  "name": "Vorinostat.bortezomib"
+},
+{
+  "name": "Daunorubicin.Dexamethasone.Vincristine"
+},
+{
+  "name": "OTHER ANTINEOPLASTIC AGENTS"
+},
+{
+  "name": "Dexamethasone.bortezomib.dasatinib"
+},
+{
+  "name": "Carmustine.Cyclophosphamide.Doxorubicin.Melphalan.Vincristine.prednisolone"
+},
+{
+  "name": "Doxorubicin.Melphalan.Prednisone.Vincristine"
+},
+{
+  "name": "Cyclophosphamide.Doxorubicin.Vincristine.lenalidomide"
+},
+{
+  "name": "Interferon Type II.Thalidomide"
+},
+{
+  "name": "Dexamethasone.Melphalan.Thalidomide.prednisolone"
+},
+{
+  "name": "Cyclophosphamide.bortezomib.lenalidomide"
+},
+{
+  "name": "Cyclophosphamide.Doxorubicin.Lomustine.Melphalan.bortezomib.prednisolone"
+},
+{
+  "name": "Cyclophosphamide.Dexamethasone.Thalidomide.Vincristine"
+},
+{
+  "name": "Cyclophosphamide.Dexamethasone.Lomustine.Melphalan.Vincristine.prednisolone"
+},
+{
+  "name": "Melphalan.Vincristine.prednisolone"
+},
+{
+  "name": "Cyclophosphamide.Dexamethasone.Thalidomide.prednisolone"
+},
+{
+  "name": "Cyclophosphamide.Dexamethasone.Vincristine.prednisolone"
+},
+{
+  "name": "Vincristine.bendamustine.prednisolone"
+},
+{
+  "name": "Cisplatin.Cyclophosphamide.Doxorubicin.Thalidomide.bortezomib"
+},
+{
+  "name": "Dexamethasone.INVESTIGATIONAL DRUG.lenalidomide"
+},
+{
+  "name": "Cyclophosphamide.Doxorubicin.bortezomib"
+},
+{
+  "name": "Cyclophosphamide.Dexamethasone.Doxorubicin.Melphalan.prednisolone"
+},
+{
+  "name": "Cyclophosphamide.Doxorubicin.Vincristine.prednisolone"
+},
+{
+  "name": "Doxorubicin.Methylprednisolone.bortezomib"
+},
+{
+  "name": "Doxorubicin.Methylprednisolone"
+},
+{
+  "name": "Cyclophosphamide.Dexamethasone.Melphalan.bortezomib.prednisolone"
+},
+{
+  "name": "Cyclophosphamide.Dexamethasone.Melphalan.Vincristine.bortezomib.prednisolone"
+},
+{
+  "name": "Dexamethasone.Doxorubicin.bendamustine"
+},
+{
+  "name": "Cyclophosphamide.Melphalan.bortezomib"
+},
+{
+  "name": "fludarabine.treosulfan"
+},
+{
+  "name": "Carmustine.Cyclophosphamide.Dexamethasone"
+},
+{
+  "name": "Carmustine.Cyclophosphamide.Dexamethasone.Doxorubicin"
+},
+{
+  "name": "Cyclophosphamide.Lomustine.Melphalan.Methylprednisolone.Vinblastine"
+},
+{
+  "name": "Doxorubicin.Melphalan.Vincristine.prednisolone"
+},
+{
+  "name": "Triamcinolone"
+},
+{
+  "name": "EloRd (Dexamethasone.elotuzumab.lenalidomide)"
+},
+{
+  "name": "Cisplatin.Cytarabine.Etoposide.Methylprednisolone"
+},
+{
+  "name": "Carmustine.Cyclophosphamide.Dexamethasone.Doxorubicin.Melphalan.Prednisone.Vincristine.bortezomib"
+},
+{
+  "name": "Cisplatin.Cyclophosphamide.Doxorubicin.Etoposide.lenalidomide"
+},
+{
+  "name": "Busulfan.fludarabine"
+},
+{
+  "name": "Dexamethasone.doxorubicin liposome.lenalidomide"
+},
+{
+  "name": "Cytarabine.Methotrexate"
+},
+{
+  "name": "Dexamethasone.bortezomib.prednisolone"
+},
+{
+  "name": "Cyclophosphamide.Dexamethasone.Doxorubicin.Melphalan"
+},
+{
+  "name": "bortezomib.temsirolimus"
+},
+{
+  "name": "Carmustine.Dexamethasone.Melphalan.Vincristine"
+},
+{
+  "name": "Carmustine.Cyclophosphamide.Dexamethasone.Melphalan.Prednisone"
+},
+{
+  "name": "Melphalan.Thalidomide.bortezomib"
+},
+{
+  "name": "Cyclophosphamide.Melphalan.Thalidomide.prednisolone"
+},
+{
+  "name": "Cisplatin.Dexamethasone.Doxorubicin.bortezomib"
+},
+{
+  "name": "Epirubicin.Ifosfamide"
+},
+{
+  "name": "rituximab"
+},
+{
+  "name": "Doxorubicin.Thalidomide.prednisolone"
+},
+{
+  "name": "Dexamethasone.Thalidomide.bendamustine.bortezomib"
+},
+{
+  "name": "Interferon-beta.Prednisone"
+},
+{
+  "name": "Cyclophosphamide.Dexamethasone.bortezomib.denosumab"
+},
+{
+  "name": "Cytarabine.Dexamethasone.Methotrexate"
+},
+{
+  "name": "Cyclophosphamide.Doxorubicin.Lomustine.Melphalan.Vinblastine.prednisolone"
+},
+{
+  "name": "Busulfan.Cyclophosphamide"
+},
+{
+  "name": "Autologous peripheral blood stem cell transplant.Melphalan"
+},
+{
+  "name": "Cyclophosphamide.Melphalan.Thalidomide.Vincristine"
+},
+{
+  "name": "Cyclophosphamide.Melphalan.Methylprednisolone.Vinblastine"
+},
+{
+  "name": "Interferon Type II.Prednisone"
+},
+{
+  "name": "Carmustine.Daunorubicin.Vincristine.prednisolone"
+},
+{
+  "name": "Lomustine.Melphalan.Methylprednisolone.Vincristine"
+},
+{
+  "name": "Cyclophosphamide.Dexamethasone.INVESTIGATIONAL DRUG"
+},
+{
+  "name": "Prednisone.bortezomib.doxorubicin liposome"
+},
+{
+  "name": "Cyclophosphamide.Dexamethasone.Doxorubicin.Prednisone.lenalidomide"
+},
+{
+  "name": "Chlorambucil.prednisolone"
+},
+{
+  "name": "Cyclophosphamide.fludarabine"
+},
+{
+  "name": "Cyclophosphamide.Doxorubicin.Prednisone.bortezomib"
+},
+{
+  "name": "Cisplatin.Cyclophosphamide.Etoposide"
+},
+{
+  "name": "Cyclophosphamide.Dexamethasone.bendamustine.bortezomib"
+},
+{
+  "name": "carfilzomib.lenalidomide"
+},
+{
+  "name": "Dexamethasone.Doxorubicin.Vincristine.prednisolone"
+},
+{
+  "name": "Cyclophosphamide.Epirubicin.Etoposide"
+},
+{
+  "name": "bortezomib.rituximab"
+},
+{
+  "name": "Melphalan.lenalidomide.prednisolone"
+},
+{
+  "name": "Dexamethasone.Doxorubicin.Vincristine.lenalidomide"
+},
+{
+  "name": "Melphalan.Prednisone.Vinblastine"
+},
+{
+  "name": "Doxorubicin.Vinblastine"
+},
+{
+  "name": "Interferon Type II.Methylprednisolone"
+},
+{
+  "name": "Carmustine.Cyclophosphamide.Melphalan.Vinblastine.prednisolone"
+},
+{
+  "name": "Dexamethasone.Melphalan.prednisolone"
+},
+{
+  "name": "Carmustine.Doxorubicin.Methylprednisolone.Prednisone.Vincristine"
+},
+{
+  "name": "Cyclophosphamide.Methylprednisolone.Vincristine.lenalidomide"
+},
+{
+  "name": "Carmustine.Doxorubicin.Methylprednisolone.Vincristine.lenalidomide"
+},
+{
+  "name": "Cyclophosphamide.Melphalan.Thiotepa"
+},
+{
+  "name": "Cyclophosphamide.Methylprednisolone.doxorubicin liposome"
+},
+{
+  "name": "Cisplatin.Dexamethasone.Doxorubicin.Etoposide"
+},
+{
+  "name": "Cyclophosphamide.Dexamethasone.carfilzomib"
+},
+{
+  "name": "Cyclophosphamide.Lomustine.bortezomib.prednisolone"
+},
+{
+  "name": "Chlorambucil.Prednisone.bortezomib"
+},
+{
+  "name": "Cyclophosphamide.Doxorubicin.Lomustine.Melphalan.Methylprednisolone.Vincristine.prednisolone"
+},
+{
+  "name": "Cyclophosphamide.Dexamethasone.Melphalan.Thalidomide.bortezomib.lenalidomide"
+},
+{
+  "name": "Cisplatin.Cyclophosphamide.Dexamethasone.Doxorubicin.Etoposide.Thalidomide.bortezomib.lenalidomide"
+},
+{
+  "name": "Melphalan.Thiotepa.fludarabine"
+},
+{
+  "name": "Prednisone.Vincristine.doxorubicin liposome"
+},
+{
+  "name": "Carmustine.Vinblastine.bortezomib"
+}
   ]
 }
