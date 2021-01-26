@@ -88,20 +88,14 @@ class PatientDetails(models.PatientSubrecord):
     diag_date = fields.DateField(
         blank=False, null=True, verbose_name=_("Date of Diagnosis")
     )
-    smm_history = fields.CharField(
-        max_length=10, choices=CHOICES, verbose_name=_("History of SMM")
-    )
-    smm_history_date = fields.DateField(
-        blank=True, null=True, verbose_name=_("Date of SMM diagnosis")
-    )
-    mgus_history = fields.CharField(
-        max_length=10, choices=CHOICES, verbose_name=_("History of MGUS")
-    )
-    mgus_history_date = fields.DateField(
-        blank=True, null=True, verbose_name=_("Date of MGUS Diagnosis")
+    date_of_last_visit = fields.DateField(
+        blank = False, null=True, verbose_name=_("Date of last visit")
     )
     iss_stage = fields.CharField(
         max_length=10, choices=R_ISS_STAGES, verbose_name=_("ISS Stage")
+    )
+    r_iss_stage = fields.CharField(
+        max_length=10, choices=R_ISS_STAGES, verbose_name=_("R-ISS Stage")
     )
     ds_stage = fields.CharField(
         max_length=10, choices=R_ISS_STAGES, verbose_name=_("DS Stage")
