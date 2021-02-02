@@ -82,6 +82,10 @@ class PatientDetails(models.PatientSubrecord):
         ("IgE", _("IgE")),
         ("Light Chain Myeloma", _("Light Chain Myeloma")),
     )
+    LIGHT_CHAIN_CHOICES = (
+        ("Kappa", _("Kappa")),
+        ("Lambda", _("Lambda"))
+    )
     RISK_STRATIFICATIONS = (
         ("Standard risk", _("Standard risk")),
         ("Intermediate risk", _("Intermediate risk")),
@@ -107,6 +111,9 @@ class PatientDetails(models.PatientSubrecord):
     )
     pp_type = fields.CharField(
         max_length=50, choices=PP_TYPE_CHOICES, verbose_name=_("PP Type")
+    )
+    light_chain_type = fields.CharField(
+        max_length=25, choices = LIGHT_CHAIN_CHOICES, verbose_name=_("Light Chain Type")
     )
     del_17p = fields.CharField(max_length=10, choices=CHOICES, verbose_name=_("del(17)p"))
     del_13 = fields.CharField(max_length=10, choices=CHOICES, verbose_name=_("del13"))
