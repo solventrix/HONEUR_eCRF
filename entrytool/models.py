@@ -83,9 +83,9 @@ class PatientDetails(models.PatientSubrecord):
         ("Light Chain Myeloma", _("Light Chain Myeloma")),
     )
     RISK_STRATIFICATIONS = (
-        ("Standard risk", _("Standard risk"),
-        ("Intermediate risk"), _("Intermediate risk"),
-        ("High risk"), _("High risk"))
+        ("Standard risk", _("Standard risk")),
+        ("Intermediate risk", _("Intermediate risk")),
+        ("High risk", _("High risk"))
     )
     status = fields.CharField(
         max_length=100, choices=STATUSES, verbose_name=_("Patient Status")
@@ -267,9 +267,10 @@ class BloodCountFollowUp(models.PatientSubrecord):
         verbose_name_plural = _("Blood Counts")
 
 
+#TODO fill with correct options
 MRD_CHOICES = (
-    #TODO fill with correct responses
-    ("Minimal", _("Minimal"))
+    ("Minimal", _("Minimal")),
+    ("Non-minimal", _("Non-minimal"))
 )
 class IFT(models.PatientSubrecord):
     _sort = "ift_date"
@@ -281,20 +282,20 @@ class IFT(models.PatientSubrecord):
         ("Unknown", _("Unknown"))
     )
 
-    MRD_status = fields.CharField(choices = MRD_CHOICES, blank = True, null = True, verbose_name = _("MRD status"))
+    MRD_status = fields.CharField(max_length = 25, choices = MRD_CHOICES, blank = True, null = True, verbose_name = _("MRD status"))
     percentage_tumor_cells = fields.FloatField(blank = True, null = True, verbose_name = _("Percentage of tumor cells by IFT"))
     #TODO choices or freetext for phenotype? 
-    initial_tumor_phenotype = fields.FloatField(blank = True, null = True, verbose_name = _("Initial phenotype of tumor cells"))
-    phenotype = fields.FloatField(blank = True, null = True, verbose_name = _("Phenotype"))
-    cd38_138_presence = fields.CharField(choices = YES_NO, blank = True, null = True, verbose_name = _("CD38/CD138 presence"))
-    CD56_presence = fields.CharField(choices = YES_NO, blank = True, null = True, verbose_name = _("CD56 presence"))
-    CD19_presence = fields.CharField(choices = YES_NO, blank = True, null = True, verbose_name = _("CD19 presence"))
-    CD20_presence = fields.CharField(choices = YES_NO, blank = True, null = True, verbose_name = _("CD20 presence"))
-    CD27_presence = fields.CharField(choices = YES_NO, blank = True, null = True, verbose_name = _("CD27 presence"))
-    CD117_presence = fields.CharField(choices = YES_NO, blank = True, null = True, verbose_name = _("CD117 presence"))
-    CD38СD138_percentage = fields.FloatField(blank = True, null = True, verbose_name = _("CD38/СD138, %"))
-    CD56_percentage = fields.FloatField(blank = True, null = True, verbose_name = _("CD56, %"))
-    CD19_percentage = fields.FloatField(blank = True, null = True, verbose_name = _("CD19, %"))
-    CD20_percentage = fields.FloatField(blank = True, null = True, verbose_name = _("CD20, %"))
-    CD27_percentage = fields.FloatField(blank = True, null = True, verbose_name = _("CD27, %"))
-    CD117_percentage = fields.FloatField(blank = True, null = True, verbose_name = _("CD117 , %"))
+    initial_tumor_phenotype = fields.CharField(max_length = 100, blank = True, null = True, verbose_name = _("Initial phenotype of tumor cells"))
+    phenotype = fields.CharField(max_length = 100, blank = True, null = True, verbose_name = _("Phenotype"))
+    cd38_138_presence = fields.CharField(choices = YES_NO, max_length=4, blank = True, null = True, verbose_name = _("CD38/CD138 presence"))
+    cd56_presence = fields.CharField(choices = YES_NO, max_length=4, blank = True, null = True, verbose_name = _("CD56 presence"))
+    cd19_presence = fields.CharField(choices = YES_NO, max_length=4, blank = True, null = True, verbose_name = _("CD19 presence"))
+    cd20_presence = fields.CharField(choices = YES_NO, max_length=4, blank = True, null = True, verbose_name = _("CD20 presence"))
+    cd27_presence = fields.CharField(choices = YES_NO, max_length=4, blank = True, null = True, verbose_name = _("CD27 presence"))
+    cd117_presence = fields.CharField(choices = YES_NO, max_length=4, blank = True, null = True, verbose_name = _("CD117 presence"))
+    cd38cd138_percentage = fields.FloatField(blank = True, null = True, verbose_name = _("CD38/СD138, %"))
+    cd56_percentage = fields.FloatField(blank = True, null = True, verbose_name = _("CD56, %"))
+    cd19_percentage = fields.FloatField(blank = True, null = True, verbose_name = _("CD19, %"))
+    cd20_percentage = fields.FloatField(blank = True, null = True, verbose_name = _("CD20, %"))
+    cd27_percentage = fields.FloatField(blank = True, null = True, verbose_name = _("CD27, %"))
+    cd117_percentage = fields.FloatField(blank = True, null = True, verbose_name = _("CD117 , %"))

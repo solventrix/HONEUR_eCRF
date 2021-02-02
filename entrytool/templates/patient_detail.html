@@ -73,7 +73,42 @@
                   {% include "detail/followups.html" %}
                 </div>
               </div>
-
+              
+              <!-- Follow ups -->
+              <div class="panel mb6">
+                <div class="panel-heading">
+                  <h3>
+                    {% trans "Blood Count" %}
+                    <span class="pull-right pointer edit">
+                      <a ng-click="episode.recordEditor.newItem('{{ models.BloodCountFollowUp.get_api_name }}')">
+                        <i class="fa fa-plus-circle edit pointer"></i>
+                      </a>
+                    </span>
+                  </h3>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  {% include "detail/bloodcounts.html" %}
+                </div>
+              </div>
+              <div class="panel mb6">
+                <div class="panel-heading">
+                  <h3>
+                    {% trans "IFT" %}
+                    <span class="pull-right pointer edit">
+                      <a ng-click="episode.recordEditor.newItem('{{ models.IFT.get_api_name }}')">
+                        <i class="fa fa-plus-circle edit pointer"></i>
+                      </a>
+                    </span>
+                  </h3>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  {% include "detail/ift.html" %}
+                </div>
+              </div>
 
             </section>
 
