@@ -110,6 +110,24 @@
                 </div>
               </div>
 
+              <div class="panel mb6">
+                <div class="panel-heading">
+                  <h3>
+                    {% trans "CRAB" %}
+                    <span class="pull-right pointer edit">
+                      <a ng-click="episode.recordEditor.newItem('{{ models.CrabCriteria.get_api_name }}')">
+                        <i class="fa fa-plus-circle edit pointer"></i>
+                      </a>
+                    </span>
+                  </h3>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  {% include "detail/crab_criteria.html" %}
+                </div>
+              </div>
+
             </section>
 
           </div>

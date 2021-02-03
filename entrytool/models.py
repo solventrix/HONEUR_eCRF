@@ -306,3 +306,19 @@ class IFT(models.PatientSubrecord):
     cd20_percentage = fields.FloatField(blank = True, null = True, verbose_name = _("CD20, %"))
     cd27_percentage = fields.FloatField(blank = True, null = True, verbose_name = _("CD27, %"))
     cd117_percentage = fields.FloatField(blank = True, null = True, verbose_name = _("CD117 , %"))
+
+class CrabCriteria(models.PatientSubrecord):
+    _sort = 'crab_date'
+    crab_date = fields.DateField(verbose_name = _("CRAB date"))
+
+    CALCIUM_LEVELS = (
+        ("over2.65mmol", _("> 2.65 mmol/L")),
+        ("over1.5mmol", _("> 1.5 mmol/L")),
+        ("Unknown", _("Unknown")),
+    )
+
+    hypercalcemia = fields.NullBooleanField(blank = True, null = True, verbose_name=_("Hypercalcemia"))
+    calcium_level = fields.CharField(max_length = 30, choices = CALCIUM_LEVELS, verbose_name=_("Calcium Level"))
+    renal_failure = fields.NullBooleanField(blank = True, null = True, verbose_name=_("creatinine >= 177 umol/L"))
+    anemia = fields.NullBooleanField(blank = True, null = True, verbose_name=_("Hemoglobin < 100g/L or decrease of 20 g/d from norm"))
+    bone_destruction = fields.NullBooleanField(blank = True, null = True, verbose_name=_("Bone destruction"))

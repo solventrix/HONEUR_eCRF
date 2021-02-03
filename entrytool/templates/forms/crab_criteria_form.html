@@ -1,0 +1,19 @@
+{% load forms %}
+{% load custom_forms%}
+{% load i18n %}
+{% custom_datepicker field="CrabCriteria.crab_date" date_after="the_episode.demographics[0].date_of_birth" date_after_message=_("Visit date must be after the patient's birth date")%}
+
+
+<div class="checkbox checkbox-primary col-sm-offset-3">
+  <input class="ng-pristine ng-untouched ng-valid ng-empty" id="checkbox_crab_criteria_hypercalcemia" type="checkbox" name="crab_criteria_hypercalcemia" ng-model="editing.crab_criteria.hypercalcemia">
+  <label for="checkbox_crab_criteria_hypercalcemia">{% trans "Hypercalcemia" %}</label>
+  
+</div>
+<div ng-show="editing.crab_criteria.hypercalcemia == true" >	
+    {% select field="CrabCriteria.calcium_level" %}
+  </div>
+{% checkbox field="CrabCriteria.renal_failure" %}
+{% checkbox field="CrabCriteria.anemia" %}
+{% checkbox field="CrabCriteria.bone_destruction" %}
+
+
