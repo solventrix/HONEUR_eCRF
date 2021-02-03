@@ -226,24 +226,6 @@ class Progression(models.EpisodeSubrecord):
     order_by = "-progression_date"
     progression_date = fields.DateField(verbose_name=_("Progresion/relapse date"))
 
-
-class FollowUp(models.PatientSubrecord):
-    _sort = "followup_date"
-    _icon = "fa fa-stethoscope"
-    hospital = models.ForeignKeyOrFreeText(Hospital, verbose_name=_("Hospital"))
-    follow_up_date = fields.DateField(verbose_name=_("Visit date"))
-
-    LDH = fields.FloatField(blank=True, null=True, verbose_name=_("LDH"))
-    beta2m = fields.FloatField(blank=True, null=True, verbose_name=_("beta2m"))
-    albumin = fields.FloatField(blank=True, null=True, verbose_name=_("Albumin"))
-    mprotein_urine = fields.FloatField(blank=True, null=True, verbose_name=_("MProtein Urine"))
-    mprotein_serum = fields.FloatField(blank = True, null = True ,verbose_name=("MProtein Serum"))
-    mprotein_24h = fields.FloatField(blank = True, null = True, verbose_name=_("Mprotein in 24 hour urine"))
-
-    class Meta:
-        verbose_name = _("Follow-up")
-        verbose_name_plural = _("Follow-ups")
-
 class BloodCountFollowUp(models.PatientSubrecord):
     _sort = "followup_date"
     _icon  = "fa fa-stethoscope"
@@ -268,7 +250,9 @@ class BloodCountFollowUp(models.PatientSubrecord):
     plasmablasts = fields.FloatField(blank = True, null = True, verbose_name = _("plasmablasts"))
     plasmacytes = fields.FloatField(blank = True, null = True, verbose_name = _("plasmacytes"))
     platelets = fields.FloatField(blank = True, null = True, verbose_name = _("platelets"))
-
+    b2m = fields.FloatField(blank = True, null = True, verbose_name=_("Beta-2-microglobulin"))
+    albumin = fields.FloatField(blank = True, null = True, verbose_name=_("albumin"))
+    ldh = fields.FloatField(blank = True, null = True, verbose_name=_("LDH"))
     class Meta:
         verbose_name = _("Blood Count")
         verbose_name_plural = _("Blood Counts")
@@ -322,3 +306,101 @@ class CrabCriteria(models.PatientSubrecord):
     renal_failure = fields.NullBooleanField(blank = True, null = True, verbose_name=_("creatinine >= 177 umol/L"))
     anemia = fields.NullBooleanField(blank = True, null = True, verbose_name=_("Hemoglobin < 100g/L or decrease of 20 g/d from norm"))
     bone_destruction = fields.NullBooleanField(blank = True, null = True, verbose_name=_("Bone destruction"))
+    #TODO choice list for regions?
+    region_osteolysis = fields.CharField(max_length = 50, blank=True, null=True, verbose_name=_("Region of osteolysis"))
+    nb_affected_zones = fields.IntegerField(blank=True, null=True, verbose_name=_("Number of affected zones"))
+
+class Cytogenetics(models.PatientSubrecord):
+    _sort = 'cytogenetic_date'
+    cytogenetic_date = fields.DateField(verbose_name= _("Cytogenetic Date"))
+
+    CHOICES = (
+        ("Yes", _("Yes")),
+        ("No", _("No")),
+        ("Unknown", _("Unknown"))
+    )
+
+    karyotpye = fields.CharField(max_length= 100, null=True, blank=True)
+    t14_16 = fields.CharField(max_length=25, null=True, blank=True,choices=CHOICES, verbose_name = _("t(14;16"))
+    t4_14 = fields.CharField(max_length=25, null=True, blank=True,choices=CHOICES, verbose_name = _("t(4;14)"))
+    t11_14 = fields.CharField(max_length=25, null=True, blank=True,choices=CHOICES, verbose_name = _("t(11;14)"))
+    del13 = fields.CharField(max_length=25, null=True, blank=True,choices=CHOICES, verbose_name = _("del13"))
+    del17p = fields.CharField(max_length=25, null=True, blank=True,choices=CHOICES, verbose_name = _("del17p"))
+    ighv_rearrangement = fields.CharField(max_length=25, null=True, blank=True,choices=CHOICES, verbose_name = _("IGHV rearrangement"))
+    chr1_abnormalities = fields.CharField(max_length=25, null=True, blank =True, choices = CHOICES, verbose_name=_("chromosome 1 abnormalities"))
+    class Meta:
+        verbose_name = _("Cytogenetic tests")
+        verbose_name_plural = _("Cytogenetic tests")
+
+
+class TrephineBiopsy(models.PatientSubrecord):
+    class Meta:
+        verbose_name = _("Trephine biopsy")
+        verbose_name_plural = _("Trephine biopsies")
+    
+    trephine_biopsy_date = fields.DateField(verbose_name=_("Trephine Biopsy Date"))
+    # Cellularity
+    # Percentage of hematopoietic tissue
+    # Percentage of adipose tissue
+    # Percentage of plasma infiltration
+    # Phenotype
+    # Histological and immunohistochemical features
+    # indicate what should be added
+    # M-Component
+
+class BoneScan(models.PatientSubrecord):
+    class Meta:
+        verbose_name = _("Bone scan")
+        verbose_name_plural = _("Bone scans")
+
+    scan_date = fields.DateField(verbose_name=_("Bone Scan Date"))
+    # - DZ in the skull 0-no, 1-yes
+    # - DZ in the shoulder girdle 0-no, 1-yes
+    # - DZ in ribs, chest 0-no, 1-yes
+    # - DZ in the spine 0-no, 1-yes
+    # - DZ in the pelvic bones 0-no, 1-yes
+    # - DZ in long tubular bones 0-no, 1-yes
+    # - MRI 1 - did not do, 2 - did
+    # - MRI 1 - corresponds to Rg, 2 - improved the diagnosis
+    # - CT 1 - did not do, 2 - did
+    # - CT 1 - corresponds to Rg, 2 - improved the diagnosis
+    # - PET-CT 1 - did not do, 2 - did
+    # - PET-CT 1 - corresponds to Rg, 2 - improved diagnostics
+    # - Plasmacytoma 1 - no, 2 - present
+    # - Scintigraphy
+    # - Compression fractures 1-no, 2 present
+    # - Spinal cord compression 1 - no, 2 - yes
+    # - Surgical aid 0 - did not do 1 - vertebroplasty, 2 - plate installation, 3 - - plastering
+
+class ProteinMeasurements(models.PatientSubrecord):
+    class Meta:
+        verbose_name = _("Protein measurement")
+        verbose_name_plural = _("Protein measurements")
+
+        protein_measurement_date = fields.DateField(verbose_name=_("Protein measurement date"))
+
+        # - IgG
+        # - IgA
+        # - IgM
+
+        # - Bence-Jones Protein in Urine - presence 
+        #   - Bence-Jones Protein in Urine - Qty/Time (only shown when box is ticked)
+        # - myelokaryocytes in MG, x10 ^ 9
+        # - Plasma cell count / Myelogram /,%
+
+
+
+
+
+        # - Light Chain Secretion 
+        # - Serum kappa chain
+        # - Serum free kappa chain
+        # - Serum Lambda Chain
+        # - Free Serum Lambda Chains
+        # - Urine Kappa Chain
+        # - Urine Free Kappa Chains
+        # - Urine Lambda Chains
+        # - Urine Lambda Free Chains
+        # - FLC Ratio
+
+

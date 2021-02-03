@@ -1,40 +1,40 @@
 {% load i18n %}
 <div class="follow-up-table" ng-show="episode.crab_criteria.length > 0">
-      <div class="col-md-12">
-         <div class="row header-row display-label">
-            <div class="col-sm-2 header"></div>
-            <div class="col-sm-2 header">{% trans "Hypercalcemia" %}</div>
-            <div class="col-sm-2 header">{% trans "Renal failure" %}</div>
-            <div class="col-sm-2 header">{% trans "Anemia" %}</div>
-            <div class="col-sm-2 header">{% trans "Bone destruction" %}</div>
-         </div>
+  <div class="col-md-12">
+    <div class="row header-row display-label">
+      <div class="col-sm-3 header"></div>
+      <div class="col-sm-2 header">{% trans "Hypercalcemia" %}</div>
+      <div class="col-sm-2 header">{% trans "Renal failure" %}</div>
+      <div class="col-sm-2 header">{% trans "Anemia" %}</div>
+      <div class="col-sm-2 header">{% trans "Bone destruction" %}</div>
+    </div>
+  </div>
+
+  <div ng-repeat="item in episode.crab_criteria | orderBy: '-crab_date' as ifts">
+    <div class="row table-row">
+      <div class="col-sm-3 first-column text-right">
+         [[ item.crab_date | displayDate ]]  
+         <i ng-click="episode.recordEditor.editItem('{{ models.CrabCriteria.get_api_name }}', item)"
+          class="fa fa-pencil edit pointer"></i>
+        
       </div>
-
-
-      <div ng-repeat="item in episode.crab_criteria | orderBy: '-crab_date' as ifts">
-         <div class="row table-row" >
-            <div class="col-sm-2 first-column text-right">
-            [[ item.hospital | translate ]] [[ item.crab_date | displayDate ]]
-            </div>
-            <div class="col-sm-2 column">
-            <div>[[ item.hypercalcemia | translate]]</div>
-            <div ng-show="item.hypercalcemia==true"> ([[item.calcium_level]]) </div>
-            </div>
-            <div class="col-sm-2 column">
-            <div>[[ item.renal_failure | translate]]</div>
-            </div>
-            <div class="col-sm-2 column">
-            <div>[[ item.anemia | translate]]</div>
-            </div>
-            <div class="col-sm-2 column">
-            <div>[[ item.bone_destruction | translate]]</div>
-            </div>
-            <div class="col-sm-1 text-left">
-            <i ng-click="episode.recordEditor.editItem('{{ models.CrabCriteria.get_api_name }}', item)" class="fa fa-pencil edit pointer"></i>
-            </div>
-
-         </div>
+      <div class="col-sm-2 column">
+        <div>[[ item.hypercalcemia | translate]]</div>
+        <div ng-show="item.hypercalcemia==true">([[item.calcium_level]])</div>
       </div>
-
-
+      <div class="col-sm-2 column">
+        <div>[[ item.renal_failure | translate]]</div>
+      </div>
+      <div class="col-sm-2 column">
+        <div>[[ item.anemia | translate]]</div>
+      </div>
+      <div class="col-sm-2 column">
+        <div>[[ item.bone_destruction | translate]]</div>
+        <div ng-show="item.bone_destruction==true">
+          ([[item.nb_affected_zones]] {%trans "zones"%},
+          [[item.region_osteolysis]])
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

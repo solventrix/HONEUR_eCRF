@@ -15,5 +15,14 @@
 {% checkbox field="CrabCriteria.renal_failure" %}
 {% checkbox field="CrabCriteria.anemia" %}
 {% checkbox field="CrabCriteria.bone_destruction" %}
+<div class="checkbox checkbox-primary col-sm-offset-3">
+  <input class="ng-pristine ng-untouched ng-valid ng-empty" id="checkbox_crab_criteria_lesions" type="checkbox" name="crab_criteria_lesions" ng-model="editing.crab_criteria.bone_destruction">
+  <label for="checkbox_crab_criteria_lesions">{% trans "Bone Destruction" %}</label>
+  
+</div>
+<div ng-show="editing.crab_criteria.bone_destruction == true" >	
+    {% input field="CrabCriteria.region_osteolysis" %}
+    {% number field="CrabCriteria.nb_affected_zones" min_value="0" %}  
+</div>
 
 

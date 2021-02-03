@@ -1,0 +1,91 @@
+{% load i18n %}
+<div class="follow-up-table" ng-show="episode.cytogenetics.length > 0">
+      <div class="col-md-12">
+         <div class="row header-row display-label">
+            <div class="col-sm-1 header"></div>
+            <div class="col-sm-1 header">{% trans "Karyotype" %}</div>
+            <div class="col-sm-1 header">{% trans "t(14;16)" %}</div>
+            <div class="col-sm-1 header">{% trans "t(4;14)" %}</div>
+            <div class="col-sm-1 header">{% trans "t(11;14)" %}</div>
+            <div class="col-sm-1 header">{% trans "del13" %}</div>
+            <div class="col-sm-1 header">{% trans "del17p" %}</div>
+            <div class="col-sm-2 header">{% trans "IGHV rearrangement" %}</div>
+            <div class="col-sm-2 header">{% trans "chr1 abnormality" %}</div>
+         </div>
+      </div>
+
+
+      <div ng-repeat="item in episode.cytogenetics | orderBy: '-cytogenetic_date' as cytogenetics">
+         <div class="row table-row" >
+            <div class="col-sm-1 first-column text-right">
+            [[ item.hospital | translate ]] [[ item.cytogenetic_date | displayDate ]]
+            </div>
+            <div class="col-sm-1 column">
+            <div>[[ item.karyotype ]]</div>
+            </div>
+             <div class="col-sm-1 column">
+            <div>[[ item.t14_16 ]]</div>
+            </div>
+             <div class="col-sm-1 column">
+            <div>[[ item.t4_14 ]]</div>
+            </div>
+             <div class="col-sm-1 column">
+            <div>[[ item.t11_14 ]]</div>
+            </div>
+             <div class="col-sm-1 column">
+            <div>[[ item.del13 ]]</div>
+            </div>
+             <div class="col-sm-1 column">
+            <div>[[ item.del17p ]]</div>
+            </div>
+             <div class="col-sm-2 column">
+            <div>[[ item.ighv_rearrangement ]]</div>
+            </div>
+             <div class="col-sm-2 column">
+            <div>[[ item.chr1_abnormalities ]]</div>
+            </div>
+            
+            <div class="col-sm-1 text-left">
+            <i ng-click="episode.recordEditor.editItem('{{ models.Cytogenetics.get_api_name }}', item)" class="fa fa-pencil edit pointer"></i>
+            </div>
+
+         </div>
+      </div>
+</div>
+
+<span ng-show="item.cytogenetic_date">
+    [[ item.cytogenetic_date | displayDate ]]
+   <br />
+</span>
+<span ng-show="item.karyotpye">
+    [[ item.karyotpye ]]
+   <br />
+</span>
+<span ng-show="item.t14_16">
+    [[ item.t14_16 ]]
+   <br />
+</span>
+<span ng-show="item.t4_14">
+    [[ item.t4_14 ]]
+   <br />
+</span>
+<span ng-show="item.t11_14">
+    [[ item.t11_14 ]]
+   <br />
+</span>
+<span ng-show="item.del13">
+    [[ item.del13 ]]
+   <br />
+</span>
+<span ng-show="item.del17p">
+    [[ item.del17p ]]
+   <br />
+</span>
+<span ng-show="item.ighv_rearrangement">
+    [[ item.ighv_rearrangement ]]
+   <br />
+</span>
+<span ng-show="item.chr1_abnormalities">
+    [[ item.chr1_abnormalities ]]
+   <br />
+</span>

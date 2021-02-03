@@ -2,11 +2,11 @@
 <div class="follow-up-table" ng-show="episode.ift.length > 0">
   <div class="col-md-12">
     <div class="row header-row display-label">
-      <div class="col-sm-3 header"></div>
-      <div class="col-sm-1 header">{% trans "CD38/CD138" %}</div>
-      <div class="col-sm-1 header">{% trans "CD56" %}</div>
-      <div class="col-sm-1 header">{% trans "CD19" %}</div>
-      <div class="col-sm-1 header">{% trans "CD20" %}</div>
+      <div class="col-sm-1 header"></div>
+      <div class="col-sm-2 header">{% trans "CD38/CD138" %}</div>
+      <div class="col-sm-2 header">{% trans "CD56" %}</div>
+      <div class="col-sm-2 header">{% trans "CD19" %}</div>
+      <div class="col-sm-2 header">{% trans "CD20" %}</div>
       <div class="col-sm-1 header">{% trans "CD27" %}</div>
       <div class="col-sm-1 header">{% trans "CD117" %}</div>
     </div>
@@ -15,22 +15,23 @@
 
   <div ng-repeat="item in episode.ift | orderBy: '-ift_date' as ifts">
     <div class="row table-row" >
-      <div class="col-sm-3 first-column text-right">
+      <div class="col-sm-1 first-column text-right">
         [[ item.hospital | translate ]] [[ item.ift_date | displayDate ]]
+        <i ng-click="episode.recordEditor.editItem('{{ models.IFT.get_api_name }}', item)" class="fa fa-pencil edit pointer"></i>
       </div>
-      <div class="col-sm-1 column">
+      <div class="col-sm-2 column">
         <div>[[ item.cd38_138_presence | translate]]</div>
         <div ng-show="item.cd38_138_presence=='Yes'"> ([[item.cd38cd138_percentage]] %) </div>
       </div>
-      <div class="col-sm-1 column">
+      <div class="col-sm-2 column">
         <div>[[ item.cd56_presence | translate]]</div>
         <div ng-show="item.cd56_presence=='Yes'"> ([[item.cd56_percentage]] %) </div>
       </div>
-      <div class="col-sm-1 column">
+      <div class="col-sm-2 column">
         <div>[[ item.cd19_presence | translate]]</div>
         <div ng-show="item.cd19_presence=='Yes'"> ([[item.cd19_percentage]] %) </div>
       </div>
-      <div class="col-sm-1 column">
+      <div class="col-sm-2 column">
         <div>[[ item.cd20_presence | translate]]</div>
         <div ng-show="item.cd20_presence=='Yes'"> ([[item.cd20_percentage]] %) </div>
       </div>
@@ -41,9 +42,6 @@
       <div class="col-sm-1 column">
         <div>[[ item.cd117_presence | translate]]</div>
         <div ng-show="item.cd117_presence=='Yes'"> ([[item.cd117_percentage]] %) </div>
-      </div>
-      <div class="col-sm-1 text-left">
-        <i ng-click="episode.recordEditor.editItem('{{ models.IFT.get_api_name }}', item)" class="fa fa-pencil edit pointer"></i>
       </div>
     </div>
   </div>
