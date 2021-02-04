@@ -1,0 +1,49 @@
+{% load forms %}
+{% load i18n %}
+{% load custom_forms %}
+{% custom_datepicker field="BoneScan.scan_date" date_after="the_episode.demographics[0].date_of_birth" date_after_message=_("Scan date must be after the patient's birth date")%}
+<div class="col-sm-offset-3">
+<h3>Destruction zones</h3>
+</div>
+{% checkbox field="BoneScan.dz_skull" %}
+{% checkbox field="BoneScan.dz_shoulder" %}
+{% checkbox field="BoneScan.dz_ribs" %}
+{% checkbox field="BoneScan.dz_spine" %}
+{% checkbox field="BoneScan.dz_pelvis" %}
+{% checkbox field="BoneScan.dz_tubular_bones" %}
+<div class="col-sm-offset-3">
+<h3>{% trans "Additional scans" %}</h3>
+</div>
+<div class="checkbox checkbox-primary col-sm-offset-3">
+  <input class="ng-pristine ng-untouched ng-valid ng-empty" id="checkbox_mri" type="checkbox" name="bonescan_mri" ng-model="editing.bone_scan.mri_done" ng-change="editing.bone_scan.mri_result=null">
+  <label for="checkbox_mri">{% trans "MRI Scan Done" %}</label>
+  
+</div>
+<div ng-show="editing.bone_scan.mri_done == true" >	
+    {% select field="BoneScan.mri_result" %}
+</div>
+
+<div class="checkbox checkbox-primary col-sm-offset-3">
+  <input class="ng-pristine ng-untouched ng-valid ng-empty" id="checkbox_pet" type="checkbox" name="bonescan_pet" ng-model="editing.bone_scan.pet_done" ng-change="editing.bone_scan.pet_result=null">
+  <label for="checkbox_pet">{% trans "PET Scan Done" %}</label>
+  
+</div>
+<div ng-show="editing.bone_scan.pet_done == true" >	
+    {% select field="BoneScan.pet_result" %}
+</div>
+
+<div class="checkbox checkbox-primary col-sm-offset-3">
+  <input class="ng-pristine ng-untouched ng-valid ng-empty" id="checkbox_petct" type="checkbox" name="bonescan_petct" ng-model="editing.bone_scan.pet_ct_done" ng-change="editing.bone_scan.pet_ct_result=null">
+  <label for="checkbox_petct">{% trans "PET-CT Scan Done" %}</label>
+  
+</div>
+<div ng-show="editing.bone_scan.pet_ct_done == true" >	
+    {% select field="BoneScan.pet_ct_result" %}
+</div>
+
+
+{% checkbox field="BoneScan.plasmacytoma_presence" %}
+{% checkbox field="BoneScan.scintigraphy_done" %}
+{% checkbox field="BoneScan.compression_fractures" %}
+{% checkbox field="BoneScan.spinal_compression" %}
+{% select field="BoneScan.surgical_aid" required="TrueDe" %}

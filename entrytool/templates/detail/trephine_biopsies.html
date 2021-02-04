@@ -1,0 +1,42 @@
+{% load i18n %}
+<div class="follow-up-table" ng-show="episode.trephine_biopsy.length > 0">
+  <div class="col-md-12">
+    <div class="row header-row display-label">
+      <div class="col-sm-2 header"></div>
+      <div class="col-sm-2 header">{% trans "Cellularity" %}</div>
+      <div class="col-sm-1 header">{% trans "Hematopoietic tissue (%)" %}</div>
+      <div class="col-sm-1 header">{% trans "Adipose tissue (%)" %}</div>
+      <div class="col-sm-1 header">{% trans "Plasma infiltration (%)" %}</div>
+      <div class="col-sm-2 header">{% trans "Phenotype" %}</div>
+      <div class="col-sm-2 header">{% trans "Histological features" %}</div>
+    </div>
+  </div>
+
+
+  <div ng-repeat="item in episode.trephine_biopsy | orderBy: '-trephine_biopsy_date' as ifts">
+    <div class="row table-row" >
+      <div class="col-sm-2 first-column text-right">
+        [[ item.hospital | translate ]] [[ item.trephine_biopsy_date | displayDate ]]
+        <i ng-click="episode.recordEditor.editItem('{{ models.TrephineBiopsy.get_api_name }}', item)" class="fa fa-pencil edit pointer"></i>
+      </div>
+      <div class="col-sm-2 column">
+      [[ item.cellularity || translate]]
+      </div>
+      <div class="col-sm-1 column">
+      [[ item.hematopoietic_tissue || translate]]
+      </div>
+       <div class="col-sm-1 column">
+      [[ item.adipose_tissue || translate]]
+      </div>
+       <div class="col-sm-1 column">
+      [[ item.plasma_infiltration || translate]]
+      </div>
+       <div class="col-sm-2 column">
+      [[ item.phenotype || translate]]
+      </div>
+       <div class="col-sm-2 column">
+      [[ item.histo_features || translate]]
+      </div>
+    </div>
+  </div>
+</div>

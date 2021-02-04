@@ -333,6 +333,7 @@ class Cytogenetics(models.PatientSubrecord):
         verbose_name_plural = _("Cytogenetic tests")
 
 
+#TODO clean up trephine biopsy based on feedback
 class TrephineBiopsy(models.PatientSubrecord):
     class Meta:
         verbose_name = _("Trephine biopsy")
@@ -340,67 +341,91 @@ class TrephineBiopsy(models.PatientSubrecord):
     
     trephine_biopsy_date = fields.DateField(verbose_name=_("Trephine Biopsy Date"))
     # Cellularity
+    cellularity = fields.CharField(max_length=100, null=True, blank = True, verbose_name=_("Cellularity"))
     # Percentage of hematopoietic tissue
+    hematopoietic_tissue = fields.FloatField(blank = True, null = True, verbose_name=_("Hematopoietic tissue (%)"))
     # Percentage of adipose tissue
+    adipose_tissue = fields.FloatField(blank = True, null = True, verbose_name=_("Adipose tissue (%)"))
     # Percentage of plasma infiltration
+    plasma_infiltration = fields.FloatField(blank = True, null = True, verbose_name=_("Plasma infiltration (%)"))
+    #TODO should these be considered dropdowns? Mapping is hard on non-freetext
     # Phenotype
+    phenotype = fields.CharField(max_length=100, null=True, blank = True, verbose_name=_("Phenotype"))
     # Histological and immunohistochemical features
+    histo_features = fields.CharField(max_length=100, null=True, blank = True, verbose_name=_("Histological and immunohistochemical features"))
     # indicate what should be added
+    # TODO add a free text field?
     # M-Component
+    m_component = fields.CharField(max_length=100, null=True, blank = True, verbose_name=_("M-Component"))
 
 class BoneScan(models.PatientSubrecord):
     class Meta:
         verbose_name = _("Bone scan")
         verbose_name_plural = _("Bone scans")
 
+    SCAN_RESULTS = (
+        ("Corresponds to Rx", _("Corresponds to Rx")),
+        ("Improved diagnosis", _("Improved diagnosis"))
+    )
+    
+    SUPPORTIVE_BONE_SURGERY_CHOICES = (
+        ("Not done", _("Not done")),
+        ("Vertebroplasty", _("Vertebroplasty")), 
+        ("Plate installation", _("Plate installation")), 
+        ("Plastering", _("Plastering"))
+    )
+    
+    #TODO cleanup nullbooleans?
+
     scan_date = fields.DateField(verbose_name=_("Bone Scan Date"))
-    # - DZ in the skull 0-no, 1-yes
-    # - DZ in the shoulder girdle 0-no, 1-yes
-    # - DZ in ribs, chest 0-no, 1-yes
-    # - DZ in the spine 0-no, 1-yes
-    # - DZ in the pelvic bones 0-no, 1-yes
-    # - DZ in long tubular bones 0-no, 1-yes
-    # - MRI 1 - did not do, 2 - did
-    # - MRI 1 - corresponds to Rg, 2 - improved the diagnosis
-    # - CT 1 - did not do, 2 - did
-    # - CT 1 - corresponds to Rg, 2 - improved the diagnosis
-    # - PET-CT 1 - did not do, 2 - did
-    # - PET-CT 1 - corresponds to Rg, 2 - improved diagnostics
-    # - Plasmacytoma 1 - no, 2 - present
-    # - Scintigraphy
-    # - Compression fractures 1-no, 2 present
-    # - Spinal cord compression 1 - no, 2 - yes
-    # - Surgical aid 0 - did not do 1 - vertebroplasty, 2 - plate installation, 3 - - plastering
+    dz_skull = fields.NullBooleanField(blank = True, null = True, verbose_name=_("Destruction zones in the skull"))
+    dz_shoulder = fields.NullBooleanField(blank = True, null = True, verbose_name=_("Destruction zones in the shoulder girdle"))
+    dz_ribs = fields.NullBooleanField(blank = True, null = True, verbose_name=_("Destruction zones in ribs, chest"))
+    dz_spine = fields.NullBooleanField(blank = True, null = True, verbose_name=_("Destruction zones in the spine"))
+    dz_pelvis = fields.NullBooleanField(blank = True, null = True, verbose_name=_("Destruction zones in the pelvic bones"))
+    dz_tubular_bones = fields.NullBooleanField(blank = True, null = True, verbose_name=_("Destruction zones in long tubular bones"))
+    mri_done = fields.NullBooleanField(blank = True, null = True, verbose_name=_("MRI done"))
+    mri_result = fields.CharField(max_length=50, blank = True, null = True, choices = SCAN_RESULTS, verbose_name=_("Outcome of MRI"))
+    pet_done = fields.NullBooleanField(blank = True, null = True, verbose_name=_("PET scan done"))
+    pet_result = fields.CharField(max_length=50, blank = True, null = True, choices = SCAN_RESULTS, verbose_name=_("Outcome of PET"))
+    pet_ct_done = fields.NullBooleanField(blank = True, null = True, verbose_name=_("PET-CT scan done"))
+    pet_ct_result = fields.CharField(max_length=50, blank = True, null = True, choices = SCAN_RESULTS, verbose_name=_("Outcome of PET-CT"))
+    
+    plasmacytoma_presence = fields.NullBooleanField(blank = True, null = True, verbose_name=_("Plasmacytoma present"))
+    scintigraphy_done = fields.NullBooleanField(blank = True, null = True, verbose_name = _("Scintigraphy done"))
+    compression_fractures = fields.NullBooleanField(blank = True, null = True, verbose_name = _("Compression fractures present"))
+    spinal_compression = fields.NullBooleanField(blank = True, null = True, verbose_name=_("Spinal cord compression"))
+    surgical_aid = fields.CharField(max_length=50, null = True, blank = True, choices = SUPPORTIVE_BONE_SURGERY_CHOICES, verbose_name = _("Surgical aid performed"))
+
 
 class ProteinMeasurements(models.PatientSubrecord):
     class Meta:
         verbose_name = _("Protein measurement")
         verbose_name_plural = _("Protein measurements")
 
-        protein_measurement_date = fields.DateField(verbose_name=_("Protein measurement date"))
+    protein_measurement_date = fields.DateField(verbose_name=_("Protein measurement date"))
 
-        # - IgG
-        # - IgA
-        # - IgM
+    igg = fields.FloatField(null = True, blank = True, verbose_name=_("IgG"))
+    iga = fields.FloatField(null = True, blank = True, verbose_name=_("IgA"))
+    igm = fields.FloatField(null = True, blank = True, verbose_name=_("IgM"))
 
-        # - Bence-Jones Protein in Urine - presence 
-        #   - Bence-Jones Protein in Urine - Qty/Time (only shown when box is ticked)
+    bence_jones_presence = fields.NullBooleanField(null = True, blank = True, verbose_name=_("Bence-Jones Protein present in urine"))
+    bence_jones_level = fields.FloatField(null = True, blank = True, verbose_name=_("Bence-Jones Protein in Urine over time"))
+
+
+        #TODO where to put myelogram? 
         # - myelokaryocytes in MG, x10 ^ 9
         # - Plasma cell count / Myelogram /,%
 
-
-
-
-
-        # - Light Chain Secretion 
-        # - Serum kappa chain
-        # - Serum free kappa chain
-        # - Serum Lambda Chain
-        # - Free Serum Lambda Chains
-        # - Urine Kappa Chain
-        # - Urine Free Kappa Chains
-        # - Urine Lambda Chains
-        # - Urine Lambda Free Chains
-        # - FLC Ratio
+    light_chain_secretion = fields.NullBooleanField(null = True, blank = True, verbose_name=_("Light chain secretion"))
+    serum_kappa = fields.FloatField(null = True, blank = True, verbose_name = _("Serum kappa chain"))
+    serum_free_kappa = fields.FloatField(null = True, blank = True, verbose_name = _("Serum free kappa chains"))
+    serum_lambda = fields.FloatField(null = True, blank = True, verbose_name = _("Serum lambda"))
+    serum_free_lambda = fields.FloatField(null = True, blank = True, verbose_name = _("Serum free lambda chains"))
+    urine_kappa = fields.FloatField(null = True, blank = True, verbose_name = _("Urine kappa chains"))
+    urine_free_kappa = fields.FloatField(null = True, blank = True, verbose_name = _("Urine free kappa chains"))
+    urine_lambda = fields.FloatField(null = True, blank = True, verbose_name = _("Urine lambda chains"))
+    urine_free_lambda = fields.FloatField(null = True, blank = True, verbose_name = _("Urine free lambda chains"))
+    flc_ratio = fields.FloatField(null = True, blank = True, verbose_name=_("FLC ratio"))
 
 
