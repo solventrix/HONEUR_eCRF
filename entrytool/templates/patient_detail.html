@@ -75,6 +75,7 @@
               </div>
 
               <!-- CRAB -->
+              <div class="row">
               <div class="col-md-5"> 
                 <div class="panel mb6">
                   <div class="panel-heading">
@@ -116,7 +117,84 @@
                   </div>
                 </div>
                </div>
-               
+               </div>
+
+               <!-- Bone scans -->
+                <div class="panel mb6">
+                  <div class="panel-heading">
+                    <h3>
+                      {% trans "Bone scans" %}
+                      <span class="pull-right pointer edit">
+                        <a ng-click="episode.recordEditor.newItem('{{ models.BoneScan.get_api_name }}')">
+                          <i class="fa fa-plus-circle edit pointer"></i>
+                        </a>
+                      </span>
+                    </h3>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    {% include "detail/bone_scan.html" %}
+                  </div>
+                </div>
+
+
+                 <!-- Trepan biopsies -->
+                <div class="panel mb6">
+                  <div class="panel-heading">
+                    <h3>
+                      {% trans "Trephine biopsies" %}
+                      <span class="pull-right pointer edit">
+                        <a ng-click="episode.recordEditor.newItem('{{ models.TrephineBiopsy.get_api_name }}')">
+                          <i class="fa fa-plus-circle edit pointer"></i>
+                        </a>
+                      </span>
+                    </h3>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    {% include "detail/trephine_biopsies.html" %}
+                  </div>
+                </div>
+
+                 <!-- Protein levels -->
+                <div class="panel mb6">
+                  <div class="panel-heading">
+                    <h3>
+                      {% trans "Protein Measurements" %}
+                      <span class="pull-right pointer edit">
+                        <a ng-click="episode.recordEditor.newItem('{{ models.ProteinMeasurements.get_api_name }}')">
+                          <i class="fa fa-plus-circle edit pointer"></i>
+                        </a>
+                      </span>
+                    </h3>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    {% include "detail/protein_measurements.html" %}
+                  </div>
+                </div>
+
+                 <!-- Blood count -->
+                <div class="panel mb6">
+                  <div class="panel-heading">
+                    <h3>
+                      {% trans "Blood count" %}
+                      <span class="pull-right pointer edit">
+                        <a ng-click="episode.recordEditor.newItem('{{ models.BloodCountFollowUp.get_api_name }}')">
+                          <i class="fa fa-plus-circle edit pointer"></i>
+                        </a>
+                      </span>
+                    </h3>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    {% include "detail/bloodcounts.html" %}
+                  </div>
+                </div>
 
 
             </section>

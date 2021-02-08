@@ -3,10 +3,19 @@
   <div class="col-md-12">
     <div class="row header-row display-label">
       
-      <div class="col-sm-3 header"></div>
+      <div class="col-sm-1 header"></div>
+      <div class="col-sm-1 header">{% trans "erythrocytes" %}</div>
+      <div class="col-sm-1 header">{% trans "hemoglobin" %}</div>
+      <div class="col-sm-1 header">{% trans "hematocrit" %}</div>
       <div class="col-sm-1 header">{% trans "mcv" %}<br/>(u/L)</div>
       <div class="col-sm-1 header">{% trans "mch" %}<br/>(mg/dL)</div>
       <div class="col-sm-1 header">{% trans "mchc" %}<br/>(g/dL)</div>
+      <div class="col-sm-1 header">{% trans "reticulocytes" %}</div>
+      <div class="col-sm-1 header">{% trans "leucocytes" %}</div>
+      <div class="col-sm-1 header">{% trans "myeloblasts" %}</div>
+      <div class="col-sm-1 header">{% trans "promyelocytes" %}</div>
+      <div class="col-sm-1 header">{% trans "myelocytes" %}</div>
+
     </div>
   </div>
 
@@ -19,16 +28,67 @@
 
     </div>
     <div class="row table-row" >
-      <div class="col-sm-3 first-column text-right">
-        [[ item.hospital | translate ]] [[ item.followup_date | displayDate ]]
+      <div class="col-sm-1 first-column text-right">
+        [[ item.hospital | translate ]] [[ item.followup_date | displayDate ]] <i ng-click="episode.recordEditor.editItem('{{ models.BloodCountFollowUp.get_api_name }}', item)" class="fa fa-pencil edit pointer"></i>
       </div>
+      <div class="col-sm-1 column">[[ item.erythrocytes ]]</div>
+      <div class="col-sm-1 column">[[ item.hemoglobin ]]</div>
+      <div class="col-sm-1 column">[[ item.hematocrit ]]</div>
       <div class="col-sm-1 column">[[ item.mcv ]]</div>
       <div class="col-sm-1 column">[[ item.mch ]]</div>
       <div class="col-sm-1 column">[[ item.mchc ]]</div>
-     
-      <div class="col-sm-1 text-left">
-        <i ng-click="episode.recordEditor.editItem('{{ models.BloodCountFollowUp.get_api_name }}', item)" class="fa fa-pencil edit pointer"></i>
+      <div class="col-sm-1 column">[[ item.reticulocytes ]]</div>
+      <div class="col-sm-1 column">[[ item.leucocytes ]]</div>
+      <div class="col-sm-1 column">[[ item.myeloblasts ]]</div>
+      <div class="col-sm-1 column">[[ item.promyelocytes ]]</div>
+      <div class="col-sm-1 column">[[ item.myelocytes ]]</div>
+
+    </div>
+  </div>
+</div>
+
+<div class="follow-up-table" ng-show="episode.blood_count_follow_up.length > 0">
+  <div class="col-md-12">
+    <div class="row header-row display-label">
+      
+      <div class="col-sm-1 header"></div>
+      <div class="col-sm-1 header">{% trans "eosinophils" %}</div>
+      <div class="col-sm-1 header">{% trans "basophils" %}</div>
+      <div class="col-sm-1 header">{% trans "lymphocytes" %}</div>
+      <div class="col-sm-1 header">{% trans "monocytes" %}</div>
+      <div class="col-sm-1 header">{% trans "plasmablasts" %}</div>
+      <div class="col-sm-1 header">{% trans "plasmacytes" %}</div>
+      <div class="col-sm-1 header">{% trans "platelets" %}</div>
+      <div class="col-sm-1 header">{% trans "b2m" %}</div>
+      <div class="col-sm-1 header">{% trans "albumin" %}</div>
+      <div class="col-sm-1 header">{% trans "ldh" %}</div>
+
+    </div>
+  </div>
+
+
+  <div ng-repeat="item in episode.blood_count_follow_up | orderBy: '-followup_date' as followups">
+    <div
+      ng-show="$index === 0 || followups[$index-1].hospital !== item.hospital"
+      class="row"
+      >
+
+    </div>
+    <div class="row table-row" >
+      <div class="col-sm-1 first-column text-right">
+        [[ item.hospital | translate ]] [[ item.followup_date | displayDate ]] <i ng-click="episode.recordEditor.editItem('{{ models.BloodCountFollowUp.get_api_name }}', item)" class="fa fa-pencil edit pointer"></i>
       </div>
+      <div class="col-sm-1 column">[[ item.eosinophils ]]</div>
+      <div class="col-sm-1 column">[[ item.basophils ]]</div>
+      <div class="col-sm-1 column">[[ item.lymphocytes ]]</div>
+      <div class="col-sm-1 column">[[ item.monocytes ]]</div>
+      <div class="col-sm-1 column">[[ item.plasmablasts ]]</div>
+      <div class="col-sm-1 column">[[ item.plasmacytes ]]</div>
+      <div class="col-sm-1 column">[[ item.platelets ]]</div>
+      <div class="col-sm-1 column">[[ item.b2m ]]</div>
+      <div class="col-sm-1 column">[[ item.albumin ]]</div>
+      <div class="col-sm-1 column">[[ item.ldh ]]</div>
+
     </div>
   </div>
 </div>

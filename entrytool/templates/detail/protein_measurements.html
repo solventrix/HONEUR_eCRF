@@ -1,0 +1,57 @@
+{% load i18n %}
+<div class="follow-up-table" ng-show="episode.protein_measurements.length > 0">
+  <div class="col-md-12">
+    <div class="row header-row display-label">
+      <div class="col-sm-2 header"></div>
+      <div class="col-sm-1 header">{% trans "IGG" %}<br/>(g/L)</div>
+      <div class="col-sm-1 header">{% trans "IGA" %}<br/>(g/L)</div>
+      <div class="col-sm-1 header">{% trans "IGM" %}<br/>(g/L)</div>
+      <div class="col-sm-1 header">{% trans "Bence-Jones protein" %}</div>
+      <div class="col-sm-1 header">{% trans "Serum Kappa chains (free)" %}</div>
+      <div class="col-sm-1 header">{% trans "Urine Kappa chains (free)" %}</div>
+      <div class="col-sm-1 header">{% trans "Serum Lambda chains (free)" %}</div>
+      <div class="col-sm-1 header">{% trans "Urine Lambda chains (free)" %}</div>
+      <div class="col-sm-1 header">{% trans "FLC ratio" %}</div>
+
+    </div>
+  </div>
+
+  <div ng-repeat="item in episode.protein_measurements | orderBy: '-protein_measurement_date' as ifts">
+    <div class="row table-row">
+      <div class="col-sm-2 first-column text-right">
+        [[ item.protein_measurement_date | displayDate ]]
+        <i ng-click="episode.recordEditor.editItem('{{ models.ProteinMeasurements.get_api_name }}', item)"
+          class="fa fa-pencil edit pointer"></i>
+      </div>
+    <div class="col-sm-1 column">
+        [[item.igg]]
+    </div>
+    <div class="col-sm-1 column">
+        [[item.iga]]
+    </div>
+    <div class="col-sm-1 column">
+        [[item.igm]]
+    </div>
+    <div class="col-sm-1 column">
+        <div ng-show="item.bence_jones_presence==true">
+            [[item.bence_jones_level]]
+        </div>
+    </div>
+     <div class="col-sm-1 column">
+        [[item.serum_kappa]] ([[item.serum_free_kappa]])
+    </div>
+    <div class="col-sm-1 column">
+        [[item.urine_kappa]] ([[item.urine_free_kappa]])
+    </div>
+    <div class="col-sm-1 column">
+        [[item.serum_lambda]] ([[item.serum_ffree_lambda]])
+    </div>
+    <div class="col-sm-1 column">
+        [[item.urine_lambda]] ([[item.urine_free_lambda]])
+    </div>
+    <div class="col-sm-1 column">
+        [[item.flc_ratio]] 
+    </div>
+    </div>
+  </div>
+</div>

@@ -1,17 +1,35 @@
 {% load forms %}
-{% datepicker field="ProteinMeasurements.protein_measurement_date" %}
-{% input field="ProteinMeasurements.igg" %}
-{% input field="ProteinMeasurements.iga" %}
-{% input field="ProteinMeasurements.igm" %}
-{% checkbox field="ProteinMeasurements.bence_jones_presence" %}
-{% input field="ProteinMeasurements.bence_jones_level" %}
-{% checkbox field="ProteinMeasurements.light_chain_secretion" %}
-{% input field="ProteinMeasurements.serum_kappa" %}
-{% input field="ProteinMeasurements.serum_free_kappa" %}
-{% input field="ProteinMeasurements.serum_lambda" %}
-{% input field="ProteinMeasurements.serum_free_lambda" %}
-{% input field="ProteinMeasurements.urine_kappa" %}
-{% input field="ProteinMeasurements.urine_free_kappa" %}
-{% input field="ProteinMeasurements.urine_lambda" %}
-{% input field="ProteinMeasurements.urine_free_lambda" %}
-{% input field="ProteinMeasurements.flc_ratio" %}
+{% load custom_forms %}
+{% load i18n %}
+
+{% custom_datepicker field="ProteinMeasurements.protein_measurement_date" date_after="the_episode.demographics[0].date_of_birth" date_after_message=_("Test date must be after the patient's birth date")%}
+{% number field="ProteinMeasurements.igg" unit="g/L" %}
+{% number field="ProteinMeasurements.iga" unit="g/L" %}
+{% number field="ProteinMeasurements.igm" unit="g/L" %}
+<div class="checkbox checkbox-primary col-sm-offset-3">
+  <input class="ng-pristine ng-untouched ng-valid ng-empty" id="checkbox_bence_jones_presence" type="checkbox" name="bence_jones_presence" ng-model="editing.protein_measurements.bence_jones_presence">
+  <label for="checkbox_bence_jones_presence">{% trans "Bence-Jones protein present" %}</label>
+  
+</div>
+<div ng-show="editing.protein_measurements.bence_jones_presence == true" >	
+    {% number field="ProteinMeasurements.bence_jones_level" %}
+</div>
+
+
+<div class="checkbox checkbox-primary col-sm-offset-3">
+  <input class="ng-pristine ng-untouched ng-valid ng-empty" id="checkbox_light_chain_secretion" type="checkbox" name="light_chain_secretion" ng-model="editing.protein_measurements.light_chain_secretion">
+  <label for="checkbox_light_chain_secretion">{% trans "Light chain secretion (yes/no)" %}</label>
+  
+</div>
+<div ng-show="editing.protein_measurements.light_chain_secretion == true" >	
+    {% number field="ProteinMeasurements.serum_kappa" %}
+    {% number field="ProteinMeasurements.serum_free_kappa" %}
+    {% number field="ProteinMeasurements.serum_lambda" %}
+    {% number field="ProteinMeasurements.serum_free_lambda" %}
+    {% number field="ProteinMeasurements.urine_kappa" %}
+    {% number field="ProteinMeasurements.urine_free_kappa" %}
+    {% number field="ProteinMeasurements.urine_lambda" %}
+    {% number field="ProteinMeasurements.urine_free_lambda" %}
+    {% number field="ProteinMeasurements.flc_ratio" %}
+</div>
+
