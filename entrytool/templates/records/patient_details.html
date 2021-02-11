@@ -72,12 +72,12 @@
     <span class="display-label">{% trans "Risk stratification"%}</span>
   </div>
   <div class ="col-md-2">
-    [[ item.risk_stratification || translate ]]
+    [[ item.risk_stratification | translate ]]
   </div>
   <div class="col-md-2">
     <span class="display-label">{% trans "Protein Type"%}</span>
   </div>
   <div class ="col-md-2">
-    [[ item.pp_type || translate ]] ([[ item.light_chain_type]])
+    [[ item.pp_type | translate ]] ([[ item.light_chain_type | translate ]])
   </div>
 </div>

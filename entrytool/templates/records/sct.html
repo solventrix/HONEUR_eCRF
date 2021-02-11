@@ -31,3 +31,33 @@
     [[ item.sct_type | translate ]]
   </div>
 </div>
+<div class="row" ng-show="item.mobilization_regimen">
+  <div class="col-md-5">
+    <span class="display-label">
+      {% trans "Mobilization regimen" %}
+    </span>
+  </div>
+  <div class="col-md-7">
+    [[ item.mobilization_regimen | translate ]]
+  </div>
+</div>
+<div class="row" ng-show="item.mobilization_start">
+  <div class="col-md-5">
+    <span class="display-label">
+      {% trans "Start" %}
+    </span>
+  </div>
+  <div class="col-md-7">
+    [[ item.mobilization_start | displayDate ]]
+  </div>
+</div>
+<div class="row" ng-show="item.mobilization_end">
+  <div class="col-md-5">
+    <span class="display-label">
+      {% trans "End" %}
+    </span>
+  </div>
+  <div class="col-md-7">
+    [[ item.mobilization_end | translate ]]
+  </div>
+</div>

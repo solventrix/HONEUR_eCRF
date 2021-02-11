@@ -34,29 +34,29 @@
       </div>
       <div class="col-sm-1 column">
         <div ng-show="item.mri_done==true">
-          <b>{% trans "MRI" %}</b> ([[item.mri_result || translate]])
+          <b>{% trans "MRI" %}</b> ([[item.mri_result | translate]])
         </div>
         <div ng-show="item.pet_done==true">
-          <b>{% trans "PET" %}</b> ([[item.pet_result || translate]])
+          <b>{% trans "PET" %}</b> ([[item.pet_result | translate]])
         </div>
         <div ng-show="item.pet_ct_done==true">
-          <b>{% trans "PET-CT" %}</b> ([[item.pet_ct_result || translate]])
+          <b>{% trans "PET-CT" %}</b> ([[item.pet_ct_result | translate]])
         </div>
       </div>
       <div class="col-sm-1 column">
-          [[item.plasmacytoma_presence || translate]]
+          [[item.plasmacytoma_presence | translate]]
       </div>
       <div class="col-sm-1 column">
-          [[item.scintigraphy_done || translate]]
+          [[item.scintigraphy_done | translate]]
       </div>
       <div class="col-sm-2 column">
-        [[item.compression_fractures || translate]]
+        [[item.compression_fractures | translate]]
     </div>
     <div class="col-sm-1 column">
-        [[item.spinal_compression || translate]]
+        [[item.spinal_compression | translate]]
     </div>
     <div class="col-sm-1 column">
-        [[item.surgical_aid || translate]]
+        [[item.surgical_aid | translate]]
     </div>
     </div>
   </div>

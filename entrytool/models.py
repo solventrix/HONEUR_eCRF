@@ -22,6 +22,10 @@ class Hospital(lookuplists.LookupList):
         verbose_name = _("Hospital")
         verbose_name_plural = _("Hospitals")
 
+class RegimenList(lookuplists.LookupList):
+    class Meta:
+        verbose_name = _("Regimen List")
+        verbose_name_plural = _("Regimen List")
 
 class SCT(models.EpisodeSubrecord):
     SCT_TYPES = (
@@ -41,6 +45,14 @@ class SCT(models.EpisodeSubrecord):
         choices=SCT_TYPES,
         null=True
     )
+
+    # TODO add different list for conditioning regimen
+    mobilization_regimen = models.ForeignKeyOrFreeText(RegimenList, verbose_name = _("Mobilization regimen"))
+    mobilization_start = fields.DateField(null=True, blank = True, verbose_name = _("Start of mobilization"))
+    mobilization_end = fields.DateField(null=True, blank = True, verbose_name = _("End of mobilization"))
+    cd_34_collection = fields.NullBooleanField(null = True, blank = True, verbose_name = _("CD34+ collection"))
+    # TODO check the values for this field
+    mrd_sample = fields.CharField(max_length = 100, null = True, blank = True, verbose_name = _("MRD of bone marrow sample"))
 
     class Meta:
         verbose_name = _("Stem Cell Transplant")
@@ -139,12 +151,6 @@ class PatientDetails(models.PatientSubrecord):
         verbose_name_plural = _("Patient Details")
 
 
-class RegimenList(lookuplists.LookupList):
-    class Meta:
-        verbose_name = _("Regimen List")
-        verbose_name_plural = _("Regimen List")
-
-
 class StopReason(lookuplists.LookupList):
     class Meta:
         verbose_name = _("Stop Reason")
@@ -226,6 +232,10 @@ class Progression(models.EpisodeSubrecord):
     order_by = "-progression_date"
     progression_date = fields.DateField(verbose_name=_("Progresion/relapse date"))
 
+    class Meta:
+        verbose_name = _("Progression/relapse")
+        verbose_name_plural = _("Progression/relapse")
+
 class BloodCountFollowUp(models.PatientSubrecord):
     _sort = "followup_date"
     _icon  = "fa fa-stethoscope"
@@ -243,6 +253,7 @@ class BloodCountFollowUp(models.PatientSubrecord):
     myeloblasts = fields.FloatField(blank = True, null = True, verbose_name = _("myeloblasts"))
     promyelocytes = fields.FloatField(blank = True, null = True, verbose_name = _("promyelocytes"))
     myelocytes = fields.FloatField(blank = True, null = True, verbose_name = _("myelocytes"))
+    
     eosinophils = fields.FloatField(blank = True, null = True, verbose_name = _("eosinophils"))
     basophils = fields.FloatField(blank = True, null = True, verbose_name = _("basophils"))
     lymphocytes = fields.FloatField(blank = True, null = True, verbose_name = _("lymphocytes"))
@@ -296,13 +307,15 @@ class CrabCriteria(models.PatientSubrecord):
     crab_date = fields.DateField(verbose_name = _("CRAB date"))
 
     CALCIUM_LEVELS = (
-        ("over2.65mmol", _("> 2.65 mmol/L")),
-        ("over1.5mmol", _("> 1.5 mmol/L")),
+        ("totalover2.65mmol", _("total calcium > 2.65 mmol/L")),
+        ("ionizedover1.5mmol", _("> 1.5 mmol/L")),
         ("Unknown", _("Unknown")),
     )
 
     hypercalcemia = fields.NullBooleanField(blank = True, null = True, verbose_name=_("Hypercalcemia"))
-    calcium_level = fields.CharField(max_length = 30, choices = CALCIUM_LEVELS, verbose_name=_("Calcium Level"))
+    total_over_265 = fields.NullBooleanField(blank = True, null = True, verbose_name =_("Total calcium > 2.65 mmol/"))
+    ionized_over_15 = fields.NullBooleanField(blank = True, null = True, verbose_name =_("Ionized calcium > 1.5 mmol/L"))
+
     renal_failure = fields.NullBooleanField(blank = True, null = True, verbose_name=_("creatinine >= 177 umol/L"))
     anemia = fields.NullBooleanField(blank = True, null = True, verbose_name=_("Hemoglobin < 100g/L or decrease of 20 g/d from norm"))
     bone_destruction = fields.NullBooleanField(blank = True, null = True, verbose_name=_("Bone destruction"))

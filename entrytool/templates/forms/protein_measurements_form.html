@@ -7,7 +7,7 @@
 {% number field="ProteinMeasurements.iga" unit="g/L" %}
 {% number field="ProteinMeasurements.igm" unit="g/L" %}
 <div class="checkbox checkbox-primary col-sm-offset-3">
-  <input class="ng-pristine ng-untouched ng-valid ng-empty" id="checkbox_bence_jones_presence" type="checkbox" name="bence_jones_presence" ng-model="editing.protein_measurements.bence_jones_presence">
+  <input class="ng-pristine ng-untouched ng-valid ng-empty" id="checkbox_bence_jones_presence" type="checkbox" name="bence_jones_presence" ng-model="editing.protein_measurements.bence_jones_presence" ng-change="editing.protein_measurements.bence_jones_level=null">
   <label for="checkbox_bence_jones_presence">{% trans "Bence-Jones protein present" %}</label>
   
 </div>
@@ -17,7 +17,10 @@
 
 
 <div class="checkbox checkbox-primary col-sm-offset-3">
-  <input class="ng-pristine ng-untouched ng-valid ng-empty" id="checkbox_light_chain_secretion" type="checkbox" name="light_chain_secretion" ng-model="editing.protein_measurements.light_chain_secretion">
+  <input class="ng-pristine ng-untouched ng-valid ng-empty" id="checkbox_light_chain_secretion" type="checkbox" name="light_chain_secretion" ng-model="editing.protein_measurements.light_chain_secretion"
+  ng-change="editing.protein_measurements.serum_kappa=null;editing.protein_measurements.serum_free_kappa=null;editing.protein_measurements.serum_lambda=null;
+  editing.protein_measurements.serum_free_lambda=null;editing.protein_measurements.urine_kappa=null;editing.protein_measurements.urine_free_kappa=null;editing.protein_measurements.urine_lambda=null;
+  editing.protein_measurements.urine_free_lambda=null;editing.protein_measurements.flc_ratio=null">
   <label for="checkbox_light_chain_secretion">{% trans "Light chain secretion (yes/no)" %}</label>
   
 </div>
