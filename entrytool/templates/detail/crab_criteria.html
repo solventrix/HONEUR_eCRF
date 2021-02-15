@@ -14,7 +14,7 @@
   <div ng-repeat="item in episode.crab_criteria | orderBy: '-crab_date' as ifts">
     <div class="row table-row">
       <div class="col-sm-2 first-column text-right">
-         [[ item.crab_date | displayDate ]]  
+         [[ item.crab_date | displayDate ]] &nbsp; 
          <i ng-click="episode.recordEditor.editItem('{{ models.CrabCriteria.get_api_name }}', item)"
           class="fa fa-pencil edit pointer"></i>
         

@@ -16,8 +16,7 @@
   <div ng-repeat="item in episode.trephine_biopsy | orderBy: '-trephine_biopsy_date' as ifts">
     <div class="row table-row" >
       <div class="col-sm-2 first-column text-right">
-        [[ item.hospital | translate ]] [[ item.trephine_biopsy_date | displayDate ]]
-        <i ng-click="episode.recordEditor.editItem('{{ models.TrephineBiopsy.get_api_name }}', item)" class="fa fa-pencil edit pointer"></i>
+        [[ item.hospital | translate ]] [[ item.trephine_biopsy_date | displayDate ]] &nbsp; <i ng-click="episode.recordEditor.editItem('{{ models.TrephineBiopsy.get_api_name }}', item)" class="fa fa-pencil edit pointer"></i>
       </div>
       <div class="col-sm-2 column">
       [[ item.cellularity || translate]]

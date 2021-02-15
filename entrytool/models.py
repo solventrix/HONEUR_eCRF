@@ -441,4 +441,14 @@ class ProteinMeasurements(models.PatientSubrecord):
     urine_free_lambda = fields.FloatField(null = True, blank = True, verbose_name = _("Urine free lambda chains"))
     flc_ratio = fields.FloatField(null = True, blank = True, verbose_name=_("FLC ratio"))
 
+class RadiationTherapy(models.EpisodeSubrecord):
+    _sort = "radiation_date"
+    order_by = "-radiation_date"
+    radiation_date = fields.DateField(verbose_name=_("Radiation therapy date"))
+    radiation_zone = fields.CharField(max_length=100, null=True, blank=True, verbose_name=_("Zone"))
+
+    class Meta:
+        verbose_name = _("Radiation therapy")
+        verbose_name_plural = _("Radiation therapy")
+
 

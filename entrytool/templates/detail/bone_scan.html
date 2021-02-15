@@ -18,7 +18,7 @@
   <div ng-repeat="item in episode.bone_scan | orderBy: '-scan_date' as ifts">
     <div class="row table-row">
       <div class="col-sm-2 first-column text-right">
-        [[ item.scan_date | displayDate ]]
+        [[ item.scan_date | displayDate ]]&nbsp;
         <i ng-click="episode.recordEditor.editItem('{{ models.BoneScan.get_api_name }}', item)"
           class="fa fa-pencil edit pointer"></i>
       </div>

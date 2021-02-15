@@ -19,7 +19,7 @@
   <div ng-repeat="item in episode.protein_measurements | orderBy: '-protein_measurement_date' as ifts">
     <div class="row table-row">
       <div class="col-sm-2 first-column text-right">
-        [[ item.protein_measurement_date | displayDate ]]
+        [[ item.protein_measurement_date | displayDate ]] &nbsp;
         <i ng-click="episode.recordEditor.editItem('{{ models.ProteinMeasurements.get_api_name }}', item)"
           class="fa fa-pencil edit pointer"></i>
       </div>

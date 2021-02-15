@@ -18,7 +18,8 @@
       <div ng-repeat="item in episode.cytogenetics | orderBy: '-cytogenetic_date' as cytogenetics">
          <div class="row table-row" >
             <div class="col-sm-1 first-column text-right">
-            [[ item.hospital | translate ]] [[ item.cytogenetic_date | displayDate ]]
+            [[ item.hospital | translate ]] [[ item.cytogenetic_date | displayDate ]]  &nbsp;  <i ng-click="episode.recordEditor.editItem('{{ models.Cytogenetics.get_api_name }}', item)" class="fa fa-pencil edit pointer"></i>
+
             </div>
             <div class="col-sm-1 column">
             <div>[[ item.karyotype | translate ]]</div>
@@ -43,10 +44,6 @@
             </div>
              <div class="col-sm-2 column">
             <div>[[ item.chr1_abnormalities | translate]]</div>
-            </div>
-            
-            <div class="col-sm-1 text-left">
-            <i ng-click="episode.recordEditor.editItem('{{ models.Cytogenetics.get_api_name }}', item)" class="fa fa-pencil edit pointer"></i>
             </div>
 
          </div>
