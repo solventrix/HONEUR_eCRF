@@ -1,3 +1,5 @@
 {% load forms %}
-{% datepicker field="RadiationTherapy.radiation_date" %}
+{% load custom_forms %}
+{% load i18n %}
+{% custom datepicker field="RadiationTherapy.radiation_date" date_after="the_episode.demographics[0].date_of_birth" date_after_message=_("Test date must be after the patient's birth date") required=True %}
 {% input field="RadiationTherapy.radiation_zone" %}

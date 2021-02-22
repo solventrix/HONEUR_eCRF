@@ -26,7 +26,7 @@
 </div>
 <div class="form-group">
 <div ng-show="editing.ift.cd38_138_presence == 'Yes'">	
-    {% number field="IFT.cd38cd138_percentage" required=True min_value="1" max_value="100" unit="%" ngrequired="editing.ift.cd38_138_presence == 'Yes'"%}
+    {% number field="IFT.cd38cd138_percentage" min_value="1" max_value="100" unit="%" ngrequired="editing.ift.cd38_138_presence==='Yes'"%}
   </div>
 </div>
 
@@ -50,7 +50,7 @@
 </div>
 <div class="form-group">
 <div ng-show="editing.ift.cd56_presence == 'Yes'" >	
-    {% number field="IFT.cd56_percentage" min_value="1" max_value="100" unit="%" %}
+    {% number field="IFT.cd56_percentage" min_value="1" max_value="100" unit="%" ngrequired="editing.ift.cd56_presence==='Yes'"%}
   </div>
 </div>
 
@@ -73,7 +73,7 @@
 </div>
 <div class="form-group">
 <div ng-show="editing.ift.cd19_presence == 'Yes'" >	
-    {% number field="IFT.cd19_percentage" min_value="1" max_value="100" unit="%" %}
+    {% number field="IFT.cd19_percentage" min_value="1" max_value="100" unit="%" ngrequired="editing.ift.cd19_presence==='Yes'"%}
   </div>
 </div>
 
@@ -96,7 +96,7 @@
 </div>
 <div class="form-group">
 <div ng-show="editing.ift.cd20_presence == 'Yes'" >	
-    {% number field="IFT.cd20_percentage" min_value="1" max_value="100" unit="%" %}
+    {% number field="IFT.cd20_percentage" min_value="1" max_value="100" unit="%" ngrequired="editing.ift.cd20_presence==='Yes'"%}
   </div>
 </div>
 
@@ -119,7 +119,7 @@
 </div>
 <div class="form-group">
 <div ng-show="editing.ift.cd27_presence == 'Yes'" >	
-    {% number field="IFT.cd27_percentage" min_value="1" max_value="100" unit="%" %}
+    {% number field="IFT.cd27_percentage" min_value="1" max_value="100" unit="%" ngrequired="editing.ift.cd27_presence==='Yes'"%}
   </div>
 </div>
 
@@ -142,6 +142,6 @@
 </div>
 <div class="form-group">
 <div ng-show="editing.ift.cd117_presence == 'Yes'" >	
-    {% number field="IFT.cd117_percentage" min_value="1" max_value="100" unit="%" %}
+    {% number field="IFT.cd117_percentage" min_value="1" max_value="100" unit="%" ngrequired="editing.ift.cd117_presence==='Yes'"%}
   </div>
 </div>

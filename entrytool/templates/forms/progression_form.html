@@ -1,2 +1,4 @@
 {% load forms %}
-{% datepicker field="Progression.progression_date" %}
+{% load custom_forms %}
+{% load i18n %}
+{% custom_datepicker field="Progression.progression_date" required=True date_after="$root.patientValidator.patient.patient_details[0].diag_date" date_after_diff="0" date_after_message=_("The response should be after the date of diagnosis")%}

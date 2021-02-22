@@ -1,7 +1,7 @@
 {% load forms %}
 {% load custom_forms%}
 {% load i18n %}
-{% custom_datepicker field="TrephineBiopsy.trephine_biopsy_date" date_after="the_episode.demographics[0].date_of_birth" date_after_message=_("Visit date must be after the patient's birth date")%}
+{% custom_datepicker field="TrephineBiopsy.trephine_biopsy_date" required=True date_after="the_episode.demographics[0].date_of_birth" date_after_message=_("Visit date must be after the patient's birth date")%}
 {% input field="TrephineBiopsy.cellularity" %}
 {% number field="TrephineBiopsy.hematopoietic_tissue" min="0" max="100" unit="%" %}
 {% number field="TrephineBiopsy.adipose_tissue" min="0" max="100" unit="%" %}
