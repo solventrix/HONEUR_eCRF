@@ -264,6 +264,10 @@ class BloodCountFollowUp(models.PatientSubrecord):
     b2m = fields.FloatField(blank = True, null = True, verbose_name=_("Beta-2-microglobulin"))
     albumin = fields.FloatField(blank = True, null = True, verbose_name=_("albumin"))
     ldh = fields.FloatField(blank = True, null = True, verbose_name=_("LDH"))
+    esr = fields.FloatField(blank = True, null = True, verbose_name = _("ESR"))
+    young_cells = fields.FloatField(blank = True, null = True, verbose_name = _("Young cells"))
+    segmented_neutrophils = fields.FloatField(blank = True, null = True, verbose_name = _("Segmented neutrophils"))
+    band_neutrophils = fields.FloatField(blank = True, null = True, verbose_name = _("Band neutrophils"))
     class Meta:
         verbose_name = _("Blood Count")
         verbose_name_plural = _("Blood Counts")

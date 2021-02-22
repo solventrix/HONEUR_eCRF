@@ -62,6 +62,8 @@
       <div class="col-sm-1 header">{% trans "b2m" %}</div>
       <div class="col-sm-1 header">{% trans "albumin" %}</div>
       <div class="col-sm-1 header">{% trans "ldh" %}</div>
+      <div class="col-sm-1 header">{% trans "esr" %}</div>
+
 
     </div>
   </div>
@@ -88,6 +90,43 @@
       <div class="col-sm-1 column">[[ item.b2m ]]</div>
       <div class="col-sm-1 column">[[ item.albumin ]]</div>
       <div class="col-sm-1 column">[[ item.ldh ]]</div>
+      <div class="col-sm-1 column">[[ item.esr ]]</div>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="follow-up-table" ng-show="episode.blood_count_follow_up.length > 0">
+  <div class="col-md-12">
+    <div class="row header-row display-label">
+      
+      <div class="col-sm-1 header"></div>
+      <div class="col-sm-1 header">{% trans "young_cells" %}</div>
+      <div class="col-sm-1 header">{% trans "band_neutrophils" %}</div>
+      <div class="col-sm-1 header">{% trans "segmented_neutrophils" %}</div>
+
+
+
+    </div>
+  </div>
+
+
+  <div ng-repeat="item in episode.blood_count_follow_up | orderBy: '-followup_date' as followups">
+    <div
+      ng-show="$index === 0 || followups[$index-1].hospital !== item.hospital"
+      class="row"
+      >
+
+    </div>
+    <div class="row table-row" >
+      <div class="col-sm-1 first-column text-right">
+        [[ item.hospital | translate ]] [[ item.followup_date | displayDate ]]&nbsp; <i ng-click="episode.recordEditor.editItem('{{ models.BloodCountFollowUp.get_api_name }}', item)" class="fa fa-pencil edit pointer"></i>
+      </div>
+      <div class="col-sm-1 column">[[ item.young_cells ]]</div>
+      <div class="col-sm-1 column">[[ item.band_neutrophils ]]</div>
+      <div class="col-sm-1 column">[[ item.segmented_neutrophils ]]</div>
+
 
     </div>
   </div>
