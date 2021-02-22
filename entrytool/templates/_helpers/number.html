@@ -21,6 +21,9 @@
            {% if required %}
            required
            {% endif %}
+           {% if ngrequired%}
+           ng-required= "{{ ngrequired }}"
+           {% endif %}
            {% if change %}
            ng-change="{{ change }}"
            {% endif %}
@@ -45,7 +48,7 @@
            ng-max="[[ {{ max_value }}]]"
            {% endif %}
            />
-    {% if required %}
+    {% if ngrequired %}
       <span class="help-block" ng-show="({{ formname }}[{{ element_name }}].$dirty || {{ formname }}.$submitted) && {{ formname }}[{{ element_name }}].$error.required">
         {% blocktrans with label=label %}{{ label }} is required{% endblocktrans %}
       </span>
