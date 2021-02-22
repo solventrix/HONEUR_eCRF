@@ -15,38 +15,6 @@
         [[ patient.patient_details[0].diag_date | displayDate ]]
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-4">
-        <b>SMM History</b>
-      </div>
-      <div class="col-md-8" >
-        [[ patient.patient_details[0].smm_history ]]
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-4" ng-show="patient.patient_details[0].smm_history=='Yes'">
-        <b>SMM Diagnosis</b>
-      </div>
-      <div class="col-md-8" ng-show="patient.patient_details[0].smm_history=='Yes'">
-        [[ patient.patient_details[0].smm_history_date | displayDate  ]]
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-4">
-        <b>MGUS History</b>
-      </div>
-      <div class="col-md-8" >
-        [[ patient.patient_details[0].mgus_history ]]
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-4" ng-show="patient.patient_details[0].mgus_history=='Yes'">
-        <b>MGUS Diagnosis Date</b>
-      </div>
-      <div class="col-md-8" ng-show="patient.patient_details[0].mgus_history=='Yes'">
-        [[ patient.patient_details[0].mgus_history_date | displayDate ]]
-      </div>
-    </div>
 
     <div class="row">
       <div class="col-md-4">

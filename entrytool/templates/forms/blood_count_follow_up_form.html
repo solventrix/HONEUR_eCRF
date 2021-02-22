@@ -3,21 +3,21 @@
 {% load i18n %}
 {% custom_datepicker field="BloodCountFollowUp.followup_date" date_after="the_episode.demographics[0].date_of_birth" date_after_message=_("Scan date must be after the patient's birth date")%}
 
-{% number field="BloodCountFollowUp.erythrocytes" %}
-{% number field="BloodCountFollowUp.hemoglobin" %}
-{% number field="BloodCountFollowUp.hematocrit" %}
-{% number field="BloodCountFollowUp.mcv" %}
-{% number field="BloodCountFollowUp.mch" %}
-{% number field="BloodCountFollowUp.mchc" %}
-{% number field="BloodCountFollowUp.reticulocytes" %}
-{% number field="BloodCountFollowUp.leucocytes" %}
-{% number field="BloodCountFollowUp.myeloblasts" %}
-{% number field="BloodCountFollowUp.promyelocytes" %}
-{% number field="BloodCountFollowUp.myelocytes" %}
-{% number field="BloodCountFollowUp.eosinophils" %}
-{% number field="BloodCountFollowUp.basophils" %}
-{% number field="BloodCountFollowUp.lymphocytes" %}
-{% number field="BloodCountFollowUp.monocytes" %}
-{% number field="BloodCountFollowUp.plasmablasts" %}
-{% number field="BloodCountFollowUp.plasmacytes" %}
-{% number field="BloodCountFollowUp.platelets" %}
+{% number field="BloodCountFollowUp.erythrocytes" min_value="0" warn_min="5", max_value="100" warn_max="95"%}
+{% number field="BloodCountFollowUp.hemoglobin" min_value="0" warn_min="5", max_value="100" warn_max="95"%}
+{% number field="BloodCountFollowUp.hematocrit" min_value="0" warn_min="5", max_value="100" warn_max="95"%}
+{% number field="BloodCountFollowUp.mcv" min_value="0" warn_min="5", max_value="100" warn_max="95"%}
+{% number field="BloodCountFollowUp.mch" min_value="0" warn_min="5", max_value="100" warn_max="95"%}
+{% number field="BloodCountFollowUp.mchc" min_value="0" warn_min="5", max_value="100" warn_max="95"%}
+{% number field="BloodCountFollowUp.reticulocytes" min_value="0" warn_min="5", max_value="100" warn_max="95"%}
+{% number field="BloodCountFollowUp.leucocytes" min_value="0" warn_min="5", max_value="100" warn_max="95"%}
+{% number field="BloodCountFollowUp.myeloblasts" min_value="0" warn_min="5", max_value="100" warn_max="95"%}
+{% number field="BloodCountFollowUp.promyelocytes" min_value="0" warn_min="5", max_value="100" warn_max="95"%}
+{% number field="BloodCountFollowUp.myelocytes" min_value="0" warn_min="5", max_value="100" warn_max="95"%}
+{% number field="BloodCountFollowUp.eosinophils" min_value="0" warn_min="5", max_value="100" warn_max="95"%}
+{% number field="BloodCountFollowUp.basophils" min_value="0" warn_min="5", max_value="100" warn_max="95"%}
+{% number field="BloodCountFollowUp.lymphocytes" min_value="0" warn_min="5", max_value="100" warn_max="95"%}
+{% number field="BloodCountFollowUp.monocytes" min_value="0" warn_min="5", max_value="100" warn_max="95"%}
+{% number field="BloodCountFollowUp.plasmablasts" min_value="0" warn_min="5", max_value="100" warn_max="95"%}
+{% number field="BloodCountFollowUp.plasmacytes" min_value="0" warn_min="5", max_value="100" warn_max="95"%}
+{% number field="BloodCountFollowUp.platelets" min_value="0" warn_min="5", max_value="100" warn_max="95"%}

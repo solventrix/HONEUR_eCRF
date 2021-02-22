@@ -1,7 +1,7 @@
 {% load forms %}
 {% load i18n %}
 {% load custom_forms %}
-{% custom_datepicker field="BoneScan.scan_date" date_after="the_episode.demographics[0].date_of_birth" date_after_message=_("Scan date must be after the patient's birth date")%}
+{% custom_datepicker field="BoneScan.scan_date" date_after="the_episode.demographics[0].date_of_birth" date_after_message=_("Scan date must be after the patient's birth date") required=True %}
 <div class="col-sm-offset-3">
 <h3>Destruction zones</h3>
 </div>
@@ -46,4 +46,4 @@
 {% checkbox field="BoneScan.scintigraphy_done" %}
 {% checkbox field="BoneScan.compression_fractures" %}
 {% checkbox field="BoneScan.spinal_compression" %}
-{% select field="BoneScan.surgical_aid" required="TrueDe" %}
+{% select field="BoneScan.surgical_aid" %}

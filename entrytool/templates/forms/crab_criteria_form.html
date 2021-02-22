@@ -1,7 +1,7 @@
 {% load forms %}
 {% load custom_forms%}
 {% load i18n %}
-{% custom_datepicker field="CrabCriteria.crab_date" date_after="the_episode.demographics[0].date_of_birth" date_after_message=_("Visit date must be after the patient's birth date")%}
+{% custom_datepicker field="CrabCriteria.crab_date" date_after="the_episode.demographics[0].date_of_birth" date_after_message=_("Visit date must be after the patient's birth date") required=True %}
 
 
 {% checkbox field="CrabCriteria.hypercalcemia" %}

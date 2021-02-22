@@ -17,20 +17,23 @@
           [[ patient.id ]]
         </div>
       </div>
-      <div ng-show="patient.demographics[0].external_identifier" class="row">
+      <div ng-show="patient.demographics[0].hospital_number" class="row">
         <div class="col-md-6">
           <span class="display-label">{% trans "External Identifier" %}</span>
         </div>
         <div class="col-md-6">
-          [[ patient.demographics[0].external_identifier ]]
+          [[ patient.demographics[0].hospital_number ]]
         </div>
       </div>
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6" >
           <span class="display-label">{% trans "Birth Date" %}</span>
         </div>
         <div class="col-md-6">
           [[ patient.demographics[0].date_of_birth | displayDate ]]
+        </div>
+        <div class="missing col-md-6" ng-show="!patient.demographics[0].date_of_birth">
+          FILL ME
         </div>
       </div>
       <div class="row">
