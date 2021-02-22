@@ -18,8 +18,11 @@
            uib-typeahead="i for i in {{ lookuplist }} | filter:$viewValue | limitTo:8"
            {% endif %}
            name="[[ {{ element_name }} ]]"
-           {% if required %}
+           {% comment %} {% if required %}
            required
+           {% endif %} {% endcomment %}
+           {% if ngrequired %}
+           ng-required={{ ngrequired}}
            {% endif %}
            {% if ngrequired%}
            ng-required= "{{ ngrequired }}"
