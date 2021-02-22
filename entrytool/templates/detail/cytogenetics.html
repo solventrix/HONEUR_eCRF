@@ -23,66 +23,37 @@
             </div>
             <div class="col-sm-1 column">
             <div>[[ item.karyotype | translate ]]</div>
+            <div class="missing" ng-show="!item.karyotype">[[ "Fill me" | translate ]]</div>
             </div>
              <div class="col-sm-1 column">
             <div>[[ item.t14_16 | translate]]</div>
+            <div class="missing" ng-show="!item.t14_16">[[ "Fill me" | translate ]]</div>
             </div>
              <div class="col-sm-1 column">
             <div>[[ item.t4_14 | translate]]</div>
+            <div class="missing" ng-show="!item.t4_14">[[ "Fill me" | translate ]]</div>
             </div>
              <div class="col-sm-1 column">
             <div>[[ item.t11_14 | translate]]</div>
+            <div class="missing" ng-show="!item.t11_14">[[ "Fill me" | translate ]]</div>
             </div>
              <div class="col-sm-1 column">
             <div>[[ item.del13 | translate]]</div>
+            <div class="missing" ng-show="!item.del13">[[ "Fill me" | translate ]]</div>
             </div>
              <div class="col-sm-1 column">
             <div>[[ item.del17p | translate]]</div>
+            <div class="missing" ng-show="!item.del17p">[[ "Fill me" | translate ]]</div>
             </div>
              <div class="col-sm-2 column">
             <div>[[ item.ighv_rearrangement | translate ]]</div>
+            <div class="missing" ng-show="!item.ighv_rearrangement">[[ "Fill me" | translate ]]</div>
             </div>
              <div class="col-sm-2 column">
             <div>[[ item.chr1_abnormalities | translate]]</div>
+            <div class="missing" ng-show="!item.chr1_abnormalities">[[ "Fill me" | translate ]]</div>
             </div>
 
          </div>
       </div>
 </div>
-
-<span ng-show="item.cytogenetic_date">
-    [[ item.cytogenetic_date | displayDate ]]
-   <br />
-</span>
-<span ng-show="item.karyotpye">
-    [[ item.karyotpye ]]
-   <br />
-</span>
-<span ng-show="item.t14_16">
-    [[ item.t14_16 ]]
-   <br />
-</span>
-<span ng-show="item.t4_14">
-    [[ item.t4_14 ]]
-   <br />
-</span>
-<span ng-show="item.t11_14">
-    [[ item.t11_14 ]]
-   <br />
-</span>
-<span ng-show="item.del13">
-    [[ item.del13 ]]
-   <br />
-</span>
-<span ng-show="item.del17p">
-    [[ item.del17p ]]
-   <br />
-</span>
-<span ng-show="item.ighv_rearrangement">
-    [[ item.ighv_rearrangement ]]
-   <br />
-</span>
-<span ng-show="item.chr1_abnormalities">
-    [[ item.chr1_abnormalities ]]
-   <br />
-</span>
