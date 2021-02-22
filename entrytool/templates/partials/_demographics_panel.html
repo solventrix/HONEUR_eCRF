@@ -33,7 +33,7 @@
           [[ patient.demographics[0].date_of_birth | displayDate ]]
         </div>
         <div class="missing col-md-6" ng-show="!patient.demographics[0].date_of_birth">
-          FILL ME
+          [["Fill me" | translate]]
         </div>
       </div>
       <div class="row">
@@ -42,6 +42,9 @@
         </div>
         <div class="col-md-6">
           [[ patient.demographics[0].sex | translate ]]
+        </div>
+        <div class="missing col-md-6" ng-show="!patient.demographics[0].sex">
+          [["Fill me" | translate]]
         </div>
       </div>
     </li>
