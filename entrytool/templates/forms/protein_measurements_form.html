@@ -1,0 +1,38 @@
+{% load forms %}
+{% load custom_forms %}
+{% load i18n %}
+
+{% custom_datepicker field="ProteinMeasurements.protein_measurement_date" date_after="the_episode.demographics[0].date_of_birth" date_after_message=_("Test date must be after the patient's birth date") required=True%}
+{% number field="ProteinMeasurements.igg" min_value="0" warn_min="5" max_value="100" warn_max="95" unit="g/L" %}
+{% number field="ProteinMeasurements.iga" min_value="0" warn_min="5" max_value="100" warn_max="95" unit="g/L" %}
+{% number field="ProteinMeasurements.igm" min_value="0" warn_min="5" max_value="100" warn_max="95" unit="g/L" %}
+<div class="checkbox checkbox-primary col-sm-offset-3">
+  <input class="ng-pristine ng-untouched ng-valid ng-empty" id="checkbox_bence_jones_presence" type="checkbox" name="bence_jones_presence" ng-model="editing.protein_measurements.bence_jones_presence" ng-change="editing.protein_measurements.bence_jones_level=null">
+  <label for="checkbox_bence_jones_presence">{% trans "Bence-Jones protein present" %}</label>
+  
+</div>
+<div ng-show="editing.protein_measurements.bence_jones_presence == true" >	
+    {% number unit="g/L" field="ProteinMeasurements.bence_jones_level" ngrequired="editing.protein_measurements.bence_jones_presence===true" min_value="0" warn_min="5" max_value="100" warn_max="95"%}
+</div>
+
+
+<div class="checkbox checkbox-primary col-sm-offset-3">
+  <input class="ng-pristine ng-untouched ng-valid ng-empty" id="checkbox_light_chain_secretion" type="checkbox" name="light_chain_secretion" ng-model="editing.protein_measurements.light_chain_secretion"
+  ng-change="editing.protein_measurements.serum_kappa=null;editing.protein_measurements.serum_free_kappa=null;editing.protein_measurements.serum_lambda=null;
+  editing.protein_measurements.serum_free_lambda=null;editing.protein_measurements.urine_kappa=null;editing.protein_measurements.urine_free_kappa=null;editing.protein_measurements.urine_lambda=null;
+  editing.protein_measurements.urine_free_lambda=null;editing.protein_measurements.flc_ratio=null">
+  <label for="checkbox_light_chain_secretion">{% trans "Light chain secretion (yes/no)" %}</label>
+  
+</div>
+<div ng-show="editing.protein_measurements.light_chain_secretion == true" >	
+    {% number field="ProteinMeasurements.serum_kappa" min_value="0" warn_min="5" max_value="100" warn_max="95" unit="g/L"%}
+    {% number field="ProteinMeasurements.serum_free_kappa" min_value="0" warn_min="5" max_value="100" warn_max="95" unit="g/L" %}
+    {% number field="ProteinMeasurements.serum_lambda" min_value="0" warn_min="5" max_value="100" warn_max="95" unit="g/L"%}
+    {% number field="ProteinMeasurements.serum_free_lambda" min_value="0" warn_min="5" max_value="100" warn_max="95" unit="g/L"%}
+    {% number field="ProteinMeasurements.urine_kappa" min_value="0" warn_min="5" max_value="100" warn_max="95" unit="g/L"%}
+    {% number field="ProteinMeasurements.urine_free_kappa" min_value="0" warn_min="5" max_value="100" warn_max="95" unit="g/L"%}
+    {% number field="ProteinMeasurements.urine_lambda" min_value="0" warn_min="5" max_value="100" warn_max="95" unit="g/L"%}
+    {% number field="ProteinMeasurements.urine_free_lambda" min_value="0" warn_min="5" max_value="100" warn_max="95" unit="g/L"%}
+    {% number field="ProteinMeasurements.flc_ratio" min_value="0" warn_min="5" max_value="100" warn_max="95" unit="g/L"%}
+</div>
+

@@ -3,6 +3,8 @@
    <br />
 </span>
 <span ng-show="item.response">
-    [[ item.response | translate ]]
+    <b>[[ item.response | translate ]]</b>
+    <div class="missing" ng-show="!item.response">[[ "Fill me" | translate ]]</div>
+
    <br />
 </span>

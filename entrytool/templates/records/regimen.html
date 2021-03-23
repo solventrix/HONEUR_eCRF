@@ -39,6 +39,9 @@
   </div>
   <div class="col-md-7">
     [[ item.regimen | translate ]]
+    <div class="missing" ng-show="!item.regimen">[[ "Fill me" | translate ]]</div>
+
+    
   </div>
 </div>
 
@@ -50,6 +53,8 @@
   </div>
   <div class="col-md-7">
     [[ item.category | translate ]]
+        <div class="missing" ng-show="!item.category">[[ "Fill me" | translate ]]</div>
+
   </div>
 </div>
 
@@ -61,6 +66,8 @@
   </div>
   <div class="col-md-7">
     [[ item.start_date | displayDate ]]
+            <div class="missing" ng-show="!item.start_date">[[ "Fill me" | translate ]]</div>
+
   </div>
 </div>
 
@@ -78,10 +85,12 @@
 <div class="row" ng-show="item.stop_reason">
   <div class="col-md-5">
     <span class="display-label">
-      {% trans "Reason" %}
+      {% trans "Stop Reason" %}
     </span>
   </div>
   <div class="col-md-7">
     [[ item.stop_reason|translate ]]
+                <div class="missing" ng-show="!item.stop_reason">[[ "Fill me" | translate ]]</div>
+
   </div>
 </div>

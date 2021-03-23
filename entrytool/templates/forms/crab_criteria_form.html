@@ -1,0 +1,21 @@
+{% load forms %}
+{% load custom_forms%}
+{% load i18n %}
+{% custom_datepicker field="CrabCriteria.crab_date" date_after="the_episode.demographics[0].date_of_birth" date_after_message=_("Visit date must be after the patient's birth date") required=True %}
+
+
+{% checkbox field="CrabCriteria.hypercalcemia" %}
+{% checkbox field="CrabCriteria.total_over_265" %}
+{% checkbox field="CrabCriteria.ionized_over_15" %}
+{% checkbox field="CrabCriteria.renal_failure" %}
+{% checkbox field="CrabCriteria.anemia" %}
+<div class="checkbox checkbox-primary col-sm-offset-3">
+  <input class="ng-pristine ng-untouched ng-valid ng-empty" id="checkbox_crab_criteria_lesions" type="checkbox" name="crab_criteria_lesions" ng-model="editing.crab_criteria.bone_destruction" ng-change="editing.crab_criteria.region_osteolysis=null; editing.crab_criteria.nb_affected_zones=null">
+  <label for="checkbox_crab_criteria_lesions">{% trans "Bone Destruction" %}</label>
+</div>
+<div ng-show="editing.crab_criteria.bone_destruction == true" >	
+    {% input field="CrabCriteria.region_osteolysis" %}
+    {% number field="CrabCriteria.nb_affected_zones" min_value="0" %}  
+</div>
+
+

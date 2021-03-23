@@ -1,0 +1,71 @@
+{% load i18n %}
+<div class="follow-up-table" ng-show="episode.protein_measurements.length > 0">
+  <div class="col-md-12">
+    <div class="row header-row display-label">
+      <div class="col-sm-2 header"></div>
+      <div class="col-sm-1 header">{% trans "IGG" %}<br/>(g/L)</div>
+      <div class="col-sm-1 header">{% trans "IGA" %}<br/>(g/L)</div>
+      <div class="col-sm-1 header">{% trans "IGM" %}<br/>(g/L)</div>
+      <div class="col-sm-1 header">{% trans "Bence-Jones protein" %}</div>
+      <div class="col-sm-1 header">{% trans "Serum Kappa chains (free)" %}</div>
+      <div class="col-sm-1 header">{% trans "Urine Kappa chains (free)" %}</div>
+      <div class="col-sm-1 header">{% trans "Serum Lambda chains (free)" %}</div>
+      <div class="col-sm-1 header">{% trans "Urine Lambda chains (free)" %}</div>
+      <div class="col-sm-1 header">{% trans "FLC ratio" %}</div>
+
+    </div>
+  </div>
+
+  <div ng-repeat="item in episode.protein_measurements | orderBy: '-protein_measurement_date' as ifts">
+    <div class="row table-row">
+      <div class="col-sm-2 first-column text-right">
+        [[ item.protein_measurement_date | displayDate ]] &nbsp;
+        <i ng-click="episode.recordEditor.editItem('{{ models.ProteinMeasurements.get_api_name }}', item)"
+          class="fa fa-pencil edit pointer"></i>
+      </div>
+
+    
+    <div class="col-sm-1 column">
+        <div class="missing" ng-show="item.igg==null">[[ "Fill me" | translate ]]</div>
+        <div>[[ item.igg | translate]]</div>
+      </div>
+      <div class="col-sm-1 column">
+        <div class="missing" ng-show="item.iga==null">[[ "Fill me" | translate ]]</div>
+        <div>[[ item.iga | translate]]</div>
+      </div>
+      <div class="col-sm-1 column">
+        <div class="missing" ng-show="item.igm==null">[[ "Fill me" | translate ]]</div>
+        <div>[[ item.igm | translate]]</div>
+      </div>
+
+    <div class="col-sm-1 column">
+        <div ng-show="item.bence_jones_presence==true">
+            [[item.bence_jones_level]]
+        </div>
+        <div class="missing" ng-show="item.bence_jones_presence==null">[[ "Fill me" | translate ]]</div>
+    </div>
+     <div class="col-sm-1 column">
+        [[item.serum_kappa]] ([[item.serum_free_kappa]])
+        <div class="missing" ng-show="item.serum_kappa==null && item.serum_free_kappa==null">[[ "Fill me" | translate ]]</div>
+    </div>
+    <div class="col-sm-1 column">
+        [[item.urine_kappa]] ([[item.urine_free_kappa]])        
+        <div class="missing" ng-show="item.urine_kappa==null && item.urine_free_kappa==null">[[ "Fill me" | translate ]]</div>
+    </div>
+    <div class="col-sm-1 column">
+        [[item.serum_lambda]] ([[item.serum_free_lambda]])        
+        <div class="missing" ng-show="item.serum_lambda==null && item.serum_free_lambda==null">[[ "Fill me" | translate ]]</div>
+    </div>
+    <div class="col-sm-1 column">
+        [[item.urine_lambda]] ([[item.urine_free_lambda]])        
+        <div class="missing" ng-show="item.urine_lambda==null && item.urine_free_lambda==null">[[ "Fill me" | translate ]]</div>
+
+    </div>
+    <div class="col-sm-1 column">
+        [[item.flc_ratio]] 
+                <div class="missing" ng-show="item.flc_ratio==null">[[ "Fill me" | translate ]]</div>
+
+    </div>
+    </div>
+  </div>
+</div>

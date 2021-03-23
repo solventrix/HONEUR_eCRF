@@ -1,5 +1,6 @@
 {% load forms %}
 {% load custom_forms %}
+{% load i18n %}
 {% custom_datepicker field="Response.response_date" date_after="$root.patientValidator.patient.patient_details[0].diag_date" date_after_diff="0" date_after_message=_("The response should be after the date of diagnosis") validator="response_date" required=True %}
 {% select field="Response.response" %}
 

@@ -1,0 +1,11 @@
+{% load forms %}
+{% load custom_forms %}
+{% custom_datepicker field="Cytogenetics.cytogenetic_date" date_after="the_episode.demographics[0].date_of_birth" date_after_message=_("Test date must be after the patient's birth date") required=True %}
+{% input field="Cytogenetics.karyotpye" %}
+{% radio field="Cytogenetics.t14_16" %}
+{% radio field="Cytogenetics.t4_14" %}
+{% radio field="Cytogenetics.t11_14" %}
+{% radio field="Cytogenetics.del13" %}
+{% radio field="Cytogenetics.del17p" %}
+{% radio field="Cytogenetics.ighv_rearrangement" %}
+{% radio field="Cytogenetics.chr1_abnormalities" %}
