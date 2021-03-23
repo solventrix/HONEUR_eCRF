@@ -1,0 +1,22 @@
+{% load i18n %}
+<div class="row" ng-show="item.radiation_date">
+  <div class="col-md-5">
+    <span class="display-label">
+      {% trans "Date" %}
+    </span>
+  </div>
+  <div class="col-md-7">
+    [[ item.radiation_date | displayDate ]]
+  </div>
+</div>
+
+<div class="row" ng-show="item.radiation_zone">
+  <div class="col-md-5">
+    <span class="display-label">
+      {% trans "Zone" %}
+    </span>
+  </div>
+  <div class="col-md-7">
+    [[ item.radiation_zone | translate ]]
+  </div>
+</div>
