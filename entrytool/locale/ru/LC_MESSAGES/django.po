@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-10 13:09+0000\n"
+"POT-Creation-Date: 2021-03-23 12:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,7 +32,7 @@ msgstr "выйти"
 msgid "Admin"
 msgstr "админ"
 
-#: entrytool/models.py:16
+#: entrytool/models.py:16 entrytool/templates/forms/demographics_form.html:4
 #: entrytool/templates/partials/_demographics_panel.html:22
 msgid "External Identifier"
 msgstr "внешний идентификатор"
@@ -61,7 +61,7 @@ msgid "Autologous"
 msgstr "аутологичный"
 
 #: entrytool/models.py:34 entrytool/models.py:78 entrytool/models.py:89
-#: entrytool/models.py:284 entrytool/models.py:312 entrytool/models.py:333
+#: entrytool/models.py:288 entrytool/models.py:316 entrytool/models.py:337
 msgid "Unknown"
 msgstr "неизвестно"
 
@@ -73,7 +73,7 @@ msgstr "дата"
 msgid "Type of SCT"
 msgstr "Тип"
 
-#: entrytool/models.py:50 entrytool/templates/records/sct.html:37
+#: entrytool/models.py:50 entrytool/templates/records/sct.html:39
 msgid "Mobilization regimen"
 msgstr "режим мобилизации"
 
@@ -113,11 +113,11 @@ msgstr "мертвых"
 msgid "Lost to Follow-up"
 msgstr "потерян для продолжения"
 
-#: entrytool/models.py:76 entrytool/models.py:282 entrytool/models.py:331
+#: entrytool/models.py:76 entrytool/models.py:286 entrytool/models.py:335
 msgid "Yes"
 msgstr "да"
 
-#: entrytool/models.py:77 entrytool/models.py:283 entrytool/models.py:332
+#: entrytool/models.py:77 entrytool/models.py:287 entrytool/models.py:336
 msgid "No"
 msgstr "нет"
 
@@ -145,11 +145,11 @@ msgstr "этап 2"
 msgid "Stage III"
 msgstr "этап 3"
 
-#: entrytool/models.py:92 entrytool/models.py:421
+#: entrytool/models.py:92 entrytool/models.py:425
 msgid "IgG"
 msgstr "IgG"
 
-#: entrytool/models.py:93 entrytool/models.py:422
+#: entrytool/models.py:93 entrytool/models.py:426
 msgid "IgA"
 msgstr "IgA"
 
@@ -218,12 +218,12 @@ msgstr "Тип секр цепей"
 msgid "del(17)p"
 msgstr ""
 
-#: entrytool/models.py:131 entrytool/models.py:340
+#: entrytool/models.py:131 entrytool/models.py:344
 #: entrytool/templates/detail/cytogenetics.html:10
 msgid "del13"
 msgstr ""
 
-#: entrytool/models.py:132 entrytool/models.py:338
+#: entrytool/models.py:132 entrytool/models.py:342
 #: entrytool/templates/detail/cytogenetics.html:8
 msgid "t(4;14)"
 msgstr ""
@@ -250,7 +250,7 @@ msgid "Patient Details"
 msgstr "данные пациента"
 
 #: entrytool/models.py:156 entrytool/models.py:157
-#: entrytool/templates/records/regimen.html:81
+#: entrytool/templates/records/regimen.html:88
 msgid "Stop Reason"
 msgstr "причина остановки"
 
@@ -419,31 +419,31 @@ msgstr "Промиелоциты"
 msgid "myelocytes"
 msgstr "Миелоциты"
 
-#: entrytool/models.py:257 entrytool/templates/detail/bloodcounts.html:55
+#: entrytool/models.py:257 entrytool/templates/detail/bloodcounts.html:78
 msgid "eosinophils"
 msgstr "Эозинофилы"
 
-#: entrytool/models.py:258 entrytool/templates/detail/bloodcounts.html:56
+#: entrytool/models.py:258 entrytool/templates/detail/bloodcounts.html:79
 msgid "basophils"
 msgstr "Базофилы"
 
-#: entrytool/models.py:259 entrytool/templates/detail/bloodcounts.html:57
+#: entrytool/models.py:259 entrytool/templates/detail/bloodcounts.html:80
 msgid "lymphocytes"
 msgstr "Лимфоциты"
 
-#: entrytool/models.py:260 entrytool/templates/detail/bloodcounts.html:58
+#: entrytool/models.py:260 entrytool/templates/detail/bloodcounts.html:81
 msgid "monocytes"
 msgstr "Моноциты"
 
-#: entrytool/models.py:261 entrytool/templates/detail/bloodcounts.html:59
+#: entrytool/models.py:261 entrytool/templates/detail/bloodcounts.html:82
 msgid "plasmablasts"
 msgstr "Плазмобласты"
 
-#: entrytool/models.py:262 entrytool/templates/detail/bloodcounts.html:60
+#: entrytool/models.py:262 entrytool/templates/detail/bloodcounts.html:83
 msgid "plasmacytes"
 msgstr "Плазмоциты"
 
-#: entrytool/models.py:263 entrytool/templates/detail/bloodcounts.html:61
+#: entrytool/models.py:263 entrytool/templates/detail/bloodcounts.html:84
 msgid "platelets"
 msgstr "Тромбоциты"
 
@@ -451,7 +451,7 @@ msgstr "Тромбоциты"
 msgid "Beta-2-microglobulin"
 msgstr "В2-м-н"
 
-#: entrytool/models.py:265 entrytool/templates/detail/bloodcounts.html:63
+#: entrytool/models.py:265 entrytool/templates/detail/bloodcounts.html:86
 msgid "albumin"
 msgstr "Альбумин"
 
@@ -459,368 +459,397 @@ msgstr "Альбумин"
 msgid "LDH"
 msgstr "ЛДГ"
 
+#: entrytool/models.py:267
+msgid "ESR"
+msgstr ""
+
 #: entrytool/models.py:268
+msgid "Young cells"
+msgstr ""
+
+#: entrytool/models.py:269
+msgid "Segmented neutrophils"
+msgstr ""
+
+#: entrytool/models.py:270
+msgid "Band neutrophils"
+msgstr ""
+
+#: entrytool/models.py:272
 msgid "Blood Count"
 msgstr "анализ крови"
 
-#: entrytool/models.py:269
+#: entrytool/models.py:273
 msgid "Blood Counts"
 msgstr "анализ крови"
 
-#: entrytool/models.py:274
+#: entrytool/models.py:278
 msgid "Minimal"
 msgstr ""
 
-#: entrytool/models.py:275
+#: entrytool/models.py:279
 msgid "Non-minimal"
 msgstr ""
 
-#: entrytool/models.py:279
+#: entrytool/models.py:283
 msgid "IFT Date"
 msgstr "Дата ИФТ"
 
-#: entrytool/models.py:287
+#: entrytool/models.py:291 entrytool/templates/detail/ift.html:12
 msgid "MRD status"
 msgstr "МОБ статус"
 
-#: entrytool/models.py:288
+#: entrytool/models.py:292
 msgid "Percentage of tumor cells by IFT"
 msgstr "Процент опухолевых клеток по ИФТ, МОБ"
 
-#: entrytool/models.py:290
+#: entrytool/models.py:294
 msgid "Initial phenotype of tumor cells"
 msgstr "Исходный фенотип опухолевых клеток"
 
-#: entrytool/models.py:291 entrytool/models.py:366
+#: entrytool/models.py:295 entrytool/models.py:370
 #: entrytool/templates/detail/trephine_biopsies.html:10
 msgid "Phenotype"
 msgstr "фенотип"
 
-#: entrytool/models.py:292
+#: entrytool/models.py:296
 msgid "CD38/CD138 presence"
 msgstr "CD38СD138"
 
-#: entrytool/models.py:293 entrytool/templates/forms/ift_form.html:36
+#: entrytool/models.py:297 entrytool/templates/forms/ift_form.html:36
 msgid "CD56 presence"
 msgstr "CD56"
 
-#: entrytool/models.py:294 entrytool/templates/forms/ift_form.html:59
+#: entrytool/models.py:298 entrytool/templates/forms/ift_form.html:59
 msgid "CD19 presence"
 msgstr "CD19"
 
-#: entrytool/models.py:295 entrytool/templates/forms/ift_form.html:82
+#: entrytool/models.py:299 entrytool/templates/forms/ift_form.html:82
 msgid "CD20 presence"
 msgstr "CD20"
 
-#: entrytool/models.py:296 entrytool/templates/forms/ift_form.html:105
+#: entrytool/models.py:300 entrytool/templates/forms/ift_form.html:105
 msgid "CD27 presence"
 msgstr "CD27"
 
-#: entrytool/models.py:297 entrytool/templates/forms/ift_form.html:128
+#: entrytool/models.py:301 entrytool/templates/forms/ift_form.html:128
 msgid "CD117 presence"
 msgstr "CD117"
 
-#: entrytool/models.py:298
+#: entrytool/models.py:302
 msgid "CD38/СD138, %"
 msgstr ""
 
-#: entrytool/models.py:299
+#: entrytool/models.py:303
 msgid "CD56, %"
 msgstr ""
 
-#: entrytool/models.py:300
+#: entrytool/models.py:304
 msgid "CD19, %"
 msgstr ""
 
-#: entrytool/models.py:301
+#: entrytool/models.py:305
 msgid "CD20, %"
 msgstr ""
 
-#: entrytool/models.py:302
+#: entrytool/models.py:306
 msgid "CD27, %"
 msgstr ""
 
-#: entrytool/models.py:303
+#: entrytool/models.py:307
 msgid "CD117 , %"
 msgstr ""
 
-#: entrytool/models.py:307
+#: entrytool/models.py:311
 msgid "CRAB date"
 msgstr "CRAB Дата"
 
-#: entrytool/models.py:310
+#: entrytool/models.py:314
 msgid "total calcium > 2.65 mmol/L"
 msgstr ""
 
-#: entrytool/models.py:311
+#: entrytool/models.py:315
 msgid "> 1.5 mmol/L"
 msgstr ""
 
-#: entrytool/models.py:315 entrytool/templates/detail/crab_criteria.html:6
+#: entrytool/models.py:319 entrytool/templates/detail/crab_criteria.html:6
 msgid "Hypercalcemia"
 msgstr "гиперкальциемия"
 
-#: entrytool/models.py:316
+#: entrytool/models.py:320
 msgid "Total calcium > 2.65 mmol/"
 msgstr "Обший кальций >2.65 mmol/L"
 
-#: entrytool/models.py:317
+#: entrytool/models.py:321
 msgid "Ionized calcium > 1.5 mmol/L"
 msgstr "ионизированный кальций >1.5 mmol/L"
 
-#: entrytool/models.py:319
+#: entrytool/models.py:323
 msgid "creatinine >= 177 umol/L"
 msgstr "креатинин ≥177 мкмоль/л"
 
-#: entrytool/models.py:320
+#: entrytool/models.py:324
 msgid "Hemoglobin < 100g/L or decrease of 20 g/d from norm"
 msgstr "гемоглобин < 100 г/л или снижение на 20 г/д от нормы"
 
-#: entrytool/models.py:321 entrytool/templates/detail/crab_criteria.html:10
+#: entrytool/models.py:325 entrytool/templates/detail/crab_criteria.html:10
 msgid "Bone destruction"
 msgstr "костные деструкции"
 
-#: entrytool/models.py:323
+#: entrytool/models.py:327
 msgid "Region of osteolysis"
 msgstr "локализация остеодеструкций"
 
-#: entrytool/models.py:324
+#: entrytool/models.py:328
 msgid "Number of affected zones"
 msgstr "Количество пораженных зон ОД"
 
-#: entrytool/models.py:328
+#: entrytool/models.py:332
 msgid "Cytogenetic Date"
 msgstr "Дата"
 
-#: entrytool/models.py:337
+#: entrytool/models.py:341
 msgid "t(14;16"
 msgstr ""
 
-#: entrytool/models.py:339 entrytool/templates/detail/cytogenetics.html:9
+#: entrytool/models.py:343 entrytool/templates/detail/cytogenetics.html:9
 msgid "t(11;14)"
 msgstr ""
 
-#: entrytool/models.py:341 entrytool/templates/detail/cytogenetics.html:11
+#: entrytool/models.py:345 entrytool/templates/detail/cytogenetics.html:11
 msgid "del17p"
 msgstr ""
 
-#: entrytool/models.py:342 entrytool/templates/detail/cytogenetics.html:12
+#: entrytool/models.py:346 entrytool/templates/detail/cytogenetics.html:12
 msgid "IGHV rearrangement"
 msgstr "перестройка IgH"
 
-#: entrytool/models.py:343
+#: entrytool/models.py:347
 msgid "chromosome 1 abnormalities"
 msgstr "Изменения 1 хромосомы"
 
-#: entrytool/models.py:345 entrytool/models.py:346
+#: entrytool/models.py:349 entrytool/models.py:350
 #: entrytool/templates/patient_detail.html:62
 msgid "Cytogenetic tests"
 msgstr "цитогенетические тесты"
 
-#: entrytool/models.py:352
+#: entrytool/models.py:356
 msgid "Trephine biopsy"
 msgstr "трепанобиопсии"
 
-#: entrytool/models.py:353 entrytool/templates/patient_detail.html:146
+#: entrytool/models.py:357 entrytool/templates/patient_detail.html:146
 msgid "Trephine biopsies"
 msgstr "трепанобиопсии"
 
-#: entrytool/models.py:355
+#: entrytool/models.py:359
 msgid "Trephine Biopsy Date"
 msgstr "Дата трепанобиопсии"
 
-#: entrytool/models.py:357 entrytool/templates/detail/trephine_biopsies.html:6
+#: entrytool/models.py:361 entrytool/templates/detail/trephine_biopsies.html:6
 msgid "Cellularity"
 msgstr "Клеточность"
 
-#: entrytool/models.py:359
+#: entrytool/models.py:363
 msgid "Hematopoietic tissue (%)"
 msgstr "Процент гемопоэтической ткани"
 
-#: entrytool/models.py:361
+#: entrytool/models.py:365
 msgid "Adipose tissue (%)"
 msgstr "Процент жировой ткани"
 
-#: entrytool/models.py:363
+#: entrytool/models.py:367
 msgid "Plasma infiltration (%)"
 msgstr "Процент плазматической инфильтрации"
 
-#: entrytool/models.py:368
+#: entrytool/models.py:372
 msgid "Histological and immunohistochemical features"
 msgstr "Гистологические и иммуногистохимические оособенности случая"
 
-#: entrytool/models.py:372
+#: entrytool/models.py:376
 msgid "M-Component"
 msgstr "М-компонент"
 
-#: entrytool/models.py:376
+#: entrytool/models.py:380
 msgid "Bone scan"
 msgstr "RG"
 
-#: entrytool/models.py:377 entrytool/templates/patient_detail.html:126
+#: entrytool/models.py:381 entrytool/templates/patient_detail.html:126
 msgid "Bone scans"
 msgstr "RG"
 
-#: entrytool/models.py:380
+#: entrytool/models.py:384
 msgid "Corresponds to Rx"
 msgstr "соответствует Rg"
 
-#: entrytool/models.py:381
+#: entrytool/models.py:385
 msgid "Improved diagnosis"
 msgstr "улучшило диагнстику"
 
-#: entrytool/models.py:385
+#: entrytool/models.py:389
 msgid "Not done"
 msgstr "не делали"
 
-#: entrytool/models.py:386
+#: entrytool/models.py:390
 msgid "Vertebroplasty"
 msgstr "вертебропластика"
 
-#: entrytool/models.py:387
+#: entrytool/models.py:391
 msgid "Plate installation"
 msgstr "установка пластины"
 
-#: entrytool/models.py:388
+#: entrytool/models.py:392
 msgid "Plastering"
 msgstr "гипсование"
 
-#: entrytool/models.py:393
+#: entrytool/models.py:397
 msgid "Bone Scan Date"
 msgstr "дата сканирования"
 
-#: entrytool/models.py:394
+#: entrytool/models.py:398
 msgid "Destruction zones in the skull"
 msgstr "ОД в черепе"
 
-#: entrytool/models.py:395
+#: entrytool/models.py:399
 msgid "Destruction zones in the shoulder girdle"
 msgstr "ОД в плечевом поясе"
 
-#: entrytool/models.py:396
+#: entrytool/models.py:400
 msgid "Destruction zones in ribs, chest"
 msgstr "ОД в ребрах, грудной клетке"
 
-#: entrytool/models.py:397
+#: entrytool/models.py:401
 msgid "Destruction zones in the spine"
 msgstr "ОД в позвоночнике"
 
-#: entrytool/models.py:398
+#: entrytool/models.py:402
 msgid "Destruction zones in the pelvic bones"
 msgstr "ОД в костях таза"
 
-#: entrytool/models.py:399
+#: entrytool/models.py:403
 msgid "Destruction zones in long tubular bones"
 msgstr "ОД в длинных трубчатых костях"
 
-#: entrytool/models.py:400
+#: entrytool/models.py:404
 msgid "MRI done"
 msgstr "МРТ делали"
 
-#: entrytool/models.py:401
+#: entrytool/models.py:405
 msgid "Outcome of MRI"
 msgstr "результат MPT"
 
-#: entrytool/models.py:402
+#: entrytool/models.py:406
 msgid "PET scan done"
 msgstr ""
 
-#: entrytool/models.py:403
+#: entrytool/models.py:407
 msgid "Outcome of PET"
 msgstr ""
 
-#: entrytool/models.py:404
+#: entrytool/models.py:408
 msgid "PET-CT scan done"
 msgstr "ПЭТ-КТ делали"
 
-#: entrytool/models.py:405
+#: entrytool/models.py:409
 msgid "Outcome of PET-CT"
 msgstr "результат ПЭТ-КТ"
 
-#: entrytool/models.py:407 entrytool/templates/detail/bone_scan.html:10
+#: entrytool/models.py:411 entrytool/templates/detail/bone_scan.html:10
 msgid "Plasmacytoma present"
 msgstr "Плазмоцитома"
 
-#: entrytool/models.py:408 entrytool/templates/detail/bone_scan.html:11
+#: entrytool/models.py:412 entrytool/templates/detail/bone_scan.html:11
 msgid "Scintigraphy done"
 msgstr "Сцинтиграфия"
 
-#: entrytool/models.py:409
+#: entrytool/models.py:413
 msgid "Compression fractures present"
 msgstr "Компрессионные переломы"
 
-#: entrytool/models.py:410
+#: entrytool/models.py:414
 msgid "Spinal cord compression"
 msgstr "Сдавление спинного мозга"
 
-#: entrytool/models.py:411
+#: entrytool/models.py:415
 msgid "Surgical aid performed"
 msgstr "Хирургическое пособие"
 
-#: entrytool/models.py:416
+#: entrytool/models.py:420
 msgid "Protein measurement"
 msgstr "измерение белка"
 
-#: entrytool/models.py:417
+#: entrytool/models.py:421
 msgid "Protein measurements"
 msgstr "измерения белка"
 
-#: entrytool/models.py:419
+#: entrytool/models.py:423
 msgid "Protein measurement date"
 msgstr "дата измерения белка"
 
-#: entrytool/models.py:423
+#: entrytool/models.py:427
 msgid "IgM"
 msgstr "IgM"
 
-#: entrytool/models.py:425
+#: entrytool/models.py:429
 msgid "Bence-Jones Protein present in urine"
 msgstr "белок Бенс-Джонса в суточной моче"
 
-#: entrytool/models.py:426
+#: entrytool/models.py:430
 msgid "Bence-Jones Protein in Urine over time"
 msgstr "белок Бенс-Джонса в суточной моче г/сут"
 
-#: entrytool/models.py:433
+#: entrytool/models.py:437
 msgid "Light chain secretion"
 msgstr "Секреция цепей"
 
-#: entrytool/models.py:434
+#: entrytool/models.py:438
 msgid "Serum kappa chain"
 msgstr "каппа цепи сыворотки"
 
-#: entrytool/models.py:435
+#: entrytool/models.py:439
 msgid "Serum free kappa chains"
 msgstr "свободные каппа цепи сыворотки"
 
-#: entrytool/models.py:436
+#: entrytool/models.py:440
 msgid "Serum lambda"
 msgstr "лямбда цепи сыворотки"
 
-#: entrytool/models.py:437
+#: entrytool/models.py:441
 msgid "Serum free lambda chains"
 msgstr "свободные лямбда цепи сыворотки"
 
-#: entrytool/models.py:438
+#: entrytool/models.py:442
 msgid "Urine kappa chains"
 msgstr "каппа цепи в моче"
 
-#: entrytool/models.py:439
+#: entrytool/models.py:443
 msgid "Urine free kappa chains"
 msgstr "свободные каппа цепи в моче"
 
-#: entrytool/models.py:440
+#: entrytool/models.py:444
 msgid "Urine lambda chains"
 msgstr "лямбда цепи в моче"
 
-#: entrytool/models.py:441
+#: entrytool/models.py:445
 msgid "Urine free lambda chains"
 msgstr "свободные лямбда цепи в моче"
 
-#: entrytool/models.py:442
+#: entrytool/models.py:446
 #: entrytool/templates/detail/protein_measurements.html:14
 msgid "FLC ratio"
 msgstr "соотношение FLC сыворотка"
+
+#: entrytool/models.py:451
+msgid "Radiation therapy date"
+msgstr ""
+
+#: entrytool/models.py:452
+#: entrytool/templates/records/radiation_therapy.html:16
+msgid "Zone"
+msgstr ""
+
+#: entrytool/models.py:455 entrytool/models.py:456
+msgid "Radiation therapy"
+msgstr ""
 
 #: entrytool/opal/models.py:472 entrytool/opal/models.py:686
 #: entrytool/opal/models.py:1065
@@ -866,13 +895,13 @@ msgstr ""
 msgid "Active"
 msgstr "активный"
 
-#: entrytool/opal/models.py:692 entrytool/templates/records/regimen.html:59
-#: entrytool/templates/records/sct.html:47
+#: entrytool/opal/models.py:692 entrytool/templates/records/regimen.html:64
+#: entrytool/templates/records/sct.html:49
 msgid "Start"
 msgstr "Начните"
 
-#: entrytool/opal/models.py:695 entrytool/templates/records/regimen.html:70
-#: entrytool/templates/records/sct.html:57
+#: entrytool/opal/models.py:695 entrytool/templates/records/regimen.html:77
+#: entrytool/templates/records/sct.html:60
 msgid "End"
 msgstr "конец"
 
@@ -946,7 +975,7 @@ msgid "Death Indicator"
 msgstr ""
 
 #: entrytool/opal/models.py:1300
-#: entrytool/templates/partials/_demographics_panel.html:38
+#: entrytool/templates/partials/_demographics_panel.html:41
 msgid "Sex"
 msgstr "Пол"
 
@@ -975,13 +1004,13 @@ msgstr ""
 msgid "Russian"
 msgstr ""
 
-#: entrytool/settings.py:314
+#: entrytool/settings.py:315
 msgid "ECRF Sint Petersburg"
 msgstr "ECRF Санкт-Петербург"
 
 #: entrytool/templates/_helpers/custom_datepicker.html:72
 #: entrytool/templates/_helpers/input.html:55
-#: entrytool/templates/_helpers/number.html:50
+#: entrytool/templates/_helpers/number.html:57
 #: entrytool/templates/_helpers/radio.html:21
 #: entrytool/templates/_helpers/select.html:20
 #, python-format
@@ -1003,17 +1032,17 @@ msgstr "%(label)s в будущем"
 msgid "Maximum length is %(maxlength)s"
 msgstr "максимальная длина %(maxlength)s"
 
-#: entrytool/templates/_helpers/number.html:55
+#: entrytool/templates/_helpers/number.html:62
 #, python-format
 msgid "%(label)s is too low"
 msgstr "%(label)s слишком низкий"
 
-#: entrytool/templates/_helpers/number.html:60
+#: entrytool/templates/_helpers/number.html:67
 #, python-format
 msgid "%(label)s is too high"
 msgstr "%(label)s слишком велик"
 
-#: entrytool/templates/_helpers/number.html:65
+#: entrytool/templates/_helpers/number.html:72
 #, python-format
 msgid "%(label)s is outside normal bounds"
 msgstr "%(label)s вне нормальных границ"
@@ -1235,12 +1264,32 @@ msgstr "Удалить"
 msgid "Cancel"
 msgstr "Отмена"
 
-#: entrytool/templates/detail/bloodcounts.html:62
+#: entrytool/templates/detail/bloodcounts.html:85
 msgid "b2m"
 msgstr ""
 
-#: entrytool/templates/detail/bloodcounts.html:64
+#: entrytool/templates/detail/bloodcounts.html:87
 msgid "ldh"
+msgstr ""
+
+#: entrytool/templates/detail/bloodcounts.html:88
+#, fuzzy
+#| msgid "Yes"
+msgid "esr"
+msgstr "да"
+
+#: entrytool/templates/detail/bloodcounts.html:151
+msgid "young_cells"
+msgstr ""
+
+#: entrytool/templates/detail/bloodcounts.html:152
+#, fuzzy
+#| msgid "basophils"
+msgid "band_neutrophils"
+msgstr "Базофилы"
+
+#: entrytool/templates/detail/bloodcounts.html:153
+msgid "segmented_neutrophils"
 msgstr ""
 
 #: entrytool/templates/detail/bone_scan.html:7
@@ -1312,11 +1361,7 @@ msgstr "Почечная недостаточность"
 msgid "Anemia"
 msgstr "Анемия"
 
-#: entrytool/templates/detail/crab_criteria.html:23
-msgid "Yes,No,Unknown"
-msgstr "да,нет,неизвестно"
-
-#: entrytool/templates/detail/crab_criteria.html:37
+#: entrytool/templates/detail/crab_criteria.html:46
 msgid "zones"
 msgstr "зоны"
 
@@ -1379,6 +1424,17 @@ msgstr ""
 #: entrytool/templates/detail/ift.html:11
 msgid "CD117"
 msgstr ""
+
+#: entrytool/templates/detail/ift.html:13
+#, python-format
+msgid "Tumor cells (%%)"
+msgstr ""
+
+#: entrytool/templates/detail/ift.html:14
+#, fuzzy
+#| msgid "Phenotype"
+msgid "phenotype"
+msgstr "фенотип"
 
 #: entrytool/templates/detail/protein_measurements.html:6
 msgid "IGG"
@@ -1459,12 +1515,13 @@ msgstr "ПЭТ-КТ"
 msgid "Visit date must be after the patient's birth date"
 msgstr "Дата посещения должна быть позже даты рождения"
 
-#: entrytool/templates/forms/crab_criteria_form.html:15
+#: entrytool/templates/forms/crab_criteria_form.html:14
 msgid "Bone Destruction"
 msgstr "Костные деструкции"
 
 #: entrytool/templates/forms/cytogenetics_form.html:3
 #: entrytool/templates/forms/protein_measurements_form.html:5
+#: entrytool/templates/forms/radiation_therapy_form.html:4
 msgid "Test date must be after the patient's birth date"
 msgstr "Дата теста должна быть позже даты рождения"
 
@@ -1502,6 +1559,7 @@ msgstr "статус требуется"
 
 #: entrytool/templates/forms/patient_details_form.html:17
 #: entrytool/templates/forms/patient_details_form.html:34
+#: entrytool/templates/records/radiation_therapy.html:5
 #: entrytool/templates/records/sct.html:16
 msgid "Date"
 msgstr "Дата"
@@ -1522,11 +1580,16 @@ msgstr "Дата должна быть позже даты рождения па
 msgid "Date of diagnosis must be after the patient's birth date"
 msgstr "Дата должна быть позже даты рождения пациента"
 
+#: entrytool/templates/forms/progression_form.html:4
+#: entrytool/templates/forms/response_form.html:4
+msgid "The response should be after the date of diagnosis"
+msgstr "дата должна быть позже даты диагностики"
+
 #: entrytool/templates/forms/protein_measurements_form.html:11
 msgid "Bence-Jones protein present"
 msgstr "протеин Бенс-Джонса"
 
-#: entrytool/templates/forms/protein_measurements_form.html:21
+#: entrytool/templates/forms/protein_measurements_form.html:24
 msgid "Light chain secretion (yes/no)"
 msgstr "секреция цепей"
 
@@ -1539,12 +1602,14 @@ msgstr "дата должна быть позже даты диагностик�
 msgid "End Date must be after the start date"
 msgstr "дата окончания должна быть позже даты начала"
 
-#: entrytool/templates/forms/response_form.html:3
-msgid "The response should be after the date of diagnosis"
-msgstr "дата должна быть позже даты диагностики"
-
 #: entrytool/templates/forms/sct_form.html:4
 msgid "The SCT should be after the date of diagnosis"
+msgstr "дата должна быть позже даты диагностики"
+
+#: entrytool/templates/forms/sct_form.html:6
+#, fuzzy
+#| msgid "The response should be after the date of diagnosis"
+msgid "The therapy can only start after the diagnosis date"
 msgstr "дата должна быть позже даты диагностики"
 
 #: entrytool/templates/opal.html:22
@@ -1660,7 +1725,7 @@ msgstr "тип белка"
 msgid "Cycles"
 msgstr "циклы"
 
-#: entrytool/templates/records/regimen.html:48
+#: entrytool/templates/records/regimen.html:51
 #: entrytool/templates/records/sct.html:27
 msgid "Type"
 msgstr "тип"
@@ -1797,3 +1862,6 @@ msgstr ""
 #: entrytool/wow_strings.py:75
 msgid "Weight Loss"
 msgstr ""
+
+#~ msgid "Yes,No,Unknown"
+#~ msgstr "да,нет,неизвестно"
