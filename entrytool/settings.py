@@ -14,7 +14,7 @@ PROJECT_PATH = os.path.realpath(os.path.dirname(__file__))
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = os.environ['OPAL_SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 COMPRESS_ENABLED = False
 
 #ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".honeur.org"]
@@ -191,7 +191,7 @@ LANGUAGES = (
     ("ru", _("Russian"))
 )
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "ru"
 TIME_ZONE = "UTC"
 USE_I18N = True
 USE_L10N = True
@@ -295,11 +295,12 @@ DEFAULT_DOMAIN = "http://entrytool.com/"
 
 OPAL_DEFAULT_SEARCH_FIELDS = [
     "demographics__external_identifier",
-    "id"
+    "id",
+    "demographics__hospital_number"
 ]
 
 # ========== PROJECT ==========
-OPAL_BRAND_NAME = "ECRF Sint Petersburg"
+OPAL_BRAND_NAME = _("ECRF Sint Petersburg")
 VERSION_NUMBER = "0.2"
 
 if os.environ.get('HEROKU_SLUG_COMMIT'):
