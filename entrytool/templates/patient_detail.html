@@ -55,13 +55,13 @@
                 </div>
               </section>
 
-              <!-- Follow ups -->
+              <!-- cytogenetics -->
               <div class="panel mb6">
                 <div class="panel-heading">
                   <h3>
-                    {% trans "Follow Ups" %}
+                    {% trans "Cytogenetic tests" %}
                     <span class="pull-right pointer edit">
-                      <a ng-click="episode.recordEditor.newItem('{{ models.FollowUp.get_api_name }}')">
+                      <a ng-click="episode.recordEditor.newItem('{{ models.Cytogenetics.get_api_name }}')">
                         <i class="fa fa-plus-circle edit pointer"></i>
                       </a>
                     </span>
@@ -70,9 +70,131 @@
               </div>
               <div class="row">
                 <div class="col-md-12">
-                  {% include "detail/followups.html" %}
+                  {% include "detail/cytogenetics.html" %}
                 </div>
               </div>
+
+              <!-- CRAB -->
+              <div class="row">
+              <div class="col-md-5"> 
+                <div class="panel mb6">
+                  <div class="panel-heading">
+                    <h3>
+                      {% trans "CRAB Criteria" %}
+                      <span class="pull-right pointer edit">
+                        <a ng-click="episode.recordEditor.newItem('{{ models.CrabCriteria.get_api_name }}')">
+                          <i class="fa fa-plus-circle edit pointer"></i>
+                        </a>
+                      </span>
+                    </h3>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    {% include "detail/crab_criteria.html" %}
+                  </div>
+                </div>
+              </div>
+              
+
+               <!-- IFT -->
+               <div class="col-md-7">
+                <div class="panel mb6">
+                  <div class="panel-heading">
+                    <h3>
+                      {% trans "Immunophenotyping" %}
+                      <span class="pull-right pointer edit">
+                        <a ng-click="episode.recordEditor.newItem('{{ models.IFT.get_api_name }}')">
+                          <i class="fa fa-plus-circle edit pointer"></i>
+                        </a>
+                      </span>
+                    </h3>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    {% include "detail/ift.html" %}
+                  </div>
+                </div>
+               </div>
+               </div>
+
+               <!-- Bone scans -->
+                <div class="panel mb6">
+                  <div class="panel-heading">
+                    <h3>
+                      {% trans "Bone scans" %}
+                      <span class="pull-right pointer edit">
+                        <a ng-click="episode.recordEditor.newItem('{{ models.BoneScan.get_api_name }}')">
+                          <i class="fa fa-plus-circle edit pointer"></i>
+                        </a>
+                      </span>
+                    </h3>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    {% include "detail/bone_scan.html" %}
+                  </div>
+                </div>
+
+
+                 <!-- Trepan biopsies -->
+                <div class="panel mb6">
+                  <div class="panel-heading">
+                    <h3>
+                      {% trans "Trephine biopsies" %}
+                      <span class="pull-right pointer edit">
+                        <a ng-click="episode.recordEditor.newItem('{{ models.TrephineBiopsy.get_api_name }}')">
+                          <i class="fa fa-plus-circle edit pointer"></i>
+                        </a>
+                      </span>
+                    </h3>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    {% include "detail/trephine_biopsies.html" %}
+                  </div>
+                </div>
+
+                 <!-- Protein levels -->
+                <div class="panel mb6">
+                  <div class="panel-heading">
+                    <h3>
+                      {% trans "Protein Measurements" %}
+                      <span class="pull-right pointer edit">
+                        <a ng-click="episode.recordEditor.newItem('{{ models.ProteinMeasurements.get_api_name }}')">
+                          <i class="fa fa-plus-circle edit pointer"></i>
+                        </a>
+                      </span>
+                    </h3>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    {% include "detail/protein_measurements.html" %}
+                  </div>
+                </div>
+
+                 <!-- Blood count -->
+                <div class="panel mb6">
+                  <div class="panel-heading">
+                    <h3>
+                      {% trans "Blood count" %}
+                      <span class="pull-right pointer edit">
+                        <a ng-click="episode.recordEditor.newItem('{{ models.BloodCountFollowUp.get_api_name }}')">
+                          <i class="fa fa-plus-circle edit pointer"></i>
+                        </a>
+                      </span>
+                    </h3>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    {% include "detail/bloodcounts.html" %}
+                  </div>
+                </div>
 
 
             </section>

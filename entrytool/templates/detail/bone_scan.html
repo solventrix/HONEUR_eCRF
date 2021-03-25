@@ -1,0 +1,63 @@
+{% load i18n %}
+<div class="follow-up-table" ng-show="episode.bone_scan.length > 0">
+  <div class="col-md-12">
+    <div class="row header-row display-label">
+      <div class="col-sm-2 header"></div>
+      <div class="col-sm-2 header">
+        {% trans "Destruction zone locations" %}
+      </div>
+      <div class="col-sm-1 header">{% trans "Additional scans" %}</div>
+      <div class="col-sm-1 header">{% trans "Plasmacytoma present" %}</div>
+      <div class="col-sm-1 header">{% trans "Scintigraphy done" %}</div>
+      <div class="col-sm-2 header">{% trans "Compression fractures" %}</div>
+      <div class="col-sm-1 header">{% trans "Spinal compression" %}</div>
+      <div class="col-sm-1 header">{% trans "Surgical aid" %}</div>
+    </div>
+  </div>
+
+  <div ng-repeat="item in episode.bone_scan | orderBy: '-scan_date' as ifts">
+    <div class="row table-row">
+      <div class="col-sm-2 first-column text-right">
+        [[ item.scan_date | displayDate ]]&nbsp;
+        <i ng-click="episode.recordEditor.editItem('{{ models.BoneScan.get_api_name }}', item)"
+          class="fa fa-pencil edit pointer"></i>
+      </div>
+      <div class="col-sm-2 column">
+        <div ng-show="item.dz_skull==true">{% trans "Skull" %}</div>
+        <div ng-show="item.dz_shoulder==true">{% trans "Shoulder" %}</div>
+        <div ng-show="item.dz_ribs==true">{% trans "Ribs" %}</div>
+        <div ng-show="item.dz_spine==true">{% trans "Spine" %}</div>
+        <div ng-show="item.dz_pelvis==true">{% trans "Pelvis" %}</div>
+        <div ng-show="item.dz_tubular_bones==true">
+          {% trans "Tubular bones" %}
+        </div>
+      </div>
+      <div class="col-sm-1 column">
+        <div ng-show="item.mri_done==true">
+          <b>{% trans "MRI" %}</b> ([[item.mri_result | translate]])
+        </div>
+        <div ng-show="item.pet_done==true">
+          <b>{% trans "PET" %}</b> ([[item.pet_result | translate]])
+        </div>
+        <div ng-show="item.pet_ct_done==true">
+          <b>{% trans "PET-CT" %}</b> ([[item.pet_ct_result | translate]])
+        </div>
+      </div>
+      <div class="col-sm-1 column">
+          [[item.plasmacytoma_presence | translate]]
+      </div>
+      <div class="col-sm-1 column">
+          [[item.scintigraphy_done | translate]]
+      </div>
+      <div class="col-sm-2 column">
+        [[item.compression_fractures | translate]]
+    </div>
+    <div class="col-sm-1 column">
+        [[item.spinal_compression | translate]]
+    </div>
+    <div class="col-sm-1 column">
+        [[item.surgical_aid | translate]]
+    </div>
+    </div>
+  </div>
+</div>

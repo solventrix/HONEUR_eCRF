@@ -1,23 +1,23 @@
+.entry-tool .panel-heading i.edit,
+.entry-tool .list-group-item i.edit,
+.entry-tool .list-group-item i.delete {
+  display: block;
+}
 .entry-tool .edit a i {
   color: #1a1a1a;
 }
-
 .entry-tool a.disabled {
   opacity: 0.5;
 }
-
 .entry-tool a.disabled:hover {
   color: inherit;
 }
-
 .entry-tool .follow-up-table {
   text-align: center;
 }
-
 .entry-tool .follow-up-table .column {
   border-top: 1px solid #dee2e6;
 }
-
 .entry-tool .follow-up-table .column, .entry-tool .follow-up-table .first-column, .entry-tool .follow-up-table .header {
   padding: 8px;
 }
@@ -105,8 +105,7 @@ h1 img {
 
 .ngProgressLiteBar {
   background-color: #0794e0;
-  -webkit-box-shadow: 0 0 10px 0;
-          box-shadow: 0 0 10px 0;
+  box-shadow: 0 0 10px 0;
   /* Inherits the font color */
   top: 50px;
 }
@@ -117,8 +116,7 @@ h1 img {
 
 .panel {
   border: none;
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
 }
 
 .panel.panel-primary .panel-heading {
@@ -160,6 +158,10 @@ h1 img {
   max-width: 300px;
 }
 
+.missing {
+  color: red;
+}
+
 .btn-primary {
   background-color: #002562;
   border-color: #002562;
@@ -167,7 +169,6 @@ h1 img {
   letter-spacing: 0.2rem;
   border-radius: 0px;
 }
-
 .btn-primary:hover, .btn-primary:focus {
   background-color: #0794e0;
   border-color: #0794e0;
@@ -198,7 +199,6 @@ h1 img {
   font-size: 18px;
   visibility: hidden;
 }
-
 .delete-lot:hover i {
   visibility: visible;
 }
@@ -221,8 +221,8 @@ h1 img {
 .number .warning-block {
   display: none;
 }
-
 .number.warning .warning-block {
   display: block;
 }
+
 /*# sourceMappingURL=entrytool.css.map */

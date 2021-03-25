@@ -1,0 +1,147 @@
+{% load forms %}
+{% load custom_forms %}
+{% load i18n %}
+{% custom_datepicker field="IFT.ift_date" date_after="the_episode.demographics[0].date_of_birth" date_after_message=_("Visit date must be after the patient's birth date") required=True %}
+{% select field="IFT.MRD_status" %}
+{% number field="IFT.percentage_tumor_cells" %}
+{% input field="IFT.initial_tumor_phenotype" %}
+{% input field="IFT.phenotype" %}
+
+ <div class="form-group" >	
+  <label for="" class="control-label col-sm-3">	
+    {% trans "CD38/138 presence" %}	
+  </label>	
+  <div class="col-sm-3" ng-class="{'has-error': form.$submitted && form.cd38.$error.required}">	
+    <label class="radio-inline" ng-repeat='item in ["Yes", "No"]'>	
+      <input required type="radio" name="cd38" value="[[item]]" ng-model="editing.ift.cd38_138_presence" ng-change="editing.ift.cd38cd138_percentage = null"> [[ item | translate ]]	
+    </label>	
+    <div class="row" ng-show="form.$submitted && form.cd38.$error.required" ng-class="{'has-error': form.$submitted && form.cd38.$error.required}">	
+      <div class="col-md-12">	
+        <span class="help-block" >	
+          {% trans "CD38 presence is required" %}	
+        </span>	
+      </div>	
+    </div>	
+  </div>		
+</div>
+<div class="form-group">
+<div ng-show="editing.ift.cd38_138_presence == 'Yes'">	
+    {% number field="IFT.cd38cd138_percentage" min_value="1" max_value="100" unit="%" ngrequired="editing.ift.cd38_138_presence==='Yes'"%}
+  </div>
+</div>
+
+
+<div class="form-group" >	
+  <label for="" class="control-label col-sm-3">	
+    {% trans "CD56 presence" %}	
+  </label>	
+  <div class="col-sm-3" ng-class="{'has-error': form.$submitted && form.cd56.$error.required}">	
+    <label class="radio-inline" ng-repeat='item in ["Yes", "No"]'>	
+      <input required type="radio" name="cd56" value="[[ item]]" ng-model="editing.ift.cd56_presence" ng-change="editing.ift.cd56_percentage = null"> [[ item | translate ]]	
+    </label>	
+    <div class="row" ng-show="form.$submitted && form.cd56.$error.required" ng-class="{'has-error': form.$submitted && form.cd56.$error.required}">	
+      <div class="col-md-12">	
+        <span class="help-block" >	
+          {% trans "CD56 presence is required" %}	
+        </span>	
+      </div>	
+    </div>	
+  </div>		
+</div>
+<div class="form-group">
+<div ng-show="editing.ift.cd56_presence == 'Yes'" >	
+    {% number field="IFT.cd56_percentage" min_value="1" max_value="100" unit="%" ngrequired="editing.ift.cd56_presence==='Yes'"%}
+  </div>
+</div>
+
+<div class="form-group" >	
+  <label for="" class="control-label col-sm-3">	
+    {% trans "CD19 presence" %}	
+  </label>	
+  <div class="col-sm-3" ng-class="{'has-error': form.$submitted && form.cd19.$error.required}">	
+    <label class="radio-inline" ng-repeat='item in ["Yes", "No"]'>	
+      <input required type="radio" name="cd19" value="[[ item]]" ng-model="editing.ift.cd19_presence" ng-change="editing.ift.cd19_percentage = null"> [[ item | translate ]]	
+    </label>	
+    <div class="row" ng-show="form.$submitted && form.cd19.$error.required" ng-class="{'has-error': form.$submitted && form.cd19.$error.required}">	
+      <div class="col-md-12">	
+        <span class="help-block" >	
+          {% trans "CD19 presence is required" %}	
+        </span>	
+      </div>	
+    </div>	
+  </div>		
+</div>
+<div class="form-group">
+<div ng-show="editing.ift.cd19_presence == 'Yes'" >	
+    {% number field="IFT.cd19_percentage" min_value="1" max_value="100" unit="%" ngrequired="editing.ift.cd19_presence==='Yes'"%}
+  </div>
+</div>
+
+<div class="form-group" >	
+  <label for="" class="control-label col-sm-3">	
+    {% trans "CD20 presence" %}	
+  </label>	
+  <div class="col-sm-3" ng-class="{'has-error': form.$submitted && form.cd20.$error.required}">	
+    <label class="radio-inline" ng-repeat='item in ["Yes", "No"]'>	
+      <input required type="radio" name="cd20" value="[[ item]]" ng-model="editing.ift.cd20_presence" ng-change="editing.ift.cd20_percentage = null"> [[ item | translate ]]	
+    </label>	
+    <div class="row" ng-show="form.$submitted && form.cd20.$error.required" ng-class="{'has-error': form.$submitted && form.cd20.$error.required}">	
+      <div class="col-md-12">	
+        <span class="help-block" >	
+          {% trans "CD20 presence is required" %}	
+        </span>	
+      </div>	
+    </div>	
+  </div>		
+</div>
+<div class="form-group">
+<div ng-show="editing.ift.cd20_presence == 'Yes'" >	
+    {% number field="IFT.cd20_percentage" min_value="1" max_value="100" unit="%" ngrequired="editing.ift.cd20_presence==='Yes'"%}
+  </div>
+</div>
+
+<div class="form-group" >	
+  <label for="" class="control-label col-sm-3">	
+    {% trans "CD27 presence" %}	
+  </label>	
+  <div class="col-sm-3" ng-class="{'has-error': form.$submitted && form.cd27.$error.required}">	
+    <label class="radio-inline" ng-repeat='item in ["Yes", "No"]'>	
+      <input required type="radio" name="cd27" value="[[ item]]" ng-model="editing.ift.cd27_presence" ng-change="editing.ift.cd27_percentage = null"> [[ item | translate ]]	
+    </label>	
+    <div class="row" ng-show="form.$submitted && form.cd27.$error.required" ng-class="{'has-error': form.$submitted && form.cd27.$error.required}">	
+      <div class="col-md-12">	
+        <span class="help-block" >	
+          {% trans "CD27 presence is required" %}	
+        </span>	
+      </div>	
+    </div>	
+  </div>		
+</div>
+<div class="form-group">
+<div ng-show="editing.ift.cd27_presence == 'Yes'" >	
+    {% number field="IFT.cd27_percentage" min_value="1" max_value="100" unit="%" ngrequired="editing.ift.cd27_presence==='Yes'"%}
+  </div>
+</div>
+
+<div class="form-group" >	
+  <label for="" class="control-label col-sm-3">	
+    {% trans "CD117 presence" %}	
+  </label>	
+  <div class="col-sm-3" ng-class="{'has-error': form.$submitted && form.cd117.$error.required}">	
+    <label class="radio-inline" ng-repeat='item in ["Yes", "No"]'>	
+      <input required type="radio" name="cd117" value="[[ item]]" ng-model="editing.ift.cd117_presence" ng-change="editing.ift.cd117_percentage = null"> [[ item | translate ]]	
+    </label>	
+    <div class="row" ng-show="form.$submitted && form.cd117.$error.required" ng-class="{'has-error': form.$submitted && form.cd117.$error.required}">	
+      <div class="col-md-12">	
+        <span class="help-block" >	
+          {% trans "CD117 presence is required" %}	
+        </span>	
+      </div>	
+    </div>	
+  </div>		
+</div>
+<div class="form-group">
+<div ng-show="editing.ift.cd117_presence == 'Yes'" >	
+    {% number field="IFT.cd117_percentage" min_value="1" max_value="100" unit="%" ngrequired="editing.ift.cd117_presence==='Yes'"%}
+  </div>
+</div>

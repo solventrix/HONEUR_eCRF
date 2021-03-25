@@ -46,6 +46,8 @@ def number(*args, **kwargs):
     context = forms._input(*args, **kwargs)
     context["min_value"] = kwargs.get("min_value", "")
     context["max_value"] = kwargs.get("max_value", "")
+    context["ngrequired"] = kwargs.get("ngrequired", "")
+    context["required"] = kwargs.get("required", "")
     warn_min = kwargs.get("warn_min", "")
     warn_max = kwargs.get("warn_max", "")
     warn_min_condition = None

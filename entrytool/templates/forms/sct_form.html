@@ -1,5 +1,10 @@
 {% load forms %}
 {% load custom_forms %}
 {% select field="SCT.hospital" required=False %}
-{% custom_datepicker field="SCT.sct_date" no_future=False date_after="$root.patientValidator.patient.patient_details[0].diag_date" date_after_diff="0" date_after_message=_("The SCT should be after the date of diagnosis") %}
-{% select field="SCT.sct_type" %}
+{% custom_datepicker field="SCT.sct_date" no_future=False required=True date_after="$root.patientValidator.patient.patient_details[0].diag_date" date_after_diff="0" date_after_message=_("The SCT should be after the date of diagnosis") %}
+{% select field="SCT.mobilization_regimen" required=True %}
+{% custom_datepicker field="SCT.mobilization_start" date_after="$root.patientValidator.patient.patient_details[0].diag_date" date_after_diff="0" date_after_message=_("The therapy can only start after the diagnosis date") %}
+{% custom_datepicker field="SCT.mobilization_end" date_after="editing.sct.mobilization_end" date_after_diff="0" date_after_message=_("End Date must be after the start date") %}
+{% select field="SCT.sct_type" required=True%}
+{% checkbox field="SCT.cd_34_collection" %}
+{% input field="SCT.mrd_sample" %}

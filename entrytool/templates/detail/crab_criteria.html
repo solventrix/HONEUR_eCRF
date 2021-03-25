@@ -1,0 +1,52 @@
+{% load i18n %}
+<div class="follow-up-table" ng-show="episode.crab_criteria.length > 0">
+  <div class="col-md-12">
+    <div class="row header-row display-label">
+      <div class="col-sm-2 header"></div>
+      <div class="col-sm-2 header">{% trans "Hypercalcemia" %}</div>
+      <div class="col-sm-3 header">{% trans "Total > 2.65 / Ionized > 1.5" %}</div>
+      <div class="col-sm-2 header">{% trans "Renal failure" %}</div>
+      <div class="col-sm-1 header">{% trans "Anemia" %}</div>
+      <div class="col-sm-2 header">{% trans "Bone destruction" %}</div>
+    </div>
+  </div>
+
+  <div ng-repeat="item in episode.crab_criteria | orderBy: '-crab_date' as ifts">
+    <div class="row table-row">
+      <div class="col-sm-2 first-column text-right">
+         [[ item.crab_date | displayDate ]] &nbsp; 
+         <i ng-click="episode.recordEditor.editItem('{{ models.CrabCriteria.get_api_name }}', item)"
+          class="fa fa-pencil edit pointer"></i>
+        
+      </div>
+      <div class="col-sm-2 column">
+        <div>[[item.hypercalcemia | translate]]</div>
+        <div class="missing" ng-show="item.hypercalcemia==null">[[ "Fill me" | translate ]]</div>
+      </div>
+      <div class="col-sm-3 column">
+        <div>[[ item.total_over_265 | translate]] / [[item.ionized_over_15 | translate]]</div>
+        <div class="missing" ng-show="item.total_over_265==null && item.ionized_over_15==null">[[ "Fill me" | translate ]]</div>
+
+      </div>
+      <div class="col-sm-2 column">
+        <div>[[ item.renal_failure | translate]]</div>
+        <div class="missing" ng-show="item.renal_failure==null">[[ "Fill me" | translate ]]</div>
+
+      </div>
+      <div class="col-sm-1 column">
+        <div>[[ item.anemia | translate]]</div>
+        <div class="missing" ng-show="item.anemia==null">[[ "Fill me" | translate ]]</div>
+
+      </div>
+      <div class="col-sm-2 column">
+        <div>[[ item.bone_destruction | translate]]</div>
+        <div class="missing" ng-show="item.bone_destruction==null">[[ "Fill me" | translate ]]</div>
+
+        <div ng-show="item.bone_destruction==true">
+          ([[item.nb_affected_zones]] {%trans "zones"%},
+          [[item.region_osteolysis]])
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

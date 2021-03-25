@@ -52,23 +52,32 @@
       [[ item.death_cause | translate ]] ([[ item.death_date | displayDate ]])
     </span>
   </div>
-
-  <div class="col-md-2">	
-    <span class="display-label">{% trans "History of SMM" %}</span>	
-  </div>	
-  <div class="col-md-2">	
-    [[ item.smm_history | translate ]]	
-    <span ng-show="item.smm_history_date">([[ item.smm_history_date | displayDate ]])</span>	
-  </div>
- 
   <div class="col-md-2">
+    <span class="display-label">{% trans "R-ISS Stage" %}</span>
   </div>
   <div class="col-md-2">
+    [[ item.r_iss_stage | translate ]]
   </div>
+  
   <div class="col-md-2">
     <span class="display-label">del13</span>
   </div>
   <div class="col-md-2">
     [[ item.del_13 | translate ]]
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-2">
+    <span class="display-label">{% trans "Risk stratification"%}</span>
+  </div>
+  <div class ="col-md-2">
+    [[ item.risk_stratification | translate ]]
+  </div>
+  <div class="col-md-2">
+    <span class="display-label">{% trans "Protein Type"%}</span>
+  </div>
+  <div class ="col-md-2">
+    [[ item.pp_type | translate ]] ([[ item.light_chain_type | translate ]])
   </div>
 </div>

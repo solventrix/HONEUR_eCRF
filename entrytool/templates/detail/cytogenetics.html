@@ -1,0 +1,59 @@
+{% load i18n %}
+<div class="follow-up-table" ng-show="episode.cytogenetics.length > 0">
+      <div class="col-md-12">
+         <div class="row header-row display-label">
+            <div class="col-sm-1 header"></div>
+            <div class="col-sm-1 header">{% trans "Karyotype" %}</div>
+            <div class="col-sm-1 header">{% trans "t(14;16)" %}</div>
+            <div class="col-sm-1 header">{% trans "t(4;14)" %}</div>
+            <div class="col-sm-1 header">{% trans "t(11;14)" %}</div>
+            <div class="col-sm-1 header">{% trans "del13" %}</div>
+            <div class="col-sm-1 header">{% trans "del17p" %}</div>
+            <div class="col-sm-2 header">{% trans "IGHV rearrangement" %}</div>
+            <div class="col-sm-2 header">{% trans "chr1 abnormality" %}</div>
+         </div>
+      </div>
+
+
+      <div ng-repeat="item in episode.cytogenetics | orderBy: '-cytogenetic_date' as cytogenetics">
+         <div class="row table-row" >
+            <div class="col-sm-1 first-column text-right">
+            [[ item.hospital | translate ]] [[ item.cytogenetic_date | displayDate ]]  &nbsp;  <i ng-click="episode.recordEditor.editItem('{{ models.Cytogenetics.get_api_name }}', item)" class="fa fa-pencil edit pointer"></i>
+
+            </div>
+            <div class="col-sm-1 column">
+            <div>[[ item.karyotype | translate ]]</div>
+            <div class="missing" ng-show="!item.karyotype">[[ "Fill me" | translate ]]</div>
+            </div>
+             <div class="col-sm-1 column">
+            <div>[[ item.t14_16 | translate]]</div>
+            <div class="missing" ng-show="!item.t14_16">[[ "Fill me" | translate ]]</div>
+            </div>
+             <div class="col-sm-1 column">
+            <div>[[ item.t4_14 | translate]]</div>
+            <div class="missing" ng-show="!item.t4_14">[[ "Fill me" | translate ]]</div>
+            </div>
+             <div class="col-sm-1 column">
+            <div>[[ item.t11_14 | translate]]</div>
+            <div class="missing" ng-show="!item.t11_14">[[ "Fill me" | translate ]]</div>
+            </div>
+             <div class="col-sm-1 column">
+            <div>[[ item.del13 | translate]]</div>
+            <div class="missing" ng-show="!item.del13">[[ "Fill me" | translate ]]</div>
+            </div>
+             <div class="col-sm-1 column">
+            <div>[[ item.del17p | translate]]</div>
+            <div class="missing" ng-show="!item.del17p">[[ "Fill me" | translate ]]</div>
+            </div>
+             <div class="col-sm-2 column">
+            <div>[[ item.ighv_rearrangement | translate ]]</div>
+            <div class="missing" ng-show="!item.ighv_rearrangement">[[ "Fill me" | translate ]]</div>
+            </div>
+             <div class="col-sm-2 column">
+            <div>[[ item.chr1_abnormalities | translate]]</div>
+            <div class="missing" ng-show="!item.chr1_abnormalities">[[ "Fill me" | translate ]]</div>
+            </div>
+
+         </div>
+      </div>
+</div>

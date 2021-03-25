@@ -11,7 +11,7 @@ $janssen-blue-light : rgb(7,148,224);
     .panel-heading i.edit,
     .list-group-item i.edit,
     .list-group-item i.delete{
-        // display:block
+        display:block
     }
     .edit a i {
         color: $black;
@@ -176,6 +176,10 @@ h1 img {
     select {
         max-width: 300px;
     }
+}
+
+.missing {
+    color: red
 }
 
 .btn-primary {

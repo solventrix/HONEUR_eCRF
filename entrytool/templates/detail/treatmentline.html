@@ -6,16 +6,19 @@
       <i class="fa fa-trash-o delete-lot pointer" ng-click="lineOfTreatmentManager.delete(episode)"></i>
     </h2>
   </div>
-  <div class="col-md-4">
+  <div class="col-md-2">
     {% record_panel models.Regimen %}
   </div>
-  <div class="col-md-3">
+  <div class="col-md-2">
     {% record_panel models.Response %}
   </div>
-  <div class="col-md-4">
+  <div class="col-md-2">
     {% record_panel models.SCT %}
   </div>
-  {% comment %} <div class="col-md-2">
-    {% record_panel models.AdverseEvent %}
-  </div> {% endcomment %}
+  <div class="col-md-2">
+    {% record_panel models.Progression %}
+  </div>
+  <div class="col-md-2">
+    {% record_panel models.RadiationTherapy %}
+  </div>
 </div>
