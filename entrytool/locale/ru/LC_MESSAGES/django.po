@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-23 12:07+0000\n"
+"POT-Creation-Date: 2021-04-16 14:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -75,7 +75,7 @@ msgstr "Тип"
 
 #: entrytool/models.py:50 entrytool/templates/records/sct.html:39
 msgid "Mobilization regimen"
-msgstr "режим мобилизации"
+msgstr "режим МОБИЛИЗАЦИЯ"
 
 #: entrytool/models.py:51
 msgid "Start of mobilization"
@@ -135,15 +135,15 @@ msgstr "Другой"
 
 #: entrytool/models.py:86
 msgid "Stage I"
-msgstr "этап 1"
+msgstr "I"
 
 #: entrytool/models.py:87
 msgid "Stage II"
-msgstr "этап 2"
+msgstr "II"
 
 #: entrytool/models.py:88
 msgid "Stage III"
-msgstr "этап 3"
+msgstr "III"
 
 #: entrytool/models.py:92 entrytool/models.py:425
 msgid "IgG"
@@ -252,7 +252,7 @@ msgstr "данные пациента"
 #: entrytool/models.py:156 entrytool/models.py:157
 #: entrytool/templates/records/regimen.html:88
 msgid "Stop Reason"
-msgstr "причина остановки"
+msgstr "ПРИЧИНА ПРЕКРАЩЕНИЯ ТЕРАПИИ"
 
 #: entrytool/models.py:162 entrytool/models.py:165
 msgid "Treatment Line"
@@ -365,11 +365,11 @@ msgstr "ответы"
 
 #: entrytool/models.py:233
 msgid "Progresion/relapse date"
-msgstr "дата прогрессирования/рецидива"
+msgstr "дата ПРОГРЕССИРОВАНИЕ/РЕЦИДИВ"
 
 #: entrytool/models.py:236 entrytool/models.py:237
 msgid "Progression/relapse"
-msgstr "прогрессирования/рецидива"
+msgstr "ПРОГРЕССИРОВАНИЕ/РЕЦИДИВ"
 
 #: entrytool/models.py:243
 msgid "Visit date"
@@ -651,7 +651,7 @@ msgstr "Клеточность"
 
 #: entrytool/models.py:363
 msgid "Hematopoietic tissue (%)"
-msgstr "Процент гемопоэтической ткани"
+msgstr "Процент ГЕМОПОЭТИЧЕСКИЕ КЛЕТКИ"
 
 #: entrytool/models.py:365
 msgid "Adipose tissue (%)"
@@ -659,7 +659,7 @@ msgstr "Процент жировой ткани"
 
 #: entrytool/models.py:367
 msgid "Plasma infiltration (%)"
-msgstr "Процент плазматической инфильтрации"
+msgstr "Процент ПЛАЗМАТИЧЕСКАЯ ИНФИЛЬТРАЦИЯ"
 
 #: entrytool/models.py:372
 msgid "Histological and immunohistochemical features"
@@ -840,7 +840,7 @@ msgstr "соотношение FLC сыворотка"
 
 #: entrytool/models.py:451
 msgid "Radiation therapy date"
-msgstr ""
+msgstr "Дата"
 
 #: entrytool/models.py:452
 #: entrytool/templates/records/radiation_therapy.html:16
@@ -849,7 +849,7 @@ msgstr ""
 
 #: entrytool/models.py:455 entrytool/models.py:456
 msgid "Radiation therapy"
-msgstr ""
+msgstr "ЛУЧЕВАЯ ТЕРАПИЯ"
 
 #: entrytool/opal/models.py:472 entrytool/opal/models.py:686
 #: entrytool/opal/models.py:1065
@@ -898,7 +898,7 @@ msgstr "активный"
 #: entrytool/opal/models.py:692 entrytool/templates/records/regimen.html:64
 #: entrytool/templates/records/sct.html:49
 msgid "Start"
-msgstr "Начните"
+msgstr "НАЧАЛО"
 
 #: entrytool/opal/models.py:695 entrytool/templates/records/regimen.html:77
 #: entrytool/templates/records/sct.html:60
@@ -988,23 +988,23 @@ msgstr ""
 msgid "Save"
 msgstr "сохранять"
 
-#: entrytool/settings.py:200
+#: entrytool/settings.py:189
 msgid "English"
 msgstr ""
 
-#: entrytool/settings.py:201
+#: entrytool/settings.py:190
 msgid "Spanish"
 msgstr ""
 
-#: entrytool/settings.py:202
+#: entrytool/settings.py:191
 msgid "Hebrew"
 msgstr ""
 
-#: entrytool/settings.py:203
+#: entrytool/settings.py:192
 msgid "Russian"
 msgstr ""
 
-#: entrytool/settings.py:315
+#: entrytool/settings.py:304
 msgid "ECRF Sint Petersburg"
 msgstr "ECRF Санкт-Петербург"
 
@@ -1264,6 +1264,10 @@ msgstr "Удалить"
 msgid "Cancel"
 msgstr "Отмена"
 
+#: entrytool/templates/detail/bloodcounts.html:35
+msgid "Fill me"
+msgstr "отсутствующий"
+
 #: entrytool/templates/detail/bloodcounts.html:85
 msgid "b2m"
 msgstr ""
@@ -1471,21 +1475,21 @@ msgstr "лямбда цепи в моче (свободные)"
 #: entrytool/templates/detail/trephine_biopsies.html:7
 #, python-format
 msgid "Hematopoietic tissue (%%)"
-msgstr "гемопоэтической ткани (%%)"
+msgstr "ГЕМОПОЭТИЧЕСКИЕ КЛЕТКИ (%%)"
 
 #: entrytool/templates/detail/trephine_biopsies.html:8
 #, python-format
 msgid "Adipose tissue (%%)"
-msgstr "жировой ткани (%%)"
+msgstr "ЖИРОВАЯ ТКАНЬ(%%)"
 
 #: entrytool/templates/detail/trephine_biopsies.html:9
 #, python-format
 msgid "Plasma infiltration (%%)"
-msgstr "плазматической инфильтрации (%%)"
+msgstr "ПЛАЗМАТИЧЕСКАЯ ИНФИЛЬТРАЦИЯ (%%)"
 
 #: entrytool/templates/detail/trephine_biopsies.html:11
 msgid "Histological features"
-msgstr "гистологические особенности"
+msgstr "ГИСТОЛОГИЧЕСКИЕ ОСОБЕННОСТИ"
 
 #: entrytool/templates/forms/adverse_event_form.html:5
 msgid "Adverse events should be after the date of diagnosis"
@@ -1750,118 +1754,17 @@ msgstr "результатов не найдено"
 msgid "Home"
 msgstr "дома"
 
-#: entrytool/wow_strings.py:5
-msgid "Female"
-msgstr "женщина"
+#~ msgid "Female"
+#~ msgstr "женщина"
 
-#: entrytool/wow_strings.py:7
-msgid "Male"
-msgstr "мужчина"
+#~ msgid "Male"
+#~ msgstr "мужчина"
 
-#: entrytool/wow_strings.py:9
-msgid "Not Known"
-msgstr "неизвестно"
+#~ msgid "Not Known"
+#~ msgstr "неизвестно"
 
-#: entrytool/wow_strings.py:11 entrytool/wow_strings.py:21
-#: entrytool/wow_strings.py:39
-msgid "Not Specified"
-msgstr "не определено"
-
-#: entrytool/wow_strings.py:13 entrytool/wow_strings.py:33
-msgid "Center 1"
-msgstr ""
-
-#: entrytool/wow_strings.py:15 entrytool/wow_strings.py:35
-msgid "Clinic 2"
-msgstr ""
-
-#: entrytool/wow_strings.py:17 entrytool/wow_strings.py:29
-msgid "Frankfurt Clinic"
-msgstr ""
-
-#: entrytool/wow_strings.py:19 entrytool/wow_strings.py:37
-msgid "Hospital 3"
-msgstr ""
-
-#: entrytool/wow_strings.py:23 entrytool/wow_strings.py:27
-msgid "St Jane's"
-msgstr ""
-
-#: entrytool/wow_strings.py:25 entrytool/wow_strings.py:31
-msgid "The Lisbon Apothecary"
-msgstr ""
-
-#: entrytool/wow_strings.py:41
-msgid "VMP"
-msgstr ""
-
-#: entrytool/wow_strings.py:43
-msgid "VCD"
-msgstr ""
-
-#: entrytool/wow_strings.py:45
-msgid "VTD"
-msgstr ""
-
-#: entrytool/wow_strings.py:47
-msgid "Vd"
-msgstr ""
-
-#: entrytool/wow_strings.py:49
-msgid "Dara"
-msgstr ""
-
-#: entrytool/wow_strings.py:51
-msgid "Kd"
-msgstr ""
-
-#: entrytool/wow_strings.py:53
-msgid "Adverse event"
-msgstr ""
-
-#: entrytool/wow_strings.py:55
-msgid "End of Phase/Line"
-msgstr ""
-
-#: entrytool/wow_strings.py:57
-msgid "Patient Request"
-msgstr ""
-
-#: entrytool/wow_strings.py:59
-msgid "Refractory disease"
-msgstr ""
-
-#: entrytool/wow_strings.py:61
-msgid "Other reason"
-msgstr ""
-
-#: entrytool/wow_strings.py:63
-msgid "Relapse"
-msgstr ""
-
-#: entrytool/wow_strings.py:65
-msgid "Headache"
-msgstr ""
-
-#: entrytool/wow_strings.py:67
-msgid "Nausea"
-msgstr ""
-
-#: entrytool/wow_strings.py:69
-msgid "Diarrhea"
-msgstr ""
-
-#: entrytool/wow_strings.py:71
-msgid "Fever"
-msgstr ""
-
-#: entrytool/wow_strings.py:73
-msgid "Rash"
-msgstr ""
-
-#: entrytool/wow_strings.py:75
-msgid "Weight Loss"
-msgstr ""
+#~ msgid "Not Specified"
+#~ msgstr "не определено"
 
 #~ msgid "Yes,No,Unknown"
 #~ msgstr "да,нет,неизвестно"
