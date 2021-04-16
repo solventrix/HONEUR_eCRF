@@ -1266,7 +1266,7 @@ msgstr "Отмена"
 
 #: entrytool/templates/detail/bloodcounts.html:35
 msgid "Fill me"
-msgstr "отсутствующий"
+msgstr "Незаполнено"
 
 #: entrytool/templates/detail/bloodcounts.html:85
 msgid "b2m"
