@@ -21,26 +21,26 @@
       </div>
       <div class="col-sm-2 column">
         <div>[[item.hypercalcemia | translate]]</div>
-        <div class="missing" ng-show="item.hypercalcemia==null">{% trans "Fill me"%}</div>
+        <div class="missing" ng-show="item.hypercalcemia==null">[[ "Fill me" | translate ]]</div>
       </div>
       <div class="col-sm-3 column">
         <div>[[ item.total_over_265 | translate]] / [[item.ionized_over_15 | translate]]</div>
-        <div class="missing" ng-show="item.total_over_265==null && item.ionized_over_15==null">{% trans "Fill me"%}</div>
+        <div class="missing" ng-show="item.total_over_265==null && item.ionized_over_15==null">[[ "Fill me" | translate ]]</div>
 
       </div>
       <div class="col-sm-2 column">
         <div>[[ item.renal_failure | translate]]</div>
-        <div class="missing" ng-show="item.renal_failure==null">{% trans "Fill me"%}</div>
+        <div class="missing" ng-show="item.renal_failure==null">[[ "Fill me" | translate ]]</div>
 
       </div>
       <div class="col-sm-1 column">
         <div>[[ item.anemia | translate]]</div>
-        <div class="missing" ng-show="item.anemia==null">{% trans "Fill me"%}</div>
+        <div class="missing" ng-show="item.anemia==null">[[ "Fill me" | translate ]]</div>
 
       </div>
       <div class="col-sm-2 column">
         <div>[[ item.bone_destruction | translate]]</div>
-        <div class="missing" ng-show="item.bone_destruction==null">{% trans "Fill me"%}</div>
+        <div class="missing" ng-show="item.bone_destruction==null">[[ "Fill me" | translate ]]</div>
 
         <div ng-show="item.bone_destruction==true">
           ([[item.nb_affected_zones]] {%trans "zones"%},

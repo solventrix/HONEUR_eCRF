@@ -15,7 +15,7 @@
         [[ patient.patient_details[0].diag_date | displayDate ]]
       </div>
       <div class="missing col-md-8" ng-show="!patient.patient_details[0].diag_date">
-        {% trans "Fill me"%}
+        [[ "Fill me" | translate ]]
       </div>
     </div>
 
@@ -27,7 +27,7 @@
         [[ patient.patient_details[0].r_iss_stage ]]
       </div>
       <div class="missing col-md-8" ng-show="!patient.patient_details[0].r_iss_stage">
-        {% trans "Fill me"%}
+        [[ "Fill me" | translate ]]
       </div>
     </div>
 
@@ -39,7 +39,7 @@
         [[ patient.patient_details[0].pp_type ]]
       </div>
       <div class="missing col-md-8" ng-show="!patient.patient_details[0].pp_type">
-        {% trans "Fill me"%}
+        [[ "Fill me" | translate ]]
       </div>
     </div>
 
@@ -51,7 +51,7 @@
         [[ patient.patient_details[0].del_17p ]]
       </div>
       <div class="missing col-md-8" ng-show="!patient.patient_details[0].del_17p">
-        {% trans "Fill me"%}
+        [[ "Fill me" | translate ]]
       </div>
     </div>
     <div class="row">
@@ -62,7 +62,7 @@
         [[ patient.patient_details[0].t4_14 ]]
       </div>
       <div class="missing col-md-8" ng-show="!patient.patient_details[0].t4_14">
-        {% trans "Fill me"%}
+        [[ "Fill me" | translate ]]
       </div>
     </div>
     <div class="row">
@@ -73,7 +73,7 @@
         [[ patient.patient_details[0].t4_16 ]]
       </div>
       <div class="missing col-md-8" ng-show="!patient.patient_details[0].t4_16">
-        {% trans "Fill me"%}
+        [[ "Fill me" | translate ]]
       </div>
     </div>
     <span ng-show = "patient.patient_details[0].death_date">
@@ -85,7 +85,7 @@
         [[ patient.patient_details[0].death_date | displayDate]]
       </div>
       <div class="missing col-md-8" ng-show="!patient.patient_details[0].death_date">
-        {% trans "Fill me"%}
+        [[ "Fill me" | translate ]]
       </div>
     </div>
 
@@ -97,7 +97,7 @@
           [[ patient.patient_details[0].death_cause ]]
         </div>
          <div class="missing col-md-8" ng-show="!patient.patient_details[0].death_cause">
-          {% trans "Fill me"%}
+          [[ "Fill me" | translate ]]
         </div>
       </div>
     </span>

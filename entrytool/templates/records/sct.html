@@ -29,7 +29,7 @@
   </div>
   <div class="col-md-7">
     [[ item.sct_type | translate ]]
-    <div class="missing" ng-show="!item.sct_type">{% trans "Fill me"%}</div>
+    <div class="missing" ng-show="!item.sct_type">[[ "Fill me" | translate ]]</div>
 
   </div>
 </div>
@@ -51,7 +51,7 @@
   </div>
   <div class="col-md-7">
     [[ item.mobilization_start | displayDate ]]
-        <div class="missing" ng-show="!item.mobilization_start">{% trans "Fill me"%}</div>
+        <div class="missing" ng-show="!item.mobilization_start">[[ "Fill me" | translate ]]</div>
   </div>
 </div>
 <div class="row" >
