@@ -191,3 +191,13 @@ class FollowUp(models.PatientSubrecord):
     class Meta:
         verbose_name = _("Follow-up")
         verbose_name_plural = _("Follow-ups")
+
+class QualityOfLife5Q(models.PatientSubrecord):
+    _sort = "q5_date"
+    q5_date = fields.DateField(verbose_name = _("Date of Questionnaire"))
+
+    q5_mobility = fields.FloatField(blank = True, null = True, verbose_name = _("Mobility"))
+    q5_selfcare = fields.FloatField(blank = True, null = True, verbose_name = _("Selfcare"))
+    q5_usual_activities = fields.FloatField(blank = True, null = True, verbose_name = _("Usual Activities"))
+    q5_pain_discomfort = fields.FloatField(blank = True, null = True, verbose_name = _("Pain/Discomfort"))
+    q5_anxiety_depression = fields.FloatField(blank = True, null = True, verbose_name = _("Anxiety/Depression"))
