@@ -23,30 +23,6 @@ class Hospital(lookuplists.LookupList):
         verbose_name_plural = _("Hospitals")
 
 
-class SCT(models.EpisodeSubrecord):
-    SCT_TYPES = (
-        ("Allogenic", _("Allogenic")),
-        ("Autologous", _("Autologous")),
-        ("Unknown", _("Unknown")),
-    )
-    order_by = "-sct_date"
-
-    sct_date = fields.DateField(verbose_name=_("Date of SCT"))
-    hospital = models.ForeignKeyOrFreeText(
-        Hospital, verbose_name=_("Hospital")
-    )
-    sct_type = fields.CharField(
-        max_length=12,
-        verbose_name=_("Type of SCT"),
-        choices=SCT_TYPES,
-        null=True
-    )
-
-    class Meta:
-        verbose_name = _("Stem Cell Transplant")
-        verbose_name_plural = _("Stem Cell Transplants")
-
-
 # Disease specific details
 class PatientDetails(models.PatientSubrecord):
     _is_singleton = True  # One entry per patient that is updated
@@ -70,49 +46,22 @@ class PatientDetails(models.PatientSubrecord):
         ("Complications of Disease", _("Complications of Disease")),
         ("Other", _("Other"))
     )
-    R_ISS_STAGES = (
-        ("Stage I", _("Stage I")),
-        ("Stage II", _("Stage II")),
-        ("Stage III", _("Stage III")),
-        ("Unknown", _("Unknown"))
+    BINET_STAGES =(
+        ("Stage A", _("Stage A")),
+        ("Stage B", _("Stage B")),
+        ("Stage C", _("Stage C"))
     )
-    PP_TYPE_CHOICES = (
-        ("IgG", _("IgG")),
-        ("IgA", _("IgA")),
-        ("IgE", _("IgE")),
-        ("Light Chain Myeloma", _("Light Chain Myeloma")),
-    )
+   
     status = fields.CharField(
         max_length=100, choices=STATUSES, verbose_name=_("Patient Status")
     )
     diag_date = fields.DateField(
         blank=False, null=True, verbose_name=_("Date of Diagnosis")
     )
-    smm_history = fields.CharField(
-        max_length=10, choices=CHOICES, verbose_name=_("History of SMM")
+
+    binet_stage = fields.CharField(
+        max_length= 100, choices=BINET_STAGES, verbose_name = _("Binet Stage")
     )
-    smm_history_date = fields.DateField(
-        blank=True, null=True, verbose_name=_("Date of SMM diagnosis")
-    )
-    mgus_history = fields.CharField(
-        max_length=10, choices=CHOICES, verbose_name=_("History of MGUS")
-    )
-    mgus_history_date = fields.DateField(
-        blank=True, null=True, verbose_name=_("Date of MGUS Diagnosis")
-    )
-    iss_stage = fields.CharField(
-        max_length=10, choices=R_ISS_STAGES, verbose_name=_("ISS Stage")
-    )
-    ds_stage = fields.CharField(
-        max_length=10, choices=R_ISS_STAGES, verbose_name=_("DS Stage")
-    )
-    pp_type = fields.CharField(
-        max_length=50, choices=PP_TYPE_CHOICES, verbose_name=_("PP Type")
-    )
-    del_17p = fields.CharField(max_length=10, choices=CHOICES, verbose_name=_("del(17)p"))
-    del_13 = fields.CharField(max_length=10, choices=CHOICES, verbose_name=_("del13"))
-    t4_14 = fields.CharField(max_length=10, choices=CHOICES, verbose_name=_("t(4;14)"))
-    t4_16 = fields.CharField(max_length=10, choices=CHOICES, verbose_name=_("t(4;16)"))
     death_date = fields.DateField(
         null=True, verbose_name=_("Date of Death"), blank=True
     )
@@ -192,50 +141,39 @@ class AEList(lookuplists.LookupList):
         verbose_name_plural = _("AE List")
     pass
 
-
-class AdverseEvent(models.EpisodeSubrecord):
-    order_by = "-ae_date"
-
-    SEV_CHOICES = (
-        ("I", _("I")),
-        ("II", _("II")),
-        ("III", _("III")),
-        ("IV", _("IV")),
-        ("V", _("V"))
-    )
-    adverse_event = ForeignKeyOrFreeText(AEList, verbose_name=_("Adverse Event"))
-    severity = fields.CharField(
-        max_length=4, choices=SEV_CHOICES, verbose_name=_("Severity")
-    )
-    ae_date = fields.DateField(verbose_name=_("Date of AE"))
-
-    class Meta:
-        verbose_name = _("Adverse Event")
-        verbose_name_plural = _("Adverse Event")
-
-
 class Response(models.EpisodeSubrecord):
     _sort = "response_date"
     order_by = "-response_date"
-    RESPONSES = (
-        ("Minimal response", _("Minimal response")),
-        ("Partial response", _("Partial response")),
-        ("Very good partial response", _("Very good partial response")),
-        ("Complete response", _("Complete response")),
-        ("Stringent complete response", _("Stringent complete response")),
-        ("Near complete response", _("Near complete response")),
-        ("Immunophenotypic complete response", _("Immunophenotypic complete response")),
-        ("Stable disease", _("Stable disease")),
-        ("Progressive disease", _("Progressive disease")),
-        ("Response unknown/NA", _("Response unknown/NA"))
+    RESPONSES_IWCLL = (
+        ("CR", _("Complete Remission")),
+        ("PD", _("Progressive Disease")),
+        ("PR", _("Partial Response")),
+        ("SD", _("Stable Disease"))
     )
     response_date = fields.DateField(verbose_name=_("Response Date"))
-    response = fields.CharField(max_length=50, choices=RESPONSES, verbose_name=_("Response"))
+    response = fields.CharField(max_length=50, choices=RESPONSES_IWCLL, verbose_name=_("Response"))
 
     class Meta:
         verbose_name = _("Response")
         verbose_name_plural = _("Responses")
 
+class Cytogenetics(models.PatientSubrecord):
+    _sort = 'cytogenetic_date'
+    cytogenetic_date = fields.DateField(verbose_name= _("Cytogenetic Date"))
+
+    CHOICES = (
+        ("Yes", _("Yes")),
+        ("No", _("No")),
+        ("Unknown", _("Unknown"))
+    )
+
+    del17p = fields.CharField(max_length=25, null=True, blank=True,choices=CHOICES, verbose_name = _("del17p"))
+    ighv_rearrangement = fields.CharField(max_length=25, null=True, blank=True,choices=CHOICES, verbose_name = _("IGHV rearrangement"))
+    del11q = fields.CharField(max_length=25, null = True, blank=True, choices = CHOICES, verbose_name = _("del11q"))
+    tp53_mutation = fields.CharField(max_length=25, null=True, blank=True,choices=CHOICES,verbose_name=_("TP53 mutation"))
+    class Meta:
+        verbose_name = _("Cytogenetic tests")
+        verbose_name_plural = _("Cytogenetic tests")
 
 class FollowUp(models.PatientSubrecord):
     _sort = "followup_date"
