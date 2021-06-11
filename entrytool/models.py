@@ -217,20 +217,14 @@ class AdverseEvent(models.EpisodeSubrecord):
 class Response(models.EpisodeSubrecord):
     _sort = "response_date"
     order_by = "-response_date"
-    RESPONSES = (
-        ("Minimal response", _("Minimal response")),
-        ("Partial response", _("Partial response")),
-        ("Very good partial response", _("Very good partial response")),
-        ("Complete response", _("Complete response")),
-        ("Stringent complete response", _("Stringent complete response")),
-        ("Near complete response", _("Near complete response")),
-        ("Immunophenotypic complete response", _("Immunophenotypic complete response")),
-        ("Stable disease", _("Stable disease")),
-        ("Progressive disease", _("Progressive disease")),
-        ("Response unknown/NA", _("Response unknown/NA"))
+    RESPONSES_IWCLL = (
+        ("CR", _("Complete Remission")),
+        ("PD", _("Progressive Disease")),
+        ("PR", _("Partial Response")),
+        ("SD", _("Stable Disease"))
     )
     response_date = fields.DateField(verbose_name=_("Response Date"))
-    response = fields.CharField(max_length=50, choices=RESPONSES, verbose_name=_("Response"))
+    response = fields.CharField(max_length=50, choices=RESPONSES_IWCLL, verbose_name=_("Response"))
 
     class Meta:
         verbose_name = _("Response")
