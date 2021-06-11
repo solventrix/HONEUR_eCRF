@@ -35,30 +35,7 @@
   </div>
 </div>
 {% custom_datepicker field="PatientDetails.diag_date" validator="diagnosis_date" date_after="the_episode.demographics[0].date_of_birth" date_after_message=_("Date of diagnosis must be after the patient's birth date") required=True %}
-<div class="form-group" >	
-  <label for="" class="control-label col-sm-3">	
-    {% trans "History of SMM" %}	
-  </label>	
-  <div class="col-sm-3" ng-class="{'has-error': form.$submitted && form.mgus.$error.required}">	
-    <label class="radio-inline" ng-repeat='item in ["Yes", "No", "Unknown"]'>	
-      <input required type="radio" name="smm" value="[[ item]]" ng-change='editing.patient_details.smm_history_date = null' ng-model="editing.patient_details.smm_history"> [[ item | translate ]]	
-    </label>	
-    <div class="row" ng-show="form.$submitted && form.smm.$error.required" ng-class="{'has-error': form.$submitted && form.smm.$error.required}">	
-      <div class="col-md-12">	
-        <span class="help-block" >	
-          {% trans "History of SMM is required" %}	
-        </span>	
-      </div>	
-    </div>	
-  </div>	
-  <div ng-show="editing.patient_details.smm_history == 'Yes'" class="col-sm-4">	
-    {% custom_datepicker label=_("Date") field="PatientDetails.smm_history_date" ngrequired="editing.patient_details.smm_history == 'Yes'" date_before="editing.patient_details.diag_date" date_before_message=_("Date must be before the date of diagnosis")  date_before_diff="0" %}	
-  </div>	
-</div>
 
-{% radio field="PatientDetails.iss_stage" %}
-{% radio field="PatientDetails.ds_stage" %}
-{% radio field="PatientDetails.del_17p" %}
-{% radio field="PatientDetails.del_13" %}
-{% radio field="PatientDetails.t4_14" %}
+
+{% radio field="PatientDetails.binet_stage" %}
 
