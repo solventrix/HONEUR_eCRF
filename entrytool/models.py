@@ -278,3 +278,21 @@ class AdditionalCharacteristics(models.PatientSubrecord):
     cirs_score = fields.FloatField(blank = True, null = True, verbose_name=_("CIRS"))
     creatinine_clearance = fields.FloatField(blank = True, null = True, verbose_name=_("Creatinine clearance"))
     bulky_disease = fields.CharField(blank = True, null = True, choices=CHOICES, verbose_name=_("Bulky disease present"), max_length = 25)
+
+class Cytogenetics(models.PatientSubrecord):
+    _sort = 'cytogenetic_date'
+    cytogenetic_date = fields.DateField(verbose_name= _("Cytogenetic Date"))
+
+    CHOICES = (
+        ("Yes", _("Yes")),
+        ("No", _("No")),
+        ("Unknown", _("Unknown"))
+    )
+
+    del17p = fields.CharField(max_length=25, null=True, blank=True,choices=CHOICES, verbose_name = _("del17p"))
+    ighv_rearrangement = fields.CharField(max_length=25, null=True, blank=True,choices=CHOICES, verbose_name = _("IGHV rearrangement"))
+    del11q = fields.CharField(max_length=25, null = True, blank=True, choices = CHOICES, verbose_name = _("del11q"))
+    tp53_mutation = fields.CharField(max_length=25, null=True, blank=True,choices=CHOICES,verbose_name=_("TP53 mutation"))
+    class Meta:
+        verbose_name = _("Cytogenetic tests")
+        verbose_name_plural = _("Cytogenetic tests")
