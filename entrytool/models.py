@@ -70,49 +70,22 @@ class PatientDetails(models.PatientSubrecord):
         ("Complications of Disease", _("Complications of Disease")),
         ("Other", _("Other"))
     )
-    R_ISS_STAGES = (
-        ("Stage I", _("Stage I")),
-        ("Stage II", _("Stage II")),
-        ("Stage III", _("Stage III")),
-        ("Unknown", _("Unknown"))
+    BINET_STAGES =(
+        ("Stage A", _("Stage A")),
+        ("Stage B", _("Stage B")),
+        ("Stage C", _("Stage C"))
     )
-    PP_TYPE_CHOICES = (
-        ("IgG", _("IgG")),
-        ("IgA", _("IgA")),
-        ("IgE", _("IgE")),
-        ("Light Chain Myeloma", _("Light Chain Myeloma")),
-    )
+   
     status = fields.CharField(
         max_length=100, choices=STATUSES, verbose_name=_("Patient Status")
     )
     diag_date = fields.DateField(
         blank=False, null=True, verbose_name=_("Date of Diagnosis")
     )
-    smm_history = fields.CharField(
-        max_length=10, choices=CHOICES, verbose_name=_("History of SMM")
+
+    binet_stage = fields.CharField(
+        max_length= 100, choices=BINET_STAGES, verbose_name = _("Binet Stage")
     )
-    smm_history_date = fields.DateField(
-        blank=True, null=True, verbose_name=_("Date of SMM diagnosis")
-    )
-    mgus_history = fields.CharField(
-        max_length=10, choices=CHOICES, verbose_name=_("History of MGUS")
-    )
-    mgus_history_date = fields.DateField(
-        blank=True, null=True, verbose_name=_("Date of MGUS Diagnosis")
-    )
-    iss_stage = fields.CharField(
-        max_length=10, choices=R_ISS_STAGES, verbose_name=_("ISS Stage")
-    )
-    ds_stage = fields.CharField(
-        max_length=10, choices=R_ISS_STAGES, verbose_name=_("DS Stage")
-    )
-    pp_type = fields.CharField(
-        max_length=50, choices=PP_TYPE_CHOICES, verbose_name=_("PP Type")
-    )
-    del_17p = fields.CharField(max_length=10, choices=CHOICES, verbose_name=_("del(17)p"))
-    del_13 = fields.CharField(max_length=10, choices=CHOICES, verbose_name=_("del13"))
-    t4_14 = fields.CharField(max_length=10, choices=CHOICES, verbose_name=_("t(4;14)"))
-    t4_16 = fields.CharField(max_length=10, choices=CHOICES, verbose_name=_("t(4;16)"))
     death_date = fields.DateField(
         null=True, verbose_name=_("Date of Death"), blank=True
     )
@@ -130,7 +103,6 @@ class PatientDetails(models.PatientSubrecord):
     class Meta:
         verbose_name = _("Patient Details")
         verbose_name_plural = _("Patient Details")
-
 
 class RegimenList(lookuplists.LookupList):
     class Meta:
