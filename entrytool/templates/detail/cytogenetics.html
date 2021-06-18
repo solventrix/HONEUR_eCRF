@@ -1,0 +1,34 @@
+{% load i18n %}
+<div class="follow-up-table" ng-show="episode.cytogenetics.length > 0">
+  <div class="col-md-12">
+    <div class="row header-row display-label">
+      <div class="col-sm-1 header"></div>
+      <div class="col-sm-1 header">{% trans "Del17p" %}</div>
+      <div class="col-sm-1 header">{% trans "IGHV mutated" %}</div>
+      <div class="col-sm-1 header">{% trans "Del11q" %}<br>(mL/min)</div>
+      <div class="col-sm-1 header">{% trans "TP53" %}</div>
+    </div>
+  </div>
+
+
+  <div ng-repeat="item in episode.cytogenetics | orderBy: '-cytogenetic_date' as cytogenetics">
+    <div
+      ng-show="$index === 0 || cytogenetics[$index-1].hospital !== item.hospital"
+      class="row"
+      >
+
+    </div>
+    <div class="row table-row" >
+      <div class="col-sm-1 first-column text-right">
+        [[ item.hospital | translate ]] [[ item.cytogenetic_date | displayDate ]] &nbsp;   
+        <i ng-click="episode.recordEditor.editItem('{{ models.Cytogenetics.get_api_name }}', item)" class="fa fa-pencil edit pointer"></i>
+      </div>
+      <div class="col-sm-1 column">[[ item.del17p ]]</div>
+      <div class="col-sm-1 column">[[ item.ighv_rearrangement ]]</div>
+      <div class="col-sm-1 column">[[ item.del11q ]]</div>
+      <div class="col-sm-1 column">[[ item.tp53_mutation ]]</div>
+        
+      </div>
+    </div>
+  </div>
+</div>

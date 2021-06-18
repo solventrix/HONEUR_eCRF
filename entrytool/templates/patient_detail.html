@@ -55,27 +55,44 @@
                 </div>
               </section>
 
-              <!-- Additional disease characteristics -->
-              <div class="panel mb6">
-              <div class="col-md-5"> 
-                <div class="panel-heading">
-                  <h3>
-                    {% trans "Additional disease characteristics" %}
-                    <span class="pull-right pointer edit">
-                      <a ng-click="episode.recordEditor.newItem('{{ models.AdditionalCharacteristics.get_api_name }}')">
-                        <i class="fa fa-plus-circle edit pointer"></i>
-                      </a>
-                    </span>
-                  </h3>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-                  {% include "detail/additional_characteristics.html" %}
-                </div>
-              </div>
-              </div>
 
+                <div class="panel mb6">
+                  <div class="panel-heading">
+                    <h3>
+                      {% trans "Additional Characteristics" %}
+                      <span class="pull-right pointer edit">
+                        <a ng-click="episode.recordEditor.newItem('{{ models.AdditionalCharacteristics.get_api_name }}')">
+                          <i class="fa fa-plus-circle edit pointer"></i>
+                        </a>
+                      </span>
+                    </h3>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    {% include "detail/additional_characteristics.html" %}
+                  </div>
+                </div>
+              
+
+               <!-- Cytogenetics -->
+                <div class="panel mb6">
+                  <div class="panel-heading">
+                    <h3>
+                      {% trans "Cytogenetics" %}
+                      <span class="pull-right pointer edit">
+                        <a ng-click="episode.recordEditor.newItem('{{ models.Cytogenetics.get_api_name }}')">
+                          <i class="fa fa-plus-circle edit pointer"></i>
+                        </a>
+                      </span>
+                    </h3>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    {% include "detail/cytogenetics.html" %}
+                  </div>
+                </div>
 
             </section>
 
