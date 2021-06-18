@@ -55,13 +55,14 @@
                 </div>
               </section>
 
-              <!-- Follow ups -->
+              <!-- Additional disease characteristics -->
               <div class="panel mb6">
+              <div class="col-md-5"> 
                 <div class="panel-heading">
                   <h3>
-                    {% trans "Follow Ups" %}
+                    {% trans "Additional disease characteristics" %}
                     <span class="pull-right pointer edit">
-                      <a ng-click="episode.recordEditor.newItem('{{ models.FollowUp.get_api_name }}')">
+                      <a ng-click="episode.recordEditor.newItem('{{ models.AdditionalCharacteristics.get_api_name }}')">
                         <i class="fa fa-plus-circle edit pointer"></i>
                       </a>
                     </span>
@@ -70,8 +71,9 @@
               </div>
               <div class="row">
                 <div class="col-md-12">
-                  {% include "detail/followups.html" %}
+                  {% include "detail/additional_characteristics.html" %}
                 </div>
+              </div>
               </div>
 
 
