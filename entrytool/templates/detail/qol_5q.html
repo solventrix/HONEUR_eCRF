@@ -1,0 +1,35 @@
+{% load i18n %}
+<div class="follow-up-table" ng-show="episode.quality_of_life5q.length > 0">
+  <div class="col-md-12">
+    <div class="row header-row display-label">
+      <div class="col-sm-1 header"></div>
+      <div class="col-sm-1 header">{% trans "Mobility" %}</div>
+      <div class="col-sm-1 header">{% trans "Selfcare" %}</div>
+      <div class="col-sm-1 header">{% trans "Usual Activities" %}</div>
+      <div class="col-sm-1 header">{% trans "Pain/Discomfort" %}</div>
+      <div class="col-sm-1 header">{% trans "Anxiety/Depression" %}</div>
+    </div>
+  </div>
+
+
+  <div ng-repeat="item in episode.quality_of_life5q | orderBy: '-q5_date' as qol5qs">
+    <div
+      ng-show="$index === 0 || qol5qs[$index-1].hospital !== item.hospital"
+      class="row"
+      >
+
+    </div>
+    <div class="row table-row" >
+      <div class="col-sm-1 first-column text-right">
+        [[ item.hospital | translate ]] [[ item.q5_date | displayDate ]] &nbsp;
+        <i ng-click="episode.recordEditor.editItem('{{ models.QualityOfLife5Q.get_api_name }}', item)" class="fa fa-pencil edit pointer"></i>
+      </div>
+      <div class="col-sm-1 column">[[ item.q5_mobility ]]</div>
+      <div class="col-sm-1 column">[[ item.q5_selfcare ]]</div>
+      <div class="col-sm-1 column">[[ item.q5_usual_activities ]]</div>
+      <div class="col-sm-1 column">[[ item.q5_pain_discomfort ]]</div>
+      <div class="col-sm-1 column">[[ item.q5_anxiety_depression ]]</div>
+        
+      </div>
+    </div>
+  </div>

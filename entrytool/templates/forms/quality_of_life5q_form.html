@@ -1,7 +1,9 @@
 {% load forms %}
-{% datepicker field="QualityOfLife5Q.q5_date" %}
-{% input field="QualityOfLife5Q.q5_mobility" %}
-{% input field="QualityOfLife5Q.q5_selfcare" %}
-{% input field="QualityOfLife5Q.q5_usual_activities" %}
-{% input field="QualityOfLife5Q.q5_pain_discomfort" %}
-{% input field="QualityOfLife5Q.q5_anxiety_depression" %}
+{% load custom_forms %}
+{% load i18n %}
+{% custom_datepicker field="QualityOfLife5Q.q5_date" label=_("Date") date_after="the_episode.demographics[0].date_of_birth" date_after_message=_("Date of measurement must be after date of birth") %}
+{% radio field="QualityOfLife5Q.q5_mobility" %}
+{% radio field="QualityOfLife5Q.q5_selfcare" %}
+{% radio field="QualityOfLife5Q.q5_usual_activities" %}
+{% radio field="QualityOfLife5Q.q5_pain_discomfort" %}
+{% radio field="QualityOfLife5Q.q5_anxiety_depression" %}
