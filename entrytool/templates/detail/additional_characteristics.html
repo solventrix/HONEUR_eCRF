@@ -1,0 +1,33 @@
+{% load i18n %}
+<div class="follow-up-table" ng-show="episode.additional_characteristics.length > 0">
+  <div class="col-md-12">
+    <div class="row header-row display-label">
+      <div class="col-sm-2 header"></div>
+      <div class="col-sm-2 header">{% trans "ECOG" %}</div>
+      <div class="col-sm-2 header">{% trans "CIRS" %}</div>
+      <div class="col-sm-2 header">{% trans "Creatinine clearance" %}<br>(mL/min)</div>
+      <div class="col-sm-2 header">{% trans "Bulky disease > 5 cm" %}</div>
+    </div>
+  </div>
+
+
+  <div ng-repeat="item in episode.additional_characteristics | orderBy: '-characteristic_date' as followups">
+    <div
+      ng-show="$index === 0 || followups[$index-1].hospital !== item.hospital"
+      class="row"
+      >
+
+    </div>
+    <div class="row table-row" >
+      <div class="col-sm-2 first-column text-right">
+        [[ item.hospital | translate ]] [[ item.characteristic_date | displayDate ]] &nbsp;
+        <i ng-click="episode.recordEditor.editItem('{{ models.AdditionalCharacteristics.get_api_name }}', item)" class="fa fa-pencil edit pointer"></i>
+      </div>
+      <div class="col-sm-2 column">[[ item.ecog_score ]]</div>
+      <div class="col-sm-2 column">[[ item.cirs_score ]]</div>
+      <div class="col-sm-2 column">[[ item.creatinine_clearance ]]</div>
+      <div class="col-sm-2 column">[[ item.bulky_disease ]]</div>
+        
+      </div>
+    </div>
+  </div>
