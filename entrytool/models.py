@@ -55,6 +55,8 @@ class PatientDetails(models.PatientSubrecord):
          ("Under Treatment", _("Under Treatment")),
          ("Dead", _("Dead",)),
          ("Lost to Follow-up", _("Lost to Follow-up")),
+         ("Watch and Wait", _("Watch and Wait")),
+         ("Unknown", _("Unknown"))
     )
     hospital = models.ForeignKeyOrFreeText(
         Hospital, verbose_name=_("Hospital")
@@ -193,13 +195,14 @@ class Response(models.EpisodeSubrecord):
         ("CR", _("Complete Remission")),
         ("PD", _("Progressive Disease")),
         ("PR", _("Partial Response")),
-        ("SD", _("Stable Disease"))
+        ("SD", _("Stable Disease")),
+        ("Unknown", _("Unknown"))
     )
     response_date = fields.DateField(verbose_name=_("Response Date"))
-    response = fields.CharField(max_length=50, choices=RESPONSES_IWCLL, verbose_name=_("Response"))
+    response = fields.CharField(max_length=50, choices=RESPONSES_IWCLL, verbose_name=_("Best Response"))
 
     class Meta:
-        verbose_name = _("Response")
+        verbose_name = _("Best Response")
         verbose_name_plural = _("Responses")
 
 
