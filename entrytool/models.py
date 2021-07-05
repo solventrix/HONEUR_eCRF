@@ -55,6 +55,8 @@ class PatientDetails(models.PatientSubrecord):
          ("Under Treatment", _("Under Treatment")),
          ("Dead", _("Dead",)),
          ("Lost to Follow-up", _("Lost to Follow-up")),
+         ("Watch and Wait", _("Watch and Wait")),
+         ("Unknown", _("Unknown"))
     )
     hospital = models.ForeignKeyOrFreeText(
         Hospital, verbose_name=_("Hospital")
@@ -193,13 +195,14 @@ class Response(models.EpisodeSubrecord):
         ("CR", _("Complete Remission")),
         ("PD", _("Progressive Disease")),
         ("PR", _("Partial Response")),
-        ("SD", _("Stable Disease"))
+        ("SD", _("Stable Disease")),
+        ("Unknown", _("Unknown"))
     )
     response_date = fields.DateField(verbose_name=_("Response Date"))
-    response = fields.CharField(max_length=50, choices=RESPONSES_IWCLL, verbose_name=_("Response"))
+    response = fields.CharField(max_length=50, choices=RESPONSES_IWCLL, verbose_name=_("Best Response"))
 
     class Meta:
-        verbose_name = _("Response")
+        verbose_name = _("Best Response")
         verbose_name_plural = _("Responses")
 
 
@@ -224,11 +227,15 @@ class QualityOfLife5Q(models.PatientSubrecord):
     _sort = "q5_date"
     q5_date = fields.DateField(verbose_name = _("Date of Questionnaire"))
 
-    q5_mobility = fields.FloatField(blank = True, null = True, verbose_name = _("Mobility"))
-    q5_selfcare = fields.FloatField(blank = True, null = True, verbose_name = _("Selfcare"))
-    q5_usual_activities = fields.FloatField(blank = True, null = True, verbose_name = _("Usual Activities"))
-    q5_pain_discomfort = fields.FloatField(blank = True, null = True, verbose_name = _("Pain/Discomfort"))
-    q5_anxiety_depression = fields.FloatField(blank = True, null = True, verbose_name = _("Anxiety/Depression"))
+    Q5_OPTIONS = (
+        (1,'1'),(2,'2'),(3,'3'),(4,'4'),(5,'5')
+    )
+
+    q5_mobility = fields.FloatField(blank = True, null = True, choices=Q5_OPTIONS, verbose_name = _("Mobility"))
+    q5_selfcare = fields.FloatField(blank = True, null = True, choices=Q5_OPTIONS, verbose_name = _("Selfcare"))
+    q5_usual_activities = fields.FloatField(blank = True, null = True, choices=Q5_OPTIONS, verbose_name = _("Usual Activities"))
+    q5_pain_discomfort = fields.FloatField(blank = True, null = True, choices=Q5_OPTIONS, verbose_name = _("Pain/Discomfort"))
+    q5_anxiety_depression = fields.FloatField(blank = True, null = True, choices=Q5_OPTIONS, verbose_name = _("Anxiety/Depression"))
 
 class AdditionalCharacteristics(models.PatientSubrecord):
     _sort="characteristic_date"
