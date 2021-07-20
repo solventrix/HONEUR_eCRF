@@ -3,8 +3,8 @@
   <div class="col-md-12">
     <div class="row header-row display-label">
       <div class="col-sm-2 header"></div>
-      <div class="col-sm-2 header">{% trans "ECOG" %}</div>
-      <div class="col-sm-2 header">{% trans "CIRS" %}</div>
+      <div class="col-sm-1 header">{% trans "ECOG" %}</div>
+      <div class="col-sm-1 header">{% trans "CIRS" %}</div>
       <div class="col-sm-2 header">{% trans "Creatinine clearance" %}<br>(mL/min)</div>
       <div class="col-sm-2 header">{% trans "LDH" %}</div>
       <div class="col-sm-2 header">{% trans "Beta-2-Microglobulin" %}</div>
@@ -25,8 +25,8 @@
         [[ item.hospital | translate ]] [[ item.characteristic_date | displayDate ]] &nbsp;
         <i ng-click="episode.recordEditor.editItem('{{ models.AdditionalCharacteristics.get_api_name }}', item)" class="fa fa-pencil edit pointer"></i>
       </div>
-      <div class="col-sm-2 column">[[ item.ecog_score ]]</div>
-      <div class="col-sm-2 column">[[ item.cirs_score ]]</div>
+      <div class="col-sm-1 column">[[ item.ecog_score ]]</div>
+      <div class="col-sm-1 column">[[ item.cirs_score ]]</div>
       <div class="col-sm-2 column">[[ item.creatinine_clearance ]]</div>
       <div class="col-sm-2 column">[[ item.LDH ]]</div>
       <div class="col-sm-2 column">[[ item.beta2m ]]</div>
