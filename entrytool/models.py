@@ -252,6 +252,8 @@ class AdditionalCharacteristics(models.PatientSubrecord):
     ecog_score = fields.FloatField(blank = True, null = True, verbose_name=_("ECOG"))
     cirs_score = fields.FloatField(blank = True, null = True, verbose_name=_("CIRS"))
     creatinine_clearance = fields.FloatField(blank = True, null = True, verbose_name=_("Creatinine clearance"))
+    beta2m = fields.FloatField(blank = True, null = True, verbose_name=_("Beta-2-Microglobulin"))
+    LDH = fields.FloatField(blank = True, null = True, verbose_name=_("LDH"))
     bulky_disease = fields.CharField(blank = True, null = True, choices=CHOICES, verbose_name=_("Bulky disease present"), max_length = 25)
 
 class Cytogenetics(models.PatientSubrecord):
