@@ -26,7 +26,7 @@ class Migration(migrations.Migration):
                 ('ecog_score', models.FloatField(blank=True, null=True, verbose_name='ECOG')),
                 ('cirs_score', models.FloatField(blank=True, null=True, verbose_name='CIRS')),
                 ('creatinine_clearance', models.FloatField(blank=True, null=True, verbose_name='Creatinine clearance')),
-                ('B2M', models.FloatField(blank=True, null=True, verbose_name='Beta-2-Microglob')),
+                ('beta2m', models.FloatField(blank=True, null=True, verbose_name='Beta-2-Microglob')),
                 ('LDH', models.FloatField(blank=True, null=True, verbose_name='LDH')),
                 ('bulky_disease', models.CharField(blank=True, choices=[('Yes', 'Yes'), ('No', 'No'), ('Unknown', 'Unknown')], max_length=25, null=True, verbose_name='Bulky disease present')),
                 ('created_by', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='created_entrytool_additionalcharacteristics_subrecords', to=settings.AUTH_USER_MODEL, verbose_name='Created By')),
