@@ -8,7 +8,7 @@
   <div ng-class="{'has-error': form.$submitted && form.status.$error.required }" class="col-sm-4">
     <select required name="status" class="form-control" ng-change="editing.patient_details.lost_to_follow_up_date = null; editing.patient_details.death_cause = null; editing.patient_details.death_date = null" ng-model="editing.patient_details.status">
       <option value="" selected>---------</option>
-      <option ng-repeat='i in ["Under Treatment", "Dead", "Lost to Follow-up", "Unknown", "Watch and Wait"] track by $index'>[[ i | translate ]]</option>
+      <option ng-repeat='i in ["Under Treatment", "Dead", "Lost to Follow-up", "Unknown", "Watch and Wait", "In Remission", "Observation after Treatment"] track by $index'>[[ i | translate ]]</option>
     </select>
     <span ng-show="form.$submitted && form.status.$error.required" class="help-block">
       {% trans "Status is required" %}</span>
