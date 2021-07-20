@@ -27,6 +27,7 @@ class Migration(migrations.Migration):
                 ('ighv_rearrangement', models.CharField(blank=True, choices=[('Yes', 'Yes'), ('No', 'No'), ('Unknown', 'Unknown')], max_length=25, null=True, verbose_name='IGHV rearrangement')),
                 ('del11q', models.CharField(blank=True, choices=[('Yes', 'Yes'), ('No', 'No'), ('Unknown', 'Unknown')], max_length=25, null=True, verbose_name='del11q')),
                 ('tp53_mutation', models.CharField(blank=True, choices=[('Yes', 'Yes'), ('No', 'No'), ('Unknown', 'Unknown')], max_length=25, null=True, verbose_name='TP53 mutation')),
+                ('karyotype', models.CharField(blank=True, choices=[('Yes', 'Yes'), ('No', 'No'), ('Unknown', 'Unknown')], max_length=25, null=True, verbose_name='Complex Karyotype')),
                 ('created_by', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='created_entrytool_cytogenetics_subrecords', to=settings.AUTH_USER_MODEL, verbose_name='Created By')),
                 ('patient', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='opal.Patient', verbose_name='Patient')),
                 ('updated_by', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='updated_entrytool_cytogenetics_subrecords', to=settings.AUTH_USER_MODEL, verbose_name='Updated By')),
