@@ -56,6 +56,8 @@ class PatientDetails(models.PatientSubrecord):
          ("Dead", _("Dead",)),
          ("Lost to Follow-up", _("Lost to Follow-up")),
          ("Watch and Wait", _("Watch and Wait")),
+         ("In Remission", _("In Remission")),
+         ("Observation after Treatment", _("Observation after Treatment")),
          ("Unknown", _("Unknown"))
     )
     hospital = models.ForeignKeyOrFreeText(
@@ -266,6 +268,7 @@ class Cytogenetics(models.PatientSubrecord):
     ighv_rearrangement = fields.CharField(max_length=25, null=True, blank=True,choices=CHOICES, verbose_name = _("IGHV rearrangement"))
     del11q = fields.CharField(max_length=25, null = True, blank=True, choices = CHOICES, verbose_name = _("del11q"))
     tp53_mutation = fields.CharField(max_length=25, null=True, blank=True,choices=CHOICES,verbose_name=_("TP53 mutation"))
+    karyotype = fields.CharField(max_length=25, null=True, blank=True,choices=CHOICES,verbose_name=_("Complex Karyotype"))
     class Meta:
         verbose_name = _("Cytogenetic tests")
         verbose_name_plural = _("Cytogenetic tests")
