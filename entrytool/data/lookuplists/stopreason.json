@@ -4,19 +4,13 @@
       "name": "Adverse event"
     },
     {
-      "name": "End of Phase/Line"
+      "name": "Progression"
     },
     {
-      "name": "Patient Request"
-    },
-    {
-      "name": "Refractory disease"
+      "name": "Remission Achieved"
     },
     {
       "name": "Other reason"
-    },
-    {
-      "name": "Relapse"
     }
   ]
 }
