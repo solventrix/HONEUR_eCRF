@@ -23,5 +23,9 @@
         </div>
       </div>
     {% endif %}
+    {% if help_text %}
+      <p class="help-block">{% trans help_text %}	
+      </p>
+    {% endif %}
   </div>
 </div>

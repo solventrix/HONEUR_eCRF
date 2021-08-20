@@ -20,6 +20,10 @@
         {% blocktrans with label=label %}{{ label }} is required{% endblocktrans %}
       </span>
       {% endif %}
+       {% if help_text %}
+      <p class="help-block">{% trans help_text %}	
+      </p>
+    {% endif %}
     </div>
   </span>
 </div>
