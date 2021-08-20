@@ -2,8 +2,8 @@
 {% load custom_forms %}
 {% select field="Regimen.hospital" required=False %}
 {% select field="Regimen.category" required=False change='editing.regimen.regimen=null;'%}
-<div ng-if="editing.regimen.category !== 'Watch and wait'">
-  {% select field="Regimen.regimen" required='editing.regimen.category !== \'Watch and wait\''%}
+<div ng-if="editing.regimen.category == 'Treatment'">
+  {% select field="Regimen.regimen" required='editing.regimen.category == \'Treatment\''%}
 {% checkbox field="Regimen.indefinite_duration" %}
   <div ng-show="!editing.regimen.indefinite_duration" >
   {% input field="Regimen.nbCycles" required=False %}

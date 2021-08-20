@@ -135,10 +135,9 @@ class Regimen(models.EpisodeSubrecord):
     order_by = "-start_date"
 
     REGIMEN_TYPES = (
-        ("Induction", _("Induction")),
-        ("Maintenance", _("Maintenance")),
-        ("Conditioning", _("Conditioning")),
-        ("Watch and wait", _("Watch and wait")),
+        ("Treatment", _("Treatment")),
+        ("Remission", _("Remission")),
+        ("Watch and wait", _("Watch and wait"))
     )
 
     hospital = models.ForeignKeyOrFreeText(Hospital, verbose_name=_("Hospital"))
