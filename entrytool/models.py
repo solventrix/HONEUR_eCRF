@@ -77,7 +77,8 @@ class PatientDetails(models.PatientSubrecord):
     BINET_STAGES =(
         ("Stage A", _("Stage A")),
         ("Stage B", _("Stage B")),
-        ("Stage C", _("Stage C"))
+        ("Stage C", _("Stage C")),
+        ("Unknown", _("Unknown"))
     )
    
     status = fields.CharField(
@@ -155,6 +156,8 @@ class Regimen(models.EpisodeSubrecord):
     stop_reason = ForeignKeyOrFreeText(
         StopReason, verbose_name=_("Reason for Regimen Stop")
     )
+    part_of_clinical_trial = fields.NullBooleanField(verbose_name=_("Regimen part of clinical trial"),blank=True, null=True)
+    indefinite_duration = fields.NullBooleanField(verbose_name=_("Treatment of indefinite duration"), blank=True, null=True)
 
     class Meta:
         verbose_name = _("Regimen")
