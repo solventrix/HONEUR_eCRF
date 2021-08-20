@@ -41,7 +41,22 @@
     [[ item.regimen | translate ]]
   </div>
 </div>
-
+<div class="row" ng-show="item.part_of_clinical_trial">
+  <div class="col-md-5">
+    <span class="display-label">
+    </span>
+  </div>
+  <div class="col-md-7">
+  <em>Administered as part of clinical trial</em></div>
+</div>
+<div class="row" ng-show="item.indefinite_duration">
+<div class="col-md-5">
+    <span class="display-label">
+    </span>
+  </div>
+  <div class="col-md-7">
+  <em>Regimen of indefinite duration</em></div>
+</div>
 <div class="row" ng-show="item.category">
   <div class="col-md-5">
     <span class="display-label">
