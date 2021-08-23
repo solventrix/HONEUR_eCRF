@@ -13,6 +13,9 @@
     <span ng-show="form.$submitted && form.status.$error.required" class="help-block">
       {% trans "Status is required" %}</span>
   </div>
+  <span class="help-block">
+      {% trans "Current status of the patient" %}
+  </span>
   <div ng-show="editing.patient_details.status === 'Lost to Follow-up'" class="col-sm-4">
     {% custom_datepicker label=_("Date") field="PatientDetails.lost_to_follow_up_date" ngrequired="editing.patient_details.status === 'Lost to Follow-up'" date_after="the_episode.demographics[0].date_of_birth" date_after_message=_("Follow up date must be after the patient's birth date") %}
   </div>
@@ -37,4 +40,4 @@
 {% custom_datepicker field="PatientDetails.diag_date" validator="diagnosis_date" date_after="the_episode.demographics[0].date_of_birth" date_after_message=_("Date of diagnosis must be after the patient's birth date") required=True %}
 
 
-{% radio field="PatientDetails.binet_stage" %}
+{% radio field="PatientDetails.binet_stage" help_text="Binet Stage at diagnosis" %}
