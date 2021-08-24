@@ -1,7 +1,7 @@
 {% load forms %}
 {% load custom_forms %}
-{% select field="Regimen.hospital" required=False %}
-{% select field="Regimen.category" required=False change='editing.regimen.regimen=null;'%}
+{% select field="Regimen.hospital" required=False help_text='Location where regimen was administered' %}
+{% select field="Regimen.category" required=False change='editing.regimen.regimen=null;' help_text='Initial watch and wait period should not be logged as treatment line' %}
 <div ng-if="editing.regimen.category == 'Treatment'">
   {% select field="Regimen.regimen" required='editing.regimen.category == \'Treatment\''%}
 {% checkbox field="Regimen.indefinite_duration" %}

@@ -1,9 +1,14 @@
 {% load panels %}
 <div class="row">
-  <div class="col-md-3">
+  <div class="col-md-4">
     {% include 'partials/_demographics_panel.html' %}
   </div>
   <div class="col-md-4">
     {% record_panel models.PatientDetails full_width=True noentries=_("Please complete details for this patient to continue.") %}
   </div>
+  <section ng-show="patient.patient_details[0].consistency_token">
+  <div class="col-md-3">
+    {% include 'records/patient_status.html' %}
+  </div>
+  </section>
 </div>
