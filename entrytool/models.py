@@ -60,11 +60,7 @@ class PatientDetails(models.PatientSubrecord):
         ("No", _("No")),
         ("Unknown", _("Unknown"))
     )
-    DEATH_CAUSES = (
-        ("Disease", _("Disease")),
-        ("Complications of Disease", _("Complications of Disease")),
-        ("Other", _("Other"))
-    )
+    
     BINET_STAGES =(
         ("Stage A", _("Stage A")),
         ("Stage B", _("Stage B")),
@@ -80,6 +76,20 @@ class PatientDetails(models.PatientSubrecord):
     binet_stage = fields.CharField(
         max_length= 100, choices=BINET_STAGES, verbose_name = _("Binet Stage")
     )
+
+    class Meta:
+        verbose_name = _("Diagnosis details")
+        verbose_name_plural = _("Diagnosis details")
+    
+class PatientStatus(models.PatientSubrecord):
+    _is_singleton = True 
+    DEATH_CAUSES = (
+        ("Disease", _("Disease")),
+        ("Complications of Disease", _("Complications of Disease")),
+        ("Other", _("Other"))
+    )
+    deceased = fields.NullBooleanField(verbose_name=_("Deceased"), blank=True, null= True)
+    lost_to_follow_up = fields.NullBooleanField(verbose_name=_("Lost to Follow-Up"), null = True, blank = True)
     death_date = fields.DateField(
         null=True, verbose_name=_("Date of Death"), blank=True
     )
@@ -93,10 +103,10 @@ class PatientDetails(models.PatientSubrecord):
     lost_to_follow_up_date = fields.DateField(
         blank=True, null=True, verbose_name=_("Lost to Follow-up")
     )
-
+    
     class Meta:
-        verbose_name = _("Diagnosis details")
-        verbose_name_plural = _("Diagnosis details")
+        verbose_name = _("Patient status")
+        verbose_name_plural = _("Patient status")
 
 class RegimenList(lookuplists.LookupList):
     class Meta:
@@ -125,8 +135,7 @@ class Regimen(models.EpisodeSubrecord):
 
     REGIMEN_TYPES = (
         ("Treatment", _("Treatment")),
-        ("Remission", _("Remission")),
-        ("Watch and wait", _("Watch and wait"))
+        ("Observation after remission", _("Observation after remission"))
     )
 
     hospital = models.ForeignKeyOrFreeText(Hospital, verbose_name=_("Hospital"))
