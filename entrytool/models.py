@@ -51,15 +51,6 @@ class SCT(models.EpisodeSubrecord):
 class PatientDetails(models.PatientSubrecord):
     _is_singleton = True  # One entry per patient that is updated
 
-    STATUSES = (
-         ("Under Treatment", _("Under Treatment")),
-         ("Dead", _("Dead",)),
-         ("Lost to Follow-up", _("Lost to Follow-up")),
-         ("Watch and Wait", _("Watch and Wait")),
-         ("In Remission", _("In Remission")),
-         ("Observation after Treatment", _("Observation after Treatment")),
-         ("Unknown", _("Unknown"))
-    )
     hospital = models.ForeignKeyOrFreeText(
         Hospital, verbose_name=_("Hospital")
     )
@@ -81,9 +72,7 @@ class PatientDetails(models.PatientSubrecord):
         ("Unknown", _("Unknown"))
     )
    
-    status = fields.CharField(
-        max_length=100, choices=STATUSES, verbose_name=_("Patient Status")
-    )
+
     diag_date = fields.DateField(
         blank=False, null=True, verbose_name=_("Date of Diagnosis")
     )
@@ -106,8 +95,8 @@ class PatientDetails(models.PatientSubrecord):
     )
 
     class Meta:
-        verbose_name = _("Patient Details")
-        verbose_name_plural = _("Patient Details")
+        verbose_name = _("Diagnosis details")
+        verbose_name_plural = _("Diagnosis details")
 
 class RegimenList(lookuplists.LookupList):
     class Meta:
