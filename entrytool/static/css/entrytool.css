@@ -193,9 +193,6 @@ h1 img {
 
 .delete-lot i {
   font-size: 18px;
-  visibility: hidden;
-}
-.delete-lot:hover i {
   visibility: visible;
 }
 

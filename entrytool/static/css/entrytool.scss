@@ -216,14 +216,9 @@ h1 img {
 .delete-lot{
     i{
         font-size: 18px;
-        visibility: hidden;
+        visibility: visible;
     }
 
-    &:hover{
-        i{
-            visibility: visible;
-        }
-    }
 }
 
 .warning-block{
