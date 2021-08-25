@@ -3,7 +3,7 @@
 {% select field="Regimen.hospital" required=False help_text='Location where regimen was administered' %}
 {% select field="Regimen.category" required=False change='editing.regimen.regimen=null;' help_text='Initial watch and wait period should not be logged as treatment line' %}
 <div ng-if="editing.regimen.category == 'Treatment'">
-  {% select field="Regimen.regimen" required='editing.regimen.category == \'Treatment\''%}
+  {% select field="Regimen.regimen" required='editing.regimen.category == \'Treatment\'' help_text="Add regimens by clicking the \"Admin\" button, and then the \"Add\" button next to Regimen List"%}
 {% checkbox field="Regimen.indefinite_duration" %}
   <div ng-show="!editing.regimen.indefinite_duration" >
   {% input field="Regimen.nbCycles" required=False %}
