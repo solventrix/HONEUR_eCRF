@@ -249,7 +249,7 @@ class AdditionalCharacteristics(models.PatientSubrecord):
         ("Unknown", _("Unknown"))
     )
     ECOG_CHOICES = (
-        (1,'1'),(2,'2'),(3,'3'),(4,'4')
+        (0,'0'),(1,'1'),(2,'2'),(3,'3'),(4,'4')
     )
 
     ecog_score = fields.FloatField(blank = True, null = True, verbose_name=_("ECOG"), choices=ECOG_CHOICES)
