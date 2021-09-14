@@ -248,8 +248,11 @@ class AdditionalCharacteristics(models.PatientSubrecord):
         ("No", _("No")),
         ("Unknown", _("Unknown"))
     )
+    ECOG_CHOICES = (
+        (1,'1'),(2,'2'),(3,'3'),(4,'4')
+    )
 
-    ecog_score = fields.FloatField(blank = True, null = True, verbose_name=_("ECOG"))
+    ecog_score = fields.FloatField(blank = True, null = True, verbose_name=_("ECOG"), choices=ECOG_CHOICES)
     cirs_score = fields.FloatField(blank = True, null = True, verbose_name=_("CIRS"))
     creatinine_clearance = fields.FloatField(blank = True, null = True, verbose_name=_("Creatinine clearance"))
     beta2m = fields.FloatField(blank = True, null = True, verbose_name=_("Beta-2-Microglobulin"))
@@ -265,9 +268,14 @@ class Cytogenetics(models.PatientSubrecord):
         ("No", _("No")),
         ("Unknown", _("Unknown"))
     )
+    CHOICES_IGHV = (
+        ("Mutated", _("Mutated")),
+        ("Non-mutated", _("Non-mutated")),
+        ("Unknown", _("Unknown"))
+    )
 
     del17p = fields.CharField(max_length=25, null=True, blank=True,choices=CHOICES, verbose_name = _("del17p"))
-    ighv_rearrangement = fields.CharField(max_length=25, null=True, blank=True,choices=CHOICES, verbose_name = _("IGHV rearrangement"))
+    ighv_rearrangement = fields.CharField(max_length=25, null=True, blank=True,choices=CHOICES_IGHV, verbose_name = _("IGHV rearrangement"))
     del11q = fields.CharField(max_length=25, null = True, blank=True, choices = CHOICES, verbose_name = _("del11q"))
     tp53_mutation = fields.CharField(max_length=25, null=True, blank=True,choices=CHOICES,verbose_name=_("TP53 mutation"))
     karyotype = fields.CharField(max_length=25, null=True, blank=True,choices=CHOICES,verbose_name=_("Complex Karyotype"))
