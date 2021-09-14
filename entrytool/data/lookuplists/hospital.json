@@ -2,15 +2,11 @@
   "hospital": [
     {
       "synonyms": [],
-      "name": "Center 1"
+      "name": "MVZ Koln"
     },
     {
       "synonyms": [],
-      "name": "Clinic 2"
-    }, 
-    {
-      "synonyms": [], 
-      "name": "Hospital 3"
+      "name": "Other"
     }
   ]
 }
