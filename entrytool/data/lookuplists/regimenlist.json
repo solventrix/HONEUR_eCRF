@@ -7,40 +7,31 @@
   "name": "Ibrutinib.Rituximab"
 },
 {
-  "name": "Acalabrutinib"
+  "name": "Rituximab Erhaltung"
 },
 {
-  "name": "Acalabrutinib.Obinutuzumab"
+  "name": "Bendamustine.Vincristine.Prednison"
 },
 {
-  "name": "Venetoclax.Rituximab"
+  "name": "Venetoclax.Obinutuzumab"
 },
 {
   "name": "Bendamustine.Rituximab"
 },
 {
-  "name": "Prednisone.Rituximab"
+  "name": "Rituximab.Fludarabine.Cyclophospahmid (R-FC)"
 },
 {
-  "name": "FCR"
+  "name": "Chlorambucil.Obinotuzumab"
 },
 {
-  "name": "PCR"
+  "name": "Venetoclax.Decitabine"
 },
 {
-  "name": "Chlorambucil.Rituximab"
+  "name": "Vincristine"
 },
 {
-  "name": "Obinutuzumab"
-},
-{
-  "name": "Ibrutinib.Obinutuzumab"
-},
-{
-  "name": "Alemtuzumab"
-},
-{
-  "name": "Alemtuzumab.Rituximab"
+  "name": "Bendamustine.Dexamethason"
 }
   ]
 }
