@@ -13,12 +13,7 @@
     entry-tool
     container-fluid
     content-offset
-    {%
-    block
-    container_classes
-    %}{%
-    endblock
-    %}
+    {% block container_classes %}{% endblock %}
   "
   ng-hide="patient == null"
 >
@@ -26,12 +21,7 @@
     class="
       panel panel-primary panel-container
       patient-detail
-      {%
-      block
-      panel_classes
-      %}{%
-      endblock
-      %}
+      {% block panel_classes %}{% endblock %}
     "
   >
     <!-- Default panel contents -->
@@ -43,11 +33,11 @@
 
     <div class="panel-body {% block panel_body_classes %}{% endblock %}">
       <div ng-controller="PatientValidator"></div>
-      <div class="row">
+      <div ng-repeat="episode in patient.episodes" class="row">
         {% block content %}
         {% for episode_category in episode_categories %}
         {% if episode_category.detail_template and not episode_category.display_name == 'Inpatient' %}
-        <div class="col-md-12 padding0">
+        <div ng-show='episode.category_name === "{{ episode_category.display_name }}"' class="col-md-12 padding0">
           {% include episode_category.detail_template %}
         </div>
         {% endif %}
