@@ -1,5 +1,5 @@
 """
-Plugin definition for plugins.indicators.cll
+Plugin definition for plugins.conditions.cll
 """
 from opal.core import plugins
 
