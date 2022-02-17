@@ -102,7 +102,7 @@ angular
           return;
         }
         _.each(self.patient.episodes, function (episode) {
-          _.each(episode.regimen, function (r) {
+          _.each(episode.cll_regimen, function (r) {
             if (r.id !== instance.id) {
               if (r.start_date && r.end_date) {
                 if (
@@ -148,7 +148,7 @@ angular
         * is a regimen related to it.
         */
         var withinRegimen = false;
-        _.each(episode.regimen, function(regimen){
+        _.each(episode.cll_regimen, function(regimen){
           var within = responseDateWithRegimen(val, regimen);
           if(within){
             withinRegimen = true;
@@ -173,7 +173,7 @@ angular
         // we are using that is attatched to the episode.
         var regimens = _.reject(episode.regimen, {id: instance.id});
         regimens.push(instance);
-        _.each(episode.response, function(response){
+        _.each(episode.best_response, function(response){
           if(response.response_date){
             _.each(regimens, function(regimen){
               var within = responseDateWithRegimen(response.response_date, regimen);
@@ -216,7 +216,7 @@ angular
         * is a response related to it.
         */
        var withinRegimen = false;
-       _.each(episode.regimen, function(regimen){
+       _.each(episode.cll_regimen, function(regimen){
          var within = adverseEventDateWithinRegimen(val, regimen);
          if(within){
            withinRegimen = true;
@@ -263,7 +263,7 @@ angular
         */
         var error_msg = null;
         _.each(self.patient.episodes, function(episode){
-          _.each(episode.regimen, function(regimen){
+          _.each(episode.cll_regimen, function(regimen){
             if(regimen.start_date < val){
               error_msg = VALDATION_ERRORS.DIAGNOSIS_OVER_REGIMEN_START
             }
@@ -286,7 +286,7 @@ angular
 
         var error_msg = null;
         _.each(self.patient.episodes, function(episode){
-          _.each(episode.response, function(response){
+          _.each(episode.best_response, function(response){
             if(response.response_date < val){
               error_msg = VALDATION_ERRORS.DIAGNOSIS_OVER_RESPONSE;
             }
@@ -302,12 +302,12 @@ angular
         // note end date may be null;
 
         // pluck the regimen start dates, sort them and return the first
-        var episodeMin = _.pluck(episode.regimen, "start_date").sort()[0];
+        var episodeMin = _.pluck(episode.cll_regimen, "start_date").sort()[0];
 
         var episodeMax = null;
         // regimen end date is not required, remove the nulls and
         // make sure any of them are populated
-        var episodeMaxVals = _.compact(_.pluck(episode.regimen, "end_date"));
+        var episodeMaxVals = _.compact(_.pluck(episode.cll_regimen, "end_date"));
         if (episodeMaxVals.length) {
           episodeMax = _.sortBy(episodeMaxVals).reverse()[0];
         }
@@ -350,7 +350,7 @@ angular
           if (episode.id === otherEpisode.id) {
             return;
           }
-          if (!otherEpisode.regimen.length) {
+          if (!otherEpisode.cll_regimen.length) {
             return;
           }
           var episodeMinMax = episodeRegimenMinMaxDates(otherEpisode);
@@ -384,6 +384,13 @@ angular
 
       this.setUp = function () {
         this.patient = $scope.patient;
+        this.episodes = {}
+        // we put the episodes on the scope of the validator by the episode category name
+        // for conditions we expect there to be only one episode per patient
+        // so this lets us reference episodes by condition
+        _.each(this.patient.episodes, function(episode){
+          self.episodes[episode.category_name] = episode
+        })
         this.clean()
 
         this.hasError = function () {
