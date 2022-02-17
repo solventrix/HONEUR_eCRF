@@ -7,6 +7,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('entrytool', '0043_auto_20210914_1147'),
+        ('cll', '0005_copy_model_instances_into_cll'),
     ]
 
     operations = [
