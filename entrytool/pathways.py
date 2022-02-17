@@ -11,13 +11,6 @@ class AddPatient(PagePathway):
     finish_button_text = _("Save")
 #    icon = "fa-plus"
 
-    @transaction.atomic
-    def save(self, data, user, patient=None, episode=None):
-        patient, episode = super.save(data, user, patient, episode)
-        episode.start = datetime.date.today()
-        episode.save()
-        return patient, episode
-
     steps = [
         Step(model=models.Demographics, base_template='pathway/no_header_step.html')
     ]
