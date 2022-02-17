@@ -21,6 +21,19 @@ def copy_fields(old_instance, new_instance):
     return new_instance
 
 
+def copy_across_lookup_list(apps, old_model_name, new_model_name):
+    """
+    Create new models using the Name field of the previous lookup list
+    (no other fields are populated)
+    """
+    old_instances = apps.get_model('entrytool', old_model_name).objects.all()
+    new_model = apps.get_model('cll', new_model_name)
+    new_instances = []
+    for old_instance in old_instances:
+        new_instances.append(new_model(name=old_instance.name))
+    new_model.objects.bulk_create(new_instances)
+
+
 def copy_across_models(apps, old_model_name, new_model_name):
     old_instances = apps.get_model('entrytool', old_model_name).objects.all()
     new_model = apps.get_model('cll', new_model_name)
@@ -66,8 +79,8 @@ def copy_cll_regimen(apps):
 
 
 def forwards(apps, schema_editor):
-    copy_across_models(apps, "RegimenList", "CLLRegimenList")
-    copy_across_models(apps, "StopReason", "CLLStopReason")
+    copy_across_lookup_list(apps, "RegimenList", "CLLRegimenList")
+    copy_across_lookup_list(apps, "StopReason", "CLLStopReason")
     copy_and_make_into_an_episode_subrecord(
         apps, "AdditionalCharacteristics", "AdditionalCharacteristics"
     )
