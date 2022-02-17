@@ -45,9 +45,13 @@
       <div ng-controller="PatientValidator"></div>
       <div class="row">
         {% block content %}
+        {% for episode_category in episode_categories %}
+        {% if episode_category.detail_template and not episode_category.display_name == 'Inpatient' %}
         <div class="col-md-12 padding0">
-            {% include "detail/cll_condition.html" %}
+          {% include episode_category.detail_template %}
         </div>
+        {% endif %}
+        {% endfor %}
         {% endblock content %}
       </div>
     </div>
