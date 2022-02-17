@@ -60,14 +60,14 @@ class PatientDetails(models.PatientSubrecord):
         ("No", _("No")),
         ("Unknown", _("Unknown"))
     )
-    
+
     BINET_STAGES =(
         ("Stage A", _("Stage A")),
         ("Stage B", _("Stage B")),
         ("Stage C", _("Stage C")),
         ("Unknown", _("Unknown"))
     )
-   
+
 
     diag_date = fields.DateField(
         blank=False, null=True, verbose_name=_("Date of Diagnosis")
@@ -80,9 +80,9 @@ class PatientDetails(models.PatientSubrecord):
     class Meta:
         verbose_name = _("Diagnosis details")
         verbose_name_plural = _("Diagnosis details")
-    
+
 class PatientStatus(models.PatientSubrecord):
-    _is_singleton = True 
+    _is_singleton = True
     DEATH_CAUSES = (
         ("Disease", _("Disease")),
         ("Complications of Disease", _("Complications of Disease")),
@@ -103,7 +103,7 @@ class PatientStatus(models.PatientSubrecord):
     lost_to_follow_up_date = fields.DateField(
         blank=True, null=True, verbose_name=_("Lost to Follow-up")
     )
-    
+
     class Meta:
         verbose_name = _("Patient status")
         verbose_name_plural = _("Patient status")
