@@ -38,7 +38,7 @@ def copy_and_make_into_an_episode_subrecord(apps, old_model_name, new_model_name
         new_instance = new_model()
         new_instance = copy_fields(old_instance, new_instance)
         new_instance.episode = old_instance.patient.episode_set.filter(
-            category_name='CLL Base'
+            category_name='CLL Condition'
         ).first()
         new_instances.append(new_instance)
     new_model.objects.bulk_create(new_instances)
