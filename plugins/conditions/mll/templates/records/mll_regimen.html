@@ -1,0 +1,87 @@
+{% load i18n %}
+<div class="row">
+  <div class="col-md-5">
+    <span class="display-label">
+    </span>
+  </div>
+  <div class="col-md-7">
+  </div>
+</div>
+
+
+<div class="row" ng-show="item.hospital">
+  <div class="col-md-5">
+    <span class="display-label">
+      {% trans "Hospital" %}
+    </span>
+  </div>
+  <div class="col-md-7">
+    [[ item.hospital | translate ]]
+  </div>
+</div>
+
+<div class="row" ng-show="item.nbCycles">
+  <div class="col-md-5">
+    <span class="display-label">
+      {% trans "Cycles" %}
+    </span>
+  </div>
+  <div class="col-md-7">
+    [[ item.nbCycles ]]
+  </div>
+</div>
+
+<div class="row" ng-show="item.regimen">
+  <div class="col-md-5">
+    <span class="display-label">
+      {% trans "Regimen" %}
+    </span>
+  </div>
+  <div class="col-md-7">
+    [[ item.regimen | translate ]]
+  </div>
+</div>
+
+<div class="row" ng-show="item.category">
+  <div class="col-md-5">
+    <span class="display-label">
+      {% trans "Type" %}
+    </span>
+  </div>
+  <div class="col-md-7">
+    [[ item.category | translate ]]
+  </div>
+</div>
+
+<div class="row" ng-show="item.start_date">
+  <div class="col-md-5">
+    <span class="display-label">
+      {% trans "Start" %}
+    </span>
+  </div>
+  <div class="col-md-7">
+    [[ item.start_date | displayDate ]]
+  </div>
+</div>
+
+<div class="row" ng-show="item.end_date">
+  <div class="col-md-5">
+    <span class="display-label">
+      {% trans "End" %}
+    </span>
+  </div>
+  <div class="col-md-7">
+    [[ item.end_date | displayDate ]]
+  </div>
+</div>
+
+<div class="row" ng-show="item.stop_reason">
+  <div class="col-md-5">
+    <span class="display-label">
+      {% trans "Reason" %}
+    </span>
+  </div>
+  <div class="col-md-7">
+    [[ item.stop_reason|translate ]]
+  </div>
+</div>

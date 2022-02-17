@@ -68,6 +68,7 @@ INSTALLED_APPS = [
     #    "opal.core.referencedata",
     "entrytool",
     "plugins.conditions.cll",
+    "plugins.conditions.mll",
     # 'languages',
     "django.contrib.admin",
 ]
