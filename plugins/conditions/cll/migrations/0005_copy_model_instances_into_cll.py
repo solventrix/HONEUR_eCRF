@@ -66,6 +66,8 @@ def copy_cll_regimen(apps):
 
 
 def forwards(apps, schema_editor):
+    copy_across_models(apps, "RegimenList", "CLLRegimenList")
+    copy_across_models(apps, "StopReason", "CLLStopReason")
     copy_and_make_into_an_episode_subrecord(
         apps, "AdditionalCharacteristics", "AdditionalCharacteristics"
     )
