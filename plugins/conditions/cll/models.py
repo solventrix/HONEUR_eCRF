@@ -78,6 +78,10 @@ class CLLRegimen(models.EpisodeSubrecord):
         verbose_name=_("Treatment of indefinite duration"), blank=True, null=True
     )
 
+    class Meta:
+        verbose_name = _("Regimen")
+        verbose_name_plural = _("Regimens")
+
 
 class BestResponse(models.EpisodeSubrecord):
     _sort = "response_date"
