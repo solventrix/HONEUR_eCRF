@@ -2,12 +2,12 @@
 {% load custom_forms %}
 {% select field="MLLRegimen.hospital" required=False %}
 {% select field="MLLRegimen.category" required=False %}
-<div ng-if="editing.MLLRegimen.category !== 'Watch and wait'">
+<div ng-if="editing.mll_regimen.category !== 'Watch and wait'">
   {% select field="MLLRegimen.regimen" required=True%}
   {% input field="MLLRegimen.nbCycles" required=False %}
 </div>
-{% custom_datepicker field="MLLRegimen.start_date" no_future=False change="$root.patientValidator.regimen_start(editing.MLLRegimen.start_date, editing.MLLRegimen, the_episode); $root.patientValidator.regimen_end(editing.MLLRegimen.end_date, editing.MLLRegimen, the_episode);" date_after="$root.patientValidator.episodes['MLL Condition'].mll_diagnosis_details[0].diag_date" date_after_diff="0" date_after_message=_("Start Date must be after the patient date of diagnosis") validator="regimen_start" required=True %}
-{% custom_datepicker field="MLLRegimen.end_date" no_future=False change="$root.patientValidator.regimen_start(editing.MLLRegimen.start_date, editing.MLLRegimen, the_episode); $root.patientValidator.regimen_end(editing.MLLRegimen.end_date, editing.MLLRegimen, the_episode);" date_after="editing.MLLRegimen.start_date" date_after_diff="0" date_after_message=_("End Date must be after the start date") validator="regimen_end" %}
-<div ng-if="editing.MLLRegimen.end_date">
+{% custom_datepicker field="MLLRegimen.start_date" no_future=False change="$root.patientValidator.regimen_start(editing.mll_regimen.start_date, editing.mll_regimen, the_episode); $root.patientValidator.regimen_end(editing.mll_regimen.end_date, editing.mll_regimen, the_episode);" date_after="$root.patientValidator.episodes['MLL Condition'].mll_diagnosis_details[0].diag_date" date_after_diff="0" date_after_message=_("Start Date must be after the patient date of diagnosis") validator="regimen_start" required=True %}
+{% custom_datepicker field="MLLRegimen.end_date" no_future=False change="$root.patientValidator.regimen_start(editing.mll_regimen.start_date, editing.mll_regimen, the_episode); $root.patientValidator.regimen_end(editing.mll_regimen.end_date, editing.mll_regimen, the_episode);" date_after="editing.mll_regimen.start_date" date_after_diff="0" date_after_message=_("End Date must be after the start date") validator="regimen_end" %}
+<div ng-if="editing.mll_regimen.end_date">
   {% select field="MLLRegimen.stop_reason" required=False %}
 </div>
