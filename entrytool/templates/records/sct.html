@@ -1,0 +1,33 @@
+{% load i18n %}
+<div class="row" ng-show="item.hospital">
+  <div class="col-md-5">
+    <span class="display-label">
+      {% trans "Hospital" %}
+    </span>
+  </div>
+  <div class="col-md-7">
+    [[ item.hospital | translate ]]
+  </div>
+</div>
+
+<div class="row" ng-show="item.sct_date">
+  <div class="col-md-5">
+    <span class="display-label">
+      {% trans "Date" %}
+    </span>
+  </div>
+  <div class="col-md-7">
+    [[ item.sct_date | displayDate ]]
+  </div>
+</div>
+
+<div class="row" ng-show="item.sct_type">
+  <div class="col-md-5">
+    <span class="display-label">
+      {% trans "Type" %}
+    </span>
+  </div>
+  <div class="col-md-7">
+    [[ item.sct_type | translate ]]
+  </div>
+</div>
