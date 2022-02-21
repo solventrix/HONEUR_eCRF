@@ -4,13 +4,13 @@
 <div class="row">
   <div class="col-md-4">{% include 'partials/_demographics_panel.html' %}</div>
   <div class="col-md-4">
-    {% record_panel models.MLLDiagnosisDetails full_width=True noentries=_("Please complete details for this patient to continue.") %}
+    {% record_panel models.MMDiagnosisDetails full_width=True noentries=_("Please complete details for this patient to continue.") %}
   </div>
-  <section ng-show="episode.mll_diagnosis_details[0].consistency_token">
+  <section ng-show="episode.mm_diagnosis_details[0].consistency_token">
     <div class="col-md-3">{% include 'records/patient_status.html' %}</div>
   </section>
 </div>
-<section ng-show="patient.mll_diagnosis_details[0].consistency_token">
+<section ng-show="patient.mm_diagnosis_details[0].consistency_token">
   <!-- Treatment lines, follow ups -->
 
   <!-- Line of treatments -->
@@ -42,10 +42,10 @@
             </h2>
           </div>
           <div class="col-md-4">
-            {% record_panel models.MLLRegimen %}
+            {% record_panel models.MMRegimen %}
           </div>
           <div class="col-md-3">
-            {% record_panel models.MLLResponse %}
+            {% record_panel models.MMResponse %}
           </div>
           <div class="col-md-4">
             {% record_panel models.SCT %}
@@ -66,7 +66,7 @@
         {% trans "Follow Ups" %}
         <span class="pull-right pointer edit">
           <a
-            ng-click="episode.recordEditor.newItem('{{ models.FollowUp.get_api_name }}')"
+            ng-click="episode.recordEditor.newItem('{{ models.MMFollowUp.get_api_name }}')"
           >
             <i class="fa fa-plus-circle edit pointer"></i>
           </a>
