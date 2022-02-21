@@ -1,5 +1,5 @@
 {% load i18n %}
-<div class="follow-up-table" ng-show="episode.mll_follow_up.length > 0">
+<div class="follow-up-table" ng-show="episode.mm_follow_up.length > 0">
   <div class="col-md-12">
     <div class="row header-row display-label">
       <div class="col-sm-3 header"></div>
@@ -13,7 +13,7 @@
   </div>
 
 
-  <div ng-repeat="item in episode.mll_follow_up | orderBy: '-mll_follow_up_date' as followups">
+  <div ng-repeat="item in episode.mm_follow_up | orderBy: '-mm_follow_up_date' as followups">
     <div
       ng-show="$index === 0 || followups[$index-1].hospital !== item.hospital"
       class="row"
@@ -22,7 +22,7 @@
     </div>
     <div class="row table-row" >
       <div class="col-sm-3 first-column text-right">
-        [[ item.hospital | translate ]] [[ item.mll_follow_up_date | displayDate ]]
+        [[ item.hospital | translate ]] [[ item.mm_follow_up_date | displayDate ]]
       </div>
       <div class="col-sm-1 column">[[ item.LDH ]]</div>
       <div class="col-sm-1 column">[[ item.beta2m ]]</div>
@@ -31,7 +31,7 @@
       <div class="col-sm-1 column">[[ item.mprotein_urine ]]</div>
       <div class="col-sm-1 column">[[ item.mprotein_24h ]]</div>
       <div class="col-sm-1 text-left">
-        <i ng-click="episode.recordEditor.editItem('{{ models.MLLFollowUp.get_api_name }}', item)" class="fa fa-pencil edit pointer"></i>
+        <i ng-click="episode.recordEditor.editItem('{{ models.MMFollowUp.get_api_name }}', item)" class="fa fa-pencil edit pointer"></i>
       </div>
     </div>
   </div>

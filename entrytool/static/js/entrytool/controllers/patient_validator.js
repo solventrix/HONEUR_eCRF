@@ -23,7 +23,7 @@ angular
         if(episode.cll_regimen.length){
           return episode.cll_regimen
         }
-        return episode.mll_regimen
+        return episode.mm_regimen
       }
 
       var getEpisodeResponse = function(episode){
@@ -36,7 +36,7 @@ angular
         if(episode.best_response.length){
           return episode.best_response
         }
-        return episode.mll_response
+        return episode.mm_response
       }
 
 

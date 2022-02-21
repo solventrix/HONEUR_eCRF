@@ -6,19 +6,19 @@ from opal import models
 from entrytool.models import Hospital
 
 
-class MLLRegimenList(lookuplists.LookupList):
+class MMRegimenList(lookuplists.LookupList):
     class Meta:
-        verbose_name = _("MLL Regimen List")
-        verbose_name_plural = _("MLL Regimen List")
+        verbose_name = _("MM Regimen List")
+        verbose_name_plural = _("MM Regimen List")
 
 
-class MLLStopReason(lookuplists.LookupList):
+class MMStopReason(lookuplists.LookupList):
     class Meta:
-        verbose_name = _("MLL Stop Reason List")
-        verbose_name_plural = _("MLL Stop Reason List")
+        verbose_name = _("MM Stop Reason List")
+        verbose_name_plural = _("MM Stop Reason List")
 
 
-class MLLDiagnosisDetails(models.PatientSubrecord):
+class MMDiagnosisDetails(models.PatientSubrecord):
     _is_singleton = True  # One entry per patient that is updated
 
     CHOICES = (("Yes", _("Yes")), ("No", _("No")), ("Unknown", _("Unknown")))
@@ -72,7 +72,7 @@ class MLLDiagnosisDetails(models.PatientSubrecord):
         verbose_name_plural = _("Diagnosis Details")
 
 
-class MLLRegimen(models.EpisodeSubrecord):
+class MMRegimen(models.EpisodeSubrecord):
     _sort = "start_date"
     order_by = "-start_date"
 
@@ -93,12 +93,12 @@ class MLLRegimen(models.EpisodeSubrecord):
         verbose_name=_("Start Date"),
     )
     end_date = fields.DateField(verbose_name=_("End Date"), blank=True, null=True)
-    regimen = ForeignKeyOrFreeText(MLLRegimenList, verbose_name=_("Regimen"))
+    regimen = ForeignKeyOrFreeText(MMRegimenList, verbose_name=_("Regimen"))
     category = fields.CharField(
         max_length=40, choices=REGIMEN_TYPES, verbose_name=_("Regimen Type")
     )
     stop_reason = ForeignKeyOrFreeText(
-        MLLStopReason, verbose_name=_("Reason for Regimen Stop")
+        MMStopReason, verbose_name=_("Reason for Regimen Stop")
     )
 
     class Meta:
@@ -106,7 +106,7 @@ class MLLRegimen(models.EpisodeSubrecord):
         verbose_name_plural = _("Regimens")
 
 
-class MLLResponse(models.EpisodeSubrecord):
+class MMResponse(models.EpisodeSubrecord):
     _sort = "response_date"
     order_by = "-response_date"
     RESPONSES = (
@@ -131,7 +131,7 @@ class MLLResponse(models.EpisodeSubrecord):
         verbose_name_plural = _("Responses")
 
 
-class MLLFollowUp(models.PatientSubrecord):
+class MMFollowUp(models.PatientSubrecord):
     _sort = "followup_date"
     _icon = "fa fa-stethoscope"
     hospital = models.ForeignKeyOrFreeText(Hospital, verbose_name=_("Hospital"))
