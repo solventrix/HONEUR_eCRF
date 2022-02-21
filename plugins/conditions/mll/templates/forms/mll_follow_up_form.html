@@ -1,10 +1,10 @@
 {% load forms %}
 {% load custom_forms %}
 {% custom_datepicker field="FollowUp.follow_up_date" date_after="the_episode.demographics[0].date_of_birth" date_after_message=_("Visit date must be after the patient's birth date") %}
-{% select field="FollowUp.hospital" required=True %}
-{% number field="FollowUp.LDH" min_value="0" warn_min="10" warn_max="50" max_value="1000" unit="L" %}
-{% number field="FollowUp.beta2m" min_value="0" max_value="1000" unit="mg/L" %}
-{% number field="FollowUp.albumin" min_value="0" max_value="1000" unit="g/dL" %}
-{% number field="FollowUp.mprotein_serum" min_value="0" max_value="1000" unit="mg/dL" %}
-{% number field="FollowUp.mprotein_urine" min_value="0" max_value="1000" unit="mg/dL" %}
-{% number field="FollowUp.mprotein_24h" min_value="0" max_value="1000" unit="mg/24h" %}
+{% select field="MLLFollowUp.hospital" required=True %}
+{% number field="MLLFollowUp.LDH" min_value="0" warn_min="10" warn_max="50" max_value="1000" unit="L" %}
+{% number field="MLLFollowUp.beta2m" min_value="0" max_value="1000" unit="mg/L" %}
+{% number field="MLLFollowUp.albumin" min_value="0" max_value="1000" unit="g/dL" %}
+{% number field="MLLFollowUp.mprotein_serum" min_value="0" max_value="1000" unit="mg/dL" %}
+{% number field="MLLFollowUp.mprotein_urine" min_value="0" max_value="1000" unit="mg/dL" %}
+{% number field="MLLFollowUp.mprotein_24h" min_value="0" max_value="1000" unit="mg/24h" %}
