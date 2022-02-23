@@ -79,10 +79,10 @@
       require: "ngModel",
       link: function (scope, elm, attrs, ctrl, ngModel) {
 
-        if(scope.editing.patient_status){
+        if(scope.editing.patient_details){
           // if we are editing the patient details recalculate
           // the validation if the death_date changes.
-          scope.$watch("editing.patient_status.death_date", function(){
+          scope.$watch("editing.patient_details.death_date", function(){
             ctrl.$validate();
           });
         }
@@ -95,11 +95,11 @@
           var deathDate;
           // if we're editing patient details then look
           // at what is in the form at present.
-          if(scope.editing.patient_status){
-            deathDate = scope.editing.patient_status.death_date;
+          if(scope.editing.patient_details){
+            deathDate = scope.editing.patient_details.death_date;
           }
           else{
-            deathDate = scope.the_episode.patient_status[0].death_date;
+            deathDate = scope.the_episode.patient_details[0].death_date;
           }
           if(!deathDate){
             return true
