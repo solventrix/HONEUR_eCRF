@@ -13,55 +13,15 @@
 <section ng-show="patient.mm_diagnosis_details[0].consistency_token">
   <!-- Treatment lines, follow ups -->
 
-    <!-- Line of treatments -->
-    <section ng-controller="LineOfTreatmentManager as lineOfTreatmentManager">
-      <div class="panel mb6">
-        <div class="panel-heading">
-          <h3>
-            {% trans "Lines Of Treatment" %}
-            <span class="pull-right pointer edit">
-              <a
-                ng-click="lineOfTreatmentManager.canEdit() && lineOfTreatmentManager.create(patient)"
-              >
-                <i class="fa fa-plus-circle edit pointer"></i>
-              </a>
-            </span>
-          </h3>
-        </div>
-      </div>
-      <div
-        class="row"
-        ng-repeat="episode in patient.episodes | filter: { category_name: 'Treatment Line' } | orderBy:lineOfTreatmentManager.lineOfTreatmentOrder:true as lot_episodes"
-      >
-        <div class="col-md-12 inline-panels">
-          <div class="row">
-            <div class="col-md-1 text-center">
-              <h2 class="pt6 delete-lot">
-                [[ lot_episodes.length - $index ]]
-                <i
-                  class="fa fa-trash-o delete-lot pointer"
-                  ng-click="lineOfTreatmentManager.delete(episode)"
-                ></i>
-              </h2>
-            </div>
-            <div class="col-md-4">{% record_panel models.MLLRegimen %}</div>
-            <div class="col-md-3">{% record_panel models.MLLResponse %}</div>
-            <div class="col-md-4">{% record_panel models.SCT %}</div>
-            {% comment %}
-            <div class="col-md-2">{% record_panel models.AdverseEvent %}</div>
-            {% endcomment %}
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- Follow ups -->
+  <!-- Line of treatments -->
+  <section ng-controller="LineOfTreatmentManager as lineOfTreatmentManager">
     <div class="panel mb6">
       <div class="panel-heading">
         <h3>
-          {% trans "Follow Ups" %}
+          {% trans "Lines Of Treatment" %}
           <span class="pull-right pointer edit">
             <a
-              ng-click="episode.recordEditor.newItem('{{ models.FollowUp.get_api_name }}')"
+              ng-click="lineOfTreatmentManager.canEdit() && lineOfTreatmentManager.create(patient)"
             >
               <i class="fa fa-plus-circle edit pointer"></i>
             </a>
@@ -69,13 +29,6 @@
         </h3>
       </div>
     </div>
-<<<<<<< HEAD:plugins/conditions/mll/templates/detail/mll_condition.html
-    <div class="row">
-      <div class="col-md-12">{% include "detail/followups.html" %}</div>
-    </div>
-  </section>
-</div>
-=======
     <div
       class="row"
       ng-repeat="episode in patient.episodes | filter: { category_name: 'Treatment Line' } | orderBy:lineOfTreatmentManager.lineOfTreatmentOrder:true as lot_episodes"
@@ -125,4 +78,3 @@
     <div class="col-md-12">{% include "detail/followups.html" %}</div>
   </div>
 </section>
->>>>>>> mll:plugins/conditions/mm/templates/detail/mm.html
