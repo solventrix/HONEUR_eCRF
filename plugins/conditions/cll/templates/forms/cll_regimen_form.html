@@ -1,0 +1,17 @@
+{% load forms %}
+{% load custom_forms %}
+{% select field="CLLRegimen.hospital" required=False help_text='Location where regimen was administered' %}
+{% select field="CLLRegimen.category" required=False change='editing.cll_regimen.regimen=null;' help_text='Initial watch and wait period should not be logged as treatment line' %}
+<div ng-if="editing.cll_regimen.category == 'Treatment'">
+  {% select field="CLLRegimen.regimen" required='editing.cll_regimen.category == \'Treatment\'' help_text="If you cannot find the appropriate regimen description in the drop down list,  please add a new regimen by clicking the \"Admin\" button, and then the \"Add\" button next to Regimen List. Please also refer to the instruction book."%}
+{% checkbox field="CLLRegimen.indefinite_duration" %}
+  <div ng-show="!editing.cll_regimen.indefinite_duration" >
+  {% input field="CLLRegimen.nbCycles" required=False %}
+  </div>
+</div>
+{% custom_datepicker field="CLLRegimen.start_date" no_future=False change="$root.patientValidator.regimen_start(editing.cll_regimen.start_date, editing.cll_regimen, the_episode); $root.patientValidator.regimen_end(editing.cll_regimen.end_date, editing.cll_regimen, the_episode);" date_after="$root.patientValidator.patient.cll_diagnosis_details[0].diag_date" date_after_diff="0" date_after_message=_("Start Date must be after the patient date of diagnosis") validator="regimen_start" required=True %}
+{% custom_datepicker field="CLLRegimen.end_date" no_future=False change="$root.patientValidator.regimen_start(editing.cll_regimen.start_date, editing.cll_regimen, the_episode); $root.patientValidator.regimen_end(editing.cll_regimen.end_date, editing.cll_regimen, the_episode);" date_after="editing.regimen.start_date" date_after_diff="0" date_after_message=_("End Date must be after the start date") validator="regimen_end" %}
+<div ng-if="editing.cll_regimen.end_date">
+  {% select field="CLLRegimen.stop_reason" required=False %}
+</div>
+{% checkbox field="CLLRegimen.part_of_clinical_trial" %}

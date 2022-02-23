@@ -1,0 +1,16 @@
+{
+  "cllstopreason": [
+    {
+      "name": "Adverse event"
+    },
+    {
+      "name": "Progression"
+    },
+    {
+      "name": "Remission Achieved"
+    },
+    {
+      "name": "Other reason"
+    }
+  ]
+}

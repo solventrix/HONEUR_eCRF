@@ -67,6 +67,7 @@ INSTALLED_APPS = [
     "reversion",
     #    "opal.core.referencedata",
     "entrytool",
+    "plugins.conditions.cll",
     # 'languages',
     "django.contrib.admin",
 ]

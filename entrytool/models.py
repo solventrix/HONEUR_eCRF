@@ -47,42 +47,8 @@ class SCT(models.EpisodeSubrecord):
         verbose_name_plural = _("Stem Cell Transplants")
 
 
-# Disease specific details
-class PatientDetails(models.PatientSubrecord):
-    _is_singleton = True  # One entry per patient that is updated
-
-    hospital = models.ForeignKeyOrFreeText(
-        Hospital, verbose_name=_("Hospital")
-    )
-
-    CHOICES = (
-        ("Yes", _("Yes")),
-        ("No", _("No")),
-        ("Unknown", _("Unknown"))
-    )
-    
-    BINET_STAGES =(
-        ("Stage A", _("Stage A")),
-        ("Stage B", _("Stage B")),
-        ("Stage C", _("Stage C")),
-        ("Unknown", _("Unknown"))
-    )
-   
-
-    diag_date = fields.DateField(
-        blank=False, null=True, verbose_name=_("Date of Diagnosis")
-    )
-
-    binet_stage = fields.CharField(
-        max_length= 100, choices=BINET_STAGES, verbose_name = _("Binet Stage")
-    )
-
-    class Meta:
-        verbose_name = _("Diagnosis details")
-        verbose_name_plural = _("Diagnosis details")
-    
 class PatientStatus(models.PatientSubrecord):
-    _is_singleton = True 
+    _is_singleton = True
     DEATH_CAUSES = (
         ("Disease", _("Disease")),
         ("Complications of Disease", _("Complications of Disease")),
@@ -103,21 +69,10 @@ class PatientStatus(models.PatientSubrecord):
     lost_to_follow_up_date = fields.DateField(
         blank=True, null=True, verbose_name=_("Lost to Follow-up")
     )
-    
+
     class Meta:
         verbose_name = _("Patient status")
         verbose_name_plural = _("Patient status")
-
-class RegimenList(lookuplists.LookupList):
-    class Meta:
-        verbose_name = _("Regimen List")
-        verbose_name_plural = _("Regimen List")
-
-
-class StopReason(lookuplists.LookupList):
-    class Meta:
-        verbose_name = _("Stop Reason")
-        verbose_name_plural = _("Stop Reason")
 
 
 # TODO does this need to be kept? Can the line number be an attribute of the episode?
@@ -127,38 +82,6 @@ class TreatmentLine(models.EpisodeSubrecord):
     class Meta:
         verbose_name = _("Treatment Line")
         verbose_name_plural = _("Treatment Lines")
-
-
-class Regimen(models.EpisodeSubrecord):
-    _sort = "start_date"
-    order_by = "-start_date"
-
-    REGIMEN_TYPES = (
-        ("Treatment", _("Treatment")),
-        ("Observation after remission", _("Observation after remission"))
-    )
-
-    hospital = models.ForeignKeyOrFreeText(Hospital, verbose_name=_("Hospital"))
-    nbCycles = fields.IntegerField(
-        verbose_name=_("Number of Cycles"),
-        null=True,
-        blank=True,
-    )
-    start_date  = fields.DateField(
-        verbose_name=_("Start Date"),
-    )
-    end_date    = fields.DateField(verbose_name=_("End Date"), blank=True, null=True)
-    regimen     = ForeignKeyOrFreeText(RegimenList, verbose_name=_("Regimen"))
-    category    = fields.CharField(max_length=40, choices=REGIMEN_TYPES, verbose_name=_("Regimen Type"))
-    stop_reason = ForeignKeyOrFreeText(
-        StopReason, verbose_name=_("Reason for Regimen Stop")
-    )
-    part_of_clinical_trial = fields.NullBooleanField(verbose_name=_("Regimen part of clinical trial"),blank=True, null=True)
-    indefinite_duration = fields.NullBooleanField(verbose_name=_("Treatment of indefinite duration"), blank=True, null=True)
-
-    class Meta:
-        verbose_name = _("Regimen")
-        verbose_name_plural = _("Regimens")
 
 
 #  TODO populate list of adverse events
@@ -190,24 +113,6 @@ class AdverseEvent(models.EpisodeSubrecord):
         verbose_name_plural = _("Adverse Event")
 
 
-class Response(models.EpisodeSubrecord):
-    _sort = "response_date"
-    order_by = "-response_date"
-    RESPONSES_IWCLL = (
-        ("CR", _("Complete Remission")),
-        ("PD", _("Progressive Disease")),
-        ("PR", _("Partial Response")),
-        ("SD", _("Stable Disease")),
-        ("Unknown", _("Unknown"))
-    )
-    response_date = fields.DateField(verbose_name=_("Response Date"))
-    response = fields.CharField(max_length=50, choices=RESPONSES_IWCLL, verbose_name=_("Best Response"))
-
-    class Meta:
-        verbose_name = _("Best Response")
-        verbose_name_plural = _("Responses")
-
-
 class FollowUp(models.PatientSubrecord):
     _sort = "followup_date"
     _icon = "fa fa-stethoscope"
@@ -224,61 +129,3 @@ class FollowUp(models.PatientSubrecord):
     class Meta:
         verbose_name = _("Follow-up")
         verbose_name_plural = _("Follow-ups")
-
-class QualityOfLife5Q(models.PatientSubrecord):
-    _sort = "q5_date"
-    q5_date = fields.DateField(verbose_name = _("Date of Questionnaire"))
-
-    Q5_OPTIONS = (
-        (1,'1'),(2,'2'),(3,'3'),(4,'4'),(5,'5')
-    )
-
-    q5_mobility = fields.FloatField(blank = True, null = True, choices=Q5_OPTIONS, verbose_name = _("Mobility"))
-    q5_selfcare = fields.FloatField(blank = True, null = True, choices=Q5_OPTIONS, verbose_name = _("Selfcare"))
-    q5_usual_activities = fields.FloatField(blank = True, null = True, choices=Q5_OPTIONS, verbose_name = _("Usual Activities"))
-    q5_pain_discomfort = fields.FloatField(blank = True, null = True, choices=Q5_OPTIONS, verbose_name = _("Pain/Discomfort"))
-    q5_anxiety_depression = fields.FloatField(blank = True, null = True, choices=Q5_OPTIONS, verbose_name = _("Anxiety/Depression"))
-
-class AdditionalCharacteristics(models.PatientSubrecord):
-    _sort="characteristic_date"
-    characteristic_date = fields.DateField(verbose_name=_("Date of measurement"))
-
-    CHOICES = (
-        ("Yes", _("Yes")),
-        ("No", _("No")),
-        ("Unknown", _("Unknown"))
-    )
-    ECOG_CHOICES = (
-        (0,'0'),(1,'1'),(2,'2'),(3,'3'),(4,'4')
-    )
-
-    ecog_score = fields.FloatField(blank = True, null = True, verbose_name=_("ECOG"), choices=ECOG_CHOICES)
-    cirs_score = fields.FloatField(blank = True, null = True, verbose_name=_("CIRS"))
-    creatinine_clearance = fields.FloatField(blank = True, null = True, verbose_name=_("Creatinine clearance"))
-    beta2m = fields.FloatField(blank = True, null = True, verbose_name=_("Beta-2-Microglobulin"))
-    LDH = fields.FloatField(blank = True, null = True, verbose_name=_("LDH"))
-    bulky_disease = fields.CharField(blank = True, null = True, choices=CHOICES, verbose_name=_("Bulky disease present"), max_length = 25)
-
-class Cytogenetics(models.PatientSubrecord):
-    _sort = 'cytogenetic_date'
-    cytogenetic_date = fields.DateField(verbose_name= _("Cytogenetic Date"))
-
-    CHOICES = (
-        ("Yes", _("Yes")),
-        ("No", _("No")),
-        ("Unknown", _("Unknown"))
-    )
-    CHOICES_IGHV = (
-        ("Mutated", _("Mutated")),
-        ("Non-mutated", _("Non-mutated")),
-        ("Unknown", _("Unknown"))
-    )
-
-    del17p = fields.CharField(max_length=25, null=True, blank=True,choices=CHOICES, verbose_name = _("del17p"))
-    ighv_rearrangement = fields.CharField(max_length=25, null=True, blank=True,choices=CHOICES_IGHV, verbose_name = _("IGHV rearrangement"))
-    del11q = fields.CharField(max_length=25, null = True, blank=True, choices = CHOICES, verbose_name = _("del11q"))
-    tp53_mutation = fields.CharField(max_length=25, null=True, blank=True,choices=CHOICES,verbose_name=_("TP53 mutation"))
-    karyotype = fields.CharField(max_length=25, null=True, blank=True,choices=CHOICES,verbose_name=_("Complex Karyotype"))
-    class Meta:
-        verbose_name = _("Cytogenetic tests")
-        verbose_name_plural = _("Cytogenetic tests")

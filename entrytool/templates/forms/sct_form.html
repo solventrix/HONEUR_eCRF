@@ -1,5 +1,0 @@
-{% load forms %}
-{% load custom_forms %}
-{% select field="SCT.hospital" required=False %}
-{% custom_datepicker field="SCT.sct_date" no_future=False date_after="$root.patientValidator.patient.patient_details[0].diag_date" date_after_diff="0" date_after_message=_("The SCT should be after the date of diagnosis") %}
-{% select field="SCT.sct_type" %}
