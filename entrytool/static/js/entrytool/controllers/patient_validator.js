@@ -438,7 +438,6 @@ angular
 
       this.setUp = function () {
         this.patient = $scope.patient;
-
         this.clean()
 
         this.hasError = function () {
