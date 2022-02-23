@@ -1,4 +1,3 @@
-import datetime
 from opal.core.pathway import PagePathway
 from opal.core.pathway.steps import Step
 from entrytool import models
