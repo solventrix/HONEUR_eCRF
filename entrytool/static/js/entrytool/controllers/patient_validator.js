@@ -13,6 +13,33 @@ angular
     var PatientValidator = function () {
       var self = this;
 
+      self.getDiagnosis = function(){
+        /*
+        * Different conditions have different diagnosis models.
+        * these are not on the LOT episode category but on
+        * the condition episode category.
+        *
+        * A patient should only have a single episode category so
+        * we iterate over the patients episodes until we
+        * find a diagnosis that has been populated (has a consistency token)
+        * and return that.
+        *
+        * Diagnosis is a singleton so we return the object rather than
+        * an array of obects.
+        */
+        var result = null;
+
+        _.each(self.patient.episodes, function(episode){
+          if(episode.cll_diagnosis_details[0].consistency_token){
+            result = episode.cll_diagnosis_details[0]
+          }
+          else if(episode.mm_diagnosis_details[0].consistency_token){
+            result = episode.mm_diagnosis_details[0]
+          }
+        });
+        return result;
+      }
+
       var getEpisodeRegimen = function(episode){
         /*
         * Different conditions have diferently named regimen but all
@@ -411,13 +438,7 @@ angular
 
       this.setUp = function () {
         this.patient = $scope.patient;
-        this.episodes = {}
-        // we put the episodes on the scope of the validator by the episode category name
-        // for conditions we expect there to be only one episode per patient
-        // so this lets us reference episodes by condition
-        _.each(this.patient.episodes, function(episode){
-          self.episodes[episode.category_name] = episode
-        })
+
         this.clean()
 
         this.hasError = function () {
