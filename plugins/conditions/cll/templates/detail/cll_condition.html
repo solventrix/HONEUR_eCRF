@@ -1,14 +1,140 @@
-{% load panels %}
+{% load honeur_panels %} {% load forms %} {% load i18n %}
 <div class="row">
-  <div class="col-md-4">
-    {% include 'partials/_demographics_panel.html' %}
-  </div>
+  <div class="col-md-4">{% include 'partials/_demographics_panel.html' %}</div>
   <div class="col-md-4">
     {% record_panel models.CLLDiagnosisDetails full_width=True noentries=_("Please complete details for this patient to continue.") %}
   </div>
   <section ng-show="episode.cll_diagnosis_details[0].consistency_token">
-  <div class="col-md-3">
-    {% include 'records/patient_status.html' %}
-  </div>
+    <div class="col-md-3">{% include 'records/patient_status.html' %}</div>
   </section>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <section ng-show="episode.cll_diagnosis_details[0].consistency_token">
+      <!-- Treatment lines, follow ups -->
+
+      <!-- Line of treatments -->
+      <section ng-controller="LineOfTreatmentManager as lineOfTreatmentManager">
+        <div class="panel mb6">
+          <div class="panel-heading">
+            <h3>
+              {% trans "Lines Of Treatment" %}
+              <span class="pull-right pointer edit">
+                <a
+                  ng-click="lineOfTreatmentManager.canEdit() && lineOfTreatmentManager.create(patient)"
+                >
+                  <i class="fa fa-plus-circle edit pointer"></i>
+                </a>
+              </span>
+            </h3>
+          </div>
+        </div>
+        <div class="help-block">
+          Line of treatment is defined as: time from first treatment after
+          diagnosis or progression till start of treatment after subsequent
+          progression
+        </div>
+        <div class="help-block">
+          Info: you might be confused by the treatment line order when adding a
+          new line. After you save, they will be in the correct order.
+        </div>
+        <div
+          class="row"
+          ng-repeat="episode in patient.episodes | filter: { category_name: 'Treatment Line' } | orderBy:lineOfTreatmentManager.lineOfTreatmentOrder:true as lot_episodes"
+        >
+          <div class="col-md-12 inline-panels">
+            <div class="row">
+              <div class="col-md-1 text-center">
+                <h2 class="pt6 delete-lot">
+                  [[ lot_episodes.length - $index ]]
+                  <i class="fa fa-trash-o delete-lot pointer" ng-click="lineOfTreatmentManager.delete(episode)"></i>
+                </h2>
+              </div>
+              <div class="col-md-4">
+                {% record_panel models.CLLRegimen %}
+              </div>
+              <div class="col-md-3">
+                {% record_panel models.BestResponse %}
+              </div>
+              {% comment %}
+              <div class="col-md-4">
+                {% record_panel models.SCT %}
+              </div>
+              {% endcomment %}
+              {% comment %}
+              <div class="col-md-2">
+                {% record_panel models.AdverseEvent %}
+              </div>
+              {% endcomment %}
+            </div>
+          </div>
+        </div>
+      </section>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="panel mb6">
+            <div class="panel-heading">
+              <h3>
+                {% trans "Additional Characteristics" %}
+                <span class="pull-right pointer edit">
+                  <a
+                    ng-click="episode.recordEditor.newItem('{{ models.AdditionalCharacteristics.get_api_name }}')"
+                  >
+                    <i class="fa fa-plus-circle edit pointer"></i>
+                  </a>
+                </span>
+              </h3>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              {% include "detail/additional_characteristics.html" %}
+            </div>
+          </div>
+        </div>
+
+        <!-- Cytogenetics -->
+        <div class="col-md-6">
+          <div class="panel mb6">
+            <div class="panel-heading">
+              <h3>
+                {% trans "Cytogenetics" %}
+                <span class="pull-right pointer edit">
+                  <a
+                    ng-click="episode.recordEditor.newItem('{{ models.Cytogenetics.get_api_name }}')"
+                  >
+                    <i class="fa fa-plus-circle edit pointer"></i>
+                  </a>
+                </span>
+              </h3>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              {% include "detail/cytogenetics.html" %}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- QOL_5Q -->
+      <div class="panel mb6">
+        <div class="panel-heading">
+          <h3>
+            {% trans "Quality Of Life 5Q" %}
+            <span class="pull-right pointer edit">
+              <a
+                ng-click="episode.recordEditor.newItem('{{ models.QualityOfLife5Q.get_api_name }}')"
+              >
+                <i class="fa fa-plus-circle edit pointer"></i>
+              </a>
+            </span>
+          </h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">{% include "detail/qol_5q.html" %}</div>
+      </div>
+    </section>
+  </div>
 </div>
