@@ -68,7 +68,7 @@ angular
           return error;
         }
         _.each(self.patient.episodes, function (episode) {
-          _.each(episode.regimen, function (r) {
+          _.each(episode.cll_regimen, function (r) {
             if (r.id !== instance.id) {
               if (r.start_date && r.end_date) {
                 if (fieldValue >= r.start_date && fieldValue <= r.end_date) {
@@ -171,7 +171,7 @@ angular
         var withinRegimen = false;
         // we may be editing things so ignore version of regimen
         // we are using that is attatched to the episode.
-        var regimens = _.reject(episode.regimen, {id: instance.id});
+        var regimens = _.reject(episode.cll_regimen, {id: instance.id});
         regimens.push(instance);
         _.each(episode.best_response, function(response){
           if(response.response_date){
@@ -238,7 +238,7 @@ angular
        var withinRegimen = false;
        // we may be editing things so ignore version of regimen
        // we are using that is attatched to the episode.
-       var regimens = _.reject(episode.regimen, {id: instance.id});
+       var regimens = _.reject(episode.cll_regimen, {id: instance.id});
        regimens.push(instance);
        _.each(episode.adverse_event, function(adverse_event){
          if(adverse_event.ae_date){
@@ -327,7 +327,7 @@ angular
         var min = toMomentFilter(instance.start_date);
         var max = toMomentFilter(instance.end_date);
 
-        if(episode.regimen.length){
+        if(episode.cll_regimen.length){
           var ourEpisodeMinMax = episodeRegimenMinMaxDates(episode);
           if(ourEpisodeMinMax[0].isBefore(min, "d")){
             min = ourEpisodeMinMax[0];
