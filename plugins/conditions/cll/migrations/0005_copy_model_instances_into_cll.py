@@ -57,7 +57,7 @@ def copy_across_models(
         new_instance = copy_fields(old_instance, new_model())
         if convert_to_episode_subrecord:
             new_instance.episode = old_instance.patient.episode_set.get(
-                category_name="CLL Condition"
+                category_name="CLL"
             )
         old_instance_to_new_instances[old_instance] = new_instance
     new_model.objects.bulk_create(old_instance_to_new_instances.values())
