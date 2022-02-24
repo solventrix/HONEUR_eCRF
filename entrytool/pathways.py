@@ -38,10 +38,10 @@ class AddPatient(PagePathway):
     @property
     def condition_categories(self):
         """
-        This returns all display named fo 'condition' categories, e.g. MM or CLL.
+        This returns all display names for 'condition' categories, e.g. MM or CLL.
 
         The app assumes that all episode categories apart from LineOfTreatmentEpisode
-        and opals default Inpatient category are conditions and can be added
+        and the Opal default Inpatient category are conditions and can be added
         from the category select step.
         """
         non_conditions = (
@@ -67,10 +67,7 @@ class AddPatient(PagePathway):
         Otherwise use the only condition category enabled
         (we always expect at least one condition category to be enabled)
         """
-        if not self.multiple_conditions:
-            return super().save(data, *args, **kwargs)
-
-        episode_category = data.pop('episode_category')
+        episode_category = data.pop('episode_category', self.condition_categories)
         saved_patient, saved_episode = super().save(data, *args, **kwargs)
         saved_episode.category_name = episode_category[0]
         saved_episode.save()
