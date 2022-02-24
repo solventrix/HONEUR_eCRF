@@ -176,7 +176,7 @@ For example:
 ```
 {% custom_datepicker field="SCT.sct_date"
    date_after="the_episode.mll_regimen[0].start_date"
-   date_after_message=_("The SCT should be after the date of diagnosis")
+   date_after_message=_("The SCT should be after the regimen start date")
    date_after_diff="0"
    required=True %}
 ```
