@@ -5,7 +5,7 @@ from django.db import transaction
 from opal.models import Patient
 from entrytool import episode_categories
 from entrytool.models import (
-    Regimen, StopReason, AEList, AdverseEvent, Response, SCT, RegimenList
+    Regimen, StopReason, Response, SCT, RegimenList
 )
 from entrytool.load_utils import (
     cast_date,
@@ -35,23 +35,10 @@ field_map = dict(
     response_date="response_date",
     response="response",
 
-    # Adverse event fields
-    adverse_event="AE",
-    ae_date="AE_date",
-    severity="AE_severity",
-
     # SCT fields
     sct_date="sct_date",
     sct_type="sct_type"
 )
-
-
-def get_severity(some_value):
-    some_value = some_value.strip()
-    if not some_value:
-        return
-    options = [i[0] for i in AdverseEvent.SEV_CHOICES]
-    return options[int(some_value) - 1]
 
 
 class Command(BaseCommand):
@@ -81,7 +68,6 @@ class Command(BaseCommand):
                 ].append(row)
         regimen_saved = 0
         response_saved = 0
-        ae_saved = 0
         sct_saved = 0
 
         for key, treatment_lots in by_lot.items():
@@ -129,20 +115,6 @@ class Command(BaseCommand):
                     response.save()
                     response_saved += 1
 
-                # ae_fields = {
-                #     "adverse_event": get_and_check_ll(treatment_lot[field_map["adverse_event"]], AEList),
-                #     "ae_date": cast_date(treatment_lot[field_map["ae_date"]]),
-                #     "severity": get_severity(treatment_lot[field_map["severity"]]),
-                # }
-
-                # if any(ae_fields.values()):
-                #     ae = AdverseEvent(episode=episode)
-                #     for k, v in ae_fields.items():
-                #         setattr(ae, k, v)
-                #     ae.set_consistency_token()
-                #     ae.save()
-                #     ae_saved += 1
-
                 sct_fields = {
                     "sct_date": cast_date(treatment_lot[field_map["sct_date"]]),
                     "sct_type": get_and_check(treatment_lot[field_map["sct_type"]], SCT.SCT_TYPES),
@@ -159,8 +131,5 @@ class Command(BaseCommand):
         )
         self.stdout.write(
             self.style.SUCCESS("Imported {} Responses".format(response_saved))
-        )
-        self.stdout.write(
-            self.style.SUCCESS("Imported {} Adverse effects".format(ae_saved))
         )
         self.stdout.write(self.style.SUCCESS("Imported {} SCT".format(sct_saved)))

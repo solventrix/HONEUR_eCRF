@@ -124,7 +124,7 @@ angular
 
       var responseDateWithRegimen = function(fieldValue, regimen){
         /*
-        * An adverse event date can be start_date - 30 days or
+        * A response date can be start_date - 30 days or
         * end_date + 30 days and anything in between.
         */
         var allowedStartDate = moment(regimen.start_date,).add(-30, "d")
@@ -190,78 +190,9 @@ angular
         }
       }
 
-      var adverseEventDateWithinRegimen = function(fieldValue, regimen){
-        /*
-        * An adverse event date can be start_date or
-        * end_date + 30 days and anything in between.
-        */
-        var allowedStartDate = regimen.start_date;
-        var allowedEndDate = null;
-        var withinParams = false;
-        if(regimen.end_date){
-          allowedEndDate = moment(regimen.end_date).add(30, "d")
-          if(fieldValue >= allowedStartDate && fieldValue <= allowedEndDate){
-            withinParams = true;
-          }
-        }
-        else{
-          if(fieldValue >= allowedStartDate){
-            withinParams = true
-          }
-        }
-        return withinParams
-      }
-
-      var validateAdverseEventToRegimen = function(val, instance, episode){
-        /*
-        * From the perspective of an adverse event date, validates that there
-        * is a response related to it.
-        */
-       var withinRegimen = false;
-       _.each(EntrytoolHelper.getEpisodeRegimen(episode), function(regimen){
-         var within = adverseEventDateWithinRegimen(val, regimen);
-         if(within){
-           withinRegimen = true;
-         }
-       });
-       if(!withinRegimen){
-         return VALDATION_ERRORS.NO_REGIMEN_ADVERSE;
-       }
-      }
-
-      var validateRegimenToAdverseEvents = function(val, instance, episode){
-        /*
-        * From the perspective of regimens, validates that
-        * there are no AEs that are not connected
-        */
-       if(!val || !episode.adverse_event.length){
-        return;
-      }
-       var withinRegimen = false;
-       // we may be editing things so ignore version of regimen
-       // we are using that is attatched to the episode.
-       var regimens = _.reject(EntrytoolHelper.getEpisodeRegimen(episode), {id: instance.id, episode_id: instance.episode_id});
-       regimens.push(instance);
-       _.each(episode.adverse_event, function(adverse_event){
-         if(adverse_event.ae_date){
-           _.each(regimens, function(regimen){
-             var within = adverseEventDateWithinRegimen(adverse_event.ae_date, regimen);
-             if(within){
-               withinRegimen = true;
-             }
-           });
-         }
-       });
-       if(!withinRegimen){
-        return VALDATION_ERRORS.NO_ADVERSE_REGIMEN;
-       }
-      }
-
       var validateDateOfDiagnosis = function(val, instance, episode){
         /*
         * Date of diagnosis must be below all SCT/Regimen/response dates.
-        * We don't need to validate against ae date as this is included
-        * in the ae -> regimen date validation (it has to be after)
         */
         var error_msg = null;
         _.each(self.patient.episodes, function(episode){
@@ -394,23 +325,18 @@ angular
         this.createValidator(
           "regimen_start", {
             errors: [validateRegimenDateBetween, validateRegimenSurrounds, validateRegimenToOtherLOTRegimens],
-            warnings: [validateRegimenToResponses, validateRegimenToAdverseEvents]
+            warnings: [validateRegimenToResponses]
           }
         )
         this.createValidator(
           "regimen_end", {
             errors: [validateRegimenDateBetween, validateRegimenSurrounds, validateRegimenToOtherLOTRegimens],
-            warnings: [validateRegimenToResponses, validateRegimenToAdverseEvents]
+            warnings: [validateRegimenToResponses]
           }
         );
         this.createValidator(
           "response_date", {
             warnings: [validateResponseToRegimens]
-          }
-        );
-        this.createValidator(
-          "ae_date", {
-            warnings: [validateAdverseEventToRegimen]
           }
         );
         this.createValidator(

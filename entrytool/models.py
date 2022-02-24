@@ -84,35 +84,6 @@ class TreatmentLine(models.EpisodeSubrecord):
         verbose_name_plural = _("Treatment Lines")
 
 
-#  TODO populate list of adverse events
-class AEList(lookuplists.LookupList):
-    class Meta:
-        verbose_name =_ ("AE List")
-        verbose_name_plural = _("AE List")
-    pass
-
-
-class AdverseEvent(models.EpisodeSubrecord):
-    order_by = "-ae_date"
-
-    SEV_CHOICES = (
-        ("I", _("I")),
-        ("II", _("II")),
-        ("III", _("III")),
-        ("IV", _("IV")),
-        ("V", _("V"))
-    )
-    adverse_event = ForeignKeyOrFreeText(AEList, verbose_name=_("Adverse Event"))
-    severity = fields.CharField(
-        max_length=4, choices=SEV_CHOICES, verbose_name=_("Severity")
-    )
-    ae_date = fields.DateField(verbose_name=_("Date of AE"))
-
-    class Meta:
-        verbose_name = _("Adverse Event")
-        verbose_name_plural = _("Adverse Event")
-
-
 class FollowUp(models.PatientSubrecord):
     _sort = "followup_date"
     _icon = "fa fa-stethoscope"
