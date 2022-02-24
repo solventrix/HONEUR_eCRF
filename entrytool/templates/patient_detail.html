@@ -2,39 +2,24 @@
 <div ng-show="patient == null" class="container-fluid content-offset">
   <h1 class="text-center content-offset">{% trans "Patient not found" %}</h1>
   <p class="lead text-center content-offset">
-    {% trans "We're sorry but we couldn't find the patient you're looking for."
-    %}
+    {% trans "We're sorry but we couldn't find the patient you're looking for." %}
     <br />
     {% trans "Perhaps try searching for them instead?" %}
   </p>
 </div>
-<div
-  class="
-    entry-tool
-    container-fluid
-    content-offset
-    {% block container_classes %}{% endblock %}
-  "
-  ng-hide="patient == null"
->
-  <div
-    class="
-      panel panel-primary panel-container
-      patient-detail
-      {% block panel_classes %}{% endblock %}
-    "
-  >
+<div ng-controller="PatientValidator"></div>
+<div class="entry-tool container-fluid content-offset " ng-hide="patient == null">
+  <div class=" panel panel-primary panel-container patient-detail">
     <!-- Default panel contents -->
     <div class="panel-heading patient-detail-heading">
       <h2>
-        {% block heading %}{% trans "Patient" %} [[ patient.id ]]{% endblock %}
+       {% trans "Patient" %} [[ patient.id ]]
       </h2>
     </div>
 
-    <div class="panel-body {% block panel_body_classes %}{% endblock %}">
-      <div ng-controller="PatientValidator"></div>
+    <div class="panel-body">
+
       <div ng-repeat="episode in patient.episodes" class="row">
-        {% block content %}
         {% for episode_category in episode_categories %}
         {% if episode_category.detail_template and not episode_category.display_name == 'Inpatient' %}
         <div ng-show='episode.category_name === "{{ episode_category.display_name }}"' class="col-md-12 padding0">
@@ -42,7 +27,6 @@
         </div>
         {% endif %}
         {% endfor %}
-        {% endblock content %}
       </div>
     </div>
     <!-- Panel body -->
