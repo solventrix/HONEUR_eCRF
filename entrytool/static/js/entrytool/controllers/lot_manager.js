@@ -67,7 +67,7 @@ angular.module('opal.controllers').controller(
         // appears first
         return moment(new Date(9000, 0, 1));
       }
-      return regimens[0].start_date;
+      return _.last(regimens).start_date;
     };
   }
 );
