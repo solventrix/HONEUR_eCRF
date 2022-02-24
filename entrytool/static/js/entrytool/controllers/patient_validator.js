@@ -4,6 +4,7 @@ angular
     $scope,
     $rootScope,
     toMomentFilter,
+    EntrytoolHelper,
     $injector
   ) {
     "use strict";
@@ -12,6 +13,7 @@ angular
 
     var PatientValidator = function () {
       var self = this;
+      self.entrytool_helper = EntrytoolHelper;
 
       this.createValidator = function (fieldName, errorTypeToFunctionList) {
         /*
@@ -68,7 +70,7 @@ angular
           return error;
         }
         _.each(self.patient.episodes, function (episode) {
-          _.each(episode.regimen, function (r) {
+          _.each(EntrytoolHelper.getEpisodeRegimen(episode), function (r) {
             if (r.id !== instance.id) {
               if (r.start_date && r.end_date) {
                 if (fieldValue >= r.start_date && fieldValue <= r.end_date) {
@@ -102,7 +104,7 @@ angular
           return;
         }
         _.each(self.patient.episodes, function (episode) {
-          _.each(episode.regimen, function (r) {
+          _.each(EntrytoolHelper.getEpisodeRegimen(episode), function (r) {
             if (r.id !== instance.id) {
               if (r.start_date && r.end_date) {
                 if (
@@ -148,7 +150,7 @@ angular
         * is a regimen related to it.
         */
         var withinRegimen = false;
-        _.each(episode.regimen, function(regimen){
+        _.each(EntrytoolHelper.getEpisodeRegimen(episode), function(regimen){
           var within = responseDateWithRegimen(val, regimen);
           if(within){
             withinRegimen = true;
@@ -165,15 +167,15 @@ angular
         * responses are connected to either other regimens
         * or the regimen in the form.
         */
-       if(!val || !episode.response.length){
+       if(!val || !EntrytoolHelper.getEpisodeResponse(episode).length){
           return;
        }
         var withinRegimen = false;
         // we may be editing things so ignore version of regimen
         // we are using that is attatched to the episode.
-        var regimens = _.reject(episode.regimen, {id: instance.id});
+        var regimens = _.reject(EntrytoolHelper.getEpisodeRegimen(episode), {id: instance.id, episode_id: instance.episode_id});
         regimens.push(instance);
-        _.each(episode.response, function(response){
+        _.each(EntrytoolHelper.getEpisodeResponse(episode), function(response){
           if(response.response_date){
             _.each(regimens, function(regimen){
               var within = responseDateWithRegimen(response.response_date, regimen);
@@ -216,7 +218,7 @@ angular
         * is a response related to it.
         */
        var withinRegimen = false;
-       _.each(episode.regimen, function(regimen){
+       _.each(EntrytoolHelper.getEpisodeRegimen(episode), function(regimen){
          var within = adverseEventDateWithinRegimen(val, regimen);
          if(within){
            withinRegimen = true;
@@ -238,7 +240,7 @@ angular
        var withinRegimen = false;
        // we may be editing things so ignore version of regimen
        // we are using that is attatched to the episode.
-       var regimens = _.reject(episode.regimen, {id: instance.id});
+       var regimens = _.reject(EntrytoolHelper.getEpisodeRegimen(episode), {id: instance.id, episode_id: instance.episode_id});
        regimens.push(instance);
        _.each(episode.adverse_event, function(adverse_event){
          if(adverse_event.ae_date){
@@ -263,7 +265,7 @@ angular
         */
         var error_msg = null;
         _.each(self.patient.episodes, function(episode){
-          _.each(episode.regimen, function(regimen){
+          _.each(EntrytoolHelper.getEpisodeRegimen(episode), function(regimen){
             if(regimen.start_date < val){
               error_msg = VALDATION_ERRORS.DIAGNOSIS_OVER_REGIMEN_START
             }
@@ -286,7 +288,7 @@ angular
 
         var error_msg = null;
         _.each(self.patient.episodes, function(episode){
-          _.each(episode.response, function(response){
+          _.each(EntrytoolHelper.getEpisodeResponse(episode), function(response){
             if(response.response_date < val){
               error_msg = VALDATION_ERRORS.DIAGNOSIS_OVER_RESPONSE;
             }
@@ -302,12 +304,12 @@ angular
         // note end date may be null;
 
         // pluck the regimen start dates, sort them and return the first
-        var episodeMin = _.pluck(episode.regimen, "start_date").sort()[0];
+        var episodeMin = _.pluck(EntrytoolHelper.getEpisodeRegimen(episode), "start_date").sort()[0];
 
         var episodeMax = null;
         // regimen end date is not required, remove the nulls and
         // make sure any of them are populated
-        var episodeMaxVals = _.compact(_.pluck(episode.regimen, "end_date"));
+        var episodeMaxVals = _.compact(_.pluck(EntrytoolHelper.getEpisodeRegimen(episode), "end_date"));
         if (episodeMaxVals.length) {
           episodeMax = _.sortBy(episodeMaxVals).reverse()[0];
         }
@@ -327,7 +329,7 @@ angular
         var min = toMomentFilter(instance.start_date);
         var max = toMomentFilter(instance.end_date);
 
-        if(episode.regimen.length){
+        if(EntrytoolHelper.getEpisodeRegimen(episode).length){
           var ourEpisodeMinMax = episodeRegimenMinMaxDates(episode);
           if(ourEpisodeMinMax[0].isBefore(min, "d")){
             min = ourEpisodeMinMax[0];
@@ -350,7 +352,7 @@ angular
           if (episode.id === otherEpisode.id) {
             return;
           }
-          if (!otherEpisode.regimen.length) {
+          if (!EntrytoolHelper.getEpisodeRegimen(otherEpisode).length) {
             return;
           }
           var episodeMinMax = episodeRegimenMinMaxDates(otherEpisode);
