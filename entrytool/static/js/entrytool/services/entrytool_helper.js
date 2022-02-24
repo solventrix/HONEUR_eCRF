@@ -1,4 +1,8 @@
 angular.module('opal.services').factory('EntrytoolHelper', function() {
+
+	var MM = "MM";
+	var CLL = "CLL";
+
 	return {
 		getDiagnosis: function(patient){
 			/*
@@ -17,11 +21,15 @@ angular.module('opal.services').factory('EntrytoolHelper', function() {
 			var result = null;
 
 			_.each(patient.episodes, function(episode){
-				if(episode.cll_diagnosis_details[0].consistency_token){
-					result = episode.cll_diagnosis_details[0]
+				if(episode.category_name === CLL){
+					if(episode.cll_diagnosis_details[0].consistency_token){
+						result = episode.cll_diagnosis_details[0]
+					}
 				}
-				else if(episode.mm_diagnosis_details[0].consistency_token){
-					result = episode.mm_diagnosis_details[0]
+				else if(episode.category_name === MM){
+					if(episode.mm_diagnosis_details[0].consistency_token){
+						result = episode.mm_diagnosis_details[0]
+					}
 				}
 			});
 			return result;
@@ -34,10 +42,13 @@ angular.module('opal.services').factory('EntrytoolHelper', function() {
 			*
 			* This returns the regimen, no matter what the condition is
 			*/
-			if(episode.cll_regimen.length){
+			if(episode.category_name === CLL){
 				return episode.cll_regimen
 			}
-			return episode.mm_regimen
+			else if(episode.category_name === MM){
+				return episode.mm_regimen
+			}
+			return [];
 		},
 
 		getEpisodeResponse: function(episode){
@@ -47,10 +58,13 @@ angular.module('opal.services').factory('EntrytoolHelper', function() {
 			*
 			* This returns the responses, no matter what the condition is
 			*/
-			if(episode.best_response.length){
+			if(episode.category_name === CLL){
 				return episode.best_response
 			}
-			return episode.mm_response
+			else if(episode.category_name === MM){
+				return episode.mm_response
+			}
+			return [];
 		}
 	}
 
