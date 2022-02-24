@@ -117,7 +117,7 @@ We will now be required to update the display template for the model to include 
 
 #### Adding a new set of data to lines of treatment
 
-Adding an entirely new set of data will require creating a new model in `entrytool.models.py`. This is a python class the inherits from `opal.models.EpisodeSubrecord` that generates a new table in the database. This process is documented extensively by Django, Opal specific alterations (mostly additional properties that are available) are documented in the Opal documentation, and the models `SCT`, `Regimen`, `Response` and `AdverseEvent` provide examples within this application.
+Adding an entirely new set of data will require creating a new model in `entrytool.models.py`. This is a python class the inherits from `opal.models.EpisodeSubrecord` that generates a new table in the database. This process is documented extensively by Django, Opal specific alterations (mostly additional properties that are available) are documented in the Opal documentation, and the models `SCT`, `Regimen`, and `Response provide examples within this application.
 
 Once the model is created the database needs to be updated:
 
@@ -174,13 +174,10 @@ The same options are also available for date_before.
 For example:
 
 ```
-{% custom_datepicker field="AdverseEvent.ae_date"
-   date_after="the_episode.regimen[0].start_date"
-   date_after_message=_("Adverse event must be on or after the regimen start date")
+{% custom_datepicker field="SCT.sct_date"
+   date_after="the_episode.mll_regimen[0].start_date"
+   date_after_message=_("The SCT should be after the date of diagnosis")
    date_after_diff="0"
-   date_before="the_episode.regimen[0].end_date"
-   date_before_message=_("Adverse event must be before 30 days after the regimen end date")
-   date_before_diff="31"
    required=True %}
 ```
 
