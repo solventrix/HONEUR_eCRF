@@ -9,7 +9,7 @@
   {% input field="CLLRegimen.nbCycles" required=False %}
   </div>
 </div>
-{% custom_datepicker field="CLLRegimen.start_date" no_future=False change="$root.patientValidator.regimen_start(editing.cll_regimen.start_date, editing.cll_regimen, the_episode); $root.patientValidator.regimen_end(editing.cll_regimen.end_date, editing.cll_regimen, the_episode);" date_after="$root.patientValidator.getDiagnosis().diag_date" date_after_diff="0" date_after_message=_("Start Date must be after the patient date of diagnosis") validator="regimen_start" required=True %}
+{% custom_datepicker field="CLLRegimen.start_date" no_future=False change="$root.patientValidator.regimen_start(editing.cll_regimen.start_date, editing.cll_regimen, the_episode); $root.patientValidator.regimen_end(editing.cll_regimen.end_date, editing.cll_regimen, the_episode);" date_after="$root.patientValidator.entrytool_helper.getDiagnosis($root.patientValidator.patient).diag_date" date_after_diff="0" date_after_message=_("Start Date must be after the patient date of diagnosis") validator="regimen_start" required=True %}
 {% custom_datepicker field="CLLRegimen.end_date" no_future=False change="$root.patientValidator.regimen_start(editing.cll_regimen.start_date, editing.cll_regimen, the_episode); $root.patientValidator.regimen_end(editing.cll_regimen.end_date, editing.cll_regimen, the_episode);" date_after="editing.regimen.start_date" date_after_diff="0" date_after_message=_("End Date must be after the start date") validator="regimen_end" %}
 <div ng-if="editing.cll_regimen.end_date">
   {% select field="CLLRegimen.stop_reason" required=False %}
