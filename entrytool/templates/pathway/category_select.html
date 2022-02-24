@@ -1,0 +1,19 @@
+{% load i18n %}
+<div class="form-group">
+  <label class="control-label col-sm-3">Condition</label>
+  <div class="col-md-8" ng-class="{'has-error': form.$submitted && form.condition.$error.required}">
+    <select name="condition" required class="form-control" ng-model="editing.episode_category">
+      <option value="" selected>---------</option>
+      {% for episode_category in pathway.condition_categories %}
+      <option>{{ episode_category }}</option>
+      {% endfor %}
+    </select>
+    <div class="row" ng-show="form.$submitted && form.condition.$error.required">
+      <div class="col-md-12">
+        <span class="help-block" >
+          {% trans "A condition is required" %}
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
