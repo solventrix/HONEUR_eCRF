@@ -70,7 +70,7 @@ angular
           return error;
         }
         _.each(self.patient.episodes, function (episode) {
-          _.each(EntryToolHelper.getEpisodeRegimen(episode), function (r) {
+          _.each(EntrytoolHelper.getEpisodeRegimen(episode), function (r) {
             if (r.id !== instance.id) {
               if (r.start_date && r.end_date) {
                 if (fieldValue >= r.start_date && fieldValue <= r.end_date) {
@@ -104,7 +104,7 @@ angular
           return;
         }
         _.each(self.patient.episodes, function (episode) {
-          _.each(EntryToolHelper.getEpisodeRegimen(episode), function (r) {
+          _.each(EntrytoolHelper.getEpisodeRegimen(episode), function (r) {
             if (r.id !== instance.id) {
               if (r.start_date && r.end_date) {
                 if (
