@@ -18,7 +18,7 @@ class MMStopReason(lookuplists.LookupList):
         verbose_name_plural = _("MM Stop Reason List")
 
 
-class MMDiagnosisDetails(models.PatientSubrecord):
+class MMDiagnosisDetails(models.EpisodeSubrecord):
     _is_singleton = True  # One entry per patient that is updated
 
     CHOICES = (("Yes", _("Yes")), ("No", _("No")), ("Unknown", _("Unknown")))
@@ -131,7 +131,7 @@ class MMResponse(models.EpisodeSubrecord):
         verbose_name_plural = _("Responses")
 
 
-class MMFollowUp(models.PatientSubrecord):
+class MMFollowUp(models.EpisodeSubrecord):
     _sort = "followup_date"
     _icon = "fa fa-stethoscope"
     hospital = models.ForeignKeyOrFreeText(Hospital, verbose_name=_("Hospital"))
