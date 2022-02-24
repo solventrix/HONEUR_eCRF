@@ -1,3 +1,4 @@
+{% load i18n %}
 <div class="form-group">
   <label class="control-label col-sm-3">Condition</label>
   <div class="col-md-8" ng-class="{'has-error': form.$submitted && form.condition.$error.required}">
@@ -10,7 +11,7 @@
     <div class="row" ng-show="form.$submitted && form.condition.$error.required">
       <div class="col-md-12">
         <span class="help-block" >
-          Condition is required
+          {% trans "A condition is required" %}
         </span>
       </div>
     </div>
