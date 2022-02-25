@@ -3,10 +3,11 @@ entrytool - Our Opal Application
 """
 from opal.core import application
 from opal.core import menus
-from plugins.conditions.cll.episode_categories import CLLCondition
+from entrytool import episode_categories
 
 from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
+
 
 class Application(application.OpalApplication):
     javascripts   = [
@@ -24,7 +25,7 @@ class Application(application.OpalApplication):
         "css/entrytool.css"
     ]
 
-    default_episode_category = CLLCondition.display_name
+    default_episode_category = episode_categories.Default.display_name
 
     @classmethod
     def get_menu_items(klass, user=None):
