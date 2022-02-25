@@ -5,13 +5,16 @@ class Default(episodes.EpisodeCategory):
     """
     This is the default episode category of any episode.
 
-    It exists because, in Opal, an episode must have an
-    episode_category.
+    In Opal, an episode must have a value in the field `category_name` 
+    that relates to an `EpisodeCategory` class.
 
-    In this application the pathway to add an episode should
-    always assign a condition category e.g. MM or CLL after the
-    episode has been created. IE we should not see any episodes
-    with this category name.
+    In this application any episode that is initially assigned the
+    default at episode creation time should then be assigned to the
+    appropriate category e.g. an MM or CLL episode before the transaction
+    commits.
+
+    Any episodes that exist in the database with 'Default' as their
+    `category_name` likely exist in error and should be investigated.
     """
     display_name = "Default"
 
