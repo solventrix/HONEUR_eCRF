@@ -33,6 +33,7 @@ def custom_datepicker(*args, **kwargs):
     context["user_options"] = kwargs.pop("user_options", False)
     context['ngrequired'] = kwargs.pop('ngrequired', '')
     context['validator'] = kwargs.pop('validator', '')
+    context["ngrequired_error"] = kwargs.pop("ngrequired_error", "")
 
     # the defaults are no date should be after the date of death
     # or in the future.

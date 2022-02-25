@@ -230,6 +230,41 @@ angular
         }
       };
 
+      self.validateOnlyOneOpenRegimen = function(val, instance, episode){
+        /*
+        * There can only be one regimen with no end date, if the user
+        * is trying to save a regimen with no end date and there
+        * already exists another with no end date, flag it as an error.
+        *
+        * Note this is a special case of validation as it exists as part of an
+        * ng-required not ng-change like the rest of the validation.
+        *
+        * It returns null if there is no error, or true if there is an error
+        */
+
+        // if there is a val then there is an end date for this
+        // regimen and we don't need to check the other episodes
+        if(val){
+          return
+        }
+        var regimen = EntrytoolHelper.getEpisodeRegimen(episode);
+
+        // exclude the current regimen if it has already been saved
+        if(instance.id){
+          regimen = _.without(regimen, {id: instance.id});
+        }
+
+        var noEndDate = _.filter(regimen, function(r){
+          if(!r.end_Date){
+            return true
+          }
+        });
+
+        if(noEndDate.length){
+          return true
+        }
+      }
+
       var episodeRegimenMinMaxDates = function (episode) {
         // returns the first start date and the last end date
         // note end date may be null;
