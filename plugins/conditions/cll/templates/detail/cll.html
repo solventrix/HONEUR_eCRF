@@ -36,6 +36,10 @@
           diagnosis or progression till start of treatment after subsequent
           progression
         </div>
+        <div class="help-block">
+          Info: you might be confused by the treatment line order when adding a
+          new line. After you save, they will be in the correct order.
+        </div>
         <div
           class="row"
           ng-repeat="episode in patient.episodes | filter: { category_name: 'Treatment Line' } | orderBy:lineOfTreatmentManager.lineOfTreatmentOrder:true as lot_episodes"
