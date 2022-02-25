@@ -201,4 +201,11 @@ class Migration(migrations.Migration):
         ),
     ]
 
+    run_before = [
+        (
+            "entrytool",
+            "0044_auto_20220217_1040",
+        ),
+    ]
+
     operations = [migrations.RunPython(forwards)]
