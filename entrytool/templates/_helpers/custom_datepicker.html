@@ -70,7 +70,7 @@
      {% endif %}
      <span class="help-block" ng-show="{{ formname }}.$submitted && {{ formname }}[{{ element_name }}].$error.required">
       {% if ngrequired_error %}
-        {% trans ngrequired_error %}
+        {{ ngrequired_error }}
       {% else %}
         {% blocktrans with label=label %}{{ label }} is required{% endblocktrans %}
       {% endif %}
