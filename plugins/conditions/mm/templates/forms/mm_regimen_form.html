@@ -7,7 +7,7 @@
   {% input field="MMRegimen.nbCycles" required=False %}
 </div>
 {% custom_datepicker field="MMRegimen.start_date" no_future=False change="$root.patientValidator.regimen_start(editing.mm_regimen.start_date, editing.mm_regimen, the_episode); $root.patientValidator.regimen_end(editing.mm_regimen.end_date, editing.mm_regimen, the_episode);" date_after="$root.patientValidator.entrytool_helper.getDiagnosis($root.patientValidator.patient).diag_date" date_after_diff="0" date_after_message=_("Start Date must be after the patient date of diagnosis") validator="regimen_start" required=True %}
-{% custom_datepicker field="MMRegimen.end_date" no_future=False change="$root.patientValidator.regimen_start(editing.mm_regimen.start_date, editing.mm_regimen, the_episode); $root.patientValidator.regimen_end(editing.mm_regimen.end_date, editing.mm_regimen, the_episode);" date_after="editing.mm_regimen.start_date" date_after_diff="0" date_after_message=_("End Date must be after the start date") validator="regimen_end" %}
+{% custom_datepicker field="MMRegimen.end_date" no_future=False change="$root.patientValidator.regimen_start(editing.mm_regimen.start_date, editing.mm_regimen, the_episode); $root.patientValidator.regimen_end(editing.mm_regimen.end_date, editing.mm_regimen, the_episode);" date_after="editing.mm_regimen.start_date" date_after_diff="0" date_after_message=_("End Date must be after the start date") validator="regimen_end" ngrequired='$root.patientValidator.validateOnlyOneOpenRegimen(editing.mm_regimen)' ngrequired_error=_("There can only be one open regimen at a time") %}
 <div ng-if="editing.mm_regimen.end_date">
   {% select field="MMRegimen.stop_reason" required=False %}
 </div>
