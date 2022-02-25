@@ -1,5 +1,5 @@
 angular.module('opal.controllers').controller(
-  "LineOfTreatmentManager", function($scope, $http, $q, $modal, UserProfile){
+  "LineOfTreatmentManager", function($scope, $http, $q, $modal, UserProfile, EntrytoolHelper){
     "use strict";
     var self = this;
     this.loading = false;
@@ -59,13 +59,13 @@ angular.module('opal.controllers').controller(
       * Orders the line of treatments in the patient detail page
       * by the earliest regimen date of that episode.
       */
-      var regiments = _.sortBy(lot.regimen, function(regimen){
+      var regimens = _.sortBy(EntrytoolHelper.getEpisodeRegimen(lot), function(regimen){
         return regimen.start_date
       });
-      if(!regiments.length){
+      if(!regimens.length){
         return 0;
       }
-      return regiments[0].start_date;
+      return regimens[0].start_date;
     };
   }
 );
