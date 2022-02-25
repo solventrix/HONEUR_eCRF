@@ -63,9 +63,7 @@ angular.module('opal.controllers').controller(
         return regimen.start_date
       });
       if(!regimens.length){
-        // if there are no regimens return a date in the far future so this LOT
-        // appears first
-        return moment(new Date(9000, 0, 1));
+        return 0;
       }
       return regimens[0].start_date;
     };
