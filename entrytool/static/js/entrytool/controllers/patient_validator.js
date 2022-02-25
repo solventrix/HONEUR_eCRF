@@ -230,7 +230,7 @@ angular
         }
       };
 
-      self.validateOnlyOneOpenRegimen = function(val, instance, episode){
+      self.validateOnlyOneOpenRegimen = function(regimenInstance){
         /*
         * There can only be one regimen with no end date, if the user
         * is trying to save a regimen with no end date and there
@@ -239,7 +239,7 @@ angular
         * Note this is a special case of validation as it exists as part of an
         * ng-required not ng-change like the rest of the validation.
         *
-        * It returns null if there is no error, or true if there is an error
+        * It returns false if there is no error or true if there is an error
         */
 
         // if there is a val then there is an end date for this
@@ -247,22 +247,23 @@ angular
         if(val){
           return
         }
-        var regimen = EntrytoolHelper.getEpisodeRegimen(episode);
-
-        // exclude the current regimen if it has already been saved
-        if(instance.id){
-          regimen = _.without(regimen, {id: instance.id});
-        }
-
-        var noEndDate = _.filter(regimen, function(r){
-          if(!r.end_Date){
-            return true
+        var otherOpenEndRegimenExists = false
+        _.each(self.patient.episodes, function(episode){
+          var regimen = EntrytoolHelper.getEpisodeRegimen(episode);
+          // exclude the current regimen if it has already been saved
+          if(regimenInstance.id){
+            regimen = _.without(regimen, {id: regimenInstance.id});
+          }
+          var regimenWithNoEndDate = _.filter(regimen, function(r){
+            if(!r.end_Date){
+              return true
+            }
+          });
+          if(regimenWithNoEndDate.length){
+            otherOpenEndRegimenExists = true
           }
         });
-
-        if(noEndDate.length){
-          return true
-        }
+        return otherOpenEndRegimenExists;
       }
 
       var episodeRegimenMinMaxDates = function (episode) {
