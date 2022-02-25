@@ -5,7 +5,7 @@ from opal.core.episodes import (
     EpisodeCategory, InpatientEpisode
 )
 from entrytool import models
-from entrytool.episode_categories import LineOfTreatmentEpisode
+from entrytool.episode_categories import LineOfTreatmentEpisode, Default
 from django.utils.translation import gettext_lazy as _
 
 category_select_step = Step(
@@ -45,7 +45,9 @@ class AddPatient(PagePathway):
         from the category select step.
         """
         non_conditions = (
-            LineOfTreatmentEpisode.display_name, InpatientEpisode.display_name,
+            LineOfTreatmentEpisode.display_name,
+            InpatientEpisode.display_name,
+            Default.display_name,
         )
         return [
             i.display_name for i in EpisodeCategory.list() if i.display_name not in non_conditions
