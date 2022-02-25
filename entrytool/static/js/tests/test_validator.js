@@ -57,15 +57,16 @@ describe("PatientValidator", function () {
 
     beforeEach(function () {
       episode = {
-        regimen: [],
+        mm_regimen: [],
         sct: [],
-        response: [],
+        mm_response: [],
+        category_name: "MM"
       };
       $rootScope.patientValidator.patient.episodes = [episode];
     });
 
     it("should be fail if regimen date is below the diagnoisis date", function () {
-      episode.regimen = [{ start_date: moment("2020-01-01") }];
+      episode.mm_regimen = [{ start_date: moment("2020-01-01") }];
       val = moment("2020-02-01");
       $rootScope.patientValidator.diagnosis_date(val, _, episode);
       var expected = "Date of diagnosis is greater than a regimen start date";
@@ -73,7 +74,7 @@ describe("PatientValidator", function () {
     });
 
     it("should not fail if regimen date is above the diagnosis date", function () {
-      episode.regimen = [{ start_date: moment("2020-02-01") }];
+      episode.mm_regimen = [{ start_date: moment("2020-02-01") }];
       val = moment("2020-01-01");
       $rootScope.patientValidator.diagnosis_date(val, _, episode);
       $rootScope.patientValidator.diagnosis_date(val, _, episode);
@@ -81,7 +82,7 @@ describe("PatientValidator", function () {
     });
 
     it("should be fail if response date is below the diagnoisis date", function () {
-      episode.response = [{ response_date: moment("2020-01-01") }];
+      episode.mm_response = [{ response_date: moment("2020-01-01") }];
       val = moment("2020-02-01");
       $rootScope.patientValidator.diagnosis_date(val, _, episode);
       var expected = "Date of diagnosis is greater than a response date";

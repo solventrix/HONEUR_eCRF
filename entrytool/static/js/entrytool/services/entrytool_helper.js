@@ -42,10 +42,10 @@ angular.module('opal.services').factory('EntrytoolHelper', function() {
 			*
 			* This returns the regimen, no matter what the condition is
 			*/
-			if(episode.category_name === CLL){
+			if(episode.cll_regimen.length){
 				return episode.cll_regimen
 			}
-			else if(episode.category_name === MM){
+			else if(episode.mm_regimen.length){
 				return episode.mm_regimen
 			}
 			return [];
@@ -58,10 +58,10 @@ angular.module('opal.services').factory('EntrytoolHelper', function() {
 			*
 			* This returns the responses, no matter what the condition is
 			*/
-			if(episode.category_name === CLL){
+			if(episode.best_response.length){
 				return episode.best_response
 			}
-			else if(episode.category_name === MM){
+			else if(episode.mm_response.length){
 				return episode.mm_response
 			}
 			return [];
