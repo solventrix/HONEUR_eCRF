@@ -244,7 +244,7 @@ angular
 
         // if there is a val then there is an end date for this
         // regimen and we don't need to check the other episodes
-        if(val){
+        if(regimenInstance.end_date){
           return
         }
         var otherOpenEndRegimenExists = false
