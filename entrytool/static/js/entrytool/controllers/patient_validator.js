@@ -267,21 +267,23 @@ angular
       }
 
       var episodeRegimenMinMaxDates = function (episode) {
+        return getRegimenMinMaxDate(EntrytoolHelper.getEpisodeRegimen(episode));
+      };
+
+      var getRegimenMinMaxDate = function(regimen){
         // returns the first start date and the last end date
         // note end date may be null;
-
         // pluck the regimen start dates, sort them and return the first
-        var episodeMin = _.pluck(EntrytoolHelper.getEpisodeRegimen(episode), "start_date").sort()[0];
-
+        var episodeMin = _.pluck(regimen, "start_date").sort()[0];
         var episodeMax = null;
         // regimen end date is not required, remove the nulls and
         // make sure any of them are populated
-        var episodeMaxVals = _.compact(_.pluck(EntrytoolHelper.getEpisodeRegimen(episode), "end_date"));
+        var episodeMaxVals = _.compact(_.pluck(regimen, "end_date"));
         if (episodeMaxVals.length) {
           episodeMax = _.sortBy(episodeMaxVals).reverse()[0];
         }
         return [episodeMin, episodeMax];
-      };
+      }
 
       var validateRegimenToOtherLOTRegimens = function (
         val,
@@ -295,9 +297,15 @@ angular
         // check vs the instance dates as these may have changed.
         var min = toMomentFilter(instance.start_date);
         var max = toMomentFilter(instance.end_date);
+        var thisEpisodesRegimen = EntrytoolHelper.getEpisodeRegimen(episode)
 
-        if(EntrytoolHelper.getEpisodeRegimen(episode).length){
-          var ourEpisodeMinMax = episodeRegimenMinMaxDates(episode);
+        // exclude this regimen's id if it exists
+        if(instance.id){
+          thisEpisodesRegimen = _.filter(thisEpisodesRegimen, function(r){ return r.id !== instance.id });
+        }
+
+        if(thisEpisodesRegimen.length){
+          var ourEpisodeMinMax = getRegimenMinMaxDate(thisEpisodesRegimen);
           if(ourEpisodeMinMax[0].isBefore(min, "d")){
             min = ourEpisodeMinMax[0];
           }
