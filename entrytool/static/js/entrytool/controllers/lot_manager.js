@@ -1,5 +1,5 @@
 angular.module('opal.controllers').controller(
-  "LineOfTreatmentManager", function($scope, $http, $q, $modal, UserProfile, EntrytoolHelper){
+  "LineOfTreatmentManager", function($scope, $http, $q, $modal, toMomentFilter, UserProfile, EntrytoolHelper){
     "use strict";
     var self = this;
     this.loading = false;
@@ -63,7 +63,10 @@ angular.module('opal.controllers').controller(
         return regimen.start_date
       });
       if(!regimens.length){
-        return 0;
+        // if there are no regimens attatched to the lot we
+        // we want it to show at the top of the regimens
+        // so return a date far in the future
+        return toMomentFilter(new Date(3000, 1, 1));
       }
       return regimens[0].start_date;
     };
