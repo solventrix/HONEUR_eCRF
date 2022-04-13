@@ -1,0 +1,6 @@
+from opal.core import episodes
+
+
+class {{ cleaned_condition_name.title() }}(episodes.EpisodeCategory):
+    display_name = "{{ name }}"
+    detail_template = "detail/{{ cleaned_condition_name }}.html"

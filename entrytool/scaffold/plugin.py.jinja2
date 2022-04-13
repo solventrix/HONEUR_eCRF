@@ -1,0 +1,18 @@
+"""
+Plugin definition for the {{ name }} condition
+"""
+from opal.core import plugins
+
+
+class {{ cleaned_condition_name.title() }}Plugin(plugins.OpalPlugin):
+    """
+    Main entrypoint to expose this plugin to our Opal application.
+    """
+    javascripts = {
+        # Add your javascripts here!
+        'opal.{{ cleaned_condition_name }}': [
+            # 'js/{{ cleaned_condition_name }}/app.js',
+            # 'js/{{ cleaned_condition_name }}/controllers/larry.js',
+            # 'js/{{ cleaned_condition_name }}/services/larry.js',
+        ]
+    }
