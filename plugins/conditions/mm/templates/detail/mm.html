@@ -48,7 +48,10 @@
             {% record_panel models.MMResponse %}
           </div>
           <div class="col-md-4">
-            {% record_panel models.SCT %}
+            {% include 'panels/stem_cell_eligability.html' %}
+            <span ng-show="episode.mm_stem_cell_transplant_eligibility[0].eligible_for_stem_cell_transplant">
+              {% record_panel models.SCT %}
+            </span>
           </div>
         </div>
       </div>
