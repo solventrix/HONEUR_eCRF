@@ -107,7 +107,7 @@ First we will need to find the model declaration in `entrytool/modelspy` and add
 1. `python manage.py makemigrations`
 2. `python manage.py migrate`
 
-We will now need to add a widget for our field to the form for this model. This will be located in a file with a name based on the name of the model at `entrytool/templates/forms/$MODELNAME_form.html`. We then add a template tag matching the widget we would like - for instance to add a text box `{% input field=“$MODELNAME.$FIELDNAME” %}. You can see many examples in the form templates within this application, and additional documentation is available on the Opal website.
+We will now need to add a widget for our field to the form for this model. This will be located in a file with a name based on the name of the model at `entrytool/templates/forms/$MODELNAME_form.html`. We then add a template tag matching the widget we would like - for instance to add a text box `{% input field=“$MODELNAME.$FIELDNAME” %}`. You can see many examples in the form templates within this application, and additional documentation is available on the Opal website.
 
 We will now be required to update the display template for the model to include this data in the patient detail display. The display template for a model is found in a file based on the name of the model at `entrytool/templates/records/$MODELNAME.html`. Display data is rendered via Javascript in the browser, so uses the square bracket syntax. Display templates will have a variable named `item` which contains the data for the instance of the model we are rendering. You can display a field with for instance:
 
@@ -117,7 +117,7 @@ We will now be required to update the display template for the model to include 
 
 #### Adding a new set of data to lines of treatment
 
-Adding an entirely new set of data will require creating a new model in `entrytool.models.py`. This is a python class the inherits from `opal.models.EpisodeSubrecord` that generates a new table in the database. This process is documented extensively by Django, Opal specific alterations (mostly additional properties that are available) are documented in the Opal documentation, and the models `SCT`, `Regimen`, and `Response provide examples within this application.
+Adding an entirely new set of data will require creating a new model in `entrytool.models.py`. This is a python class the inherits from `opal.models.EpisodeSubrecord` that generates a new table in the database. This process is documented extensively by Django, Opal specific alterations (mostly additional properties that are available) are documented in the Opal documentation, and the models `SCT`, `Regimen`, and `Response` provide examples within this application.
 
 Once the model is created the database needs to be updated:
 
@@ -136,7 +136,7 @@ models themselves, or in the form templates.
 Some of this validation - for instance fields being required is implemented within Opal,
 while some is implemented with custom form widgets as part of the entrytool application.
 
-### Num ber validation
+### Number validation
 We sometimes wish to validate that a number is more or less
 than a number. this can be done using the `{% number %}` templatetag.
 
@@ -372,6 +372,48 @@ Most translatable strings are configured by wrapping their declaration in a gett
 Rendering translated variables in javascript rendered portions of the page (values rendered with `[[ variable ]]` syntax) can be achieved using the `translate` filter.
 
 Our custom `makemessages` command includes translatable strings from Opal itself in the message files for this application as well as data held in lookuplist tables.
+
+## Creating new conditions
+
+Conditions such as CLL and MM exist in plugins/conditions. They are (opal plugins)[https://opal.openhealthcare.org.uk/docs/guides/plugins/] which is a django app with some opal features attached.
+
+Each has their own episode category detail template which located at `/plugins/conditions/$condition_name/templates/detail/$condition_name.html` which is the page you see when you go to a patient with that condition.
+
+Each can have their own database models, including opal subrecords such as the `MMFollowUp` in `plugins/conditions/mm/models.py`.
+
+Each can define their own static files which are located in `/plugins/conditions/$condition_name/static/` for example javscript files would be located in `/plugins/conditions/$condition_name/static/$condition_name/js`
+
+
+### Scaffolding
+
+The create_condition management command will create you a condition ie `python manage.py create_condition { your condition nane }`
+
+To register your condition with the app you also have to add it the path to it in the `entrytool/settings.py` file in the section `INSTALLED_APPS`.
+
+Whether a condition is included in INSTALLED_APPS determines whether a user can add a patient with that condition through the UI.
+
+for example if I wanted to create a condition for hodgkins lymphoma I would run
+
+`python manage.py create_condition hl`
+
+Then go to `entrytool.settings.py`
+and add it to the bottom of `INSTALLED APPS` like so...
+
+```
+INSTALLED_APPS = [
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    ...
+    "entrytool",
+    "plugins.conditions.cll",
+    "plugins.conditions.mm",
+    "plugins.conditions.hl",
+    # 'languages',
+    "django.contrib.admin",
+]
+```
+
 
 ## Managing multiple customised versions
 
