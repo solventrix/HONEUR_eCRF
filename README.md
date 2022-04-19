@@ -53,6 +53,14 @@ This ensures reference data in the database contains all the values required.
 
 Production deployments would not be expected to run sqlite, which is only suited to development environments. Example configuration for PostgreSQL can be found in the [Django documentation](https://docs.djangoproject.com/en/2.2/ref/settings/#std:setting-HOST). The section on [deploying Django](https://docs.djangoproject.com/en/3.1/howto/deployment/) will also be helpful.
 
+
+## Application structure
+
+The application has a logical structure between the core application logic in the `entrytool` directory and the condition specific logic that sits in `plugins/conditions/$condition_name`
+
+For example general data models live in `entrytool/models.py` while condition specific logic for the MM condition live in `plugins/conditions/mm/models.py`.
+
+
 ## Customising the look and feel of the application
 
 The visual style of the application is defined in the template files as HTML structure and Bootstrap CSS classes and in the application specific css. We use [Sass](https://sass-lang.com/) compiled to css in order to take advantage of features such as variables for colors.
@@ -63,6 +71,7 @@ Changes to CSS should be made in the file `entrytool/static/css/entrytool.scss` 
 
 This will watch for changes to the scss file and compile them to css whenever the scss file is
 saved. Once you are happy with your changes, commit the updated css, scss and css.map files together.
+
 
 ### Making edit buttons permanently visible
 
@@ -77,6 +86,52 @@ To make editing controls permanently visible, uncomment this line in the `.scss`
         // display:block
     }
 ```
+
+
+## Adding front end functionality
+
+The front end is provided by [angular.js](https://angularjs.org/).
+
+The simplest way to add logic to the front end is with the controller as syntax. This allows the injection of an [angular controller](https://docs.angularjs.org/guide/controller) into the template without polluting the global name space.
+
+Then register the controller with the plugin so that it will be sent over to the browser and minimised when we move our code to production.
+
+Finally add the controller to your html.
+
+For example to add a button that triggers a js alert only in the cll condition that we would do the following.
+
+### 1. Create your controller
+Create a file called `plugins/conditions/cll/static/js/cll/controllers/alertCtrl.js`
+
+populate it with the below
+```
+angular.module('opal.controllers').controller( "AlertCtrl", function(){
+  "use strict"
+  this.shout = function(){ alert('hello')}
+});
+```
+
+### 2. Register the controller with the plugin
+In `plugins/conditions/cll/plugin.py` by chang the CLLPlugin definition to look like
+```
+class CLLPlugin(plugins.OpalPlugin):
+    javascripts = {
+        'opal.controllers': [
+            'js/cll/controllers/alertCtrl.js'
+        ]
+    }
+```
+
+### 3. Add your controller to the html
+In `plugins/conditions/cll/templates/detail/cll.html` add the lines
+```
+<div ng-controller="AlertCtrl as alertCtrl">
+<button class="btn" ng-click="alertCtrl.shout()">Shout</button>
+</div>
+```
+
+When you refresh the page, clicking the button will trigger a javascript alert.
+
 
 ## Customising the fields in the application
 
@@ -102,7 +157,7 @@ We should also ensure that there are no display artefacts related to the field. 
 
 #### Adding a field to a model
 
-First we will need to find the model declaration in `entrytool/modelspy` and add a new field declaration to the model. This process is extensively documented by Django itself and many other examples can be seen within the `models.py` file itself. Once the field has been declared in the models.py file we should update the database to match:
+First we will need to find the model declaration in `entrytool/models.py` and add a new field declaration to the model. This process is extensively documented by Django itself and many other examples can be seen within the `models.py` file itself. Once the field has been declared in the models.py file we should update the database to match:
 
 1. `python manage.py makemigrations`
 2. `python manage.py migrate`
