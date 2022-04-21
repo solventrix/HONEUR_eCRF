@@ -1,0 +1,8 @@
+{% load forms %}
+{% load custom_forms %}
+{% custom_datepicker field="MMCytogenetics.cytogenetic_date" date_after="the_episode.demographics[0].date_of_birth" date_after_message=_("Visit date must be after the patient's birth date") %}
+
+{% radio field="MMCytogenetics.t4_14" required=True %}
+{% radio select field="MMCytogenetics.t_11_14" required=True %}
+{% radio select field="MMCytogenetics.del_17p" required=True %}
+{% radio select field="MMCytogenetics.amp_1q" required=True %}

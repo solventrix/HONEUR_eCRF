@@ -1,0 +1,14 @@
+{% load i18n %}
+<div class="follow-up-table" ng-show="episode.mm_cytogenetics.length > 0">
+  <div class="col-md-12">
+    <div class="row header-row display-label">
+    </div>
+  </div>
+
+
+  <div ng-repeat="item in episode.mm_cytogenetics | orderBy: '-cytogenetic_date' as followups">
+    <div class="row table-row" >
+
+    </div>
+  </div>
+</div>

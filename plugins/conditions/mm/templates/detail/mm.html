@@ -41,9 +41,9 @@
               <i class="fa fa-trash-o delete-lot pointer" ng-click="lineOfTreatmentManager.delete(episode)"></i>
             </h2>
           </div>
-          <div class="col-md-4">
+          {% comment %} <div class="col-md-4">
             {% record_panel models.MMRegimen %}
-          </div>
+          </div> {% endcomment %}
           <div class="col-md-3">
             {% record_panel models.MMResponse %}
           </div>
@@ -71,5 +71,24 @@
   </div>
   <div class="row">
     <div class="col-md-12">{% include "detail/followups.html" %}</div>
+  </div>
+
+
+  <div class="panel mb6">
+    <div class="panel-heading">
+      <h3>
+        {% trans "Cytogenetic tests" %}
+        <span class="pull-right pointer edit">
+          <a
+            ng-click="episode.recordEditor.newItem('{{ models.MMCytogenetics.get_api_name }}')"
+          >
+            <i class="fa fa-plus-circle edit pointer"></i>
+          </a>
+        </span>
+      </h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">{% include "detail/mm_cytogenetics.html" %}</div>
   </div>
 </section>

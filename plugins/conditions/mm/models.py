@@ -153,3 +153,33 @@ class MMFollowUp(models.EpisodeSubrecord):
     class Meta:
         verbose_name = _("Follow-up")
         verbose_name_plural = _("Follow-ups")
+
+class MMCytogenetics(models.EpisodeSubrecord):
+    _sort = "cytogenetic_date"
+    cytogenetic_date = fields.DateField(verbose_name=_("Cytogenetics date"))
+
+    CHOICES =  (("Yes", _("Yes")), ("No", _("No")), ("Unknown", _("Unknown")))
+
+    t4_14 = fields.CharField(max_length=10, choices=CHOICES, verbose_name=_("t4_14"))
+    t_11_14 = fields.CharField(max_length=10, choices=CHOICES, verbose_name=_("t_11_14"))
+    del_17p = fields.CharField(max_length=10, choices=CHOICES, verbose_name=_("del17p"))
+    amp_1q = fields.CharField(max_length=10, choices=CHOICES, verbose_name=_("amp1q"))
+
+    class Meta:
+        verbose_name = _("Cytogenetic tests")
+        verbose_name_plural = _("Cytogenetic tests")
+
+class labTests(models.EpisodeSubrecord):
+    _sort = "lab_test_date"
+    lab_test_date = fields.DateField(verbose_name = _("Test date"))
+
+    hemoglobin =fields.FloatField(blank=True, null=True, verbose_name=_("hemoglobin")) 
+    leukocytes =fields.FloatField(blank=True, null=True, verbose_name=_("leukocytes")) 
+    creatinine =fields.FloatField(blank=True, null=True, verbose_name=_("creatinine")) 
+    ldh =fields.FloatField(blank=True, null=True, verbose_name=_("LDH")) 
+    albumin =fields.FloatField(blank=True, null=True, verbose_name=_("albumin")) 
+    calcium =fields.FloatField(blank=True, null=True, verbose_name=_("calcium")) 
+
+    class Meta: 
+        verbose_name = _("Lab tests")
+        verbose_name_plural = _("Lab tests")
