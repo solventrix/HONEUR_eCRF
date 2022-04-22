@@ -1,3 +1,4 @@
+from django.forms import CharField
 from django.utils.translation import gettext_lazy as _
 from django.db import models as fields
 from opal.core.fields import ForeignKeyOrFreeText
@@ -113,8 +114,7 @@ class MMPastMedicalHistory(models.PatientSubrecord):
 
 class MMDiagnosisDetails(models.EpisodeSubrecord):
     _is_singleton = True  # One entry per patient that is updated
-
-    CHOICES = (("Yes", _("Yes")), ("No", _("No")), ("Unknown", _("Unknown")))
+    CHOICES = (("Yes", _("Yes")), ("No", _("No")),)
 
     R_ISS_STAGES = (
         ("Stage I", _("Stage I")),
@@ -122,47 +122,159 @@ class MMDiagnosisDetails(models.EpisodeSubrecord):
         ("Stage III", _("Stage III")),
         ("Unknown", _("Unknown")),
     )
-    PP_TYPE_CHOICES = (
-        ("IgG", _("IgG")),
-        ("IgA", _("IgA")),
-        ("IgE", _("IgE")),
-        ("Light Chain Myeloma", _("Light Chain Myeloma")),
+
+    # TODO check that this list is exhaustive
+    SUBCLASSIFICATION_CHOICES = (
+            ("MM IgG Kappa", _("MM IgG Kappa"),),
+            ("MM IgA Kappa", _("MM IgA Kappa"),),
+            ("MM IgD Kapper", _("MM IgD Kapper"),),
+            ("MM IgE Kapper", _("MM IgE Kapper"),),
+            ("MM Light Chain Kappa", _("MM Light Chain Kappa"),),
+
+            ("MM IgG Lambda", _("MM IgG Lambda"),),
+            ("MM IgA Lambda", _("MM IgA Lambda"),),
+            ("MM IgD Lambda", _("MM IgD Lambda"),),
+            ("MM IgE Lambda", _("MM IgE Lambda"),),
+            ("MM Light Chain Lambda", _("MM Light Chain Lambda"),),
+
+            ("Other", _("Other"),),
     )
-    hospital = models.ForeignKeyOrFreeText(Hospital, verbose_name=_("Hospital"))
-    diag_date = fields.DateField(
-        blank=False, null=True, verbose_name=_("Date of Diagnosis")
+
+    INFECTION_TYPE_CHOICES = (
+        ("Clinically Documented Infection", _("Clinically Documented Infection")),
+        ("Undocumented Infection", _("Undocumented Infection")),
+        (
+            "Microbiologically Documented Without Bacteremia",
+            _("Microbiologically Documented Without Bacteremia")
+        ),
+        (
+            "Microbiologically Documented With Bacteremia",
+            _("Microbiologically Documented With Bacteremia")
+        ),
+        (
+            "Other Microbiologic Documented Infection",
+            _("Other Microbiologic Documented Infection"),
+        )
     )
-    smm_history = fields.CharField(
-        max_length=10, choices=CHOICES, verbose_name=_("History of SMM")
+
+    DIAGNOSIS_OPTIONS = (
+        ("Solitary Bone Plasmacytoma", _("Solitary Bone Plasmacytoma"))
+        ("Symptomatic Multiple Myeloma", _("Symptomatic Multiple Myeloma")),
+        ("Plasmatic Celiac Leukemia", _("Plasmatic Celiac Leukemia")),
+        ("Primary Amylodosis", _("Primary Amylodosis")),
+        ("Asymptomatic MM", _("Asymptomatic MM")),
     )
-    smm_history_date = fields.DateField(
-        blank=True, null=True, verbose_name=_("Date of SMM diagnosis")
+
+    referred = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=CHOICES,
+        verbose_name=_("Referred")
     )
-    mgus_history = fields.CharField(
-        max_length=10, choices=CHOICES, verbose_name=_("History of MGUS")
+    previous_hospital = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        verbose_name=_("Previous Hospital")
     )
-    mgus_history_date = fields.DateField(
-        blank=True, null=True, verbose_name=_("Date of MGUS Diagnosis")
+
+    infection_type = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=INFECTION_TYPE_CHOICES,
+        verbose_name=_("")
     )
-    iss_stage = fields.CharField(
-        max_length=10, choices=R_ISS_STAGES, verbose_name=_("ISS Stage")
+    diagnosis = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=DIAGNOSIS_OPTIONS,
+        verbose_name=_("Diagnosis")
     )
-    ds_stage = fields.CharField(
-        max_length=10, choices=R_ISS_STAGES, verbose_name=_("DS Stage")
+    subclassification = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=SUBCLASSIFICATION_CHOICES,
+        verbose_name=_("SUBCLASSIFICATION")
     )
-    pp_type = fields.CharField(
-        max_length=50, choices=PP_TYPE_CHOICES, verbose_name=_("PP Type")
+
+    riss_stage = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=R_ISS_STAGES,
+        verbose_name=_("R-ISS Stage")
     )
-    del_17p = fields.CharField(
-        max_length=10, choices=CHOICES, verbose_name=_("del(17)p")
+
+    # GAH Score 0 to 94
+    gah_score = models.IntegerField(
+        blank=True, null=True, verbose_name=_("GAH Score")
     )
-    del_13 = fields.CharField(max_length=10, choices=CHOICES, verbose_name=_("del13"))
-    t4_14 = fields.CharField(max_length=10, choices=CHOICES, verbose_name=_("t(4;14)"))
-    t4_16 = fields.CharField(max_length=10, choices=CHOICES, verbose_name=_("t(4;16)"))
+    # IMWG Scale 1 to 8
+    imwg_scale = fields.IntegerField(
+        blank=True, null=True, verbose_name=_("IMWG Scale")
+    )
+    # ICC scale 0 to 31
+    cc_scale = fields.IntegerField(blank=True, null=True, verbose_name=_("ICC Scale"))
+
+    ircp_diag_date = models.DateField(
+        blank=True, null=True, verbose_name=_("IRCP Diagnosis Date")
+    )
 
     class Meta:
         verbose_name = _("Diagnosis Details")
         verbose_name_plural = _("Diagnosis Details")
+
+
+class Cytogenetics(models.EpisodeSubrecord):
+    CHOICES = CHOICES = (("Yes", _("Yes")), ("No", _("No")),)
+
+    t4_14_not_effected = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=CHOICES,
+        verbose_name=_("t(4;14) Not Effected")
+    )
+    t4_14_haploid_karyotype = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=CHOICES,
+        verbose_name=_("t(4;14) Haploid Karyotype")
+    )
+    t4_14 = fields.CharField(max_length=10, choices=CHOICES, verbose_name=_("t(4;14)"))
+    t4_14_16 = fields.CharField(max_length=10, choices=CHOICES, verbose_name=_("t(14;16)"))
+    t11_14 = fields.CharField(max_length=10, choices=CHOICES, verbose_name=_("t(11;14)"))
+    comments = models.TextField(blank=True, default="", verbose_name=_(""))
+
+
+class LabTests(models.EpisodeSubrecord):
+    # Troponine I, ng/L, min 0 max 350
+    troponina = models.IntegerField(blank=True, null=True, verbose_name=_("Troponina"))
+    total_proteins = models.IntegerField(blank=True, null=True, verbose_name=_("Total Proteins"))
+
+
+class Imaging(models.EpisodeSubrecord):
+    CT_SCAN_OPTIONS = (
+        ("Blank", _("Blank")),
+        ("Negative", _("Negative")),
+        ("Positive", _("Positive")),
+        ("Not Done", _("Not Done")),
+    )
+    ct_scan = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=CT_SCAN_OPTIONS,
+        verbose_name=_("CT Scan")
+    )
+    ct_scan_description = models.TextField(
+        blank=True, default="", verbose_name=_("CT Scan Description")
+    )
 
 
 class MMRegimen(models.EpisodeSubrecord):
