@@ -18,6 +18,99 @@ class MMStopReason(lookuplists.LookupList):
         verbose_name_plural = _("MM Stop Reason List")
 
 
+class MMPastMedicalHistory(models.PatientSubrecord):
+    _is_singleton = True
+    CHOICES = (("Yes", _("Yes")), ("No", _("No")),)
+
+    previous_neoplasm = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=CHOICES,
+        verbose_name=_("Previous Neoplasm")
+    )
+    previous_neoplasm_date_of_diagnosis = fields.DateField(
+        blank=True, null=True, verbose_name=_("Date Of Diagnosis")
+    )
+    previous_neoplasm_details = fields.TextField(
+        blank=True, default="", verbose_name=_("Details")
+    )
+
+    previous_neoplasm_2 = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=CHOICES,
+        verbose_name=_("Prevous Neoplasm 2")
+    )
+    previous_neoplasm_date_of_diagnosis_2 = fields.DateField(
+        blank=True, null=True, verbose_name=_("Date Of Diagnosis")
+    )
+    previous_neoplasm_details_2 = fields.TextField(
+        blank=True, default="", verbose_name=_("Details")
+    )
+
+    chronic_renal_insufficiency = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=CHOICES,
+        verbose_name=_("Chronic Renal Insufficiency")
+    )
+    chronic_renal_insufficiency_diagnosis_date = fields.DateField(
+        blank=True, null=True, verbose_name=_("Diagnosis Date")
+    )
+
+    # TODO Can we check this should not be a select field
+    monoclonal_pathology = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=CHOICES,
+        verbose_name=_("Monoclonal Pathology")
+    )
+    symtomatic_multiple_myeloma = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=CHOICES,
+        verbose_name=_("Symtomatic Multiple Myeloma")
+    )
+
+    asymtomatic_multiple_myeloma = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=CHOICES,
+        verbose_name=_("Asymtomatic Multiple Myeloma")
+    )
+
+    monoclonal_pathology_of_uncertain_meaning = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=CHOICES,
+        verbose_name=_("Monoclonal Pathology Of Uncertain Meaning")
+    )
+    # TODO I am not sure this is correct
+    monoclonal_pathology_of_uncertain_meaning_date = fields.DateField(
+        blank=True, null=True, verbose_name=_("Diagnosis Date")
+    )
+
+    external_pasmocytoma = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=CHOICES,
+        verbose_name=_("External Pasmocytoma")
+    )
+    comments = fields.TextField(blank=True, default="", verbose_name=_("Comments"))
+
+    class Meta:
+        verbose_name = _("Past Medical History")
+        verbose_name_plural = _("Past Medical Histories")
+
+
 class MMDiagnosisDetails(models.EpisodeSubrecord):
     _is_singleton = True  # One entry per patient that is updated
 

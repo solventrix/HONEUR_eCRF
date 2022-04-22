@@ -15,6 +15,7 @@ class Demographics(models.Demographics):
         blank=True, null=True, max_length=256, unique=True,
         verbose_name=_("External Identifier")
     )
+    comments = fields.TextField(blank=True, default="", verbose_name=_("Comments"))
 
 
 class Hospital(lookuplists.LookupList):

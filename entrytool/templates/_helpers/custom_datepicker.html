@@ -1,6 +1,7 @@
 {% load i18n %}
-<div class="form-group"
+<div class="form-group {{ style }}"
      {% if visibility %} {{ visibility|safe }} {% endif %}
+
      >
   <label
     class="control-label {% ifequal style "horizontal" %}col-sm-3{% endifequal %}">

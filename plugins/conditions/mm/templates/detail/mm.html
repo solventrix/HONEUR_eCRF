@@ -10,6 +10,9 @@
     <div class="col-md-3">{% include 'records/patient_status.html' %}</div>
   </section>
 </div>
+<div class="row">
+  <div class="col-md-8">{% record_panel models.MMPastMedicalHistory  full_width=True %}</div>
+</div>
 <section ng-show="episode.mm_diagnosis_details[0].consistency_token">
   <!-- Treatment lines, follow ups -->
 

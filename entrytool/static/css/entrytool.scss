@@ -162,7 +162,7 @@ h1 img {
     border-radius: 0px;
 }
 
-.control-label {
+.control-label, .checkbox label {
   text-transform: uppercase;
   letter-spacing: 0.2rem;
 }
@@ -171,8 +171,18 @@ h1 img {
     border: none;
 }
 
+.form-group.vertical{
+    margin-right: 10px;
+    margin-bottom: 20px;
+
+    label.control-label{
+        text-align: left;
+    }
+}
+
 .panel-pathway, .modal-body {
     input,
+    textarea,
     select {
         max-width: 300px;
     }

@@ -41,6 +41,14 @@
           [[ patient.demographics[0].sex | translate ]]
         </div>
       </div>
+      <div class="row">
+        <div class="col-md-6">
+          <span class="display-label">{% trans "Comments" %}</span>
+        </div>
+        <div class="col-md-6">
+          [[ patient.demographics[0].comments ]]
+        </div>
+      </div>
     </li>
   </ul>
   {% block footer %}{% endblock %}
