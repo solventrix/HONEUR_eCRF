@@ -1,7 +1,4 @@
-from distutils import text_file
-from re import I
-from tabnanny import verbose
-from django.forms import CharField
+from django.db.models.signals import post_save
 from django.utils.translation import gettext_lazy as _
 from django.db import models as fields
 from opal.core.fields import ForeignKeyOrFreeText
@@ -1014,3 +1011,21 @@ class Radiotherapy(models.EpisodeSubrecord):
     end_date = fields.DateField(
         blank=True, null=True, verbose_name=_("End Date")
     )
+
+
+class MMStemCellTransplantEligibility(models.EpisodeSubrecord):
+    _is_singleton = True
+    eligible_for_stem_cell_transplant = fields.BooleanField(default=False)
+
+    class Meta:
+        verbose_name = _("Stem Cell Transplant Eligibility")
+        verbose_name_plural = _("Stem Cell Transplant Eligibilities")
+
+
+def delete_stem_cells(sender, instance, **kwargs):
+    instance.episode.sct_set.all().delete()
+
+
+post_save.connect(
+    delete_stem_cells, sender=MMStemCellTransplantEligibility
+)
