@@ -1,7 +1,11 @@
 {% load forms %}
-{% input field="PatientOutcome.status" %}
-{% input field="PatientOutcome.outcome_at_the_last_visit" %}
 {% datepicker field="PatientOutcome.status_date" %}
+{% radio field="PatientOutcome.status" %}
+{% select field="PatientOutcome.outcome_at_the_last_visit" %}
+<span ng-show="editing.patient_outcome.status === 'Dead'">
+{% select field="PatientOutcome.cause_of_death" %}
+  <span ng-show="editing.patient_outcome.cause_of_death === 'Other'">
+    {% textarea field="PatientOutcome.cause_of_death_other" %}
+  </span>
+</span>
 {% textarea field="PatientOutcome.comments" %}
-{% input field="PatientOutcome.cause_of_death" %}
-{% textarea field="PatientOutcome.cause_of_death_other" %}

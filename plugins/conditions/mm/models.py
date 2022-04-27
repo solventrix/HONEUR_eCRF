@@ -423,7 +423,7 @@ class Cytogenetics(models.EpisodeSubrecord):
         null=True,
         max_length=256,
         choices=CHOICES,
-        verbose_name=_("")
+        verbose_name=_("Normal Study")
     )
     description = fields.TextField(blank=True, default="", verbose_name=_("Description"))
     other_study = fields.CharField(
@@ -495,7 +495,7 @@ class PatientOutcome(models.PatientSubrecord):
         verbose_name=_("Cause Of Death")
     )
     cause_of_death_other = fields.TextField(
-        blank=True, default="", verbose_name=_("Other")
+        blank=True, default="", verbose_name=_("Details")
     )
 
 
@@ -1002,8 +1002,8 @@ class MProteinMesurements(models.EpisodeSubrecord):
         verbose_name=_("Heavylite Count")
     )
 
-class Radiotherapy(models.EpisodeSubrecord):
 
+class Radiotherapy(models.EpisodeSubrecord):
     class Meta:
         verbose_name = _("Radiotherapy")
         verbose_name_plural = _("Radiotherapies")

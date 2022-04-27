@@ -1,8 +1,10 @@
 {% load forms %}
 {% input field="MProteinMesurements.serum_amount" %}
-{% input field="MProteinMesurements.heavy_chain_type" %}
-{% input field="MProteinMesurements.heavy_chain_type_other" %}
-{% input field="MProteinMesurements.light_chain_type" %}
+{% select field="MProteinMesurements.heavy_chain_type" %}
+<span ng-show="editing.m_protein_mesurements.heavy_chain_type === 'Other'">
+  {% input field="MProteinMesurements.heavy_chain_type_other" %}
+</span>
+{% select field="MProteinMesurements.light_chain_type" %}
 {% input field="MProteinMesurements.lambda_light_chain_count" %}
 {% input field="MProteinMesurements.kappa_light_chain_count" %}
 {% input field="MProteinMesurements.kappa_lambda_ratio" %}

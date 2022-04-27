@@ -1,6 +1,8 @@
 {% load forms %}
-{% input field="BoneDisease.treatment_type" %}
-{% input field="BoneDisease.bisphosphonate_treatment" %}
+{% select field="BoneDisease.treatment_type" %}
+<span ng-show="editing.bone_disease.treatment_type === 'Bisphosphonates Induction'">
+  {% input field="BoneDisease.bisphosphonate_treatment" %}
+</span>
 {% input field="BoneDisease.nb_cycles" %}
 {% datepicker field="BoneDisease.start_date" %}
 {% datepicker field="BoneDisease.end_date" %}

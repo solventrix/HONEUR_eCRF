@@ -1,6 +1,10 @@
 {% load forms %}
-{% input field="ConditionAtInduction.condition" %}
-{% input field="ConditionAtInduction.infection_type" %}
-{% input field="ConditionAtInduction.type_of_microorganism_infection" %}
-{% input field="ConditionAtInduction.infection_source" %}
+{% select field="ConditionAtInduction.condition" %}
+<span ng-show="editing.condition_at_induction.condition === 'Infection'">
+{% select field="ConditionAtInduction.infection_type" %}
+  {% input field="ConditionAtInduction.type_of_microorganism_infection" %}
+  {% input field="ConditionAtInduction.infection_source" %}
+</span>
+<span ng-show="editing.condition_at_induction.condition === 'Other'">
 {% input field="ConditionAtInduction.other_condition_name" %}
+</span>
