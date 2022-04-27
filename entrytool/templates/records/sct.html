@@ -1,33 +1,60 @@
-{% load i18n %}
-<div class="row" ng-show="item.hospital">
-  <div class="col-md-5">
-    <span class="display-label">
-      {% trans "Hospital" %}
-    </span>
-  </div>
-  <div class="col-md-7">
-    [[ item.hospital | translate ]]
-  </div>
-</div>
-
-<div class="row" ng-show="item.sct_date">
-  <div class="col-md-5">
-    <span class="display-label">
-      {% trans "Date" %}
-    </span>
-  </div>
-  <div class="col-md-7">
+<span ng-show="item.sct_date">
     [[ item.sct_date | displayDate ]]
-  </div>
-</div>
-
-<div class="row" ng-show="item.sct_type">
-  <div class="col-md-5">
-    <span class="display-label">
-      {% trans "Type" %}
-    </span>
-  </div>
-  <div class="col-md-7">
-    [[ item.sct_type | translate ]]
-  </div>
-</div>
+   <br />
+</span>
+<span ng-show="item.number_of_cells_infused">
+    [[ item.number_of_cells_infused ]]
+   <br />
+</span>
+<span ng-show="item.sct_type">
+    [[ item.sct_type ]]
+   <br />
+</span>
+<span ng-show="item.negativizacion_emr">
+    [[ item.negativizacion_emr ]]
+   <br />
+</span>
+<span ng-show="item.emr_technique">
+    [[ item.emr_technique ]]
+   <br />
+</span>
+<span ng-show="item.negativizacion_emr_date">
+    [[ item.negativizacion_emr_date ]]
+   <br />
+</span>
+<span ng-show="item.response">
+    [[ item.response ]]
+   <br />
+</span>
+<span ng-show="item.response_date">
+    [[ item.response_date | displayDate ]]
+   <br />
+</span>
+<span ng-show="item.type_of_alotph_transplant">
+    [[ item.type_of_alotph_transplant ]]
+   <br />
+</span>
+<span ng-show="item.alotph_conditioning">
+    [[ item.alotph_conditioning ]]
+   <br />
+</span>
+<span ng-show="item.alotph_emr_technique">
+    [[ item.alotph_emr_technique ]]
+   <br />
+</span>
+<span ng-show="item.alotph_status">
+    [[ item.alotph_status ]]
+   <br />
+</span>
+<span ng-show="item.alotph_source">
+    [[ item.alotph_source ]]
+   <br />
+</span>
+<span ng-show="item.atsp_conditioning">
+    [[ item.atsp_conditioning ]]
+   <br />
+</span>
+<span ng-show="item.hospital">
+    [[ item.hospital ]]
+   <br />
+</span>

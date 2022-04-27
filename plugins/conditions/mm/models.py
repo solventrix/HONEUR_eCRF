@@ -207,7 +207,7 @@ class MMDiagnosisDetails(models.EpisodeSubrecord):
         null=True,
         max_length=256,
         choices=INFECTION_TYPE_CHOICES,
-        verbose_name=_("")
+        verbose_name=_("Infection_Type")
     )
     diagnosis = fields.CharField(
         blank=True,
@@ -771,12 +771,6 @@ class MMRegimen(models.EpisodeSubrecord):
         ("Watch and wait", _("Watch and wait")),
     )
 
-    EMR2_TECHNIQUE_OPTIONS = (
-        ("NGS", _("NGS"),),
-        ("FC (Flow Cytometry)", _("FC (Flow Cytometry)"),),
-        ("Both", _("Borth")),
-    )
-
     YES_NO = (
         ("Yes", _("Yes"),),
         ("No", _("No"),)
@@ -792,12 +786,9 @@ class MMRegimen(models.EpisodeSubrecord):
         verbose_name=_("Start Date"),
     )
     end_date = fields.DateField(verbose_name=_("End Date"), blank=True, null=True)
-    response_date = fields.DateField(
-        blank=True, null=True, verbose_name=_("Response Date")
-    )
     regimen = ForeignKeyOrFreeText(MMRegimenList, verbose_name=_("Regimen"))
-    regimen_description = fields.TextField(
-        blank=True, default="", verbose_name=_("Regimen Description")
+    regimen_details = fields.TextField(
+        blank=True, default="", verbose_name=_("Regimen Details")
     )
     category = fields.CharField(
         max_length=40, choices=REGIMEN_TYPES, verbose_name=_("Regimen Type")
@@ -805,19 +796,11 @@ class MMRegimen(models.EpisodeSubrecord):
     stop_reason = ForeignKeyOrFreeText(
         MMStopReason, verbose_name=_("Reason for Regimen Stop")
     )
-    stop_reason_description = fields.TextField(
-        blank=True, default="", verbose_name=_("Stop Reason Description")
+    stop_reason_details = fields.TextField(
+        blank=True, default="", verbose_name=_("Stop Reason Details")
     )
     comments = fields.TextField(blank=True, default="", verbose_name=_("Comments"))
 
-    # Technique used to determine negative MRD
-    emr_technique = fields.CharField(
-        blank=True,
-        null=True,
-        max_length=256,
-        choices=EMR2_TECHNIQUE_OPTIONS,
-        verbose_name=_("EMR2 Technique")
-    )
 
     negative_mrd = fields.CharField(
         blank=True,
@@ -1000,10 +983,10 @@ class MProteinMesurements(models.EpisodeSubrecord):
     )
 
 
-class Radiotherapy(models.EpisodeSubrecord):
+class RadiotherapyInduction(models.EpisodeSubrecord):
     class Meta:
-        verbose_name = _("Radiotherapy")
-        verbose_name_plural = _("Radiotherapies")
+        verbose_name = _("Radiotherapy Induction")
+        verbose_name_plural = _("Radiotherapy Inductions")
 
     start_date = fields.DateField(
         blank=True, null=True, verbose_name=_("Start Date")

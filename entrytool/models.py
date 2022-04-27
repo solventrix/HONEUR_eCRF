@@ -59,6 +59,12 @@ class SCT(models.EpisodeSubrecord):
         ("Other", _("Other"))
     )
 
+    EMR2_TECHNIQUE_OPTIONS = (
+        ("NGS", _("NGS"),),
+        ("FC (Flow Cytometry)", _("FC (Flow Cytometry)"),),
+        ("Both", _("Borth")),
+    )
+
     ALOTPH_CONDITION_OPTIONS = (
         ("BU-FLU", _("BU-FLU"),),
         ("TT-BU-FLU", _("TT-BU-FLU"),),
@@ -129,6 +135,14 @@ class SCT(models.EpisodeSubrecord):
         max_length=256,
         choices=CHOICES,
         verbose_name=_("Negativizacion EMR")
+    )
+
+    emr_technique = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=EMR2_TECHNIQUE_OPTIONS,
+        verbose_name=_("EMR2 Technique")
     )
 
     negativizacion_emr_date = fields.CharField(

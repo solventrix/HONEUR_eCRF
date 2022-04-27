@@ -1,5 +1,15 @@
 {% load forms %}
-{% load custom_forms %}
-{% select field="SCT.hospital" required=False %}
-{% custom_datepicker field="SCT.sct_date" no_future=False date_after="$root.patientValidator.entrytool_helper.getDiagnosis($root.patientValidator.patient).diag_date" date_after_diff="0" date_after_message=_("The SCT should be after the date of diagnosis") %}
-{% select field="SCT.sct_type" %}
+{% datepicker field="SCT.sct_date" %}
+{% input field="SCT.sct_type" %}
+{% input field="SCT.negativizacion_emr" %}
+{% input field="SCT.emr_technique" %}
+{% input field="SCT.negativizacion_emr_date" %}
+{% input field="SCT.response" %}
+{% datepicker field="SCT.response_date" %}
+{% input field="SCT.type_of_alotph_transplant" %}
+{% input field="SCT.alotph_conditioning" %}
+{% input field="SCT.alotph_emr_technique" %}
+{% input field="SCT.alotph_status" %}
+{% input field="SCT.alotph_source" %}
+{% input field="SCT.atsp_conditioning" %}
+{% input field="SCT.hospital" %}
