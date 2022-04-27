@@ -6,12 +6,20 @@
   <div class="col-md-4">
     {% record_panel models.MMDiagnosisDetails full_width=True noentries=_("Please complete details for this patient to continue.") %}
   </div>
-  <section ng-show="episode.mm_diagnosis_details[0].consistency_token">
-    <div class="col-md-3">{% include 'records/patient_status.html' %}</div>
-  </section>
+  <div class="col-md-4">
+    {% record_panel models.PatientOutcome %}
+  </div>
 </div>
 <div class="row">
-  <div class="col-md-8">{% record_panel models.MMPastMedicalHistory  full_width=True %}</div>
+  <div class="col-md-4">
+    {% record_panel models.MMPastMedicalHistory %}
+  </div>
+  <div class="col-md-4">
+    {% record_panel models.BoneDiseaseTreatment %}
+  </div>
+  <div class="col-md-4">
+    {% record_panel models.OtherMedicalCondition %}
+  </div>
 </div>
 <section ng-show="episode.mm_diagnosis_details[0].consistency_token">
   <!-- Treatment lines, follow ups -->
@@ -47,11 +55,14 @@
           <div class="col-md-4">
             {% record_panel models.MMRegimen %}
           </div>
-          <div class="col-md-3">
+          <div class="col-md-4">
             {% record_panel models.MMResponse %}
           </div>
           <div class="col-md-4">
             {% record_panel models.SCT %}
+          </div>
+          <div class="col-md-4">
+            {% record_panel models.MonoclonalDisease %}
           </div>
         </div>
       </div>

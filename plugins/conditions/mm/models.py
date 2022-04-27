@@ -438,9 +438,8 @@ class Cytogenetics(models.EpisodeSubrecord):
 class PatientOutcome(models.PatientSubrecord):
 
     class Meta:
-        verbose_name = _('PatientOutcome')
-        verbose_name_plural = _('PatientOutcome')
-
+        verbose_name = _('Patient Outcome')
+        verbose_name_plural = _('Patient Outcomes')
 
     OUTCOME_CHOICES = (
         ("Complete Response Molecular", _("Complete Response Molecular"),),
@@ -473,7 +472,7 @@ class PatientOutcome(models.PatientSubrecord):
         null=True,
         max_length=256,
         choices=OUTCOME_CHOICES,
-        verbose_name=_("")
+        verbose_name=_("Outcome At The Last Visit")
     )
     status = fields.CharField(
         blank=True,
