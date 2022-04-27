@@ -25,22 +25,176 @@ class Hospital(lookuplists.LookupList):
 
 
 class SCT(models.EpisodeSubrecord):
+    CHOICES = (("Yes", _("Yes")), ("No", _("No")),)
     SCT_TYPES = (
-        ("Allogenic", _("Allogenic")),
-        ("Autologous", _("Autologous")),
+        ("Allogenic", _("Allogenic")),  # ALOTPH
+        ("Autologous", _("Autologous")),   # ATSP
+        ("Tandem ATSP", _("Tandem ATSP ")),
         ("Unknown", _("Unknown")),
     )
+
+    ALOTPH_TYPES = (
+        ("HLA identical", _("HLA identical"),),
+        ("HLA identicofen", _("HLA identicofen"),),
+        (
+            "Aplo: HLA unidentified related (>1 missmatch) phenotype",
+            _("Aplo: HLA unidentified related (>1 missmatch) phenotype"),
+        ),
+        (
+            "HLA no related ident (NO HAPLO: 1 missmatch)",
+            _("HLA no related ident (NO HAPLO: 1 missmatch)"),
+        ),
+        (
+            "HLA0 identical unrelated",
+            _("HLA0 identical unrelated")
+        ),
+        (
+            "HLA-non-identical unrelated", _("HLA-non-identical unrelated")
+        ),
+        (
+            # TODO google translates this as a stranger... we will ask for a better tranlsation
+            "An unknown",
+            _("An unkown")
+        ),
+        ("Other", _("Other"))
+    )
+
+    ALOTPH_CONDITION_OPTIONS = (
+        ("BU-FLU", _("BU-FLU"),),
+        ("TT-BU-FLU", _("TT-BU-FLU"),),
+        ("TT-FLU-BU", _("TT-FLU-BU"),),
+        ("Cyclophosphamide-ATG", _("Cyclophosphamide-ATG"),),
+        ("TT-BU-FLU-ATG", _("TT-BU-FLU-ATG"),),
+        ("TT-FLU-BU-ATG", _("TT-FLU-BU-ATG"),),
+        ("FLU-Cyclophosphamide-ATG", _("FLU-Cyclophosphamide-ATG"),),
+        ("FLU-ATG", _("FLU-ATG"),),
+    )
+
+    ATSP_CONDITION_OPTIONS = (
+        ("BEA", _("BEA"),),
+        ("BUCY", _("BUCY"),),
+        ("Melfalan 140", _("Melfalan 140"),),
+        ("Melfalan 200", _("Melfalan 200"),),
+        ("BU-MEL", _("BU-MEL"),),
+        ("BEAM", _("BEAM"),),
+    )
+
+    ALOTPH_EMR_TECHNIQUE_OPTIONS = (
+        ("Tecnica NGS", _("Tecnica NGS"),),
+        ("Tecnica CFM (Flow Cytometry)", _("Tecnica CFM (Flow Cytometry)")),
+        ("Both", _("Both")),
+    )
+
+    STATUS_OPTIONS = (
+        ("Complete Response Molecular", _("Complete Response Molecular")),
+        ("Complete Response Immunophenotype", _("Complete Response Immunophenotype")),
+        ("Complete Response Strict", _("Complete Response Strict")),
+        ("Complete Response", _("Complete Response")),
+        ("Very Good Partial Answer", _("Very Good Partial Answer")),
+        ("Partial Response", _("Partial Response")),
+        ("Stable Disease", _("Stable Disease"),),
+        ("Progression", _("Progression"),),
+        ("Unkown", _("Unkown"),),
+        ("Dead", _("Dead"),),
+    )
+
+    ALOTPH_SOURCE_OPTIONS = (
+        ("Bone Marrow", _("Bone Marrow"),),
+        ("Cord", _("Cord"),),
+        ("Peripheral Bloods", _("Peripheral Bloods"),),
+        ("Bone Marrow And Peripheral Bloods", _("Bone Marrow And Peripheral Bloods"),),
+        ("Other", _("Other"),),
+        ("Unknown", _("Unknown"),),
+    )
+
     order_by = "-sct_date"
 
     sct_date = fields.DateField(verbose_name=_("Date of SCT"))
     hospital = models.ForeignKeyOrFreeText(
         Hospital, verbose_name=_("Hospital")
     )
+    number_of_cells_infused = fields.BigIntegerField(
+        blank=True, null=True, verbose_name=_("Number Of Cells Infused")
+    )
     sct_type = fields.CharField(
         max_length=12,
         verbose_name=_("Type of SCT"),
         choices=SCT_TYPES,
         null=True
+    )
+
+    negativizacion_emr = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=CHOICES,
+        verbose_name=_("Negativizacion EMR")
+    )
+
+    negativizacion_emr_date = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=CHOICES,
+        verbose_name=_("Negativizacion EMR Date")
+    )
+    response = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=STATUS_OPTIONS,
+        verbose_name=_("Response")
+    )
+    response_date = fields.DateField(
+        blank=True,
+        null=True,
+        verbose_name=_("Response Date"),
+    )
+
+    # if SCT_Type == Allogenic
+    type_of_alotph_transplant = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=ALOTPH_TYPES,
+        verbose_name=_("Type Of Transplant")
+    )
+    alotph_conditioning = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=ALOTPH_CONDITION_OPTIONS,
+        verbose_name=_("Conditioning")
+    )
+    alotph_emr_technique = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=ALOTPH_EMR_TECHNIQUE_OPTIONS,
+        verbose_name=_("EMR Technique")
+    )
+    alotph_status = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=STATUS_OPTIONS,
+        verbose_name=_("Status")
+    )
+    alotph_source = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=ALOTPH_SOURCE_OPTIONS,
+        verbose_name=_("Source")
+    )
+
+    # if SCT type == ATSP
+    atsp_conditioning = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=ATSP_CONDITION_OPTIONS,
+        verbose_name=_("Conditioning")
     )
 
     class Meta:
