@@ -1,3 +1,4 @@
+from calendar import c
 from django.db.models.signals import post_save
 from django.utils.translation import gettext_lazy as _
 from django.db import models as fields
@@ -122,19 +123,6 @@ class MMDiagnosisDetails(models.EpisodeSubrecord):
 
     CHOICES = (("Yes", _("Yes")), ("No", _("No")),)
 
-    ISS_DIAGNOSTIC_STATUS = (
-        ("One", _("One")),
-        ("Two", _("Two")),
-        ("Three", _("Three")),
-    )
-
-    R_ISS_STAGES = (
-        ("Stage I", _("Stage I")),
-        ("Stage II", _("Stage II")),
-        ("Stage III", _("Stage III")),
-        ("Unknown", _("Unknown")),
-    )
-
     # TODO seperate these out into the IgG, IGA, Light chain, no light chain etc
     # and Kappa and Llambda
 
@@ -154,23 +142,6 @@ class MMDiagnosisDetails(models.EpisodeSubrecord):
             ("MM Light Chain Lambda", _("MM Light Chain Lambda"),),
 
             ("Other", _("Other"),),
-    )
-
-    INFECTION_TYPE_CHOICES = (
-        ("Clinically Documented Infection", _("Clinically Documented Infection")),
-        ("Undocumented Infection", _("Undocumented Infection")),
-        (
-            "Microbiologically Documented Without Bacteremia",
-            _("Microbiologically Documented Without Bacteremia")
-        ),
-        (
-            "Microbiologically Documented With Bacteremia",
-            _("Microbiologically Documented With Bacteremia")
-        ),
-        (
-            "Other Microbiologic Documented Infection",
-            _("Other Microbiologic Documented Infection"),
-        )
     )
 
     DIAGNOSIS_OPTIONS = (
@@ -202,13 +173,6 @@ class MMDiagnosisDetails(models.EpisodeSubrecord):
         verbose_name=_("Previous Hospital")
     )
 
-    infection_type = fields.CharField(
-        blank=True,
-        null=True,
-        max_length=256,
-        choices=INFECTION_TYPE_CHOICES,
-        verbose_name=_("Infection_Type")
-    )
     diagnosis = fields.CharField(
         blank=True,
         null=True,
@@ -223,21 +187,12 @@ class MMDiagnosisDetails(models.EpisodeSubrecord):
         choices=SUBCLASSIFICATION_CHOICES,
         verbose_name=_("SUBCLASSIFICATION")
     )
-
-    iss_diagnostic_status = fields.CharField(
+    epidemiological_register = fields.CharField(
         blank=True,
         null=True,
         max_length=256,
-        choices=ISS_DIAGNOSTIC_STATUS,
-        verbose_name=_("ISS Diagnostic Status")
-    )
-
-    riss_stage = fields.CharField(
-        blank=True,
-        null=True,
-        max_length=256,
-        choices=R_ISS_STAGES,
-        verbose_name=_("R-ISS Stage")
+        choices=CHOICES,
+        verbose_name=_("Epidemiological Register")
     )
 
     # GAH Score 0 to 94
@@ -261,60 +216,117 @@ class MMDiagnosisDetails(models.EpisodeSubrecord):
 
     # kg
     weight = fields.FloatField(blank=True, null=True, max_length=256, verbose_name=_("Weight"))
-    pres_clinical_renal_failure = fields.CharField(
+
+
+    # 0-5 scale
+    ecog = fields.IntegerField(blank=True, null=True, verbose_name=_("ECOG"))
+
+    epidemiologic_registry = fields.CharField(
         blank=True,
         null=True,
         max_length=256,
         choices=CHOICES,
-        verbose_name=_("Pres Clinical Renal Failure")
-    )
-    pres_clinical_hypercalcemia = fields.CharField(
-        blank=True,
-        null=True,
-        max_length=256,
-        choices=CHOICES,
-        verbose_name=_("Pres Clinical Hypercalcemia")
-    )
-    pres_clinical_fever = fields.CharField(
-        blank=True,
-        null=True,
-        max_length=256,
-        choices=CHOICES,
-        verbose_name=_("Pres Clinical Fever")
-    )
-    pres_clinical_anemia = fields.CharField(
-        blank=True,
-        null=True,
-        max_length=256,
-        choices=CHOICES,
-        verbose_name=_("Pres Clinical Anemia")
+        verbose_name=_("Epidemiologic registry")
     )
 
-    bone_pain_pres_clinic = fields.CharField(
+
+class ClinicalPresentation(models.EpisodeSubrecord):
+    CHOICES = (("Yes", _("Yes")), ("No", _("No")),)
+
+    INFECTION_TYPE_CHOICES = (
+        ("Clinically Documented Infection", _("Clinically Documented Infection")),
+        ("Undocumented Infection", _("Undocumented Infection")),
+        (
+            "Microbiologically Documented Without Bacteremia",
+            _("Microbiologically Documented Without Bacteremia")
+        ),
+        (
+            "Microbiologically Documented With Bacteremia",
+            _("Microbiologically Documented With Bacteremia")
+        ),
+        (
+            "Other Microbiologic Documented Infection",
+            _("Other Microbiologic Documented Infection"),
+        )
+    )
+
+    ISS_OPTIONS = (
+        ("One", _("One")),
+        ("Two", _("Two")),
+        ("Three", _("Three")),
+    )
+
+    R_ISS_OPTIONS = (
+        ("Stage I", _("Stage I")),
+        ("Stage II", _("Stage II")),
+        ("Stage III", _("Stage III")),
+        ("Unknown", _("Unknown")),
+    )
+
+    infection_type = fields.CharField(
         blank=True,
         null=True,
         max_length=256,
-        choices=CHOICES,
-        verbose_name=_("Pres Clinical Bone Pain")
+        choices=INFECTION_TYPE_CHOICES,
+        verbose_name=_("Infection_Type")
     )
 
     # the name of the micro organism
-    pres_clinical_microorganism = fields.CharField(
+    microorganism = fields.CharField(
         blank=True,
         null=True,
         max_length=256,
-        verbose_name=_("Pres Clinical Microorganism")
+        verbose_name=_("Microorganism")
     )
 
-    pres_clinical_description = fields.TextField(
-        blank=True, default="", verbose_name=_("Pres Clinical Description")
-    )
-
-    # TODO, not sure what this is, can we remove it?
-    microorg_pc_focus = fields.CharField(
+    microorganism_source = fields.CharField(
         blank=True,
         null=True,
-        max_length=256
+        max_length=256,
+        verbose_name="Microorganism source"
+    )
+
+    renal_failure = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=CHOICES,
+        verbose_name=_("Renal Failure")
+    )
+    hypercalcemia = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=CHOICES,
+        verbose_name=_("Hypercalcemia")
+    )
+    fever = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=CHOICES,
+        verbose_name=_("Fever")
+    )
+    anemia = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=CHOICES,
+        verbose_name=_("Anemia")
+    )
+    dialysis = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=CHOICES,
+        verbose_name=_("Dialysis")
+    )
+    bone_pain = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=CHOICES,
+        verbose_name=_("Bone Pain")
     )
 
     extramedullary_plasmacytomas = fields.CharField(
@@ -325,22 +337,26 @@ class MMDiagnosisDetails(models.EpisodeSubrecord):
         verbose_name=_("Extramedullary plasmacytomas")
     )
 
-    # 0-5 scale
-    ecog = fields.IntegerField(blank=True, null=True, verbose_name=_("ECOG"))
-    dialysis = fields.CharField(
+    # International Staging System
+    iss = fields.CharField(
         blank=True,
         null=True,
         max_length=256,
-        choices=CHOICES,
-        verbose_name=_("Dialysis")
+        choices=ISS_OPTIONS,
+        verbose_name=_("ISS")
     )
 
-    epidemiologic_registry = fields.CharField(
+    # Revised ISS
+    riss = fields.CharField(
         blank=True,
         null=True,
         max_length=256,
-        choices=CHOICES,
-        verbose_name=_("Epidemiologic registry")
+        choices=R_ISS_OPTIONS,
+        verbose_name=_("R-ISS")
+    )
+
+    details = fields.TextField(
+        blank=True, default="", verbose_name=_("Details")
     )
 
 
@@ -422,7 +438,7 @@ class Cytogenetics(models.EpisodeSubrecord):
         choices=CHOICES,
         verbose_name=_("Normal Study")
     )
-    description = fields.TextField(blank=True, default="", verbose_name=_("Description"))
+    details = fields.TextField(blank=True, default="", verbose_name=_("Details"))
     other_study = fields.CharField(
         blank=True,
         null=True,
@@ -430,6 +446,8 @@ class Cytogenetics(models.EpisodeSubrecord):
         choices=CHOICES,
         verbose_name=_("Other study")
     )
+
+
 
 
 class PatientOutcome(models.PatientSubrecord):
