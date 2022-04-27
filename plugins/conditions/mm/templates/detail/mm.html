@@ -11,14 +11,8 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-md-4">
-    {% record_panel models.MMPastMedicalHistory %}
-  </div>
-  <div class="col-md-4">
-    {% record_panel models.BoneDiseaseTreatment %}
-  </div>
-  <div class="col-md-4">
-    {% record_panel models.OtherMedicalCondition %}
+  <div class="col-md-8">
+    {% record_panel models.MMPastMedicalHistory full_width=True %}
   </div>
 </div>
 <section ng-show="episode.mm_diagnosis_details[0].consistency_token">
@@ -52,17 +46,24 @@
               <i class="fa fa-trash-o delete-lot pointer" ng-click="lineOfTreatmentManager.delete(episode)"></i>
             </h2>
           </div>
-          <div class="col-md-4">
-            {% record_panel models.MMRegimen %}
-          </div>
-          <div class="col-md-4">
-            {% record_panel models.MMResponse %}
-          </div>
-          <div class="col-md-4">
-            {% record_panel models.SCT %}
-          </div>
-          <div class="col-md-4">
-            {% record_panel models.MonoclonalDisease %}
+          <div class="col-md-11">
+            <div class="row">
+              <div class="col-md-4">
+                {% record_panel models.MMRegimen %}
+              </div>
+              <div class="col-md-4">
+                {% record_panel models.MMResponse %}
+              </div>
+              <div class="col-md-4">
+                {% record_panel models.SCT %}
+              </div>
+              <div class="col-md-4">
+                {% record_panel models.BoneDisease %}
+              </div>
+              <div class="col-md-4">
+                {% record_panel models.ConditionAtInduction %}
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -84,6 +85,23 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-12">{% include "detail/followups.html" %}</div>
+    <div class="col-md-12">
+      <div class="col-md-4">
+        {% record_panel models.LabTests %}
+      </div>
+      <div class="col-md-3">
+        {% record_panel models.Imaging %}
+      </div>
+      <div class="col-md-4">
+        {% record_panel models.Radiotherapy %}
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="col-md-4">
+          {% record_panel models.MProteinMesurements %}
+      </div>
+    </div>
   </div>
 </section>

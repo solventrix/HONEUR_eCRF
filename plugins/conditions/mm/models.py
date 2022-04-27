@@ -705,11 +705,10 @@ class Imaging(models.EpisodeSubrecord):
     )
 
 
-class OtherMedicalCondition(models.EpisodeSubrecord):
-
+class ConditionAtInduction(models.EpisodeSubrecord):
     class Meta:
-        verbose_name = _('Other Medical Condition')
-        verbose_name_plural = _('Other Medical Conditions')
+        verbose_name = _('Condition at induction')
+        verbose_name_plural = _('Conditions at induction')
 
     INFECTION_TYPES = (
         ("Undocumented Preinfection", _("Undocumented Preinfection"),),
@@ -839,8 +838,7 @@ class MMRegimen(models.EpisodeSubrecord):
         verbose_name_plural = _("Regimens")
 
 
-class BoneDiseaseTreatment(models.EpisodeSubrecord):
-
+class BoneDisease(models.EpisodeSubrecord):
     class Meta:
         verbose_name = _("Bone Disease Treatment")
         verbose_name_plural = _("Bone Disease Treatments")
@@ -886,20 +884,6 @@ class BoneDiseaseTreatment(models.EpisodeSubrecord):
     )
 
 
-class Radiotherapy(models.EpisodeSubrecord):
-
-    class Meta:
-        verbose_name = _("Radiotherapy")
-        verbose_name_plural = _("Radiotherapies")
-
-    start_date = fields.DateField(
-        blank=True, null=True, verbose_name=_("Start Date")
-    )
-    end_date = fields.DateField(
-        blank=True, null=True, verbose_name=_("End Date")
-    )
-
-
 class MMResponse(models.EpisodeSubrecord):
     _sort = "response_date"
     order_by = "-response_date"
@@ -907,7 +891,6 @@ class MMResponse(models.EpisodeSubrecord):
     class Meta:
         verbose_name = _("Response")
         verbose_name_plural = _("Responses")
-
 
     RESPONSES = (
         ("Minimal response", _("Minimal response")),
@@ -926,13 +909,9 @@ class MMResponse(models.EpisodeSubrecord):
         max_length=50, choices=RESPONSES, verbose_name=_("Response")
     )
 
-    class Meta:
-        verbose_name = _("Response")
-        verbose_name_plural = _("Responses")
 
-
-# lab tests or follow up
-class MonoclonalDisease(models.EpisodeSubrecord):
+# lab tests
+class MProteinMesurements(models.EpisodeSubrecord):
     HEAVY_CHAIN_OPTIONS = (
         ("IgG", _("IgG"),),
         ("IgD", _("IgD"),),
@@ -1021,4 +1000,17 @@ class MonoclonalDisease(models.EpisodeSubrecord):
         null=True,
         max_length=256,
         verbose_name=_("Heavylite Count")
+    )
+
+class Radiotherapy(models.EpisodeSubrecord):
+
+    class Meta:
+        verbose_name = _("Radiotherapy")
+        verbose_name_plural = _("Radiotherapies")
+
+    start_date = fields.DateField(
+        blank=True, null=True, verbose_name=_("Start Date")
+    )
+    end_date = fields.DateField(
+        blank=True, null=True, verbose_name=_("End Date")
     )
