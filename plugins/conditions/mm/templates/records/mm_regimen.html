@@ -1,56 +1,10 @@
-<span ng-show="item.nbCycles">
-    [[ item.nbCycles ]]
-   <br />
-</span>
-<span ng-show="item.start_date">
-    [[ item.start_date | displayDate ]]
-   <br />
-</span>
-<span ng-show="item.end_date">
-    [[ item.end_date | displayDate ]]
-   <br />
-</span>
-<span ng-show="item.response_date">
-    [[ item.response_date | displayDate ]]
-   <br />
-</span>
-<span ng-show="item.regimen_details">
-    [[ item.regimen_details ]]
-   <br />
-</span>
-<span ng-show="item.category">
-    [[ item.category ]]
-   <br />
-</span>
-<span ng-show="item.stop_reason_description">
-    [[ item.stop_reason_description ]]
-   <br />
-</span>
-<span ng-show="item.comments">
-    [[ item.comments ]]
-   <br />
-</span>
-<span ng-show="item.emr_technique">
-    [[ item.emr_technique ]]
-   <br />
-</span>
-<span ng-show="item.negative_mrd">
-    [[ item.negative_mrd ]]
-   <br />
-</span>
-<span ng-show="item.negative_mrd_date">
-    [[ item.negative_mrd_date | displayDate ]]
-   <br />
-</span>
-<span ng-show="item.hospital">
-    [[ item.hospital ]]
-   <br />
-</span>
-<span ng-show="item.regimen">
-    [[ item.regimen ]]
-   <br />
-</span>
-<span ng-show="item.stop_reason">
-    [[ item.stop_reason ]]
-   <br />
-</span>
+{% load honeur_panels %}
+{% field_display "MMRegimen.category" %}
+{% field_display "MMRegimen.start_date" %}
+{% field_display "MMRegimen.end_date" %}
+{% field_display "MMRegimen.regimen" %}
+{% field_display "MMRegimen.regimen_details" %}
+{% field_display "MMRegimen.stop_reason" %}
+{% field_display "MMRegimen.stop_reason_details" %}
+{% field_display "MMRegimen.nbCycles" %}
+{% field_display "MMRegimen.comments" %}

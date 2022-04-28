@@ -15,7 +15,7 @@
             {% if singleton %}
             <i class="fa fa-pencil edit pull-right pointer"
                ng-click="parent.recordEditor.editItem('{{ name }}', parent.{{ name }}[0]).then($root.patientValidator.clean)"></i>
-            {% else %}
+          {% else %}
             <i class="fa fa-plus-circle edit pull-right pointer"
                ng-click="parent.recordEditor.newItem('{{ name }}').then($root.patientValidator.clean)"></i>
             {% endif %}

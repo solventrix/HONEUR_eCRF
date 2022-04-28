@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="col-md-6">
+    <span class="display-label">{{ label }}</span>
+  </div>
+  <div class="col-md-6">
+    {% if is_date %}
+      [[ item.{{ field_name }}  | displayDate ]]
+    {% else %}
+      [[ item.{{ field_name }} | translate ]]
+    {% endif %}
+  </div>
+</div>

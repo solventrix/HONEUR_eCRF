@@ -819,7 +819,6 @@ class MMRegimen(models.EpisodeSubrecord):
     )
     comments = fields.TextField(blank=True, default="", verbose_name=_("Comments"))
 
-
     negative_mrd = fields.CharField(
         blank=True,
         null=True,

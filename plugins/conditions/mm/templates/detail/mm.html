@@ -3,14 +3,14 @@
 {% load i18n %}
 <div class="row">
   <div class="col-md-4">{% include 'partials/_demographics_panel.html' %}</div>
-  <div class="col-md-4">
+  <div class="col-md-8">
     {% record_panel models.MMDiagnosisDetails full_width=True noentries=_("Please complete details for this patient to continue.") %}
-  </div>
-  <div class="col-md-4">
-    {% record_panel models.PatientOutcome %}
   </div>
 </div>
 <div class="row">
+  <div class="col-md-4">
+    {% record_panel models.PatientOutcome %}
+  </div>
   <div class="col-md-8">
     {% record_panel models.MMPastMedicalHistory full_width=True %}
   </div>

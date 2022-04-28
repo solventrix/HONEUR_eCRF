@@ -1,20 +1,10 @@
-<span ng-show="item.condition">
-    [[ item.condition ]]
-   <br />
-</span>
-<span ng-show="item.infection_type">
-    [[ item.infection_type ]]
-   <br />
-</span>
-<span ng-show="item.type_of_microorganism_infection">
-    [[ item.type_of_microorganism_infection ]]
-   <br />
-</span>
-<span ng-show="item.infection_source">
-    [[ item.infection_source ]]
-   <br />
-</span>
-<span ng-show="item.other_condition_name">
-    [[ item.other_condition_name ]]
-   <br />
+{% load honeur_panels %}
+{% field_display "ConditionAtInduction.condition" %}
+<span ng-show="item.condition_at_induction.condition === 'Infection">
+    {% field_display "ConditionAtInduction.infection_type" %}
+    {% field_display "ConditionAtInduction.type_of_microorganism_infection" %}
+    {% field_display "ConditionAtInduction.infection_source" %}
+    <span ng-show="item.condition_at_induction.infection_source ==='Other'">
+        {% field_display "ConditionAtInduction.other_condition_name" %}
+    </span>
 </span>

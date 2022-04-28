@@ -1,84 +1,21 @@
-<span ng-show="item.pcr">
-    [[ item.pcr ]]
-   <br />
-</span>
-<span ng-show="item.celulas_plasmaticas_circulantes">
-    [[ item.celulas_plasmaticas_circulantes ]]
-   <br />
-</span>
-<span ng-show="item.troponina">
-    [[ item.troponina ]]
-   <br />
-</span>
-<span ng-show="item.total_proteins">
-    [[ item.total_proteins ]]
-   <br />
-</span>
-<span ng-show="item.platelets">
-    [[ item.platelets ]]
-   <br />
-</span>
-<span ng-show="item.beta_2_microglobulin">
-    [[ item.beta_2_microglobulin ]]
-   <br />
-</span>
-<span ng-show="item.alkaline_phosphatase">
-    [[ item.alkaline_phosphatase ]]
-   <br />
-</span>
-<span ng-show="item.albumin">
-    [[ item.albumin ]]
-   <br />
-</span>
-<span ng-show="item.creatinine">
-    [[ item.creatinine ]]
-   <br />
-</span>
-<span ng-show="item.calcium">
-    [[ item.calcium ]]
-   <br />
-</span>
-<span ng-show="item.hemoglobin">
-    [[ item.hemoglobin ]]
-   <br />
-</span>
-<span ng-show="item.proteinuria">
-    [[ item.proteinuria ]]
-   <br />
-</span>
-<span ng-show="item.proteinuria_g24">
-    [[ item.proteinuria_g24 ]]
-   <br />
-</span>
-<span ng-show="item.leucocytes">
-    [[ item.leucocytes ]]
-   <br />
-</span>
-<span ng-show="item.nt_pro_bnp">
-    [[ item.nt_pro_bnp ]]
-   <br />
-</span>
-<span ng-show="item.ldh">
-    [[ item.ldh ]]
-   <br />
-</span>
-<span ng-show="item.ldh_type">
-    [[ item.ldh_type ]]
-   <br />
-</span>
-<span ng-show="item.glomerular_filtration_formula_date">
-    [[ item.glomerular_filtration_formula_date | displayDate ]]
-   <br />
-</span>
-<span ng-show="item.glomerular_filtration_formula">
-    [[ item.glomerular_filtration_formula ]]
-   <br />
-</span>
-<span ng-show="item.glomerular_filtration">
-    [[ item.glomerular_filtration ]]
-   <br />
-</span>
-<span ng-show="item.filter_formula_description">
-    [[ item.filter_formula_description ]]
-   <br />
-</span>
+{% load honeur_panels %}
+{% field_display "LabTests.pcr" %}
+{% field_display "LabTests.celulas_plasmaticas_circulantes" %}
+{% field_display "LabTests.troponina" %}
+{% field_display "LabTests.total_proteins" %}
+{% field_display "LabTests.platelets" %}
+{% field_display "LabTests.beta_2_microglobulin" %}
+{% field_display "LabTests.alkaline_phosphatase" %}
+{% field_display "LabTests.albumin" %}
+{% field_display "LabTests.calcium" %}
+{% field_display "LabTests.hemoglobin" %}
+{% field_display "LabTests.proteinuria" %}
+{% field_display "LabTests.proteinuria_g24" %}
+{% field_display "LabTests.leucocytes" %}
+{% field_display "LabTests.nt_pro_bnp" %}
+{% field_display "LabTests.ldh" %}
+{% field_display "LabTests.ldh_type" %}
+{% field_display "LabTests.glomerular_filtration" %}
+{% field_display "LabTests.glomerular_filtration_formula" %}
+{% field_display "LabTests.glomerular_filtration_formula_date" %}
+{% field_display "LabTests.filter_formula_description" %}

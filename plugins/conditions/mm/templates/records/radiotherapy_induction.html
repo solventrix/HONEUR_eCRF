@@ -1,8 +1,3 @@
-<span ng-show="item.start_date">
-    [[ item.start_date | displayDate ]]
-   <br />
-</span>
-<span ng-show="item.end_date">
-    [[ item.end_date | displayDate ]]
-   <br />
-</span>
+{% load honeur_panels %}
+{% field_display "RadiotherapyInduction.start_date" %}
+{% field_display "RadiotherapyInduction.end_date" %}

@@ -1,60 +1,15 @@
-<span ng-show="item.date_of_diagnosis">
-    [[ item.date_of_diagnosis | displayDate ]]
-   <br />
-</span>
-<span ng-show="item.date_of_first_centre_visit">
-    [[ item.date_of_first_centre_visit | displayDate ]]
-   <br />
-</span>
-<span ng-show="item.referred">
-    [[ item.referred ]]
-   <br />
-</span>
-<span ng-show="item.previous_hospital">
-    [[ item.previous_hospital ]]
-   <br />
-</span>
-<span ng-show="item.diagnosis">
-    [[ item.diagnosis ]]
-   <br />
-</span>
-<span ng-show="item.subclassification">
-    [[ item.subclassification ]]
-   <br />
-</span>
-<span ng-show="item.epidemiological_register">
-    [[ item.epidemiological_register ]]
-   <br />
-</span>
-<span ng-show="item.gah_score">
-    [[ item.gah_score ]]
-   <br />
-</span>
-<span ng-show="item.imwg_scale">
-    [[ item.imwg_scale ]]
-   <br />
-</span>
-<span ng-show="item.cc_scale">
-    [[ item.cc_scale ]]
-   <br />
-</span>
-<span ng-show="item.ircp_diag_date">
-    [[ item.ircp_diag_date | displayDate ]]
-   <br />
-</span>
-<span ng-show="item.height">
-    [[ item.height ]]
-   <br />
-</span>
-<span ng-show="item.weight">
-    [[ item.weight ]]
-   <br />
-</span>
-<span ng-show="item.ecog">
-    [[ item.ecog ]]
-   <br />
-</span>
-<span ng-show="item.epidemiologic_registry">
-    [[ item.epidemiologic_registry ]]
-   <br />
-</span>
+{% load honeur_panels %}
+{% field_display "MMDiagnosisDetails.date_of_diagnosis" %}
+{% field_display "MMDiagnosisDetails.date_of_first_centre_visit" %}
+{% field_display "MMDiagnosisDetails.referred" %}
+{% field_display "MMDiagnosisDetails.diagnosis" %}
+{% field_display "MMDiagnosisDetails.subclassification" %}
+{% field_display "MMDiagnosisDetails.epidemiological_register" %}
+{% field_display "MMDiagnosisDetails.gah_score" %}
+{% field_display "MMDiagnosisDetails.imwg_scale" %}
+{% field_display "MMDiagnosisDetails.cc_scale" %}
+{% field_display "MMDiagnosisDetails.ircp_diag_date" %}
+{% field_display "MMDiagnosisDetails.height" %}
+{% field_display "MMDiagnosisDetails.weight" %}
+{% field_display "MMDiagnosisDetails.ecog" %}
+{% field_display "MMDiagnosisDetails.epidemiologic_registry" %}
