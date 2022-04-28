@@ -5,7 +5,6 @@ from django.db.models import fields
 
 from opal import models
 from opal.core import lookuplists
-from opal.core.fields import ForeignKeyOrFreeText
 from django.utils.translation import gettext_lazy as _
 
 
@@ -59,12 +58,6 @@ class SCT(models.EpisodeSubrecord):
         ("Other", _("Other"))
     )
 
-    EMR2_TECHNIQUE_OPTIONS = (
-        ("NGS", _("NGS"),),
-        ("FC (Flow Cytometry)", _("FC (Flow Cytometry)"),),
-        ("Both", _("Borth")),
-    )
-
     ALOTPH_CONDITION_OPTIONS = (
         ("BU-FLU", _("BU-FLU"),),
         ("TT-BU-FLU", _("TT-BU-FLU"),),
@@ -89,19 +82,6 @@ class SCT(models.EpisodeSubrecord):
         ("Tecnica NGS", _("Tecnica NGS"),),
         ("Tecnica CFM (Flow Cytometry)", _("Tecnica CFM (Flow Cytometry)")),
         ("Both", _("Both")),
-    )
-
-    STATUS_OPTIONS = (
-        ("Complete Response Molecular", _("Complete Response Molecular")),
-        ("Complete Response Immunophenotype", _("Complete Response Immunophenotype")),
-        ("Complete Response Strict", _("Complete Response Strict")),
-        ("Complete Response", _("Complete Response")),
-        ("Very Good Partial Answer", _("Very Good Partial Answer")),
-        ("Partial Response", _("Partial Response")),
-        ("Stable Disease", _("Stable Disease"),),
-        ("Progression", _("Progression"),),
-        ("Unkown", _("Unkown"),),
-        ("Dead", _("Dead"),),
     )
 
     ALOTPH_SOURCE_OPTIONS = (
@@ -129,42 +109,6 @@ class SCT(models.EpisodeSubrecord):
         null=True
     )
 
-    negativizacion_emr = fields.CharField(
-        blank=True,
-        null=True,
-        max_length=256,
-        choices=CHOICES,
-        verbose_name=_("Negativizacion EMR")
-    )
-
-    emr_technique = fields.CharField(
-        blank=True,
-        null=True,
-        max_length=256,
-        choices=EMR2_TECHNIQUE_OPTIONS,
-        verbose_name=_("EMR2 Technique")
-    )
-
-    negativizacion_emr_date = fields.CharField(
-        blank=True,
-        null=True,
-        max_length=256,
-        choices=CHOICES,
-        verbose_name=_("Negativizacion EMR Date")
-    )
-    response = fields.CharField(
-        blank=True,
-        null=True,
-        max_length=256,
-        choices=STATUS_OPTIONS,
-        verbose_name=_("Response")
-    )
-    response_date = fields.DateField(
-        blank=True,
-        null=True,
-        verbose_name=_("Response Date"),
-    )
-
     # if SCT_Type == Allogenic
     type_of_alotph_transplant = fields.CharField(
         blank=True,
@@ -180,20 +124,7 @@ class SCT(models.EpisodeSubrecord):
         choices=ALOTPH_CONDITION_OPTIONS,
         verbose_name=_("Conditioning")
     )
-    alotph_emr_technique = fields.CharField(
-        blank=True,
-        null=True,
-        max_length=256,
-        choices=ALOTPH_EMR_TECHNIQUE_OPTIONS,
-        verbose_name=_("EMR Technique")
-    )
-    alotph_status = fields.CharField(
-        blank=True,
-        null=True,
-        max_length=256,
-        choices=STATUS_OPTIONS,
-        verbose_name=_("Status")
-    )
+
     alotph_source = fields.CharField(
         blank=True,
         null=True,

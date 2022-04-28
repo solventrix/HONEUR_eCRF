@@ -794,17 +794,6 @@ class MMRegimen(models.EpisodeSubrecord):
     )
     comments = fields.TextField(blank=True, default="", verbose_name=_("Comments"))
 
-    negative_mrd = fields.CharField(
-        blank=True,
-        null=True,
-        max_length=256,
-        choices=YES_NO,
-        verbose_name=_("Negative EMR")
-    )
-    negative_mrd_date = fields.DateField(
-        blank=True, null=True, verbose_name=_("Negative EMR Date")
-    )
-
     class Meta:
         verbose_name = _("Regimen")
         verbose_name_plural = _("Regimens")
@@ -864,6 +853,11 @@ class MMResponse(models.EpisodeSubrecord):
         verbose_name = _("Response")
         verbose_name_plural = _("Responses")
 
+    YES_NO = (
+        ("Yes", _("Yes"),),
+        ("No", _("No"),)
+    )
+
     RESPONSES = (
         ("Minimal response", _("Minimal response")),
         ("Partial response", _("Partial response")),
@@ -876,7 +870,31 @@ class MMResponse(models.EpisodeSubrecord):
         ("Progressive disease", _("Progressive disease")),
         ("Response unknown/NA", _("Response unknown/NA")),
     )
+
+    MRD_TECHNIQUE_OPTIONS = (
+        ("NGS", _("NGS"),),
+        ("FC (Flow Cytometry)", _("FC (Flow Cytometry)")),
+        ("Both", _("Both")),
+    )
     response_date = fields.DateField(blank=True, null=True, verbose_name=_("Response Date"))
+    negative_mrd = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=YES_NO,
+        verbose_name=_("Negative MRD")
+    )
+    negative_mrd_date = fields.DateField(
+        blank=True, null=True, verbose_name=_("Negative MRD Date")
+    )
+
+    mrd_technique = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=MRD_TECHNIQUE_OPTIONS,
+        verbose_name=_("MRD Technique")
+    )
     response = fields.CharField(
         max_length=50, choices=RESPONSES, verbose_name=_("Response")
     )
