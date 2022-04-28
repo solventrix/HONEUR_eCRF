@@ -1,12 +1,14 @@
-<div class="row">
-  <div class="col-md-6">
-    <span class="display-label">{{ label }}</span>
+<span ng-show="item.{{ field_name }}">
+  <div class="row display-row">
+    <div class="col-md-7">
+      <span class="display-label">{{ label }}</span>
+    </div>
+    <div class="col-md-5">
+      {% if is_date %}
+        [[ item.{{ field_name }}  | displayDate ]]
+      {% else %}
+        [[ item.{{ field_name }} | translate ]]
+      {% endif %}
+    </div>
   </div>
-  <div class="col-md-6">
-    {% if is_date %}
-      [[ item.{{ field_name }}  | displayDate ]]
-    {% else %}
-      [[ item.{{ field_name }} | translate ]]
-    {% endif %}
-  </div>
-</div>
+</span>

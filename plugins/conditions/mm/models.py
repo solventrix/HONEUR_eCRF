@@ -42,14 +42,6 @@ class MMPastMedicalHistory(models.PatientSubrecord):
     previous_neoplasm_details = fields.TextField(
         blank=True, default="", verbose_name=_("Details")
     )
-
-    previous_neoplasm_2 = fields.CharField(
-        blank=True,
-        null=True,
-        max_length=256,
-        choices=CHOICES,
-        verbose_name=_("Prevous Neoplasm 2")
-    )
     previous_neoplasm_date_of_diagnosis_2 = fields.DateField(
         blank=True, null=True, verbose_name=_("Date Of Diagnosis")
     )
@@ -65,7 +57,7 @@ class MMPastMedicalHistory(models.PatientSubrecord):
         verbose_name=_("Chronic Renal Insufficiency")
     )
     chronic_renal_insufficiency_diagnosis_date = fields.DateField(
-        blank=True, null=True, verbose_name=_("Diagnosis Date")
+        blank=True, null=True, verbose_name=_("Insufficiency Date")
     )
 
     # TODO Can we check this should not be a select field
@@ -111,7 +103,7 @@ class MMPastMedicalHistory(models.PatientSubrecord):
         choices=CHOICES,
         verbose_name=_("External Pasmocytoma")
     )
-    comments = fields.TextField(blank=True, default="", verbose_name=_("Comments"))
+    gmp_comments = fields.TextField(blank=True, default="", verbose_name=_("GMP Comments"))
 
 
 class MMDiagnosisDetails(models.EpisodeSubrecord):
@@ -204,7 +196,7 @@ class MMDiagnosisDetails(models.EpisodeSubrecord):
         blank=True, null=True, verbose_name=_("IMWG Scale")
     )
     # ICC scale 0 to 31
-    cc_scale = fields.IntegerField(blank=True, null=True, verbose_name=_("ICC Scale"))
+    icc_scale = fields.IntegerField(blank=True, null=True, verbose_name=_("ICC Scale"))
 
     ircp_diag_date = fields.DateField(
         blank=True, null=True, verbose_name=_("IRCP Diagnosis Date")
@@ -220,14 +212,6 @@ class MMDiagnosisDetails(models.EpisodeSubrecord):
 
     # 0-5 scale
     ecog = fields.IntegerField(blank=True, null=True, verbose_name=_("ECOG"))
-
-    epidemiologic_registry = fields.CharField(
-        blank=True,
-        null=True,
-        max_length=256,
-        choices=CHOICES,
-        verbose_name=_("Epidemiologic registry")
-    )
 
 
 class ClinicalPresentation(models.EpisodeSubrecord):
@@ -448,13 +432,12 @@ class Cytogenetics(models.EpisodeSubrecord):
     )
 
 
-
-
-class PatientOutcome(models.PatientSubrecord):
+class MMPatientStatus(models.PatientSubrecord):
+    _is_singleton = True
 
     class Meta:
-        verbose_name = _('Patient Outcome')
-        verbose_name_plural = _('Patient Outcomes')
+        verbose_name = _('Patient Status')
+        verbose_name_plural = _('Patient Statuses')
 
     OUTCOME_CHOICES = (
         ("Complete Response Molecular", _("Complete Response Molecular"),),
@@ -480,14 +463,6 @@ class PatientOutcome(models.PatientSubrecord):
         ("Dead", _("Dead"),),
         ("Lost", _("Lost"),),
         ("Alive", _("Alive"),),
-    )
-
-    outcome_at_the_last_visit = fields.CharField(
-        blank=True,
-        null=True,
-        max_length=256,
-        choices=OUTCOME_CHOICES,
-        verbose_name=_("Outcome At The Last Visit")
     )
     status = fields.CharField(
         blank=True,
@@ -824,10 +799,10 @@ class MMRegimen(models.EpisodeSubrecord):
         null=True,
         max_length=256,
         choices=YES_NO,
-        verbose_name=_("Negative MRD")
+        verbose_name=_("Negative EMR")
     )
     negative_mrd_date = fields.DateField(
-        blank=True, null=True, verbose_name=_("Negative MRD Date")
+        blank=True, null=True, verbose_name=_("Negative EMR Date")
     )
 
     class Meta:

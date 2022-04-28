@@ -2,16 +2,16 @@
 {% load forms %}
 {% load i18n %}
 <div class="row">
-  <div class="col-md-4">{% include 'partials/_demographics_panel.html' %}</div>
-  <div class="col-md-8">
+  <div class="col-md-6">{% include 'partials/_demographics_panel.html' %}</div>
+  <div class="col-md-6">
     {% record_panel models.MMDiagnosisDetails full_width=True noentries=_("Please complete details for this patient to continue.") %}
   </div>
 </div>
 <div class="row">
-  <div class="col-md-4">
+  <div class="col-md-6">
     {% record_panel models.PatientOutcome %}
   </div>
-  <div class="col-md-8">
+  <div class="col-md-6">
     {% record_panel models.MMPastMedicalHistory full_width=True %}
   </div>
 </div>
@@ -79,7 +79,8 @@
   <div class="panel mb6">
     <div class="panel-heading">
       <h3>
-        {% trans "Follow Ups" %}
+        {% trans "Disease Data" %}
+        {% comment %}
         <span class="pull-right pointer edit">
           <a
             ng-click="episode.recordEditor.newItem('{{ models.MMFollowUp.get_api_name }}')"
@@ -87,6 +88,7 @@
             <i class="fa fa-plus-circle edit pointer"></i>
           </a>
         </span>
+        {% endcomment %}
       </h3>
     </div>
   </div>

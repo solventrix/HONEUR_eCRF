@@ -1,35 +1,42 @@
 {% load forms %}
 {% load custom_forms %}
-
+{% load i18n %}
 <div class="row">
   <div class="col-sm-10 col-sm-offset-1">
     <div class="row">
       <div class="col-sm-5">
-        {% radio field="MMPastMedicalHistory.previous_neoplasm" style="vertical" change="editing.mm_past_medical_history.previous_neoplasm_date_of_diagnosis = null; editing.mm_past_medical_history.previous_neoplasm_details = ''" %}
+        {% radio field="MMPastMedicalHistory.previous_neoplasm" style="vertical" change="editing.mm_past_medical_history.previous_neoplasm_date_of_diagnosis = null; editing.mm_past_medical_history.previous_neoplasm_details = ''; editing.mm_past_medical_history.previous_neoplasm_date_of_diagnosis_2 = null; editing.mm_past_medical_history.previous_neoplasm_details_2 = ''" %}
       </div>
-      <div class="col-sm-3" ng-show="editing.mm_past_medical_history.previous_neoplasm == 'Yes'">
-        {% custom_datepicker style="vertical" label=_("Date") field="MMPastMedicalHistory.previous_neoplasm_date_of_diagnosis" %}
-      </div>
-      <div class="col-sm-4" ng-show="editing.mm_past_medical_history.previous_neoplasm == 'Yes'">
-        {% textarea style="vertical" label=_("Details") field="MMPastMedicalHistory.previous_neoplasm_details" %}
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-5">
-        {% radio field="MMPastMedicalHistory.previous_neoplasm_2" style="vertical" change="editing.mm_past_medical_history.previous_neoplasm_date_of_diagnosis = null; editing.mm_past_medical_history.previous_neoplasm_details = ''" %}
-      </div>
-      <div class="col-sm-3" ng-show="editing.mm_past_medical_history.previous_neoplasm_2 == 'Yes'">
-        {% custom_datepicker style="vertical" label=_("Date") field="MMPastMedicalHistory.previous_neoplasm_date_of_diagnosis_2" %}
-      </div>
-      <div class="col-sm-4" ng-show="editing.mm_past_medical_history.previous_neoplasm_2 == 'Yes'">
-        {% textarea style="vertical" label=_("Details") field="MMPastMedicalHistory.previous_neoplasm_details_2" %}
+      <div ng-show="editing.mm_past_medical_history.previous_neoplasm == 'Yes'" class="col-sm-7">
+        <div class="row content-offset-35">
+          <span class="display-label">{% trans "Neoplasm 1" %}</span>
+        </div>
+        <div class="row content-offset-10">
+          <div class="col-md-5">
+            {% custom_datepicker style="vertical" label=_("Date") field="MMPastMedicalHistory.previous_neoplasm_date_of_diagnosis" %}
+          </div>
+          <div class="col-md-7">
+            {% textarea style="vertical" label=_("Details") field="MMPastMedicalHistory.previous_neoplasm_details" %}
+          </div>
+        </div>
+        <div class="row content-offset-20">
+          <span class="display-label">{% trans "Neoplasm 2" %}</span>
+        </div>
+        <div class="row content-offset-10">
+          <div class="col-md-5">
+            {% custom_datepicker style="vertical" label=_("Date") field="MMPastMedicalHistory.previous_neoplasm_date_of_diagnosis_2" %}
+          </div>
+          <div class="col-md-7">
+            {% textarea style="vertical" label=_("Details") field="MMPastMedicalHistory.previous_neoplasm_details_2" %}
+          </div>
+        </div>
       </div>
     </div>
     <div class="row">
       <div class="col-sm-5">
         {% radio field="MMPastMedicalHistory.chronic_renal_insufficiency" style="vertical" change="editing.mm_past_medical_history.chronic_renal_insufficiency_diagnosis_date = null" %}
       </div>
-      <div class="col-sm-3" ng-show="editing.mm_past_medical_history.chronic_renal_insufficiency_diagnosis_date == 'Yes'">
+      <div class="col-sm-3" ng-show="editing.mm_past_medical_history.chronic_renal_insufficiency == 'Yes'">
         {% custom_datepicker style="vertical" label=_("Date") field="MMPastMedicalHistory.chronic_renal_insufficiency_diagnosis_date" %}
       </div>
     </div>
@@ -43,7 +50,16 @@
         {% radio style="vertical" field="MMPastMedicalHistory.monoclonal_pathology_of_uncertain_meaning" change='editing.mm_past_medical_history.monoclonal_pathology_of_uncertain_meaning_date = null' %}
       </div>
       <div class="col-sm-3" ng-show="editing.mm_past_medical_history.monoclonal_pathology_of_uncertain_meaning == 'Yes'">
-        {% custom_datepicker style="vertical" label=_("Date") field="MMPastMedicalHistory.monoclonal_pathology_of_uncertain_meaning_date" %}
+        <div class="row">
+          <div class="col-sm-12">
+            {% custom_datepicker style="vertical" label=_("Date") field="MMPastMedicalHistory.monoclonal_pathology_of_uncertain_meaning_date" %}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            {% textarea style="vertical" field="MMPastMedicalHistory.gmp_comments" %}
+          </div>
+        </div>
       </div>
     </div>
     <div class="row">
@@ -59,11 +75,6 @@
     <div class="row">
       <div class="col-sm-5">
         {% radio style="vertical" field="MMPastMedicalHistory.external_pasmocytoma" %}
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-8">
-        {% textarea style="vertical" field="MMPastMedicalHistory.comments" %}
       </div>
     </div>
   </div>

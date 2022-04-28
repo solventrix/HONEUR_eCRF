@@ -1,97 +1,101 @@
 {% load i18n %}
-<div class="row">
-    <div class="col-md-6">
-        <span class="display-label">{% trans "Previous Neoplasm" %}</span>
+<div ng-show="item.previous_neoplasm" class="row">
+    <div class="col-md-7">
+        <span class="display-label">{% trans "Neoplasm" %}</span>
     </div>
-    <div class="col-md-6">
-        [[ item.previous_neoplasm | translate ]]
-        <span ng-show="item.previous_neoplasm_date_of_diagnosis">([[ item.previous_neoplasm_date_of_diagnosis | displayDate ]])</span>
+    <div class="col-md-5">
         <span ng-show="item.previous_neoplasm_details">
-        <br>
-        [[ item.previous_neoplasm_details ]]
+            [[ item.previous_neoplasm_details | displayDate ]]
         </span>
+        <span class="text-muted" ng-hide="item.previous_neoplasm_details">
+            {% trans "No details recorded" %}
+        </span>
+        <span ng-show="item.previous_neoplasm_date_of_diagnosis">([[ item.previous_neoplasm_date_of_diagnosis | displayDate ]])</span>
     </div>
 </div>
 
 
-<div class="row">
-    <div class="col-md-6">
-        <span class="display-label">{% trans "Second Prevous Neoplasm" %}</span>
+<div ng-show="item.previous_neoplasm_date_of_diagnosis_2 || item.previous_neoplasm_details_2" class="row">
+    <div class="col-md-7">
+        <span class="display-label">{% trans "Second Neoplasm" %}</span>
     </div>
-    <div class="col-md-6">
-        [[ item.previous_neoplasm_2 | translate ]]
-        <span ng-show="item.previous_neoplasm_date_of_diagnosis_2">([[ item.previous_neoplasm_date_of_diagnosis_2 | displayDate ]])</span>
+    <div class="col-md-5">
+        <span class="text-muted" ng-hide="item.previous_neoplasm_details">
+            {% trans "No details recorded" %}
+        </span>
         <span ng-show="item.previous_neoplasm_details_2">
-        <br>
         [[ item.previous_neoplasm_details ]]
+        </span>
+        <span ng-show="item.previous_neoplasm_date_of_diagnosis_2">([[ item.previous_neoplasm_date_of_diagnosis_2 | displayDate ]])</span>
+        <br>
         </span>
     </div>
 </div>
 
 
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-7">
         <span class="display-label">{% trans "Chronic Renal Insufficiency" %}</span>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-5">
         [[ item.chronic_renal_insufficiency | translate ]]
         <span ng-show="item.chronic_renal_insufficiency_diagnosis_date">([[ item.chronic_renal_insufficiency_diagnosis_date | displayDate ]])</span>
     </div>
 </div>
 
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-7">
         <span class="display-label">{% trans "Monoclonal Pathology" %}</span>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-5">
         [[ item.monoclonal_pathology | translate ]]
     </div>
 </div>
 
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-7">
         <span class="display-label">{% trans "Symtomatic Multiple Myeloma" %}</span>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-5">
         [[ item.symtomatic_multiple_myeloma | translate ]]
     </div>
 </div>
 
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-7">
         <span class="display-label">{% trans "Asymtomatic Multiple Myeloma" %}</span>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-5">
         [[ item.asymtomatic_multiple_myeloma | translate ]]
     </div>
 </div>
 
 
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-7">
         <span class="display-label">{% trans "Monoclonal Pathology Of Uncertain Meaning" %}</span>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-5">
         [[ item.monoclonal_pathology_of_uncertain_meaning | translate ]]
         <span ng-show="item.monoclonal_pathology_of_uncertain_meaning_date">([[ item.monoclonal_pathology_of_uncertain_meaning_date | displayDate ]])</span>
     </div>
 </div>
 
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-7">
         <span class="display-label">{% trans "External Pasmocytoma" %}</span>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-5">
         [[ item.external_pasmocytoma | translate ]]
     </div>
 </div>
 
 
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-7">
         <span class="display-label">{% trans "Comments" %}</span>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-5">
         [[ item.comments ]]
     </div>
 </div>
