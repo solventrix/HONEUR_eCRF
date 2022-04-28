@@ -1,4 +1,5 @@
 {% load forms %}
+{% datepicker field="MProteinMesurements.date" %}
 {% input field="MProteinMesurements.serum_amount" %}
 {% select field="MProteinMesurements.heavy_chain_type" %}
 <span ng-show="editing.m_protein_mesurements.heavy_chain_type === 'Other'">

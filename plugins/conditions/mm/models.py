@@ -736,6 +736,8 @@ class LabTests(models.EpisodeSubrecord):
         ("Other", _("Other"),),
     )
 
+    date = fields.DateField(blank=True, null=True, verbose_name=_("Date"))
+
     # mg/L min 3 max 30
     pcr = fields.IntegerField(blank=True, null=True, verbose_name=_("PCR"))
 
@@ -879,6 +881,7 @@ class Imaging(models.EpisodeSubrecord):
         ("Not Done", _("Not Done")),
     )
 
+    date = fields.DateField(blank=True, null=True, verbose_name=_("Date"))
     bone_series_test_image = fields.CharField(
         blank=True,
         null=True,
@@ -953,9 +956,8 @@ class MProteinMesurements(models.EpisodeSubrecord):
         ("IgM", _("IgM"),),
     )
 
-    # date = fields.DateField(
-    #     blank=True, null=True, verbose_name=_("Date")
-    # )
+    date = fields.DateField(blank=True, null=True, verbose_name=_("Date"))
+
     serum_amount = fields.CharField(
         blank=True,
         null=True,
