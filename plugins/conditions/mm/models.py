@@ -20,92 +20,7 @@ class MMStopReason(lookuplists.LookupList):
         verbose_name_plural = _("MM Stop Reason List")
 
 
-class MMPastMedicalHistory(models.PatientSubrecord):
-    _is_singleton = True
-
-    class Meta:
-        verbose_name = _("Past Medical History")
-        verbose_name_plural = _("Past Medical Histories")
-
-    CHOICES = (("Yes", _("Yes")), ("No", _("No")),)
-
-    previous_neoplasm = fields.CharField(
-        blank=True,
-        null=True,
-        max_length=256,
-        choices=CHOICES,
-        verbose_name=_("Previous Neoplasm")
-    )
-    previous_neoplasm_date_of_diagnosis = fields.DateField(
-        blank=True, null=True, verbose_name=_("Date Of Diagnosis")
-    )
-    previous_neoplasm_details = fields.TextField(
-        blank=True, default="", verbose_name=_("Details")
-    )
-    previous_neoplasm_date_of_diagnosis_2 = fields.DateField(
-        blank=True, null=True, verbose_name=_("Date Of Diagnosis")
-    )
-    previous_neoplasm_details_2 = fields.TextField(
-        blank=True, default="", verbose_name=_("Details")
-    )
-
-    chronic_renal_insufficiency = fields.CharField(
-        blank=True,
-        null=True,
-        max_length=256,
-        choices=CHOICES,
-        verbose_name=_("Chronic Renal Insufficiency")
-    )
-    chronic_renal_insufficiency_diagnosis_date = fields.DateField(
-        blank=True, null=True, verbose_name=_("Insufficiency Date")
-    )
-
-    # TODO Can we check this should not be a select field
-    monoclonal_pathology = fields.CharField(
-        blank=True,
-        null=True,
-        max_length=256,
-        choices=CHOICES,
-        verbose_name=_("Monoclonal Pathology")
-    )
-    symtomatic_multiple_myeloma = fields.CharField(
-        blank=True,
-        null=True,
-        max_length=256,
-        choices=CHOICES,
-        verbose_name=_("Symtomatic Multiple Myeloma")
-    )
-
-    asymtomatic_multiple_myeloma = fields.CharField(
-        blank=True,
-        null=True,
-        max_length=256,
-        choices=CHOICES,
-        verbose_name=_("Asymtomatic Multiple Myeloma")
-    )
-
-    monoclonal_pathology_of_uncertain_meaning = fields.CharField(
-        blank=True,
-        null=True,
-        max_length=256,
-        choices=CHOICES,
-        verbose_name=_("Monoclonal Pathology Of Uncertain Meaning")
-    )
-    # TODO I am not sure this is correct
-    monoclonal_pathology_of_uncertain_meaning_date = fields.DateField(
-        blank=True, null=True, verbose_name=_("Diagnosis Date")
-    )
-
-    external_pasmocytoma = fields.CharField(
-        blank=True,
-        null=True,
-        max_length=256,
-        choices=CHOICES,
-        verbose_name=_("External Pasmocytoma")
-    )
-    gmp_comments = fields.TextField(blank=True, default="", verbose_name=_("GMP Comments"))
-
-
+# Setup
 class MMDiagnosisDetails(models.EpisodeSubrecord):
     _is_singleton = True  # One entry per patient that is updated
 
@@ -209,11 +124,154 @@ class MMDiagnosisDetails(models.EpisodeSubrecord):
     # kg
     weight = fields.FloatField(blank=True, null=True, max_length=256, verbose_name=_("Weight"))
 
-
     # 0-5 scale
     ecog = fields.IntegerField(blank=True, null=True, verbose_name=_("ECOG"))
 
 
+class MMPatientStatus(models.PatientSubrecord):
+    _is_singleton = True
+
+    class Meta:
+        verbose_name = _('Patient Status')
+        verbose_name_plural = _('Patient Statuses')
+
+    OUTCOME_CHOICES = (
+        ("Complete Response Molecular", _("Complete Response Molecular"),),
+        ("Complete Response Immunophenotypic", _("Complete Response Immunophenotypic"),),
+        ("Complete Response Strict", _("Complete Response Strict"),),
+        ("Very Good Partial Response", _("Very Good Partial Response"),),
+        ("Partial Response", _("Partial Response"),),
+        ("Stable Disease", _("Stable Disease"),),
+        ("Progression", _("Progression"),),
+        ("Unknown", _("Unknown"),),
+        ("Death", _("Death"),),
+    )
+
+    CAUSE_OF_DEATH = (
+        ("Multiple Myeloma", _("Multiple Myeloma"),),
+        ("Infection", _("Infection"),),
+        ("Thrombosis", _("Thrombosis"),),
+        ("Not Disease Related", _("Not Disease Related"),),
+        ("Not Available", _("not available"),),
+        ("Other", _("Other")),
+    )
+    STATUS_CHOICES = (
+        ("Dead", _("Dead"),),
+        ("Lost", _("Lost"),),
+        ("Alive", _("Alive"),),
+    )
+    status = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=STATUS_CHOICES,
+        verbose_name=_("Status")
+    )
+    status_date = fields.DateField(blank=True, null=True, verbose_name=_("Date"))
+    comments = fields.TextField(
+        blank=True,
+        null=True,
+        verbose_name=_("Comments")
+    )
+    cause_of_death = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=CAUSE_OF_DEATH,
+        verbose_name=_("Cause Of Death")
+    )
+    cause_of_death_other = fields.TextField(
+        blank=True, default="", verbose_name=_("Details")
+    )
+
+
+class MMPastMedicalHistory(models.PatientSubrecord):
+    _is_singleton = True
+
+    class Meta:
+        verbose_name = _("Past Medical History")
+        verbose_name_plural = _("Past Medical Histories")
+
+    CHOICES = (("Yes", _("Yes")), ("No", _("No")),)
+
+    previous_neoplasm = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=CHOICES,
+        verbose_name=_("Previous Neoplasm")
+    )
+    previous_neoplasm_date_of_diagnosis = fields.DateField(
+        blank=True, null=True, verbose_name=_("Date Of Diagnosis")
+    )
+    previous_neoplasm_details = fields.TextField(
+        blank=True, default="", verbose_name=_("Details")
+    )
+    previous_neoplasm_date_of_diagnosis_2 = fields.DateField(
+        blank=True, null=True, verbose_name=_("Date Of Diagnosis")
+    )
+    previous_neoplasm_details_2 = fields.TextField(
+        blank=True, default="", verbose_name=_("Details")
+    )
+
+    chronic_renal_insufficiency = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=CHOICES,
+        verbose_name=_("Chronic Renal Insufficiency")
+    )
+    chronic_renal_insufficiency_diagnosis_date = fields.DateField(
+        blank=True, null=True, verbose_name=_("Insufficiency Date")
+    )
+
+    # TODO Can we check this should not be a select field
+    monoclonal_pathology = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=CHOICES,
+        verbose_name=_("Monoclonal Pathology")
+    )
+    symtomatic_multiple_myeloma = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=CHOICES,
+        verbose_name=_("Symtomatic Multiple Myeloma")
+    )
+
+    asymtomatic_multiple_myeloma = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=CHOICES,
+        verbose_name=_("Asymtomatic Multiple Myeloma")
+    )
+
+    monoclonal_pathology_of_uncertain_meaning = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=CHOICES,
+        verbose_name=_("Monoclonal Pathology Of Uncertain Meaning")
+    )
+    # TODO I am not sure this is correct
+    monoclonal_pathology_of_uncertain_meaning_date = fields.DateField(
+        blank=True, null=True, verbose_name=_("Diagnosis Date")
+    )
+
+    external_pasmocytoma = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=CHOICES,
+        verbose_name=_("External Pasmocytoma")
+    )
+    gmp_comments = fields.TextField(blank=True, default="", verbose_name=_("GMP Comments"))
+
+
+# LOT
 class ClinicalPresentation(models.EpisodeSubrecord):
     CHOICES = (("Yes", _("Yes")), ("No", _("No")),)
 
@@ -432,267 +490,6 @@ class Cytogenetics(models.EpisodeSubrecord):
     )
 
 
-class MMPatientStatus(models.PatientSubrecord):
-    _is_singleton = True
-
-    class Meta:
-        verbose_name = _('Patient Status')
-        verbose_name_plural = _('Patient Statuses')
-
-    OUTCOME_CHOICES = (
-        ("Complete Response Molecular", _("Complete Response Molecular"),),
-        ("Complete Response Immunophenotypic", _("Complete Response Immunophenotypic"),),
-        ("Complete Response Strict", _("Complete Response Strict"),),
-        ("Very Good Partial Response", _("Very Good Partial Response"),),
-        ("Partial Response", _("Partial Response"),),
-        ("Stable Disease", _("Stable Disease"),),
-        ("Progression", _("Progression"),),
-        ("Unknown", _("Unknown"),),
-        ("Death", _("Death"),),
-    )
-
-    CAUSE_OF_DEATH = (
-        ("Multiple Myeloma", _("Multiple Myeloma"),),
-        ("Infection", _("Infection"),),
-        ("Thrombosis", _("Thrombosis"),),
-        ("Not Disease Related", _("Not Disease Related"),),
-        ("Not Available", _("not available"),),
-        ("Other", _("Other")),
-    )
-    STATUS_CHOICES = (
-        ("Dead", _("Dead"),),
-        ("Lost", _("Lost"),),
-        ("Alive", _("Alive"),),
-    )
-    status = fields.CharField(
-        blank=True,
-        null=True,
-        max_length=256,
-        choices=STATUS_CHOICES,
-        verbose_name=_("Status")
-    )
-    status_date = fields.DateField(blank=True, null=True, verbose_name=_("Date"))
-    comments = fields.TextField(
-        blank=True,
-        null=True,
-        verbose_name=_("Comments")
-    )
-    cause_of_death = fields.CharField(
-        blank=True,
-        null=True,
-        max_length=256,
-        choices=CAUSE_OF_DEATH,
-        verbose_name=_("Cause Of Death")
-    )
-    cause_of_death_other = fields.TextField(
-        blank=True, default="", verbose_name=_("Details")
-    )
-
-
-class LabTests(models.EpisodeSubrecord):
-    GLOMERULAR_FILTRATION_FORMULA = (
-        ("MDRD", _("MDRD"),),
-        ("CKD-EPI", _("CKD-EPI"),),
-        ("Other", _("Other"),),
-    )
-
-    # mg/L min 3 max 30
-    pcr = fields.IntegerField(blank=True, null=True, verbose_name=_("PCR"))
-
-    # x109/L
-    celulas_plasmaticas_circulantes = fields.FloatField(
-        blank=True,
-        null=True,
-        max_length=256,
-        verbose_name=_("Celulas Plasmaticas Circulantes")
-    )
-
-    # Troponine I, ng/L, min 0 max 350
-    troponina = fields.IntegerField(blank=True, null=True, verbose_name=_("Troponina"))
-    total_proteins = fields.IntegerField(blank=True, null=True, verbose_name=_("Total Proteins"))
-
-    platelets = fields.IntegerField(blank=True, null=True, verbose_name=_("Platelets"))
-
-    # mg/L min 1.5 max 20
-    beta_2_microglobulin = fields.FloatField(
-        blank=True,
-        null=True,
-        max_length=256,
-        verbose_name=_("Beta 2 Microglobulin")
-    )
-    alkaline_phosphatase = fields.IntegerField(
-        blank=True,
-        null=True,
-        verbose_name=_("Alkaline Phosphatase")
-    )
-    # g/dL min 1 max 5.5
-    albumin = fields.FloatField(
-        blank=True,
-        null=True,
-        max_length=256,
-        verbose_name=_("Albumin")
-    )
-
-    # mg/dL, min 0.5, max 20
-    creatinine = fields.FloatField(
-        blank=True,
-        null=True,
-        max_length=256,
-        verbose_name=_("Creatinine")
-    )
-
-    # mg/dL, min 6.5, max 25
-    calcium = fields.FloatField(
-        blank=True,
-        null=True,
-        max_length=256,
-        verbose_name=_("Calcium")
-    )
-
-    hemoglobin = fields.FloatField(
-        blank=True,
-        null=True,
-        max_length=256,
-        verbose_name=_("Hemoglobin")
-    )
-
-    proteinuria = fields.FloatField(
-        blank=True,
-        null=True,
-        max_length=256,
-        verbose_name=_("Proteinuria")
-    )
-    proteinuria_g24 = fields.FloatField(
-        blank=True,
-        null=True,
-        max_length=256,
-        verbose_name=_("Proteinuria gr/24")
-    )
-
-    # x109/L min 1 max 100
-    leucocytes = fields.FloatField(
-        blank=True,
-        null=True,
-        max_length=256,
-        verbose_name=_("Leucocytes")
-    )
-
-    nt_pro_bnp = fields.IntegerField(
-        blank=True, null=True, verbose_name=_("NT-proBNP")
-    )
-
-    ldh = fields.IntegerField(
-        blank=True, null=True, verbose_name=_("LDH")
-    )
-    ldh_type = fields.CharField(
-        blank=True,
-        null=True,
-        max_length=256,
-        verbose_name=_("LDH Type")
-    )
-
-    glomerular_filtration_formula_date = fields.DateField(
-        blank=True, null=True, verbose_name=_("Glomerular Filtration Formula Date")
-    )
-    glomerular_filtration_formula = fields.CharField(
-        blank=True,
-        null=True,
-        max_length=256,
-        choices=GLOMERULAR_FILTRATION_FORMULA,
-        verbose_name=_("Glomerular Filtration Formula")
-    )
-
-    # mL/min, min 5 max 102
-    glomerular_filtration = fields.FloatField(
-        blank=True,
-        null=True,
-        max_length=256,
-        verbose_name=_("Glomerular Filtration")
-    )
-
-    filter_formula_description = fields.TextField(
-        blank=True, default="", verbose_name=_("Filter Formula Description")
-    )
-
-
-class Imaging(models.EpisodeSubrecord):
-
-    class Meta:
-        verbose_name = 'Imaging'
-        verbose_name_plural = 'Imaging'
-
-    BONE_SERIES_TEST_IMAGE_OPTIONS = (
-        ("Zero", _("Zero")),
-        ("One", _("One")),
-        ("Two", _("Two")),
-        ("Three", _("Three")),
-    )
-
-    YES_NO = (
-        ("Yes", _("Yes"),),
-        ("No", _("No"),)
-    )
-
-    SCAN_OPTIONS = (
-        ("Negative", _("Negative")),
-        ("Positive", _("Positive")),
-        ("Not Done", _("Not Done")),
-    )
-
-    bone_series_test_image = fields.CharField(
-        blank=True,
-        null=True,
-        max_length=256,
-        choices=BONE_SERIES_TEST_IMAGE_OPTIONS,
-        verbose_name=_("Bone Series Test Image")
-    )
-    # this has never been used
-    bone_series_description = fields.TextField(
-        blank=True, default="", verbose_name=_("Bone Series Description")
-    )
-    ct_scan = fields.CharField(
-        blank=True,
-        null=True,
-        max_length=256,
-        choices=SCAN_OPTIONS,
-        verbose_name=_("CT Scan")
-    )
-    ct_scan_description = fields.TextField(
-        blank=True, default="", verbose_name=_("CT Scan Description")
-    )
-
-    resonance = fields.CharField(
-        blank=True,
-        null=True,
-        max_length=256,
-        choices=SCAN_OPTIONS,
-        verbose_name=_("Resonance")
-    )
-    resonance_description = fields.TextField(
-        blank=True, default="", verbose_name=_("Resonance description")
-    )
-
-    pet_scan = fields.CharField(
-        blank=True,
-        null=True,
-        max_length=256,
-        choices=SCAN_OPTIONS,
-        verbose_name=_("PET scan")
-    )
-    pet_scan_description = fields.TextField(
-        blank=True, default="", verbose_name=_("PET scan description")
-    )
-
-    other_imaging_test = fields.CharField(
-        blank=True,
-        null=True,
-        max_length=256,
-        choices=YES_NO,
-        verbose_name=_("Other Imaging Test")
-    )
-    other_imaging_test_description = fields.TextField(
-        blank=True, default="", verbose_name=_("Other Imaging Test Description")
-    )
 
 
 class ConditionAtInduction(models.EpisodeSubrecord):
@@ -900,7 +697,244 @@ class MMResponse(models.EpisodeSubrecord):
     )
 
 
-# lab tests
+class RadiotherapyInduction(models.EpisodeSubrecord):
+    class Meta:
+        verbose_name = _("Radiotherapy Induction")
+        verbose_name_plural = _("Radiotherapy Inductions")
+
+    start_date = fields.DateField(
+        blank=True, null=True, verbose_name=_("Start Date")
+    )
+    end_date = fields.DateField(
+        blank=True, null=True, verbose_name=_("End Date")
+    )
+
+
+class MMStemCellTransplantEligibility(models.EpisodeSubrecord):
+    _is_singleton = True
+    eligible_for_stem_cell_transplant = fields.BooleanField(default=False)
+
+    class Meta:
+        verbose_name = _("Stem Cell Transplant Eligibility")
+        verbose_name_plural = _("Stem Cell Transplant Eligibilities")
+
+
+def delete_stem_cells(sender, instance, **kwargs):
+    instance.episode.sct_set.all().delete()
+
+
+post_save.connect(
+    delete_stem_cells, sender=MMStemCellTransplantEligibility
+)
+
+
+# Follow ups
+class LabTests(models.EpisodeSubrecord):
+    GLOMERULAR_FILTRATION_FORMULA = (
+        ("MDRD", _("MDRD"),),
+        ("CKD-EPI", _("CKD-EPI"),),
+        ("Other", _("Other"),),
+    )
+
+    # mg/L min 3 max 30
+    pcr = fields.IntegerField(blank=True, null=True, verbose_name=_("PCR"))
+
+    # x109/L
+    celulas_plasmaticas_circulantes = fields.FloatField(
+        blank=True,
+        null=True,
+        max_length=256,
+        verbose_name=_("Celulas Plasmaticas Circulantes")
+    )
+
+    # Troponine I, ng/L, min 0 max 350
+    troponina = fields.IntegerField(blank=True, null=True, verbose_name=_("Troponina"))
+    total_proteins = fields.IntegerField(blank=True, null=True, verbose_name=_("Total Proteins"))
+
+    platelets = fields.IntegerField(blank=True, null=True, verbose_name=_("Platelets"))
+
+    # mg/L min 1.5 max 20
+    beta_2_microglobulin = fields.FloatField(
+        blank=True,
+        null=True,
+        max_length=256,
+        verbose_name=_("Beta 2 Microglobulin")
+    )
+    alkaline_phosphatase = fields.IntegerField(
+        blank=True,
+        null=True,
+        verbose_name=_("Alkaline Phosphatase")
+    )
+    # g/dL min 1 max 5.5
+    albumin = fields.FloatField(
+        blank=True,
+        null=True,
+        max_length=256,
+        verbose_name=_("Albumin")
+    )
+
+    # mg/dL, min 0.5, max 20
+    creatinine = fields.FloatField(
+        blank=True,
+        null=True,
+        max_length=256,
+        verbose_name=_("Creatinine")
+    )
+
+    # mg/dL, min 6.5, max 25
+    calcium = fields.FloatField(
+        blank=True,
+        null=True,
+        max_length=256,
+        verbose_name=_("Calcium")
+    )
+
+    hemoglobin = fields.FloatField(
+        blank=True,
+        null=True,
+        max_length=256,
+        verbose_name=_("Hemoglobin")
+    )
+
+    proteinuria = fields.FloatField(
+        blank=True,
+        null=True,
+        max_length=256,
+        verbose_name=_("Proteinuria")
+    )
+    proteinuria_g24 = fields.FloatField(
+        blank=True,
+        null=True,
+        max_length=256,
+        verbose_name=_("Proteinuria gr/24")
+    )
+
+    # x109/L min 1 max 100
+    leucocytes = fields.FloatField(
+        blank=True,
+        null=True,
+        max_length=256,
+        verbose_name=_("Leucocytes")
+    )
+
+    nt_pro_bnp = fields.IntegerField(
+        blank=True, null=True, verbose_name=_("NT-proBNP")
+    )
+
+    ldh = fields.IntegerField(
+        blank=True, null=True, verbose_name=_("LDH")
+    )
+    ldh_type = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        verbose_name=_("LDH Type")
+    )
+
+    glomerular_filtration_formula_date = fields.DateField(
+        blank=True, null=True, verbose_name=_("Glomerular Filtration Formula Date")
+    )
+    glomerular_filtration_formula = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=GLOMERULAR_FILTRATION_FORMULA,
+        verbose_name=_("Glomerular Filtration Formula")
+    )
+
+    # mL/min, min 5 max 102
+    glomerular_filtration = fields.FloatField(
+        blank=True,
+        null=True,
+        max_length=256,
+        verbose_name=_("Glomerular Filtration")
+    )
+
+    filter_formula_description = fields.TextField(
+        blank=True, default="", verbose_name=_("Filter Formula Description")
+    )
+
+
+class Imaging(models.EpisodeSubrecord):
+
+    class Meta:
+        verbose_name = 'Imaging'
+        verbose_name_plural = 'Imaging'
+
+    BONE_SERIES_TEST_IMAGE_OPTIONS = (
+        ("Zero", _("Zero")),
+        ("One", _("One")),
+        ("Two", _("Two")),
+        ("Three", _("Three")),
+    )
+
+    YES_NO = (
+        ("Yes", _("Yes"),),
+        ("No", _("No"),)
+    )
+
+    SCAN_OPTIONS = (
+        ("Negative", _("Negative")),
+        ("Positive", _("Positive")),
+        ("Not Done", _("Not Done")),
+    )
+
+    bone_series_test_image = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=BONE_SERIES_TEST_IMAGE_OPTIONS,
+        verbose_name=_("Bone Series Test Image")
+    )
+    # this has never been used
+    bone_series_description = fields.TextField(
+        blank=True, default="", verbose_name=_("Bone Series Description")
+    )
+    ct_scan = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=SCAN_OPTIONS,
+        verbose_name=_("CT Scan")
+    )
+    ct_scan_description = fields.TextField(
+        blank=True, default="", verbose_name=_("CT Scan Description")
+    )
+
+    resonance = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=SCAN_OPTIONS,
+        verbose_name=_("Resonance")
+    )
+    resonance_description = fields.TextField(
+        blank=True, default="", verbose_name=_("Resonance description")
+    )
+
+    pet_scan = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=SCAN_OPTIONS,
+        verbose_name=_("PET scan")
+    )
+    pet_scan_description = fields.TextField(
+        blank=True, default="", verbose_name=_("PET scan description")
+    )
+
+    other_imaging_test = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=YES_NO,
+        verbose_name=_("Other Imaging Test")
+    )
+    other_imaging_test_description = fields.TextField(
+        blank=True, default="", verbose_name=_("Other Imaging Test Description")
+    )
+
+
 class MProteinMesurements(models.EpisodeSubrecord):
     HEAVY_CHAIN_OPTIONS = (
         ("IgG", _("IgG"),),
@@ -919,6 +953,9 @@ class MProteinMesurements(models.EpisodeSubrecord):
         ("IgM", _("IgM"),),
     )
 
+    # date = fields.DateField(
+    #     blank=True, null=True, verbose_name=_("Date")
+    # )
     serum_amount = fields.CharField(
         blank=True,
         null=True,
@@ -991,34 +1028,3 @@ class MProteinMesurements(models.EpisodeSubrecord):
         max_length=256,
         verbose_name=_("Heavylite Count")
     )
-
-
-class RadiotherapyInduction(models.EpisodeSubrecord):
-    class Meta:
-        verbose_name = _("Radiotherapy Induction")
-        verbose_name_plural = _("Radiotherapy Inductions")
-
-    start_date = fields.DateField(
-        blank=True, null=True, verbose_name=_("Start Date")
-    )
-    end_date = fields.DateField(
-        blank=True, null=True, verbose_name=_("End Date")
-    )
-
-
-class MMStemCellTransplantEligibility(models.EpisodeSubrecord):
-    _is_singleton = True
-    eligible_for_stem_cell_transplant = fields.BooleanField(default=False)
-
-    class Meta:
-        verbose_name = _("Stem Cell Transplant Eligibility")
-        verbose_name_plural = _("Stem Cell Transplant Eligibilities")
-
-
-def delete_stem_cells(sender, instance, **kwargs):
-    instance.episode.sct_set.all().delete()
-
-
-post_save.connect(
-    delete_stem_cells, sender=MMStemCellTransplantEligibility
-)
