@@ -9,7 +9,6 @@ import opal.models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('opal', '0042_auto_20220421_1545'),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
         ('mm', '0009_auto_20220428_1019'),
     ]
