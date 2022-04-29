@@ -1,9 +1,7 @@
 from django.db import transaction
 from opal.core.pathway import PagePathway
 from opal.core.pathway.steps import Step
-from opal.core.episodes import (
-    EpisodeCategory, InpatientEpisode
-)
+from opal.core.episodes import EpisodeCategory
 from entrytool import models
 from entrytool.episode_categories import LineOfTreatmentEpisode, Default
 from django.utils.translation import gettext_lazy as _
@@ -46,7 +44,6 @@ class AddPatient(PagePathway):
         """
         non_conditions = (
             LineOfTreatmentEpisode.display_name,
-            InpatientEpisode.display_name,
             Default.display_name,
         )
         return [
