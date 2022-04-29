@@ -56,7 +56,6 @@ INSTALLED_APPS = [
     "django.contrib.sites",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "axes",
     "statici18n",
     "rest_framework",
     "rest_framework.authtoken",
@@ -253,10 +252,6 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 # https://docs.djangoproject.com/en/1.10/ref/settings/#csrf-cookie-name
 CSRF_COOKIE_NAME = "XSRF-TOKEN"
 CSRF_FAILURE_VIEW = "opal.views.csrf_failure"
-
-# ========== THIRD PARTY ==========
-# Django Axes
-AXES_LOCK_OUT_AT_FAILURE = False
 
 # Rest Framework
 REST_FRAMEWORK = {
