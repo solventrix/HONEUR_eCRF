@@ -64,7 +64,7 @@
                 {% record_panel models.BoneDisease %}
               </div>
               <div class="col-md-4">
-                {% record_panel models.ConditionAtInduction %}
+                {% record_panel models.Comorbidity %}
               </div>
               <div class="col-md-4">
                 {% record_panel models.RadiotherapyInduction %}
@@ -93,16 +93,19 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-12">
-      <div class="col-md-4">
+    <div class="col-md-6">
+      {% record_panel models.Review %}
+    </div>
+    <div class="col-md-6">
         {% record_panel models.LabTests %}
-      </div>
-      <div class="col-md-3">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
         {% record_panel models.Imaging %}
-      </div>
-      <div class="col-md-4">
-          {% record_panel models.MProteinMesurements %}
-      </div>
+    </div>
+    <div class="col-md-6">
+        {% record_panel models.MProteinMesurements %}
     </div>
   </div>
 </section>

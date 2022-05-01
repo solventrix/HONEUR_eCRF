@@ -1,0 +1,10 @@
+{% load honeur_panels %}
+{% field_display "Comorbidity.condition" %}
+<span ng-show="item.condition_at_induction.condition === 'Infection'">
+    {% field_display "Comorbidity.infection_type" %}
+    {% field_display "Comorbidity.type_of_microorganism_infection" %}
+    {% field_display "Comorbidity.infection_source" %}
+    <span ng-show="item.condition_at_induction.infection_source ==='Other'">
+        {% field_display "Comorbidity.other_condition_name" %}
+    </span>
+</span>
