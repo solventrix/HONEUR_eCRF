@@ -490,12 +490,10 @@ class Cytogenetics(models.EpisodeSubrecord):
     )
 
 
-
-
-class ConditionAtInduction(models.EpisodeSubrecord):
+class Comorbidity(models.EpisodeSubrecord):
     class Meta:
-        verbose_name = _('Condition at induction')
-        verbose_name_plural = _('Conditions at induction')
+        verbose_name = _('Comorbidity')
+        verbose_name_plural = _('Comorbidities')
 
     INFECTION_TYPES = (
         ("Undocumented Preinfection", _("Undocumented Preinfection"),),
@@ -549,6 +547,10 @@ class ConditionAtInduction(models.EpisodeSubrecord):
         verbose_name=_("Condition Name")
     )
 
+    details = fields.TextField(
+        blank=True, default="", verbose_name=_("Details")
+    )
+
 
 class MMRegimen(models.EpisodeSubrecord):
     _sort = "start_date"
@@ -558,12 +560,21 @@ class MMRegimen(models.EpisodeSubrecord):
         ("Induction", _("Induction")),
         ("Maintenance", _("Maintenance")),
         ("Conditioning", _("Conditioning")),
+        ("Relapse", _("Relapse")),
         ("Watch and wait", _("Watch and wait")),
+        ("Other", _("Other")),
     )
 
     YES_NO = (
         ("Yes", _("Yes"),),
         ("No", _("No"),)
+    )
+
+    START_REASON = (
+        ("Progression", _("Progression")),
+        ("Clinical Relapse", _("Clinical Relapse")),
+        ("Biological Relapse", _("Biological Relapse")),
+        ("Other", _("Other")),
     )
 
     hospital = models.ForeignKeyOrFreeText(Hospital, verbose_name=_("Hospital"))
@@ -582,6 +593,13 @@ class MMRegimen(models.EpisodeSubrecord):
     )
     category = fields.CharField(
         max_length=40, choices=REGIMEN_TYPES, verbose_name=_("Regimen Type")
+    )
+    start_reason = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=START_REASON,
+        verbose_name=_("Start Reason")
     )
     stop_reason = ForeignKeyOrFreeText(
         MMStopReason, verbose_name=_("Reason for Regimen Stop")
@@ -673,6 +691,8 @@ class MMResponse(models.EpisodeSubrecord):
         ("FC (Flow Cytometry)", _("FC (Flow Cytometry)")),
         ("Both", _("Both")),
     )
+    # TODO This is only a thing for
+    progression_date = fields.DateField(blank=True, null=True, verbose_name=_("Progression Date"))
     response_date = fields.DateField(blank=True, null=True, verbose_name=_("Response Date"))
     negative_mrd = fields.CharField(
         blank=True,
@@ -1029,4 +1049,11 @@ class MProteinMesurements(models.EpisodeSubrecord):
         null=True,
         max_length=256,
         verbose_name=_("Heavylite Count")
+    )
+
+
+class Review(models.EpisodeSubrecord):
+    date = fields.TextField(blank=True, default="", verbose_name=_("Date"))
+    response_at_last_visit = fields.TextField(
+        blank=True, default="", verbose_name=_("Response At Last Visit")
     )
