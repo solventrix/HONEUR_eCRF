@@ -1,4 +1,5 @@
 {% load forms %}
+{% load custom_forms %}
 {% custom_datepicker field="MMDiagnosisDetails.diag_date" validator="diagnosis_date" date_after="the_episode.demographics[0].date_of_birth" date_after_message=_("Date of diagnosis must be after the patient's birth date") required=True %}
 {% datepicker field="MMDiagnosisDetails.date_of_first_centre_visit" %}
 {% radio field="MMDiagnosisDetails.referred" %}
