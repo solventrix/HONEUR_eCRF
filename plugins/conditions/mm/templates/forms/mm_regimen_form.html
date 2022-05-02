@@ -1,11 +1,22 @@
 {% load forms %}
+{% load i18n %}
+{% load custom_forms %}
 {% select field="MMRegimen.category" %}
-{% input field="MMRegimen.nbCycles" %}
-{% datepicker field="MMRegimen.start_date" %}
-{% datepicker field="MMRegimen.end_date" %}
+<span ng-show="editing.mm_regimen.category === 'Other'">
 {% textarea field="MMRegimen.regimen_details" %}
-{% textarea field="MMRegimen.comments" %}
+</span>
+<div ng-if="editing.mm_regimen.category && editing.mm_regimen.category !== 'Watch and wait'">
+  {% select field="MMRegimen.regimen" required=True%}
+  {% input field="MMRegimen.nbCycles" required=False %}
+</div>
+{% custom_datepicker field="MMRegimen.start_date" no_future=False change="$root.patientValidator.regimen_start(editing.mm_regimen.start_date, editing.mm_regimen, the_episode); $root.patientValidator.regimen_end(editing.mm_regimen.end_date, editing.mm_regimen, the_episode);" date_after="$root.patientValidator.entrytool_helper.getDiagnosis($root.patientValidator.patient).date_of_diagnosis" date_after_diff="0" date_after_message=_("Start Date must be after the patient date of diagnosis") validator="regimen_start" required=True %}
+{% custom_datepicker field="MMRegimen.end_date" no_future=False change="$root.patientValidator.regimen_start(editing.mm_regimen.start_date, editing.mm_regimen, the_episode); $root.patientValidator.regimen_end(editing.mm_regimen.end_date, editing.mm_regimen, the_episode);" date_after="editing.mm_regimen.start_date" date_after_diff="0" date_after_message=_("End Date must be after the start date") validator="regimen_end" ngrequired='$root.patientValidator.validateOnlyOneOpenRegimen(editing.mm_regimen)' ngrequired_error=_("There can only be one open regimen at a time") %}
+<div ng-if="editing.mm_regimen.end_date">
+  {% select field="MMRegimen.stop_reason" required=False %}
+  <div ng-if="editing.mm_regimen.stop_reason === 'Other'">
+    {% textarea label=_("Details") field="MMRegimen.stop_reason_details" %}
+  </div>
+</div>
+
 {% input field="MMRegimen.hospital" %}
-{% input field="MMRegimen.regimen" %}
-{% input field="MMRegimen.stop_reason" %}
-{% textarea field="MMRegimen.stop_reason_details" %}
+{% textarea field="MMRegimen.comments" %}

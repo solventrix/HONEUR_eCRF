@@ -1053,7 +1053,7 @@ class MProteinMesurements(models.EpisodeSubrecord):
 
 
 class Review(models.EpisodeSubrecord):
-    date = fields.TextField(blank=True, default="", verbose_name=_("Date"))
+    date = fields.DateField(blank=True, default="", verbose_name=_("Date"))
     response_at_last_visit = fields.TextField(
         blank=True, default="", verbose_name=_("Response At Last Visit")
     )

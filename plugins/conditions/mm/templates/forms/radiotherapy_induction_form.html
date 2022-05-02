@@ -1,3 +1,7 @@
 {% load forms %}
+{% load custom_forms %}
+{% load i18n %}
+{% custom_datepicker field="RadiotherapyInduction.start_date" label=_("Start Date")  date_after="the_episode.demographics[0].date_of_birth" date_after_message=_("Start date must be after date of birth")%}
+{% custom_datepicker field="RadiotherapyInduction.end_date" label=_("End Date")  date_after="editing.radiotherapy_induction.end_date" date_after_message=_("End date must be after the start date")%}
 {% datepicker field="RadiotherapyInduction.start_date" %}
 {% datepicker field="RadiotherapyInduction.end_date" %}

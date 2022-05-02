@@ -1,3 +1,5 @@
 {% load forms %}
-{% textarea field="Review.date" %}
+{% load custom_forms %}
+{% load i18n %}
+{% custom_datepicker field="Review.date" date_after="$root.patientValidator.entrytool_helper.getDiagnosis($root.patientValidator.patient).diagnosis_date" date_after_diff="0" date_after_message=_("The review should be after the date of diagnosis")  %}
 {% textarea field="Review.response_at_last_visit" %}

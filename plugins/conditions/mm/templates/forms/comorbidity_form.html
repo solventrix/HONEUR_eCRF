@@ -1,10 +1,10 @@
 {% load forms %}
 {% select field="Comorbidity.condition" %}
-<span ng-show="editing.condition_at_induction.condition === 'Infection'">
+<span ng-show="editing.comorbidity.condition === 'Infection'">
 {% select field="Comorbidity.infection_type" %}
-  {% input field="Comorbidity.type_of_microorganism_infection" %}
-  {% input field="Comorbidity.infection_source" %}
+{% input field="Comorbidity.type_of_microorganism_infection" %}
+{% input field="Comorbidity.infection_source" %}
 </span>
-<span ng-show="editing.condition_at_induction.condition === 'Other'">
+<span ng-show="editing.comorbidity.condition === 'Other'">
 {% input field="Comorbidity.other_condition_name" %}
 </span>

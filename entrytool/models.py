@@ -28,7 +28,7 @@ class SCT(models.EpisodeSubrecord):
     SCT_TYPES = (
         ("Allogenic", _("Allogenic")),  # ALOTPH
         ("Autologous", _("Autologous")),   # ATSP
-        ("Tandem ATSP", _("Tandem ATSP ")),
+        ("Tandem ATSP", _("Tandem ATSP")),
         ("Unknown", _("Unknown")),
     )
 
@@ -76,12 +76,6 @@ class SCT(models.EpisodeSubrecord):
         ("Melfalan 200", _("Melfalan 200"),),
         ("BU-MEL", _("BU-MEL"),),
         ("BEAM", _("BEAM"),),
-    )
-
-    ALOTPH_EMR_TECHNIQUE_OPTIONS = (
-        ("Tecnica NGS", _("Tecnica NGS"),),
-        ("Tecnica CFM (Flow Cytometry)", _("Tecnica CFM (Flow Cytometry)")),
-        ("Both", _("Both")),
     )
 
     ALOTPH_SOURCE_OPTIONS = (
