@@ -135,18 +135,6 @@ class MMPatientStatus(models.PatientSubrecord):
         verbose_name = _('Patient Status')
         verbose_name_plural = _('Patient Statuses')
 
-    OUTCOME_CHOICES = (
-        ("Complete Response Molecular", _("Complete Response Molecular"),),
-        ("Complete Response Immunophenotypic", _("Complete Response Immunophenotypic"),),
-        ("Complete Response Strict", _("Complete Response Strict"),),
-        ("Very Good Partial Response", _("Very Good Partial Response"),),
-        ("Partial Response", _("Partial Response"),),
-        ("Stable Disease", _("Stable Disease"),),
-        ("Progression", _("Progression"),),
-        ("Unknown", _("Unknown"),),
-        ("Death", _("Death"),),
-    )
-
     CAUSE_OF_DEATH = (
         ("Multiple Myeloma", _("Multiple Myeloma"),),
         ("Infection", _("Infection"),),
@@ -167,7 +155,6 @@ class MMPatientStatus(models.PatientSubrecord):
         choices=STATUS_CHOICES,
         verbose_name=_("Status")
     )
-    status_date = fields.DateField(blank=True, null=True, verbose_name=_("Date"))
     comments = fields.TextField(
         blank=True,
         null=True,
@@ -1055,5 +1042,5 @@ class MProteinMesurements(models.EpisodeSubrecord):
 class Review(models.EpisodeSubrecord):
     date = fields.DateField(blank=True, default="", verbose_name=_("Date"))
     response_at_last_visit = fields.TextField(
-        blank=True, default="", verbose_name=_("Response At Last Visit")
+        blank=True, null=True, verbose_name=_("Response At Last Visit")
     )

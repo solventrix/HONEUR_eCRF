@@ -13,6 +13,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='review',
             name='date',
-            field=models.DateField(blank=True, default='', verbose_name='Date'),
+            field=models.DateField(blank=True, null=True, verbose_name='Date'),
         ),
     ]
