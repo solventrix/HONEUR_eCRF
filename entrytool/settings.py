@@ -310,6 +310,10 @@ if os.environ.get('HEROKU_SLUG_COMMIT'):
 # COMPRESS_PRECOMPILERS = (
 #     ('text/x-scss', 'sass --scss {infile} {outfile}'),
 # )
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'locale')
+]
+
 
 try:
     from entrytool.local_settings import *
