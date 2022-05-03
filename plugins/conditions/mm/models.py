@@ -60,9 +60,9 @@ class MMDiagnosisDetails(models.EpisodeSubrecord):
     )
 
     ECOG_CHOICES = (
-        "Asymptomatic", _("Asymptomatic"),
-        "Symptomatic", _("Symptomatic"),
-        "Very Symptomatic", _("Very Symptomatic"),
+        ("Asymptomatic", _("Asymptomatic"),),
+        ("Symptomatic", _("Symptomatic"),),
+        ("Very Symptomatic", _("Very Symptomatic"),),
     )
 
     date_of_diagnosis = fields.DateField(
