@@ -419,7 +419,7 @@ class BoneDisease(models.EpisodeSubrecord):
         ("Denosumab", _("Denosumab"),),
         ("Bisphosphonates Induction", _("Bisphosphonates Induction"),),
         ("Vertebroplasty Induction", _("Vertebroplasty Induction"),),
-        ("Others Induction", _("Others Induction"),),
+        ("Other Induction", _("Other Induction"),),
         ("Not Available", _("Not Available"),),
     )
     treatment_type = fields.CharField(
