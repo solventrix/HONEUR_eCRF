@@ -3,36 +3,36 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-04-21 12:52+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2022-05-03 14:22+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: entrytool/__init__.py:41 entrytool/pathways.py:19
 msgid "Add Patient"
-msgstr "Add patient in spanish"
+msgstr "Añadir Paciente"
 
 #: entrytool/__init__.py:45
 msgid "Log Out"
-msgstr ""
+msgstr "Desconexión"
 
 #: entrytool/__init__.py:51 entrytool/opal/core/application.py:122
 msgid "Admin"
-msgstr ""
+msgstr "Administrador"
 
 #: entrytool/models.py:16 entrytool/templates/forms/demographics_form.html:3
 #: entrytool/templates/partials/_demographics_panel.html:22
 msgid "External Identifier"
-msgstr ""
+msgstr "Identificador Externo"
 
 #: entrytool/models.py:22 entrytool/models.py:36 entrytool/models.py:90
 #: entrytool/templates/records/sct.html:5
@@ -41,88 +41,87 @@ msgstr ""
 
 #: entrytool/models.py:23
 msgid "Hospitals"
-msgstr ""
+msgstr "Hospitales"
 
 #: entrytool/models.py:28
 msgid "Allogenic"
-msgstr ""
+msgstr "Alógenico"
 
 #: entrytool/models.py:29
 msgid "Autologous"
-msgstr ""
+msgstr "Autólogo"
 
 #: entrytool/models.py:30
 msgid "Unknown"
-msgstr ""
+msgstr "Desconocido"
 
 #: entrytool/models.py:34
 msgid "Date of SCT"
-msgstr ""
+msgstr "Fecha de SCT"
 
 #: entrytool/models.py:40
 msgid "Type of SCT"
-msgstr ""
+msgstr "Tipo de SCT"
 
 #: entrytool/models.py:46
 msgid "Stem Cell Transplant"
-msgstr "Spanish Stem Cell Transplant"
+msgstr "Trasplante de Células Madre"
 
 #: entrytool/models.py:47
 #, fuzzy
 #| msgid "Stem Cell Transplant"
 msgid "Stem Cell Transplants"
-msgstr "Spanish Stem Cell Transplant"
+msgstr "Trasplantes de Células Madre"
 
 #: entrytool/models.py:53
 msgid "Disease"
-msgstr ""
+msgstr "Enfermedad"
 
 #: entrytool/models.py:54
 msgid "Complications of Disease"
-msgstr ""
+msgstr "Complicaciones de la Enfermedad"
 
-#: entrytool/models.py:55 entrytool/wow_strings.py:15
-#: entrytool/wow_strings.py:19
+#: entrytool/models.py:55 entrytool/wow_strings.py:15 entrytool/wow_strings.py:19
 msgid "Other"
-msgstr ""
+msgstr "Otro"
 
 #: entrytool/models.py:57
 msgid "Deceased"
-msgstr ""
+msgstr "Fallecido"
 
 #: entrytool/models.py:58
 msgid "Lost to Follow-Up"
-msgstr ""
+msgstr "Pérdida de Seguimiento"
 
 #: entrytool/models.py:60 entrytool/opal/models.py:1292
 msgid "Date of Death"
-msgstr ""
+msgstr "Fecha de la Muerte"
 
 #: entrytool/models.py:65
 msgid "Cause of Death"
-msgstr ""
+msgstr "Causa de la Muerte"
 
 #: entrytool/models.py:70
 msgid "Lost to Follow-up"
-msgstr ""
+msgstr "Pérdida de Seguimiento"
 
 #: entrytool/models.py:74 entrytool/models.py:75
 msgid "Patient status"
-msgstr ""
+msgstr "Estado del Paciente"
 
 #: entrytool/models.py:80 entrytool/models.py:83
 msgid "Treatment Line"
-msgstr ""
+msgstr "Línea de Tratamiento"
 
 #: entrytool/models.py:84
 #, fuzzy
 #| msgid "Add Patient"
 msgid "Treatment Lines"
-msgstr "Add patient in spanish"
+msgstr "Líneas de Tratamiento"
 
 #: entrytool/models.py:91
 msgid "Visit date"
-msgstr ""
+msgstr "Fecha de Visita"
 
 #: entrytool/models.py:93 entrytool/templates/detail/followups.html:6
 msgid "LDH"
@@ -134,58 +133,58 @@ msgstr ""
 
 #: entrytool/models.py:95 entrytool/templates/detail/followups.html:8
 msgid "Albumin"
-msgstr ""
+msgstr "Albumina"
 
 #: entrytool/models.py:96
 msgid "MProtein Urine"
-msgstr ""
+msgstr "Proteína M en Orina"
 
 #: entrytool/models.py:98
 msgid "Mprotein in 24 hour urine"
-msgstr ""
+msgstr "Proteína M en Orina de 24h"
 
 #: entrytool/models.py:101
 msgid "Follow-up"
-msgstr ""
+msgstr "Seguimiento"
 
 #: entrytool/models.py:102
 msgid "Follow-ups"
-msgstr ""
+msgstr "Seguimientos"
 
 #: entrytool/opal/core/lookuplists.py:116
 msgid "Name"
-msgstr ""
+msgstr "Nombre"
 
 #: entrytool/opal/core/lookuplists.py:118
 msgid "Synonym"
-msgstr ""
+msgstr "Sinonimo"
 
 #: entrytool/opal/core/lookuplists.py:120
 msgid "System"
-msgstr ""
+msgstr "Sistema"
 
 #: entrytool/opal/core/lookuplists.py:123
 msgid "Code"
-msgstr ""
+msgstr "Código"
 
 #: entrytool/opal/core/lookuplists.py:128
 msgid "Version"
-msgstr ""
+msgstr "Versión"
 
 #: entrytool/opal/core/search/templates/search.html:9
 #: entrytool/templates/search.html:9
 msgid "Patient Search"
-msgstr ""
+msgstr "Buscar Paciente"
 
 #: entrytool/opal/core/search/templates/search.html:30
 msgid "Advanced"
-msgstr ""
+msgstr "Avanzado"
 
 #: entrytool/opal/core/search/templates/search.html:38
 #: entrytool/opal/templates/partials/_nav_search.html:39
 #: entrytool/templates/search.html:32 entrytool/templates/welcome.html:33
 msgid "Search"
-msgstr ""
+msgstr "Buscar"
 
 #: entrytool/opal/models.py:472 entrytool/opal/models.py:686
 #: entrytool/opal/models.py:1065
@@ -195,265 +194,265 @@ msgstr ""
 #, fuzzy
 #| msgid "Add Patient"
 msgid "Patient"
-msgstr "Add patient in spanish"
+msgstr "Paciente"
 
 #: entrytool/opal/models.py:473
 #, fuzzy
 #| msgid "Add Patient"
 msgid "Patients"
-msgstr "Add patient in spanish"
+msgstr "Pacientes"
 
 #: entrytool/opal/models.py:606
 msgid "External System"
-msgstr ""
+msgstr "Sistema Externo"
 
 #: entrytool/opal/models.py:612
 msgid "Extenal Identifier"
-msgstr ""
+msgstr "Identificador Externo"
 
 #: entrytool/opal/models.py:630
 #: entrytool/opal/templates/partials/_item_created_updated_by.html:10
 msgid "Created"
-msgstr ""
+msgstr "Creado"
 
 #: entrytool/opal/models.py:633
 msgid "Updated"
-msgstr ""
+msgstr "Actualizado"
 
 #: entrytool/opal/models.py:639
 msgid "Created By"
-msgstr ""
+msgstr "Creado por"
 
 #: entrytool/opal/models.py:645
 msgid "Updated By"
-msgstr ""
+msgstr "Actualizado por"
 
 #: entrytool/opal/models.py:683
 msgid "Category Name"
-msgstr ""
+msgstr "Nombre de la Categoría"
 
 #: entrytool/opal/models.py:689
 msgid "Active"
-msgstr ""
+msgstr "Activo"
 
 #: entrytool/opal/models.py:692
 msgid "Start"
-msgstr ""
+msgstr "Inicio"
 
 #: entrytool/opal/models.py:695
 msgid "End"
-msgstr ""
+msgstr "Fin"
 
 #: entrytool/opal/models.py:698 entrytool/opal/models.py:907
 msgid "Consistency Token"
-msgstr ""
+msgstr "Token de consistencia"
 
 #: entrytool/opal/models.py:704
 msgid "Stage"
-msgstr ""
+msgstr "Estadio"
 
 #: entrytool/opal/models.py:708 entrytool/opal/models.py:1078
 msgid "Episode"
-msgstr ""
+msgstr "Episodio"
 
 #: entrytool/opal/models.py:709
 msgid "Episodes"
-msgstr ""
+msgstr "Episodios"
 
 #: entrytool/opal/models.py:1179
 msgid "Destination"
-msgstr ""
+msgstr "Destino"
 
 #: entrytool/opal/models.py:1180
 msgid "Destinations"
-msgstr ""
+msgstr "Destinos"
 
 #: entrytool/opal/models.py:1204 entrytool/opal/models.py:1303
 msgid "Ethnicity"
-msgstr ""
+msgstr "Etnia"
 
 #: entrytool/opal/models.py:1205
 msgid "Ethnicities"
-msgstr ""
+msgstr "Etnias"
 
 #: entrytool/opal/models.py:1210
 msgid "Gender"
-msgstr ""
+msgstr "Genero"
 
 #: entrytool/opal/models.py:1211
 msgid "Genders"
-msgstr ""
+msgstr "Generos"
 
 #: entrytool/opal/models.py:1229
 msgid "Marital Status"
-msgstr ""
+msgstr "Estado Civil"
 
 #: entrytool/opal/models.py:1230
 msgid "Marital statuses"
-msgstr ""
+msgstr "Estados Civiles"
 
 #: entrytool/opal/models.py:1247 entrytool/opal/models.py:1283
 msgid "Title"
-msgstr ""
+msgstr "Título"
 
 #: entrytool/opal/models.py:1248
 msgid "Titles"
-msgstr ""
+msgstr "Títulos"
 
 #: entrytool/opal/models.py:1267
 msgid "The unique identifier for this patient at the hospital."
-msgstr ""
+msgstr "El identificador único para este paciente en el hospital."
 
 #: entrytool/opal/models.py:1268 entrytool/opal/models.py:1318
 #: entrytool/opal/models.py:1319
 msgid "Demographics"
-msgstr ""
+msgstr "Datos Demográficos"
 
 #: entrytool/opal/models.py:1271
 msgid "NHS Number"
-msgstr ""
+msgstr "Numero de la Seguridad Social"
 
 #: entrytool/opal/models.py:1275
 msgid "Surname"
-msgstr ""
+msgstr "Apellido"
 
 #: entrytool/opal/models.py:1278
 msgid "First Name"
-msgstr ""
+msgstr "Nombre"
 
 #: entrytool/opal/models.py:1281
 msgid "Middle Name"
-msgstr ""
+msgstr "Segundo Nombre"
 
 #: entrytool/opal/models.py:1285
 msgid "Date of Birth"
-msgstr ""
+msgstr "Fecha de Nacimiento"
 
 #: entrytool/opal/models.py:1288
 msgid "Marital status"
-msgstr ""
+msgstr "Estado Civil"
 
 #: entrytool/opal/models.py:1295
 msgid "Post Code"
-msgstr ""
+msgstr "Código Postal"
 
 #: entrytool/opal/models.py:1299
 msgid "GP Practice Code"
-msgstr ""
+msgstr "Número de Colegiado del Médico de Atención Primaria"
 
 #: entrytool/opal/models.py:1302
 msgid "Country of Birth"
-msgstr ""
+msgstr "País de Nacimiento"
 
 #: entrytool/opal/models.py:1307
 msgid "Death Indicator"
-msgstr ""
+msgstr "Indicador de Mortalidad"
 
 #: entrytool/opal/models.py:1310
 #: entrytool/templates/partials/_demographics_panel.html:38
 msgid "Sex"
-msgstr ""
+msgstr "Sexo"
 
 #: entrytool/opal/templates/_helpers/date_of_birth_field.html:3
 #: entrytool/opal/templates/_helpers/date_of_birth_field.html:9
 msgid "Date Of Birth"
-msgstr ""
+msgstr "Fecha de Nacimiento"
 
 #: entrytool/opal/templates/_helpers/date_of_birth_field.html:13
 msgid "Please enter a valid date of birth in the format DD/MM/YYYY"
-msgstr ""
+msgstr "Ingrese una fecha de nacimiento válida en el formato DD/MM/AAAA"
 
 #: entrytool/opal/templates/accounts/banned.html:10
 msgid "Banned Passwords"
-msgstr ""
+msgstr "Contraseñas Prohibidas"
 
 #: entrytool/opal/templates/accounts/banned.html:16
 msgid "This list of 1000 common passwords are banned for this application."
-msgstr ""
+msgstr "Esta lista de 1000 contraseñas comunes está prohibida para esta aplicación."
 
 #: entrytool/opal/templates/admin/base_site.html:4
 msgid "Django site admin"
-msgstr ""
+msgstr "Administrador del Sitio Django"
 
 #: entrytool/opal/templates/delete_item_confirmation_modal.html:6
 msgid "Delete item?"
-msgstr ""
+msgstr "¿Borrar elemento?"
 
 #: entrytool/opal/templates/delete_item_confirmation_modal.html:11
 msgid "Do you want to delete this item?"
-msgstr ""
+msgstr "¿Quieres eliminar este elemento?"
 
 #: entrytool/opal/templates/delete_item_confirmation_modal.html:16
 #: entrytool/templates/base_templates/form_modal_base.html:19
 msgid "Delete"
-msgstr ""
+msgstr "Borrar"
 
 #: entrytool/opal/templates/delete_item_confirmation_modal.html:21
 #: entrytool/templates/base_templates/form_modal_base.html:24
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #: entrytool/opal/templates/partials/_item_created_updated_by.html:7
 msgid "Created by"
-msgstr ""
+msgstr "Creado por"
 
 #: entrytool/opal/templates/partials/_item_created_updated_by.html:18
 msgid "Last updated by"
-msgstr ""
+msgstr "Actualizado la última vez por"
 
 #: entrytool/opal/templates/partials/_item_created_updated_by.html:21
 msgid "Last updated"
-msgstr ""
+msgstr "Última Actualización"
 
 #: entrytool/opal/templates/partials/_loading.html:10
 msgid "Loading"
-msgstr ""
+msgstr "Cargando"
 
 #: entrytool/opal/templates/registration/login.html:23
 msgid "Your username and password didn't match. Please try again."
-msgstr ""
+msgstr "Su nombre de usuario y contraseña no coinciden. Inténtalo de nuevo."
 
 #: entrytool/opal/templates/registration/login.html:30
 msgid "Username"
-msgstr ""
+msgstr "Nombre de Usuario"
 
 #: entrytool/opal/templates/registration/login.html:40
 msgid "Password"
-msgstr ""
+msgstr "Contraseña"
 
 #: entrytool/opal/templates/registration/login.html:47
 msgid "Sign in"
-msgstr ""
+msgstr "Iniciar Sesión"
 
 #: entrytool/opal/templates/registration/password_change_form.html:10
 #: entrytool/opal/templates/registration/password_change_form.html:52
 msgid "Change Password"
-msgstr ""
+msgstr "Cambiar Contraseña"
 
 #: entrytool/opal/templates/registration/password_change_form.html:61
 #, python-format
 msgid ""
-"For security purposes, passwords should be at least 6 characters, and not "
-"feature on the\n"
+"For security purposes, passwords should be at least 6 characters, and not feature "
+"on the\n"
 "  <a href=\"%(banned)s\" target=\"_blank\">list of banned passwords</a>."
 msgstr ""
 
 #: entrytool/pathways.py:21
 #: entrytool/templates/base_templates/form_modal_base.html:31
 msgid "Save"
-msgstr ""
+msgstr "Guardar"
 
 #: entrytool/settings.py:189
 msgid "English"
-msgstr ""
+msgstr "Inglés"
 
 #: entrytool/settings.py:190
 msgid "Spanish"
-msgstr ""
+msgstr "Español"
 
 #: entrytool/settings.py:191
 msgid "Hebrew"
-msgstr ""
+msgstr "Hebreo"
 
 #: entrytool/templates/_helpers/custom_datepicker.html:75
 #: entrytool/templates/_helpers/input.html:55
@@ -462,61 +461,61 @@ msgstr ""
 #: entrytool/templates/_helpers/select.html:20
 #, python-format
 msgid "%(label)s is required"
-msgstr ""
+msgstr "%(label)s es obligatorio"
 
 #: entrytool/templates/_helpers/custom_datepicker.html:90
 #, python-format
 msgid "%(label)s is after the date of death"
-msgstr ""
+msgstr "%(label)s es posterior a la fecha de la muerte"
 
 #: entrytool/templates/_helpers/custom_datepicker.html:95
 #, python-format
 msgid "%(label)s is in the future"
-msgstr ""
+msgstr "%(label)s es en el futuro"
 
 #: entrytool/templates/_helpers/input.html:50
 #, python-format
 msgid "Maximum length is %(maxlength)s"
-msgstr ""
+msgstr "La Longitud Máxima es %(maxlength)s"
 
 #: entrytool/templates/_helpers/number.html:58
 #, python-format
 msgid "%(label)s is too low"
-msgstr ""
+msgstr "%(label)s es muy bajo"
 
 #: entrytool/templates/_helpers/number.html:63
 #, python-format
 msgid "%(label)s is too high"
-msgstr ""
+msgstr "%(label)s es muy alto"
 
 #: entrytool/templates/_helpers/number.html:68
 #, python-format
 msgid "%(label)s is outside normal bounds"
-msgstr ""
+msgstr "%(label)s está fuera de los límites normales"
 
 #: entrytool/templates/angular_locale.html:4
 msgid "zero"
-msgstr ""
+msgstr "cero"
 
 #: entrytool/templates/angular_locale.html:4
 msgid "one"
-msgstr ""
+msgstr "uno"
 
 #: entrytool/templates/angular_locale.html:4
 msgid "two"
-msgstr ""
+msgstr "dos"
 
 #: entrytool/templates/angular_locale.html:4
 msgid "few"
-msgstr ""
+msgstr "pocos"
 
 #: entrytool/templates/angular_locale.html:4
 msgid "many"
-msgstr ""
+msgstr "muchos"
 
 #: entrytool/templates/angular_locale.html:4
 msgid "other"
-msgstr ""
+msgstr "otro"
 
 #: entrytool/templates/angular_locale.html:26
 msgid "AM"
@@ -528,35 +527,35 @@ msgstr ""
 
 #: entrytool/templates/angular_locale.html:30
 msgid "Sunday"
-msgstr ""
+msgstr "Domingo"
 
 #: entrytool/templates/angular_locale.html:31
 msgid "Monday"
-msgstr ""
+msgstr "Lunes"
 
 #: entrytool/templates/angular_locale.html:32
 msgid "Tuesday"
-msgstr ""
+msgstr "Martes"
 
 #: entrytool/templates/angular_locale.html:33
 msgid "Wednesday"
-msgstr ""
+msgstr "Miércoles"
 
 #: entrytool/templates/angular_locale.html:34
 msgid "Thursday"
-msgstr ""
+msgstr "Jueves"
 
 #: entrytool/templates/angular_locale.html:35
 msgid "Friday"
-msgstr ""
+msgstr "Viernes"
 
 #: entrytool/templates/angular_locale.html:36
 msgid "Saturday"
-msgstr ""
+msgstr "Sábado"
 
 #: entrytool/templates/angular_locale.html:39
 msgid "Before Christ"
-msgstr ""
+msgstr "Antes de Cristo"
 
 #: entrytool/templates/angular_locale.html:40
 msgid "Anno Domini"
@@ -564,144 +563,144 @@ msgstr ""
 
 #: entrytool/templates/angular_locale.html:43
 msgid "BC"
-msgstr ""
+msgstr "a. C."
 
 #: entrytool/templates/angular_locale.html:44
 msgid "AD"
-msgstr ""
+msgstr "d. C."
 
 #: entrytool/templates/angular_locale.html:48
 #: entrytool/templates/angular_locale.html:85
 msgid "January"
-msgstr ""
+msgstr "Enero"
 
 #: entrytool/templates/angular_locale.html:49
 #: entrytool/templates/angular_locale.html:86
 msgid "February"
-msgstr ""
+msgstr "Febrero"
 
 #: entrytool/templates/angular_locale.html:50
 #: entrytool/templates/angular_locale.html:87
 msgid "March"
-msgstr ""
+msgstr "Marzo"
 
 #: entrytool/templates/angular_locale.html:51
 #: entrytool/templates/angular_locale.html:88
 msgid "April"
-msgstr ""
+msgstr "Abril"
 
 #: entrytool/templates/angular_locale.html:52
 #: entrytool/templates/angular_locale.html:75
 #: entrytool/templates/angular_locale.html:89
 msgid "May"
-msgstr ""
+msgstr "Mayo"
 
 #: entrytool/templates/angular_locale.html:53
 #: entrytool/templates/angular_locale.html:90
 msgid "June"
-msgstr ""
+msgstr "Junio"
 
 #: entrytool/templates/angular_locale.html:54
 #: entrytool/templates/angular_locale.html:91
 msgid "July"
-msgstr ""
+msgstr "Julio"
 
 #: entrytool/templates/angular_locale.html:55
 #: entrytool/templates/angular_locale.html:92
 msgid "August"
-msgstr ""
+msgstr "Agosto"
 
 #: entrytool/templates/angular_locale.html:56
 #: entrytool/templates/angular_locale.html:93
 msgid "September"
-msgstr ""
+msgstr "Septiembre"
 
 #: entrytool/templates/angular_locale.html:57
 #: entrytool/templates/angular_locale.html:94
 msgid "October"
-msgstr ""
+msgstr "Octubre"
 
 #: entrytool/templates/angular_locale.html:58
 #: entrytool/templates/angular_locale.html:95
 msgid "November"
-msgstr ""
+msgstr "Noviembre"
 
 #: entrytool/templates/angular_locale.html:59
 #: entrytool/templates/angular_locale.html:96
 msgid "December"
-msgstr ""
+msgstr "Diciembre"
 
 #: entrytool/templates/angular_locale.html:62
 msgid "Sun"
-msgstr ""
+msgstr "Do"
 
 #: entrytool/templates/angular_locale.html:63
 msgid "Mon"
-msgstr ""
+msgstr "Lu"
 
 #: entrytool/templates/angular_locale.html:64
 msgid "Tue"
-msgstr ""
+msgstr "Ma"
 
 #: entrytool/templates/angular_locale.html:65
 msgid "Wed"
-msgstr ""
+msgstr "Mi"
 
 #: entrytool/templates/angular_locale.html:66
 msgid "Thu"
-msgstr ""
+msgstr "Ju"
 
 #: entrytool/templates/angular_locale.html:67
 msgid "Fri"
-msgstr ""
+msgstr "Vi"
 
 #: entrytool/templates/angular_locale.html:68
 msgid "Sat"
-msgstr ""
+msgstr "Sa"
 
 #: entrytool/templates/angular_locale.html:71
 msgid "Jan"
-msgstr ""
+msgstr "En"
 
 #: entrytool/templates/angular_locale.html:72
 msgid "Feb"
-msgstr ""
+msgstr "Feb"
 
 #: entrytool/templates/angular_locale.html:73
 msgid "Mar"
-msgstr ""
+msgstr "Mar"
 
 #: entrytool/templates/angular_locale.html:74
 msgid "Apr"
-msgstr ""
+msgstr "Abr"
 
 #: entrytool/templates/angular_locale.html:76
 msgid "Jun"
-msgstr ""
+msgstr "Jun"
 
 #: entrytool/templates/angular_locale.html:77
 msgid "Jul"
-msgstr ""
+msgstr "Jul"
 
 #: entrytool/templates/angular_locale.html:78
 msgid "Aug"
-msgstr ""
+msgstr "Agto"
 
 #: entrytool/templates/angular_locale.html:79
 msgid "Sep"
-msgstr ""
+msgstr "Sept"
 
 #: entrytool/templates/angular_locale.html:80
 msgid "Oct"
-msgstr ""
+msgstr "Oct"
 
 #: entrytool/templates/angular_locale.html:81
 msgid "Nov"
-msgstr ""
+msgstr "Nov"
 
 #: entrytool/templates/angular_locale.html:82
 msgid "Dec"
-msgstr ""
+msgstr "Dic"
 
 #: entrytool/templates/detail/followups.html:7
 msgid "Beta2m"
@@ -709,132 +708,128 @@ msgstr ""
 
 #: entrytool/templates/detail/followups.html:9
 msgid "M Protein Serum"
-msgstr ""
+msgstr "Proteína M en Suero"
 
 #: entrytool/templates/detail/followups.html:10
 msgid "M Protein Urine"
-msgstr ""
+msgstr "Proteín M en Orina"
 
 #: entrytool/templates/detail/followups.html:11
 msgid "M Protein in 24 hour Urine"
-msgstr ""
+msgstr "Proteín M en Orina de 24h"
 
 #: entrytool/templates/forms/sct_form.html:4
 msgid "The SCT should be after the date of diagnosis"
-msgstr ""
+msgstr "El SCT debe ser posterior a la fecha de diagnóstico"
 
 #: entrytool/templates/opal.html:22
 msgid "The regimen cannot overlap with another regimen"
-msgstr ""
+msgstr "El régimen no puede solaparse con otro régimen"
 
 #: entrytool/templates/opal.html:23
 msgid "No regimen is connected to this response"
-msgstr ""
+msgstr "Ningún régimen está conectado a esta respuesta"
 
 #: entrytool/templates/opal.html:24
 msgid "A response date is not connected to a regimen"
-msgstr ""
+msgstr "La fecha de respuesta no está asociada con un régimen"
 
 #: entrytool/templates/opal.html:25
 msgid "Date of diagnosis is greater than a regimen start date"
-msgstr ""
+msgstr "La fecha de diagnóstico es posterior a la fecha de inicio del régimen"
 
 #: entrytool/templates/opal.html:26
 msgid "Date of diagnosis is greater than an SCT date"
-msgstr ""
+msgstr "La fecha de diagnóstico es posterior a la fecha de SCT"
 
 #: entrytool/templates/opal.html:27
 msgid "Date of diagnosis is greater than a response date"
-msgstr ""
+msgstr "La fecha de diagnóstico es posterior a la fecha de respuesta"
 
 #: entrytool/templates/opal.html:28
 msgid "This regimen overlaps with another line of treatment"
-msgstr ""
+msgstr "Este régimen se superpone con otra línea de tratamiento"
 
 #: entrytool/templates/partials/_demographics_panel.html:14
 #: entrytool/templates/records/demographics.html:3
 msgid "ID"
-msgstr "Identificacion"
+msgstr ""
 
 #: entrytool/templates/partials/_demographics_panel.html:30
 msgid "Birth Date"
-msgstr ""
+msgstr "Fecha de Nacimiento"
 
 #: entrytool/templates/partials/_patient_summary_list.html:5
 msgid "We've found"
-msgstr ""
+msgstr "Hemos encontrado"
 
 #: entrytool/templates/partials/_patient_summary_list.html:6
-#, fuzzy
-#| msgid "Add Patient"
 msgid "patients"
-msgstr "Add patient in spanish"
+msgstr "pacientes"
 
 #: entrytool/templates/partials/_patient_summary_list.html:7
-#, fuzzy
-#| msgid "Add Patient"
 msgid "patient"
-msgstr "Add patient in spanish"
+msgstr "paciente"
 
 #: entrytool/templates/pathway/category_select.html:14
 msgid "A condition is required"
-msgstr ""
+msgstr "Un condición clínica es obligatorio"
 
 #: entrytool/templates/patient_detail.html:3
 msgid "Patient not found"
-msgstr ""
+msgstr "Paciente no encontrado"
 
 #: entrytool/templates/patient_detail.html:5
 msgid "We're sorry but we couldn't find the patient you're looking for."
-msgstr ""
+msgstr "Lo sentimos pero no pudimos encontrar al paciente que buscas."
 
 #: entrytool/templates/patient_detail.html:7
 msgid "Perhaps try searching for them instead?"
-msgstr ""
+msgstr "¿Quizás intente buscar por ellos en su lugar?"
 
 #: entrytool/templates/records/patient_status.html:21
 msgid "Last Seen"
-msgstr ""
+msgstr "ültima Visita"
 
 #: entrytool/templates/records/patient_status.html:33
 msgid "Death details"
-msgstr ""
+msgstr "Causa de la Muerte"
 
 #: entrytool/templates/records/sct.html:16
 msgid "Date"
-msgstr ""
+msgstr "Fecha"
 
 #: entrytool/templates/records/sct.html:27
 msgid "Type"
-msgstr ""
+msgstr "Tipo"
 
 #: entrytool/templates/search.html:21 entrytool/templates/welcome.html:23
 msgid "External Identifier Or ID"
-msgstr ""
+msgstr "Identificador Externo o ID"
 
 #: entrytool/templates/search.html:48
 msgid "We couldn't find any results for your search."
-msgstr ""
+msgstr "No pudimos encontrar ningún resultado para su búsqueda."
 
 #: entrytool/templates/welcome.html:9
 msgid "Home"
-msgstr ""
+msgstr "Inicio"
 
 #: entrytool/wow_strings.py:5
 msgid "Female"
-msgstr ""
+msgstr "Femenino"
 
 #: entrytool/wow_strings.py:7
 msgid "Male"
-msgstr ""
+msgstr "Masculino"
 
 #: entrytool/wow_strings.py:9
 msgid "Not Known"
-msgstr ""
+msgstr "Desconocido"
 
 #: entrytool/wow_strings.py:11
 msgid "Not Specified"
-msgstr ""
+msgstr "No Especificado"
 
 #: entrytool/wow_strings.py:13 entrytool/wow_strings.py:17
 msgid "MVZ Koln"
@@ -850,11 +845,11 @@ msgstr ""
 
 #: entrytool/wow_strings.py:25
 msgid "Rituximab Erhaltung"
-msgstr ""
+msgstr "Mantenimiento con Rituximab"
 
 #: entrytool/wow_strings.py:27
 msgid "Bendamustine.Vincristine.Prednison"
-msgstr ""
+msgstr "Bendamustina.Vincristina.Prendisona"
 
 #: entrytool/wow_strings.py:29
 msgid "Venetoclax.Obinutuzumab"
@@ -862,43 +857,43 @@ msgstr ""
 
 #: entrytool/wow_strings.py:31
 msgid "Bendamustine.Rituximab"
-msgstr ""
+msgstr "Bendamustina.Rituximab"
 
 #: entrytool/wow_strings.py:33
 msgid "Rituximab.Fludarabine.Cyclophospahmid (R-FC)"
-msgstr ""
+msgstr "Rituximab.Fludarabina.Ciclofosfamida"
 
 #: entrytool/wow_strings.py:35
 msgid "Chlorambucil.Obinotuzumab"
-msgstr ""
+msgstr "Clorambucilo.Obinotuzumab"
 
 #: entrytool/wow_strings.py:37
 msgid "Venetoclax.Decitabine"
-msgstr ""
+msgstr "Venetoclax.Decitabina"
 
 #: entrytool/wow_strings.py:39
 msgid "Vincristine"
-msgstr ""
+msgstr "Vincristina"
 
 #: entrytool/wow_strings.py:41
 msgid "Bendamustine.Dexamethason"
-msgstr ""
+msgstr "Bendamustina.Dexametasona"
 
 #: entrytool/wow_strings.py:43
 msgid "Adverse event"
-msgstr ""
+msgstr "Efecto Adverso"
 
 #: entrytool/wow_strings.py:45
 msgid "Progression"
-msgstr ""
+msgstr "Progresión"
 
 #: entrytool/wow_strings.py:47
 msgid "Remission Achieved"
-msgstr ""
+msgstr "Remisión Alcanzado"
 
 #: entrytool/wow_strings.py:49
 msgid "Other reason"
-msgstr ""
+msgstr "Otra Razón"
 
 #~ msgid "History of SMM"
-#~ msgstr "Historia de SMM"
+#~ msgstr "Histórico de SMM"

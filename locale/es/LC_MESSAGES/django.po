@@ -3,28 +3,28 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-04-21 12:52+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2022-05-03 14:23+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
 
 #: plugins/conditions/cll/models.py:11 plugins/conditions/cll/models.py:12
 msgid "CLL Regimen List"
-msgstr ""
+msgstr "Lista de Regímenes LLC"
 
 #: plugins/conditions/cll/models.py:17 plugins/conditions/cll/models.py:18
 msgid "CLL Stop Reason List"
-msgstr ""
+msgstr "Lista de Razones de discontinuacion en LLC"
 
 #: plugins/conditions/cll/models.py:24 plugins/conditions/cll/models.py:57
 #: plugins/conditions/cll/templates/records/cll_regimen.html:15
@@ -38,7 +38,7 @@ msgstr ""
 #: plugins/conditions/cll/models.py:156 plugins/conditions/mm/models.py:24
 #: plugins/conditions/mm/models.py:161
 msgid "Yes"
-msgstr ""
+msgstr "Sí"
 
 #: plugins/conditions/cll/models.py:26 plugins/conditions/cll/models.py:129
 #: plugins/conditions/cll/models.py:156 plugins/conditions/mm/models.py:24
@@ -52,139 +52,139 @@ msgstr ""
 #: plugins/conditions/mm/models.py:24 plugins/conditions/mm/models.py:30
 #: plugins/conditions/mm/models.py:161
 msgid "Unknown"
-msgstr ""
+msgstr "Desconocido"
 
 #: plugins/conditions/cll/models.py:29
 msgid "Stage A"
-msgstr ""
+msgstr "Estadio A"
 
 #: plugins/conditions/cll/models.py:30
 msgid "Stage B"
-msgstr ""
+msgstr "Estadio B"
 
 #: plugins/conditions/cll/models.py:31
 msgid "Stage C"
-msgstr ""
+msgstr "Estadio C"
 
 #: plugins/conditions/cll/models.py:36
 #: plugins/conditions/cll/templates/records/cll_diagnosis_details.html:4
 #: plugins/conditions/mm/models.py:40
 #: plugins/conditions/mm/templates/records/mm_diagnosis_details.html:4
 msgid "Date of Diagnosis"
-msgstr ""
+msgstr "Fecha de Diagnóstico"
 
 #: plugins/conditions/cll/models.py:40
 #: plugins/conditions/cll/templates/records/cll_diagnosis_details.html:14
 msgid "Binet Stage"
-msgstr ""
+msgstr "Estadio Binet"
 
 #: plugins/conditions/cll/models.py:44 plugins/conditions/cll/models.py:45
 msgid "Diagnosis details"
-msgstr ""
+msgstr "Detalles del diagnóstico"
 
 #: plugins/conditions/cll/models.py:53
 msgid "Treatment"
-msgstr ""
+msgstr "Tratamiento"
 
 #: plugins/conditions/cll/models.py:54
 msgid "Observation after remission"
-msgstr ""
+msgstr "Observación despues de remisión"
 
 #: plugins/conditions/cll/models.py:59 plugins/conditions/mm/models.py:88
 msgid "Number of Cycles"
-msgstr ""
+msgstr "Número de ciclos"
 
 #: plugins/conditions/cll/models.py:64 plugins/conditions/mm/models.py:93
 msgid "Start Date"
-msgstr ""
+msgstr "Fecha de Inicio"
 
 #: plugins/conditions/cll/models.py:66 plugins/conditions/mm/models.py:95
 msgid "End Date"
-msgstr ""
+msgstr "Fecha de Finalización"
 
 #: plugins/conditions/cll/models.py:67 plugins/conditions/cll/models.py:82
 #: plugins/conditions/cll/templates/records/cll_regimen.html:37
 #: plugins/conditions/mm/models.py:96 plugins/conditions/mm/models.py:105
 #: plugins/conditions/mm/templates/records/mm_regimen.html:27
 msgid "Regimen"
-msgstr ""
+msgstr "Régimen"
 
 #: plugins/conditions/cll/models.py:69 plugins/conditions/mm/models.py:98
 msgid "Regimen Type"
-msgstr ""
+msgstr "Tipo de Régimen"
 
 #: plugins/conditions/cll/models.py:72 plugins/conditions/mm/models.py:101
 msgid "Reason for Regimen Stop"
-msgstr ""
+msgstr "Causa de Discontinuacion del Régimen"
 
 #: plugins/conditions/cll/models.py:75
 msgid "Regimen part of clinical trial"
-msgstr ""
+msgstr "Régimen en Contexto de Estudio Clínico"
 
 #: plugins/conditions/cll/models.py:78
 msgid "Treatment of indefinite duration"
-msgstr ""
+msgstr "Tratamiento de Duración Indefinida"
 
 #: plugins/conditions/cll/models.py:83 plugins/conditions/mm/models.py:106
 msgid "Regimens"
-msgstr ""
+msgstr "Regímenes"
 
 #: plugins/conditions/cll/models.py:90
 msgid "Complete Remission"
-msgstr ""
+msgstr "Remisión Completa"
 
 #: plugins/conditions/cll/models.py:91
 msgid "Progressive Disease"
-msgstr ""
+msgstr "Progresión de la Enfermedad"
 
 #: plugins/conditions/cll/models.py:92
 msgid "Partial Response"
-msgstr ""
+msgstr "Respuesta Parcial"
 
 #: plugins/conditions/cll/models.py:93
 msgid "Stable Disease"
-msgstr ""
+msgstr "Enfermedad Estable"
 
 #: plugins/conditions/cll/models.py:96 plugins/conditions/mm/models.py:124
 msgid "Response Date"
-msgstr ""
+msgstr "Fecha de Respuesta"
 
 #: plugins/conditions/cll/models.py:98
 msgid "Best Response"
-msgstr ""
+msgstr "Mejor Respuesta"
 
 #: plugins/conditions/cll/models.py:104
 msgid "Date of Questionnaire"
-msgstr ""
+msgstr "Fecha de Cuestionario"
 
 #: plugins/conditions/cll/models.py:109
 #: plugins/conditions/cll/templates/detail/qol_5q.html:6
 msgid "Mobility"
-msgstr ""
+msgstr "Movilidad"
 
 #: plugins/conditions/cll/models.py:112
 #: plugins/conditions/cll/templates/detail/qol_5q.html:7
 msgid "Selfcare"
-msgstr ""
+msgstr "Autocuidado"
 
 #: plugins/conditions/cll/models.py:115
 #: plugins/conditions/cll/templates/detail/qol_5q.html:8
 msgid "Usual Activities"
-msgstr ""
+msgstr "Actividades Habituales"
 
 #: plugins/conditions/cll/models.py:118
 #: plugins/conditions/cll/templates/detail/qol_5q.html:9
 msgid "Pain/Discomfort"
-msgstr ""
+msgstr "Dolor/Malestar"
 
 #: plugins/conditions/cll/models.py:121
 #: plugins/conditions/cll/templates/detail/qol_5q.html:10
 msgid "Anxiety/Depression"
-msgstr ""
+msgstr "Ansiedad/Depresión"
 
 #: plugins/conditions/cll/models.py:127
 msgid "Date of measurement"
-msgstr ""
+msgstr "Fecha de Medición"
 
 #: plugins/conditions/cll/models.py:133
 #: plugins/conditions/cll/templates/detail/additional_characteristics.html:6
@@ -199,13 +199,13 @@ msgstr ""
 #: plugins/conditions/cll/models.py:137
 #: plugins/conditions/cll/templates/detail/additional_characteristics.html:8
 msgid "Creatinine clearance"
-msgstr ""
+msgstr "Aclaramiento de Creatinina"
 
 #: plugins/conditions/cll/models.py:140
 #: plugins/conditions/cll/templates/detail/additional_characteristics.html:10
 #: plugins/conditions/cll/templates/forms/additional_characteristics_form.html:9
 msgid "Beta-2-Microglobulin"
-msgstr ""
+msgstr "Beta-2-Microglobulina"
 
 #: plugins/conditions/cll/models.py:142
 #: plugins/conditions/cll/templates/detail/additional_characteristics.html:9
@@ -216,19 +216,19 @@ msgstr ""
 
 #: plugins/conditions/cll/models.py:147
 msgid "Bulky disease present"
-msgstr ""
+msgstr "Presencia de Enfermedad Masiva (Bulky)"
 
 #: plugins/conditions/cll/models.py:154
 msgid "Cytogenetic Date"
-msgstr ""
+msgstr "Fecha de Citogenética"
 
 #: plugins/conditions/cll/models.py:158
 msgid "Mutated"
-msgstr ""
+msgstr "Mutado"
 
 #: plugins/conditions/cll/models.py:159
 msgid "Non-mutated"
-msgstr ""
+msgstr "No-mutado"
 
 #: plugins/conditions/cll/models.py:164 plugins/conditions/mm/models.py:165
 msgid "del17p"
@@ -236,7 +236,7 @@ msgstr ""
 
 #: plugins/conditions/cll/models.py:171
 msgid "IGHV rearrangement"
-msgstr ""
+msgstr "Reordenamiento de IGHV"
 
 #: plugins/conditions/cll/models.py:174
 msgid "del11q"
@@ -244,44 +244,44 @@ msgstr ""
 
 #: plugins/conditions/cll/models.py:181
 msgid "TP53 mutation"
-msgstr ""
+msgstr "Mutación TP53"
 
 #: plugins/conditions/cll/models.py:188
 #: plugins/conditions/cll/templates/detail/cytogenetics.html:10
 msgid "Complex Karyotype"
-msgstr ""
+msgstr "Cariotipo complejo"
 
 #: plugins/conditions/cll/models.py:192 plugins/conditions/cll/models.py:193
 #: plugins/conditions/mm/models.py:169 plugins/conditions/mm/models.py:170
 #: plugins/conditions/mm/templates/detail/mm.html:81
 msgid "Cytogenetic tests"
-msgstr ""
+msgstr "Test Citogenéticos"
 
 #: plugins/conditions/cll/templates/detail/additional_characteristics.html:11
 msgid "Bulky disease > 5 cm"
-msgstr ""
+msgstr "Enfermedad Masiva (Bulky) > 5 cm"
 
 #: plugins/conditions/cll/templates/detail/cll.html:7
 #: plugins/conditions/mm/templates/detail/mm.html:7
 msgid "Please complete details for this patient to continue."
-msgstr ""
+msgstr "Por favor, complete los detalles de este paciente para continuar."
 
 #: plugins/conditions/cll/templates/detail/cll.html:23
 #: plugins/conditions/mm/templates/detail/mm.html:21
 msgid "Lines Of Treatment"
-msgstr ""
+msgstr "Líneas de Tratamiento"
 
 #: plugins/conditions/cll/templates/detail/cll.html:76
 msgid "Additional Characteristics"
-msgstr ""
+msgstr "Características Adicionales"
 
 #: plugins/conditions/cll/templates/detail/cll.html:99
 msgid "Cytogenetics"
-msgstr ""
+msgstr "Citogenética"
 
 #: plugins/conditions/cll/templates/detail/cll.html:122
 msgid "Quality Of Life 5Q"
-msgstr ""
+msgstr "Calidad de Vida 5Q"
 
 #: plugins/conditions/cll/templates/detail/cytogenetics.html:6
 msgid "Del17p"
@@ -289,7 +289,7 @@ msgstr ""
 
 #: plugins/conditions/cll/templates/detail/cytogenetics.html:7
 msgid "IGHV mutated"
-msgstr ""
+msgstr "Mutacion IGHV"
 
 #: plugins/conditions/cll/templates/detail/cytogenetics.html:8
 msgid "Del11q"
@@ -304,98 +304,98 @@ msgstr ""
 #: plugins/conditions/cll/templates/forms/quality_of_life5q_form.html:4
 #: plugins/conditions/mm/templates/forms/mm_diagnosis_details_form.html:22
 msgid "Date"
-msgstr ""
+msgstr "Fecha"
 
 #: plugins/conditions/cll/templates/forms/additional_characteristics_form.html:4
 msgid "Date of measurement must be after date of bir"
-msgstr ""
+msgstr "La fecha de medición debe ser posterior a la fecha de nacimiento"
 
 #: plugins/conditions/cll/templates/forms/additional_characteristics_form.html:10
 msgid "Bulky disease >5cm"
-msgstr ""
+msgstr "Enfermedad Masiva (Bulky) >5cm"
 
 #: plugins/conditions/cll/templates/forms/best_response_form.html:3
 #: plugins/conditions/mm/templates/forms/mm_response_form.html:3
 msgid "The response should be after the date of diagnosis"
-msgstr ""
+msgstr "La respuesta debe ser posterior a la fecha del diagnóstico"
 
 #: plugins/conditions/cll/templates/forms/cll_diagnosis_details_form.html:5
 #: plugins/conditions/mm/templates/forms/mm_diagnosis_details_form.html:4
 msgid "Date of diagnosis must be after the patient's birth date"
-msgstr ""
+msgstr "La fecha de diagnóstico debe ser posterior a la fecha de nacimiento del paciente"
 
 #: plugins/conditions/cll/templates/forms/cll_regimen_form.html:12
 #: plugins/conditions/mm/templates/forms/mm_regimen_form.html:9
 msgid "Start Date must be after the patient date of diagnosis"
-msgstr ""
+msgstr "La fecha de inicio debe ser posterior a la fecha de diagnóstico del paciente"
 
 #: plugins/conditions/cll/templates/forms/cll_regimen_form.html:14
 #: plugins/conditions/mm/templates/forms/mm_regimen_form.html:10
 msgid "End Date must be after the start date"
-msgstr ""
+msgstr "La fecha de finalización debe ser posterior a la fecha de inicio"
 
 #: plugins/conditions/cll/templates/forms/cll_regimen_form.html:14
 #: plugins/conditions/mm/templates/forms/mm_regimen_form.html:10
 msgid "There can only be one open regimen at a time"
-msgstr ""
+msgstr "Solo puede haber un régimen activo a la vez"
 
 #: plugins/conditions/cll/templates/forms/cytogenetics_form.html:4
 #: plugins/conditions/cll/templates/forms/quality_of_life5q_form.html:4
 msgid "Date of measurement must be after date of birth"
-msgstr ""
+msgstr "La fecha de medición debe ser posterior a la fecha de nacimiento"
 
 #: plugins/conditions/cll/templates/records/cll_diagnosis_details.html:22
 msgid "Last Seen"
-msgstr ""
+msgstr "Ultima Revisión"
 
 #: plugins/conditions/cll/templates/records/cll_diagnosis_details.html:34
 msgid "Death details"
-msgstr ""
+msgstr "Causa de la Muerte"
 
 #: plugins/conditions/cll/templates/records/cll_regimen.html:26
 #: plugins/conditions/mm/templates/records/mm_regimen.html:16
 msgid "Cycles"
-msgstr ""
+msgstr "Ciclos"
 
 #: plugins/conditions/cll/templates/records/cll_regimen.html:63
 #: plugins/conditions/mm/templates/records/mm_regimen.html:38
 msgid "Type"
-msgstr ""
+msgstr "Tipo"
 
 #: plugins/conditions/cll/templates/records/cll_regimen.html:74
 #: plugins/conditions/mm/templates/records/mm_regimen.html:49
 msgid "Start"
-msgstr ""
+msgstr "Inicio"
 
 #: plugins/conditions/cll/templates/records/cll_regimen.html:85
 #: plugins/conditions/mm/templates/records/mm_regimen.html:60
 msgid "End"
-msgstr ""
+msgstr "Fin"
 
 #: plugins/conditions/cll/templates/records/cll_regimen.html:96
 #: plugins/conditions/mm/templates/records/mm_regimen.html:71
 msgid "Reason"
-msgstr ""
+msgstr "Causa"
 
 #: plugins/conditions/mm/models.py:11 plugins/conditions/mm/models.py:12
 msgid "MM Regimen List"
-msgstr ""
+msgstr "Lista de Regímenes MM"
 
 #: plugins/conditions/mm/models.py:17 plugins/conditions/mm/models.py:18
 msgid "MM Stop Reason List"
-msgstr ""
+msgstr "Lista de Razones de Discontinuacion en MM"
 
 #: plugins/conditions/mm/models.py:27
 msgid "Stage I"
-msgstr ""
+msgstr "Estadio I"
 
 #: plugins/conditions/mm/models.py:28
 msgid "Stage II"
-msgstr ""
+msgstr "Estadio II"
 
 #: plugins/conditions/mm/models.py:29
 msgid "Stage III"
-msgstr ""
+msgstr "Estadio III"
 
 #: plugins/conditions/mm/models.py:33
 msgid "IgG"
@@ -411,39 +411,39 @@ msgstr ""
 
 #: plugins/conditions/mm/models.py:36
 msgid "Light Chain Myeloma"
-msgstr ""
+msgstr "Mieloma de Cadenas Ligeras"
 
 #: plugins/conditions/mm/models.py:43
 #: plugins/conditions/mm/templates/records/mm_diagnosis_details.html:45
 msgid "History of SMM"
-msgstr ""
+msgstr "Histórico de MMS"
 
 #: plugins/conditions/mm/models.py:46
 msgid "Date of SMM diagnosis"
-msgstr ""
+msgstr "Fecha de diagnóstico de MMS"
 
 #: plugins/conditions/mm/models.py:49
 #: plugins/conditions/mm/templates/forms/mm_diagnosis_details_form.html:7
 msgid "History of MGUS"
-msgstr ""
+msgstr "Histórico de MGUS"
 
 #: plugins/conditions/mm/models.py:52
 msgid "Date of MGUS Diagnosis"
-msgstr ""
+msgstr "Fecha de Diagnóstico de MGUS"
 
 #: plugins/conditions/mm/models.py:55
 #: plugins/conditions/mm/templates/records/mm_diagnosis_details.html:20
 msgid "ISS Stage"
-msgstr ""
+msgstr "Estadio ISS"
 
 #: plugins/conditions/mm/models.py:58
 #: plugins/conditions/mm/templates/records/mm_diagnosis_details.html:28
 msgid "DS Stage"
-msgstr ""
+msgstr "Estadio DS"
 
 #: plugins/conditions/mm/models.py:61
 msgid "PP Type"
-msgstr ""
+msgstr "Tipo PP"
 
 #: plugins/conditions/mm/models.py:64
 msgid "del(17)p"
@@ -463,75 +463,75 @@ msgstr ""
 
 #: plugins/conditions/mm/models.py:71 plugins/conditions/mm/models.py:72
 msgid "Diagnosis Details"
-msgstr ""
+msgstr "Detalles del Diagnóstico"
 
 #: plugins/conditions/mm/models.py:80
 msgid "Induction"
-msgstr ""
+msgstr "Inducción"
 
 #: plugins/conditions/mm/models.py:81
 msgid "Maintenance"
-msgstr ""
+msgstr "Mantenimiento"
 
 #: plugins/conditions/mm/models.py:82
 msgid "Conditioning"
-msgstr ""
+msgstr "Acondicionamiento"
 
 #: plugins/conditions/mm/models.py:83
 msgid "Watch and wait"
-msgstr ""
+msgstr "Espera Vigilante"
 
 #: plugins/conditions/mm/models.py:113
 msgid "Minimal response"
-msgstr ""
+msgstr "Respuesta Mínima"
 
 #: plugins/conditions/mm/models.py:114
 msgid "Partial response"
-msgstr ""
+msgstr "Respuesta Parcial"
 
 #: plugins/conditions/mm/models.py:115
 msgid "Very good partial response"
-msgstr ""
+msgstr "Respuesta Parcial Muy Buena"
 
 #: plugins/conditions/mm/models.py:116
 msgid "Complete response"
-msgstr ""
+msgstr "Respuesta Completa"
 
 #: plugins/conditions/mm/models.py:117
 msgid "Stringent complete response"
-msgstr ""
+msgstr "Respuesta Completa Estricta"
 
 #: plugins/conditions/mm/models.py:118
 msgid "Near complete response"
-msgstr ""
+msgstr "Respuesta Casi Completa"
 
 #: plugins/conditions/mm/models.py:119
 msgid "Immunophenotypic complete response"
-msgstr ""
+msgstr "Respuesta Inmunofenotípica Completa"
 
 #: plugins/conditions/mm/models.py:120
 msgid "Stable disease"
-msgstr ""
+msgstr "Enfermedad Estable"
 
 #: plugins/conditions/mm/models.py:121
 msgid "Progressive disease"
-msgstr ""
+msgstr "Progresión de la Enfermedad"
 
 #: plugins/conditions/mm/models.py:122
 msgid "Response unknown/NA"
-msgstr ""
+msgstr "Respuesta Desconocida/NA"
 
 #: plugins/conditions/mm/models.py:126 plugins/conditions/mm/models.py:130
 msgid "Response"
-msgstr ""
+msgstr "Respuesta"
 
 #: plugins/conditions/mm/models.py:131
 msgid "Responses"
-msgstr ""
+msgstr "Respuestas"
 
 #: plugins/conditions/mm/models.py:138
 msgid "Visit date"
-msgstr ""
+msgstr "Fecha de Visita"
 
 #: plugins/conditions/mm/models.py:141
 msgid "beta2m"
@@ -539,27 +539,27 @@ msgstr ""
 
 #: plugins/conditions/mm/models.py:142
 msgid "Albumin"
-msgstr ""
+msgstr "Albumina"
 
 #: plugins/conditions/mm/models.py:144
 msgid "MProtein Urine"
-msgstr ""
+msgstr "Proteína M en Orina"
 
 #: plugins/conditions/mm/models.py:150
 msgid "Mprotein in 24 hour urine"
-msgstr ""
+msgstr "Proteína M en Orina de 24h"
 
 #: plugins/conditions/mm/models.py:154
 msgid "Follow-up"
-msgstr ""
+msgstr "Seguimiento"
 
 #: plugins/conditions/mm/models.py:155
 msgid "Follow-ups"
-msgstr ""
+msgstr "Seguimientos"
 
 #: plugins/conditions/mm/models.py:159
 msgid "Cytogenetics date"
-msgstr ""
+msgstr "Fecha de Citogenética"
 
 #: plugins/conditions/mm/models.py:163
 msgid "t4_14"
@@ -575,48 +575,48 @@ msgstr ""
 
 #: plugins/conditions/mm/models.py:174
 msgid "Test date"
-msgstr ""
+msgstr "Fecha del Test"
 
 #: plugins/conditions/mm/models.py:176
 msgid "hemoglobin"
-msgstr ""
+msgstr "hemoglobina"
 
 #: plugins/conditions/mm/models.py:177
 msgid "leukocytes"
-msgstr ""
+msgstr "leucocitos"
 
 #: plugins/conditions/mm/models.py:178
 msgid "creatinine"
-msgstr ""
+msgstr "creatinina"
 
 #: plugins/conditions/mm/models.py:180
 msgid "albumin"
-msgstr ""
+msgstr "albumina"
 
 #: plugins/conditions/mm/models.py:181
 msgid "calcium"
-msgstr ""
+msgstr "calcio"
 
 #: plugins/conditions/mm/models.py:184 plugins/conditions/mm/models.py:185
 msgid "Lab tests"
-msgstr ""
+msgstr "Tests de Laboratorio"
 
 #: plugins/conditions/mm/templates/detail/mm.html:62
 msgid "Follow Ups"
-msgstr ""
+msgstr "Seguimientos"
 
 #: plugins/conditions/mm/templates/forms/mm_cytogenetics_form.html:3
 #: plugins/conditions/mm/templates/forms/mm_follow_up_form.html:3
 msgid "Visit date must be after the patient's birth date"
-msgstr ""
+msgstr "La fecha de la visita debe ser posterior a la fecha de nacimiento del paciente"
 
 #: plugins/conditions/mm/templates/forms/mm_diagnosis_details_form.html:16
 msgid "History of MGUS is required"
-msgstr ""
+msgstr "Se requiere histórico de MGUS"
 
 #: plugins/conditions/mm/templates/forms/mm_diagnosis_details_form.html:22
 msgid "Date must be before the date of diagnosis"
-msgstr ""
+msgstr "La fecha debe ser anterior a la fecha del diagnóstico"
 
 #: plugins/conditions/mm/templates/records/mm_diagnosis_details.html:12
 msgid "Del(17p)"
