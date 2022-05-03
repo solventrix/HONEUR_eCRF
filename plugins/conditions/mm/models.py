@@ -562,15 +562,15 @@ class LabTest(models.EpisodeSubrecord):
     pcr = fields.IntegerField(blank=True, null=True, verbose_name=_("PCR"))
 
     # x109/L
-    celulas_plasmaticas_circulantes = fields.FloatField(
+    circulating_plasma_cells = fields.FloatField(
         blank=True,
         null=True,
         max_length=256,
-        verbose_name=_("Celulas Plasmaticas Circulantes")
+        verbose_name=_("Circulating Plasma Cells")
     )
 
     # Troponine I, ng/L, min 0 max 350
-    troponina = fields.FloatField(blank=True, null=True, verbose_name=_("Troponina"))
+    troponine = fields.FloatField(blank=True, null=True, verbose_name=_("Troponine"))
     total_proteins = fields.FloatField(blank=True, null=True, verbose_name=_("Total Proteins"))
 
     platelets = fields.IntegerField(blank=True, null=True, verbose_name=_("Platelets"))
