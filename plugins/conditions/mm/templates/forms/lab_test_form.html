@@ -1,25 +1,25 @@
 {% load forms %}
 {% load custom_forms %}
 {% load i18n %}
-{% custom_datepicker field="LabTests.date" date_after="the_episode.demographics[0].date_of_birth" date_after_message=_("The date must be after the patient's birth date") required=True %}
-{% input field="LabTests.pcr" %}
-{% input field="LabTests.celulas_plasmaticas_circulantes" %}
-{% input field="LabTests.troponina" %}
-{% input field="LabTests.total_proteins" %}
-{% input field="LabTests.platelets" %}
-{% input field="LabTests.beta_2_microglobulin" %}
-{% input field="LabTests.alkaline_phosphatase" %}
-{% input field="LabTests.albumin" %}
-{% input field="LabTests.creatinine" %}
-{% input field="LabTests.calcium" %}
-{% input field="LabTests.hemoglobin" %}
-{% input field="LabTests.proteinuria" %}
-{% input field="LabTests.proteinuria_g24" %}
-{% input field="LabTests.leucocytes" %}
-{% input field="LabTests.nt_pro_bnp" %}
-{% input field="LabTests.ldh" %}
-{% input field="LabTests.ldh_type" %}
-{% radio field="LabTests.glomerular_filtration_formula" %}
-{% input field="LabTests.glomerular_filtration" %}
-{% custom_datepicker field="LabTests.glomerular_filtration_formula_date" date_after="the_episode.demographics[0].date_of_birth" date_after_message=_("The date must be after the patient's birth date") %}
-{% textarea field="LabTests.filter_formula_description" %}
+{% custom_datepicker field="LabTest.date" date_after="the_episode.demographics[0].date_of_birth" date_after_message=_("The date must be after the patient's birth date") required=True %}
+{% input field="LabTest.pcr" %}
+{% input field="LabTest.celulas_plasmaticas_circulantes" %}
+{% input field="LabTest.troponina" %}
+{% input field="LabTest.total_proteins" %}
+{% input field="LabTest.platelets" %}
+{% input field="LabTest.beta_2_microglobulin" %}
+{% input field="LabTest.alkaline_phosphatase" %}
+{% input field="LabTest.albumin" %}
+{% input field="LabTest.creatinine" %}
+{% input field="LabTest.calcium" %}
+{% input field="LabTest.hemoglobin" %}
+{% input field="LabTest.proteinuria" %}
+{% input field="LabTest.proteinuria_g24" %}
+{% input field="LabTest.leucocytes" %}
+{% input field="LabTest.nt_pro_bnp" %}
+{% input field="LabTest.ldh" %}
+{% input field="LabTest.ldh_type" %}
+{% radio field="LabTest.glomerular_filtration_formula" %}
+{% input field="LabTest.glomerular_filtration" %}
+{% custom_datepicker field="LabTest.glomerular_filtration_formula_date" date_after="the_episode.demographics[0].date_of_birth" date_after_message=_("The date must be after the patient's birth date") %}
+{% textarea field="LabTest.filter_formula_description" %}
