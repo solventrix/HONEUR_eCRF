@@ -1,4 +1,6 @@
 {% load forms %}
+{% load custom_forms %}
+{% custom_datepicker field="ClinicalPresentation.date" %}
 {% select field="ClinicalPresentation.infection_type" %}
 {% input field="ClinicalPresentation.microorganism" %}
 {% input field="ClinicalPresentation.microorganism_source" %}
