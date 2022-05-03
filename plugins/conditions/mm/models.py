@@ -288,7 +288,7 @@ class MMPastMedicalHistory(models.PatientSubrecord):
 
 class Comorbidity(models.EpisodeSubrecord):
     class Meta:
-        verbose_name = _('Comorbidity')
+        verbose_name = _('Comorbidities')
         verbose_name_plural = _('Comorbidities')
 
     INFECTION_TYPES = (
@@ -546,6 +546,10 @@ post_save.connect(
 
 # Follow ups
 class LabTest(models.EpisodeSubrecord):
+    class Meta:
+        verbose_name = _("Lab Tests")
+        verbose_name_plural = _("Lab Tests")
+
     GLOMERULAR_FILTRATION_FORMULA = (
         ("MDRD", _("MDRD"),),
         ("CKD-EPI", _("CKD-EPI"),),
@@ -676,8 +680,8 @@ class LabTest(models.EpisodeSubrecord):
 class Imaging(models.EpisodeSubrecord):
 
     class Meta:
-        verbose_name = 'Imaging'
-        verbose_name_plural = 'Imaging'
+        verbose_name = _('Imaging')
+        verbose_name_plural = _('Imaging')
 
     BONE_SERIES_TEST_IMAGE_OPTIONS = (
         ("Zero", _("Zero")),
