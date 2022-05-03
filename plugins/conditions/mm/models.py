@@ -848,13 +848,6 @@ class MProteinMesurements(models.EpisodeSubrecord):
     )
 
 
-class Review(models.EpisodeSubrecord):
-    date = fields.DateField(blank=True,  verbose_name=_("Date"))
-    response_at_last_visit = fields.TextField(
-        blank=True, default="", verbose_name=_("Response At Last Visit")
-    )
-
-
 class ClinicalPresentation(models.EpisodeSubrecord):
     CHOICES = (("Yes", _("Yes")), ("No", _("No")),)
 

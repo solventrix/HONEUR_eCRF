@@ -94,11 +94,11 @@
   </div>
   <div class="row">
     <div class="col-md-6">
-      {% record_panel models.Review %}
-    </div>
-    <div class="col-md-6">
         {% record_panel models.LabTest %}
     </div>
+    <div class="col-md-6">
+      {% record_panel models.ClinicalPresentation %}
+  </div>
   </div>
   <div class="row">
     <div class="col-md-6">
@@ -109,9 +109,6 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-6">
-        {% record_panel models.ClinicalPresentation %}
-    </div>
     <div class="col-md-6">
         {% record_panel models.Cytogenetics %}
     </div>
