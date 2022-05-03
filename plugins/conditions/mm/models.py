@@ -566,8 +566,8 @@ class LabTest(models.EpisodeSubrecord):
     )
 
     # Troponine I, ng/L, min 0 max 350
-    troponina = fields.IntegerField(blank=True, null=True, verbose_name=_("Troponina"))
-    total_proteins = fields.IntegerField(blank=True, null=True, verbose_name=_("Total Proteins"))
+    troponina = fields.FloatField(blank=True, null=True, verbose_name=_("Troponina"))
+    total_proteins = fields.FloatField(blank=True, null=True, verbose_name=_("Total Proteins"))
 
     platelets = fields.IntegerField(blank=True, null=True, verbose_name=_("Platelets"))
 
@@ -578,7 +578,7 @@ class LabTest(models.EpisodeSubrecord):
         max_length=256,
         verbose_name=_("Beta 2 Microglobulin")
     )
-    alkaline_phosphatase = fields.IntegerField(
+    alkaline_phosphatase = fields.FloatField(
         blank=True,
         null=True,
         verbose_name=_("Alkaline Phosphatase")
