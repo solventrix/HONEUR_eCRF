@@ -2,13 +2,27 @@
 <div class="follow-up-table" ng-show="episode.mm_cytogenetics.length > 0">
   <div class="col-md-12">
     <div class="row header-row display-label">
+      <div class="col-sm-3 header"></div>
+      <div class="col-sm-2 header">{% trans "t4_14" %}</div>
+      <div class="col-sm-2 header">{% trans "t_11_14" %}</div>
+      <div class="col-sm-2 header">{% trans "del17p" %}</div>
+      <div class="col-sm-2 header">{% trans "AMP1Q" %}</div>
     </div>
   </div>
 
 
   <div ng-repeat="item in episode.mm_cytogenetics | orderBy: '-cytogenetic_date' as followups">
     <div class="row table-row" >
-
+      <div class="col-sm-3 first-column text-right">
+        [[ item.hospital | translate ]] [[ item.cytogenetic_date | displayDate ]]
+      </div>
+      <div class="col-sm-2 column">[[ item.t4_14 | translate ]]</div>
+      <div class="col-sm-2 column">[[ item.t_11_14 | translate ]]</div>
+      <div class="col-sm-2 column">[[ item.del_17p | translate ]]</div>
+      <div class="col-sm-2 column">[[ item.amp_1q | translate ]]</div>
+      <div class="col-sm-1 text-left">
+        <i ng-click="episode.recordEditor.editItem('{{ models.MMCytogenetics.get_api_name }}', item)" class="fa fa-pencil edit pointer"></i>
+      </div>
     </div>
   </div>
 </div>

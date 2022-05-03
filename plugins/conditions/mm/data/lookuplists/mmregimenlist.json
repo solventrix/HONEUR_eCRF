@@ -1,37 +1,13 @@
 {
   "mmregimenlist": [
+
 {
-  "name": "Ibrutinib"
+  "name": "KRd"
 },
-{
-  "name": "Ibrutinib.Rituximab"
-},
-{
-  "name": "Rituximab Erhaltung"
-},
-{
-  "name": "Bendamustine.Vincristine.Prednison"
-},
-{
-  "name": "Venetoclax.Obinutuzumab"
-},
-{
-  "name": "Bendamustine.Rituximab"
-},
-{
-  "name": "Rituximab.Fludarabine.Cyclophospahmid (R-FC)"
-},
-{
-  "name": "Chlorambucil.Obinotuzumab"
-},
-{
-  "name": "Venetoclax.Decitabine"
-},
-{
-  "name": "Vincristine"
-},
-{
-  "name": "Bendamustine.Dexamethason"
-}
+{  "name": "VMP"},
+{ "name": "VTD"},
+{"name": "VRd"},
+{"name": "DVMP"},
+{"name":"DVd"}
   ]
 }
