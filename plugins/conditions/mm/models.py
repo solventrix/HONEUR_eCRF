@@ -367,7 +367,6 @@ class MMRegimen(models.EpisodeSubrecord):
         ("Other", _("Other")),
     )
 
-    hospital = models.ForeignKeyOrFreeText(Hospital, verbose_name=_("Hospital"))
     nbCycles = fields.IntegerField(
         verbose_name=_("Number of Cycles"),
         null=True,
