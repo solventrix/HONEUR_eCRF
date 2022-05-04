@@ -1,6 +1,6 @@
 {% load forms %}
-{% datepicker field="MMPatientStatus.status_date" required=True %}
 {% radio field="MMPatientStatus.status" %}
+{% datepicker field="MMPatientStatus.date_of_death" show="editing.mm_patient_status.status === 'Dead'" %}
 {% select field="MMPatientStatus.cause_of_death" show="editing.mm_patient_status.status === 'Dead'"  %}
 {% textarea field="MMPatientStatus.cause_of_death_other" show="editing.mm_patient_status.cause_of_death === 'Other'" %}
 {% textarea field="MMPatientStatus.comments" %}

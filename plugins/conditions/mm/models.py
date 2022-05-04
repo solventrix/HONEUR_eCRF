@@ -178,7 +178,7 @@ class MMPatientStatus(models.PatientSubrecord):
         choices=STATUS_CHOICES,
         verbose_name=_("Status")
     )
-    status_date = fields.DateField(blank=True, null=True, verbose_name=_("Date"))
+    date_of_death = fields.DateField(blank=True, null=True, verbose_name=_("Date Of Death"))
     comments = fields.TextField(
         blank=True,
         null=True,
@@ -192,7 +192,7 @@ class MMPatientStatus(models.PatientSubrecord):
         verbose_name=_("Cause Of Death")
     )
     cause_of_death_other = fields.TextField(
-        blank=True, default="", verbose_name=_("Details")
+        blank=True, default="", verbose_name=_("Death details")
     )
 
 
@@ -559,7 +559,7 @@ class LabTest(models.EpisodeSubrecord):
     date = fields.DateField(blank=True, null=True, verbose_name=_("Date"))
 
     # mg/L min 3 max 30
-    pcr = fields.IntegerField(blank=True, null=True, verbose_name=_("PCR"))
+    pcr = fields.FloatField(blank=True, null=True, verbose_name=_("PCR"))
 
     # x109/L
     circulating_plasma_cells = fields.FloatField(
