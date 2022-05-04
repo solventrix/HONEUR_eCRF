@@ -218,12 +218,6 @@ class MMPastMedicalHistory(models.PatientSubrecord):
     previous_neoplasm_details = fields.TextField(
         blank=True, default="", verbose_name=_("Details")
     )
-    previous_neoplasm_date_of_diagnosis_2 = fields.DateField(
-        blank=True, null=True, verbose_name=_("Date Of Diagnosis")
-    )
-    previous_neoplasm_details_2 = fields.TextField(
-        blank=True, default="", verbose_name=_("Details")
-    )
 
     chronic_renal_insufficiency = fields.CharField(
         blank=True,

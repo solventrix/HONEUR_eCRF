@@ -15,24 +15,6 @@
 </div>
 
 
-<div ng-show="item.previous_neoplasm_date_of_diagnosis_2 || item.previous_neoplasm_details_2" class="row">
-    <div class="col-md-7">
-        <span class="display-label">{% trans "Second Neoplasm" %}</span>
-    </div>
-    <div class="col-md-5">
-        <span class="text-muted" ng-hide="item.previous_neoplasm_details">
-            {% trans "No details recorded" %}
-        </span>
-        <span ng-show="item.previous_neoplasm_details_2">
-        [[ item.previous_neoplasm_details ]]
-        </span>
-        <span ng-show="item.previous_neoplasm_date_of_diagnosis_2">([[ item.previous_neoplasm_date_of_diagnosis_2 | displayDate ]])</span>
-        <br>
-        </span>
-    </div>
-</div>
-
-
 <div class="row">
     <div class="col-md-7">
         <span class="display-label">{% trans "Chronic Renal Insufficiency" %}</span>

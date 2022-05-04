@@ -5,29 +5,15 @@
   <div class="col-sm-10 col-sm-offset-1">
     <div class="row">
       <div class="col-sm-5">
-        {% radio field="MMPastMedicalHistory.previous_neoplasm" style="vertical" change="editing.mm_past_medical_history.previous_neoplasm_date_of_diagnosis = null; editing.mm_past_medical_history.previous_neoplasm_details = ''; editing.mm_past_medical_history.previous_neoplasm_date_of_diagnosis_2 = null; editing.mm_past_medical_history.previous_neoplasm_details_2 = ''" %}
+        {% radio field="MMPastMedicalHistory.previous_neoplasm" label="Neoplasm" style="vertical" change="editing.mm_past_medical_history.previous_neoplasm_date_of_diagnosis = null; editing.mm_past_medical_history.previous_neoplasm_details = ''; editing.mm_past_medical_history.previous_neoplasm_date_of_diagnosis_2 = null; editing.mm_past_medical_history.previous_neoplasm_details_2 = ''" %}
       </div>
       <div ng-show="editing.mm_past_medical_history.previous_neoplasm == 'Yes'" class="col-sm-7">
-        <div class="row content-offset-35">
-          <span class="display-label">{% trans "Neoplasm 1" %}</span>
-        </div>
-        <div class="row content-offset-10">
+        <div class="row">
           <div class="col-md-5">
             {% custom_datepicker style="vertical" label=_("Date") field="MMPastMedicalHistory.previous_neoplasm_date_of_diagnosis" date_after="the_episode.demographics[0].date_of_birth" date_after_message=_("Must be after the patient's birth date") %}
           </div>
           <div class="col-md-7">
             {% textarea style="vertical" label=_("Details") field="MMPastMedicalHistory.previous_neoplasm_details" %}
-          </div>
-        </div>
-        <div class="row content-offset-20">
-          <span class="display-label">{% trans "Neoplasm 2" %}</span>
-        </div>
-        <div class="row content-offset-10">
-          <div class="col-md-5">
-            {% custom_datepicker style="vertical" label=_("Date") field="MMPastMedicalHistory.previous_neoplasm_date_of_diagnosis_2" date_after="the_episode.demographics[0].date_of_birth" date_after_message=_("Must be after the patient's birth date") %}
-          </div>
-          <div class="col-md-7">
-            {% textarea style="vertical" label=_("Details") field="MMPastMedicalHistory.previous_neoplasm_details_2" %}
           </div>
         </div>
       </div>
