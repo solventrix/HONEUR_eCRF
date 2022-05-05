@@ -89,7 +89,7 @@ class SCT(models.EpisodeSubrecord):
 
     order_by = "-sct_date"
 
-    sct_date = fields.DateField(verbose_name=_("Date of SCT"))
+    sct_date = fields.DateField(blank=True, null=True, verbose_name=_("Date of SCT"))
     number_of_cells_infused = fields.BigIntegerField(
         blank=True, null=True, verbose_name=_("Number Of Cells Infused")
     )

@@ -1,7 +1,7 @@
 {% load forms %}
 {% load custom_forms %}
 {% load i18n %}
-{% custom_datepicker field="SCT.sct_date" no_future=False date_after="$root.patientValidator.entrytool_helper.getDiagnosis($root.patientValidator.patient).diagnosis_date" date_after_diff="0" date_after_message=_("The SCT should be after the date of diagnosis") %}
+{% custom_datepicker field="SCT.sct_date" no_future=False date_after="$root.patientValidator.entrytool_helper.getDiagnosis($root.patientValidator.patient).diagnosis_date" date_after_diff="0" date_after_message=_("The SCT should be after the date of diagnosis") required=True %}
 {% select field="SCT.sct_type" change="editing.sct.relation=null; editing.sct.alotph_conditioning=null; editing.sct.alotph_source=null; editing.sct.tandem_astp=null; editing.sct.atsp_conditioning=null" %}
 <span ng-show="editing.sct.sct_type === 'Allogenic'">
   {% select field="SCT.relation" %}

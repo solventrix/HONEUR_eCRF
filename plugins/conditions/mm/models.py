@@ -372,8 +372,12 @@ class MMRegimen(models.EpisodeSubrecord):
     )
     start_date = fields.DateField(
         verbose_name=_("Start Date"),
+        blank=True,
+        null=True
     )
-    end_date = fields.DateField(verbose_name=_("End Date"), blank=True, null=True)
+    end_date = fields.DateField(
+        verbose_name=_("End Date"), blank=True, null=True
+    )
     regimen = ForeignKeyOrFreeText(MMRegimenList, verbose_name=_("Regimen"))
     regimen_details = fields.TextField(
         blank=True, default="", verbose_name=_("Regimen Details")
