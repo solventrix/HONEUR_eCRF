@@ -4,11 +4,8 @@ Templatetags for form/modal helpers
 import json
 from django import template
 from django.db import models
-from opal.core.subrecords import get_subrecord_from_model_name
-from opal.core import fields
-from opal.core.serialization import OpalSerializer
+from django.urls import reverse
 from opal.templatetags import forms
-from opal.templatetags.forms import get_style
 
 register = template.Library()
 
@@ -40,6 +37,29 @@ def custom_datepicker(*args, **kwargs):
     context['before_death'] = kwargs.pop('before_death', True)
     context['no_future'] = kwargs.pop('no_future', True)
     return context
+
+
+@register.inclusion_tag('_helpers/select.html')
+def custom_select(*args, **kwargs):
+    """
+    A wrapper around the opal select that the option of
+    including a link to the admin site to add a foreign key.
+
+    To do this you pass in include_admin_link=True and user=request.user
+
+    It only works for foreignkey or free text fields.
+    """
+    ctx = forms.select(*args, **kwargs)
+    ctx["include_admin_link"] = kwargs.get('include_admin_link')
+    if ctx["include_admin_link"]:
+        ctx["user"] = kwargs.get("user")
+        if ctx["include_admin_link"] and not ctx["user"]:
+            raise ValueError('To include admin links a user argument is required')
+        _, field = forms._model_and_field_from_path(kwargs["field"])
+        lookup_list = field.foreign_model
+        app = lookup_list._meta.app_label
+        ctx["admin_url"] = reverse(f"admin:{app}_{lookup_list.__name__.lower()}_changelist")
+    return ctx
 
 
 @register.inclusion_tag('_helpers/number.html')

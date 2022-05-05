@@ -1,5 +1,5 @@
 {% load forms %}
-{% load i18n %}
+{% load i18n admin_urls %}
 <div class="form-group" {% if visibility %} {{ visibility|safe }} {% endif %} >
   <span ng-class="{ 'errored-state': {{ formname }}[{{ element_name }}].$dirty && !{{ formname }}[{{ element_name }}].$valid }">
     {% if label %}
@@ -19,10 +19,18 @@
       <span ng-show="{{ formname }}.$submitted && {{ formname }}[{{ element_name }}].$error.required" class="help-block">
         {% blocktrans with label=label %}{{ label }} is required{% endblocktrans %}
       </span>
-      {% endif %}
-       {% if help_text %}
-      <p class="help-block">{% trans help_text %}
+    {% endif %}
+    {% if help_text %}
+      <p class="help-block">{% trans help_text %}</p>
+    {% endif %}
+    {% if include_admin_link %}
+      {% if user.is_superuser or user.is_staff %}
+      <p class="help-block">
+        {% blocktrans %}
+          If the option is not present, you can add it <a href="{{ admin_url }}">here</a>
+        {% endblocktrans %}
       </p>
+      {% endif %}
     {% endif %}
     </div>
   </span>
