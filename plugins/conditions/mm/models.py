@@ -65,7 +65,7 @@ class MMDiagnosisDetails(models.EpisodeSubrecord):
         ("Very Symptomatic", _("Very Symptomatic"),),
     )
 
-    date_of_diagnosis = fields.DateField(
+    diagnosis_date = fields.DateField(
         blank=True, null=True, verbose_name=_("Date Of Diagnosis")
     )
     date_of_first_centre_visit = fields.DateField(
@@ -277,9 +277,6 @@ class MMPastMedicalHistory(models.PatientSubrecord):
 
 
 # LOT
-
-
-
 class Comorbidity(models.EpisodeSubrecord):
     class Meta:
         verbose_name = _('Comorbidities')
@@ -349,7 +346,7 @@ class MMRegimen(models.EpisodeSubrecord):
     REGIMEN_TYPES = (
         ("Induction", _("Induction")),
         ("Maintenance", _("Maintenance")),
-        ("Conditioning", _("Conditioning")),
+        ("Consolidation", _("Consolidation")),
         ("Relapse", _("Relapse")),
         ("Watch and wait", _("Watch and wait")),
         ("Other", _("Other")),
