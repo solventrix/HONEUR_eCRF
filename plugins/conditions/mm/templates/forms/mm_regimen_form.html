@@ -1,6 +1,7 @@
 {% load forms %}
 {% load i18n %}
 {% load custom_forms %}
+{% select field="MMRegimen.hospital" %}
 {% select field="MMRegimen.category" %}
 <span ng-show="editing.mm_regimen.category === 'Other'">
 {% textarea field="MMRegimen.regimen_details" %}
