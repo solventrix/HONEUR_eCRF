@@ -423,6 +423,12 @@ class BoneDisease(models.EpisodeSubrecord):
         choices=TREATMENT_TYPES,
         verbose_name=_("Treatment Type")
     )
+    treatment_details = fields.TextField(
+        blank=True,
+        null=True,
+        default="",
+        verbose_name=_("Treatment Details")
+    )
 
     # only for treatment type Bisphosphonates
     bisphosphonate_treatment = fields.CharField(
