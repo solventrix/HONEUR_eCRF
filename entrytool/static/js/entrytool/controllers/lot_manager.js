@@ -1,5 +1,5 @@
 angular.module('opal.controllers').controller(
-  "LineOfTreatmentManager", function($scope, $http, $q, $modal, UserProfile, EntrytoolHelper){
+  "LineOfTreatmentManager", function($scope, $http, $q, $modal, toMomentFilter, UserProfile, EntrytoolHelper){
     "use strict";
     var self = this;
     this.loading = false;
@@ -12,12 +12,25 @@ angular.module('opal.controllers').controller(
       return !this.loading && !this.readonly;
     }
 
+    this.refresh = function(){
+      /*
+      * This wraps the scope.refresh and updates the reference to the patient
+      * on the patient
+      */
+      var deferred = $q.defer();
+      $scope.refresh().then(function(){
+        $scope.$parent.patientValidator.patient = $scope.$parent.patient;
+        deferred.resolve();
+      });
+      return deferred.promise;
+    }
+
     this.create = function(patient){
       this.loading = true;
       var deferred = $q.defer();
       var url = "/entrytool/v0.1/new_line_of_treatment_episode/" + patient.id + "/";
       $http.put(url).then(function(){
-        $scope.refresh().then(function(){
+        self.refresh().then(function(){
           self.loading = false;
           deferred.resolve();
         });
@@ -46,7 +59,7 @@ angular.module('opal.controllers').controller(
       });
       deleteModal.result.then(function(result){
         if(result === "deleted"){
-          $scope.refresh().then(deferred.resolve());
+          self.refresh().then(deferred.resolve());
         }
         else{
           deferred.resolve();
@@ -63,7 +76,10 @@ angular.module('opal.controllers').controller(
         return regimen.start_date
       });
       if(!regimens.length){
-        return 0;
+        // if there are no regimens attatched to the lot we
+        // we want it to show at the top of the regimens
+        // so return a date far in the future
+        return toMomentFilter(new Date(3000, 1, 1));
       }
       return regimens[0].start_date;
     };
