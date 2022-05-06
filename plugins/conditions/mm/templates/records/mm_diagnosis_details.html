@@ -1,9 +1,28 @@
 {% load honeur_panels %}
+{% load i18n %}
 {% field_display "MMDiagnosisDetails.diagnosis_date" %}
 {% field_display "MMDiagnosisDetails.date_of_first_centre_visit" %}
 {% field_display "MMDiagnosisDetails.referred" %}
-{% field_display "MMDiagnosisDetails.diagnosis" %}
-{% field_display "MMDiagnosisDetails.subclassification" %}
+<span ng-show="item.diagnosis">
+  <div class="row display-row">
+    <div class="col-md-7">
+      <span class="display-label">{% trans 'Diagnosis' %}</span>
+    </div>
+    <div class="col-md-5">
+      [[ item.diagnosis | translate ]]
+      <span ng-show="item.heavy_chain_type || item.light_chain_type">
+        <br>
+        (
+          [[ item.heavy_chain_type ]]
+          [[ item.light_chain_type ]]
+        )
+      </span>
+    </div>
+  </div>
+</span>
+
+{% field_display "MMDiagnosisDetails.heavy_chain_type" %}
+{% field_display "MMDiagnosisDetails.light_chain_type" %}
 {% field_display "MMDiagnosisDetails.epidemiological_register" %}
 {% field_display "MMDiagnosisDetails.gah_score" %}
 {% field_display "MMDiagnosisDetails.imwg_scale" %}

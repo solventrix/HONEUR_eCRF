@@ -118,6 +118,29 @@ def create_datos_demographics(patient, episode, demographics_data):
     demographics.save()
 
 
+def set_subliassification(diagnosis_details, subclassification):
+    """
+    Takes in sublassification and sets heavy_chain_type and light_chain_type
+
+    Usually of the form MM{heavy chain type}{light chain type} e.g.  MMIgGKappa
+    """
+    mapping = {
+        "": (None, None),
+        "MMIgAlambda": ("IgA", "Lambda"),
+        "MMIgGlambda": ("IgG", "Lambda"),
+        "MMLightChainkappa": (None, "Kappa"),
+        "MMIgAkappa": ("IgA", "Kappa"),
+        "MMIgGkappa": ("IgG", "Kappa"),
+        "MMIgDlambda": ("IgD", "Lambda"),
+        "MMnonSecretory": (None, "Non-Secretory"),
+        "other": ("Other", None),
+        "MMIgMlambda": ("IgM", "Lambda"),
+    }
+    heavy_chain_type, light_chain_type = mapping[subclassification]
+    diagnosis_details.heavy_chain_type = heavy_chain_type
+    diagnosis_details.light_chain_type = light_chain_type
+
+
 def create_datos_enfermedad(episode, file_name, data, clinical_date, lab_test_date):
     """
     Creates all the models from the datos enfermedad files.
@@ -153,7 +176,10 @@ def create_datos_enfermedad(episode, file_name, data, clinical_date, lab_test_da
             continue
         subrecord_name, field = subrecord_name_and_field
         if subrecord_name == "MMDiagnosisDetails":
-            set_field(diagnosis_details, field, value)
+            if field == 'subclassification':
+                set_subliassification(diagnosis_details, value)
+            else:
+                set_field(diagnosis_details, field, value)
         elif subrecord_name == "ClinicalPresentation":
             set_field(clinical_presentation, field, value)
             clinical_presentation_populated = True

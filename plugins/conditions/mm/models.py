@@ -32,6 +32,21 @@ class MMDiagnosisDetails(models.EpisodeSubrecord):
 
     # TODO seperate these out into the IgG, IGA, Light chain, no light chain etc
     # and Kappa and Llambda
+    HEAVY_CHAIN_OPTIONS = (
+        ("IgG", _("IgG"),),
+        ("IgD", _("IgD"),),
+        ("IgA", _("IgA"),),
+        ("IgM", _("IgM"),),
+        ("IgE", _("IgE"),),
+        ("No Heavy Chain", _("No Heavy Chain"),),
+        ("Other", _("Other"),),
+    )
+
+    LIGHT_CHAIN_OPTIONS = (
+        ('Kappa', _('Kappa')),
+        ('Lambda', _('Lambda')),
+        ('Non-Secretory', _('Non-Secretory'))
+    )
 
     SUBCLASSIFICATION_CHOICES = (
             ("MM IgG Kappa", _("MM IgG Kappa"),),
@@ -93,12 +108,19 @@ class MMDiagnosisDetails(models.EpisodeSubrecord):
         choices=DIAGNOSIS_OPTIONS,
         verbose_name=_("Diagnosis")
     )
-    subclassification = fields.CharField(
+    heavy_chain_type = fields.CharField(
         blank=True,
         null=True,
         max_length=256,
-        choices=SUBCLASSIFICATION_CHOICES,
-        verbose_name=_("SUBCLASSIFICATION")
+        choices=HEAVY_CHAIN_OPTIONS,
+        verbose_name=_("Heavy chain type")
+    )
+    light_chain_type = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=LIGHT_CHAIN_OPTIONS,
+        verbose_name=_("Light chain type")
     )
     epidemiological_register = fields.CharField(
         blank=True,
