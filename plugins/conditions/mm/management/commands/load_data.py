@@ -95,7 +95,7 @@ def create_datos_demographics(patient, episode, demographics_data):
     diagnosis_details = episode.mmdiagnosisdetails_set.all()[0]
     past_medical_history = patient.mmpastmedicalhistory_set.all()[0]
     for key, data in demographics_data.items():
-        subrecord_name_and_field = get_field_mapping("Datos demograficos.csv", key)
+        subrecord_name_and_field = get_field_mapping("datos demograficos.csv", key)
         if not subrecord_name_and_field:
             print(f"skipping datos demogrpahics {key}")
             continue
@@ -337,7 +337,7 @@ def create_tratiemento(episode, iterator, data):
     if any(
         data.get(i)
         for i in maintentance_regimen
-        if not i == f"Tratamiento_mantenimiento_numero_ciclos_{iterator}"
+        if not i == f"tratamiento_mantenimiento_numero_ciclos_{iterator}"
     ):
         regimen = models.MMRegimen(episode=episode, category="Maintenance")
         populate_fields_on_model(regimen, file_name, maintentance_regimen, data)
@@ -625,28 +625,28 @@ class Command(BaseCommand):
         file_directory = options["file_directory"]
         check_files(file_directory)
         self.file_directory = file_directory
-        demographics_rows = self.get_data("Datos demograficos.csv")
+        demographics_rows = self.get_data("datos demograficos.csv")
         for row in demographics_rows:
             patient_number = row["c�digo de paciente"]
             patient, mm_episode = create_patient_episode(patient_number)
             create_datos_demographics(patient, mm_episode, row)
             enfermedad_1_data = self.get_patient_data_from_file(
-                "Datos enfermedad 1.csv", patient_number
+                "datos enfermedad 1.csv", patient_number
             )
             create_datos_enfermedad(
                 mm_episode,
-                "Datos enfermedad 1.csv",
+                "datos enfermedad 1.csv",
                 enfermedad_1_data,
                 lab_test_date=translate_date(enfermedad_1_data["fecha_diagnostico_1"]),
                 clinical_date=translate_date(enfermedad_1_data["fecha_diagnostico_1"]),
             )
             for i in range(2, 7):
                 enfermedad_data = self.get_patient_data_from_file(
-                    f"Datos enfermedad {i}.csv", patient_number
+                    f"datos enfermedad {i}.csv", patient_number
                 )
                 create_datos_enfermedad(
                     mm_episode,
-                    f"Datos enfermedad {i}.csv",
+                    f"datos enfermedad {i}.csv",
                     enfermedad_data,
                     lab_test_date=translate_date(
                         enfermedad_data[f"recaida_biologica_fecha_{i}"]
@@ -656,11 +656,11 @@ class Command(BaseCommand):
                     ),
                 )
             actual_data = self.get_patient_data_from_file(
-                "Situacion actual.csv", patient_number
+                "situacion actual.csv", patient_number
             )
             create_situation_actual(mm_episode, actual_data)
             for iterator in range(1, 7):
-                file_name = f"Tratamiento {iterator}.csv"
+                file_name = f"tratamiento {iterator}.csv"
                 tratamiento = self.get_patient_data_from_file(file_name, patient_number)
                 if treatment_populated(file_name, tratamiento):
                     lot_episode = patient.episode_set.create(
