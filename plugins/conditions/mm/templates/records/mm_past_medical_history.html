@@ -15,7 +15,7 @@
 </div>
 
 
-<div class="row">
+<div class="row" ng-show="item.chronic_renal_insufficiency == 'Yes'">
     <div class="col-md-7">
         <span class="display-label">{% trans "Chronic Renal Insufficiency" %}</span>
     </div>
@@ -25,7 +25,7 @@
     </div>
 </div>
 
-<div class="row">
+<div class="row" ng-show="item.monoclonal_pathology == 'Yes'">
     <div class="col-md-7">
         <span class="display-label">{% trans "Monoclonal Pathology" %}</span>
     </div>
@@ -34,7 +34,7 @@
     </div>
 </div>
 
-<div class="row">
+<div class="row" ng-show="item.symtomatic_multiple_myeloma == 'Yes'">
     <div class="col-md-7">
         <span class="display-label">{% trans "Symtomatic Multiple Myeloma" %}</span>
     </div>
@@ -43,7 +43,7 @@
     </div>
 </div>
 
-<div class="row">
+<div class="row" ng-show="item.asymtomatic_multiple_myeloma == 'Yes'">
     <div class="col-md-7">
         <span class="display-label">{% trans "Asymtomatic Multiple Myeloma" %}</span>
     </div>
@@ -53,7 +53,7 @@
 </div>
 
 
-<div class="row">
+<div class="row" ng-show="item.monoclonal_pathology_of_uncertain_meaning == 'Yes'">
     <div class="col-md-7">
         <span class="display-label">{% trans "Monoclonal Pathology Of Uncertain Meaning" %}</span>
     </div>
@@ -63,7 +63,7 @@
     </div>
 </div>
 
-<div class="row">
+<div class="row" ng-show="item.external_pasmocytoma == 'Yes'">
     <div class="col-md-7">
         <span class="display-label">{% trans "External Pasmocytoma" %}</span>
     </div>
@@ -73,7 +73,7 @@
 </div>
 
 
-<div class="row">
+<div class="row" ng-show="item.comments && item.comments.length">
     <div class="col-md-7">
         <span class="display-label">{% trans "Comments" %}</span>
     </div>
