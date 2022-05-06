@@ -2,7 +2,7 @@ TRANSLATIONS = [
     ("", "Allogenic"),
     ("", "An unknown"),
     ("", "Aplo: HLA unidentified related (>1 missmatch) phenotype"),
-    ("", "Asymptomatic"),
+    ("Asintomatico", "Asymptomatic"),
     ("Asintomatico MM", "Asymptomatic MM"),
     ("", "Autologous"),
     ("", "BEA"),
