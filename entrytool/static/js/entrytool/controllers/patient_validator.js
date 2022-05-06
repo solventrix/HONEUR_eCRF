@@ -250,12 +250,12 @@ angular
         var otherOpenEndRegimenExists = false
         _.each(self.patient.episodes, function(episode){
           var regimen = EntrytoolHelper.getEpisodeRegimen(episode);
-          // exclude the current regimen if it has already been saved
-          if(regimenInstance.id){
-            regimen = _.without(regimen, {id: regimenInstance.id});
-          }
           var regimenWithNoEndDate = _.filter(regimen, function(r){
-            if(!r.end_Date){
+            if(!r.end_date){
+              // ignore the current instance
+              if(regimenInstance.id && regimenInstance.id === r.id){
+                return false
+              }
               return true
             }
           });
