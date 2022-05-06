@@ -322,8 +322,8 @@ def create_tratiemento(episode, iterator, data):
         )
 
     # ALOTPH SCT
-    if any([data.get(i) for i in alotph_fields]):
-        sct = entrytool_models.SCT(episode=episode)
+    if any([data.get(i) for i in alotph_fields if not data.get(i) == '0']):
+        sct = entrytool_models.SCT(episode=episode, sct_type='Allogenic')
         populate_fields_on_model(sct, file_name, alotph_fields, data)
 
     # ALOTPH MMResponse
@@ -332,8 +332,8 @@ def create_tratiemento(episode, iterator, data):
         populate_fields_on_model(response, file_name, alotph_reponse, data)
 
     # ATSP SCT
-    if any([data.get(i) for i in atsp_fields]):
-        sct = entrytool_models.SCT(episode=episode)
+    if any([data.get(i) for i in atsp_fields if not data.get(i) == '0']):
+        sct = entrytool_models.SCT(episode=episode, sct_type='Autologous')
         populate_fields_on_model(sct, file_name, atsp_fields, data)
 
     # ATSP MMResponse
@@ -593,7 +593,7 @@ def populate_mprotein_measurements_from_treatment(episode, file_name, iterator, 
         f"cuant_monoclonal_serico_{iterator}",
         f"tipo_cadena_ligera_{iterator}",
     ]
-    if any([data.get(i) for i in m_protein_mesurements]):
+    if any([data.get(i) for i in m_protein_mesurements if not data.get(i) == "0"]):
         date_fields = [
             "tratamiento_induccion_fecha_inicio_{iterator}",
             "tratamiento_induccion_fecha_fin_{iterator}",
