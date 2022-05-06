@@ -149,18 +149,6 @@ class MMPatientStatus(models.PatientSubrecord):
         verbose_name = _('Patient Status')
         verbose_name_plural = _('Patient Statuses')
 
-    OUTCOME_CHOICES = (
-        ("Complete Response Molecular", _("Complete Response Molecular"),),
-        ("Complete Response Immunophenotypic", _("Complete Response Immunophenotypic"),),
-        ("Complete Response Strict", _("Complete Response Strict"),),
-        ("Very Good Partial Response", _("Very Good Partial Response"),),
-        ("Partial Response", _("Partial Response"),),
-        ("Stable Disease", _("Stable Disease"),),
-        ("Progression", _("Progression"),),
-        ("Unknown", _("Unknown"),),
-        ("Death", _("Death"),),
-    )
-
     CAUSE_OF_DEATH = (
         ("Multiple Myeloma", _("Multiple Myeloma"),),
         ("Infection", _("Infection"),),
