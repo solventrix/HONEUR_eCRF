@@ -555,24 +555,46 @@ def create_tratiemento(episode, iterator, data):
         )
 
     bone_disease_fields = [
-        f"numero_ciclos_enfermedad_osea_induccion_{iterator}",
-        f"indicar_bifosfonato_induccion_{iterator}",
-        f"tipo_tratamiento_enfermedad_osea_describir_induccion_{iterator}",
         f"tipo_tratamiento_enfermedad_osea_vertebroplastia_induccion_{iterator}",
         f"tipo_tratamiento_enfermedad_osea_bisfosfonatos_induccion_{iterator}",
         f"tipo_tratamiento_enfermedad_osea_denosumab_induccion_{iterator}",
         f"tipo_tratamiento_enfermedad_osea_nodisponible_induccion_{iterator}",
         f"tipo_tratamiento_enfermedad_osea_otros_induccion_{iterator}",
+        f"numero_ciclos_enfermedad_osea_induccion_{iterator}",
+        f"indicar_bifosfonato_induccion_{iterator}",
+        f"tipo_tratamiento_enfermedad_osea_describir_induccion_{iterator}",
         f"tratamiento_enfermedad_osea_fecha_ifin_induccion_{iterator}",
         f"tratamiento_enfermedad_osea_fecha_fin_induccion_{iterator}",
         f"tratamiento_enfermedad_osea_fecha_inicio_induccion_{iterator}",
         f"vertebroplastia_cifoplastia_comentarios_induccion_{iterator}",
         f"vertebroplastia_cifoplastia_fecha_induccion_{iterator}",
     ]
-    if any([data.get(i) for i in bone_disease_fields]):
-        bone_disease = models.BoneDisease(episode=episode)
-        populate_fields_on_model(bone_disease, file_name, bone_disease_fields, data)
-
+    if any([data.get(i) for i in bone_disease_fields if not data.get(i) == '0']):
+        treatment_type = None
+        if data.get(
+            f'tipo_tratamiento_enfermedad_osea_vertebroplastia_induccion_{iterator}'
+        ):
+            treatment_type = "Vertebroplasty Induction"
+        elif data.get(
+            f'tipo_tratamiento_enfermedad_osea_bisfosfonatos_induccion_{iterator}'
+        ):
+            treatment_type = "Bisphosphonates Induction"
+        elif data.get(
+            f'tipo_tratamiento_enfermedad_osea_denosumab_induccion_{iterator}'
+        ):
+            treatment_type = "Denosumab"
+        elif data.get(
+            f'tipo_tratamiento_enfermedad_osea_nodisponible_induccion_{iterator}'
+        ):
+            treatment_type = "Not Available"
+        elif data.get(
+            f'tipo_tratamiento_enfermedad_osea_otros_induccion_{iterator}'
+        ):
+            treatment_type = "Other Induction"
+        bone_disease = models.BoneDisease(
+            episode=episode, treatment_type=treatment_type
+        )
+        populate_fields_on_model(bone_disease, file_name, bone_disease_fields[5:], data)
 
     radiotherapy_fields = [
         f"radioterapia_induccion_fecha_fin_{iterator}",

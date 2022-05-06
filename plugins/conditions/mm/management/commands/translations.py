@@ -77,7 +77,7 @@ TRANSLATIONS = [
     ("", "Others"),
     ("", "Partial response"),
     ("", "Peripheral Bloods"),
-    ("PeticionDelPaciente", "Patient Request")
+    ("PeticionDelPaciente", "Patient Request"),
     ("", "Plasmatic Celiac Leukemia"),
     ("Positivo", "Positive"),
     ("", "Primary Amylodosis"),
@@ -94,7 +94,7 @@ TRANSLATIONS = [
     ("Sintomatico", "Symptomatic"),
     ("PlasmocitomaOseoSolitario", "Solitary Bone Plasmacytoma"),
     ("MielomaMultipleSintomatico", "Symptomatic Multiple Myeloma"),
-    ("LeucemiaDeCelulasPlasmaticas", "Plasmatic Celiac Leukemia")
+    ("LeucemiaDeCelulasPlasmaticas", "Plasmatic Celiac Leukemia"),
     ("MielomaMultiple", "Mieloma Multiple"),
     ("Infeccion", "Infection"),
     ("", "TT-BU-FLU"),
@@ -107,6 +107,7 @@ TRANSLATIONS = [
     ("dos", "Two"),
     ("InfeccionNodocumentada", "Undocumented Infection"),
     ("nodocumentada", "Undocumented"),
+    ("MielomaMultipleSintomatico", "Symptomatic Multiple Myeloma"),
     ("", "Unknown"),
     ("", "Vertebroplasty Induction"),
     ("", "Very good partial response"),
