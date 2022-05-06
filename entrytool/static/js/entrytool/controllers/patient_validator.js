@@ -161,6 +161,10 @@ angular
         }
       }
 
+      var validateSingleComorbidityType = function(val, instance, episode){
+
+      }
+
       var validateRegimenToResponses = function(val, instance, episode){
         /*
         * From the perspective of a regimen, validates that the
@@ -285,6 +289,24 @@ angular
         return [episodeMin, episodeMax];
       }
 
+      var validateComorbidities = function(val, instance, episode){
+        if(val ==='Other' || val === 'Infection'){
+          // we don't validate other or infection
+          return
+        }
+        var invalid = false;
+        _.each(episode.comorbidity, function(c){
+          if(!instance.id || c.id !== instance.id){
+            if(c.condition === instance.condition){
+              invalid = true
+            }
+          }
+        });
+        if(invalid){
+          return VALDATION_ERRORS.SINGLE_COMORBIDITY_CONDITION_TYPES
+        }
+      }
+
       var validateRegimenToOtherLOTRegimens = function (
         val,
         instance,
@@ -388,6 +410,11 @@ angular
             errors: [validateDateOfDiagnosis]
           }
         );
+        this.createValidator(
+          "comorbidity_condition", {
+            errors: [validateComorbidities]
+          }
+        )
       };
       this.setUp();
     };
