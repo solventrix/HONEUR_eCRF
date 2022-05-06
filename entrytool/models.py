@@ -148,8 +148,8 @@ class SCT(models.EpisodeSubrecord):
 class PatientStatus(models.PatientSubrecord):
     _is_singleton = True
     DEATH_CAUSES = (
-        ("Disease", _("Disease")),
-        ("Complications of Disease", _("Complications of Disease")),
+        ("Mieloma Multiple", _("Mieloma Multiple"),),
+        ("Infection", _("Infection"),),
         ("Other", _("Other"))
     )
     deceased = fields.NullBooleanField(verbose_name=_("Deceased"), blank=True, null= True)

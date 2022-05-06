@@ -277,7 +277,7 @@ class Comorbidity(models.EpisodeSubrecord):
         ("Undocumented Preinfection", _("Undocumented Preinfection"),),
         ("Microbiologically Documented Without Bacteremia", _("Microbiologically Documented Without Bacteremia"),),
         ("Microbiologically Documented With Bacteremia", _("Microbiologically Documented With Bacteremia"),),
-        ("Clinically Documented", _("Clinically Documente"),),
+        ("Clinically Documented", _("Clinically Documented"),),
     )
 
     CONDITION_TYPES = (
