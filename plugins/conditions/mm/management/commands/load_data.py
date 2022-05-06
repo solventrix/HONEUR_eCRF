@@ -1,5 +1,6 @@
 import datetime
 import csv
+from re import I
 from django.db import transaction
 from django.db.models import DateField, FloatField
 from plugins.conditions.mm import episode_categories
@@ -250,15 +251,22 @@ def treatment_populated(file, row):
     that we would save are populated.
 
     Some fields are defaulted to 0 so ignore those if there
-    are no other measurements
+    are no other measurements.
+
+    Ignore MProteinMesurements as these do not determine
+    whether we create a LOT as they are stored on the MM Episode
     """
     treatment_fields = []
-    treatment_fields = [
-        field_name
-        for file_name, field_name in FIELD_MAPPING.keys()
-        if file_name.lower() == file.lower()
-    ]
-    row = {k.lower(): v for k, v in row.items()}
+    for their_field_mapping, our_field_mapping in FIELD_MAPPING.items():
+        if our_field_mapping[0] == 'MProteinMesurements':
+            continue
+        file_name = their_field_mapping[0]
+        if file_name.lower() == file.lower():
+            treatment_fields.append(their_field_mapping[1])
+    populated = {
+        i: row.get(i, "") for i in treatment_fields if not row.get(i, "") == '0'
+    }
+    # import ipdb; ipdb.set_trace()
     return any(
         row.get(i, "").strip() for i in treatment_fields if not row.get(i, "") == '0'
     )
@@ -565,6 +573,17 @@ def create_tratiemento(episode, iterator, data):
         bone_disease = models.BoneDisease(episode=episode)
         populate_fields_on_model(bone_disease, file_name, bone_disease_fields, data)
 
+
+    radiotherapy_fields = [
+        f"radioterapia_induccion_fecha_fin_{iterator}",
+        f"radioterapia_induccion_fecha_inicio_{iterator}",
+    ]
+    if any([data.get(i) for i in radiotherapy_fields]):
+        radiotherapy = models.RadiotherapyInduction(episode=episode)
+        populate_fields_on_model(radiotherapy, file_name, radiotherapy_fields, data)
+
+
+def populate_mprotein_measurements_from_treatment(episode, file_name, iterator, data):
     m_protein_mesurements = [
         f"cuant_cadena_ligera_lambda_{iterator}",
         f"cociente_kappa_lambda_{iterator}",
@@ -595,19 +614,9 @@ def create_tratiemento(episode, iterator, data):
             protein_date = sorted(dates)[-1]
         m_protein = models.MProteinMesurements(
             date=protein_date,
-            episode=episode.patient.episode_set.get(
-                category_name=episode_categories.MM.display_name
-            ),
+            episode=episode,
         )
         populate_fields_on_model(m_protein, file_name, m_protein_mesurements, data)
-
-    radiotherapy_fields = [
-        f"radioterapia_induccion_fecha_fin_{iterator}",
-        f"radioterapia_induccion_fecha_inicio_{iterator}",
-    ]
-    if any([data.get(i) for i in radiotherapy_fields]):
-        radiotherapy = models.RadiotherapyInduction(episode=episode)
-        populate_fields_on_model(radiotherapy, file_name, radiotherapy_fields, data)
 
 
 class Command(BaseCommand):
@@ -677,3 +686,6 @@ class Command(BaseCommand):
                         category_name=lot_episode_categories.LineOfTreatmentEpisode.display_name
                     )
                     create_tratiemento(lot_episode, iterator, tratamiento)
+                populate_mprotein_measurements_from_treatment(
+                    mm_episode, file_name, iterator, tratamiento
+                )
