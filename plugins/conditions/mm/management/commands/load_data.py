@@ -76,6 +76,11 @@ def set_field(subrecord, field, value):
     if not value:
         return
     value = get_translation(value)
+    if value.lower() == "y":
+        value = "Yes"
+    elif value.lower() == "n":
+        value = "No"
+
     if is_date(subrecord, field):
         value = translate_date(value)
     elif is_float(subrecord, field):
