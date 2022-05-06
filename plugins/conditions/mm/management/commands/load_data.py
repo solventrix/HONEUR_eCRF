@@ -64,10 +64,9 @@ def translate_date(value):
 
 
 def get_translation(value):
-    # TODO make this work
     if value:
         for from_value, to_value in TRANSLATIONS:
-            if from_value == value:
+            if from_value.lower() == value.lower():
                 return to_value
     return value
 
@@ -248,12 +247,14 @@ def populate_fields_on_model(model, file_name, upstream_fields, data):
 def treatment_populated(file, row):
     """
     for a file e.g. Tratamiento 6.csv return if any of the fields
-    that we would save are populated
+    that we would save are populated.
+
+    Ignore the ciclos fields as they are always 0
     """
     treatment_fields = [
-        field_names
-        for file_name, field_names in FIELD_MAPPING.keys()
-        if file_name.lower() == file.lower()
+        field_name
+        for file_name, field_name in FIELD_MAPPING.keys()
+        if file_name.lower() == file.lower() and 'numero_ciclos_' not in field_name
     ]
     row = {k.lower(): v for k, v in row.items()}
     return any(row.get(i, "").strip() for i in treatment_fields)
