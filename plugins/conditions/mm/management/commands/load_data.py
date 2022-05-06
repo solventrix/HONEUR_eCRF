@@ -249,15 +249,19 @@ def treatment_populated(file, row):
     for a file e.g. Tratamiento 6.csv return if any of the fields
     that we would save are populated.
 
-    Ignore the ciclos fields as they are always 0
+    Some fields are defaulted to 0 so ignore those if there
+    are no other measurements
     """
+    treatment_fields = []
     treatment_fields = [
         field_name
         for file_name, field_name in FIELD_MAPPING.keys()
-        if file_name.lower() == file.lower() and 'numero_ciclos_' not in field_name
+        if file_name.lower() == file.lower()
     ]
     row = {k.lower(): v for k, v in row.items()}
-    return any(row.get(i, "").strip() for i in treatment_fields)
+    return any(
+        row.get(i, "").strip() for i in treatment_fields if not row.get(i, "") == '0'
+    )
 
 
 def create_tratiemento(episode, iterator, data):
@@ -613,7 +617,7 @@ class Command(BaseCommand):
         parser.add_argument("file_directory")
 
     def get_data(self, file_name):
-        with open(os.path.join(self.file_directory, file_name)) as f:
+        with open(os.path.join(self.file_directory, file_name), encoding='utf-8') as f:
             rows = list(csv.DictReader(f))
         return rows
 

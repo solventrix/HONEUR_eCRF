@@ -753,7 +753,7 @@ class Imaging(models.EpisodeSubrecord):
 class MProteinMesurements(models.EpisodeSubrecord):
     date = fields.DateField(blank=True, null=True, verbose_name=_("Date"))
 
-    serum_amount = fields.CharField(
+    serum_amount = fields.FloatField(
         blank=True,
         null=True,
         max_length=256,

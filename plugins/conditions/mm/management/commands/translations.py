@@ -104,6 +104,7 @@ TRANSLATIONS = [
     ("MuySintomatico", "Very Symptomatic"),
     ("Si", "Yes"),
     ("Sí", "Yes"),
+    ("S�", "Yes"),
     ("Cero", "Zero"),
     ("")
 ]
