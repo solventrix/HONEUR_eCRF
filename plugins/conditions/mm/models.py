@@ -7,6 +7,23 @@ from opal.core import lookuplists
 from opal import models
 from entrytool.models import Hospital
 
+HEAVY_CHAIN_OPTIONS = (
+    ("IgG", _("IgG"),),
+    ("IgD", _("IgD"),),
+    ("IgA", _("IgA"),),
+    ("IgM", _("IgM"),),
+    ("IgE", _("IgE"),),
+    ("No Heavy Chain", _("No Heavy Chain"),),
+    ("Other", _("Other"),),
+)
+
+LIGHT_CHAIN_OPTIONS = (
+    ('Kappa', _('Kappa')),
+    ('Lambda', _('Lambda')),
+    ('Non-Secretory', _('Non-Secretory')),
+    ('No Light Chain', _('No Light Chain'))
+)
+
 
 class MMRegimenList(lookuplists.LookupList):
     class Meta:
@@ -29,42 +46,6 @@ class MMDiagnosisDetails(models.EpisodeSubrecord):
         verbose_name_plural = _("Diagnosis Details")
 
     CHOICES = (("Yes", _("Yes")), ("No", _("No")),)
-
-    # TODO seperate these out into the IgG, IGA, Light chain, no light chain etc
-    # and Kappa and Llambda
-    HEAVY_CHAIN_OPTIONS = (
-        ("IgG", _("IgG"),),
-        ("IgD", _("IgD"),),
-        ("IgA", _("IgA"),),
-        ("IgM", _("IgM"),),
-        ("IgE", _("IgE"),),
-        ("No Heavy Chain", _("No Heavy Chain"),),
-        ("Other", _("Other"),),
-    )
-
-    LIGHT_CHAIN_OPTIONS = (
-        ('Kappa', _('Kappa')),
-        ('Lambda', _('Lambda')),
-        ('Non-Secretory', _('Non-Secretory'))
-    )
-
-    SUBCLASSIFICATION_CHOICES = (
-            ("MM IgG Kappa", _("MM IgG Kappa"),),
-            ("MM IgA Kappa", _("MM IgA Kappa"),),
-            ("MM IgD Kapper", _("MM IgD Kapper"),),
-            ("MM IgE Kapper", _("MM IgE Kapper"),),
-            ("MM Light Chain Kappa", _("MM Light Chain Kappa"),),
-            # No light chain
-
-
-            ("MM IgG Lambda", _("MM IgG Lambda"),),
-            ("MM IgA Lambda", _("MM IgA Lambda"),),
-            ("MM IgD Lambda", _("MM IgD Lambda"),),
-            ("MM IgE Lambda", _("MM IgE Lambda"),),
-            ("MM Light Chain Lambda", _("MM Light Chain Lambda"),),
-
-            ("Other", _("Other"),),
-    )
 
     DIAGNOSIS_OPTIONS = (
         ("Solitary Bone Plasmacytoma", _("Solitary Bone Plasmacytoma")),
@@ -782,23 +763,6 @@ class Imaging(models.EpisodeSubrecord):
 
 
 class MProteinMesurements(models.EpisodeSubrecord):
-    HEAVY_CHAIN_OPTIONS = (
-        ("IgG", _("IgG"),),
-        ("IgD", _("IgD"),),
-        ("IgA", _("IgA"),),
-        ("IgM", _("IgM"),),
-        ("IgE", _("IgE"),),
-        ("No Heavy Chain", _("No Heavy Chain"),),
-        ("Other", _("Other"),),
-    )
-    LIGHT_CHAIN_OPTIONS = (
-        ("IgA", _("IgA"),),
-        ("IgD", _("IgD"),),
-        ("IgE", _("IgE"),),
-        ("IgG", _("IgG"),),
-        ("IgM", _("IgM"),),
-    )
-
     date = fields.DateField(blank=True, null=True, verbose_name=_("Date"))
 
     serum_amount = fields.CharField(
