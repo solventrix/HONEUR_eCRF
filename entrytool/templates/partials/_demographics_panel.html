@@ -10,43 +10,47 @@
   <ul class="list-group">
     <li class="list-group-item">
       <div class="row">
-        <div class="col-md-7">
-          <span class="display-label">{% trans "ID" %}</span>
-        </div>
-        <div class="col-md-5">
-          [[ patient.id ]]
-        </div>
-      </div>
-      <div ng-show="patient.demographics[0].hospital_number" class="row">
-        <div class="col-md-7">
-          <span class="display-label">{% trans "External Identifier" %}</span>
-        </div>
-        <div class="col-md-5">
-          [[ patient.demographics[0].hospital_number]]
-        </div>
-      </div>
-      <div ng-show="patient.demographics[0].date_of_birth" class="row">
-        <div class="col-md-7">
-          <span class="display-label">{% trans "Birth Date" %}</span>
-        </div>
-        <div class="col-md-5">
-          [[ patient.demographics[0].date_of_birth | displayDate ]]
-        </div>
-      </div>
-      <div ng-show="patient.demographics[0].sex" class="row">
-        <div class="col-md-7">
-          <span class="display-label">{% trans "Sex" %}</span>
-        </div>
-        <div class="col-md-5">
-          [[ patient.demographics[0].sex | translate ]]
-        </div>
-      </div>
-      <div ng-show="patient.demographics[0].comments && patient.demographics[0].comments.length" class="row">
-        <div class="col-md-7">
-          <span class="display-label">{% trans "Comments" %}</span>
-        </div>
-        <div class="col-md-5">
-          [[ patient.demographics[0].comments ]]
+        <div class="col-md-9">
+          <div class="row">
+            <div class="col-md-7">
+              <span class="display-label">{% trans "ID" %}</span>
+            </div>
+            <div class="col-md-5">
+              [[ patient.id ]]
+            </div>
+          </div>
+          <div ng-show="patient.demographics[0].hospital_number" class="row">
+            <div class="col-md-7">
+              <span class="display-label">{% trans "External Identifier" %}</span>
+            </div>
+            <div class="col-md-5">
+              [[ patient.demographics[0].hospital_number]]
+            </div>
+          </div>
+          <div ng-show="patient.demographics[0].date_of_birth" class="row">
+            <div class="col-md-7">
+              <span class="display-label">{% trans "Birth Date" %}</span>
+            </div>
+            <div class="col-md-5">
+              [[ patient.demographics[0].date_of_birth | displayDate ]]
+            </div>
+          </div>
+          <div ng-show="patient.demographics[0].sex" class="row">
+            <div class="col-md-7">
+              <span class="display-label">{% trans "Sex" %}</span>
+            </div>
+            <div class="col-md-5">
+              [[ patient.demographics[0].sex | translate ]]
+            </div>
+          </div>
+          <div ng-show="patient.demographics[0].comments && patient.demographics[0].comments.length" class="row">
+            <div class="col-md-7">
+              <span class="display-label">{% trans "Comments" %}</span>
+            </div>
+            <div class="col-md-5">
+              [[ patient.demographics[0].comments ]]
+            </div>
+          </div>
         </div>
       </div>
     </li>
