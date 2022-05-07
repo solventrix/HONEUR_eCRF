@@ -42,8 +42,8 @@ FIELD_MAPPING = {
         "chronic_renal_insufficiency",
     ),
     ("datos demograficos.csv", "ircp_fecha_diag"): (
-        "MMDiagnosisDetails",
-        "ircp_diag_date",
+        "MMPastMedicalHistory",
+        "chronic_renal_insufficiency_diagnosis_date",
     ),
     ("datos demograficos.csv", "neoplastia_previa"): (
         "MMPastMedicalHistory",
