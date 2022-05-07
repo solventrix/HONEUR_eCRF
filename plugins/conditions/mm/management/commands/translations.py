@@ -117,5 +117,4 @@ TRANSLATIONS = [
     ("S�", "Yes"),
     ("Toxicidad", "Toxicity"),
     ("Cero", "Zero"),
-    ("")
 ]
