@@ -58,17 +58,6 @@ class SCT(models.EpisodeSubrecord):
         ("Other", _("Other"))
     )
 
-    ALOTPH_CONDITION_OPTIONS = (
-        ("BU-FLU", _("BU-FLU"),),
-        ("TT-BU-FLU", _("TT-BU-FLU"),),
-        ("TT-FLU-BU", _("TT-FLU-BU"),),
-        ("Cyclophosphamide-ATG", _("Cyclophosphamide-ATG"),),
-        ("TT-BU-FLU-ATG", _("TT-BU-FLU-ATG"),),
-        ("TT-FLU-BU-ATG", _("TT-FLU-BU-ATG"),),
-        ("FLU-Cyclophosphamide-ATG", _("FLU-Cyclophosphamide-ATG"),),
-        ("FLU-ATG", _("FLU-ATG"),),
-    )
-
     ATSP_CONDITION_OPTIONS = (
         ("BEA", _("BEA"),),
         ("BUCY", _("BUCY"),),
@@ -107,13 +96,6 @@ class SCT(models.EpisodeSubrecord):
         max_length=256,
         choices=ALOTPH_TYPES,
         verbose_name=_("Relation")
-    )
-    alotph_conditioning = fields.CharField(
-        blank=True,
-        null=True,
-        max_length=256,
-        choices=ALOTPH_CONDITION_OPTIONS,
-        verbose_name=_("Conditioning")
     )
 
     alotph_source = fields.CharField(
