@@ -28,7 +28,7 @@ class SCT(models.EpisodeSubrecord):
     SCT_TYPES = (
         ("Allogenic", _("Allogenic")),  # ALOTPH
         ("Autologous", _("Autologous")),   # ATSP
-        ("Tandem ATSP", _("Tandem ATSP")),
+
         ("Unknown", _("Unknown")),
     )
 
@@ -89,10 +89,7 @@ class SCT(models.EpisodeSubrecord):
 
     order_by = "-sct_date"
 
-    sct_date = fields.DateField(verbose_name=_("Date of SCT"))
-    hospital = models.ForeignKeyOrFreeText(
-        Hospital, verbose_name=_("Hospital")
-    )
+    sct_date = fields.DateField(blank=True, null=True, verbose_name=_("Date of SCT"))
     number_of_cells_infused = fields.BigIntegerField(
         blank=True, null=True, verbose_name=_("Number Of Cells Infused")
     )
@@ -104,12 +101,12 @@ class SCT(models.EpisodeSubrecord):
     )
 
     # if SCT_Type == Allogenic
-    type_of_alotph_transplant = fields.CharField(
+    relation = fields.CharField(
         blank=True,
         null=True,
         max_length=256,
         choices=ALOTPH_TYPES,
-        verbose_name=_("Type Of Transplant")
+        verbose_name=_("Relation")
     )
     alotph_conditioning = fields.CharField(
         blank=True,
@@ -127,7 +124,14 @@ class SCT(models.EpisodeSubrecord):
         verbose_name=_("Source")
     )
 
-    # if SCT type == ATSP
+    # if SCT type == Autologous
+    tandem_astp = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=CHOICES,
+        verbose_name=_("Tandem ASTP")
+    )
     atsp_conditioning = fields.CharField(
         blank=True,
         null=True,
@@ -144,8 +148,8 @@ class SCT(models.EpisodeSubrecord):
 class PatientStatus(models.PatientSubrecord):
     _is_singleton = True
     DEATH_CAUSES = (
-        ("Disease", _("Disease")),
-        ("Complications of Disease", _("Complications of Disease")),
+        ("Mieloma Multiple", _("Mieloma Multiple"),),
+        ("Infection", _("Infection"),),
         ("Other", _("Other"))
     )
     deceased = fields.NullBooleanField(verbose_name=_("Deceased"), blank=True, null= True)

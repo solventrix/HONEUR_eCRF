@@ -25,7 +25,7 @@
           [[ patient.demographics[0].hospital_number]]
         </div>
       </div>
-      <div class="row">
+      <div ng-show="patient.demographics[0].date_of_birth" class="row">
         <div class="col-md-7">
           <span class="display-label">{% trans "Birth Date" %}</span>
         </div>
@@ -33,7 +33,7 @@
           [[ patient.demographics[0].date_of_birth | displayDate ]]
         </div>
       </div>
-      <div class="row">
+      <div ng-show="patient.demographics[0].sex" class="row">
         <div class="col-md-7">
           <span class="display-label">{% trans "Sex" %}</span>
         </div>
@@ -41,7 +41,7 @@
           [[ patient.demographics[0].sex | translate ]]
         </div>
       </div>
-      <div class="row">
+      <div ng-show="patient.demographics[0].comments && patient.demographics[0].comments.length" class="row">
         <div class="col-md-7">
           <span class="display-label">{% trans "Comments" %}</span>
         </div>

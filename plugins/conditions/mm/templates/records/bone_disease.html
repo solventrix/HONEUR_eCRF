@@ -1,5 +1,6 @@
 {% load honeur_panels %}
 {% field_display "BoneDisease.treatment_type" %}
+{% field_display "BoneDisease.treatment_details" %}
 <span ng-show="item.treatment_type === 'Bisphosphonates Induction'">
     {% field_display "BoneDisease.bisphosphonate_treatment" %}
 </span>

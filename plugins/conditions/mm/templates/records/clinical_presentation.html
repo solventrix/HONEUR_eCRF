@@ -1,52 +1,15 @@
-<span ng-show="item.infection_type">
-    [[ item.infection_type ]]
-   <br />
-</span>
-<span ng-show="item.microorganism">
-    [[ item.microorganism ]]
-   <br />
-</span>
-<span ng-show="item.microorganism_source">
-    [[ item.microorganism_source ]]
-   <br />
-</span>
-<span ng-show="item.renal_failure">
-    [[ item.renal_failure ]]
-   <br />
-</span>
-<span ng-show="item.hypercalcemia">
-    [[ item.hypercalcemia ]]
-   <br />
-</span>
-<span ng-show="item.fever">
-    [[ item.fever ]]
-   <br />
-</span>
-<span ng-show="item.anemia">
-    [[ item.anemia ]]
-   <br />
-</span>
-<span ng-show="item.dialysis">
-    [[ item.dialysis ]]
-   <br />
-</span>
-<span ng-show="item.bone_pain">
-    [[ item.bone_pain ]]
-   <br />
-</span>
-<span ng-show="item.extramedullary_plasmacytomas">
-    [[ item.extramedullary_plasmacytomas ]]
-   <br />
-</span>
-<span ng-show="item.iss">
-    [[ item.iss ]]
-   <br />
-</span>
-<span ng-show="item.riss">
-    [[ item.riss ]]
-   <br />
-</span>
-<span ng-show="item.details">
-    [[ item.details ]]
-   <br />
-</span>
+{% load honeur_panels %}
+{% field_display "ClinicalPresentation.date" %}
+{% field_display "ClinicalPresentation.infection_type" %}
+{% field_display "ClinicalPresentation.microorganism" %}
+{% field_display "ClinicalPresentation.microorganism_source" %}
+{% field_display "ClinicalPresentation.renal_failure" %}
+{% field_display "ClinicalPresentation.hypercalcemia" %}
+{% field_display "ClinicalPresentation.fever" %}
+{% field_display "ClinicalPresentation.anemia" %}
+{% field_display "ClinicalPresentation.dialysis" %}
+{% field_display "ClinicalPresentation.bone_pain" %}
+{% field_display "ClinicalPresentation.extramedullary_plasmacytomas" %}
+{% field_display "ClinicalPresentation.iss" %}
+{% field_display "ClinicalPresentation.riss" %}
+{% field_display "ClinicalPresentation.details" %}

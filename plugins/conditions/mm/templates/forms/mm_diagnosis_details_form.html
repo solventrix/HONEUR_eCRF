@@ -1,16 +1,17 @@
 {% load forms %}
 {% load custom_forms %}
 {% load i18n %}
-{% custom_datepicker field="MMDiagnosisDetails.date_of_diagnosis" validator="diagnosis_date" date_after="the_episode.demographics[0].date_of_birth" date_after_message=_("Date of diagnosis must be after the patient's birth date") required=True %}
+{% custom_datepicker field="MMDiagnosisDetails.diagnosis_date" validator="diagnosis_date" date_after="the_episode.demographics[0].date_of_birth" date_after_message=_("Date of diagnosis must be after the patient's birth date") required=True %}
 {% custom_datepicker field="MMDiagnosisDetails.date_of_first_centre_visit" date_after="the_episode.demographics[0].date_of_birth" date_after_message=_("Date of first visit must be after the patient's birth date") %}
 {% radio field="MMDiagnosisDetails.referred" %}
 {% input field="MMDiagnosisDetails.previous_hospital" %}
 {% select field="MMDiagnosisDetails.diagnosis" %}
-{% input field="MMDiagnosisDetails.subclassification" %}
-{% radio field="MMDiagnosisDetails.epidemiological_register" %}
-{% input field="MMDiagnosisDetails.gah_score" %}
-{% input field="MMDiagnosisDetails.imwg_scale" %}
-{% input field="MMDiagnosisDetails.icc_scale" %}
+{% select field="MMDiagnosisDetails.heavy_chain_type" %}
+{% select field="MMDiagnosisDetails.light_chain_type" %}
+{% select field="MMDiagnosisDetails.ecog" %}
 {% input field="MMDiagnosisDetails.height" %}
 {% input field="MMDiagnosisDetails.weight" %}
-{% input field="MMDiagnosisDetails.ecog" %}
+{% radio field="MMDiagnosisDetails.epidemiological_register" %}
+{% number field="MMDiagnosisDetails.gah_score" min_value="0" max_value="94" %}
+{% number field="MMDiagnosisDetails.imwg_scale" min_value="1" max_value="8" %}
+{% number field="MMDiagnosisDetails.icc_scale" min_value="0" max_value="31" %}

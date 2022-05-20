@@ -1,37 +1,37 @@
 {
   "mmregimenlist": [
 {
-  "name": "Ibrutinib"
+  "name": "VTD"
 },
 {
-  "name": "Ibrutinib.Rituximab"
+  "name": "VRD"
 },
 {
-  "name": "Rituximab Erhaltung"
+  "name": "PAD"
 },
 {
-  "name": "Bendamustine.Vincristine.Prednison"
+  "name": "VD"
 },
 {
-  "name": "Venetoclax.Obinutuzumab"
+  "name": "VDC"
 },
 {
-  "name": "Bendamustine.Rituximab"
+  "name": "MPV"
 },
 {
-  "name": "Rituximab.Fludarabine.Cyclophospahmid (R-FC)"
+  "name": "Lenamidomida-Dexamentasona (Low Doses)"
 },
 {
-  "name": "Chlorambucil.Obinotuzumab"
+  "name": "Lenamidomida-Dexamentasona (High Doses)"
 },
 {
-  "name": "Venetoclax.Decitabine"
+  "name": "VBMCP/VDAD"
 },
 {
-  "name": "Vincristine"
+  "name": "Bendamustina"
 },
 {
-  "name": "Bendamustine.Dexamethason"
+  "name": "Not Available"
 }
   ]
 }

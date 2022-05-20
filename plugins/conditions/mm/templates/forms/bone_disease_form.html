@@ -2,6 +2,7 @@
 {% load i18n %}
 {% load custom_forms %}
 {% select field="BoneDisease.treatment_type" %}
+{% textarea field="BoneDisease.treatment_details" %}
 <span ng-show="editing.bone_disease.treatment_type === 'Bisphosphonates Induction'">
   {% input field="BoneDisease.bisphosphonate_treatment" %}
 </span>

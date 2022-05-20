@@ -7,10 +7,22 @@
       "name": "Progression"
     },
     {
+      "name": "Death"
+    },
+    {
       "name": "Remission Achieved"
     },
     {
-      "name": "Other reason"
+      "name": "Patient Request"
+    },
+    {
+      "name": "By End Of Scheduled Cycles"
+    },
+    {
+      "name": "Toxicity"
+    },
+    {
+      "name": "Other"
     }
   ]
 }
