@@ -161,10 +161,6 @@ angular
         }
       }
 
-      var validateSingleComorbidityType = function(val, instance, episode){
-
-      }
-
       var validateRegimenToResponses = function(val, instance, episode){
         /*
         * From the perspective of a regimen, validates that the
