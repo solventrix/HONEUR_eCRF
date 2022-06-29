@@ -122,10 +122,6 @@ class MMDiagnosisDetails(models.EpisodeSubrecord):
     # ICC scale 0 to 31
     icc_scale = fields.IntegerField(blank=True, null=True, verbose_name=_("ICC Scale"))
 
-    ircp_diag_date = fields.DateField(
-        blank=True, null=True, verbose_name=_("IRCP Diagnosis Date")
-    )
-
     # these fields are what the spread sheet call generics, putting them
     # here for want of a better place.
     height = fields.IntegerField(blank=True, null=True, verbose_name=_("Height"))

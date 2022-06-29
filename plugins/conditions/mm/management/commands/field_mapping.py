@@ -42,8 +42,8 @@ FIELD_MAPPING = {
         "chronic_renal_insufficiency",
     ),
     ("datos demograficos.csv", "ircp_fecha_diag"): (
-        "MMDiagnosisDetails",
-        "ircp_diag_date",
+        "MMPastMedicalHistory",
+        "chronic_renal_insufficiency_diagnosis_date",
     ),
     ("datos demograficos.csv", "neoplastia_previa"): (
         "MMPastMedicalHistory",
@@ -1358,7 +1358,6 @@ FIELD_MAPPING = {
         "MMPatientStatus",
         "comments",
     ),
-    ("tratamiento 1.csv", "acondicionamiento_alotph_1"): ("SCT", "alotph_conditioning"),
     ("tratamiento 1.csv", "acondicionamiento_atsp_1"): ("SCT", "atsp_conditioning"),
     ("tratamiento 1.csv", "candidato_transplante_1"): (
         "MMStemCellTransplantEligibility",
@@ -1621,7 +1620,6 @@ FIELD_MAPPING = {
         "BoneDisease",
         "vertebroplasty_kyphoplasty_date",
     ),
-    ("tratamiento 2.csv", "acondicionamiento_alotph_2"): ("SCT", "alotph_conditioning"),
     ("tratamiento 2.csv", "acondicionamiento_atsp_2"): ("SCT", "atsp_conditioning"),
     ("tratamiento 2.csv", "candidato_transplante_2"): (
         "MMStemCellTransplantEligibility",

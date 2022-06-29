@@ -281,7 +281,6 @@ def create_tratiemento(episode, iterator, data):
     ]
     stuff.extend(eligible_for_stem_cell_transplant)
     alotph_fields = [
-        f"acondicionamiento_alotph_{iterator}",
         f"fuente_alopth_{iterator}",
         f"tipo_trasplante_alotph_{iterator}",
         f"trasplante_alogenico_alotph_fecha_{iterator}",
