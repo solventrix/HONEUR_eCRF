@@ -273,11 +273,7 @@ def treatment_populated(file, row):
 
 
 def create_tratiemento(episode, iterator, data):
-<<<<<<< HEAD
     file_name = f"tratamiento {iterator}.csv".lower()
-=======
-    file_name = f"Tratamiento {iterator}.csv".lower()
->>>>>>> zaragosa-heroku
     stuff = []
 
     eligible_for_stem_cell_transplant = [
@@ -285,10 +281,6 @@ def create_tratiemento(episode, iterator, data):
     ]
     stuff.extend(eligible_for_stem_cell_transplant)
     alotph_fields = [
-<<<<<<< HEAD
-        f"acondicionamiento_alotph_{iterator}",
-=======
->>>>>>> zaragosa-heroku
         f"fuente_alopth_{iterator}",
         f"tipo_trasplante_alotph_{iterator}",
         f"trasplante_alogenico_alotph_fecha_{iterator}",
