@@ -9,18 +9,26 @@
 {% endif %}
   <div {% if only_display_if_exists %}ng-show="parent.{{ name }}.length && parent.{{ name }}[0].consistency_token"{% endif %} class="panel panel-default record-panel">
     <div class="panel-heading">
-      <h3>
-        <i class="{{ icon }}"></i> {{ title }}
-        <span ng-show="{{ editable }}" >
-            {% if singleton %}
-            <i class="fa fa-pencil edit pull-right pointer"
-               ng-click="parent.recordEditor.editItem('{{ name }}', parent.{{ name }}[0]).then($root.patientValidator.clean)"></i>
-          {% else %}
-            <i class="fa fa-plus-circle edit pull-right pointer"
-               ng-click="parent.recordEditor.newItem('{{ name }}').then($root.patientValidator.clean)"></i>
-            {% endif %}
-       </span>
-      </h3>
+      <div class="row">
+        <div class="col-md-11">
+          <h3>
+            <i class="{{ icon }}"></i> {{ title }}
+          </h3>
+        </div>
+        <div class="col-md-1">
+          <h3>
+            <span ng-show="{{ editable }}" >
+                {% if singleton %}
+                <i class="fa fa-pencil edit pull-right pointer"
+                  ng-click="parent.recordEditor.editItem('{{ name }}', parent.{{ name }}[0]).then($root.patientValidator.clean)"></i>
+              {% else %}
+                <i class="fa fa-plus-circle edit pull-right pointer"
+                  ng-click="parent.recordEditor.newItem('{{ name }}').then($root.patientValidator.clean)"></i>
+                {% endif %}
+            </span>
+          </h3>
+        </div>
+      </div>
     </div>
     <ul class="list-group">
       <li class="list-group-item" ng-show="parent.{{ name }}.length && parent.{{ name }}[0].consistency_token" ng-repeat="item in parent.{{ name }}{% if model.order_by %} | orderBy: '{{ model.order_by }}'{% endif %}"
