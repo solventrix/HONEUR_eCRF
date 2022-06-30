@@ -1,13 +1,12 @@
 """
 Templatetags for form/modal helpers
 """
-import json
 from django import template
-from django.db import models
 from django.urls import reverse
 from opal.templatetags import forms
 
 register = template.Library()
+
 
 @register.inclusion_tag('_helpers/custom_datepicker.html')
 def custom_datepicker(*args, **kwargs):
@@ -39,7 +38,7 @@ def custom_datepicker(*args, **kwargs):
     return context
 
 
-@register.inclusion_tag('_helpers/select.html')
+@register.inclusion_tag('_helpers/custom_select.html')
 def custom_select(*args, **kwargs):
     """
     A wrapper around the opal select that the option of
@@ -49,7 +48,11 @@ def custom_select(*args, **kwargs):
 
     It only works for foreignkey or free text fields.
     """
+    model, _ = forms._model_and_field_from_path(kwargs["field"])
+
     ctx = forms.select(*args, **kwargs)
+    ctx['validator'] = kwargs.pop('validator', '')
+    ctx["model_name"] = "editing.{}".format(model.get_api_name())
     ctx["include_admin_link"] = kwargs.get('include_admin_link')
     if ctx["include_admin_link"]:
         ctx["user"] = kwargs.get("user")
