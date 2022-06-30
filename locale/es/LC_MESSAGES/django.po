@@ -3,147 +3,2229 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-07 15:14+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"POT-Creation-Date: 2022-05-24 06:56+0000\n"
+"PO-Revision-Date: 2022-06-07 16:10+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
 
-#: .\entrytool\__init__.py:22 .\entrytool\pathways.py:8
+#: entrytool/__init__.py:39 entrytool/pathways.py:17
 msgid "Add Patient"
-msgstr "Add patient in spanish"
+msgstr "Añadir paciente"
 
-#: .\entrytool\__init__.py:28 .\entrytool\pathways.py:19
+#: entrytool/__init__.py:43
+msgid "Log Out"
+msgstr "Cerrar sesión"
+
+#: entrytool/__init__.py:49 entrytool/opal/core/application.py:120
+msgid "Admin"
+msgstr "Administrador"
+
+#: entrytool/models.py:15 entrytool/templates/forms/demographics_form.html:3
+#: entrytool/templates/partials/_demographics_panel.html:24
+msgid "External Identifier"
+msgstr "Identificador externo"
+
+#: entrytool/models.py:17
+#: entrytool/templates/partials/_demographics_panel.html:48
+#: plugins/conditions/mm/models.py:172 plugins/conditions/mm/models.py:388
+#: plugins/conditions/mm/templates/records/mm_past_medical_history.html:79
+msgid "Comments"
+msgstr "Comentarios"
+
+#: entrytool/models.py:22 entrytool/models.py:170
+#: plugins/conditions/cll/models.py:24 plugins/conditions/cll/models.py:57
+#: plugins/conditions/cll/templates/records/cll_regimen.html:15
+#: plugins/conditions/mm/models.py:354
+msgid "Hospital"
+msgstr "Hospital"
+
+#: entrytool/models.py:23
+#, fuzzy
+#| msgid "Hospital"
+msgid "Hospitals"
+msgstr "Hospitales"
+
+#: entrytool/models.py:27 plugins/conditions/cll/models.py:26
+#: plugins/conditions/cll/models.py:129 plugins/conditions/cll/models.py:156
+#: plugins/conditions/mm/models.py:48 plugins/conditions/mm/models.py:193
+#: plugins/conditions/mm/models.py:343 plugins/conditions/mm/models.py:456
+#: plugins/conditions/mm/models.py:682 plugins/conditions/mm/models.py:827
+#: plugins/conditions/mm/models.py:962
+msgid "Yes"
+msgstr "Sí"
+
+#: entrytool/models.py:27 plugins/conditions/cll/models.py:26
+#: plugins/conditions/cll/models.py:129 plugins/conditions/cll/models.py:156
+#: plugins/conditions/mm/models.py:48 plugins/conditions/mm/models.py:193
+#: plugins/conditions/mm/models.py:344 plugins/conditions/mm/models.py:457
+#: plugins/conditions/mm/models.py:683 plugins/conditions/mm/models.py:827
+#: plugins/conditions/mm/models.py:962
+#: plugins/conditions/mm/templates/records/mm_past_medical_history.html:11
+msgid "No"
+msgstr "No"
+
+#: entrytool/models.py:29
+msgid "Allogenic"
+msgstr "Alogénico"
+
+#: entrytool/models.py:30
+msgid "Autologous"
+msgstr "Autólogo"
+
+#: entrytool/models.py:32 entrytool/models.py:76
+#: plugins/conditions/cll/models.py:26 plugins/conditions/cll/models.py:32
+#: plugins/conditions/cll/models.py:94 plugins/conditions/cll/models.py:129
+#: plugins/conditions/cll/models.py:156 plugins/conditions/cll/models.py:160
+#: plugins/conditions/mm/models.py:856 plugins/conditions/mm/models.py:962
+msgid "Unknown"
+msgstr "Desconocido"
+
+#: entrytool/models.py:36
+msgid "HLA identical"
+msgstr "HLA idéntico"
+
+#: entrytool/models.py:37
+msgid "HLA identicofen"
+msgstr ""
+
+#: entrytool/models.py:40
+msgid "Aplo: HLA unidentified related (>1 missmatch) phenotype"
+msgstr ""
+
+#: entrytool/models.py:44
+msgid "HLA no related ident (NO HAPLO: 1 missmatch)"
+msgstr ""
+
+#: entrytool/models.py:48
+msgid "HLA0 identical unrelated"
+msgstr "HLA0 idéntica no relacionado"
+
+#: entrytool/models.py:51
+msgid "HLA-non-identical unrelated"
+msgstr "HLA no idéntico no relacionado"
+
+#: entrytool/models.py:56
+msgid "An unkown"
+msgstr "Un desconocido"
+
+#: entrytool/models.py:58 entrytool/models.py:75 entrytool/models.py:135
+#: entrytool/wow_strings.py:13 entrytool/wow_strings.py:19
+#: entrytool/wow_strings.py:57 plugins/conditions/mm/models.py:17
+#: plugins/conditions/mm/models.py:154 plugins/conditions/mm/models.py:285
+#: plugins/conditions/mm/models.py:339 plugins/conditions/mm/models.py:351
+#: plugins/conditions/mm/models.py:544
+msgid "Other"
+msgstr "Otro"
+
+#: entrytool/models.py:62
+msgid "BEA"
+msgstr ""
+
+#: entrytool/models.py:63
+msgid "BUCY"
+msgstr ""
+
+#: entrytool/models.py:64
+msgid "Melfalan 140"
+msgstr ""
+
+#: entrytool/models.py:65
+msgid "Melfalan 200"
+msgstr ""
+
+#: entrytool/models.py:66
+msgid "BU-MEL"
+msgstr ""
+
+#: entrytool/models.py:67
+msgid "BEAM"
+msgstr ""
+
+#: entrytool/models.py:71
+#, fuzzy
+#| msgid "Bone Pain"
+msgid "Bone Marrow"
+msgstr "Médula Osea"
+
+#: entrytool/models.py:72
+msgid "Cord"
+msgstr "Cordón"
+
+#: entrytool/models.py:73
+msgid "Peripheral Bloods"
+msgstr "Sangre Periférica"
+
+#: entrytool/models.py:74
+msgid "Bone Marrow And Peripheral Bloods"
+msgstr "Médula Osea y Sangre Periférica"
+
+#: entrytool/models.py:81
+msgid "Date of SCT"
+msgstr "Fecha del SCT"
+
+#: entrytool/models.py:83
+#, fuzzy
+#| msgid "Number of Cycles"
+msgid "Number Of Cells Infused"
+msgstr "Número de Células Infundidas"
+
+#: entrytool/models.py:87
+msgid "Type of SCT"
+msgstr "Tipo de SCT"
+
+#: entrytool/models.py:98
+msgid "Relation"
+msgstr "Relación"
+
+#: entrytool/models.py:106
+msgid "Source"
+msgstr "Origen"
+
+#: entrytool/models.py:115
+msgid "Tandem ASTP"
+msgstr "Tándem ASTP"
+
+#: entrytool/models.py:122
+#, fuzzy
+#| msgid "Condition"
+msgid "Conditioning"
+msgstr "Acondicionamiento"
+
+#: entrytool/models.py:126
+#, fuzzy
+#| msgid "Stem Cell Transplant Eligibility"
+msgid "Stem Cell Transplant"
+msgstr "Trasplante de Células Madre"
+
+#: entrytool/models.py:127
+#, fuzzy
+#| msgid "Stem Cell Transplant Eligibilities"
+msgid "Stem Cell Transplants"
+msgstr "Trasplantes de Células Madre"
+
+#: entrytool/models.py:133
+msgid "Mieloma Multiple"
+msgstr "Mieloma Múltiple"
+
+#: entrytool/models.py:134 plugins/conditions/mm/models.py:150
+#: plugins/conditions/mm/models.py:284
+msgid "Infection"
+msgstr "Infección"
+
+#: entrytool/models.py:137
+msgid "Deceased"
+msgstr "Fallecido"
+
+#: entrytool/models.py:138
+msgid "Lost to Follow-Up"
+msgstr "Perdido Durante el Seguimiento"
+
+#: entrytool/models.py:140 entrytool/opal/models.py:1292
+#, fuzzy
+#| msgid "Date Of Death"
+msgid "Date of Death"
+msgstr "Fecha de la Muerte"
+
+#: entrytool/models.py:145
+#, fuzzy
+#| msgid "Cause Of Death"
+msgid "Cause of Death"
+msgstr "Causa de la Muerte"
+
+#: entrytool/models.py:150
+msgid "Lost to Follow-up"
+msgstr "Perdido Durante el Seguimiento"
+
+#: entrytool/models.py:154 entrytool/models.py:155
+#, fuzzy
+#| msgid "Patient Status"
+msgid "Patient status"
+msgstr "Estado del Paciente"
+
+#: entrytool/models.py:160 entrytool/models.py:163
+#, fuzzy
+#| msgid "Treatment Type"
+msgid "Treatment Line"
+msgstr "Línea de Tratamiento"
+
+#: entrytool/models.py:164
+#, fuzzy
+#| msgid "Treatment Type"
+msgid "Treatment Lines"
+msgstr "Líneas de Tratamiento"
+
+#: entrytool/models.py:171
+msgid "Visit date"
+msgstr "Fecha de Visita"
+
+#: entrytool/models.py:174
+msgid "beta2m"
+msgstr ""
+
+#: entrytool/models.py:175 plugins/conditions/mm/models.py:583
+msgid "Albumin"
+msgstr "Albúmina"
+
+#: entrytool/models.py:176
+#, fuzzy
+#| msgid "Proteinuria"
+msgid "MProtein Urine"
+msgstr "Proteinuria"
+
+#: entrytool/models.py:178
+msgid "Mprotein in 24 hour urine"
+msgstr ""
+
+#: entrytool/models.py:181
+msgid "Follow-up"
+msgstr "Seguimiento"
+
+#: entrytool/models.py:182
+msgid "Follow-ups"
+msgstr "Seguimientos"
+
+#: entrytool/opal/core/lookuplists.py:116
+msgid "Name"
+msgstr "Nombre"
+
+#: entrytool/opal/core/lookuplists.py:118
+msgid "Synonym"
+msgstr "Sinónimo"
+
+#: entrytool/opal/core/lookuplists.py:120
+msgid "System"
+msgstr "Sistema"
+
+#: entrytool/opal/core/lookuplists.py:123
+msgid "Code"
+msgstr "Código"
+
+#: entrytool/opal/core/lookuplists.py:128
+msgid "Version"
+msgstr "Versión"
+
+#: entrytool/opal/core/search/templates/search.html:9
+#: entrytool/templates/search.html:9
+#, fuzzy
+#| msgid "Patient Status"
+msgid "Patient Search"
+msgstr "Búsqueda de Pacientes"
+
+#: entrytool/opal/core/search/templates/search.html:30
+msgid "Advanced"
+msgstr "Avanzado"
+
+#: entrytool/opal/core/search/templates/search.html:38
+#: entrytool/opal/templates/partials/_nav_search.html:39
+#: entrytool/templates/search.html:32 entrytool/templates/welcome.html:33
+msgid "Search"
+msgstr ""
+
+#: entrytool/opal/models.py:472 entrytool/opal/models.py:686
+#: entrytool/opal/models.py:1065
+#: entrytool/templates/base_templates/form_modal_base.html:5
+#: entrytool/templates/partials/_patient_summary_list.html:19
+#: entrytool/templates/patient_detail.html:20
 #, fuzzy
 #| msgid "Add Patient"
-msgid "Add Treatment Line"
-msgstr "Add patient in spanish"
+msgid "Patient"
+msgstr "Paciente"
 
-#: .\entrytool\models.py:25
-#, python-format
-msgid "%(value)s is not a positive number"
-msgstr ""
-
-#: .\entrytool\models.py:32
-#, python-format
-msgid "%(value)s should not be empty"
-msgstr ""
-
-#: .\entrytool\models.py:61
-msgid "Date of SCT"
-msgstr ""
-
-#: .\entrytool\models.py:65
-msgid "Type of SCT"
-msgstr ""
-
-#: .\entrytool\models.py:70
-msgid "Stem Cell Transplant"
-msgstr "Spanish Stem Cell Transplant"
-
-#: .\entrytool\models.py:71
+#: entrytool/opal/models.py:473
 #, fuzzy
-#| msgid "Stem Cell Transplant"
-msgid "Stem Cell Transplants"
-msgstr "Spanish Stem Cell Transplant"
+#| msgid "Add Patient"
+msgid "Patients"
+msgstr "Pacientes"
 
-#: .\entrytool\models.py:86
-msgid "Patient Status"
+#: entrytool/opal/models.py:606
+#, fuzzy
+#| msgid "External Pasmocytoma"
+msgid "External System"
+msgstr "Sistema externo"
+
+#: entrytool/opal/models.py:612
+msgid "Extenal Identifier"
+msgstr "Identificador externo"
+
+#: entrytool/opal/models.py:630
+#: entrytool/opal/templates/partials/_item_created_updated_by.html:10
+#, fuzzy
+#| msgid "Creatinine"
+msgid "Created"
+msgstr "Creado"
+
+#: entrytool/opal/models.py:633
+msgid "Updated"
+msgstr "Actualizado"
+
+#: entrytool/opal/models.py:639
+#, fuzzy
+#| msgid "Creatinine"
+msgid "Created By"
+msgstr "Creado por"
+
+#: entrytool/opal/models.py:645
+msgid "Updated By"
+msgstr "Actualizado por"
+
+#: entrytool/opal/models.py:683
+msgid "Category Name"
+msgstr "Nombre de la Categoría"
+
+#: entrytool/opal/models.py:689
+msgid "Active"
+msgstr "Activo"
+
+#: entrytool/opal/models.py:692
+#: plugins/conditions/cll/templates/records/cll_regimen.html:74
+msgid "Start"
+msgstr "Iniciar"
+
+#: entrytool/opal/models.py:695
+#: plugins/conditions/cll/templates/records/cll_regimen.html:85
+msgid "End"
+msgstr "Finalizar"
+
+#: entrytool/opal/models.py:698 entrytool/opal/models.py:907
+msgid "Consistency Token"
 msgstr ""
 
-#: .\entrytool\models.py:97
-msgid "Date of Diagnosis"
+#: entrytool/opal/models.py:704
+#, fuzzy
+#| msgid "Stage A"
+msgid "Stage"
+msgstr "Etapa"
+
+#: entrytool/opal/models.py:708 entrytool/opal/models.py:1078
+msgid "Episode"
+msgstr "Episodio"
+
+#: entrytool/opal/models.py:709
+msgid "Episodes"
+msgstr "Episodios"
+
+#: entrytool/opal/models.py:1179
+msgid "Destination"
+msgstr "Destino"
+
+#: entrytool/opal/models.py:1180
+msgid "Destinations"
+msgstr "Destinos"
+
+#: entrytool/opal/models.py:1204 entrytool/opal/models.py:1303
+msgid "Ethnicity"
+msgstr "Etnicidad"
+
+#: entrytool/opal/models.py:1205
+msgid "Ethnicities"
+msgstr "Etnicidades"
+
+#: entrytool/opal/models.py:1210
+msgid "Gender"
+msgstr "Género"
+
+#: entrytool/opal/models.py:1211
+msgid "Genders"
+msgstr "Géneros"
+
+#: entrytool/opal/models.py:1229
+#, fuzzy
+#| msgid "Patient Status"
+msgid "Marital Status"
+msgstr "Estado Civil"
+
+#: entrytool/opal/models.py:1230
+#, fuzzy
+#| msgid "Patient Statuses"
+msgid "Marital statuses"
+msgstr "Estados Civiles"
+
+#: entrytool/opal/models.py:1247 entrytool/opal/models.py:1283
+msgid "Title"
+msgstr "Título"
+
+#: entrytool/opal/models.py:1248
+msgid "Titles"
+msgstr "Títulos"
+
+#: entrytool/opal/models.py:1267
+msgid "The unique identifier for this patient at the hospital."
+msgstr "El identificador único de este paciente en el hospital."
+
+#: entrytool/opal/models.py:1268 entrytool/opal/models.py:1318
+#: entrytool/opal/models.py:1319
+msgid "Demographics"
+msgstr "Datos Demográficos"
+
+#: entrytool/opal/models.py:1271
+msgid "NHS Number"
+msgstr "Número del NHS"
+
+#: entrytool/opal/models.py:1275
+msgid "Surname"
+msgstr "Apellido"
+
+#: entrytool/opal/models.py:1278
+msgid "First Name"
+msgstr "Nombre"
+
+#: entrytool/opal/models.py:1281
+msgid "Middle Name"
+msgstr "Segundo Nombre"
+
+#: entrytool/opal/models.py:1285
+#, fuzzy
+#| msgid "Date Of Death"
+msgid "Date of Birth"
+msgstr "Fecha de Nacimiento"
+
+#: entrytool/opal/models.py:1288
+#, fuzzy
+#| msgid "Patient Status"
+msgid "Marital status"
+msgstr "Estado Civil"
+
+#: entrytool/opal/models.py:1295
+msgid "Post Code"
+msgstr "Código Postal"
+
+#: entrytool/opal/models.py:1299
+msgid "GP Practice Code"
+msgstr "Código de la práctica de la medicina general"
+
+#: entrytool/opal/models.py:1302
+msgid "Country of Birth"
+msgstr "País de Nacimiento"
+
+#: entrytool/opal/models.py:1307
+#, fuzzy
+#| msgid "Other Induction"
+msgid "Death Indicator"
+msgstr "Indicador de Muerte"
+
+#: entrytool/opal/models.py:1310
+#: entrytool/templates/partials/_demographics_panel.html:40
+msgid "Sex"
+msgstr "Sexo"
+
+#: entrytool/opal/templates/_helpers/date_of_birth_field.html:3
+#: entrytool/opal/templates/_helpers/date_of_birth_field.html:9
+#, fuzzy
+#| msgid "Date Of Death"
+msgid "Date Of Birth"
+msgstr "Fecha de Nacimiento"
+
+#: entrytool/opal/templates/_helpers/date_of_birth_field.html:13
+msgid "Please enter a valid date of birth in the format DD/MM/YYYY"
+msgstr "Por favor, introduzca una fecha de nacimiento válida en el formato DD/MM/AAAA"
+
+#: entrytool/opal/templates/accounts/banned.html:10
+msgid "Banned Passwords"
+msgstr "Contraseñas Prohibidas"
+
+#: entrytool/opal/templates/accounts/banned.html:16
+msgid "This list of 1000 common passwords are banned for this application."
+msgstr "Esta lista de 1000 contraseñas comunes está prohibida para esta aplicación."
+
+#: entrytool/opal/templates/admin/base_site.html:4
+msgid "Django site admin"
+msgstr "Administrador del sitio Django"
+
+#: entrytool/opal/templates/delete_item_confirmation_modal.html:6
+msgid "Delete item?"
+msgstr "¿Borrar artículo?"
+
+#: entrytool/opal/templates/delete_item_confirmation_modal.html:11
+msgid "Do you want to delete this item?"
+msgstr "¿Desea eliminar este artículo?"
+
+#: entrytool/opal/templates/delete_item_confirmation_modal.html:16
+#: entrytool/templates/base_templates/form_modal_base.html:19
+msgid "Delete"
+msgstr "Borrar"
+
+#: entrytool/opal/templates/delete_item_confirmation_modal.html:21
+#: entrytool/templates/base_templates/form_modal_base.html:24
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: entrytool/opal/templates/partials/_item_created_updated_by.html:7
+#, fuzzy
+#| msgid "Creatinine"
+msgid "Created by"
+msgstr "Creado por"
+
+#: entrytool/opal/templates/partials/_item_created_updated_by.html:18
+msgid "Last updated by"
+msgstr "Última actualización por"
+
+#: entrytool/opal/templates/partials/_item_created_updated_by.html:21
+msgid "Last updated"
+msgstr "Última actualización"
+
+#: entrytool/opal/templates/partials/_loading.html:10
+msgid "Loading"
+msgstr "Cargando"
+
+#: entrytool/opal/templates/registration/login.html:23
+msgid "Your username and password didn't match. Please try again."
+msgstr "Su nombre de usuario y contraseña no coinciden. Por favor, inténtalo de nuevo."
+
+#: entrytool/opal/templates/registration/login.html:30
+msgid "Username"
+msgstr "Nombre de usuario"
+
+#: entrytool/opal/templates/registration/login.html:40
+msgid "Password"
+msgstr "Contraseña"
+
+#: entrytool/opal/templates/registration/login.html:47
+msgid "Sign in"
+msgstr "Acceder"
+
+#: entrytool/opal/templates/registration/password_change_form.html:10
+#: entrytool/opal/templates/registration/password_change_form.html:52
+msgid "Change Password"
+msgstr "Cambiar la Contraseña"
+
+#: entrytool/opal/templates/registration/password_change_form.html:61
+#, python-format
+msgid ""
+"For security purposes, passwords should be at least 6 characters, and not "
+"feature on the\n"
+"  <a href=\"%(banned)s\" target=\"_blank\">list of banned passwords</a>."
 msgstr ""
+"Por razones de seguridad, las contraseñas deben tener al menos 6 caracteres "
+"y no deben aparecer en la\n"
+"\n"
+"  <a href=“%(banned)s” target=“_blank”>lista de contraseñas prohibidas.</a>."
 
-#: .\entrytool\models.py:98
-msgid "History of SMM"
-msgstr "Historia de SMM"
+#: entrytool/pathways.py:19
+#: entrytool/templates/base_templates/form_modal_base.html:31
+msgid "Save"
+msgstr "Guardar"
 
-#: .\entrytool\models.py:99
-msgid "Date of SMM diagnosis"
-msgstr ""
-
-#: .\entrytool\models.py:100
-msgid "History of MGUS"
-msgstr ""
-
-#: .\entrytool\models.py:101
-msgid "Date of MGUS Diagnosis"
-msgstr ""
-
-#: .\entrytool\models.py:102
-msgid "R-ISS Stage"
-msgstr ""
-
-#: .\entrytool\models.py:107
-msgid "Date of Death"
-msgstr ""
-
-#: .\entrytool\models.py:108
-msgid "Cause of Death"
-msgstr ""
-
-#: .\entrytool\models.py:115
-msgid "Treatment Line"
-msgstr ""
-
-#: .\entrytool\models.py:124 .\entrytool\models.py:145
-#: .\entrytool\models.py:167
-msgid "Line of Treatment"
-msgstr ""
-
-#: .\entrytool\models.py:125
-msgid "Number of Cycles"
-msgstr ""
-
-#: .\entrytool\models.py:126
-msgid "Start Date"
-msgstr ""
-
-#: .\entrytool\models.py:127
-msgid "End Date"
-msgstr ""
-
-#: .\entrytool\models.py:128
-msgid "Regimen"
-msgstr ""
-
-#: .\entrytool\models.py:129
-msgid "Reason for Regimen Stop"
-msgstr ""
-
-#: .\entrytool\models.py:147
-msgid "Adverse Event"
-msgstr ""
-
-#: .\entrytool\models.py:148
-msgid "Severity"
-msgstr ""
-
-#: .\entrytool\models.py:149
-msgid "Date of AE"
-msgstr ""
-
-#: .\entrytool\models.py:177
-msgid "Visit date"
-msgstr ""
-
-#: .\entrytool\settings.py:149
+#: entrytool/settings.py:193
 msgid "English"
-msgstr ""
+msgstr "Inglés"
 
-#: .\entrytool\settings.py:150
+#: entrytool/settings.py:194
 msgid "Spanish"
+msgstr "Español"
+
+#: entrytool/settings.py:195
+msgid "Hebrew"
+msgstr "Hebreo"
+
+#: entrytool/templates/_helpers/custom_datepicker.html:76
+#: entrytool/templates/_helpers/custom_select.html:32
+#: entrytool/templates/_helpers/input.html:55
+#: entrytool/templates/_helpers/number.html:53
+#: entrytool/templates/_helpers/radio.html:21
+#: entrytool/templates/_helpers/select.html:20
+#, python-format
+msgid "%(label)s is required"
+msgstr "%(label)s es necesario"
+
+#: entrytool/templates/_helpers/custom_datepicker.html:91
+#, python-format
+msgid "%(label)s is after the date of death"
+msgstr "%(label)s es posterior a la fecha del fallecimiento"
+
+#: entrytool/templates/_helpers/custom_datepicker.html:96
+#, python-format
+msgid "%(label)s is in the future"
+msgstr "%(label)s está en el futuro"
+
+#: entrytool/templates/_helpers/custom_select.html:53
+#, python-format
+msgid ""
+"\n"
+"          If the option is not present, you can add it <a href="
+"\"%(admin_url)s\">here</a>\n"
+"        "
+msgstr ""
+"\n"
+" Si la opción no está presente, puede añadirla <a href=“%(admin_url)s”>aquì</"
+"a> "
+
+#: entrytool/templates/_helpers/input.html:50
+#, python-format
+msgid "Maximum length is %(maxlength)s"
+msgstr "La longitud máxima es %(maxlength)s"
+
+#: entrytool/templates/_helpers/number.html:58
+#, python-format
+msgid "%(label)s is too low"
+msgstr "%(label)s es demasiado baja"
+
+#: entrytool/templates/_helpers/number.html:63
+#, python-format
+msgid "%(label)s is too high"
+msgstr "%(label)s es demasiado alta"
+
+#: entrytool/templates/_helpers/number.html:68
+#, python-format
+msgid "%(label)s is outside normal bounds"
+msgstr "%(label)s está fuera de los límites normales"
+
+#: entrytool/templates/angular_locale.html:4
+msgid "zero"
+msgstr "cero"
+
+#: entrytool/templates/angular_locale.html:4
+msgid "one"
+msgstr "un"
+
+#: entrytool/templates/angular_locale.html:4
+msgid "two"
+msgstr "dos"
+
+#: entrytool/templates/angular_locale.html:4
+msgid "few"
+msgstr "algunos"
+
+#: entrytool/templates/angular_locale.html:4
+msgid "many"
+msgstr "muchos"
+
+#: entrytool/templates/angular_locale.html:4
+msgid "other"
+msgstr "otros"
+
+#: entrytool/templates/angular_locale.html:26
+msgid "AM"
+msgstr "AM"
+
+#: entrytool/templates/angular_locale.html:27
+msgid "PM"
+msgstr "PM"
+
+#: entrytool/templates/angular_locale.html:30
+msgid "Sunday"
+msgstr "Domingo"
+
+#: entrytool/templates/angular_locale.html:31
+msgid "Monday"
+msgstr "Lunes"
+
+#: entrytool/templates/angular_locale.html:32
+msgid "Tuesday"
+msgstr "Martes"
+
+#: entrytool/templates/angular_locale.html:33
+msgid "Wednesday"
+msgstr "Miércoles"
+
+#: entrytool/templates/angular_locale.html:34
+msgid "Thursday"
+msgstr "Jueves"
+
+#: entrytool/templates/angular_locale.html:35
+msgid "Friday"
+msgstr "Viernes"
+
+#: entrytool/templates/angular_locale.html:36
+msgid "Saturday"
+msgstr "Sábado"
+
+#: entrytool/templates/angular_locale.html:39
+msgid "Before Christ"
+msgstr "Antes de Cristo (AC)"
+
+#: entrytool/templates/angular_locale.html:40
+msgid "Anno Domini"
+msgstr "Anno Domini"
+
+#: entrytool/templates/angular_locale.html:43
+msgid "BC"
+msgstr "AC"
+
+#: entrytool/templates/angular_locale.html:44
+msgid "AD"
+msgstr "AD"
+
+#: entrytool/templates/angular_locale.html:48
+#: entrytool/templates/angular_locale.html:85
+msgid "January"
+msgstr "Enero"
+
+#: entrytool/templates/angular_locale.html:49
+#: entrytool/templates/angular_locale.html:86
+msgid "February"
+msgstr "Febrero"
+
+#: entrytool/templates/angular_locale.html:50
+#: entrytool/templates/angular_locale.html:87
+msgid "March"
+msgstr "Marzo"
+
+#: entrytool/templates/angular_locale.html:51
+#: entrytool/templates/angular_locale.html:88
+msgid "April"
+msgstr "Abril"
+
+#: entrytool/templates/angular_locale.html:52
+#: entrytool/templates/angular_locale.html:75
+#: entrytool/templates/angular_locale.html:89
+msgid "May"
+msgstr "Mayo"
+
+#: entrytool/templates/angular_locale.html:53
+#: entrytool/templates/angular_locale.html:90
+msgid "June"
+msgstr "Junio"
+
+#: entrytool/templates/angular_locale.html:54
+#: entrytool/templates/angular_locale.html:91
+msgid "July"
+msgstr "Julio"
+
+#: entrytool/templates/angular_locale.html:55
+#: entrytool/templates/angular_locale.html:92
+msgid "August"
+msgstr "Agosto"
+
+#: entrytool/templates/angular_locale.html:56
+#: entrytool/templates/angular_locale.html:93
+msgid "September"
+msgstr "Septiembre"
+
+#: entrytool/templates/angular_locale.html:57
+#: entrytool/templates/angular_locale.html:94
+msgid "October"
+msgstr "Octubre"
+
+#: entrytool/templates/angular_locale.html:58
+#: entrytool/templates/angular_locale.html:95
+msgid "November"
+msgstr "Noviembre"
+
+#: entrytool/templates/angular_locale.html:59
+#: entrytool/templates/angular_locale.html:96
+msgid "December"
+msgstr "Diciembre"
+
+#: entrytool/templates/angular_locale.html:62
+msgid "Sun"
+msgstr "Dom"
+
+#: entrytool/templates/angular_locale.html:63
+msgid "Mon"
+msgstr "Lun"
+
+#: entrytool/templates/angular_locale.html:64
+msgid "Tue"
+msgstr "Mar"
+
+#: entrytool/templates/angular_locale.html:65
+msgid "Wed"
+msgstr "Mie"
+
+#: entrytool/templates/angular_locale.html:66
+msgid "Thu"
+msgstr "Jue"
+
+#: entrytool/templates/angular_locale.html:67
+msgid "Fri"
+msgstr "Vier"
+
+#: entrytool/templates/angular_locale.html:68
+msgid "Sat"
+msgstr "Sáb"
+
+#: entrytool/templates/angular_locale.html:71
+msgid "Jan"
+msgstr "Ene"
+
+#: entrytool/templates/angular_locale.html:72
+msgid "Feb"
+msgstr "Feb"
+
+#: entrytool/templates/angular_locale.html:73
+msgid "Mar"
+msgstr "Mar"
+
+#: entrytool/templates/angular_locale.html:74
+msgid "Apr"
+msgstr "Abr"
+
+#: entrytool/templates/angular_locale.html:76
+msgid "Jun"
+msgstr "Jun"
+
+#: entrytool/templates/angular_locale.html:77
+msgid "Jul"
+msgstr "Jul"
+
+#: entrytool/templates/angular_locale.html:78
+msgid "Aug"
+msgstr "Ago"
+
+#: entrytool/templates/angular_locale.html:79
+msgid "Sep"
+msgstr "Sep"
+
+#: entrytool/templates/angular_locale.html:80
+msgid "Oct"
+msgstr "Oct"
+
+#: entrytool/templates/angular_locale.html:81
+msgid "Nov"
+msgstr "Nov"
+
+#: entrytool/templates/angular_locale.html:82
+msgid "Dec"
+msgstr "Dic"
+
+#: entrytool/templates/forms/sct_form.html:4
+msgid "The SCT should be after the date of diagnosis"
+msgstr "El TSC debe ser posterior a la fecha del diagnóstico"
+
+#: entrytool/templates/opal.html:22
+msgid "The regimen cannot overlap with another regimen"
+msgstr "El régimen no puede solaparse con otro régimen"
+
+#: entrytool/templates/opal.html:23
+msgid "No regimen is connected to this response"
+msgstr "Ningún régimen está relacionado con esta respuesta"
+
+#: entrytool/templates/opal.html:24
+msgid "A response date is not connected to a regimen"
+msgstr "Una fecha de respuesta no está relacionada con un régimen"
+
+#: entrytool/templates/opal.html:25
+msgid "Date of diagnosis is greater than a regimen start date"
+msgstr "La fecha del diagnóstico es mayor que la fecha de inicio del régimen"
+
+#: entrytool/templates/opal.html:26
+msgid "Date of diagnosis is greater than an SCT date"
+msgstr "La fecha del diagnóstico es mayor que la fecha del TSC"
+
+#: entrytool/templates/opal.html:27
+msgid "Date of diagnosis is greater than a response date"
+msgstr "La fecha del diagnóstico es mayor que una fecha de respuesta"
+
+#: entrytool/templates/opal.html:28
+msgid "This regimen overlaps with another line of treatment"
+msgstr "Este régimen se solapa con otra línea de tratamiento"
+
+#: entrytool/templates/opal.html:29
+msgid "A line of treatment cannot have multiple comorbidities of the same type"
+msgstr ""
+"Una línea de tratamiento no puede tener múltiples comorbilidades del mismo "
+"tipo"
+
+#: entrytool/templates/partials/_demographics_panel.html:16
+#: entrytool/templates/records/demographics.html:3
+msgid "ID"
+msgstr "Identificación"
+
+#: entrytool/templates/partials/_demographics_panel.html:32
+msgid "Birth Date"
+msgstr "Fecha de Nacimiento"
+
+#: entrytool/templates/partials/_patient_summary_list.html:5
+msgid "We've found"
+msgstr "Hemos encontrado"
+
+#: entrytool/templates/partials/_patient_summary_list.html:6
+msgid "patients"
+msgstr "pacientes"
+
+#: entrytool/templates/partials/_patient_summary_list.html:7
+msgid "patient"
+msgstr "paciente"
+
+#: entrytool/templates/pathway/category_select.html:14
+msgid "A condition is required"
+msgstr "Se requiere una condición"
+
+#: entrytool/templates/patient_detail.html:3
+msgid "Patient not found"
+msgstr "Paciente no encontrado"
+
+#: entrytool/templates/patient_detail.html:5
+msgid "We're sorry but we couldn't find the patient you're looking for."
+msgstr "Lo sentimos, pero no hemos podido encontrar al paciente que busca."
+
+#: entrytool/templates/patient_detail.html:7
+msgid "Perhaps try searching for them instead?"
+msgstr "¿Tal vez intente buscarlos en su lugar?"
+
+#: entrytool/templates/records/patient_status.html:21
+msgid "Last Seen"
+msgstr "Ultima Vez Visto"
+
+#: entrytool/templates/records/patient_status.html:33
+msgid "Death details"
+msgstr "Detalles de la muerte"
+
+#: entrytool/templates/search.html:21 entrytool/templates/welcome.html:23
+msgid "External Identifier Or ID"
+msgstr "Identificador externo o Identificación"
+
+#: entrytool/templates/search.html:48
+msgid "We couldn't find any results for your search."
+msgstr "No hemos encontrado ningún resultado para su búsqueda."
+
+#: entrytool/templates/welcome.html:9
+msgid "Home"
+msgstr "Inicio"
+
+#: entrytool/wow_strings.py:5
+msgid "Female"
+msgstr "Mujer"
+
+#: entrytool/wow_strings.py:7
+msgid "Male"
+msgstr "Hombre"
+
+#: entrytool/wow_strings.py:9
+msgid "Not Known"
+msgstr "No conocida"
+
+#: entrytool/wow_strings.py:11
+msgid "Not Specified"
+msgstr "No especificado"
+
+#: entrytool/wow_strings.py:15 entrytool/wow_strings.py:17
+msgid "Zaragosa"
+msgstr "Zaragoza"
+
+#: entrytool/wow_strings.py:21
+msgid "VTD"
 msgstr ""
 
-#: .\entrytool\templates\records\demographics.html:3
-msgid "ID"
-msgstr "Identificacion"
+#: entrytool/wow_strings.py:23
+msgid "VRD"
+msgstr ""
+
+#: entrytool/wow_strings.py:25
+msgid "PAD"
+msgstr ""
+
+#: entrytool/wow_strings.py:27
+msgid "VD"
+msgstr ""
+
+#: entrytool/wow_strings.py:29
+msgid "VDC"
+msgstr ""
+
+#: entrytool/wow_strings.py:31
+msgid "MPV"
+msgstr ""
+
+#: entrytool/wow_strings.py:33
+msgid "Lenamidomida-Dexamentasona (Low Doses)"
+msgstr ""
+
+#: entrytool/wow_strings.py:35
+msgid "Lenamidomida-Dexamentasona (High Doses)"
+msgstr ""
+
+#: entrytool/wow_strings.py:37
+msgid "VBMCP/VDAD"
+msgstr ""
+
+#: entrytool/wow_strings.py:39
+msgid "Bendamustina"
+msgstr ""
+
+#: entrytool/wow_strings.py:41
+msgid "Not Available"
+msgstr "No disponible"
+
+#: entrytool/wow_strings.py:43
+msgid "Adverse event"
+msgstr "Evento adverso"
+
+#: entrytool/wow_strings.py:45
+msgid "Progression"
+msgstr "Progresión"
+
+#: entrytool/wow_strings.py:47
+msgid "Death"
+msgstr "Muerte"
+
+#: entrytool/wow_strings.py:49
+msgid "Remission Achieved"
+msgstr "Remisión Lograda"
+
+#: entrytool/wow_strings.py:51
+msgid "Patient Request"
+msgstr "Solicitud del Paciente"
+
+#: entrytool/wow_strings.py:53
+msgid "By End Of Scheduled Cycles"
+msgstr "Al Final de Los Ciclos Programados"
+
+#: entrytool/wow_strings.py:55
+msgid "Toxicity"
+msgstr "Toxicidad"
+
+#~ msgid "History of SMM"
+#~ msgstr "Historia de SMM"
+
+#: plugins/conditions/cll/models.py:11 plugins/conditions/cll/models.py:12
+msgid "CLL Regimen List"
+msgstr "Lista de regímenes de LLC"
+
+#: plugins/conditions/cll/models.py:17 plugins/conditions/cll/models.py:18
+msgid "CLL Stop Reason List"
+msgstr "Lista de motivos de detención de LLC"
+
+#: plugins/conditions/cll/models.py:29
+msgid "Stage A"
+msgstr "Etapa A"
+
+#: plugins/conditions/cll/models.py:30
+msgid "Stage B"
+msgstr "Etapa B"
+
+#: plugins/conditions/cll/models.py:31
+msgid "Stage C"
+msgstr "Stage C"
+
+#: plugins/conditions/cll/models.py:36
+#: plugins/conditions/cll/templates/records/cll_diagnosis_details.html:4
+msgid "Date of Diagnosis"
+msgstr "Fecha del Diagnóstico"
+
+#: plugins/conditions/cll/models.py:40
+#: plugins/conditions/cll/templates/records/cll_diagnosis_details.html:14
+msgid "Binet Stage"
+msgstr "Etapa Binet"
+
+#: plugins/conditions/cll/models.py:44 plugins/conditions/cll/models.py:45
+msgid "Diagnosis details"
+msgstr "Detalles del Diagnóstico"
+
+#: plugins/conditions/cll/models.py:53
+msgid "Treatment"
+msgstr "Tratamiento"
+
+#: plugins/conditions/cll/models.py:54
+msgid "Observation after remission"
+msgstr "Observación tras la remisión"
+
+#: plugins/conditions/cll/models.py:59 plugins/conditions/mm/models.py:356
+#: plugins/conditions/mm/models.py:429
+msgid "Number of Cycles"
+msgstr "Número de ciclos"
+
+#: plugins/conditions/cll/models.py:64 plugins/conditions/mm/models.py:361
+#: plugins/conditions/mm/models.py:434 plugins/conditions/mm/models.py:510
+#: plugins/conditions/mm/templates/forms/radiotherapy_induction_form.html:4
+msgid "Start Date"
+msgstr "Fecha de Inicio"
+
+#: plugins/conditions/cll/models.py:66 plugins/conditions/mm/models.py:366
+#: plugins/conditions/mm/models.py:437 plugins/conditions/mm/models.py:513
+#: plugins/conditions/mm/templates/forms/radiotherapy_induction_form.html:5
+msgid "End Date"
+msgstr "Fecha de Finalización"
+
+#: plugins/conditions/cll/models.py:67 plugins/conditions/cll/models.py:82
+#: plugins/conditions/cll/templates/records/cll_regimen.html:37
+#: plugins/conditions/mm/models.py:368 plugins/conditions/mm/models.py:391
+msgid "Regimen"
+msgstr "Régimen"
+
+#: plugins/conditions/cll/models.py:69 plugins/conditions/mm/models.py:373
+msgid "Regimen Type"
+msgstr "Tipo de Régimen"
+
+#: plugins/conditions/cll/models.py:72 plugins/conditions/mm/models.py:383
+msgid "Reason for Regimen Stop"
+msgstr "Motivo de la Interrupción del Régimen"
+
+#: plugins/conditions/cll/models.py:75
+msgid "Regimen part of clinical trial"
+msgstr "El régimen forma parte de un ensayo clínico"
+
+#: plugins/conditions/cll/models.py:78
+msgid "Treatment of indefinite duration"
+msgstr "Tratamiento de duración indefinida"
+
+#: plugins/conditions/cll/models.py:83 plugins/conditions/mm/models.py:392
+msgid "Regimens"
+msgstr "Regímenes"
+
+#: plugins/conditions/cll/models.py:90
+msgid "Complete Remission"
+msgstr "Remisión Completa"
+
+#: plugins/conditions/cll/models.py:91
+msgid "Progressive Disease"
+msgstr "Enfermedad Progresiva"
+
+#: plugins/conditions/cll/models.py:92
+msgid "Partial Response"
+msgstr "Respuesta Parcial"
+
+#: plugins/conditions/cll/models.py:93
+msgid "Stable Disease"
+msgstr "Enfermedad Estable"
+
+#: plugins/conditions/cll/models.py:96 plugins/conditions/mm/models.py:480
+msgid "Response Date"
+msgstr "Fecha de Respuesta"
+
+#: plugins/conditions/cll/models.py:98
+msgid "Best Response"
+msgstr "La Mejor Respuesta"
+
+#: plugins/conditions/cll/models.py:104
+msgid "Date of Questionnaire"
+msgstr "Date of Questionnaire"
+
+#: plugins/conditions/cll/models.py:109
+#: plugins/conditions/cll/templates/detail/qol_5q.html:6
+msgid "Mobility"
+msgstr "Movilidad"
+
+#: plugins/conditions/cll/models.py:112
+#: plugins/conditions/cll/templates/detail/qol_5q.html:7
+msgid "Selfcare"
+msgstr "Autocuidado"
+
+#: plugins/conditions/cll/models.py:115
+#: plugins/conditions/cll/templates/detail/qol_5q.html:8
+msgid "Usual Activities"
+msgstr "Actividades Habituales"
+
+#: plugins/conditions/cll/models.py:118
+#: plugins/conditions/cll/templates/detail/qol_5q.html:9
+msgid "Pain/Discomfort"
+msgstr "Dolor/Malestar"
+
+#: plugins/conditions/cll/models.py:121
+#: plugins/conditions/cll/templates/detail/qol_5q.html:10
+msgid "Anxiety/Depression"
+msgstr "Ansiedad/Depresión"
+
+#: plugins/conditions/cll/models.py:127
+msgid "Date of measurement"
+msgstr "Fecha de medición"
+
+#: plugins/conditions/cll/models.py:133
+#: plugins/conditions/cll/templates/detail/additional_characteristics.html:6
+#: plugins/conditions/mm/models.py:137
+msgid "ECOG"
+msgstr ""
+
+#: plugins/conditions/cll/models.py:135
+#: plugins/conditions/cll/templates/detail/additional_characteristics.html:7
+msgid "CIRS"
+msgstr ""
+
+#: plugins/conditions/cll/models.py:137
+#: plugins/conditions/cll/templates/detail/additional_characteristics.html:8
+msgid "Creatinine clearance"
+msgstr "Aclaramiento de creatinina"
+
+#: plugins/conditions/cll/models.py:140
+#: plugins/conditions/cll/templates/detail/additional_characteristics.html:10
+#: plugins/conditions/cll/templates/forms/additional_characteristics_form.html:9
+msgid "Beta-2-Microglobulin"
+msgstr "Beta-2-Microglobulina"
+
+#: plugins/conditions/cll/models.py:142
+#: plugins/conditions/cll/templates/detail/additional_characteristics.html:9
+#: plugins/conditions/cll/templates/forms/additional_characteristics_form.html:8
+#: plugins/conditions/mm/models.py:635
+msgid "LDH"
+msgstr "LDH"
+
+#: plugins/conditions/cll/models.py:147
+msgid "Bulky disease present"
+msgstr "Enfermedad voluminosa presente"
+
+#: plugins/conditions/cll/models.py:154
+msgid "Cytogenetic Date"
+msgstr "Fecha Citogenética"
+
+#: plugins/conditions/cll/models.py:158
+msgid "Mutated"
+msgstr "Mutado"
+
+#: plugins/conditions/cll/models.py:159
+msgid "Non-mutated"
+msgstr "No mutado"
+
+#: plugins/conditions/cll/models.py:164
+msgid "del17p"
+msgstr "del17p"
+
+#: plugins/conditions/cll/models.py:171
+msgid "IGHV rearrangement"
+msgstr "Reordenamiento IGHV"
+
+#: plugins/conditions/cll/models.py:174
+msgid "del11q"
+msgstr "del11q"
+
+#: plugins/conditions/cll/models.py:181
+msgid "TP53 mutation"
+msgstr "Mutación TP53"
+
+#: plugins/conditions/cll/models.py:188
+#: plugins/conditions/cll/templates/detail/cytogenetics.html:10
+msgid "Complex Karyotype"
+msgstr "Cariotipo Complejo"
+
+#: plugins/conditions/cll/models.py:192 plugins/conditions/cll/models.py:193
+msgid "Cytogenetic tests"
+msgstr "Pruebas Citogenéticas"
+
+#: plugins/conditions/cll/templates/detail/additional_characteristics.html:11
+msgid "Bulky disease > 5 cm"
+msgstr "Enfermedad Voluminosa > 5 cm"
+
+#: plugins/conditions/cll/templates/detail/cll.html:7
+#: plugins/conditions/mm/templates/detail/mm.html:7
+msgid "Please complete details for this patient to continue."
+msgstr "Por favor, complete los detalles de este paciente para continuar."
+
+#: plugins/conditions/cll/templates/detail/cll.html:23
+#: plugins/conditions/mm/templates/detail/mm.html:26
+msgid "Lines Of Treatment"
+msgstr "Líneas de Tratamiento"
+
+#: plugins/conditions/cll/templates/detail/cll.html:76
+msgid "Additional Characteristics"
+msgstr "Características adicionales"
+
+#: plugins/conditions/cll/templates/detail/cll.html:99
+#: plugins/conditions/mm/models.py:959 plugins/conditions/mm/models.py:960
+msgid "Cytogenetics"
+msgstr "Citogenética"
+
+#: plugins/conditions/cll/templates/detail/cll.html:122
+msgid "Quality Of Life 5Q"
+msgstr "Calidad de Vida 5Q"
+
+#: plugins/conditions/cll/templates/detail/cytogenetics.html:6
+msgid "Del17p"
+msgstr "Del17p"
+
+#: plugins/conditions/cll/templates/detail/cytogenetics.html:7
+msgid "IGHV mutated"
+msgstr "IGHV mutado"
+
+#: plugins/conditions/cll/templates/detail/cytogenetics.html:8
+msgid "Del11q"
+msgstr "Del11q"
+
+#: plugins/conditions/cll/templates/detail/cytogenetics.html:9
+msgid "TP53"
+msgstr "TP53"
+
+#: plugins/conditions/cll/templates/forms/additional_characteristics_form.html:4
+#: plugins/conditions/cll/templates/forms/cytogenetics_form.html:4
+#: plugins/conditions/cll/templates/forms/quality_of_life5q_form.html:4
+#: plugins/conditions/mm/models.py:547 plugins/conditions/mm/models.py:692
+#: plugins/conditions/mm/models.py:750 plugins/conditions/mm/models.py:859
+#: plugins/conditions/mm/models.py:964
+#: plugins/conditions/mm/templates/forms/mm_past_medical_history_form.html:13
+#: plugins/conditions/mm/templates/forms/mm_past_medical_history_form.html:26
+#: plugins/conditions/mm/templates/forms/mm_past_medical_history_form.html:41
+msgid "Date"
+msgstr "Fecha"
+
+#: plugins/conditions/cll/templates/forms/additional_characteristics_form.html:4
+#, fuzzy
+msgid "Date of measurement must be after date of bir"
+msgstr "La fecha de medición debe ser posterior a la fecha de nacimiento"
+
+#: plugins/conditions/cll/templates/forms/additional_characteristics_form.html:10
+msgid "Bulky disease >5cm"
+msgstr "Enfermedad Voluminosa > 5 cm"
+
+#: plugins/conditions/cll/templates/forms/best_response_form.html:3
+#: plugins/conditions/mm/templates/forms/mm_response_form.html:5
+msgid "The response should be after the date of diagnosis"
+msgstr "La respuesta debe ser posterior a la fecha del diagnóstico"
+
+#: plugins/conditions/cll/templates/forms/cll_diagnosis_details_form.html:5
+#: plugins/conditions/mm/templates/forms/mm_diagnosis_details_form.html:4
+msgid "Date of diagnosis must be after the patient's birth date"
+msgstr "La fecha del diagnóstico debe ser posterior a la fecha de nacimiento del paciente"
+
+#: plugins/conditions/cll/templates/forms/cll_regimen_form.html:12
+#: plugins/conditions/mm/templates/forms/mm_regimen_form.html:13
+msgid "Start Date must be after the patient date of diagnosis"
+msgstr "La fecha de inicio debe ser posterior a la fecha de diagnóstico del paciente"
+
+#: plugins/conditions/cll/templates/forms/cll_regimen_form.html:14
+#: plugins/conditions/mm/templates/forms/bone_disease_form.html:11
+#: plugins/conditions/mm/templates/forms/mm_regimen_form.html:14
+msgid "End Date must be after the start date"
+msgstr "La fecha de finalización debe ser posterior a la fecha de inicio"
+
+#: plugins/conditions/cll/templates/forms/cll_regimen_form.html:14
+#: plugins/conditions/mm/templates/forms/mm_regimen_form.html:14
+msgid "There can only be one open regimen at a time"
+msgstr "Sólo puede haber un régimen abierto a la vez"
+
+#: plugins/conditions/cll/templates/forms/cytogenetics_form.html:4
+#: plugins/conditions/cll/templates/forms/quality_of_life5q_form.html:4
+msgid "Date of measurement must be after date of birth"
+msgstr "La fecha de medición debe ser posterior a la fecha de nacimiento"
+
+#: plugins/conditions/cll/templates/records/cll_diagnosis_details.html:22
+msgid "Last Seen"
+msgstr "Última visita"
+
+#: plugins/conditions/cll/templates/records/cll_regimen.html:26
+msgid "Cycles"
+msgstr "Ciclos"
+
+#: plugins/conditions/cll/templates/records/cll_regimen.html:63
+msgid "Type"
+msgstr "Tipo"
+
+#: plugins/conditions/cll/templates/records/cll_regimen.html:96
+msgid "Reason"
+msgstr "Razón"
+
+#: plugins/conditions/mm/models.py:11
+msgid "IgG"
+msgstr "Inmunoglobulina G (IgG)"
+
+#: plugins/conditions/mm/models.py:12
+msgid "IgD"
+msgstr "IgD"
+
+#: plugins/conditions/mm/models.py:13
+msgid "IgA"
+msgstr "IgA"
+
+#: plugins/conditions/mm/models.py:14
+msgid "IgM"
+msgstr "IgM"
+
+#: plugins/conditions/mm/models.py:15
+msgid "IgE"
+msgstr "IgE"
+
+#: plugins/conditions/mm/models.py:16
+msgid "No Heavy Chain"
+msgstr "Sin Cadena Pesada"
+
+#: plugins/conditions/mm/models.py:21
+msgid "Kappa"
+msgstr ""
+
+#: plugins/conditions/mm/models.py:22
+msgid "Lambda"
+msgstr ""
+
+#: plugins/conditions/mm/models.py:23
+msgid "Non-Secretory"
+msgstr ""
+
+#: plugins/conditions/mm/models.py:24
+msgid "No Light Chain"
+msgstr "Sin Cadena Ligera"
+
+#: plugins/conditions/mm/models.py:30 plugins/conditions/mm/models.py:31
+msgid "MM Regimen List"
+msgstr "Lista de Regímenes MM"
+
+#: plugins/conditions/mm/models.py:36 plugins/conditions/mm/models.py:37
+msgid "MM Stop Reason List"
+msgstr "Lista de motivos de parada de MM"
+
+#: plugins/conditions/mm/models.py:45 plugins/conditions/mm/models.py:46
+msgid "Diagnosis Details"
+msgstr "Detalles del Diagnóstico"
+
+#: plugins/conditions/mm/models.py:51
+msgid "Solitary Bone Plasmacytoma"
+msgstr "Plasmacitoma Oseo Solitario"
+
+#: plugins/conditions/mm/models.py:52
+msgid "Symptomatic Multiple Myeloma"
+msgstr "Mieloma Múltiple Sintomático"
+
+#: plugins/conditions/mm/models.py:53
+msgid "Plasmatic Celiac Leukemia"
+msgstr "Leucemia Celíaca Plasmática"
+
+#: plugins/conditions/mm/models.py:54
+msgid "Primary Amylodosis"
+msgstr "Amilodosis Primaria"
+
+#: plugins/conditions/mm/models.py:55
+msgid "Asymptomatic MM"
+msgstr "MM Asintomático"
+
+#: plugins/conditions/mm/models.py:59
+msgid "Asymptomatic"
+msgstr "Asymptomatic"
+
+#: plugins/conditions/mm/models.py:60
+msgid "Symptomatic"
+msgstr "Sintomático"
+
+#: plugins/conditions/mm/models.py:61
+msgid "Very Symptomatic"
+msgstr "Muy Sintomático"
+
+#: plugins/conditions/mm/models.py:65 plugins/conditions/mm/models.py:203
+msgid "Date Of Diagnosis"
+msgstr "Fecha del Diagnóstico"
+
+#: plugins/conditions/mm/models.py:68
+msgid "Date Of First Centre Visit"
+msgstr "Fecha de la Primera Visita al Centro"
+
+#: plugins/conditions/mm/models.py:76
+#: plugins/conditions/mm/templates/records/mm_diagnosis_details.html:8
+msgid "Referred"
+msgstr "Referido"
+
+#: plugins/conditions/mm/models.py:82
+msgid "Previous Hospital"
+msgstr "Hospital Anterior"
+
+#: plugins/conditions/mm/models.py:90
+#: plugins/conditions/mm/templates/records/mm_diagnosis_details.html:19
+msgid "Diagnosis"
+msgstr "Diagnóstico"
+
+#: plugins/conditions/mm/models.py:97
+msgid "Heavy chain type"
+msgstr "Tipo de cadena pesada"
+
+#: plugins/conditions/mm/models.py:104
+msgid "Light chain type"
+msgstr "Tipo de cadena ligera"
+
+#: plugins/conditions/mm/models.py:111
+msgid "Epidemiological Register"
+msgstr "Registro Epidemiológico"
+
+#: plugins/conditions/mm/models.py:116
+msgid "GAH Score"
+msgstr "GAH"
+
+#: plugins/conditions/mm/models.py:120
+msgid "IMWG Scale"
+msgstr "IMWG Escala"
+
+#: plugins/conditions/mm/models.py:123
+msgid "ICC Scale"
+msgstr "ICC Escala"
+
+#: plugins/conditions/mm/models.py:127
+msgid "Height"
+msgstr "Altura"
+
+#: plugins/conditions/mm/models.py:130
+msgid "Weight"
+msgstr "Peso"
+
+#: plugins/conditions/mm/models.py:145
+msgid "Patient Status"
+msgstr "Estado del Paciente"
+
+#: plugins/conditions/mm/models.py:146
+msgid "Patient Statuses"
+msgstr "Estados de los Pacientes"
+
+#: plugins/conditions/mm/models.py:149
+msgid "Multiple Myeloma"
+msgstr "Mieloma múltiple"
+
+#: plugins/conditions/mm/models.py:151
+msgid "Thrombosis"
+msgstr "Trombosis"
+
+#: plugins/conditions/mm/models.py:152
+msgid "Not Disease Related"
+msgstr "No Relacionado con la Enfermedad"
+
+#: plugins/conditions/mm/models.py:157
+msgid "Dead"
+msgstr "Muerto"
+
+#: plugins/conditions/mm/models.py:158
+msgid "Lost"
+msgstr "Perdido"
+
+#: plugins/conditions/mm/models.py:159
+msgid "Alive"
+msgstr "Vivo"
+
+#: plugins/conditions/mm/models.py:166
+msgid "Status"
+msgstr "Estatus"
+
+#: plugins/conditions/mm/models.py:168
+msgid "Date Of Death"
+msgstr "Fecha de la Muerte"
+
+#: plugins/conditions/mm/models.py:179
+msgid "Cause Of Death"
+msgstr "Causa de la Muerte"
+
+#: plugins/conditions/mm/models.py:190
+msgid "Past Medical History"
+msgstr "Historial Médico Anterior"
+
+#: plugins/conditions/mm/models.py:191
+msgid "Past Medical Histories"
+msgstr "Historias Clínicas Anteriores"
+
+#: plugins/conditions/mm/models.py:200
+msgid "Previous Neoplasm"
+msgstr "Neoplasia Anterior"
+
+#: plugins/conditions/mm/models.py:206 plugins/conditions/mm/models.py:325
+#: plugins/conditions/mm/models.py:953 plugins/conditions/mm/models.py:1035
+#: plugins/conditions/mm/templates/forms/mm_past_medical_history_form.html:16
+#: plugins/conditions/mm/templates/forms/mm_regimen_form.html:18
+msgid "Details"
+msgstr "Detalles"
+
+#: plugins/conditions/mm/models.py:214
+#: plugins/conditions/mm/templates/records/mm_past_medical_history.html:20
+msgid "Chronic Renal Insufficiency"
+msgstr "Insuficiencia Renal Crónica"
+
+#: plugins/conditions/mm/models.py:217
+msgid "Insufficiency Date"
+msgstr "Fecha de Insuficiencia"
+
+#: plugins/conditions/mm/models.py:226
+#: plugins/conditions/mm/templates/records/mm_past_medical_history.html:30
+msgid "Monoclonal Pathology"
+msgstr "Patología Monoclonal"
+
+#: plugins/conditions/mm/models.py:233
+#: plugins/conditions/mm/templates/records/mm_past_medical_history.html:49
+msgid "Symtomatic Multiple Myeloma"
+msgstr "Mieloma Múltiple Sintomático"
+
+#: plugins/conditions/mm/models.py:241
+#: plugins/conditions/mm/templates/records/mm_past_medical_history.html:58
+msgid "Asymtomatic Multiple Myeloma"
+msgstr "Mieloma Múltiple Asintomático"
+
+#: plugins/conditions/mm/models.py:249
+#: plugins/conditions/mm/templates/records/mm_past_medical_history.html:39
+msgid "Monoclonal Pathology Of Uncertain Meaning"
+msgstr "Patología Monoclonal de Significado Incierto"
+
+#: plugins/conditions/mm/models.py:253
+msgid "Diagnosis Date"
+msgstr "Fecha del Diagnóstico"
+
+#: plugins/conditions/mm/models.py:261
+#: plugins/conditions/mm/templates/records/mm_past_medical_history.html:69
+msgid "External Pasmocytoma"
+msgstr "Pasmocitoma Externo"
+
+#: plugins/conditions/mm/models.py:263
+msgid "GMP Comments"
+msgstr ""
+
+#: plugins/conditions/mm/models.py:269 plugins/conditions/mm/models.py:270
+msgid "Comorbidities"
+msgstr "Comorbilidades"
+
+#: plugins/conditions/mm/models.py:273
+msgid "Undocumented Preinfection"
+msgstr "Preinfección No Documentada"
+
+#: plugins/conditions/mm/models.py:274 plugins/conditions/mm/models.py:834
+msgid "Microbiologically Documented Without Bacteremia"
+msgstr "Microbiológicamente Documentado Sin Bacteriemia"
+
+#: plugins/conditions/mm/models.py:275 plugins/conditions/mm/models.py:838
+msgid "Microbiologically Documented With Bacteremia"
+msgstr "Microbiológicamente Documentado Con Bacteriemia"
+
+#: plugins/conditions/mm/models.py:276
+msgid "Clinically Documented"
+msgstr "Documentado Clínicamente"
+
+#: plugins/conditions/mm/models.py:280 plugins/conditions/mm/models.py:888
+msgid "Renal Failure"
+msgstr "Insuficiencia Renal"
+
+#: plugins/conditions/mm/models.py:281
+msgid "Neuropathy"
+msgstr "Neuropatía"
+
+#: plugins/conditions/mm/models.py:282
+msgid "Hemorrhage"
+msgstr "Hemorragia"
+
+#: plugins/conditions/mm/models.py:283 plugins/conditions/mm/models.py:902
+msgid "Fever"
+msgstr "Fiebre"
+
+#: plugins/conditions/mm/models.py:292
+msgid "Condition"
+msgstr "Condición"
+
+#: plugins/conditions/mm/models.py:301
+msgid "Infection Type"
+msgstr "Tipo de Infección"
+
+#: plugins/conditions/mm/models.py:307
+msgid "Type Of Microorganism Infection"
+msgstr "Tipo de Infección Por Microorganismos"
+
+#: plugins/conditions/mm/models.py:313
+msgid "Infection Source"
+msgstr "Fuente de Infección"
+
+#: plugins/conditions/mm/models.py:321
+msgid "Condition Name"
+msgstr "Nombre de la Condición"
+
+#: plugins/conditions/mm/models.py:334
+msgid "Induction"
+msgstr "Inducción"
+
+#: plugins/conditions/mm/models.py:335
+msgid "Maintenance"
+msgstr "Mantenimiento"
+
+#: plugins/conditions/mm/models.py:336
+msgid "Consolidation"
+msgstr "Consolidación"
+
+#: plugins/conditions/mm/models.py:337
+msgid "Relapse"
+msgstr "Recaída"
+
+#: plugins/conditions/mm/models.py:338
+msgid "Watch and wait"
+msgstr "Observar y esperar"
+
+#: plugins/conditions/mm/models.py:349
+msgid "Clinical Relapse"
+msgstr "Recaída Clínica"
+
+#: plugins/conditions/mm/models.py:350
+msgid "Biological Relapse"
+msgstr "Recaída Biológica"
+
+#: plugins/conditions/mm/models.py:370
+msgid "Regimen Details"
+msgstr "Detalles del Régimen"
+
+#: plugins/conditions/mm/models.py:380
+msgid "Start Reason"
+msgstr "Motivo de inicio"
+
+#: plugins/conditions/mm/models.py:386
+msgid "Stop Reason Details"
+msgstr "Detalles del Motivo de Parada"
+
+#: plugins/conditions/mm/models.py:397
+msgid "Bone Disease Treatment"
+msgstr "Tratamiento de Enfermedades Oseas"
+
+#: plugins/conditions/mm/models.py:398
+msgid "Bone Disease Treatments"
+msgstr "Tratamientos de Enfermedades Oseas"
+
+#: plugins/conditions/mm/models.py:401
+msgid "Denosumab"
+msgstr "Denosumab"
+
+#: plugins/conditions/mm/models.py:402
+msgid "Bisphosphonates Induction"
+msgstr "Inducción de Bifosfonatos"
+
+#: plugins/conditions/mm/models.py:403
+msgid "Vertebroplasty Induction"
+msgstr "Inducción de la Vertebroplastia"
+
+#: plugins/conditions/mm/models.py:404
+msgid "Other Induction"
+msgstr "Otra Inducción"
+
+#: plugins/conditions/mm/models.py:412
+msgid "Treatment Type"
+msgstr "Tipo de Tratamiento"
+
+#: plugins/conditions/mm/models.py:418
+msgid "Treatment Details"
+msgstr "Detalles del Tratamiento"
+
+#: plugins/conditions/mm/models.py:426
+msgid "Bisphosphonate Treatment"
+msgstr "Tratamiento Con Bifosfonatos"
+
+#: plugins/conditions/mm/models.py:440
+msgid "Vertebroplasty Kyphoplasty Date"
+msgstr "Vertebroplastia Cifoplastia Fecha"
+
+#: plugins/conditions/mm/models.py:443
+msgid "Vertebroplasty Kyphoplasty Description"
+msgstr "Vertebroplastia Cifoplastia Descripción"
+
+#: plugins/conditions/mm/models.py:452 plugins/conditions/mm/models.py:500
+msgid "Response"
+msgstr "Respuesta"
+
+#: plugins/conditions/mm/models.py:453
+msgid "Responses"
+msgstr "Respuestas"
+
+#: plugins/conditions/mm/models.py:461
+msgid "Minimal response"
+msgstr "Respuesta mínima"
+
+#: plugins/conditions/mm/models.py:462
+msgid "Partial response"
+msgstr "Respuesta parcial"
+
+#: plugins/conditions/mm/models.py:463
+msgid "Very good partial response"
+msgstr "Muy buena respuesta parcial"
+
+#: plugins/conditions/mm/models.py:464
+msgid "Complete response"
+msgstr "Respuesta Completa"
+
+#: plugins/conditions/mm/models.py:465
+msgid "Stringent complete response"
+msgstr "Respuesta Completa Estricta"
+
+#: plugins/conditions/mm/models.py:466
+msgid "Near complete response"
+msgstr "Respuesta Casi Completa"
+
+#: plugins/conditions/mm/models.py:467
+msgid "Immunophenotypic complete response"
+msgstr "Respuesta Completa Inmunofenotípica"
+
+#: plugins/conditions/mm/models.py:468
+msgid "Stable disease"
+msgstr "Enfermedad estable"
+
+#: plugins/conditions/mm/models.py:469
+msgid "Progressive disease"
+msgstr "Enfermedad progresiva"
+
+#: plugins/conditions/mm/models.py:470
+msgid "Response unknown/NA"
+msgstr "Respuesta desconocida/NA"
+
+#: plugins/conditions/mm/models.py:474
+msgid "NGS"
+msgstr "NGS"
+
+#: plugins/conditions/mm/models.py:475
+msgid "FC (Flow Cytometry)"
+msgstr "FC (Citometría de Flujo)"
+
+#: plugins/conditions/mm/models.py:476
+msgid "Both"
+msgstr "Ambos"
+
+#: plugins/conditions/mm/models.py:479
+msgid "Progression Date"
+msgstr "Fecha de Progresión"
+
+#: plugins/conditions/mm/models.py:486
+msgid "Negative MRD"
+msgstr "Negativo MRD"
+
+#: plugins/conditions/mm/models.py:489
+msgid "Negative MRD Date"
+msgstr "Fecha negativa de MRD"
+
+#: plugins/conditions/mm/models.py:497
+msgid "MRD Technique"
+msgstr "Técnica MRD"
+
+#: plugins/conditions/mm/models.py:506
+msgid "Radiotherapy Induction"
+msgstr "Inducción de la Radioterapia"
+
+#: plugins/conditions/mm/models.py:507
+msgid "Radiotherapy Inductions"
+msgstr "Inducciones de Radioterapia"
+
+#: plugins/conditions/mm/models.py:522
+msgid "Stem Cell Transplant Eligibility"
+msgstr "Elegibilidad Para el Trasplante de Células Madre"
+
+#: plugins/conditions/mm/models.py:523
+msgid "Stem Cell Transplant Eligibilities"
+msgstr "Elegibilidades Para el Trasplante de Células Madre"
+
+#: plugins/conditions/mm/models.py:538 plugins/conditions/mm/models.py:539
+msgid "Lab Tests"
+msgstr "Pruebas de Laboratorio"
+
+#: plugins/conditions/mm/models.py:542
+msgid "MDRD"
+msgstr ""
+
+#: plugins/conditions/mm/models.py:543
+msgid "CKD-EPI"
+msgstr ""
+
+#: plugins/conditions/mm/models.py:550
+msgid "PCR"
+msgstr ""
+
+#: plugins/conditions/mm/models.py:557
+msgid "Circulating Plasma Cells"
+msgstr "Células Plasmáticas Circulantes"
+
+#: plugins/conditions/mm/models.py:561
+msgid "Troponine"
+msgstr "Troponina"
+
+#: plugins/conditions/mm/models.py:562
+msgid "Total Proteins"
+msgstr "Proteínas Totales"
+
+#: plugins/conditions/mm/models.py:564
+msgid "Platelets"
+msgstr "Plaquetas"
+
+#: plugins/conditions/mm/models.py:571
+msgid "Beta 2 Microglobulin"
+msgstr "Beta 2 Microglobulina"
+
+#: plugins/conditions/mm/models.py:576
+msgid "Alkaline Phosphatase"
+msgstr "Fosfatasa Alcalina"
+
+#: plugins/conditions/mm/models.py:591
+msgid "Creatinine"
+msgstr "Creatinina"
+
+#: plugins/conditions/mm/models.py:599
+msgid "Calcium"
+msgstr "Calcio"
+
+#: plugins/conditions/mm/models.py:606
+msgid "Hemoglobin"
+msgstr "Hemoglobina"
+
+#: plugins/conditions/mm/models.py:613
+msgid "Proteinuria"
+msgstr "Proteinuria"
+
+#: plugins/conditions/mm/models.py:619
+msgid "Proteinuria gr/24"
+msgstr "Proteinuria gr/24"
+
+#: plugins/conditions/mm/models.py:627
+msgid "Leucocytes"
+msgstr "Leucocitos"
+
+#: plugins/conditions/mm/models.py:631
+msgid "NT-proBNP"
+msgstr "NT-proBNP"
+
+#: plugins/conditions/mm/models.py:641
+msgid "LDH Type"
+msgstr "Tipo de LDH"
+
+#: plugins/conditions/mm/models.py:645
+msgid "Glomerular Filtration Formula Date"
+msgstr "Fórmula de Filtración Glomerular Fecha"
+
+#: plugins/conditions/mm/models.py:652
+msgid "Glomerular Filtration Formula"
+msgstr "Fórmula de Filtración Glomerular"
+
+#: plugins/conditions/mm/models.py:660
+msgid "Glomerular Filtration"
+msgstr "Filtración Glomerular"
+
+#: plugins/conditions/mm/models.py:664
+msgid "Filter Formula Description"
+msgstr "Descripción de la Fórmula de Filtrado"
+
+#: plugins/conditions/mm/models.py:671 plugins/conditions/mm/models.py:672
+msgid "Imaging"
+msgstr "Imágenes"
+
+#: plugins/conditions/mm/models.py:675
+msgid "Zero"
+msgstr "Cero"
+
+#: plugins/conditions/mm/models.py:676 plugins/conditions/mm/models.py:847
+msgid "One"
+msgstr "Uno"
+
+#: plugins/conditions/mm/models.py:677 plugins/conditions/mm/models.py:848
+msgid "Two"
+msgstr "Dos"
+
+#: plugins/conditions/mm/models.py:678 plugins/conditions/mm/models.py:849
+msgid "Three"
+msgstr "Tres"
+
+#: plugins/conditions/mm/models.py:687
+msgid "Negative"
+msgstr "Negativo"
+
+#: plugins/conditions/mm/models.py:688
+msgid "Positive"
+msgstr "Positivo"
+
+#: plugins/conditions/mm/models.py:689
+msgid "Not Done"
+msgstr "No Hecho"
+
+#: plugins/conditions/mm/models.py:698
+msgid "Bone Series Test Image"
+msgstr "Imagen de Prueba de la Serie Osea"
+
+#: plugins/conditions/mm/models.py:702
+msgid "Bone Series Description"
+msgstr "Descripción de la Serie Osea"
+
+#: plugins/conditions/mm/models.py:709
+msgid "CT Scan"
+msgstr "Tomografía Computarizada (TC)"
+
+#: plugins/conditions/mm/models.py:712
+msgid "CT Scan Description"
+msgstr "Descripción de la Tomografía Computarizada (TC)"
+
+#: plugins/conditions/mm/models.py:720
+msgid "Resonance"
+msgstr "Resonancia"
+
+#: plugins/conditions/mm/models.py:723
+msgid "Resonance description"
+msgstr "Descripción de la Resonancia"
+
+#: plugins/conditions/mm/models.py:731
+msgid "PET scan"
+msgstr "Tomografía por Emisión de Positrones (TEP)"
+
+#: plugins/conditions/mm/models.py:734
+msgid "PET scan description"
+msgstr "Descripción de la Tomografía por Emisión de Positrones (TEP)"
+
+#: plugins/conditions/mm/models.py:742
+msgid "Other Imaging Test"
+msgstr "Otras Pruebas de Imagen"
+
+#: plugins/conditions/mm/models.py:745
+msgid "Other Imaging Test Description"
+msgstr "Otras Pruebas de Imagen Descripción"
+
+#: plugins/conditions/mm/models.py:756
+msgid "Monoclonal serum amount"
+msgstr "Cantidad de Suero Monoclonal"
+
+#: plugins/conditions/mm/models.py:763
+msgid "Heavy Chain Type"
+msgstr "Tipo de Cadena Pesada"
+
+#: plugins/conditions/mm/models.py:770
+msgid "Heavy Chain Type Other"
+msgstr "Tipo de Cadena Pesada Otros"
+
+#: plugins/conditions/mm/models.py:777
+msgid "Light Chain Type"
+msgstr "Tipo de Cadena Ligera"
+
+#: plugins/conditions/mm/models.py:784
+msgid "Lambda Light Chain Count"
+msgstr "Recuento de Cadenas Ligeras Lambda"
+
+#: plugins/conditions/mm/models.py:790
+msgid "Kappa Light Chain Count"
+msgstr "Recuento de Cadenas Ligeras Kappa"
+
+#: plugins/conditions/mm/models.py:796
+msgid "Kappa Lambda Ratio"
+msgstr "Relación Kappa Lambda"
+
+#: plugins/conditions/mm/models.py:803
+msgid "Urinary Monoclonal Count gr/24"
+msgstr "Recuento Monoclonal Urinario gr/24"
+
+#: plugins/conditions/mm/models.py:810
+msgid "Plasma Cells In Bone Marrow %"
+msgstr "Células Plasmáticas en la Médula Osea %"
+
+#: plugins/conditions/mm/models.py:816
+msgid "Freelite Count"
+msgstr "Recuento de Freelite"
+
+#: plugins/conditions/mm/models.py:822
+msgid "Heavylite Count"
+msgstr "Recuento de Heavylite"
+
+#: plugins/conditions/mm/models.py:830
+msgid "Clinically Documented Infection"
+msgstr "Infección Clínicamente Documentada"
+
+#: plugins/conditions/mm/models.py:831
+msgid "Undocumented Infection"
+msgstr "Infección No Documentada"
+
+#: plugins/conditions/mm/models.py:842
+msgid "Other Microbiologic Documented Infection"
+msgstr "Otra Infección Microbiológica Documentada"
+
+#: plugins/conditions/mm/models.py:853
+msgid "Stage I"
+msgstr "Etapa I"
+
+#: plugins/conditions/mm/models.py:854
+msgid "Stage II"
+msgstr "Etapa II"
+
+#: plugins/conditions/mm/models.py:855
+msgid "Stage III"
+msgstr "Etapa III"
+
+#: plugins/conditions/mm/models.py:865
+msgid "Infection_Type"
+msgstr "Tipo de Infección"
+
+#: plugins/conditions/mm/models.py:873
+msgid "Microorganism"
+msgstr "Microorganismo"
+
+#: plugins/conditions/mm/models.py:895
+msgid "Hypercalcemia"
+msgstr "Hipercalcemia"
+
+#: plugins/conditions/mm/models.py:909
+msgid "Anemia"
+msgstr "Anemia"
+
+#: plugins/conditions/mm/models.py:916
+msgid "Dialysis"
+msgstr "Diálisis"
+
+#: plugins/conditions/mm/models.py:923
+msgid "Bone Pain"
+msgstr "Dolor de Huesos"
+
+#: plugins/conditions/mm/models.py:931
+msgid "Extramedullary plasmacytomas"
+msgstr "Plasmacitomas Extramedulares"
+
+#: plugins/conditions/mm/models.py:940
+msgid "ISS"
+msgstr ""
+
+#: plugins/conditions/mm/models.py:949
+msgid "R-ISS"
+msgstr ""
+
+#: plugins/conditions/mm/models.py:970
+msgid "t(4;14) Not Effected"
+msgstr ""
+
+#: plugins/conditions/mm/models.py:977
+msgid "t(4;14) Haploid Karyotype"
+msgstr ""
+
+#: plugins/conditions/mm/models.py:984
+msgid "t(4;14)"
+msgstr ""
+
+#: plugins/conditions/mm/models.py:991
+msgid "t(14;16)"
+msgstr ""
+
+#: plugins/conditions/mm/models.py:998
+msgid "t(11;14)"
+msgstr ""
+
+#: plugins/conditions/mm/models.py:1003
+msgid "del 1p"
+msgstr ""
+
+#: plugins/conditions/mm/models.py:1007
+msgid "del(17)p"
+msgstr ""
+
+#: plugins/conditions/mm/models.py:1017
+msgid "gan 1q"
+msgstr ""
+
+#: plugins/conditions/mm/models.py:1025
+msgid "Chromosome Alterations"
+msgstr "Alteraciones Cromosómicas"
+
+#: plugins/conditions/mm/models.py:1033
+msgid "Normal Study"
+msgstr "Estudio Normal"
+
+#: plugins/conditions/mm/models.py:1041
+msgid "Other study"
+msgstr "Otro Estudio"
+
+#: plugins/conditions/mm/templates/detail/mm.html:84
+msgid "Disease Data"
+msgstr "Datos de la Enfermedad"
+
+#: plugins/conditions/mm/templates/forms/lab_test_form.html:4
+#: plugins/conditions/mm/templates/forms/lab_test_form.html:24
+msgid "The date must be after the patient's birth date"
+msgstr "La fecha debe ser posterior a la fecha de nacimiento del paciente"
+
+#: plugins/conditions/mm/templates/forms/mm_diagnosis_details_form.html:5
+msgid "Date of first visit must be after the patient's birth date"
+msgstr "La fecha de la primera visita debe ser posterior a la fecha de nacimiento del paciente"
+
+#: plugins/conditions/mm/templates/forms/mm_follow_up_form.html:3
+msgid "Visit date must be after the patient's birth date"
+msgstr "La fecha de la visita debe ser posterior a la fecha de nacimiento del paciente"
+
+#: plugins/conditions/mm/templates/forms/mm_past_medical_history_form.html:13
+#: plugins/conditions/mm/templates/forms/mm_past_medical_history_form.html:41
+msgid "Must be after the patient's birth date"
+msgstr "Debe ser posterior a la fecha de nacimiento del paciente"
+
+#: plugins/conditions/mm/templates/forms/mm_response_form.html:4
+msgid "The progression should be after the date of diagnosis"
+msgstr "La progresión debe ser posterior a la fecha del diagnóstico"
+
+#: plugins/conditions/mm/templates/forms/mm_response_form.html:9
+msgid "The negative MRD should be after the date of diagnosis"
+msgstr "La MRD negativa debe ser posterior a la fecha del diagnóstico"
+
+#: plugins/conditions/mm/templates/forms/radiotherapy_induction_form.html:4
+msgid "Start date must be after date of birth"
+msgstr "La fecha de inicio debe ser posterior a la fecha de nacimiento"
+
+#: plugins/conditions/mm/templates/forms/radiotherapy_induction_form.html:5
+msgid "End date must be after the start date"
+msgstr "La fecha de finalización debe ser posterior a la fecha de inicio"
+
+#: plugins/conditions/mm/templates/records/mm_past_medical_history.html:4
+msgid "Neoplasm"
+msgstr "Neoplasia"
+
+#: plugins/conditions/mm/templates/records/mm_stem_cell_transplant_eligibility.html:3
+msgid "Eligible For Stem Cell Transplant"
+msgstr "Elegible Para el Trasplante de Células Madre"
