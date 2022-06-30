@@ -53,7 +53,7 @@ class SCT(models.EpisodeSubrecord):
         (
             # TODO google translates this as a stranger... we will ask for a better tranlsation
             "An unknown",
-            _("An unkown")
+            _("An unknown")
         ),
         ("Other", _("Other"))
     )

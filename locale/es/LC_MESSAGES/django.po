@@ -115,7 +115,7 @@ msgid "HLA-non-identical unrelated"
 msgstr "HLA no idéntico no relacionado"
 
 #: entrytool/models.py:56
-msgid "An unkown"
+msgid "An unknown"
 msgstr "Un desconocido"
 
 #: entrytool/models.py:58 entrytool/models.py:75 entrytool/models.py:135
