@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-24 06:56+0000\n"
+"POT-Creation-Date: 2022-06-30 16:22+0000\n"
 "PO-Revision-Date: 2022-06-07 16:10+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -268,6 +268,13 @@ msgstr "Líneas de Tratamiento"
 msgid "Visit date"
 msgstr "Fecha de Visita"
 
+#: entrytool/models.py:173 plugins/conditions/cll/models.py:142
+#: plugins/conditions/cll/templates/detail/additional_characteristics.html:9
+#: plugins/conditions/cll/templates/forms/additional_characteristics_form.html:8
+#: plugins/conditions/mm/models.py:635
+msgid "LDH"
+msgstr "LDH"
+
 #: entrytool/models.py:174
 msgid "beta2m"
 msgstr ""
@@ -527,7 +534,8 @@ msgstr "Fecha de Nacimiento"
 
 #: entrytool/opal/templates/_helpers/date_of_birth_field.html:13
 msgid "Please enter a valid date of birth in the format DD/MM/YYYY"
-msgstr "Por favor, introduzca una fecha de nacimiento válida en el formato DD/MM/AAAA"
+msgstr ""
+"Por favor, introduzca una fecha de nacimiento válida en el formato DD/MM/AAAA"
 
 #: entrytool/opal/templates/accounts/banned.html:10
 msgid "Banned Passwords"
@@ -535,7 +543,8 @@ msgstr "Contraseñas Prohibidas"
 
 #: entrytool/opal/templates/accounts/banned.html:16
 msgid "This list of 1000 common passwords are banned for this application."
-msgstr "Esta lista de 1000 contraseñas comunes está prohibida para esta aplicación."
+msgstr ""
+"Esta lista de 1000 contraseñas comunes está prohibida para esta aplicación."
 
 #: entrytool/opal/templates/admin/base_site.html:4
 msgid "Django site admin"
@@ -579,7 +588,9 @@ msgstr "Cargando"
 
 #: entrytool/opal/templates/registration/login.html:23
 msgid "Your username and password didn't match. Please try again."
-msgstr "Su nombre de usuario y contraseña no coinciden. Por favor, inténtalo de nuevo."
+msgstr ""
+"Su nombre de usuario y contraseña no coinciden. Por favor, inténtalo de "
+"nuevo."
 
 #: entrytool/opal/templates/registration/login.html:30
 msgid "Username"
@@ -648,6 +659,7 @@ msgid "%(label)s is in the future"
 msgstr "%(label)s está en el futuro"
 
 #: entrytool/templates/_helpers/custom_select.html:53
+#: entrytool/templates/_helpers/select.html:29
 #, python-format
 msgid ""
 "\n"
@@ -888,6 +900,11 @@ msgstr "Nov"
 msgid "Dec"
 msgstr "Dic"
 
+#: entrytool/templates/forms/demographics_form.html:4
+#: entrytool/templates/partials/_demographics_panel.html:32
+msgid "Birth Date"
+msgstr "Fecha de Nacimiento"
+
 #: entrytool/templates/forms/sct_form.html:4
 msgid "The SCT should be after the date of diagnosis"
 msgstr "El TSC debe ser posterior a la fecha del diagnóstico"
@@ -931,10 +948,6 @@ msgstr ""
 msgid "ID"
 msgstr "Identificación"
 
-#: entrytool/templates/partials/_demographics_panel.html:32
-msgid "Birth Date"
-msgstr "Fecha de Nacimiento"
-
 #: entrytool/templates/partials/_patient_summary_list.html:5
 msgid "We've found"
 msgstr "Hemos encontrado"
@@ -964,10 +977,13 @@ msgid "Perhaps try searching for them instead?"
 msgstr "¿Tal vez intente buscarlos en su lugar?"
 
 #: entrytool/templates/records/patient_status.html:21
+#: plugins/conditions/cll/templates/records/cll_diagnosis_details.html:22
 msgid "Last Seen"
 msgstr "Ultima Vez Visto"
 
 #: entrytool/templates/records/patient_status.html:33
+#: plugins/conditions/cll/templates/records/cll_diagnosis_details.html:34
+#: plugins/conditions/mm/models.py:182
 msgid "Death details"
 msgstr "Detalles de la muerte"
 
@@ -1043,7 +1059,7 @@ msgstr ""
 msgid "Bendamustina"
 msgstr ""
 
-#: entrytool/wow_strings.py:41
+#: entrytool/wow_strings.py:41 plugins/conditions/mm/models.py:405
 msgid "Not Available"
 msgstr "No disponible"
 
@@ -1051,7 +1067,7 @@ msgstr "No disponible"
 msgid "Adverse event"
 msgstr "Evento adverso"
 
-#: entrytool/wow_strings.py:45
+#: entrytool/wow_strings.py:45 plugins/conditions/mm/models.py:348
 msgid "Progression"
 msgstr "Progresión"
 
@@ -1074,9 +1090,6 @@ msgstr "Al Final de Los Ciclos Programados"
 #: entrytool/wow_strings.py:55
 msgid "Toxicity"
 msgstr "Toxicidad"
-
-#~ msgid "History of SMM"
-#~ msgstr "Historia de SMM"
 
 #: plugins/conditions/cll/models.py:11 plugins/conditions/cll/models.py:12
 msgid "CLL Regimen List"
@@ -1242,13 +1255,6 @@ msgstr "Aclaramiento de creatinina"
 msgid "Beta-2-Microglobulin"
 msgstr "Beta-2-Microglobulina"
 
-#: plugins/conditions/cll/models.py:142
-#: plugins/conditions/cll/templates/detail/additional_characteristics.html:9
-#: plugins/conditions/cll/templates/forms/additional_characteristics_form.html:8
-#: plugins/conditions/mm/models.py:635
-msgid "LDH"
-msgstr "LDH"
-
 #: plugins/conditions/cll/models.py:147
 msgid "Bulky disease present"
 msgstr "Enfermedad voluminosa presente"
@@ -1362,12 +1368,15 @@ msgstr "La respuesta debe ser posterior a la fecha del diagnóstico"
 #: plugins/conditions/cll/templates/forms/cll_diagnosis_details_form.html:5
 #: plugins/conditions/mm/templates/forms/mm_diagnosis_details_form.html:4
 msgid "Date of diagnosis must be after the patient's birth date"
-msgstr "La fecha del diagnóstico debe ser posterior a la fecha de nacimiento del paciente"
+msgstr ""
+"La fecha del diagnóstico debe ser posterior a la fecha de nacimiento del "
+"paciente"
 
 #: plugins/conditions/cll/templates/forms/cll_regimen_form.html:12
 #: plugins/conditions/mm/templates/forms/mm_regimen_form.html:13
 msgid "Start Date must be after the patient date of diagnosis"
-msgstr "La fecha de inicio debe ser posterior a la fecha de diagnóstico del paciente"
+msgstr ""
+"La fecha de inicio debe ser posterior a la fecha de diagnóstico del paciente"
 
 #: plugins/conditions/cll/templates/forms/cll_regimen_form.html:14
 #: plugins/conditions/mm/templates/forms/bone_disease_form.html:11
@@ -1384,10 +1393,6 @@ msgstr "Sólo puede haber un régimen abierto a la vez"
 #: plugins/conditions/cll/templates/forms/quality_of_life5q_form.html:4
 msgid "Date of measurement must be after date of birth"
 msgstr "La fecha de medición debe ser posterior a la fecha de nacimiento"
-
-#: plugins/conditions/cll/templates/records/cll_diagnosis_details.html:22
-msgid "Last Seen"
-msgstr "Última visita"
 
 #: plugins/conditions/cll/templates/records/cll_regimen.html:26
 msgid "Cycles"
@@ -1558,6 +1563,12 @@ msgstr "Trombosis"
 #: plugins/conditions/mm/models.py:152
 msgid "Not Disease Related"
 msgstr "No Relacionado con la Enfermedad"
+
+#: plugins/conditions/mm/models.py:153
+#, fuzzy
+#| msgid "Not Available"
+msgid "not available"
+msgstr "No disponible"
 
 #: plugins/conditions/mm/models.py:157
 msgid "Dead"
@@ -2195,11 +2206,15 @@ msgstr "La fecha debe ser posterior a la fecha de nacimiento del paciente"
 
 #: plugins/conditions/mm/templates/forms/mm_diagnosis_details_form.html:5
 msgid "Date of first visit must be after the patient's birth date"
-msgstr "La fecha de la primera visita debe ser posterior a la fecha de nacimiento del paciente"
+msgstr ""
+"La fecha de la primera visita debe ser posterior a la fecha de nacimiento "
+"del paciente"
 
 #: plugins/conditions/mm/templates/forms/mm_follow_up_form.html:3
 msgid "Visit date must be after the patient's birth date"
-msgstr "La fecha de la visita debe ser posterior a la fecha de nacimiento del paciente"
+msgstr ""
+"La fecha de la visita debe ser posterior a la fecha de nacimiento del "
+"paciente"
 
 #: plugins/conditions/mm/templates/forms/mm_past_medical_history_form.html:13
 #: plugins/conditions/mm/templates/forms/mm_past_medical_history_form.html:41
@@ -2229,3 +2244,6 @@ msgstr "Neoplasia"
 #: plugins/conditions/mm/templates/records/mm_stem_cell_transplant_eligibility.html:3
 msgid "Eligible For Stem Cell Transplant"
 msgstr "Elegible Para el Trasplante de Células Madre"
+
+#~ msgid "History of SMM"
+#~ msgstr "Historia de SMM"
