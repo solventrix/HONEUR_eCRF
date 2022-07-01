@@ -1385,13 +1385,13 @@ FIELD_MAPPING = {
         "progression_date",
     ),
     ("tratamiento 1.csv", "fiebre_comentarios_induccion_1"): ("Comorbidity", "details"),
-    ("tratamiento 1.csv", "fiebre_induccion_1"): ("Comorbidity", "condition"),
+    ("tratamiento 1.csv", "fiebre_induccion_1"): ("Comorbidity", "conother_condition_namedition"),
     ("tratamiento 1.csv", "fuente_alopth_1"): ("SCT", "alotph_source"),
     ("tratamiento 1.csv", "hemorragias_comentarios_induccion_1"): (
         "Comorbidity",
         "details",
     ),
-    ("tratamiento 1.csv", "hemorragias_induccion_1"): ("Comorbidity", "condition"),
+    ("tratamiento 1.csv", "hemorragias_induccion_1"): ("Comorbidity", "other_condition_name"),
     ("tratamiento 1.csv", "indicar_bifosfonato_induccion_1"): (
         "BoneDisease",
         "bisphosphonate_treatment",
@@ -1410,7 +1410,7 @@ FIELD_MAPPING = {
     ),
     ("tratamiento 1.csv", "insuficiencia_renal_induccion_1"): (
         "Comorbidity",
-        "condition",
+        "other_condition_name",
     ),
     ("tratamiento 1.csv", "mantenimiento_progresion_fecha_1"): (
         "MMResponse",
@@ -1465,7 +1465,7 @@ FIELD_MAPPING = {
         "Comorbidity",
         "details",
     ),
-    ("tratamiento 1.csv", "neuropatia_induccion_1"): ("Comorbidity", "condition"),
+    ("tratamiento 1.csv", "neuropatia_induccion_1"): ("Comorbidity", "other_condition_name"),
     ("tratamiento 1.csv", "numero_ciclos_1"): ("MMRegimen", "nbCycles"),
     ("tratamiento 1.csv", "numero_ciclos_enfermedad_osea_induccion_1"): (
         "BoneDisease",
@@ -1482,7 +1482,7 @@ FIELD_MAPPING = {
     ),
     ("tratamiento 1.csv", "otras_toxicidades_induccion_1"): (
         "Comorbidity",
-        "condition",
+        "other_condition_name",
     ),
     ("tratamiento 1.csv", "radioterapia_induccion_fecha_fin_1"): (
         "RadiotherapyInduction",
@@ -1545,7 +1545,7 @@ FIELD_MAPPING = {
         "Comorbidity",
         "type_of_microorganism_infection",
     ),
-    ("tratamiento 1.csv", "tipo_infeccion_induccion_1"): ("Comorbidity", "condition"),
+    ("tratamiento 1.csv", "tipo_infeccion_induccion_1"): ("Comorbidity", "other_condition_name"),
     ("tratamiento 1.csv", "tipo_trasplante_alotph_1"): (
         "SCT",
         "type_of_alotph_transplant",
@@ -1669,8 +1669,8 @@ FIELD_MAPPING = {
         "Comorbidity",
         "details",
     ),
-    ("tratamiento 2.csv", "fiebre_induccion_2"): ("Comorbidity", "condition"),
-    ("tratamiento 2.csv", "fiebre_toxicidades_2"): ("Comorbidity", "condition"),
+    ("tratamiento 2.csv", "fiebre_induccion_2"): ("Comorbidity", "other_condition_name"),
+    ("tratamiento 2.csv", "fiebre_toxicidades_2"): ("Comorbidity", "other_condition_name"),
     ("tratamiento 2.csv", "fuente_alopth_2"): ("SCT", "alotph_source"),
     ("tratamiento 2.csv", "hemorragias_comentarios_induccion_2"): (
         "Comorbidity",
@@ -1680,8 +1680,8 @@ FIELD_MAPPING = {
         "Comorbidity",
         "details",
     ),
-    ("tratamiento 2.csv", "hemorragias_induccion_2"): ("Comorbidity", "condition"),
-    ("tratamiento 2.csv", "hemorragias_toxicidades_2"): ("Comorbidity", "condition"),
+    ("tratamiento 2.csv", "hemorragias_induccion_2"): ("Comorbidity", "other_condition_name"),
+    ("tratamiento 2.csv", "hemorragias_toxicidades_2"): ("Comorbidity", "other_condition_name"),
     ("tratamiento 2.csv", "indicar_bifosfonato_induccion_2"): (
         "BoneDisease",
         "bisphosphonate_treatment",
@@ -1700,11 +1700,11 @@ FIELD_MAPPING = {
     ),
     ("tratamiento 2.csv", "insuficiencia_renal_induccion_2"): (
         "Comorbidity",
-        "condition",
+        "other_condition_name",
     ),
     ("tratamiento 2.csv", "insuficiencia_renal_toxicidades_2"): (
         "Comorbidity",
-        "condition",
+        "other_condition_name",
     ),
     ("tratamiento 2.csv", "mantenimiento_progresion_fecha_2"): (
         "MMResponse",
@@ -1764,8 +1764,8 @@ FIELD_MAPPING = {
         "Comorbidity",
         "details",
     ),
-    ("tratamiento 2.csv", "neuropatia_induccion_2"): ("Comorbidity", "condition"),
-    ("tratamiento 2.csv", "neuropatia_toxicidades_2"): ("Comorbidity", "condition"),
+    ("tratamiento 2.csv", "neuropatia_induccion_2"): ("Comorbidity", "other_condition_name"),
+    ("tratamiento 2.csv", "neuropatia_toxicidades_2"): ("Comorbidity", "other_condition_name"),
     ("tratamiento 2.csv", "numero_ciclos_2"): ("MMRegimen", "nbCycles"),
     ("tratamiento 2.csv", "numero_ciclos_enfermedad_osea_induccion_2"): (
         "BoneDisease",
@@ -1790,11 +1790,11 @@ FIELD_MAPPING = {
     ),
     ("tratamiento 2.csv", "otras_toxicidades_induccion_2"): (
         "Comorbidity",
-        "condition",
+        "other_condition_name",
     ),
     ("tratamiento 2.csv", "otras_toxicidades_toxicidades_2"): (
         "Comorbidity",
-        "condition",
+        "other_condition_name",
     ),
     ("tratamiento 2.csv", "radioterapia_induccion_fecha_fin_2"): (
         "RadiotherapyInduction",
@@ -1870,7 +1870,7 @@ FIELD_MAPPING = {
         "Comorbidity",
         "type_of_microorganism_infection",
     ),
-    ("tratamiento 2.csv", "tipo_infeccion_induccion_2"): ("Comorbidity", "condition"),
+    ("tratamiento 2.csv", "tipo_infeccion_induccion_2"): ("Comorbidity", "other_condition_name"),
     ("tratamiento 2.csv", "tipo_trasplante_alotph_2"): (
         "SCT",
         "type_of_alotph_transplant",
@@ -2000,12 +2000,12 @@ FIELD_MAPPING = {
         "Comorbidity",
         "details",
     ),
-    ("tratamiento 3.csv", "fiebre_toxicidades_3"): ("Comorbidity", "condition"),
+    ("tratamiento 3.csv", "fiebre_toxicidades_3"): ("Comorbidity", "other_condition_name"),
     ("tratamiento 3.csv", "hemorragias_comentarios_toxicidades_3"): (
         "Comorbidity",
         "details",
     ),
-    ("tratamiento 3.csv", "hemorragias_toxicidades_3"): ("Comorbidity", "condition"),
+    ("tratamiento 3.csv", "hemorragias_toxicidades_3"): ("Comorbidity", "other_condition_name"),
     ("tratamiento 3.csv", "indicar_bifosfonato_induccion_3"): (
         "BoneDisease",
         "bisphosphonate_treatment",
@@ -2016,7 +2016,7 @@ FIELD_MAPPING = {
     ),
     ("tratamiento 3.csv", "insuficiencia_renal_toxicidades_3"): (
         "Comorbidity",
-        "condition",
+        "other_condition_name",
     ),
     ("tratamiento 3.csv", "mantenimiento_progresion_fecha_3"): (
         "MMResponse",
@@ -2043,7 +2043,7 @@ FIELD_MAPPING = {
         "Comorbidity",
         "details",
     ),
-    ("tratamiento 3.csv", "neuropatia_toxicidades_3"): ("Comorbidity", "condition"),
+    ("tratamiento 3.csv", "neuropatia_toxicidades_3"): ("Comorbidity", "other_condition_name"),
     ("tratamiento 3.csv", "numero_ciclos_enfermedad_osea_induccion_3"): (
         "BoneDisease",
         "nb_cycles",
@@ -2058,7 +2058,7 @@ FIELD_MAPPING = {
     ),
     ("tratamiento 3.csv", "otras_toxicidades_toxicidades_3"): (
         "Comorbidity",
-        "condition",
+        "other_condition_name",
     ),
     ("tratamiento 3.csv", "recaida_motivo_discontinuacion_3"): (
         "MMRegimen",
@@ -2195,12 +2195,12 @@ FIELD_MAPPING = {
         "Comorbidity",
         "details",
     ),
-    ("tratamiento 4.csv", "fiebre_toxicidades_4"): ("Comorbidity", "condition"),
+    ("tratamiento 4.csv", "fiebre_toxicidades_4"): ("Comorbidity", "other_condition_name"),
     ("tratamiento 4.csv", "hemorragias_comentarios_toxicidades_4"): (
         "Comorbidity",
         "details",
     ),
-    ("tratamiento 4.csv", "hemorragias_toxicidades_4"): ("Comorbidity", "condition"),
+    ("tratamiento 4.csv", "hemorragias_toxicidades_4"): ("Comorbidity", "other_condition_name"),
     ("tratamiento 4.csv", "indicar_bifosfonato_induccion_4"): (
         "BoneDisease",
         "bisphosphonate_treatment",
@@ -2211,7 +2211,7 @@ FIELD_MAPPING = {
     ),
     ("tratamiento 4.csv", "insuficiencia_renal_toxicidades_4"): (
         "Comorbidity",
-        "condition",
+        "other_condition_name",
     ),
     ("tratamiento 4.csv", "mantenimiento_progresion_fecha_4"): (
         "MMResponse",
@@ -2238,7 +2238,7 @@ FIELD_MAPPING = {
         "Comorbidity",
         "details",
     ),
-    ("tratamiento 4.csv", "neuropatia_toxicidades_4"): ("Comorbidity", "condition"),
+    ("tratamiento 4.csv", "neuropatia_toxicidades_4"): ("Comorbidity", "other_condition_name"),
     ("tratamiento 4.csv", "numero_ciclos_enfermedad_osea_induccion_4"): (
         "BoneDisease",
         "nb_cycles",
@@ -2261,11 +2261,11 @@ FIELD_MAPPING = {
     ),
     ("tratamiento 4.csv", "otras_toxicidades_toxicidades_4"): (
         "Comorbidity",
-        "condition",
+        "other_condition_name",
     ),
     ("tratamiento 4.csv", "otras_toxicidades_toxicidades_5"): (
         "Comorbidity",
-        "condition",
+        "other_condition_name",
     ),
     ("tratamiento 4.csv", "recaida_motivo_discontinuacion_4"): (
         "MMRegimen",
@@ -2409,12 +2409,12 @@ FIELD_MAPPING = {
         "Comorbidity",
         "details",
     ),
-    ("tratamiento 5.csv", "fiebre_toxicidades_5"): ("Comorbidity", "condition"),
+    ("tratamiento 5.csv", "fiebre_toxicidades_5"): ("Comorbidity", "other_condition_name"),
     ("tratamiento 5.csv", "hemorragias_comentarios_toxicidades_5"): (
         "Comorbidity",
         "details",
     ),
-    ("tratamiento 5.csv", "hemorragias_toxicidades_5"): ("Comorbidity", "condition"),
+    ("tratamiento 5.csv", "hemorragias_toxicidades_5"): ("Comorbidity", "other_condition_name"),
     ("tratamiento 5.csv", "indicar_bifosfonato_induccion_5"): (
         "BoneDisease",
         "bisphosphonate_treatment",
@@ -2425,7 +2425,7 @@ FIELD_MAPPING = {
     ),
     ("tratamiento 5.csv", "insuficiencia_renal_toxicidades_5"): (
         "Comorbidity",
-        "condition",
+        "other_condition_name",
     ),
     ("tratamiento 5.csv", "mantenimiento_progresion_fecha_5"): (
         "MMResponse",
@@ -2452,7 +2452,7 @@ FIELD_MAPPING = {
         "Comorbidity",
         "details",
     ),
-    ("tratamiento 5.csv", "neuropatia_toxicidades_5"): ("Comorbidity", "condition"),
+    ("tratamiento 5.csv", "neuropatia_toxicidades_5"): ("Comorbidity", "other_condition_name"),
     ("tratamiento 5.csv", "numero_ciclos_enfermedad_osea_induccion_5"): (
         "BoneDisease",
         "nb_cycles",
@@ -2604,12 +2604,12 @@ FIELD_MAPPING = {
         "Comorbidity",
         "details",
     ),
-    ("tratamiento 6.csv", "fiebre_toxicidades_6"): ("Comorbidity", "condition"),
+    ("tratamiento 6.csv", "fiebre_toxicidades_6"): ("Comorbidity", "other_condition_name"),
     ("tratamiento 6.csv", "hemorragias_comentarios_toxicidades_6"): (
         "Comorbidity",
         "details",
     ),
-    ("tratamiento 6.csv", "hemorragias_toxicidades_6"): ("Comorbidity", "condition"),
+    ("tratamiento 6.csv", "hemorragias_toxicidades_6"): ("Comorbidity", "other_condition_name"),
     ("tratamiento 6.csv", "indicar_bifosfonato_induccion_6"): (
         "BoneDisease",
         "bisphosphonate_treatment",
@@ -2620,7 +2620,7 @@ FIELD_MAPPING = {
     ),
     ("tratamiento 6.csv", "insuficiencia_renal_toxicidades_6"): (
         "Comorbidity",
-        "condition",
+        "other_condition_name",
     ),
     ("tratamiento 6.csv", "mantenimiento_progresion_fecha_6"): (
         "MMResponse",
@@ -2647,7 +2647,7 @@ FIELD_MAPPING = {
         "Comorbidity",
         "details",
     ),
-    ("tratamiento 6.csv", "neuropatia_toxicidades_6"): ("Comorbidity", "condition"),
+    ("tratamiento 6.csv", "neuropatia_toxicidades_6"): ("Comorbidity", "other_condition_name"),
     ("tratamiento 6.csv", "numero_ciclos_enfermedad_osea_induccion_6"): (
         "BoneDisease",
         "nb_cycles",
@@ -2662,7 +2662,7 @@ FIELD_MAPPING = {
     ),
     ("tratamiento 6.csv", "otras_toxicidades_toxicidades_6"): (
         "Comorbidity",
-        "condition",
+        "other_condition_name",
     ),
     ("tratamiento 6.csv", "recaida_motivo_discontinuacion_6"): (
         "MMRegimen",
