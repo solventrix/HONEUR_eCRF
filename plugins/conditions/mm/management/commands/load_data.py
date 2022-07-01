@@ -240,6 +240,9 @@ def populate_fields_on_model(model, file_name, upstream_fields, data):
     for upstream_field in upstream_fields:
         if (file_name, upstream_field) in FIELD_MAPPING:
             our_field = FIELD_MAPPING[(file_name, upstream_field)][1]
+            if model.__class__.__name__ == "MMResponse":
+                if our_field == 'response' and data.get(upstream_field, "") == "0":
+                    continue
             set_field(model, our_field, data.get(upstream_field))
     model.set_consistency_token()
     model.save()
@@ -326,7 +329,7 @@ def create_tratiemento(episode, iterator, data):
         populate_fields_on_model(sct, file_name, alotph_fields, data)
 
     # ALOTPH MMResponse
-    if any([data.get(i) for i in alotph_reponse]):
+    if any([data.get(i) for i in alotph_reponse if not data.get(i) == "0"]):
         response = models.MMResponse(episode=episode)
         populate_fields_on_model(response, file_name, alotph_reponse, data)
 
@@ -336,7 +339,7 @@ def create_tratiemento(episode, iterator, data):
         populate_fields_on_model(sct, file_name, atsp_fields, data)
 
     # ATSP MMResponse
-    if any([data.get(i) for i in atsp_response]):
+    if any([data.get(i) for i in atsp_response if not data.get(i) == '0']):
         response = models.MMResponse(episode=episode)
         populate_fields_on_model(response, file_name, atsp_response, data)
 
@@ -368,7 +371,7 @@ def create_tratiemento(episode, iterator, data):
         f"respuesta_despues_mantenimiento_{iterator}",
         f"respuesta_despues_mantenimiento_fecha_{iterator}",
     ]
-    if any([data.get(i) for i in maintenance_response]):
+    if any([data.get(i) for i in maintenance_response if not data.get(i) == "0"]):
         response = models.MMResponse(episode=episode)
         populate_fields_on_model(response, file_name, maintenance_response, data)
 
@@ -396,7 +399,7 @@ def create_tratiemento(episode, iterator, data):
         f"negativizacion_emr_consolidacion_fecha_{iterator}",
         f"negativizacion_emr_consolidacion_{iterator}",
     ]
-    if any([data.get(i) for i in consolitation_response]):
+    if any([data.get(i) for i in consolitation_response if not data.get(i) == "0"]):
         response = models.MMResponse(episode=episode)
         populate_fields_on_model(response, file_name, consolitation_response, data)
 
@@ -426,7 +429,7 @@ def create_tratiemento(episode, iterator, data):
         f"respuesta_despues_induccion_fecha_{iterator}",
     ]
 
-    if any(data.get(i) for i in induction_response):
+    if any(data.get(i) for i in induction_response if not data.get(i) == "0"):
         response = models.MMResponse(episode=episode)
         populate_fields_on_model(response, file_name, induction_response, data)
 
@@ -457,7 +460,7 @@ def create_tratiemento(episode, iterator, data):
         f"tratamiento_recaida_respuesta_fecha_{iterator}",
         f"tratamiento_recaida_progresion_fecha_{iterator}",
     ]
-    if any([data.get(i) for i in treatment_relapse_response]):
+    if any([data.get(i) for i in treatment_relapse_response if not data.get(i) == "0"]):
         response = models.MMResponse(episode=episode)
         populate_fields_on_model(response, file_name, treatment_relapse_response, data)
 
