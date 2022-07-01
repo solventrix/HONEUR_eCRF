@@ -7,11 +7,11 @@
         </span>
     </div>
     <div class="col-md-5">
-        <span ng-show="item.condition && item.condition !== 'Other'">
-            [[ item.condition | translate ]]
+        <span ng-show="item.other_condition_name">
+            [[ item.other_condition_name]]
         </span>
-        <span ng-show="item.condition === 'Other'">
-            [[ item.other_condition_name ]]
+        <span ng-show="item.condition">
+            ([[ item.condition ]])
         </span>
     </div>
 </div>
@@ -19,7 +19,4 @@
     {% field_display "Comorbidity.infection_type" %}
     {% field_display "Comorbidity.type_of_microorganism_infection" %}
     {% field_display "Comorbidity.infection_source" %}
-    <span ng-show="item.infection_source ==='Other'">
-        {% field_display "Comorbidity.other_condition_name" %}
-    </span>
 </span>
