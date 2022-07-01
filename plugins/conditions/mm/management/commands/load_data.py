@@ -236,16 +236,26 @@ def populate_fields_on_model(model, file_name, upstream_fields, data):
     For a list of upstream field names, iterate through the data
     find out what out field name is and set that field on the
     model provided, then save the model.
+
+    Don't save the '0' in response. This is not a real response
+    but a happenstance of the old system.
+
+    Only save the model if at least one field is populated.
     """
+    populated = False
     for upstream_field in upstream_fields:
         if (file_name, upstream_field) in FIELD_MAPPING:
             our_field = FIELD_MAPPING[(file_name, upstream_field)][1]
-            if model.__class__.__name__ == "MMResponse":
-                if our_field == 'response' and data.get(upstream_field, "") == "0":
+            value = data.get(upstream_field)
+            if value == "0":
+                if model.__class__.__name__ == "MMResponse" and our_field == "response":
                     continue
+            if value is not None and not value == "":
+                populated = True
             set_field(model, our_field, data.get(upstream_field))
-    model.set_consistency_token()
-    model.save()
+    if populated:
+        model.set_consistency_token()
+        model.save()
 
 
 def treatment_populated(file, row):
