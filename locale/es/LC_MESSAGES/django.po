@@ -50,7 +50,6 @@ msgid "Hospital"
 msgstr "Hospital"
 
 #: entrytool/models.py:23
-#, fuzzy
 #| msgid "Hospital"
 msgid "Hospitals"
 msgstr "Hospitales"
@@ -152,7 +151,6 @@ msgid "BEAM"
 msgstr ""
 
 #: entrytool/models.py:71
-#, fuzzy
 #| msgid "Bone Pain"
 msgid "Bone Marrow"
 msgstr "Médula Osea"
@@ -174,7 +172,6 @@ msgid "Date of SCT"
 msgstr "Fecha del SCT"
 
 #: entrytool/models.py:83
-#, fuzzy
 #| msgid "Number of Cycles"
 msgid "Number Of Cells Infused"
 msgstr "Número de Células Infundidas"
@@ -196,19 +193,16 @@ msgid "Tandem ASTP"
 msgstr "Tándem ASTP"
 
 #: entrytool/models.py:122
-#, fuzzy
 #| msgid "Condition"
 msgid "Conditioning"
 msgstr "Acondicionamiento"
 
 #: entrytool/models.py:126
-#, fuzzy
 #| msgid "Stem Cell Transplant Eligibility"
 msgid "Stem Cell Transplant"
 msgstr "Trasplante de Células Madre"
 
 #: entrytool/models.py:127
-#, fuzzy
 #| msgid "Stem Cell Transplant Eligibilities"
 msgid "Stem Cell Transplants"
 msgstr "Trasplantes de Células Madre"
@@ -231,13 +225,11 @@ msgid "Lost to Follow-Up"
 msgstr "Perdido Durante el Seguimiento"
 
 #: entrytool/models.py:140 entrytool/opal/models.py:1292
-#, fuzzy
 #| msgid "Date Of Death"
 msgid "Date of Death"
 msgstr "Fecha de la Muerte"
 
 #: entrytool/models.py:145
-#, fuzzy
 #| msgid "Cause Of Death"
 msgid "Cause of Death"
 msgstr "Causa de la Muerte"
@@ -247,19 +239,16 @@ msgid "Lost to Follow-up"
 msgstr "Perdido Durante el Seguimiento"
 
 #: entrytool/models.py:154 entrytool/models.py:155
-#, fuzzy
 #| msgid "Patient Status"
 msgid "Patient status"
 msgstr "Estado del Paciente"
 
 #: entrytool/models.py:160 entrytool/models.py:163
-#, fuzzy
 #| msgid "Treatment Type"
 msgid "Treatment Line"
 msgstr "Línea de Tratamiento"
 
 #: entrytool/models.py:164
-#, fuzzy
 #| msgid "Treatment Type"
 msgid "Treatment Lines"
 msgstr "Líneas de Tratamiento"
@@ -284,7 +273,6 @@ msgid "Albumin"
 msgstr "Albúmina"
 
 #: entrytool/models.py:176
-#, fuzzy
 #| msgid "Proteinuria"
 msgid "MProtein Urine"
 msgstr "Proteinuria"
@@ -323,7 +311,6 @@ msgstr "Versión"
 
 #: entrytool/opal/core/search/templates/search.html:9
 #: entrytool/templates/search.html:9
-#, fuzzy
 #| msgid "Patient Status"
 msgid "Patient Search"
 msgstr "Búsqueda de Pacientes"
@@ -343,19 +330,16 @@ msgstr ""
 #: entrytool/templates/base_templates/form_modal_base.html:5
 #: entrytool/templates/partials/_patient_summary_list.html:19
 #: entrytool/templates/patient_detail.html:20
-#, fuzzy
 #| msgid "Add Patient"
 msgid "Patient"
 msgstr "Paciente"
 
 #: entrytool/opal/models.py:473
-#, fuzzy
 #| msgid "Add Patient"
 msgid "Patients"
 msgstr "Pacientes"
 
 #: entrytool/opal/models.py:606
-#, fuzzy
 #| msgid "External Pasmocytoma"
 msgid "External System"
 msgstr "Sistema externo"
@@ -366,7 +350,6 @@ msgstr "Identificador externo"
 
 #: entrytool/opal/models.py:630
 #: entrytool/opal/templates/partials/_item_created_updated_by.html:10
-#, fuzzy
 #| msgid "Creatinine"
 msgid "Created"
 msgstr "Creado"
@@ -376,7 +359,6 @@ msgid "Updated"
 msgstr "Actualizado"
 
 #: entrytool/opal/models.py:639
-#, fuzzy
 #| msgid "Creatinine"
 msgid "Created By"
 msgstr "Creado por"
@@ -408,7 +390,6 @@ msgid "Consistency Token"
 msgstr ""
 
 #: entrytool/opal/models.py:704
-#, fuzzy
 #| msgid "Stage A"
 msgid "Stage"
 msgstr "Etapa"
@@ -446,13 +427,11 @@ msgid "Genders"
 msgstr "Géneros"
 
 #: entrytool/opal/models.py:1229
-#, fuzzy
 #| msgid "Patient Status"
 msgid "Marital Status"
 msgstr "Estado Civil"
 
 #: entrytool/opal/models.py:1230
-#, fuzzy
 #| msgid "Patient Statuses"
 msgid "Marital statuses"
 msgstr "Estados Civiles"
@@ -491,13 +470,11 @@ msgid "Middle Name"
 msgstr "Segundo Nombre"
 
 #: entrytool/opal/models.py:1285
-#, fuzzy
 #| msgid "Date Of Death"
 msgid "Date of Birth"
 msgstr "Fecha de Nacimiento"
 
 #: entrytool/opal/models.py:1288
-#, fuzzy
 #| msgid "Patient Status"
 msgid "Marital status"
 msgstr "Estado Civil"
@@ -515,7 +492,6 @@ msgid "Country of Birth"
 msgstr "País de Nacimiento"
 
 #: entrytool/opal/models.py:1307
-#, fuzzy
 #| msgid "Other Induction"
 msgid "Death Indicator"
 msgstr "Indicador de Muerte"
@@ -527,7 +503,6 @@ msgstr "Sexo"
 
 #: entrytool/opal/templates/_helpers/date_of_birth_field.html:3
 #: entrytool/opal/templates/_helpers/date_of_birth_field.html:9
-#, fuzzy
 #| msgid "Date Of Death"
 msgid "Date Of Birth"
 msgstr "Fecha de Nacimiento"
@@ -569,7 +544,6 @@ msgid "Cancel"
 msgstr "Cancelar"
 
 #: entrytool/opal/templates/partials/_item_created_updated_by.html:7
-#, fuzzy
 #| msgid "Creatinine"
 msgid "Created by"
 msgstr "Creado por"
@@ -1352,7 +1326,6 @@ msgid "Date"
 msgstr "Fecha"
 
 #: plugins/conditions/cll/templates/forms/additional_characteristics_form.html:4
-#, fuzzy
 msgid "Date of measurement must be after date of bir"
 msgstr "La fecha de medición debe ser posterior a la fecha de nacimiento"
 
@@ -1565,7 +1538,6 @@ msgid "Not Disease Related"
 msgstr "No Relacionado con la Enfermedad"
 
 #: plugins/conditions/mm/models.py:153
-#, fuzzy
 #| msgid "Not Available"
 msgid "not available"
 msgstr "No disponible"
