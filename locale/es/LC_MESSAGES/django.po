@@ -953,7 +953,7 @@ msgstr "¿Tal vez intente buscarlos en su lugar?"
 #: entrytool/templates/records/patient_status.html:21
 #: plugins/conditions/cll/templates/records/cll_diagnosis_details.html:22
 msgid "Last Seen"
-msgstr "Ultima Vez Visto"
+msgstr ""
 
 #: entrytool/templates/records/patient_status.html:33
 #: plugins/conditions/cll/templates/records/cll_diagnosis_details.html:34
