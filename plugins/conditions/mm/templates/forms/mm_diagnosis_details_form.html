@@ -2,6 +2,10 @@
 {% load custom_forms %}
 {% load i18n %}
 {% custom_datepicker field="MMDiagnosisDetails.diag_date" validator="diagnosis_date" date_after="the_episode.demographics[0].date_of_birth" date_after_message=_("Date of diagnosis must be after the patient's birth date") required=True %}
+
+{% select field="MMDiagnosisDetails.heavy_chain_type" %}
+{% select field="MMDiagnosisDetails.light_chain_type" %}
+
 <div class="form-group" >
   <label for="" class="control-label col-sm-3">
     {% trans "History of SMM" %}

@@ -23,6 +23,23 @@ class MMDiagnosisDetails(models.EpisodeSubrecord):
 
     CHOICES = (("Yes", _("Yes")), ("No", _("No")), ("Unknown", _("Unknown")))
 
+    HEAVY_CHAIN_OPTIONS = (
+        ("IgG", _("IgG"),),
+        ("IgD", _("IgD"),),
+        ("IgA", _("IgA"),),
+        ("IgM", _("IgM"),),
+        ("IgE", _("IgE"),),
+        ("No Heavy Chain", _("No Heavy Chain"),),
+        ("Other", _("Other"),),
+    )
+
+    LIGHT_CHAIN_OPTIONS = (
+        ('Kappa', _('Kappa')),
+        ('Lambda', _('Lambda')),
+        ('Non-Secretory', _('Non-Secretory')),
+        ('No Light Chain', _('No Light Chain'))
+    )
+
     R_ISS_STAGES = (
         ("Stage I", _("Stage I")),
         ("Stage II", _("Stage II")),
@@ -38,6 +55,20 @@ class MMDiagnosisDetails(models.EpisodeSubrecord):
     hospital = models.ForeignKeyOrFreeText(Hospital, verbose_name=_("Hospital"))
     diag_date = fields.DateField(
         blank=False, null=True, verbose_name=_("Date of Diagnosis")
+    )
+    heavy_chain_type = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=HEAVY_CHAIN_OPTIONS,
+        verbose_name=_("Heavy chain type")
+    )
+    light_chain_type = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=LIGHT_CHAIN_OPTIONS,
+        verbose_name=_("Light chain type")
     )
     smm_history = fields.CharField(
         max_length=10, choices=CHOICES, verbose_name=_("History of SMM")
