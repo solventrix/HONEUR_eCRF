@@ -152,6 +152,9 @@ class MMResponse(models.EpisodeSubrecord):
         ("Progressive disease", _("Progressive disease")),
         ("Response unknown/NA", _("Response unknown/NA")),
     )
+    progression_date = fields.DateField(
+        blank=True, null=True, verbose_name=_("Progression Date")
+    )
     response_date = fields.DateField(verbose_name=_("Response Date"))
     response = fields.CharField(
         max_length=50, choices=RESPONSES, verbose_name=_("Response")
