@@ -210,7 +210,7 @@ class LabTest(models.EpisodeSubrecord):
     )
 
     hospital = models.ForeignKeyOrFreeText(Hospital, verbose_name=_("Hospital"))
-    date = fields.DateField(verbose_name=_("Visit date"))
+    date = fields.DateField(verbose_name=_("Date"))
 
     LDH = fields.FloatField(blank=True, null=True, verbose_name=_("LDH"))
     beta2m = fields.FloatField(blank=True, null=True, verbose_name=_("beta2m"))
@@ -220,7 +220,7 @@ class LabTest(models.EpisodeSubrecord):
         blank=True,
         null=True,
         max_length=256,
-        verbose_name=_("Creatinine")
+        verbose_name=_("Creatinine Clearance")
     )
 
     # mg/dL, min 6.5, max 25
@@ -232,7 +232,7 @@ class LabTest(models.EpisodeSubrecord):
     )
     mprotein_urine = fields.FloatField(blank=True, null=True, verbose_name=_("MProtein Urine"))
     mprotein_serum = fields.FloatField(blank=True, null=True ,verbose_name=("MProtein Serum"))
-    mprotein_24h = fields.FloatField(blank=True, null=True, verbose_name=_("Mprotein in 24 hour urine"))
+    mprotein_24h = fields.FloatField(blank=True, null=True, verbose_name=_("Mprotein in 24 hour"))
 
     heavy_chain_type = fields.CharField(
         blank=True,
@@ -260,13 +260,13 @@ class LabTest(models.EpisodeSubrecord):
         blank=True,
         null=True,
         max_length=256,
-        verbose_name=_("Lambda Light Chain Count")
+        verbose_name=_("Lambda Count")
     )
     kappa_light_chain_count = fields.FloatField(
         blank=True,
         null=True,
         max_length=256,
-        verbose_name=_("Kappa Light Chain Count")
+        verbose_name=_("Kappa Count")
     )
     kappa_lambda_ratio = fields.FloatField(
         blank=True,
