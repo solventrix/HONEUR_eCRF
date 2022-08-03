@@ -247,3 +247,24 @@ h1 img {
         }
     }
 }
+
+.mm-table{
+    td, th{
+        text-align: center;
+    }
+    td.first-column, th.first-column{
+        text-align: left;
+        width: 100px;
+    }
+    td.last-column{
+        text-align: right;
+        padding-right: 16px;
+    }
+
+    .no-border{
+        border: none;
+    }
+    i{
+        font-size: 12px;
+    }
+}
