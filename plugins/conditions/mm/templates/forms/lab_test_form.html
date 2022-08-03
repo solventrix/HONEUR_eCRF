@@ -2,8 +2,8 @@
 {% load custom_forms %}
 {% custom_datepicker field="LabTest.date" date_after="the_episode.demographics[0].date_of_birth" date_after_message=_("Lab test date must be after the patient's birth date") %}
 {% select field="LabTest.hospital" required=True %}
-{% input field="LabTest.lambda_light_chain_count" %}
 {% input field="LabTest.kappa_light_chain_count" %}
+{% input field="LabTest.lambda_light_chain_count" %}
 {% input field="LabTest.kappa_lambda_ratio" %}
 {% number field="LabTest.iga_count" %}
 {% number field="LabTest.igg_count" %}
