@@ -234,6 +234,12 @@ class LabTest(models.EpisodeSubrecord):
     mprotein_serum = fields.FloatField(blank=True, null=True ,verbose_name=("MProtein Serum"))
     mprotein_24h = fields.FloatField(blank=True, null=True, verbose_name=_("Mprotein in 24 hour"))
 
+    igg_count = fields.FloatField(blank=True, null=True, verbose_name="IgG Count")
+    igd_count = fields.FloatField(blank=True, null=True, verbose_name="IgD Count")
+    iga_count = fields.FloatField(blank=True, null=True, verbose_name="IgA Count")
+    igm_count = fields.FloatField(blank=True, null=True, verbose_name="IgM Count")
+    ige_count = fields.FloatField(blank=True, null=True, verbose_name="IgE Count")
+
     heavy_chain_type = fields.CharField(
         blank=True,
         null=True,
@@ -282,8 +288,8 @@ class MMCytogenetics(models.EpisodeSubrecord):
         verbose_name_plural = _("Cytogenetics")
 
     CHOICES = (
-        ("Yes", _("Yes")),
-        ("No", _("No")),
+        ("Positive", _("Positive")),
+        ("Negative", _("Negative")),
         ("Unknown", _("Unknown")),
     )
 
@@ -295,6 +301,14 @@ class MMCytogenetics(models.EpisodeSubrecord):
 
     hospital = models.ForeignKeyOrFreeText(Hospital, verbose_name=_("Hospital"))
     date = fields.DateField(blank=True, null=True, verbose_name=_("Date"))
+
+    tp_53 = fields.CharField(
+        max_length=10,
+        blank=True,
+        null=True,
+        choices=CHOICES,
+        verbose_name=_("tp 53)")
+    )
     t4_14 = fields.CharField(
         max_length=10,
         blank=True,
@@ -338,10 +352,10 @@ class MMCytogenetics(models.EpisodeSubrecord):
         max_length=10, choices=CHOICES, verbose_name=_("del(17)p")
     )
 
-    ighv_rearrangement = fields.CharField(
+    ighv = fields.CharField(
         max_length=25,
         null=True,
         blank=True,
-        choices=CHOICES_IGHV,
-        verbose_name=_("IGHV rearrangement"),
+        choices=CHOICES,
+        verbose_name=_("IGHV"),
     )
