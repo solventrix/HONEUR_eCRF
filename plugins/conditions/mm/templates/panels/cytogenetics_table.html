@@ -18,28 +18,19 @@
           <tr>
             <th class="first-column no-border"></th>
             <th>
-              {% trans "t(4;14)" %}
+              {% trans "tp 53" %}
             </th>
             <th>
-              {% trans "t(4;14) Not Effected" %}
+              {% trans "del 17p" %}
             </th>
             <th>
-              {% trans "t(4;14) Haploid Karyotype" %}
+              {% trans "t4;14" %}
             </th>
             <th>
-              {% trans "t(14;16)" %}
+              {% trans "t14;16" %}
             </th>
             <th>
-              {% trans "t(11;14)" %}
-            </th>
-            <th>
-              {% trans "del 1p" %}
-            </th>
-            <th>
-              {% trans "del(17)p" %}
-            </th>
-            <th>
-              {% trans "IGHV rearrangement" %}
+              {% trans "IGHV" %}
             </th>
             <th>
             </th>
@@ -49,28 +40,19 @@
               [[ item.hospital | translate ]] <br> [[ item.date | displayDate ]]
             </td>
             <td>
-              [[ item.t4_14 ]]
-            </td>
-            <td>
-              [[ item.t4_14_not_effected ]]
-            </td>
-            <td>
-              [[ item.t4_14_haploid_karyotype ]]
-            </td>
-            <td>
-              [[ item.t4_14_16 ]]
-            </td>
-            <td>
-              [[ item.t11_14 ]]
-            </td>
-            <td>
-              [[ item.del1p ]]
+              [[ item.tp_53 ]]
             </td>
             <td>
               [[ item.del_17p ]]
             </td>
             <td>
-              [[ item.ighv_rearrangement ]]
+              [[ item.t4_14 ]]
+            </td>
+            <td>
+              [[ item.t4_14_16 ]]
+            </td>
+            <td>
+              [[ item.ighv ]]
             </td>
             <td class="no-border last-column">
               <i ng-click="episode.recordEditor.editItem('{{ models.MMCytogenetics.get_api_name }}', item)" class="fa fa-pencil edit pointer"></i>

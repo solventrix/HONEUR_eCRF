@@ -314,7 +314,7 @@ class MMCytogenetics(models.EpisodeSubrecord):
         blank=True,
         null=True,
         choices=CHOICES,
-        verbose_name=_("t(4;14)")
+        verbose_name=_("t4;14)")
     )
     t4_14_haploid_karyotype = fields.CharField(
         blank=True,
@@ -328,7 +328,7 @@ class MMCytogenetics(models.EpisodeSubrecord):
         blank=True,
         null=True,
         choices=CHOICES,
-        verbose_name=_("t(14;16)")
+        verbose_name=_("t14;16")
     )
     t4_14_not_effected = fields.CharField(
         blank=True,
@@ -349,7 +349,7 @@ class MMCytogenetics(models.EpisodeSubrecord):
     )
 
     del_17p = fields.CharField(
-        max_length=10, choices=CHOICES, verbose_name=_("del(17)p")
+        max_length=10, choices=CHOICES, verbose_name=_("del 17p")
     )
 
     ighv = fields.CharField(
