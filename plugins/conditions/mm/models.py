@@ -307,14 +307,14 @@ class MMCytogenetics(models.EpisodeSubrecord):
         blank=True,
         null=True,
         choices=CHOICES,
-        verbose_name=_("tp 53)")
+        verbose_name=_("tp 53")
     )
     t4_14 = fields.CharField(
         max_length=10,
         blank=True,
         null=True,
         choices=CHOICES,
-        verbose_name=_("t4;14)")
+        verbose_name=_("t4;14")
     )
     t4_14_haploid_karyotype = fields.CharField(
         blank=True,
