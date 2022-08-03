@@ -215,6 +215,21 @@ class LabTest(models.EpisodeSubrecord):
     LDH = fields.FloatField(blank=True, null=True, verbose_name=_("LDH"))
     beta2m = fields.FloatField(blank=True, null=True, verbose_name=_("beta2m"))
     albumin = fields.FloatField(blank=True, null=True, verbose_name=_("Albumin"))
+    # mg/dL, min 0.5, max 20
+    creatinine = fields.FloatField(
+        blank=True,
+        null=True,
+        max_length=256,
+        verbose_name=_("Creatinine")
+    )
+
+    # mg/dL, min 6.5, max 25
+    calcium = fields.FloatField(
+        blank=True,
+        null=True,
+        max_length=256,
+        verbose_name=_("Calcium")
+    )
     mprotein_urine = fields.FloatField(blank=True, null=True, verbose_name=_("MProtein Urine"))
     mprotein_serum = fields.FloatField(blank=True, null=True ,verbose_name=("MProtein Serum"))
     mprotein_24h = fields.FloatField(blank=True, null=True, verbose_name=_("Mprotein in 24 hour urine"))
@@ -272,6 +287,12 @@ class MMCytogenetics(models.EpisodeSubrecord):
         ("Unknown", _("Unknown")),
     )
 
+    CHOICES_IGHV = (
+        ("Mutated", _("Mutated")),
+        ("Non-mutated", _("Non-mutated")),
+        ("Unknown", _("Unknown")),
+    )
+
     hospital = models.ForeignKeyOrFreeText(Hospital, verbose_name=_("Hospital"))
     date = fields.DateField(blank=True, null=True, verbose_name=_("Date"))
     t4_14 = fields.CharField(
@@ -315,4 +336,12 @@ class MMCytogenetics(models.EpisodeSubrecord):
 
     del_17p = fields.CharField(
         max_length=10, choices=CHOICES, verbose_name=_("del(17)p")
+    )
+
+    ighv_rearrangement = fields.CharField(
+        max_length=25,
+        null=True,
+        blank=True,
+        choices=CHOICES_IGHV,
+        verbose_name=_("IGHV rearrangement"),
     )
