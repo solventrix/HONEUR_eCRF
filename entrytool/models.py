@@ -82,21 +82,3 @@ class TreatmentLine(models.EpisodeSubrecord):
     class Meta:
         verbose_name = _("Treatment Line")
         verbose_name_plural = _("Treatment Lines")
-
-
-class FollowUp(models.PatientSubrecord):
-    _sort = "followup_date"
-    _icon = "fa fa-stethoscope"
-    hospital = models.ForeignKeyOrFreeText(Hospital, verbose_name=_("Hospital"))
-    follow_up_date = fields.DateField(verbose_name=_("Visit date"))
-
-    LDH = fields.FloatField(blank=True, null=True, verbose_name=_("LDH"))
-    beta2m = fields.FloatField(blank=True, null=True, verbose_name=_("beta2m"))
-    albumin = fields.FloatField(blank=True, null=True, verbose_name=_("Albumin"))
-    mprotein_urine = fields.FloatField(blank=True, null=True, verbose_name=_("MProtein Urine"))
-    mprotein_serum = fields.FloatField(blank = True, null = True ,verbose_name=("MProtein Serum"))
-    mprotein_24h = fields.FloatField(blank = True, null = True, verbose_name=_("Mprotein in 24 hour urine"))
-
-    class Meta:
-        verbose_name = _("Follow-up")
-        verbose_name_plural = _("Follow-ups")

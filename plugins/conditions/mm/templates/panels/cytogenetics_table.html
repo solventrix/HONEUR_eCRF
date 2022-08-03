@@ -1,0 +1,66 @@
+{% load i18n %}
+<div class="row">
+  <div class="col-md-11 col-md-offset-1">
+    <div class="panel panel-default record-panel">
+      <div class="panel-heading">
+        <h3>
+          {{ models.MMCytogenetics.get_display_name }}
+          <span class="pull-right pointer edit">
+            <a
+             ng-click="episode.recordEditor.newItem('{{ models.MMCytogenetics.get_api_name }}')"
+            >
+              <i class="fa fa-plus-circle edit pointer"></i>
+            </a>
+        </h3>
+      </div>
+      <ul class="list-group">
+        <div class="follow-up-table" ng-show="episode.mm_cytogenetics.length > 0">
+          <div class="col-md-12">
+            <div class="row header-row display-label">
+              <div class="col-sm-1 header"></div>
+              <div class="col-sm-11">
+                <div class="row">
+                  <div class="col-sm-2 header">{% trans "t(4;14)" %}</div>
+                  <div class="col-sm-2 header">{% trans "t(4;14) Not Effected" %}</div>
+                  <div class="col-sm-2 header">{% trans "t(4;14) Haploid Karyotype" %}</div>
+                  <div class="col-sm-2 header">{% trans "t(14;16)" %}</div>
+                  <div class="col-sm-1 header">{% trans "t(11;14)" %}</div>
+                  <div class="col-sm-1 header">{% trans "del 1p" %}</div>
+                  <div class="col-sm-1 header">{% trans "del(17)p" %}</div>
+                  <div class="col-sm-1 header"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div ng-repeat="item in episode.mm_cytogenetics | orderBy: '-date' as mm_cytogeneticss">
+            <div
+              ng-show="$index === 0 || mm_cytogeneticss[$index-1].hospital !== item.hospital"
+              class="row"
+              >
+
+            </div>
+            <div class="row table-row" >
+              <div class="col-sm-1 first-column text-right">
+                [[ item.hospital | translate ]] [[ item.date | displayDate ]] <br>
+              </div>
+              <div class="col-sm-11">
+                <div class="row">
+                  <div class="col-sm-2 column">[[ item.t4_14 ]]</div>
+                  <div class="col-sm-2 column">[[ item.t4_14_not_effected ]]</div>
+                  <div class="col-sm-2 column">[[ item.t4_14_haploid_karyotype ]]</div>
+                  <div class="col-sm-2 column">[[ item.t4_14_16 ]]</div>
+                  <div class="col-sm-1 column">[[ item.t11_14 ]]</div>
+                  <div class="col-sm-1 column">[[ item.del1p ]]</div>
+                  <div class="col-sm-1 column">[[ item.del_17p ]]</div>
+                  <div class="col-sm-1 ">
+                    <i ng-click="episode.recordEditor.editItem('{{ models.MMCytogenetics.get_api_name }}', item)" class="fa fa-pencil edit pointer"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ul>
+    </div>
+  </div>
+</div>

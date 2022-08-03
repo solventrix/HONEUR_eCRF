@@ -1,0 +1,86 @@
+{% load i18n %}
+<div class="row">
+  <div class="col-md-11 col-md-offset-1">
+    <div class="panel panel-default record-panel">
+      <div class="panel-heading">
+        <h3>
+          {% trans "Lab Tests" %}
+          <span class="pull-right pointer edit">
+            <a
+             ng-click="episode.recordEditor.newItem('{{ models.LabTest.get_api_name }}')"
+            >
+              <i class="fa fa-plus-circle edit pointer"></i>
+            </a>
+        </h3>
+      </div>
+      <ul class="list-group">
+        <div class="follow-up-table" ng-show="episode.lab_test.length > 0">
+          <div class="col-md-12">
+            <div class="row header-row display-label">
+              <div class="col-sm-1 header"></div>
+              <div class="col-sm-11">
+                <div class="row">
+                  <div class="col-sm-1 header">{% trans "LDH" %}</div>
+                  <div class="col-sm-1 header">{% trans "Beta2m" %}</div>
+                  <div class="col-sm-1 header">{% trans "Albumin" %}</div>
+                  <div class="col-sm-1 header">{% trans "M Protein Serum" %}</div>
+                  <div class="col-sm-1 header">{% trans "M Protein Urine" %}</div>
+                  <div class="col-sm-1 header">{% trans "M Protein in 24 hour Urine" %}</div>
+                  <div class="col-sm-1 header">{% trans "Heavy Chain Type" %}</div>
+                  <div class="col-sm-1 header">{% trans "Light Chain Type" %}</div>
+                  <div class="col-sm-1 header">{% trans "Light Chain Count" %}</div>
+                  <div class="col-sm-1 header">{% trans "Kappa Light Chain Count" %}</div>
+                  <div class="col-sm-1 header">{% trans "Kappa Lambda Ratio" %}</div>
+                  <div class="col-sm-1 header"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div ng-repeat="item in episode.lab_test | orderBy: '-date' as lab_tests">
+            <div
+              ng-show="$index === 0 || lab_tests[$index-1].hospital !== item.hospital"
+              class="row"
+              >
+
+            </div>
+            <div class="row table-row" >
+              <div class="col-sm-1 first-column text-right">
+                [[ item.hospital | translate ]] [[ item.date | displayDate ]] <br>
+              </div>
+              <div class="col-sm-11">
+                <div class="row">
+                  <div class="col-sm-1 column">[[ item.LDH ]]</div>
+                  <div class="col-sm-1 column">[[ item.beta2m ]]</div>
+                  <div class="col-sm-1 column">[[ item.albumin ]]</div>
+                  <div class="col-sm-1 column">[[ item.mprotein_serum ]]</div>
+                  <div class="col-sm-1 column">[[ item.mprotein_urine ]]</div>
+                  <div class="col-sm-1 column">[[ item.mprotein_24h ]]</div>
+                  <div class="col-sm-1 column">
+                    <span ng-show="item.heavy_chain_type === 'Other'">
+                      <span ng-show="item.heavy_chain_type_other">
+                        [[ item.heavy_chain_type_other | translate ]]
+                      </span>
+                      <span ng-hide="item.heavy_chain_type_other">
+                        [[ item.heavy_chain_type_other | translate ]]
+                      </span>
+                    </span>
+                    <span ng-hide="item.heavy_chain_type === 'Other'">
+                      [[ item.heavy_chain_type ]]
+                    </span>
+                  </div>
+                  <div class="col-sm-1 column">[[ item.light_chain_type ]]</div>
+                  <div class="col-sm-1 column">[[ item.lambda_light_chain_count ]]</div>
+                  <div class="col-sm-1 column">[[ item.kappa_light_chain_count ]]</div>
+                  <div class="col-sm-1 column">[[ item.kappa_lambda_ratio ]]</div>
+                  <div class="col-sm-1 ">
+                    <i ng-click="episode.recordEditor.editItem('{{ models.LabTest.get_api_name }}', item)" class="fa fa-pencil edit pointer"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ul>
+    </div>
+  </div>
+</div>
