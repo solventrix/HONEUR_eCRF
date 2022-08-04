@@ -19,6 +19,7 @@ class Application(application.OpalApplication):
         "js/entrytool/controllers/lot_manager.js",
         "js/entrytool/controllers/delete_lot.js",
         "js/entrytool/controllers/patient_validator.js",
+        "js/entrytool/controllers/patient_importer.js",
         "js/entrytool/controllers/honeur_patient_detail_ctrl.js",
         "js/entrytool/moment_lang.js",
     ]
@@ -45,6 +46,11 @@ class Application(application.OpalApplication):
                     ),
                     menus.MenuItem(
                         href=reverse(logout_view), display=_('Log Out'), index=1000
+                    ),
+                    menus.MenuItem(
+                        href='/#/import_patients',
+                        display=_('Import Patients'),
+                        activepattern='/#/import_patients'
                     )
                 ]
                 if user.is_staff:

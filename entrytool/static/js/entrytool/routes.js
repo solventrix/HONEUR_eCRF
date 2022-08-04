@@ -11,10 +11,13 @@
                controller: 'WelcomeCtrl',
                templateUrl: '/templates/welcome.html'}
                               )
-
-
           $routeProvider.when('/#/patient',  {
             controller: 'AddEpisodeCtrl'}
-                            )                   
+                            )
+
+          $routeProvider.when('/import_patients', {
+            controller: 'PatientImporter',
+            templateUrl: '/templates/import_patients.html'
+          })
        }]);
 })();
