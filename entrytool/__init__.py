@@ -16,6 +16,8 @@ class Application(application.OpalApplication):
         'js/entrytool/filters.js',
         "js/entrytool/services/entrytool_helper.js",
         "js/entrytool/services/validate_patient.js",
+        "js/entrytool/services/validate_field.js",
+        "js/entrytool/services/field_validator.js",
         "js/entrytool/controllers/lot_manager.js",
         "js/entrytool/controllers/delete_lot.js",
         "js/entrytool/controllers/patient_validator.js",
