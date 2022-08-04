@@ -249,4 +249,8 @@ h1 img {
 .mm-table i {
   font-size: 12px;
 }
+
+.imported-validation-error {
+  background-color: #C07A7A;
+}
 /*# sourceMappingURL=entrytool.css.map */

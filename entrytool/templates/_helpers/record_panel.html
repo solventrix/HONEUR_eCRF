@@ -14,7 +14,7 @@
         <span ng-show="{{ editable }}" >
             {% if singleton %}
             <i class="fa fa-pencil edit pull-right pointer"
-               ng-click="parent.recordEditor.editItem('{{ name }}', parent.{{ name }}[0]).then($root.patientValidator.clean)"></i>
+               ng-click="honeurPatientDetailCtrl.editItem('{{ name }}', parent.{{ name }}[0], parent)"></i>
             {% else %}
             <i class="fa fa-plus-circle edit pull-right pointer"
                ng-click="parent.recordEditor.newItem('{{ name }}').then($root.patientValidator.clean)"></i>
@@ -23,7 +23,7 @@
       </h3>
     </div>
     <ul class="list-group">
-      <li class="list-group-item" ng-show="parent.{{ name }}.length && parent.{{ name }}[0].consistency_token" ng-repeat="item in parent.{{ name }}{% if model.order_by %} | orderBy: '{{ model.order_by }}'{% endif %}"
+      <li class="list-group-item" ng-class="{'imported-validation-error': honeurPatientDetailCtrl.hasError(episode.id, '{{ name }}', item.id)}" ng-show="parent.{{ name }}.length && parent.{{ name }}[0].consistency_token" ng-repeat="item in parent.{{ name }}{% if model.order_by %} | orderBy: '{{ model.order_by }}'{% endif %}"
       {% if angular_filter %}
       ng-show="{{ angular_filter }}">
       {% else %}
@@ -42,7 +42,7 @@
           <span ng-show="{{ editable }}" >
               {% if not singleton %}
               <i class="fa fa-pencil edit pull-right pointer"
-                 ng-click="parent.recordEditor.editItem('{{ name }}', item).then($root.patientValidator.clean)"></i>
+                 ng-click="honeurPatientDetailCtrl.editItem('{{ name }}', item, parent)"></i>
               {% endif %}
           </span>
         </div>
