@@ -46,6 +46,13 @@ angular.module('opal.services').service('ValidateField', function(
 		}
 	};
 
+	var validateRegimenStart = function(val, instance, episode, patient){
+		var diagnosisDate = EntrytoolHelper.getDiagnosis(patient).diag_date;
+		if(diagnosisDate.isAfter(val, "d")){
+			return "Start Date must be after the patient date of diagnosis"
+		}
+	}
+
 	return {
 		validate: function(apiName, fieldName, value, instance, episode, patient){
 			var errors = [];
@@ -62,6 +69,11 @@ angular.module('opal.services').service('ValidateField', function(
 		mm_diagnosis_details: {
 			diag_date: {
 				errors: [validateDateOfDiagnosis]
+			},
+		},
+		mm_regimen: {
+			start_date: {
+				errors: [validateRegimenStart]
 			}
 		},
 		cll_diagnosis_details: {
