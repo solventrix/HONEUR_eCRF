@@ -3,6 +3,8 @@ from opal.core.api import LoginRequiredViewset
 from opal.models import Patient, Episode
 from opal.core.api import OPALRouter, patient_from_pk, episode_from_pk
 from opal.core.views import json_response
+from django.db.models import Q
+from entrytool import models
 from entrytool.episode_categories import LineOfTreatmentEpisode
 
 
@@ -43,10 +45,37 @@ class DeleteLineOfTreatmentEpisode(LoginRequiredViewset):
         return json_response(True)
 
 
+class UnvalidatedPatients(LoginRequiredViewset):
+    base_name = "unvalidated_patients"
+
+    def list(self, request):
+        return json_response(list(Patient.objects.filter(
+            patientload__validated=False,
+            patientload__source=models.PatientLoad.LOADED_FROM_FILE
+        ).values_list('id', flat=True)))
+
+
+class PatientsWithErrors(LoginRequiredViewset):
+    base_name = "patients_with_errors"
+
+    def list(self, request):
+        return json_response(list(Patient.objects.filter(
+            patientload__validated=True,
+            patientload__has_errors=True,
+            patientload__source=models.PatientLoad.LOADED_FROM_FILE
+        ).values_list('id', flat=True)))
+
+
 entrytool_router = OPALRouter()
 entrytool_router.register(
     NewLineOfTreatmentEpisode.base_name, NewLineOfTreatmentEpisode
 )
 entrytool_router.register(
     DeleteLineOfTreatmentEpisode.base_name, DeleteLineOfTreatmentEpisode
+)
+entrytool_router.register(
+    UnvalidatedPatients.base_name, UnvalidatedPatients
+)
+entrytool_router.register(
+    PatientsWithErrors.base_name, PatientsWithErrors
 )
