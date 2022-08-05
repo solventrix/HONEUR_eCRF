@@ -1,15 +1,15 @@
 angular
   .module("opal.controllers")
   .controller("PatientImporter", function (
-    $scope, $http, $q, patientLoader, ValidatePatient
+    $scope, $q, patientLoader, ValidatePatient, unValidatedPatients, patientsWithErrors
   ) {
     "use strict";
 
     // a list of unvalidate patient ids
-    $scope.unvalidatedPatients = [];
+    $scope.unvalidatedPatients = unValidatedPatients;
 
     // a list of patient ids with errors
-    $scope.patientsWithErrors = [];
+    $scope.patientsWithErrors = patientsWithErrors;
 
     // the initial number of unvalidated patients
     $scope.initialUnvalidatedCount = 0;
@@ -22,14 +22,8 @@ angular
       * Load in all unvalidated patients and patients with errors.
       * Iterate over the unvalidated patients and start validating them.
       */
-      var unValidatedPatientsPromise = $http.get('/entrytool/v0.1/unvalidated_patients/');
-      var patientsWithErrorsPromise = $http.get('/entrytool/v0.1/patients_with_errors/');
-      $q.all([unValidatedPatientsPromise, patientsWithErrorsPromise]).then(function(result){
-        $scope.unvalidatedPatients = result[0].data;
-        $scope.initialUnvalidatedCount = $scope.unvalidatedPatients.length;
-        $scope.patientsWithErrors = result[1].data;
-        process()
-      })
+      $scope.initialUnvalidatedCount = $scope.unvalidatedPatients.length;
+      process()
     }
 
     var processPatientId = function(unvalidatedPatientId){

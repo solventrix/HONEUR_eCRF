@@ -18,6 +18,7 @@ class Application(application.OpalApplication):
         "js/entrytool/services/validate_patient.js",
         "js/entrytool/services/validate_field.js",
         "js/entrytool/services/field_validator.js",
+        "js/entrytool/services/data_upload_loader.js",
         "js/entrytool/controllers/lot_manager.js",
         "js/entrytool/controllers/delete_lot.js",
         "js/entrytool/controllers/patient_validator.js",

@@ -17,7 +17,15 @@
 
           $routeProvider.when('/import_patients', {
             controller: 'PatientImporter',
-            templateUrl: '/templates/import_patients.html'
+            templateUrl: '/templates/import_patients.html',
+            resolve: {
+              unValidatedPatients: function(DataUploadLoader){
+                return DataUploadLoader.unValidatedPatients()
+              },
+              patientsWithErrors: function(DataUploadLoader){
+                return DataUploadLoader.patientsWithErrors()
+              }
+            }
           })
        }]);
 })();
