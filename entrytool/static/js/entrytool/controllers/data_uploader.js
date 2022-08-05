@@ -1,6 +1,6 @@
 angular
   .module("opal.controllers")
-  .controller("PatientImporter", function (
+  .controller("DataUploader", function (
     $scope, $q, patientLoader, ValidatePatient, unValidatedPatients, patientsWithErrors
   ) {
     "use strict";

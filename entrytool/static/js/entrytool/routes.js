@@ -15,9 +15,9 @@
             controller: 'AddEpisodeCtrl'}
                             )
 
-          $routeProvider.when('/import_patients', {
-            controller: 'PatientImporter',
-            templateUrl: '/templates/import_patients.html',
+          $routeProvider.when('/data_upload', {
+            controller: 'DataUploader',
+            templateUrl: '/templates/data_upload.html',
             resolve: {
               unValidatedPatients: function(DataUploadLoader){
                 return DataUploadLoader.unValidatedPatients()
