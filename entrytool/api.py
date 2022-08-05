@@ -3,7 +3,6 @@ from opal.core.api import LoginRequiredViewset
 from opal.models import Patient, Episode
 from opal.core.api import OPALRouter, patient_from_pk, episode_from_pk
 from opal.core.views import json_response
-from django.db.models import Q
 from entrytool import models
 from entrytool.episode_categories import LineOfTreatmentEpisode
 
