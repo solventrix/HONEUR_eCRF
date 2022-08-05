@@ -23,7 +23,7 @@
                       <span ng-hide="unvalidatedPatients.length === validaterPointer">
                         [[ initialUnvalidatedCount ]] patient<span ng-show="initialUnvalidatedCount > 1">s</span> not validated.
                         <br>
-                        Validating [[ $scope.validaterPointer+1 ]]/[[ initialUnvalidatedCount ]]
+                        Validating [[ validaterPointer+1 ]]/[[ initialUnvalidatedCount ]]
                       </span>
                       <span ng-show="unvalidatedPatients.length === validaterPointer">
                         All patients have been validated.
