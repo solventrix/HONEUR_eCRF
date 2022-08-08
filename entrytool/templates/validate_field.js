@@ -473,6 +473,7 @@ angular.module('opal.services').service('ValidateField', function(
 			progression_date: {
 				errors: [
 					[sameOrAfterDiagnosisDate,  "{% trans "The progression should be after the date of diagnosis" %}"],
+					[noFuture, "{% trans "The progression date is in the future" %}"]
 				],
 				warnings: [
 					[validateResponseToRegimens,  "{% trans "No regimen is connected to this response" %}"]
@@ -482,6 +483,7 @@ angular.module('opal.services').service('ValidateField', function(
 				errors: [
 					[sameOrAfterDiagnosisDate,  "{% trans "The progression should be after the date of diagnosis" %}"],
 					[required,  "{% trans "The response date is required" %}"],
+					[noFuture, "{% trans "The response date is in the future" %}"]
 				],
 				warnings: [
 					[validateResponseToRegimens,  "{% trans "No regimen is connected to this response" %}"]
