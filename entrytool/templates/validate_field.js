@@ -135,6 +135,13 @@ angular.module('opal.services').service('ValidateField', function(
 				]
 			},
 		},
+		patient_status: {
+			death_date: {
+				errors: [
+					[afterDateOfBirth,  "{% trans "Date of death is before the date of birth" %}"]
+				]
+			}
+		},
 		mm_regimen: {
 			start_date: {
 				errors: [
