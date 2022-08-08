@@ -109,6 +109,18 @@ angular.module('opal.services').service('ValidateField', function(
 			}
 			return result;
 		},
+		demographics: {
+			hospital_number: {
+				errors: [
+					[required, "{% trans "External identifier is required" %}"]
+				]
+			},
+			sex: {
+				errors: [
+					[required, "{% trans "Sex is required" %}"]
+				]
+			}
+		},
 		mm_diagnosis_details: {
 			diag_date: {
 				errors: [
@@ -121,7 +133,7 @@ angular.module('opal.services').service('ValidateField', function(
 				errors: [
 					[required, "{% trans "ISS stage is required" %}"],
 				]
-			}
+			},
 		},
 		mm_regimen: {
 			start_date: {
