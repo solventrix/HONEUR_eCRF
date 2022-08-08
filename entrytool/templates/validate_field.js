@@ -335,6 +335,16 @@ angular.module('opal.services').service('ValidateField', function(
 		}
 	}
 
+	var noFuture = function(val){
+		if(!val){
+			return false
+		}
+		var today = moment();
+		if(toMomentFilter(val).isAfter(today, "d")){
+			return true;
+		}
+	}
+
 	var validateResponseToRegimens = function(val, instance, episode){
 		/*
 		* From the perspective of a response_date, validates that there
@@ -477,6 +487,14 @@ angular.module('opal.services').service('ValidateField', function(
 					[validateResponseToRegimens,  "{% trans "No regimen is connected to this response" %}"]
 				]
 			},
+		},
+		sct: {
+			sct_date: {
+				errors: [
+					[sameOrAfterDiagnosisDate,  "{% trans "The SCT should be after the date of diagnosis" %}"],
+					[noFuture, "{% trans "The date of SCT is in the future" %}"]
+				]
+			}
 		},
 		cll_diagnosis_details: {
 			diag_date: {
