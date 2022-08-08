@@ -1,5 +1,5 @@
 {% load i18n %}
-<div {% if min_max_warning %}ng-class="{warning: {{ min_max_warning }}}"{% else %}ng-class="{warning: $root.patientValidator.warnings['{{ field_name }}']}"{% endif %} class="form-group number">
+<div ng-class="{warning: $root.patientValidator.warnings['{{ field_name }}'].length}" class="form-group number">
   <label
     class="control-label col-sm-3"
     >
@@ -18,58 +18,8 @@
            uib-typeahead="i for i in {{ lookuplist }} | filter:$viewValue | limitTo:8"
            {% endif %}
            name="[[ {{ element_name }} ]]"
-           {% if required %}
-           required
-           {% endif %}
-           {% if ngrequired%}
-           ng-required= "{{ ngrequired }}"
-           {% endif %}
-           {% if change %}
-           ng-change="{{ change }}"
-           {% else %}
-           ng-change="$root.patientValidator.validate('{{ model_api_name }}', '{{ field_name }}', {{ model }}, {{ model_name }}, the_episode)"
-           {% endif %}
-           {% if data %}
-           {% for key, val in data %}
-           data-{{key}}="{{ val }}"
-           {% endfor %}
-           {% endif %}
-           {% if enter %}
-           ng-keypress="$event.keyCode == 13 && {{ enter }}"
-           {% endif %}
-           {% if maxlength %}
-           ng-maxlength="{{ maxlength }}"
-           {% endif %}
-           {% if disabled %}
-           ng-disabled="{{ disabled}}"
-           {% endif %}
-           {% if min_value %}
-           ng-min="[[ {{ min_value }}]]"
-           {% endif %}
-           {% if max_value %}
-           ng-max="[[ {{ max_value }}]]"
-           {% endif %}
+           ng-change="$root.patientValidator.validate('{{ model_api_name }}', '{{ field_name }}', {{ model }}, {{ subrecord }}, the_episode)"
            />
-    {% if ngrequired %}
-      <span class="help-block" ng-show="({{ formname }}[{{ element_name }}].$dirty || {{ formname }}.$submitted) && {{ formname }}[{{ element_name }}].$error.required">
-        {% blocktrans with label=label %}{{ label }} is required{% endblocktrans %}
-      </span>
-    {% endif %}
-    {% if min_value %}
-      <span class="help-block" ng-show="{{ formname }}.$submitted && {{ formname }}[{{ element_name }}].$error.min">
-        {% blocktrans with label=label %}{{ label }} is too low{% endblocktrans %}
-      </span>
-    {% endif %}
-    {% if max_value %}
-      <span class="help-block" ng-show="{{ formname }}.$submitted && {{ formname }}[{{ element_name }}].$error.max">
-        {% blocktrans with label=label %}{{ label }} is too high{% endblocktrans %}
-      </span>
-    {% endif %}
-    {% if min_max_warning %}
-    <span class="warning-block">
-      {% blocktrans with label=label %}{{ label }} is outside normal bounds{% endblocktrans %}
-    </span>
-    {% endif %}
     <span
     class="warning-block" ng-show="$root.patientValidator.showWarnings('{{ field_name }}')"
   >

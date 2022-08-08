@@ -43,17 +43,40 @@ angular.module('opal.services').service('ValidateField', function(
 		}
 	}
 
-	var validateRegimenStart = function(val, instance, episode, patient, fieldName, modelApiName){
-		var error;
+	var afterDiagnosisDate = function(val, instance, episode, patient, fieldName, modelApiName){
 		var diagnosisDate = EntrytoolHelper.getDiagnosis(patient).diag_date;
+		if(!val || !diagnosisDate){
+			return false;
+		}
 		if(diagnosisDate.isAfter(val, "d")){
 			return true;
 		}
 	}
 
-	var maxValue = function(amount){
-		return function(val, instance, episode, patient){
-			if(val > amount){
+	var afterDateOfBirth = function(val, instance, episode, patient, fieldName, modelApiName){
+		var dateOfBirth = episode.demographics[0].date_of_birth;
+		if(val && dateOfBirth){
+			if(dateOfBirth.isAfter(val, "d")){
+				return true;
+			}
+		}
+	}
+
+	var required = function(val){
+		return !val;
+	}
+
+	var lessThan = function(amount){
+		return function(val){
+			if(val && val > amount){
+				return true;
+			}
+		}
+	}
+
+	var greaterThan = function(amount){
+		return function(val){
+			if(val < amount){
 				return true;
 			}
 		}
@@ -90,13 +113,20 @@ angular.module('opal.services').service('ValidateField', function(
 			diag_date: {
 				errors: [
 					[validateDateOfDiagnosis, "{% trans "Date of diagnosis is greater than a regimen start date" %}"],
+					[required, "{% trans "Date of diagnosis is required" %}"],
+					[afterDateOfBirth, "{% trans "Date of diagnosis is before the date of birth" %}"],
 				]
 			},
+			iss_stage: {
+				errors: [
+					[required, "{% trans "ISS stage is required" %}"],
+				]
+			}
 		},
 		mm_regimen: {
 			start_date: {
 				errors: [
-					[validateRegimenStart, "Regimen start date must be after the date of diagnosis"]
+					[afterDiagnosisDate, "Regimen start date must be after the date of diagnosis"]
 				]
 			}
 		},
@@ -108,8 +138,11 @@ angular.module('opal.services').service('ValidateField', function(
 			}
 		},
 		lab_test: {
-			creatanine: {
-				errors: []
+			creatinine: {
+				errors: [
+					[lessThan(20), "{% trans "Creatinine is too high" %}"],
+					[greaterThan(0.5), "{% trans "Creatinine is too low" %}"],
+				]
 			}
 		}
 	}

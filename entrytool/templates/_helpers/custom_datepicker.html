@@ -10,12 +10,7 @@
     {% ifequal style "horizontal" %}
     class="col-sm-8"
     {% endifequal %}
-    {% if validator %}
-    ng-class="{'has-error': {{ formname }}.$submitted && (form[{{ element_name }}].$invalid || $root.patientValidator.errors.{{ validator }})}"
-    {% else %}
-    ng-class="{'has-error': ({{ formname }}.$submitted && {{ formname }}[{{ element_name }}].$invalid) || $root.patientValidator.showErrors('{{ field_name }}', {{ formname }})}"
-    {% endif %}
-    >
+    ng-class="{'has-error': $root.patientValidator.showErrors('{{ field_name }}', {{ formname }})}">
     {% if user_options %}
       <div class="input-group">
     {% endif %}
@@ -32,36 +27,7 @@
                ng-focus="{{ formname }}[{{ element_name }} + '_open']=true"
                close-text="Close"
 
-               {% if change %}
-               ng-change="{{ change }}"
-               {% elif validator %}
-               ng-change="$root.patientValidator.{{ validator }}({{ model }}, {{ model_name }}, the_episode)"
-               {% else %}
-               ng-change="$root.patientValidator.validate('{{ model_api_name }}', '{{ field_name }}', {{ model }}, {{ model_name }}, the_episode)"
-               {% endif %}
-               {% if required %}
-               required
-               {% else %}
-               ng-required="{{ ngrequired }}"
-               {% endif %}
-               {% if date_after %}
-               date-after="{{ date_after }}"
-               {% endif %}
-               {% if date_after_diff %}
-               date-after-diff="{{ date_after_diff }}"
-               {% endif %}
-               {% if date_before %}
-               date-before="{{ date_before }}"
-               {% endif %}
-               {% if date_before_diff %}
-               date-before-diff="{{ date_before_diff }}"
-               {% endif %}
-               {% if before_death %}
-               before-death
-               {% endif %}
-               {% if no_future %}
-               no-future
-               {% endif %}
+               ng-change="$root.patientValidator.validate('{{ model_api_name }}', '{{ field_name }}', {{ model }}, {{ subrecord }}, the_episode)"
                />
      {% if user_options %}
          <span class="input-group-btn">
@@ -70,33 +36,7 @@
          </span>
        </div>
      {% endif %}
-     <span class="help-block" ng-show="{{ formname }}.$submitted && {{ formname }}[{{ element_name }}].$error.required">
-      {% if ngrequired_error %}
-        {{ ngrequired_error }}
-      {% else %}
-        {% blocktrans with label=label %}{{ label }} is required{% endblocktrans %}
-      {% endif %}
-     </span>
-     {% if date_after_message %}
-     <span class="help-block" ng-show="{{ formname }}.$submitted && {{ formname }}[{{ element_name }}].$error.dateAfter">
-      {{ date_after_message }}
-     </span>
-     {% endif %}
-     {% if date_before_message %}
-     <span class="help-block" ng-show="{{ formname }}.$submitted && {{ formname }}[{{ element_name }}].$error.dateBefore">
-      {{ date_before_message }}
-     </span>
-     {% endif %}
-     {% if before_death %}
-     <span class="help-block" ng-show="{{ formname }}.$submitted && {{ formname }}[{{ element_name }}].$error.beforeDeath">
-        {% blocktrans with label=label %}{{ label }} is after the date of death{% endblocktrans %}
-     </span>
-     {% endif %}
-     {% if no_future %}
-     <span class="help-block" ng-show="{{ formname }}.$submitted && {{ formname }}[{{ element_name }}].$error.noFuture">
-      {% blocktrans with label=label %}{{ label }} is in the future{% endblocktrans %}
-     </span>
-     {% endif %}
+
 
      <span
      class="warning-block" ng-show="$root.patientValidator.showWarnings('{{ field_name }}')"
@@ -112,21 +52,5 @@
       [[ error ]]
     </div>
    </span>
-     {% if validator %}
-     <span
-        class="help-block" ng-show="form.$submitted && $root.patientValidator.errors.{{ validator }}"
-        >
-          [[ $root.patientValidator.errors.{{ validator }} ]]
-        </span>
-        <span
-        class="warning-block" ng-show="$root.patientValidator.warnings.{{ validator }}"
-      >
-        [[ $root.patientValidator.warnings.{{ validator }} ]]
-      </span>
-      {% endif %}
-       {% if help_text %}
-      <p class="help-block">{% trans help_text %}
-      </p>
-    {% endif %}
   </div>
 </div>

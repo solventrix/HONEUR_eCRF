@@ -392,19 +392,18 @@ angular
           episode,
           self.patient
         )
-        if(issues.errors.length){
-          self.errors[field_name] = issues.errors;
-        }
-        if(issues.warnings.length){
-          self.warnings[field_name] = issues.warnings;
-        }
+        self.errors[field_name] = issues.errors;
+        self.warnings[field_name] = issues.warnings;
       }
 
       this.showErrors = function(field_name, form){
         if(!self.errors[field_name] || !self.errors[field_name].length){
           return false;
         }
-        return true;
+        if(form.$submitted || self.patient.patient_load[0].has_errors){
+          return true;
+        }
+        return false;
       }
 
       this.showWarnings = function(field_name){
@@ -416,6 +415,9 @@ angular
 
       this.disableSave = function(form){
         if(self.patient.patient_load[0].has_errors){
+          return false;
+        }
+        if(!form.$submitted){
           return false;
         }
         if(_.size(_.filter(self.errors, function(err){ return err.length }))){
