@@ -18,7 +18,7 @@
            uib-typeahead="i for i in {{ lookuplist }} | filter:$viewValue | limitTo:8"
            {% endif %}
            name="[[ {{ element_name }} ]]"
-           ng-change="$root.patientValidator.validate('{{ model_api_name }}', '{{ field_name }}', {{ model }}, {{ subrecord }}, the_episode)"
+           ng-change="$root.patientValidator.validatesubrecord('{{ model_api_name }}', {{ subrecord }}, the_episode, {{ formname }})"
            />
     <span
     class="warning-block" ng-show="$root.patientValidator.showWarnings('{{ field_name }}')"

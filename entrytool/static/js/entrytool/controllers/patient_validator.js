@@ -17,8 +17,18 @@ angular
     var PatientValidator = function () {
       var self = this;
       self.entrytool_helper = EntrytoolHelper;
+      self.saveDisabled = true;
 
-      this.validatesubrecord = function(subrecordApiName, subrecord, episode){
+      this.validatesubrecord = function(subrecordApiName, subrecord, episode, form){
+        /*
+        * Validates a whole subrecord.
+        *
+        * It takes an optional form object. This is used when this method is called in
+        * a form modal to enable/disable the save button
+        *
+        * This function is also called before the modal opens so that the errors are
+        * present when the user opens the modal.
+        */
         var result = $q.defer();
         this.clean();
         recordLoader.load().then(function(schema){
@@ -36,6 +46,9 @@ angular
           });
           result.resolve();
         });
+        if(form){
+          self.enableSave(form);
+        }
         return result.promise;
       }
 
@@ -381,6 +394,7 @@ angular
       this.clean = function(){
         self.errors = {};
         self.warnings = {};
+        self.saveDisabled = false;
       }
 
       this.validate = function(model_api_name, field_name, val, instance, episode){
@@ -413,15 +427,15 @@ angular
         return true;
       }
 
-      this.disableSave = function(form){
+      this.enableSave = function(form){
         if(self.patient.patient_load[0].has_errors){
-          return false;
+          self.saveDisabled = false;
         }
         if(!form.$submitted){
-          return false;
+          self.saveDisabled = false;
         }
         if(_.size(_.filter(self.errors, function(err){ return err.length }))){
-          return true
+          self.saveDisabled = true
         }
       }
 

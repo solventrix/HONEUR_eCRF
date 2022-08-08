@@ -9,7 +9,7 @@
     {% endif %}
     <div class="{% ifequal style "horizontal" %}col-sm-8{% endifequal %}"
          ng-class='{"has-error": {{ formname }}.$submitted && {{ formname }}[{{ element_name }}].$error.required}'>
-      <select {% if autofocus %}autofocus {% endif %}name="[[ {{ element_name }} ]]" class="form-control" ng-model="{{ model }}"  ng-change="$root.patientValidator.validate('{{ model_api_name }}', '{{ field_name }}', {{ model }}, {{ subrecord }}, the_episode)">
+      <select {% if autofocus %}autofocus {% endif %}name="[[ {{ element_name }} ]]" class="form-control" ng-model="{{ model }}" ng-change="$root.patientValidator.validatesubrecord('{{ model_api_name }}', {{ subrecord }}, the_episode, {{ formname }})">
         {% if default_null %}
         <option value="" selected>---------</option>
         {% endif %}
