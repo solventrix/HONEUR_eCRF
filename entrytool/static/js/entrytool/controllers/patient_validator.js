@@ -5,7 +5,8 @@ angular
     $rootScope,
     toMomentFilter,
     EntrytoolHelper,
-    $injector
+    $injector,
+    ValidateField
   ) {
     "use strict";
 
@@ -357,6 +358,54 @@ angular
       this.clean = function(){
         self.errors = {};
         self.warnings = {};
+      }
+
+      this.validate = function(model_api_name, field_name, val, instance, episode){
+        var issues = ValidateField.validate(
+          model_api_name,
+          field_name,
+          val,
+          instance,
+          episode,
+          self.patient
+        )
+        if(issues.errors.length){
+          self.errors[field_name] = issues.errors;
+        }
+        if(issues.warnings.length){
+          self.warnings[field_name] = issues.warnings;
+        }
+      }
+
+      this.showErrors = function(field_name, form){
+        if(!self.errors[field_name]){
+          return false;
+        }
+        if(self.patient.patient_load[0].has_errors){
+          return true;
+        }
+
+        if(form.$submitted){
+          return true;
+        }
+
+        return false;
+      }
+
+      this.showWarnings = function(field_name){
+        if(!self.warnings[field_name]){
+          return false;
+        }
+        return false;
+      }
+
+      this.disableSave = function(form){
+        if(self.patient.patient_load[0].has_errors){
+          return false;
+        }
+        if(!_.size(self.errors) && form.$submitted){
+          return true;
+        }
       }
 
       this.setUp = function () {

@@ -18,10 +18,10 @@ def custom_datepicker(*args, **kwargs):
     context = forms._input(*args, **kwargs)
     if 'mindate' in kwargs:
         context['mindate'] = kwargs['mindate']
-    model, _ = forms._model_and_field_from_path(kwargs["field"])
-
+    model, field = forms._model_and_field_from_path(kwargs["field"])
+    context["model_api_name"] = model.get_api_name()
+    context["field_name"] = field.name
     context["model_name"] = "editing.{}".format(model.get_api_name())
-
     context["date_after"] = kwargs.pop("date_after", "")
     context["date_after_diff"] = kwargs.pop("date_after_diff", "")
     context["date_after_message"] = kwargs.pop("date_after_message", "")
@@ -45,6 +45,9 @@ def custom_datepicker(*args, **kwargs):
 @register.inclusion_tag('_helpers/number.html')
 def number(*args, **kwargs):
     context = forms._input(*args, **kwargs)
+    model, field = forms._model_and_field_from_path(kwargs["field"])
+    context["model_api_name"] = model.get_api_name()
+    context["field_name"] = field.name
     context["min_value"] = kwargs.get("min_value", "")
     context["max_value"] = kwargs.get("max_value", "")
     context["required"] = kwargs.get("required", "")

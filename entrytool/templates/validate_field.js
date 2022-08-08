@@ -1,6 +1,6 @@
 {% load i18n %}
 angular.module('opal.services').service('ValidateField', function(
-	EntrytoolHelper, $injector
+	EntrytoolHelper
 ) {
 	"use strict";
 

@@ -13,7 +13,7 @@
     {% if validator %}
     ng-class="{'has-error': {{ formname }}.$submitted && (form[{{ element_name }}].$invalid || $root.patientValidator.errors.{{ validator }})}"
     {% else %}
-    ng-class="{'has-error': {{ formname }}.$submitted && {{ formname }}[{{ element_name }}].$invalid}"
+    ng-class="{'has-error': ({{ formname }}.$submitted && {{ formname }}[{{ element_name }}].$invalid) || $root.patientValidator.showErrors('{{ field_name }}', {{ formname }})}"
     {% endif %}
     >
     {% if user_options %}
@@ -36,6 +36,8 @@
                ng-change="{{ change }}"
                {% elif validator %}
                ng-change="$root.patientValidator.{{ validator }}({{ model }}, {{ model_name }}, the_episode)"
+               {% else %}
+               ng-change="$root.patientValidator.validate('{{ model_api_name }}', '{{ field_name }}', {{ model }}, {{ model_name }}, the_episode)"
                {% endif %}
                {% if required %}
                required
@@ -95,6 +97,21 @@
       {% blocktrans with label=label %}{{ label }} is in the future{% endblocktrans %}
      </span>
      {% endif %}
+
+     <span
+     class="warning-block" ng-show="$root.patientValidator.showWarnings('{{ field_name }}')"
+   >
+     <div ng-repeat="warning in $root.patientValidator.warnings['{{ field_name }}'] track by $index">
+        [[ warning ]]
+     </div>
+   </span>
+   <span
+   class="help-block" ng-show="$root.patientValidator.showErrors('{{ field_name }}', {{ formname }})"
+   >
+    <div ng-repeat="error in $root.patientValidator.errors['{{ field_name }}'] track by $index">
+      [[ error ]]
+    </div>
+   </span>
      {% if validator %}
      <span
         class="help-block" ng-show="form.$submitted && $root.patientValidator.errors.{{ validator }}"

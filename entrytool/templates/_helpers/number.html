@@ -1,5 +1,5 @@
 {% load i18n %}
-<div {% if min_max_warning %}ng-class="{warning: {{ min_max_warning }}}"{% endif %} class="form-group number">
+<div {% if min_max_warning %}ng-class="{warning: {{ min_max_warning }}}"{% else %}ng-class="{warning: $root.patientValidator.warnings['{{ field_name }}']}"{% endif %} class="form-group number">
   <label
     class="control-label col-sm-3"
     >
@@ -8,7 +8,7 @@
   </label>
   <div
        class="col-sm-2"
-       ng-class="{'has-error': {{ formname }}.$submitted && {{ formname }}[{{ element_name }}].$invalid}""
+       ng-class="{'has-error': ({{ formname }}.$submitted && {{ formname }}[{{ element_name }}].$invalid) || $root.patientValidator.showErrors('{{ field_name }}', {{ formname }})}"
        >
 
 	<input class="form-control" type="number" ng-model="{{ model }}"
@@ -26,6 +26,8 @@
            {% endif %}
            {% if change %}
            ng-change="{{ change }}"
+           {% else %}
+           ng-change="$root.patientValidator.validate('{{ model_api_name }}', '{{ field_name }}', {{ model }}, {{ model_name }}, the_episode)"
            {% endif %}
            {% if data %}
            {% for key, val in data %}
@@ -68,12 +70,26 @@
       {% blocktrans with label=label %}{{ label }} is outside normal bounds{% endblocktrans %}
     </span>
     {% endif %}
+    <span
+    class="warning-block" ng-show="$root.patientValidator.showWarnings('{{ field_name }}')"
+  >
+    <div ng-repeat="warning in $root.patientValidator.warnings['{{ field_name }}'] track by $index">
+       [[ warning ]]
+    </div>
+  </span>
+  <span
+  class="help-block" ng-show="$root.patientValidator.showErrors('{{ field_name }}', {{ formname }})"
+  >
+   <div ng-repeat="error in $root.patientValidator.errors['{{ field_name }}'] track by $index">
+     [[ error ]]
+   </div>
+  </span>
   </div>
   {% if unit %}
   <label class="control-label"><small>({{ unit }})</small></label>
   {% endif %}
    {% if help_text %}
-      <p class="help-block">{% trans help_text %}	
+      <p class="help-block">{% trans help_text %}
       </p>
     {% endif %}
 </div>
