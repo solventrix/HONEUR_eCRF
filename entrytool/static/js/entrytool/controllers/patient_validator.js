@@ -3,10 +3,12 @@ angular
   .controller("PatientValidator", function (
     $scope,
     $rootScope,
+    $q,
     toMomentFilter,
     EntrytoolHelper,
     $injector,
-    ValidateField
+    ValidateField,
+    recordLoader
   ) {
     "use strict";
 
@@ -15,6 +17,27 @@ angular
     var PatientValidator = function () {
       var self = this;
       self.entrytool_helper = EntrytoolHelper;
+
+      this.validatesubrecord = function(subrecordApiName, subrecord, episode){
+        var result = $q.defer();
+        this.clean();
+        recordLoader.load().then(function(schema){
+          _.each(schema[subrecordApiName].fields, function(field){
+            var issues = ValidateField.validate(
+              subrecordApiName,
+              field["name"],
+              subrecord[field["name"]],
+              subrecord,
+              episode,
+              self.patient
+            )
+            self.errors[field["name"]] = issues.errors
+            self.warnings[field["name"]] = issues.warnings
+          });
+          result.resolve();
+        });
+        return result.promise;
+      }
 
       this.createValidator = function (fieldName, errorTypeToFunctionList) {
         /*
@@ -378,33 +401,25 @@ angular
       }
 
       this.showErrors = function(field_name, form){
-        if(!self.errors[field_name]){
+        if(!self.errors[field_name] || !self.errors[field_name].length){
           return false;
         }
-        if(self.patient.patient_load[0].has_errors){
-          return true;
-        }
-
-        if(form.$submitted){
-          return true;
-        }
-
-        return false;
+        return true;
       }
 
       this.showWarnings = function(field_name){
-        if(!self.warnings[field_name]){
+        if(!self.warnings[field_name]  || !self.errors[field_name].warnings){
           return false;
         }
-        return false;
+        return true;
       }
 
       this.disableSave = function(form){
         if(self.patient.patient_load[0].has_errors){
           return false;
         }
-        if(!_.size(self.errors) && form.$submitted){
-          return true;
+        if(_.size(_.filter(self.errors, function(err){ return err.length }))){
+          return true
         }
       }
 
@@ -413,7 +428,7 @@ angular
         this.clean()
 
         this.hasError = function () {
-          return _.size(self.errors);
+          return _.size(_.filter(self.errors, function(e){ return e.length}));
         };
         this.createValidator(
           "regimen_start", {

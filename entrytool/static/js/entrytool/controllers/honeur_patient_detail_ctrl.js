@@ -1,4 +1,4 @@
-angular.module('opal.controllers').controller("HoneurPatientDetailCtrl", function($scope, $rootScope, ValidatePatient){
+angular.module('opal.controllers').controller("HoneurPatientDetailCtrl", function($scope, $rootScope, ValidatePatient, EntryToolRecordEditor){
 	"use strict";
 	var self = this;
 
@@ -12,7 +12,9 @@ angular.module('opal.controllers').controller("HoneurPatientDetailCtrl", functio
 		* Wraps edit item to clean the patient validator after a subrecord has
 		* been saved.
 		*/
-		return episode.recordEditor.editItem(item_name, item).then(function(){
+		var recordEditor = new EntryToolRecordEditor(episode, $rootScope.patientValidator);
+
+		return recordEditor.editItem(item_name, item).then(function(){
 			$rootScope.patientValidator.clean();
 			if(self._erroringSubrecords.length){
 				self.checkPatient();
