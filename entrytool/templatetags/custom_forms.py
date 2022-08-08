@@ -92,3 +92,10 @@ def select(*args, **kwargs):
     context = forms.select(*args, **kwargs)
     context.update(honour_context(*args, **kwargs))
     return context
+
+
+@register.inclusion_tag('_helpers/input.html')
+def input(*args, **kwargs):
+    context = forms.input(*args, **kwargs)
+    context.update(honour_context(*args, **kwargs))
+    return context
