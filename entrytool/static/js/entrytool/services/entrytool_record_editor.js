@@ -2,7 +2,7 @@ angular.module('opal.services').factory('EntryToolRecordEditor', function(
 	$q, $modal, $rootScope, $routeParams, UserProfile,
 ){
 "use strict";
-var RecordEditor = function(episode, patientValidator){
+var RecordEditor = function(patientValidator, episode){
 	var self = this;
 	self.getItem = function(name, iix){
 		if (episode[name] && episode[name][iix] && episode[name][iix].columnName) {
@@ -45,14 +45,14 @@ var RecordEditor = function(episode, patientValidator){
 				var modal = $modal.open(modal_opts);
 
 				modal.result.then(function(result) {
-					$q.when(result).then(function(x){
+					$q.when(result).then(function(){
 						$rootScope.state = 'normal';
+						patientValidator.clean();
 						deferred.resolve(result);
 					});
 				});
 			}
 		});
-
 		return deferred.promise;
 	};
 
