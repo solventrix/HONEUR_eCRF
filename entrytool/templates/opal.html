@@ -2,6 +2,7 @@
 {% load i18n %}
 {% block javascripts %}
 {{ block.super }}
+<script type="text/javascript" src="{% url 'field-validation' %}"></script>
 <script type="text/javascript" src="{% url 'javascript-catalog' %}"></script>
 <script type="text/javascript" src="{% url 'angular-locale' %}"></script>
 <script>
@@ -15,18 +16,5 @@
   if(moment.langData(language)){
     moment.lang(language);
   }
-</script>
-<script>
-  angular.module('opal.config').constant(
-  'VALDATOR_ERRORS', {
-    REGIMEN_OVERLAP: "{% trans "The regimen cannot overlap with another regimen" %}",
-    NO_REGIMEN_RESPONSE: "{% trans "No regimen is connected to this response" %}",
-    NO_RESONSE_REGIMEN: "{% trans "A response date is not connected to a regimen" %}",
-    DIAGNOSIS_OVER_REGIMEN_START: "{% trans "Date of diagnosis is greater than a regimen start date" %}",
-    DIAGNOSIS_OVER_SCT: "{% trans "Date of diagnosis is greater than an SCT date" %}",
-    DIAGNOSIS_OVER_RESPONSE: "{% trans "Date of diagnosis is greater than a response date" %}",
-    REGIMEN_OVERLAPS: "{% trans "This regimen overlaps with another line of treatment" %}"
-  }
-  );
 </script>
 {% endblock %}

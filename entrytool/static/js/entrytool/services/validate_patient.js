@@ -34,7 +34,7 @@ angular.module('opal.services').factory('ValidatePatient', function(
 									episodeSubrecord,
 									episode,
 									patient
-								);
+								).errors;
 
 								if(errorMessages.length){
 									errors.push([episode.id, subrecordApiName, episodeSubrecord.id])
