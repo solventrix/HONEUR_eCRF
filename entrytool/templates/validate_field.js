@@ -82,6 +82,14 @@ angular.module('opal.services').service('ValidateField', function(
 		}
 	}
 
+	var maxLength = function(amount){
+		return function(val){
+			if(val && val.length > amount){
+				return true;
+			}
+		}
+	}
+
 	return {
 		validate: function(apiName, fieldName, value, instance, episode, patient){
 			/*
@@ -112,7 +120,8 @@ angular.module('opal.services').service('ValidateField', function(
 		demographics: {
 			hospital_number: {
 				errors: [
-					[required, "{% trans "External identifier is required" %}"]
+					[required, "{% trans "External identifier is required" %}"],
+					[maxLength(255), "{% trans "Maximum length is 255" %}"]
 				]
 			},
 			sex: {
@@ -143,6 +152,16 @@ angular.module('opal.services').service('ValidateField', function(
 			}
 		},
 		mm_regimen: {
+			hospital: {
+				errors: [
+					[required, "{% trans "Hospital is required" %}"]
+				]
+			},
+			category: {
+				errors: [
+					[required, "{% trans "Category is required" %}"]
+				]
+			},
 			start_date: {
 				errors: [
 					[afterDiagnosisDate, "Regimen start date must be after the date of diagnosis"]
