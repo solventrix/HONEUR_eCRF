@@ -335,6 +335,26 @@ angular.module('opal.services').service('ValidateField', function(
 		}
 	}
 
+	var validateResponseToRegimens = function(val, instance, episode){
+		/*
+		* From the perspective of a response_date, validates that there
+		* is a regimen related to it.
+		*/
+		if(!val){
+			return false;
+		}
+		var withinRegimen = false;
+		_.each(EntrytoolHelper.getEpisodeRegimen(episode), function(regimen){
+			var within = responseDateWithRegimen(val, regimen);
+			if(within){
+				withinRegimen = true;
+			}
+		});
+		if(!withinRegimen){
+			return true;
+		}
+	}
+
 	return {
 		validate: function(apiName, fieldName, value, instance, episode, patient){
 			/*
@@ -421,7 +441,7 @@ angular.module('opal.services').service('ValidateField', function(
 					[validateRegimenToOtherLOTRegimens,  "{% trans "This regimen overlaps with another line of treatment" %}"],
 					[endDateSameOrAfterRegimenStartDate, "{% trans "The end date should be after the start date" %}"],
 				],
-				warning: [
+				warnings: [
 					[validateRegimenToResponses, "{% trans "A response date is not connected to a regimen" %}"]
 				]
 			},
@@ -434,8 +454,27 @@ angular.module('opal.services').service('ValidateField', function(
 					[endDateSameOrAfterRegimenStartDate, "{% trans "The end date should be after the start date" %}"],
 					[validateOnlyOneOpenRegimen, "{% trans "There can only be one open regimen at a time" %}"]
 				],
-				warning: [
+				warnings: [
 					[validateRegimenToResponses, "{% trans "A response date is not connected to a regimen" %}"]
+				]
+			},
+		},
+		mm_response: {
+			progression_date: {
+				errors: [
+					[sameOrAfterDiagnosisDate,  "{% trans "The progression should be after the date of diagnosis" %}"],
+				],
+				warnings: [
+					[validateResponseToRegimens,  "{% trans "No regimen is connected to this response" %}"]
+				]
+			},
+			response_date: {
+				errors: [
+					[sameOrAfterDiagnosisDate,  "{% trans "The progression should be after the date of diagnosis" %}"],
+					[required,  "{% trans "The response date is required" %}"],
+				],
+				warnings: [
+					[validateResponseToRegimens,  "{% trans "No regimen is connected to this response" %}"]
 				]
 			},
 		},
