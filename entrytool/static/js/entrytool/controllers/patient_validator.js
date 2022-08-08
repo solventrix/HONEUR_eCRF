@@ -154,7 +154,7 @@ angular
             }
           });
         });
-        if (error) {
+        if (error){
           return VALDATION_ERRORS.REGIMEN_OVERLAP;
         }
       };
@@ -421,7 +421,7 @@ angular
       }
 
       this.showWarnings = function(field_name){
-        if(!self.warnings[field_name]  || !self.errors[field_name].warnings){
+        if(!self.warnings[field_name]){
           return false;
         }
         return true;
