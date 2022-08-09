@@ -250,6 +250,10 @@ h1 img {
   font-size: 12px;
 }
 
+.has-error p.help-block {
+  color: #737373;
+}
+
 .imported-validation-error {
   background-color: #C07A7A;
 }
