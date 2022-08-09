@@ -387,6 +387,12 @@ angular.module('opal.services').service('ValidateField', function(
 		}
 	}
 
+	var requiredIfCategoryIsTreatment = function(val, instance){
+		if(!val && instance.category == 'Treatment'){
+			return true
+		}
+	}
+
 	return {
 		validate: function(apiName, fieldName, value, instance, episode, patient){
 			/*
@@ -414,6 +420,8 @@ angular.module('opal.services').service('ValidateField', function(
 			}
 			return result;
 		},
+
+		// general validators
 		demographics: {
 			hospital_number: {
 				errors: [
@@ -427,6 +435,14 @@ angular.module('opal.services').service('ValidateField', function(
 				]
 			}
 		},
+		patient_status: {
+			death_date: {
+				errors: [
+					[afterDateOfBirth,  "{% trans "Date of death is before the date of birth" %}"]
+				]
+			}
+		},
+
 		mm_diagnosis_details: {
 			diag_date: {
 				errors: [
@@ -441,13 +457,8 @@ angular.module('opal.services').service('ValidateField', function(
 				]
 			},
 		},
-		patient_status: {
-			death_date: {
-				errors: [
-					[afterDateOfBirth,  "{% trans "Date of death is before the date of birth" %}"]
-				]
-			}
-		},
+
+		// MM validators
 		mm_regimen: {
 			hospital: {
 				errors: [
@@ -520,13 +531,6 @@ angular.module('opal.services').service('ValidateField', function(
 				]
 			}
 		},
-		cll_diagnosis_details: {
-			diag_date: {
-				errors: [
-					[validateDateOfDiagnosis, "{% trans "Date of diagnosis is greater than a regimen start date" %}"],
-				]
-			}
-		},
 		lab_test: {
 			date: {
 				errors: [
@@ -575,6 +579,59 @@ angular.module('opal.services').service('ValidateField', function(
 					[required, "{% trans "The hospital is required" %}"],
 				]
 			}
+		},
+		// CLL validators
+		cll_diagnosis_details: {
+			diag_date: {
+				errors: [
+					[validateDateOfDiagnosis, "{% trans "Date of diagnosis is greater than a regimen start date" %}"],
+					[required, "{% trans "Date of diagnosis is required" %}"],
+					[afterDateOfBirth, "{% trans "Date of diagnosis is before the date of birth" %}"],
+				]
+			},
+			binet_stage: {
+				errors: [
+					[required, "{% trans "Binet stage is required" %}"]
+				]
+			}
+		},
+		cll_regimen: {
+			regimen: {
+				errors: [
+					[requiredIfCategoryIsTreatment, "{% trans "Regimen is required" %}"]
+				]
+			},
+			start_date: {
+				errors: [
+					[required, "{% trans "Start date is required" %}"],
+					[sameOrAfterDiagnosisDate, "{% trans "Regimen start date must be after the date of diagnosis" %}"],
+					[validateRegimenDateBetween, "{% trans "The regimen cannot overlap with another regimen" %}"],
+					[validateRegimenSurrounds, "{% trans "The regimen cannot overlap with another regimen" %}"],
+					[validateRegimenToOtherLOTRegimens,  "{% trans "This regimen overlaps with another line of treatment" %}"],
+					[endDateSameOrAfterRegimenStartDate, "{% trans "The end date should be after the start date" %}"],
+				],
+				warnings: [
+					[validateRegimenToResponses, "{% trans "A response date is not connected to a regimen" %}"]
+				]
+			},
+			end_date: {
+				errors: [
+					[sameOrAfterDiagnosisDate, "{% trans "Regimen start date must be after the date of diagnosis" %}"],
+					[validateRegimenDateBetween, "{% trans "The regimen cannot overlap with another regimen" %}"],
+					[validateRegimenSurrounds, "{% trans "The regimen cannot overlap with another regimen" %}"],
+					[validateRegimenToOtherLOTRegimens,  "{% trans "This regimen overlaps with another line of treatment" %}"],
+					[endDateSameOrAfterRegimenStartDate, "{% trans "The end date should be after the start date" %}"],
+					[validateOnlyOneOpenRegimen, "{% trans "There can only be one open regimen at a time" %}"]
+				],
+				warnings: [
+					[validateRegimenToResponses, "{% trans "A response date is not connected to a regimen" %}"]
+				]
+			},
+		},
+		binet_stage: {
+
 		}
+
+
 	}
 });
