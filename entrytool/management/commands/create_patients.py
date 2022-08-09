@@ -712,8 +712,8 @@ def future_death():
     cytogenetics.date = today - datetime.timedelta(100)
     cytogenetics.hospital = "MVZ Koln"
     cytogenetics.tp_53 = "Negative"
-    cytogenetics.del_17p = "Negative"
-    cytogenetics.del11q = "Negative"
+    cytogenetics.del_17p = "Positive"
+    cytogenetics.del11q = "Positive"
     cytogenetics.t4_14 = "Negative"
     cytogenetics.t4_14_16 = "Negative"
     cytogenetics.ighv = "Negative"
@@ -724,8 +724,8 @@ def future_death():
     cytogenetics.date = today - datetime.timedelta(100)
     cytogenetics.hospital = "MVZ Koln"
     cytogenetics.tp_53 = "Negative"
-    cytogenetics.del_17p = "Negative"
-    cytogenetics.del11q = "Negative"
+    cytogenetics.del_17p = "Positive"
+    cytogenetics.del11q = "Positive"
     cytogenetics.t4_14 = "Negative"
     cytogenetics.t4_14_16 = "Negative"
     cytogenetics.ighv = "Negative"
@@ -736,13 +736,14 @@ def future_death():
     cytogenetics.date = today - datetime.timedelta(100)
     cytogenetics.hospital = "MVZ Koln"
     cytogenetics.tp_53 = "Negative"
-    cytogenetics.del_17p = "Negative"
-    cytogenetics.del11q = "Negative"
+    cytogenetics.del_17p = "Positive"
+    cytogenetics.del11q = "Positive"
     cytogenetics.t4_14 = "Negative"
     cytogenetics.t4_14_16 = "Negative"
     cytogenetics.ighv = "Negative"
     cytogenetics.consistency_token = "1231123"
     cytogenetics.save()
+
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
