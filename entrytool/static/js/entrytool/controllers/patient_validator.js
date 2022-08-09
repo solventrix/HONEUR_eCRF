@@ -46,6 +46,9 @@ angular
           if(!_.size(_.filter(self.errors, function(err){ return err.length }))){
             someFn();
           }
+          else if(self.patient.patient_load[0].has_errors){
+            someFn();
+          }
           else{
             self.submitted = true;
           }
