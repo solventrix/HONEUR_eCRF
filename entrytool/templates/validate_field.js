@@ -473,16 +473,6 @@ angular.module('opal.services').service('ValidateField', function(
 
 		// MM validators
 		mm_regimen: {
-			hospital: {
-				errors: [
-					[required, "{% trans "Hospital is required" %}"]
-				]
-			},
-			category: {
-				errors: [
-					[required, "{% trans "Category is required" %}"]
-				]
-			},
 			regimen: {
 				errors: [
 					[regimenRequired, "{% trans "Regimen is required" %}"]
