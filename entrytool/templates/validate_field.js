@@ -563,6 +563,18 @@ angular.module('opal.services').service('ValidateField', function(
 					[greaterThan(1000), "{% trans "Beta2m is too low" %}"],
 				]
 			}
+		},
+		mm_cytogenetics: {
+			date: {
+				errors: [
+					[required, "{% trans "The date is required" %}"],
+				]
+			},
+			hospital: {
+				errors: [
+					[required, "{% trans "The hospital is required" %}"],
+				]
+			}
 		}
 	}
 });
