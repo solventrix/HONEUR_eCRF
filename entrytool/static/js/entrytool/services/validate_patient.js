@@ -27,6 +27,12 @@ angular.module('opal.services').factory('ValidatePatient', function(
 						}
 						_.each(subrecords, function(episodeSubrecord){
 							_.each(schema[subrecordApiName].fields, function(field){
+								// only validate patient subrecords once and do it against the
+								// condition episode category. IE ignore patient
+								// subrecords on line of treatments
+								if(patient[subrecordApiName] && episode.category_name == "Treatment Line"){
+									return;
+								}
 								var errorMessages = ValidateField.validate(
 									subrecordApiName,
 									field["name"],
@@ -50,7 +56,10 @@ angular.module('opal.services').factory('ValidatePatient', function(
 
 	var updatePatientLoadIfRequired = function(patient, errors){
 		var result = $q.defer();
-		var episode = _.values(patient.episodes)[0]
+		// Always use the condition episode for patient subrecords
+		var episode = _.findWhere(_.values(patient.episodes), function(episode){
+			episode.category_name !== "Treatment Line"
+		});
 		var patientLoad = episode.patient_load[0];
 		var needsAnUpdate = false;
 		if(!patientLoad.validated ){
@@ -64,6 +73,7 @@ angular.module('opal.services').factory('ValidatePatient', function(
 			copy.has_errors = !!errors.length;
 			copy.validated = true;
 			patientLoad.save(copy).then(function(){
+				patient.patient_load[0] = patientLoad;
 				result.resolve();
 			});
 		}
