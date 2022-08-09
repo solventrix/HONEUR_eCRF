@@ -17,9 +17,10 @@ angular
     var PatientValidator = function () {
       var self = this;
       self.entrytool_helper = EntrytoolHelper;
-      self.saveDisabled = true;
+      self.saveDisabled = false;
+      self.submitted = false;
 
-      this.validatesubrecord = function(subrecordApiName, subrecord, episode, form){
+      this.validatesubrecord = function(subrecordApiName, subrecord, episode){
         /*
         * Validates a whole subrecord.
         *
@@ -30,7 +31,6 @@ angular
         * present when the user opens the modal.
         */
         var result = $q.defer();
-        this.clean();
         recordLoader.load().then(function(schema){
           _.each(schema[subrecordApiName].fields, function(field){
             var issues = ValidateField.validate(
@@ -46,10 +46,19 @@ angular
           });
           result.resolve();
         });
-        if(form){
-          self.enableSave(form);
-        }
+
         return result.promise;
+      }
+
+      this.preSaveValidate = function(subrecordApiName, subrecord, episode, someFn){
+        self.validatesubrecord(subrecordApiName, subrecord, episode).then(function(){
+          if(!_.size(_.filter(self.errors, function(err){ return err.length }))){
+            someFn();
+          }
+          else{
+            self.submitted = true;
+          }
+        });
       }
 
       this.createValidator = function (fieldName, errorTypeToFunctionList) {
@@ -395,6 +404,7 @@ angular
         self.errors = {};
         self.warnings = {};
         self.saveDisabled = false;
+        self.submitted = false;
       }
 
       this.validate = function(model_api_name, field_name, val, instance, episode){
@@ -410,11 +420,11 @@ angular
         self.warnings[field_name] = issues.warnings;
       }
 
-      this.showErrors = function(field_name, form){
+      this.showErrors = function(field_name){
         if(!self.errors[field_name] || !self.errors[field_name].length){
           return false;
         }
-        if(form.$submitted || self.patient.patient_load[0].has_errors){
+        if(self.submitted || self.patient.patient_load[0].has_errors){
           return true;
         }
         return false;
@@ -427,15 +437,18 @@ angular
         return true;
       }
 
-      this.enableSave = function(form){
+      this.enableSave = function(){
         if(self.patient.patient_load[0].has_errors){
           self.saveDisabled = false;
         }
-        if(!form.$submitted){
+        if(!self.submitted){
           self.saveDisabled = false;
         }
         if(_.size(_.filter(self.errors, function(err){ return err.length }))){
           self.saveDisabled = true
+        }
+        else{
+          self.saveDisabled = false;
         }
       }
 

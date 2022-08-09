@@ -4,12 +4,12 @@
      >
   <label class="control-label {% ifequal style "horizontal" %}col-sm-3{% endifequal %}">{{ label }}</label>
   <div class="{% ifequal style "horizontal" %}col-sm-8{% endifequal %}"
-    ng-class="{'has-error': $root.patientValidator.showErrors('{{ field_name }}', {{ formname }})}"
+    ng-class="{'has-error': $root.patientValidator.showErrors('{{ field_name }}')}"
   >
     <div class="row" >
       <div class="col-md-12">
       <label class="radio-inline" ng-repeat="item in {{ lookuplist }}">
-        <input ng-change="$root.patientValidator.validatesubrecord('{{ model_api_name }}', {{ subrecord }}, the_episode, {{ formname }})" class="" type="radio" name="[[ {{ element_name }} ]]" value="[[ item ]]" ng-model="{{ model }}">
+        <input ng-change="$root.patientValidator.validatesubrecord('{{ model_api_name }}', {{ subrecord }}, the_episode)" class="" type="radio" name="[[ {{ element_name }} ]]" value="[[ item ]]" ng-model="{{ model }}">
         [[ item | translate ]]
       </label>
       </div>
@@ -22,7 +22,7 @@
     </div>
   </span>
   <span
-  class="help-block" ng-show="$root.patientValidator.showErrors('{{ field_name }}', {{ formname }})"
+  class="help-block" ng-show="$root.patientValidator.showErrors('{{ field_name }}')"
   >
    <div ng-repeat="error in $root.patientValidator.errors['{{ field_name }}'] track by $index">
      [[ error ]]

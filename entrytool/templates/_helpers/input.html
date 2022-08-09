@@ -14,7 +14,7 @@
        {% ifequal style "horizontal" %}
        class="col-sm-{% if unit %}2{% else %}8{% endif %}"
        {% endifequal %}
-       ng-class="{'has-error': $root.patientValidator.showErrors('{{ field_name }}', {{ formname }})}"
+       ng-class="{'has-error': $root.patientValidator.showErrors('{{ field_name }}')}"
        >
 
 	<input class="form-control" type="{{ element_type }}" ng-model="{{ model }}"
@@ -24,7 +24,7 @@
            uib-typeahead="i for i in {{ lookuplist }} | filter:$viewValue | limitTo:8"
            {% endif %}
            name="[[ {{ element_name }} ]]"
-           ng-change="$root.patientValidator.validatesubrecord('{{ model_api_name }}', {{ subrecord }}, the_episode, {{ formname }})"
+           ng-change="$root.patientValidator.validatesubrecord('{{ model_api_name }}', {{ subrecord }}, the_episode)"
            />
 
     <span
@@ -35,7 +35,7 @@
     </div>
   </span>
   <span
-  class="help-block" ng-show="$root.patientValidator.showErrors('{{ field_name }}', {{ formname }})"
+  class="help-block" ng-show="$root.patientValidator.showErrors('{{ field_name }}')"
   >
   <div ng-repeat="error in $root.patientValidator.errors['{{ field_name }}'] track by $index">
     [[ error ]]
