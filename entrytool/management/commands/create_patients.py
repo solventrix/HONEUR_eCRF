@@ -21,20 +21,23 @@ class Command(BaseCommand):
                 hospital_number=i*1563,
                 date_of_birth=dob_start + datetime.timedelta(200*i)
             )
+            demographics = patient.demographics_set.get()
+            demographics.sex = 'Male'
+            demographics.save()
 
-            patient.episode_set.create(
+            episode = patient.episode_set.create(
                 category_name="MM"
+            )
+            patient.episode_set.get()
+            episode.mmdiagnosisdetails_set.update(
+                diag_date=yesterday,
+                heavy_chain_type='IgG',
+                light_chain_type='Lambda',
+                iss_stage='Stage II',
+                consistency_token='111'
             )
 
             if not i % modulo:
-                episode = patient.episode_set.get()
-                episode.mmdiagnosisdetails_set.update(
-                    diag_date=yesterday,
-                    heavy_chain_type='IgG',
-                    light_chain_type='Lambda',
-                    iss_stage='Stage II',
-                    consistency_token='111'
-                )
                 lot_episode = patient.episode_set.create(
                     category_name="Treatment Line"
                 )
