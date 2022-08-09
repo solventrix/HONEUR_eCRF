@@ -1,21 +1,17 @@
 {% load i18n %}
-
-
-
-
 <div class="panel panel-default">
   <div class="panel-heading">
     <h3>
       {{ models.PatientStatus.get_display_name }}
       <i class="fa fa-pencil edit pull-right pointer"
-         ng-click="patient.recordEditor.editItem('patient_status', patient.patient_status[0])"></i>
+         ng-click="honeurPatientDetailCtrl.editItem('patient_status', patient.patient_status[0], episode)"></i>
     </h3>
   </div>
   <div class='help-block' ng-show="!(patient.patient_status[0].lost_to_follow_up || patient.patient_status[0].deceased)">
   Report patient death or lost to follow up here.
   </div>
   <ul class="list-group">
-    <li class="list-group-patient.patient_status[0]">
+    <li ng-class="{'imported-validation-error': honeurPatientDetailCtrl.hasError(episode.id, 'patient_status', patient.patient_status[0].id)}">
       <div class="row">
    <div class="col-md-6">
     <span ng-show="patient.patient_status[0].lost_to_follow_up_date" class="display-label">{% trans "Last Seen" %}</span>
