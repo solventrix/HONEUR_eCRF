@@ -28,6 +28,10 @@
   padding: 8px;
 }
 
+.red {
+  color: #ff3309;
+}
+
 .padding0 {
   padding-left: 0px;
   padding-right: 0px;
