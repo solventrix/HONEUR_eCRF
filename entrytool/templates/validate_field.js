@@ -348,7 +348,7 @@ angular.module('opal.services').service('ValidateField', function(
 
 	var lessThan = function(amount){
 		return function(val){
-			if(val && val > amount){
+			if(_.isNumber(val) && val > amount){
 				return true;
 			}
 		}
@@ -552,20 +552,20 @@ angular.module('opal.services').service('ValidateField', function(
 			},
 			mprotein_24h: {
 				errors: [
-					[lessThan(0), "{% trans "Mprotein in 24 hour is too high" %}"],
-					[greaterThan(1000), "{% trans "Mprotein in 24 hour is too low" %}"],
+					[lessThan(1000), "{% trans "Mprotein in 24 hour is too high" %}"],
+					[greaterThan(0), "{% trans "Mprotein in 24 hour is too low" %}"],
 				]
 			},
 			calcium: {
 				errors: [
-					[lessThan(6.5), "{% trans "Calcium is too high" %}"],
-					[greaterThan(25), "{% trans "Calcium is too low" %}"],
+					[lessThan(25), "{% trans "Calcium is too high" %}"],
+					[greaterThan(6.5), "{% trans "Calcium is too low" %}"],
 				]
 			},
 			beta2m: {
 				errors: [
-					[lessThan(0), "{% trans "Beta2m is too high" %}"],
-					[greaterThan(1000), "{% trans "Beta2m is too low" %}"],
+					[lessThan(1000), "{% trans "Beta2m is too high" %}"],
+					[greaterThan(0), "{% trans "Beta2m is too low" %}"],
 				]
 			}
 		},
