@@ -547,7 +547,7 @@ angular.module('opal.services').service('ValidateField', function(
 		lab_test: {
 			date: {
 				errors: [
-					[afterDateOfBirth,  "{% trans "Lab test date must be after the patient's birth date" %}"],
+					[afterDateOfBirth,  "{% trans "Lab test date must be after the date of birth" %}"],
 					[required, "{% trans "The date is required" %}"],
 				]
 			},
