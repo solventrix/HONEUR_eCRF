@@ -400,11 +400,6 @@ angular.module('opal.services').service('ValidateField', function(
 		}
 	}
 
-	var requiredIfCategoryIsTreatment = function(val, instance){
-		if(!val && instance.category == 'Treatment'){
-			return true
-		}
-	}
 
 	return {
 		validate: function(apiName, fieldName, value, instance, episode, patient){
@@ -451,7 +446,8 @@ angular.module('opal.services').service('ValidateField', function(
 		patient_status: {
 			death_date: {
 				errors: [
-					[afterDateOfBirth,  "{% trans "Date of death is before the date of birth" %}"]
+					[afterDateOfBirth,  "{% trans "Date of death is before the date of birth" %}"],
+					[noFuture, "{% trans "Date of death cannot be in the future" %}"]
 				]
 			}
 		},
@@ -462,6 +458,7 @@ angular.module('opal.services').service('ValidateField', function(
 					[validateDateOfDiagnosis, "{% trans "Date of diagnosis is greater than a regimen start date" %}"],
 					[requiredForCategory('MM'), "{% trans "Date of diagnosis is required" %}"],
 					[afterDateOfBirth, "{% trans "Date of diagnosis is before the date of birth" %}"],
+					[noFuture, "{% trans "Date of diagnosis cannot be in the future" %}"]
 				]
 			},
 			iss_stage: {
@@ -539,6 +536,7 @@ angular.module('opal.services').service('ValidateField', function(
 				errors: [
 					[afterDateOfBirth,  "{% trans "Lab test date must be after the date of birth" %}"],
 					[required, "{% trans "The date is required" %}"],
+					[noFuture, "{% trans "The date cannot be in the future" %}"],
 				]
 			},
 			hospital: {
@@ -574,6 +572,7 @@ angular.module('opal.services').service('ValidateField', function(
 		mm_cytogenetics: {
 			date: {
 				errors: [
+					[noFuture, "{% trans "The date cannot be in the future" %}"],
 					[required, "{% trans "The date is required" %}"],
 				]
 			},
