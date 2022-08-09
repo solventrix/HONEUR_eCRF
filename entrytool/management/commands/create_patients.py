@@ -534,7 +534,7 @@ def response_before_diagnosis_date():
     lab_test.ige_count = 199
     lab_test.creatinine = 2
     lab_test.mprotein_24h = 133
-    lab_test.calcium = 40
+    lab_test.calcium = 10.2
     lab_test.beta2m = 1.77
     lab_test.consistency_token = "1231123"
     lab_test.save()
