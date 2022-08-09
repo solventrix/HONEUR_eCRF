@@ -4,10 +4,7 @@ angular.module('opal.services').service('ValidateField', function(
 ) {
 	"use strict";
 
-	var validateDateOfDiagnosis = function(val, instance, episode, patient, fieldName, modelApiName){
-		/*
-		* Date of diagnosis must be below all SCT/Regimen/response dates.
-		*/
+	var validateDateOfDiagnosisAgainstRegimen = function(val, instance, episode, patient){
 		var error = false;
 		_.each(patient.episodes, function(episode){
 			_.each(EntrytoolHelper.getEpisodeRegimen(episode), function(regimen){
@@ -19,9 +16,13 @@ angular.module('opal.services').service('ValidateField', function(
 		if(error){
 			return error
 		}
+	}
+
+	var validateDateOfDiagnosisAgainstResponse = function(val, instance, episode, patient){
+		var error = false;
 		_.each(patient.episodes, function(episode){
-			_.each(episode.sct, function(sct){
-				if(sct.sct_date < val){
+			_.each(EntrytoolHelper.getEpisodeResponse(episode), function(response){
+				if(response.response_date < val){
 					error = true;
 				}
 			});
@@ -29,11 +30,17 @@ angular.module('opal.services').service('ValidateField', function(
 		if(error){
 			return error
 		}
+	}
 
-		var error = null;
+
+	var validateDateOfDiagnosisAgainstSCT = function(val, instance, episode, patient, fieldName, modelApiName){
+		/*
+		* Date of diagnosis must be below all SCT/Regimen/response dates.
+		*/
+		var error = false;
 		_.each(patient.episodes, function(episode){
-			_.each(EntrytoolHelper.getEpisodeResponse(episode), function(response){
-				if(response.response_date < val){
+			_.each(episode.sct, function(sct){
+				if(sct.sct_date < val){
 					error = true;
 				}
 			});
@@ -455,7 +462,9 @@ angular.module('opal.services').service('ValidateField', function(
 		mm_diagnosis_details: {
 			diag_date: {
 				errors: [
-					[validateDateOfDiagnosis, "{% trans "Date of diagnosis is greater than a regimen start date" %}"],
+					[validateDateOfDiagnosisAgainstRegimen, "{% trans "Date of diagnosis is after a regimen start date" %}"],
+					[validateDateOfDiagnosisAgainstResponse, "{% trans "Date of diagnosis is after a response date" %}"],
+					[validateDateOfDiagnosisAgainstSCT, "{% trans "Date of diagnosis is after the date of a stem cell transplant " %}"],
 					[requiredForCategory('MM'), "{% trans "Date of diagnosis is required" %}"],
 					[afterDateOfBirth, "{% trans "Date of diagnosis is before the date of birth" %}"],
 					[noFuture, "{% trans "Date of diagnosis cannot be in the future" %}"]
@@ -514,7 +523,7 @@ angular.module('opal.services').service('ValidateField', function(
 			},
 			response_date: {
 				errors: [
-					[sameOrAfterDiagnosisDate,  "{% trans "The progression should be after the date of diagnosis" %}"],
+					[sameOrAfterDiagnosisDate,  "{% trans "The response should be after the date of diagnosis" %}"],
 					[required,  "{% trans "The response date is required" %}"],
 					[noFuture, "{% trans "The response date is in the future" %}"]
 				],
