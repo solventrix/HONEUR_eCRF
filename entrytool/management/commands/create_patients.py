@@ -363,17 +363,11 @@ def create_open_regimen():
 class Command(BaseCommand):
     def handle(self, *args, **options):
         Patient.objects.all().delete()
-        create_perfect_patient()
-        create_perfect_patient()
-        create_perfect_patient()
-        create_perfect_patient()
-        create_perfect_patient()
-        create_perfect_patient()
+        for i in range(10):
+            create_perfect_patient()
         create_no_gender()
-        create_perfect_patient()
-        create_perfect_patient()
-        create_perfect_patient()
-        create_perfect_patient()
-        create_perfect_patient()
-        create_perfect_patient()
+        for i in range(10):
+            create_perfect_patient()
         create_open_regimen()
+        for i in range(10):
+            create_perfect_patient()
