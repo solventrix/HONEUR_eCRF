@@ -133,42 +133,23 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "entrytool.wsgi.application"
 
-# Database
-# set the ON_HEROKU variable for deployment to heroku
-# heroku config:set ON_HEROKU=True
-if os.environ.get("ON_HEROKU"):
+try:
     import dj_database_url
     DATABASES = {'default': dj_database_url.config()}
-else:
-    try:
-        # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
-        DATABASES = {
-            "default": {
-                "ENGINE": "django.db.backends.postgresql",
-                "NAME": os.environ['OPAL_DB_NAME'],
-                "USER": os.environ['OPAL_DB_USER'],
-                "PASSWORD": os.environ['OPAL_DB_PASSWORD'],
-                "HOST": os.environ['OPAL_DB_HOST'],
-                "PORT": os.environ['OPAL_DB_PORT'],
-                'OPTIONS': {
-                    'options': '-c search_path=opal'
-                },
-            }
+except ImportError:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": os.environ['OPAL_DB_NAME'],
+            "USER": os.environ['OPAL_DB_USER'],
+            "PASSWORD": os.environ['OPAL_DB_PASSWORD'],
+            "HOST": os.environ['OPAL_DB_HOST'],
+            "PORT": os.environ['OPAL_DB_PORT'],
+            'OPTIONS': {
+                'options': '-c search_path=opal'
+            },
         }
-    except ImportError:
-        DATABASES = {
-            "default": {
-                "ENGINE": "django.db.backends.postgresql",
-                "NAME": os.environ['OPAL_DB_NAME'],
-                "USER": os.environ['OPAL_DB_USER'],
-                "PASSWORD": os.environ['OPAL_DB_PASSWORD'],
-                "HOST": os.environ['OPAL_DB_HOST'],
-                "PORT": os.environ['OPAL_DB_PORT'],
-                'OPTIONS': {
-                    'options': '-c search_path=opal'
-                },
-            }
-        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
