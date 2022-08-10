@@ -17,6 +17,7 @@ class Application(application.OpalApplication):
         "js/entrytool/services/entrytool_helper.js",
         "js/entrytool/services/validate_patient.js",
         "js/entrytool/services/validate_field.js",
+        "js/entrytool/services/validators.js",
         "js/entrytool/services/entrytool_record_editor.js",
         "js/entrytool/controllers/lot_manager.js",
         "js/entrytool/controllers/delete_lot.js",
@@ -44,7 +45,7 @@ class Application(application.OpalApplication):
                     ),
                     menus.MenuItem(
                         href=reverse("logout"), display=_('Log Out'), index=1000
-                    ),
+                    )
                 ]
                 if user.is_staff:
                     menuitems.append(
