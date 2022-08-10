@@ -8,6 +8,7 @@
   </p>
 </div>
 <div ng-controller="PatientValidator"></div>
+<div ng-controller="HoneurPatientDetailCtrl as honeurPatientDetailCtrl">
   <div ng-repeat="episode in patient.episodes">
     {% for episode_category in episode_categories %}
     {% if episode_category.detail_template and not episode_category.display_name == 'Inpatient' %}

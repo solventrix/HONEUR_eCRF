@@ -8,7 +8,7 @@ from entrytool.episode_categories import LineOfTreatmentEpisode
 
 class NewLineOfTreatmentEpisode(LoginRequiredViewset):
     model = Patient
-    base_name = "new_line_of_treatment_episode"
+    basename = "new_line_of_treatment_episode"
 
     @patient_from_pk
     def update(self, request, patient):
@@ -24,7 +24,7 @@ class NewLineOfTreatmentEpisode(LoginRequiredViewset):
 
 class DeleteLineOfTreatmentEpisode(LoginRequiredViewset):
     model = Episode
-    base_name = "delete_line_of_treatment_episode"
+    basename = "delete_line_of_treatment_episode"
 
     @episode_from_pk
     def destroy(self, request, episode):
@@ -45,8 +45,8 @@ class DeleteLineOfTreatmentEpisode(LoginRequiredViewset):
 
 entrytool_router = OPALRouter()
 entrytool_router.register(
-    NewLineOfTreatmentEpisode.base_name, NewLineOfTreatmentEpisode
+    NewLineOfTreatmentEpisode.basename, NewLineOfTreatmentEpisode
 )
 entrytool_router.register(
-    DeleteLineOfTreatmentEpisode.base_name, DeleteLineOfTreatmentEpisode
+    DeleteLineOfTreatmentEpisode.basename, DeleteLineOfTreatmentEpisode
 )
