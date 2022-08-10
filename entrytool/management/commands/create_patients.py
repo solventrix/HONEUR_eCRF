@@ -181,7 +181,7 @@ def create_no_gender():
     lab_test.save()
 
     cytogenetics = episode.mmcytogenetics_set.create()
-    cytogenetics.date = today - datetime.timedelta(100)
+    cytogenetics.date = today - datetime.timedelta(80)
     cytogenetics.hospital = "MVZ Koln"
     cytogenetics.tp_53 = "Negative"
     cytogenetics.del_17p = "Negative"
@@ -193,7 +193,7 @@ def create_no_gender():
     cytogenetics.save()
 
     cytogenetics = episode.mmcytogenetics_set.create()
-    cytogenetics.date = today - datetime.timedelta(100)
+    cytogenetics.date = today - datetime.timedelta(90)
     cytogenetics.hospital = "MVZ Koln"
     cytogenetics.tp_53 = "Negative"
     cytogenetics.del_17p = "Negative"
@@ -424,7 +424,7 @@ def future_cytogenetics():
     lab_test.save()
 
     cytogenetics = episode.mmcytogenetics_set.create()
-    cytogenetics.date = today - datetime.timedelta(80)
+    cytogenetics.date = today - datetime.timedelta(50)
     cytogenetics.hospital = "MVZ Koln"
     cytogenetics.tp_53 = "Negative"
     cytogenetics.del_17p = "Negative"
@@ -436,7 +436,7 @@ def future_cytogenetics():
     cytogenetics.save()
 
     cytogenetics = episode.mmcytogenetics_set.create()
-    cytogenetics.date = today + datetime.timedelta(100)
+    cytogenetics.date = today + datetime.timedelta(43)
     cytogenetics.hospital = "MVZ Koln"
     cytogenetics.tp_53 = "Negative"
     cytogenetics.del_17p = "Negative"
