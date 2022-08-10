@@ -134,6 +134,8 @@ TEMPLATES = [
 WSGI_APPLICATION = "entrytool.wsgi.application"
 
 try:
+    # This is for heroku deployments
+    # if you're not on heroku, this will raise an error
     import dj_database_url
     DATABASES = {'default': dj_database_url.config()}
 except ImportError:
