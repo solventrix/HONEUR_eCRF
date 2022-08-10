@@ -1,3 +1,7 @@
+.content-offset-below-25 {
+  margin-bottom: 25px;
+}
+
 .entry-tool .panel-heading i.edit,
 .entry-tool .list-group-item i.edit,
 .entry-tool .list-group-item i.delete {
