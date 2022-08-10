@@ -14,7 +14,7 @@
        {% ifequal style "horizontal" %}
        class="col-sm-{% if unit %}2{% else %}8{% endif %}"
        {% endifequal %}
-       ng-class="{'has-error': {{ formname }}.$submitted && {{ formname }}[{{ element_name }}].$invalid}"
+       ng-class="{'has-error': $root.patientValidator.showErrors('{{ field_name }}')}"
        >
 
 	<input class="form-control" type="{{ element_type }}" ng-model="{{ model }}"
@@ -24,43 +24,29 @@
            uib-typeahead="i for i in {{ lookuplist }} | filter:$viewValue | limitTo:8"
            {% endif %}
            name="[[ {{ element_name }} ]]"
-           {% if required %}
-           required
-           {% endif %}
-           {% if change %}
-           ng-change="{{ change }}"
-           {% endif %}
-           {% if data %}
-           {% for key, val in data %}
-           data-{{key}}="{{ val }}"
-           {% endfor %}
-           {% endif %}
-           {% if enter %}
-           ng-keypress="$event.keyCode == 13 && {{ enter }}"
-           {% endif %}
-           {% if maxlength %}
-           ng-maxlength="{{ maxlength }}"
-           {% endif %}
-           {% if disabled %}
-           ng-disabled="{{ disabled}}"
-           {% endif %}
+           ng-change="$root.patientValidator.validatesubrecord('{{ model_api_name }}', {{ subrecord }}, the_episode)"
            />
-    {% if maxlength %}
-        <span class="help-block" ng-show="({{ formname }}.$submitted || {{ formname }}[{{ element_name }}].$invalid) && {{ formname }}[{{ element_name }}].$error.maxlength">
-          {% blocktrans with maxlength=maxlength %}Maximum length is {{ maxlength }}{% endblocktrans %}
-        </span>
-    {% endif %}
-    {% if required %}
-      <span class="help-block" ng-show="({{ formname }}[{{ element_name }}].$dirty || {{ formname }}.$submitted) && {{ formname }}[{{ element_name }}].$error.required">
-        {% blocktrans with label=label %}{{ label }} is required{% endblocktrans %}
-      </span>
-    {% endif %}
+
+    <span
+    class="warning-block" ng-show="$root.patientValidator.showWarnings('{{ field_name }}')"
+  >
+    <div ng-repeat="warning in $root.patientValidator.warnings['{{ field_name }}'] track by $index">
+      [[ warning ]]
+    </div>
+  </span>
+  <span
+  class="help-block" ng-show="$root.patientValidator.showErrors('{{ field_name }}')"
+  >
+  <div ng-repeat="error in $root.patientValidator.errors['{{ field_name }}'] track by $index">
+    [[ error ]]
+  </div>
+  </span>
   </div>
   {% if unit %}
   <label class="control-label"><small>({{ unit }})</small></label>
   {% endif %}
    {% if help_text %}
-      <p class="help-block">{% trans help_text %}	
+      <p class="help-block">{% trans help_text %}
       </p>
     {% endif %}
 </div>
