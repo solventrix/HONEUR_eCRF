@@ -8,7 +8,6 @@ angular.module('opal.services').service('ValidateField', function(ValidationRule
 				warnings: [],
 				errors: []
 			}
-			var self = this;
 			if(ValidationRules[apiName] && ValidationRules[apiName][fieldName]){
 				_.each(['warnings', 'errors'], function(alertType){
 					if(!ValidationRules[apiName][fieldName][alertType]){

@@ -7,6 +7,11 @@ $red2 : rgb(255, 101, 9);
 $janssen-blue : rgb(0,37,98);
 $janssen-blue-light : rgb(7,148,224);
 
+
+.content-offset-below-25{
+    margin-bottom: 25px;
+}
+
 .entry-tool{
     .panel-heading i.edit,
     .list-group-item i.edit,
@@ -29,13 +34,27 @@ $janssen-blue-light : rgb(7,148,224);
         .column{
             border-top: 1px solid #dee2e6;
         }
-        .column, .first-column, .header{
+        .column, .header{
+            margin-top: 1px;
             padding: 8px;
+        }
+        .first-column{
+            padding: 8px;
+            margin-top: 2px;
+        }
+        .column.last-column{
+            padding: 4px 4px 8px 4px;
+            .fa{
+                padding-top: 6px;
+            }
         }
     }
 }
 
 
+.red{
+    color: $red;
+}
 // utility
 
 .padding0 {
@@ -246,4 +265,33 @@ h1 img {
             display: block;
         }
     }
+}
+
+.mm-table{
+    td, th{
+        text-align: center;
+    }
+    td.first-column, th.first-column{
+        text-align: left;
+        width: 100px;
+    }
+    td.last-column{
+        text-align: right;
+        padding-right: 16px;
+    }
+
+    .no-border{
+        border: none;
+    }
+    i{
+        font-size: 12px;
+    }
+}
+
+.has-error p.help-block{
+    color: #737373;
+}
+
+.imported-validation-error{
+    background-color: #C07A7A;
 }

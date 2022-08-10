@@ -1,25 +1,53 @@
+.content-offset-below-25 {
+  margin-bottom: 25px;
+}
+
 .entry-tool .panel-heading i.edit,
 .entry-tool .list-group-item i.edit,
 .entry-tool .list-group-item i.delete {
   display: block;
 }
+
 .entry-tool .edit a i {
   color: #1a1a1a;
 }
+
 .entry-tool a.disabled {
   opacity: 0.5;
 }
+
 .entry-tool a.disabled:hover {
   color: inherit;
 }
+
 .entry-tool .follow-up-table {
   text-align: center;
 }
+
 .entry-tool .follow-up-table .column {
   border-top: 1px solid #dee2e6;
 }
-.entry-tool .follow-up-table .column, .entry-tool .follow-up-table .first-column, .entry-tool .follow-up-table .header {
+
+.entry-tool .follow-up-table .column, .entry-tool .follow-up-table .header {
+  margin-top: 1px;
   padding: 8px;
+}
+
+.entry-tool .follow-up-table .first-column {
+  padding: 8px;
+  margin-top: 2px;
+}
+
+.entry-tool .follow-up-table .column.last-column {
+  padding: 4px 4px 8px 4px;
+}
+
+.entry-tool .follow-up-table .column.last-column .fa {
+  padding-top: 6px;
+}
+
+.red {
+  color: #ff3309;
 }
 
 .padding0 {
@@ -105,7 +133,8 @@ h1 img {
 
 .ngProgressLiteBar {
   background-color: #0794e0;
-  box-shadow: 0 0 10px 0;
+  -webkit-box-shadow: 0 0 10px 0;
+          box-shadow: 0 0 10px 0;
   /* Inherits the font color */
   top: 50px;
 }
@@ -116,7 +145,8 @@ h1 img {
 
 .panel {
   border: none;
-  box-shadow: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
 
 .panel.panel-primary .panel-heading {
@@ -165,6 +195,7 @@ h1 img {
   letter-spacing: 0.2rem;
   border-radius: 0px;
 }
+
 .btn-primary:hover, .btn-primary:focus {
   background-color: #0794e0;
   border-color: #0794e0;
@@ -214,8 +245,38 @@ h1 img {
 .number .warning-block {
   display: none;
 }
+
 .number.warning .warning-block {
   display: block;
 }
 
+.mm-table td, .mm-table th {
+  text-align: center;
+}
+
+.mm-table td.first-column, .mm-table th.first-column {
+  text-align: left;
+  width: 100px;
+}
+
+.mm-table td.last-column {
+  text-align: right;
+  padding-right: 16px;
+}
+
+.mm-table .no-border {
+  border: none;
+}
+
+.mm-table i {
+  font-size: 12px;
+}
+
+.has-error p.help-block {
+  color: #737373;
+}
+
+.imported-validation-error {
+  background-color: #C07A7A;
+}
 /*# sourceMappingURL=entrytool.css.map */

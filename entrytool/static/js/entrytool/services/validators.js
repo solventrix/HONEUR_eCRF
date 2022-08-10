@@ -20,6 +20,28 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 		return [episodeMin, episodeMax];
 	}
 
+	var responseDateWithRegimen = function(fieldValue, regimen){
+		/*
+		* A response date can be start_date - 30 days or
+		* end_date + 30 days and anything in between.
+		*/
+		var allowedStartDate = moment(regimen.start_date,).add(-30, "d")
+		var allowedEndDate = null;
+		var withinParams = false;
+		if(regimen.end_date){
+			allowedEndDate = moment(regimen.end_date).add(30, "d")
+			if(fieldValue >= allowedStartDate && fieldValue <= allowedEndDate){
+				withinParams = true;
+			}
+		}
+		else{
+			if(fieldValue >= allowedStartDate){
+				withinParams = true
+			}
+		}
+		return withinParams
+	}
+
 
 
 	return {
@@ -220,27 +242,6 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 				return true
 			}
 		},
-		responseDateWithRegimen: function(fieldValue, regimen){
-			/*
-			* A response date can be start_date - 30 days or
-			* end_date + 30 days and anything in between.
-			*/
-			var allowedStartDate = moment(regimen.start_date,).add(-30, "d")
-			var allowedEndDate = null;
-			var withinParams = false;
-			if(regimen.end_date){
-				allowedEndDate = moment(regimen.end_date).add(30, "d")
-				if(fieldValue >= allowedStartDate && fieldValue <= allowedEndDate){
-					withinParams = true;
-				}
-			}
-			else{
-				if(fieldValue >= allowedStartDate){
-					withinParams = true
-				}
-			}
-			return withinParams
-		},
 		validateOnlyOneOpenRegimen: function(val, regimenInstance, episode, patient){
 			/*
 			* There can only be one regimen with no end date, if the user
@@ -277,11 +278,28 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 			return otherOpenEndRegimenExists;
 		},
 		sameOrAfterDiagnosisDate: function(val, instance, episode, patient, fieldName, modelApiName){
-			var diagnosisDate = EntrytoolHelper.getDiagnosis(patient).diag_date;
+			var diagnosis = EntrytoolHelper.getDiagnosis(patient);
+			if(!diagnosis){
+				return false;
+			}
+			var diagnosisDate = diagnosis.diag_date;
 			if(!val || !diagnosisDate){
 				return false;
 			}
 			if(diagnosisDate.isAfter(val, "d")){
+				return true;
+			}
+		},
+		sameOrBeforeDiagnosisDate: function(val, instance, episode, patient, fieldName, modelApiName){
+			var diagnosis = EntrytoolHelper.getDiagnosis(patient);
+			if(!diagnosis){
+				return false;
+			}
+			var diagnosisDate = diagnosis.diag_date;
+			if(!val || !diagnosisDate){
+				return false;
+			}
+			if(diagnosisDate.isBefore(val, "d")){
 				return true;
 			}
 		},
@@ -319,6 +337,15 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 				return false;
 			}
 			return true;
+		},
+		requiredIfSMM: function(val, instance){
+			if(val){
+				return false;
+			}
+			if(instance.smm_history !== 'Yes'){
+				return false;
+			}
+			return true
 		},
 		required: function(val){
 			return !val;

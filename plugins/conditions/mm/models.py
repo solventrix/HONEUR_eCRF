@@ -41,32 +41,32 @@ class MMDiagnosisDetails(models.EpisodeSubrecord):
         blank=False, null=True, verbose_name=_("Date of Diagnosis")
     )
     smm_history = fields.CharField(
-        max_length=10, choices=CHOICES, verbose_name=_("History of SMM")
+        blank=True, null=True,max_length=10, choices=CHOICES, verbose_name=_("History of SMM")
     )
     smm_history_date = fields.DateField(
         blank=True, null=True, verbose_name=_("Date of SMM diagnosis")
     )
     mgus_history = fields.CharField(
-        max_length=10, choices=CHOICES, verbose_name=_("History of MGUS")
+        blank=True, null=True, max_length=10, choices=CHOICES, verbose_name=_("History of MGUS")
     )
     mgus_history_date = fields.DateField(
         blank=True, null=True, verbose_name=_("Date of MGUS Diagnosis")
     )
     iss_stage = fields.CharField(
-        max_length=10, choices=R_ISS_STAGES, verbose_name=_("ISS Stage")
+        blank=True, null=True, max_length=10, choices=R_ISS_STAGES, verbose_name=_("ISS Stage")
     )
     ds_stage = fields.CharField(
-        max_length=10, choices=R_ISS_STAGES, verbose_name=_("DS Stage")
+        blank=True, null=True, max_length=10, choices=R_ISS_STAGES, verbose_name=_("DS Stage")
     )
     pp_type = fields.CharField(
-        max_length=50, choices=PP_TYPE_CHOICES, verbose_name=_("PP Type")
+        blank=True, null=True, max_length=50, choices=PP_TYPE_CHOICES, verbose_name=_("PP Type")
     )
     del_17p = fields.CharField(
-        max_length=10, choices=CHOICES, verbose_name=_("del(17)p")
+        blank=True, null=True, max_length=10, choices=CHOICES, verbose_name=_("del(17)p")
     )
-    del_13 = fields.CharField(max_length=10, choices=CHOICES, verbose_name=_("del13"))
-    t4_14 = fields.CharField(max_length=10, choices=CHOICES, verbose_name=_("t(4;14)"))
-    t4_16 = fields.CharField(max_length=10, choices=CHOICES, verbose_name=_("t(4;16)"))
+    del_13 = fields.CharField(blank=True, null=True, max_length=10, choices=CHOICES, verbose_name=_("del13"))
+    t4_14 = fields.CharField(blank=True, null=True, max_length=10, choices=CHOICES, verbose_name=_("t(4;14)"))
+    t4_16 = fields.CharField(blank=True, null=True, max_length=10, choices=CHOICES, verbose_name=_("t(4;16)"))
 
     class Meta:
         verbose_name = _("Diagnosis Details")
@@ -91,7 +91,7 @@ class MMRegimen(models.EpisodeSubrecord):
         blank=True,
     )
     start_date = fields.DateField(
-        verbose_name=_("Start Date"),
+        verbose_name=_("Start Date"), blank=True, null=True
     )
     end_date = fields.DateField(verbose_name=_("End Date"), blank=True, null=True)
     regimen = ForeignKeyOrFreeText(MMRegimenList, verbose_name=_("Regimen"))
@@ -122,9 +122,17 @@ class MMResponse(models.EpisodeSubrecord):
         ("Progressive disease", _("Progressive disease")),
         ("Response unknown/NA", _("Response unknown/NA")),
     )
-    response_date = fields.DateField(verbose_name=_("Response Date"))
+    response_date = fields.DateField(
+        verbose_name=_("Response Date"),
+        blank=True,
+        null=True,
+    )
     response = fields.CharField(
-        max_length=50, choices=RESPONSES, verbose_name=_("Response")
+        blank=True,
+        null=True,
+        max_length=50,
+        choices=RESPONSES,
+        verbose_name=_("Response")
     )
 
     class Meta:
@@ -136,7 +144,9 @@ class MMFollowUp(models.EpisodeSubrecord):
     _sort = "followup_date"
     _icon = "fa fa-stethoscope"
     hospital = models.ForeignKeyOrFreeText(Hospital, verbose_name=_("Hospital"))
-    follow_up_date = fields.DateField(verbose_name=_("Visit date"))
+    follow_up_date = fields.DateField(
+        verbose_name=_("Visit date"), blank=True, null=True
+    )
 
     LDH = fields.FloatField(blank=True, null=True, verbose_name=_("LDH"))
     beta2m = fields.FloatField(blank=True, null=True, verbose_name=_("beta2m"))
