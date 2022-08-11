@@ -15,7 +15,7 @@
         <option value="[[ i ]]" ng-repeat="i in {{ lookuplist }} track by $index">[[ i | translate ]]</option>
       </select>
       <span
-      class="warning-block" ng-show="$root.patientValidator.showWarnings('{{ field_name }}')"
+      class="warning-block" ng-show="$root.patientValidator.showWarnings('{{ field_name }}') && !$root.patientValidator.showErrors('{{ field_name }}')"
     >
       <div ng-repeat="warning in $root.patientValidator.warnings['{{ field_name }}'] track by $index">
          [[ warning ]]

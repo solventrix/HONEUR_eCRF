@@ -21,7 +21,7 @@
            ng-change="$root.patientValidator.validatesubrecord('{{ model_api_name }}', {{ subrecord }}, the_episode)"
            />
     <span
-    class="warning-block" ng-show="$root.patientValidator.showWarnings('{{ field_name }}')"
+    class="warning-block" ng-show="!$root.patientValidator.showErrors('{{ field_name }}') && $root.patientValidator.showWarnings('{{ field_name }}')"
   >
     <div ng-repeat="warning in $root.patientValidator.warnings['{{ field_name }}'] track by $index">
        [[ warning ]]
