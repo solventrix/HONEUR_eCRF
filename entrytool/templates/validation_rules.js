@@ -60,14 +60,14 @@ angular.module('opal.services').service('ValidationRules', function(Validators) 
 		cll_regimen: {
 			regimen: {
 				errors: [
-					[Validators.regimenRequiredForCLL, "{% trans "Regimen is required" %}"]
+					[Validators.requiredForCategory('CLL'), "{% trans "Regimen is required" %}"]
 				]
 			},
 			start_date: {
 				errors: [
 					[Validators.required, "{% trans "Start date is required" %}"],
 					[Validators.sameOrAfterDiagnosisDate, "{% trans "Start Date must be after the patient date of diagnosiss" %}"],
-					[Validators.validateRegimenDateBetween, "{% trans "The regimen cannot overlap with another regimen" %}"],
+					[Validators.validateNotBetweenRegimenDates, "{% trans "The regimen cannot overlap with another regimen" %}"],
 					[Validators.validateRegimenSurrounds, "{% trans "The regimen cannot overlap with another regimen" %}"],
 					[Validators.validateRegimenToOtherLOTRegimens,  "{% trans "This regimen overlaps with another line of treatment" %}"],
 					[Validators.endDateSameOrAfterRegimenStartDate, "{% trans "The end date should be after the start date" %}"],
@@ -78,7 +78,7 @@ angular.module('opal.services').service('ValidationRules', function(Validators) 
 			},
 			end_date: {
 				errors: [
-					[Validators.validateRegimenDateBetween, "{% trans "The regimen cannot overlap with another regimen" %}"],
+					[Validators.validateNotBetweenRegimenDates, "{% trans "The regimen cannot overlap with another regimen" %}"],
 					[Validators.validateRegimenSurrounds, "{% trans "The regimen cannot overlap with another regimen" %}"],
 					[Validators.validateRegimenToOtherLOTRegimens,  "{% trans "This regimen overlaps with another line of treatment" %}"],
 					[Validators.endDateSameOrAfterRegimenStartDate, "{% trans "End Date must be after the start date" %}"],
@@ -114,26 +114,26 @@ angular.module('opal.services').service('ValidationRules', function(Validators) 
 			},
 			cirs_score: {
 				errors: [
-					[Validators.lessThan(56), "{% trans "CIRS is too high" %}"],
-					[Validators.greaterThan(0), "{% trans "CIRS is too low" %}"],
+					[Validators.lessThanOrEqualTo(56), "{% trans "CIRS is too high" %}"],
+					[Validators.greaterThanOrEqualTo(0), "{% trans "CIRS is too low" %}"],
 				],
 			},
 			creatinine_clearance: {
 				errors: [
-					[Validators.greaterThan(0), "{% trans "Creatinine clearance is too low" %}"],
+					[Validators.greaterThanOrEqualTo(0), "{% trans "Creatinine clearance is too low" %}"],
 				]
 			},
 			LDH: {
 				errors: [
-					[Validators.greaterThan(0), "{% trans "LDH is too low" %}"],
+					[Validators.greaterThanOrEqualTo(0), "{% trans "LDH is too low" %}"],
 				]
 			},
 			beta2m: {
 				errors: [
-					[Validators.greaterThan(0), "{% trans "Beta-2-Microglobulin is too low" %}"],
+					[Validators.greaterThanOrEqualTo(0), "{% trans "Beta-2-Microglobulin is too low" %}"],
 				],
 				warnings: [
-					[Validators.lessThan(25), "{% trans "Beta-2-Microglobulin is too low" %}"],
+					[Validators.lessThanOrEqualTo(25), "{% trans "Beta-2-Microglobulin is too low" %}"],
 				]
 			},
 		},
@@ -188,14 +188,14 @@ angular.module('opal.services').service('ValidationRules', function(Validators) 
 		mm_regimen: {
 			regimen: {
 				errors: [
-					[Validators.regimenRequiredForMM, "{% trans "Regimen is required" %}"]
+					[Validators.requiredForCategory('MM'), "{% trans "Regimen is required" %}"]
 				]
 			},
 			start_date: {
 				errors: [
 					[Validators.required, "{% trans "Start date is required" %}"],
 					[Validators.sameOrAfterDiagnosisDate, "{% trans "Start Date must be after the patient date of diagnosiss" %}"],
-					[Validators.validateRegimenDateBetween, "{% trans "The regimen cannot overlap with another regimen" %}"],
+					[Validators.validateNotBetweenRegimenDates, "{% trans "The regimen cannot overlap with another regimen" %}"],
 					[Validators.validateRegimenSurrounds, "{% trans "The regimen cannot overlap with another regimen" %}"],
 					[Validators.validateRegimenToOtherLOTRegimens,  "{% trans "This regimen overlaps with another line of treatment" %}"],
 					[Validators.endDateSameOrAfterRegimenStartDate, "{% trans "The end date should be after the start date" %}"],
@@ -206,7 +206,7 @@ angular.module('opal.services').service('ValidationRules', function(Validators) 
 			},
 			end_date: {
 				errors: [
-					[Validators.validateRegimenDateBetween, "{% trans "The regimen cannot overlap with another regimen" %}"],
+					[Validators.validateNotBetweenRegimenDates, "{% trans "The regimen cannot overlap with another regimen" %}"],
 					[Validators.validateRegimenSurrounds, "{% trans "The regimen cannot overlap with another regimen" %}"],
 					[Validators.validateRegimenToOtherLOTRegimens,  "{% trans "This regimen overlaps with another line of treatment" %}"],
 					[Validators.endDateSameOrAfterRegimenStartDate, "{% trans "End Date must be after the start date" %}"],
@@ -248,42 +248,42 @@ angular.module('opal.services').service('ValidationRules', function(Validators) 
 			},
 			LDH: {
 				errors: [
-					[Validators.greaterThan(0),  "{% trans "LDH is too low" %}"],
-					[Validators.lessThan(1000),  "{% trans "LDH is too high" %}"],
+					[Validators.greaterThanOrEqualTo(0),  "{% trans "LDH is too low" %}"],
+					[Validators.lessThanOrEqualTo(1000),  "{% trans "LDH is too high" %}"],
 				],
 				warnings: [
-					[Validators.greaterThan(10),  "{% trans "LDH is too low" %}"],
-					[Validators.lessThan(50),  "{% trans "LDH is too high" %}"],
+					[Validators.greaterThanOrEqualTo(10),  "{% trans "LDH is too low" %}"],
+					[Validators.lessThanOrEqualTo(50),  "{% trans "LDH is too high" %}"],
 				]
 			},
 			beta2m: {
 				errors: [
-					[Validators.greaterThan(0),  "{% trans "beta2m is too low" %}"],
-					[Validators.lessThan(1000),  "{% trans "beta2m is too high" %}"],
+					[Validators.greaterThanOrEqualTo(0),  "{% trans "beta2m is too low" %}"],
+					[Validators.lessThanOrEqualTo(1000),  "{% trans "beta2m is too high" %}"],
 				],
 			},
 			albumin: {
 				errors: [
-					[Validators.greaterThan(0),  "{% trans "Albumin is too low" %}"],
-					[Validators.lessThan(1000),  "{% trans "Albumin is too high" %}"],
+					[Validators.greaterThanOrEqualTo(0),  "{% trans "Albumin is too low" %}"],
+					[Validators.lessThanOrEqualTo(1000),  "{% trans "Albumin is too high" %}"],
 				],
 			},
 			mprotein_serum: {
 				errors: [
-					[Validators.greaterThan(0),  "{% trans "MProtein Serum is too low" %}"],
-					[Validators.lessThan(1000),  "{% trans "MProtein Serum is too high" %}"],
+					[Validators.greaterThanOrEqualTo(0),  "{% trans "MProtein Serum is too low" %}"],
+					[Validators.lessThanOrEqualTo(1000),  "{% trans "MProtein Serum is too high" %}"],
 				],
 			},
 			mprotein_urine: {
 				errors: [
-					[Validators.greaterThan(0),  "{% trans "MProtein Urine is too low" %}"],
-					[Validators.lessThan(1000),  "{% trans "MProtein Urine is too high" %}"],
+					[Validators.greaterThanOrEqualTo(0),  "{% trans "MProtein Urine is too low" %}"],
+					[Validators.lessThanOrEqualTo(1000),  "{% trans "MProtein Urine is too high" %}"],
 				],
 			},
 			mprotein_24h: {
 				errors: [
-					[Validators.greaterThan(0),  "{% trans "Mprotein in 24 hour urine is too low" %}"],
-					[Validators.lessThan(1000),  "{% trans "Mprotein in 24 hour urine is too high" %}"],
+					[Validators.greaterThanOrEqualTo(0),  "{% trans "Mprotein in 24 hour urine is too low" %}"],
+					[Validators.lessThanOrEqualTo(1000),  "{% trans "Mprotein in 24 hour urine is too high" %}"],
 				],
 			},
 		}
