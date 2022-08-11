@@ -29,6 +29,33 @@ $janssen-blue-light : rgb(7,148,224);
         color: inherit;
     }
 
+    .additional-charecteristics-table, .cytogenetics-table, .additional-charecteristics-table{
+        text-align: center;
+        margin-left: 20px;
+
+        .table-row{
+            margin-bottom: 1px;
+        }
+
+        .column{
+            border-top: 1px solid #dee2e6;
+        }
+        .column, .header{
+            margin-top: -1px;
+            padding: 8px;
+        }
+        .first-column{
+            padding: 8px;
+            margin-top: -9px;
+        }
+        .column.last-column{
+            padding: 4px 4px 8px 4px;
+            .fa{
+                padding-top: 6px;
+            }
+        }
+    }
+
     .follow-up-table{
         text-align: center;
         .column{

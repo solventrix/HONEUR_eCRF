@@ -92,9 +92,17 @@ angular.module('opal.services').service('ValidationRules', function(Validators) 
 		best_response: {
 			response_date: {
 				errors: [
+					[Validators.required, "{% trans "The response date is required" %}"],
 					[Validators.sameOrAfterDiagnosisDate, "{% trans "The response date should be after the date of diagnosis" %}"],
 					[Validators.noFuture, "{% trans "The response date is in the future" %}"],
 				]
+			},
+			response: {
+				response: {
+					errors: [
+						[Validators.required, "{% trans "Response is required" %}"],
+					]
+				}
 			}
 		},
 		additional_characteristics: {

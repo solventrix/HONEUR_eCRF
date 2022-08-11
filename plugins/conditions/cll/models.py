@@ -97,7 +97,9 @@ class BestResponse(models.EpisodeSubrecord):
         ("SD", _("Stable Disease")),
         ("Unknown", _("Unknown")),
     )
-    response_date = fields.DateField(verbose_name=_("Response Date"))
+    response_date = fields.DateField(
+        verbose_name=_("Response Date"), blank=True, null=True
+    )
     response = fields.CharField(
         max_length=50, choices=RESPONSES_IWCLL, verbose_name=_("Best Response")
     )
