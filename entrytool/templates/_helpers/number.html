@@ -39,7 +39,8 @@
   <label class="control-label"><small>({{ unit }})</small></label>
   {% endif %}
    {% if help_text %}
-      <p class="help-block">{% trans help_text %}
-      </p>
+   <p ng-show="!$root.patientValidator.showErrors('{{ field_name }}')" class="help-block">
+    {% trans help_text %}
+   </p>
     {% endif %}
 </div>
