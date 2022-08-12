@@ -25,6 +25,9 @@
   class="help-block" ng-show="$root.patientValidator.showErrors('{{ field_name }}')"
   >
    <div ng-repeat="error in $root.patientValidator.errors['{{ field_name }}'] track by $index">
+    <span ng-show="{{ lookuplist }}.indexOf({{ model }}) === -1">
+      [[ {{ model }} ]]
+    </span>
      [[ error ]]
    </div>
   </span>

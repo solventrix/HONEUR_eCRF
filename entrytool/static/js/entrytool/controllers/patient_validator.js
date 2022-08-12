@@ -4,8 +4,9 @@ angular
     $scope,
     $rootScope,
     $q,
+    recordLoader,
+    Referencedata,
     ValidateField,
-    recordLoader
   ) {
     "use strict";
 
@@ -22,7 +23,10 @@ angular
         * Validates a whole subrecord and sets the errors/warnings on itself.errors/warnings
         */
         var result = $q.defer();
-        recordLoader.load().then(function(schema){
+        $q.all([recordLoader.load(), Referencedata.load()]).then(function(loadResults){
+          var schema = loadResults[0];
+          var lookuplists = loadResults[1];
+
           _.each(schema[subrecordApiName].fields, function(field){
             var issues = ValidateField.validate(
               subrecordApiName,
@@ -30,7 +34,9 @@ angular
               subrecord[field["name"]],
               subrecord,
               episode,
-              self.patient
+              self.patient,
+              schema,
+              lookuplists
             )
             self.errors[field["name"]] = issues.errors
             self.warnings[field["name"]] = issues.warnings

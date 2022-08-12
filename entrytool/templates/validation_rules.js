@@ -26,7 +26,8 @@ angular.module('opal.services').service('ValidationRules', function(Validators) 
 			},
 			sex: {
 				errors: [
-					[Validators.required, "{% trans "Sex is required" %}"]
+					[Validators.required, "{% trans "Sex is required" %}"],
+					[Validators.validateInOptions, "{% trans "is not in the options available" %}"]
 				]
 			}
 		},
@@ -172,6 +173,7 @@ angular.module('opal.services').service('ValidationRules', function(Validators) 
 			smm_history: {
 				errors: [
 					[Validators.requiredForCategory('MM'), "{% trans "History of SMM is required" %}"],
+					[Validators.validateInOptions, "{% trans "is not in the options available" %}"]
 				]
 			},
 			smm_history_date: {
@@ -179,7 +181,13 @@ angular.module('opal.services').service('ValidationRules', function(Validators) 
 					[Validators.requiredIfSMM, "{% trans "Date is required" %}"],
 					[Validators.sameOrBeforeDiagnosisDate, "{% trans "Date must be before the date of diagnosis" %}"],
 				]
+			},
+			t4_14: {
+				errors: [
+					[Validators.validateInOptions, "{% trans "is not in the options available" %}"]
+				]
 			}
+
 		},
 		mm_regimen: {
 			regimen: {
