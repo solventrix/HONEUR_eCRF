@@ -23,6 +23,12 @@ describe("Validators", function () {
 	});
 
 	describe('validateDateOfDiagnosisAgainstRegimen', function(){
+		it("should return false if the date of diagnosis is falsy", function(){
+			patient.episodes = [episode]
+			spyOn(EntrytoolHelper, 'getEpisodeRegimen').and.returnValue([{start_date: two_days_ago}]);
+			expect(Validators.validateDateOfDiagnosisAgainstRegimen(null, null, null, patient)).toBe(false);
+		});
+
 		it("should return false if the date of diagnosis is before the regimen start date", function(){
 			patient.episodes = [episode]
 			spyOn(EntrytoolHelper, 'getEpisodeRegimen').and.returnValue([{start_date: yesterday}]);
@@ -49,6 +55,12 @@ describe("Validators", function () {
 	});
 
 	describe('validateDateOfDiagnosisAgainstResponse', function(){
+		it("should return false if the date of diagnosis is falsy", function(){
+			patient.episodes = [episode]
+			spyOn(EntrytoolHelper, 'getEpisodeResponse').and.returnValue([{response_date: two_days_ago}]);
+			expect(Validators.validateDateOfDiagnosisAgainstResponse(null, null, null, patient)).toBe(false);
+		});
+
 		it("should return false if the date of diagnosis is before the response date", function(){
 			patient.episodes = [episode]
 			spyOn(EntrytoolHelper, 'getEpisodeResponse').and.returnValue([{response_date: yesterday}]);
@@ -74,7 +86,13 @@ describe("Validators", function () {
 		});
 	});
 
-	describe('validateDateOfDiagnosisAgainstResponse', function(){
+	describe('validateDateOfDiagnosisAgainstSCT', function(){
+		it("should return false if the date of diagnosis is falsy", function(){
+			patient.episodes = [episode]
+			episode.sct = [{sct_date: two_days_ago}]
+			expect(Validators.validateDateOfDiagnosisAgainstSCT(null, null, null, patient)).toBe(false);
+		});
+
 		it("should return false if the date of diagnosis is before the SCT date", function(){
 			patient.episodes = [episode]
 			episode.sct = [{sct_date: yesterday}]

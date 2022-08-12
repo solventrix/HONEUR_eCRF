@@ -9,11 +9,8 @@ angular.module('opal.services').service('ValidateField', function(ValidationRule
 				errors: []
 			}
 			if(ValidationRules[apiName] && ValidationRules[apiName][fieldName]){
-				_.each(['warnings', 'errors'], function(alertType){
-					if(!ValidationRules[apiName][fieldName][alertType]){
-						return;
-					}
-					_.each(ValidationRules[apiName][fieldName][alertType], function(validator_and_error){
+				_.each(ValidationRules[apiName][fieldName], function(alertFunctions, alertType){
+					_.each(alertFunctions, function(validator_and_error){
 						var validator = validator_and_error[0];
 						var error = validator_and_error[1];
 						var issue = validator(value, instance, episode, patient);

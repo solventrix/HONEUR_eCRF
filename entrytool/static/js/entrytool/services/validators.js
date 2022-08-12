@@ -59,6 +59,9 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 			/*
 			* Returns true if there is a regimen start date before the date of diagnosis
 			*/
+			if(!val){
+				return false;
+			}
 			var error = false;
 			_.each(patient.episodes, function(episode){
 				_.each(EntrytoolHelper.getEpisodeRegimen(episode), function(regimen){
@@ -73,6 +76,9 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 			/*
 			* Returns true if there is a response date the date of diagnosis
 			*/
+			if(!val){
+				return false;
+			}
 			var error = false;
 			_.each(patient.episodes, function(episode){
 				_.each(EntrytoolHelper.getEpisodeResponse(episode), function(response){
@@ -87,6 +93,9 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 			/*
 			* Date of diagnosis must be below all SCT/Regimen/response dates.
 			*/
+			if(!val){
+				return false;
+			}
 			var error = false;
 			_.each(patient.episodes, function(episode){
 				_.each(episode.sct, function(sct){
