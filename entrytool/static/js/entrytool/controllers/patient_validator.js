@@ -62,19 +62,6 @@ angular
         self.submitted = false;
       }
 
-      this.validate = function(model_api_name, field_name, val, instance, episode){
-        var issues = ValidateField.validate(
-          model_api_name,
-          field_name,
-          val,
-          instance,
-          episode,
-          self.patient
-        )
-        self.errors[field_name] = issues.errors;
-        self.warnings[field_name] = issues.warnings;
-      }
-
       this.showErrors = function(field_name){
         if(!self.errors[field_name] || !self.errors[field_name].length){
           return false;
