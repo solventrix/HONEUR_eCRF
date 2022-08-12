@@ -133,36 +133,6 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 
 			return error;
 		},
-		validateRegimenSurrounds: function (fieldValue, instance, episode, patient) {
-			/*
-			 * Make sure that when a regimen date is changed, the regimen does not
-			 * now encompass another regimen
-			 *
-			 * Step 1. Create a regimen A but don't but an end date on it with
-			 * start time Monday.
-			 * Step 2. Create a regimen B that lasts between Tuesday-Wednesday
-			 * Step 3. The add an end date on A of Thursday. It should error.
-			 */
-			var error = false;
-			if (!fieldValue) {
-				return;
-			}
-			_.each(patient.episodes, function (episode) {
-				_.each(EntrytoolHelper.getEpisodeRegimen(episode), function (r) {
-					if (r.id !== instance.id) {
-						if (r.start_date && r.end_date) {
-							if (
-								instance.start_date < r.start_date &&
-								instance.end_date > r.end_date
-							) {
-								error = true;
-							}
-						}
-					}
-				});
-			});
-			return error;
-		},
 		validateRegimenToOtherLOTRegimens: function (val, instance, episode, patient){
 			/*
 			 * If LOT 1 has a regimen starts 1 Jan - > 1 Feb, and 1 Sep -> 1 Oct

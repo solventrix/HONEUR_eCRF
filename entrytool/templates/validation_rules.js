@@ -68,7 +68,6 @@ angular.module('opal.services').service('ValidationRules', function(Validators) 
 					[Validators.required, "{% trans "Start date is required" %}"],
 					[Validators.sameOrAfterDiagnosisDate, "{% trans "Start Date must be after the patient date of diagnosiss" %}"],
 					[Validators.validateNotBetweenRegimenDates, "{% trans "The regimen cannot overlap with another regimen" %}"],
-					[Validators.validateRegimenSurrounds, "{% trans "The regimen cannot overlap with another regimen" %}"],
 					[Validators.validateRegimenToOtherLOTRegimens,  "{% trans "This regimen overlaps with another line of treatment" %}"],
 					[Validators.endDateSameOrAfterRegimenStartDate, "{% trans "The end date should be after the start date" %}"],
 				],
@@ -79,7 +78,6 @@ angular.module('opal.services').service('ValidationRules', function(Validators) 
 			end_date: {
 				errors: [
 					[Validators.validateNotBetweenRegimenDates, "{% trans "The regimen cannot overlap with another regimen" %}"],
-					[Validators.validateRegimenSurrounds, "{% trans "The regimen cannot overlap with another regimen" %}"],
 					[Validators.validateRegimenToOtherLOTRegimens,  "{% trans "This regimen overlaps with another line of treatment" %}"],
 					[Validators.endDateSameOrAfterRegimenStartDate, "{% trans "End Date must be after the start date" %}"],
 					[Validators.validateOnlyOneOpenRegimen, "{% trans "There can only be one open regimen at a time" %}"]
@@ -196,7 +194,6 @@ angular.module('opal.services').service('ValidationRules', function(Validators) 
 					[Validators.required, "{% trans "Start date is required" %}"],
 					[Validators.sameOrAfterDiagnosisDate, "{% trans "Start Date must be after the patient date of diagnosiss" %}"],
 					[Validators.validateNotBetweenRegimenDates, "{% trans "The regimen cannot overlap with another regimen" %}"],
-					[Validators.validateRegimenSurrounds, "{% trans "The regimen cannot overlap with another regimen" %}"],
 					[Validators.validateRegimenToOtherLOTRegimens,  "{% trans "This regimen overlaps with another line of treatment" %}"],
 					[Validators.endDateSameOrAfterRegimenStartDate, "{% trans "The end date should be after the start date" %}"],
 				],
@@ -207,7 +204,6 @@ angular.module('opal.services').service('ValidationRules', function(Validators) 
 			end_date: {
 				errors: [
 					[Validators.validateNotBetweenRegimenDates, "{% trans "The regimen cannot overlap with another regimen" %}"],
-					[Validators.validateRegimenSurrounds, "{% trans "The regimen cannot overlap with another regimen" %}"],
 					[Validators.validateRegimenToOtherLOTRegimens,  "{% trans "This regimen overlaps with another line of treatment" %}"],
 					[Validators.endDateSameOrAfterRegimenStartDate, "{% trans "End Date must be after the start date" %}"],
 					[Validators.validateOnlyOneOpenRegimen, "{% trans "There can only be one open regimen at a time" %}"]
