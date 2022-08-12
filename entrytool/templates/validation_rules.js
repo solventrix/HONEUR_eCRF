@@ -96,11 +96,9 @@ angular.module('opal.services').service('ValidationRules', function(Validators) 
 				]
 			},
 			response: {
-				response: {
-					errors: [
-						[Validators.required, "{% trans "Response is required" %}"],
-					]
-				}
+				errors: [
+					[Validators.required, "{% trans "Response is required" %}"],
+				]
 			}
 		},
 		additional_characteristics: {
