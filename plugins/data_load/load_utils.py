@@ -1,5 +1,4 @@
 import datetime
-from entrytool.models import PatientDetails
 
 
 def cast_date(some_str):
@@ -23,13 +22,10 @@ def get_and_check(row_value, choices):
         result = c[0]
         if result.lower() == row_value.lower():
             return result
+    return row_value
     raise ValueError(
         "{} not in {}".format(row_value, [i[0] for i in choices])
     )
-
-
-def no_yes_unknown(row_value):
-    return get_and_check(row_value, PatientDetails.CHOICES)
 
 
 def get_and_check_ll(row_value, ll):
@@ -42,6 +38,7 @@ def get_and_check_ll(row_value, ll):
     if result.exists():
         return result.get().name
     else:
+        return row_value
         raise ValueError("{} not in {}".format(row_value, ll))
 
 

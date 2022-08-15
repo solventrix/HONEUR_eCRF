@@ -25,7 +25,6 @@ class Command(BaseCommand):
             if file_name not in provided_files:
                 raise ValueError(f'Unable to find {file_name} in {options["folder"]}')
 
-        for file_name, loader in LOAD_MAPPING:
+        for file_name, loader in LOAD_MAPPING.items():
             full_file_path = os.path.join(options["folder"], file_name)
-            with open(full_file_path, encoding="utf-8-sig") as f:
-                loader(f)
+            loader(full_file_path)

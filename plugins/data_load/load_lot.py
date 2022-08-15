@@ -2,7 +2,8 @@ import csv
 from collections import defaultdict
 from opal.models import Patient
 from entrytool import episode_categories
-from entrytool.models import Regimen, Response, SCT, RegimenList
+from entrytool.models import SCT
+from plugins.conditions.cll import models as cll_models
 from plugins.data_load.load_utils import (
     cast_date,
     get_and_check,
@@ -16,19 +17,19 @@ field_map = dict(
     lot="LOT",
     # Demographics fields
     external_identifier="Hospital_patient_ID",
-    # Regimen fields
-    regimen="regimen",
+    # CLLRegimen fields
+    regimen="Regimen",
     category="category",
-    start_date="start_date",
+    start_date="Start_date",
     end_date="end_date",
     cycles="cycles",
     stop_reason="stop_reason",
-    # Response fields
+    # BestResponse fields
     response_date="response_date",
     response="response",
     # SCT fields
-    sct_date="sct_date",
-    sct_type="sct_type",
+    sct_date="SCT_date",
+    sct_type="SCT_type",
 )
 
 
@@ -66,7 +67,7 @@ def load_data(file_name):
         for treatment_lot in treatment_lots:
             regimen_fields = {
                 "regimen": get_and_check_ll(
-                    treatment_lot[field_map["regimen"]], RegimenList
+                    treatment_lot[field_map["regimen"]], cll_models.CLLRegimenList
                 ),
                 # "category": get_and_check(
                 #     treatment_lot[field_map["category"]],
@@ -80,7 +81,7 @@ def load_data(file_name):
                 # ),
             }
             if any(regimen_fields.values()):
-                regimen = Regimen(episode=episode)
+                regimen = cll_models.CLLRegimen(episode=episode)
                 for k, v in regimen_fields.items():
                     setattr(regimen, k, v)
                 regimen.set_consistency_token()
@@ -90,11 +91,12 @@ def load_data(file_name):
             response_fields = {
                 "response_date": cast_date(treatment_lot[field_map["response_date"]]),
                 "response": get_and_check(
-                    treatment_lot[field_map["response"]], Response.RESPONSES
+                    treatment_lot[field_map["response"]],
+                    cll_models.BestResponse.RESPONSES_IWCLL,
                 ),
             }
             if any(response_fields.values()):
-                response = Response(episode=episode)
+                response = cll_models.BestResponse(episode=episode)
                 for k, v in response_fields.items():
                     setattr(response, k, v)
                 response.set_consistency_token()
@@ -114,8 +116,3 @@ def load_data(file_name):
                 sct.set_consistency_token()
                 sct.save()
                 sct_saved += 1
-    self.stdout.write(self.style.SUCCESS("Imported {} Regimens".format(regimen_saved)))
-    self.stdout.write(
-        self.style.SUCCESS("Imported {} Responses".format(response_saved))
-    )
-    self.stdout.write(self.style.SUCCESS("Imported {} SCT".format(sct_saved)))

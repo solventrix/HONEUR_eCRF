@@ -1,36 +1,26 @@
 import csv
 from plugins.data_load.load_utils import (
-    cast_date, get_and_check, no_yes_unknown, get_and_check_ll
+    cast_date, get_and_check, get_and_check_ll
 )
-from entrytool.models import PatientDetails
 from opal.models import Patient, Gender
+from plugins.conditions.cll import episode_categories
+from entrytool.models import PatientStatus
 
 
 # field -> csv column title mapping
 field_map = dict(
-
     # Demographics fields
     date_of_birth="date_of_birth",
     external_identifier="Hospital_patient_ID",
     sex="Gender",
 
-    # Patient Detail fields
-    status="status",
+    # Patient status fields
+    death_date="date_of_death",
+    death_cause="cause_of_death",
+
+    # CLL diagnosis details
     hospital="Hospital",
     diag_date="date_of_diagnosis",
-    smm_history="SMM_history",
-    smm_history_date="SMM_History_date",
-    mgus_history="MGUS_history",
-    mgus_history_date="MGUS_history_date",
-    iss_stage="ISS_stage",
-    ds_stage="Durie_Salmon_Stage",
-    pp_type="PP_type",
-    del_17p="del17p",
-    t4_14="t(4;14)(p16;q32)",
-    t4_16="t_4_16",
-    del_13="del13",
-    death_date="date_of_death",
-    death_cause="cause_of_death"
 )
 
 
@@ -54,41 +44,32 @@ def load_data(file_name):
             date_of_birth = cast_date(row[field_map["date_of_birth"]])
             sex = get_and_check_ll(row[field_map["sex"]], Gender)
 
-            patient_details = {
-                # "hospital": get_and_check_ll(row[field_map["hospital"]], Hospital),
-                "diag_date": cast_date(row[field_map["diag_date"]]),
-                "status": get_and_check(
-                    row[field_map["status"]], PatientDetails.STATUSES
-                ),
-                # "smm_history": no_yes_unknown(row[field_map["smm_history"]]),
-                # "smm_history_date": cast_date(row[field_map["smm_history_date"]]),
-                # "mgus_history": no_yes_unknown(row[field_map["mgus_history"]]),
-                # "mgus_history_date": cast_date(row[field_map["mgus_history_date"]]),
-                "iss_stage": get_and_check(
-                    row[field_map["iss_stage"]], PatientDetails.R_ISS_STAGES
-                ),
-                "ds_stage": get_and_check(
-                    row[field_map["ds_stage"]], PatientDetails.R_ISS_STAGES
-                ),
-                # "pp_type": get_and_check(
-                #     row[field_map["pp_type"]], PatientDetails.PP_TYPE_CHOICES
-                # ),
-                "del_17p": no_yes_unknown(row[field_map["del_17p"]],),
-                "del_13": no_yes_unknown(row[field_map["del_13"]],),
-                "t4_14": no_yes_unknown(row[field_map["t4_14"]],),
-                # "t4_16": no_yes_unknown(row[field_map["t4_16"]],),
+            patient_status = {
                 "death_date": cast_date(row[field_map["death_date"]]),
-                # "death_cause": get_and_check(
-                #     row[field_map["death_cause"]], PatientDetails.DEATH_CAUSES
-                # ),
+                "death_cause": get_and_check(
+                    row[field_map["death_cause"]], PatientStatus.DEATH_CAUSES
+                )
             }
             patient = Patient.objects.create()
-            patient.create_episode()
-            patient_detail = patient.patientdetails_set.get()
-            for i, v in patient_details.items():
+            episode = patient.create_episode(
+                category_name=episode_categories.CLLCondition.display_name
+            )
+            patient_detail = patient.patientstatus_set.get()
+            for i, v in patient_status.items():
                 setattr(patient_detail, i, v)
             patient_detail.set_consistency_token()
             patient_detail.save()
+
+            diagnosis_details = episode.clldiagnosisdetails_set.get()
+            diagnosis_details_mapping = {
+                "diag_date": cast_date(row[field_map["diag_date"]]),
+                "hospital": row[field_map["hospital"]],
+            }
+            for i, v in diagnosis_details_mapping.items():
+                setattr(diagnosis_details, i, v)
+            diagnosis_details.set_consistency_token()
+            diagnosis_details.save()
+
             demographics = patient.demographics()
             demographics.date_of_birth = date_of_birth
             demographics.external_identifier = external_identifier
@@ -96,4 +77,3 @@ def load_data(file_name):
             demographics.set_consistency_token()
             demographics.save()
             demographics_saved += 1
-        self.stdout.write(self.style.SUCCESS("Imported {} demographics".format(demographics_saved)))
