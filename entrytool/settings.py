@@ -70,6 +70,7 @@ INSTALLED_APPS = [
     "plugins.conditions.mm",
     # 'languages',
     "django.contrib.admin",
+    "plugins.data_load"
 ]
 
 MIDDLEWARE = (
