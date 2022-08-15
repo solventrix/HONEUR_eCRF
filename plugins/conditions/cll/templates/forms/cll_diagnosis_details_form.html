@@ -2,5 +2,5 @@
 {% load custom_forms %}
 {% load i18n %}
 
-{% custom_datepicker field="CLLDiagnosisDetails.diag_date" validator="diagnosis_date" date_after="the_episode.demographics[0].date_of_birth" date_after_message=_("Date of diagnosis must be after the patient's birth date") required=True %}
+{% custom_datepicker field="CLLDiagnosisDetails.diag_date"  %}
 {% radio field="CLLDiagnosisDetails.binet_stage" help_text="Binet Stage at diagnosis" %}

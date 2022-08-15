@@ -61,7 +61,7 @@ class MMDiagnosisDetails(models.EpisodeSubrecord):
         ("Very Symptomatic", _("Very Symptomatic"),),
     )
 
-    diagnosis_date = fields.DateField(
+    diag_date = fields.DateField(
         blank=True, null=True, verbose_name=_("Date Of Diagnosis")
     )
     date_of_first_centre_visit = fields.DateField(
@@ -497,7 +497,11 @@ class MMResponse(models.EpisodeSubrecord):
         verbose_name=_("MRD Technique")
     )
     response = fields.CharField(
-        max_length=50, choices=RESPONSES, verbose_name=_("Response")
+        blank=True,
+        null=True,
+        max_length=50,
+        choices=RESPONSES,
+        verbose_name=_("Response")
     )
 
 

@@ -10,7 +10,7 @@
       <div ng-show="editing.mm_past_medical_history.previous_neoplasm == 'Yes'" class="col-sm-7">
         <div class="row">
           <div class="col-md-5">
-            {% custom_datepicker style="vertical" label=_("Date") field="MMPastMedicalHistory.previous_neoplasm_date_of_diagnosis" date_after="the_episode.demographics[0].date_of_birth" date_after_message=_("Must be after the patient's birth date") %}
+            {% custom_datepicker style="vertical" label=_("Date") field="MMPastMedicalHistory.previous_neoplasm_date_of_diagnosis" %}
           </div>
           <div class="col-md-7">
             {% textarea style="vertical" label=_("Details") field="MMPastMedicalHistory.previous_neoplasm_details" %}

@@ -2,6 +2,14 @@ from django.views.generic import TemplateView
 from django.utils.translation import get_language
 
 
+class ValidationRules(TemplateView):
+    template_name = "validation_rules.js"
+
+    def get(self, request, *args, **kwargs):
+        context = self.get_context_data(**kwargs)
+        return self.render_to_response(context, content_type="text/javascript")
+
+
 class AngularLocale(TemplateView):
     """
     Because we can't guarentee hospitals have white listed cdns

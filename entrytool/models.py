@@ -180,3 +180,39 @@ class FollowUp(models.PatientSubrecord):
     class Meta:
         verbose_name = _("Follow-up")
         verbose_name_plural = _("Follow-ups")
+
+
+class PatientLoad(models.PatientSubrecord):
+    """
+    A singleton that describes what created a patient whether
+    it was the loaded in from an external source like a file
+    or created by the front end.
+    """
+    _is_singleton = True
+
+    LOADED_FROM_FILE = "Loaded From File"
+    CREATED_FROM_UI = "Created From UI"
+
+    SOURCE = (
+        (LOADED_FROM_FILE, _("Loaded From File")),
+        (CREATED_FROM_UI, _("Created From UI")),
+    )
+
+    source = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=SOURCE,
+        verbose_name=_("source"),
+        default=CREATED_FROM_UI
+    )
+    validated = fields.BooleanField(
+        default=False, verbose_name=_("Validated"),
+    )
+    has_errors = fields.BooleanField(
+        default=False, verbose_name=_("Has Errors"),
+    )
+
+    class Meta:
+        verbose_name = _("Patient Load")
+        verbose_name_plural = _("Patient Loads")

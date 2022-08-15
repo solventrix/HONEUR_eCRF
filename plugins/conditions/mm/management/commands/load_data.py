@@ -34,6 +34,9 @@ def create_patient_episode(patient_number):
     mm_episode = patient.episode_set.create(
         category_name=episode_categories.MM.display_name
     )
+    patient.patientload_set.update(
+        source=entrytool_models.PatientLoad.LOADED_FROM_FILE,
+    )
     return patient, mm_episode
 
 
