@@ -37,7 +37,14 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 		* A response date can be start_date - 30 days or
 		* end_date + 30 days and anything in between.
 		*/
-		var allowedStartDate = moment(regimen.start_date,).add(-30, "d")
+		if(!regimen.start_date && !regimen.end_date){
+			return false;
+		}
+		var startDate = regimen.start_date;
+		if(!startDate){
+			startDate = regimen.end_date;
+		}
+		var allowedStartDate = moment(startDate).add(-30, "d")
 		var allowedEndDate = null;
 		var withinParams = false;
 		if(regimen.end_date){
@@ -161,6 +168,7 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 
 			if(thisEpisodesRegimen.length){
 				var ourEpisodeMinMax = getRegimenMinMaxDate(thisEpisodesRegimen);
+
 				if(!min && ourEpisodeMinMax[0]){
 					min = ourEpisodeMinMax[0];
 				}
@@ -204,6 +212,9 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 				if(!episodeMin && !episodeMax){
 					// the other episode has no regimen
 					return;
+				}
+				if(!episodeMin){
+					episodeMin = episodeMax;
 				}
 
 				// other episode ends before our episode starts
