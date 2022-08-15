@@ -90,6 +90,9 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 			var error = false;
 			_.each(patient.episodes, function(episode){
 				_.each(EntrytoolHelper.getEpisodeResponse(episode), function(response){
+					if(!response.response_date){
+						return;
+					}
 					if(response.response_date.isBefore(toMomentFilter(val), "d")){
 						error = true;
 					}
