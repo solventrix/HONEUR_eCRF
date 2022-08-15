@@ -174,7 +174,7 @@ FIELD_MAPPING = {
     ),
     ("datos enfermedad 1.csv", "fecha_diagnostico_1"): (
         "MMDiagnosisDetails",
-        "diagnosis_date",
+        "diag_date",
     ),
     ("datos enfermedad 1.csv", "fecha_formular_filtrado_glomerular_1"): (
         "LabTest",
