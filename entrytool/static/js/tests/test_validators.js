@@ -317,6 +317,84 @@ describe("Validators", function () {
 			spyOn(EntrytoolHelper, 'getEpisodeRegimen').and.returnValues([regimen_2], [regimen_1, regimen_3]);
 			expect(Validators.validateRegimenToOtherLOTRegimens(regimen_2.start_date, regimen_2, episode, patient)).toBe(true);
 		});
+
+		it('should return true if there is only an end date and another episode surrounds it', function(){			episode.id = 2
+			var episode_2 = {
+				id: 3
+			}
+			var regimen_1 = {
+				id: 1,
+				start_date: moment().subtract(22, "d"),
+				end_date: moment().subtract(20, "d")
+			}
+			var regimen_2 = {
+				id: 2,
+				end_date: moment().subtract(10, "d")
+			}
+			var regimen_3 = {
+				id: 3,
+				start_date: moment().subtract(7, "d"),
+				end_date: moment().subtract(5, "d")
+			}
+			patient.episodes = [episode, episode_2];
+			spyOn(EntrytoolHelper, 'getEpisodeRegimen').and.returnValues(
+				[regimen_1, regimen_2],
+				[regimen_3]
+			);
+			expect(Validators.validateRegimenToOtherLOTRegimens(regimen_2.start_date, regimen_2, episode, patient)).toBe(false);
+		});
+
+		it('should return true if there is only an end date on one of the other episodes that surround it', function(){			episode.id = 2
+			var episode_2 = {
+				id: 3
+			}
+			var regimen_1 = {
+				id: 1,
+				end_date: moment().subtract(20, "d")
+			}
+			var regimen_2 = {
+				id: 2,
+				start_date: today.subtract(12),
+				end_date: moment().subtract(10, "d")
+			}
+			var regimen_3 = {
+				id: 3,
+				start_date: moment().subtract(7, "d"),
+				end_date: moment().subtract(5, "d")
+			}
+			patient.episodes = [episode, episode_2];
+			spyOn(EntrytoolHelper, 'getEpisodeRegimen').and.returnValues(
+				[regimen_1, regimen_2],
+				[regimen_3]
+			);
+			expect(Validators.validateRegimenToOtherLOTRegimens(regimen_2.start_date, regimen_2, episode, patient)).toBe(false);
+		});
+
+		it('should return true if there is only an start date on one of the other episodes that surround it', function(){			episode.id = 2
+			var episode_2 = {
+				id: 3
+			}
+			var regimen_1 = {
+				id: 1,
+				start_date: moment().subtract(22, "d"),
+			}
+			var regimen_2 = {
+				id: 2,
+				start_date: today.subtract(12),
+				end_date: moment().subtract(10, "d")
+			}
+			var regimen_3 = {
+				id: 3,
+				start_date: moment().subtract(7, "d"),
+				end_date: moment().subtract(5, "d")
+			}
+			patient.episodes = [episode, episode_2];
+			spyOn(EntrytoolHelper, 'getEpisodeRegimen').and.returnValues(
+				[regimen_1, regimen_2],
+				[regimen_3]
+			);
+			expect(Validators.validateRegimenToOtherLOTRegimens(regimen_2.start_date, regimen_2, episode, patient)).toBe(false);
+		});
 	});
 
 	describe("validateRegimenToResponses", function(){

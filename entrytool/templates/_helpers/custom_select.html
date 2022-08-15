@@ -59,3 +59,52 @@
     </div>
   </span>
 </div>
+
+
+{% load forms %}
+{% load i18n %}
+<div class="form-group" {% if visibility %} {{ visibility|safe }} {% endif %} >
+  <span ng-class="{'has-error': $root.patientValidator.showErrors('{{ field_name }}')}">
+    {% if label %}
+    <label class="control-label {% ifequal style "horizontal" %}col-sm-3{% endifequal %}">
+      {{ label }}
+    </label>
+    {% endif %}
+    <div class="{% ifequal style "horizontal" %}col-sm-8{% endifequal %}">
+      <select {% if autofocus %}autofocus {% endif %}name="[[ {{ element_name }} ]]" class="form-control" ng-model="{{ model }}" ng-change="$root.patientValidator.validatesubrecord('{{ model_api_name }}', {{ subrecord }}, the_episode)">
+        {% if default_null %}
+        <option value="" selected>---------</option>
+        {% endif %}
+        <option value="[[ i ]]" ng-repeat="i in {{ lookuplist }} track by $index">[[ i | translate ]]</option>
+      </select>
+      <span
+      class="warning-block" ng-show="$root.patientValidator.showWarnings('{{ field_name }}') && !$root.patientValidator.showErrors('{{ field_name }}')"
+    >
+      <div ng-repeat="warning in $root.patientValidator.warnings['{{ field_name }}'] track by $index">
+         [[ warning ]]
+      </div>
+    </span>
+    <span
+    class="help-block" ng-show="$root.patientValidator.showErrors('{{ field_name }}')"
+    >
+     <div ng-repeat="error in $root.patientValidator.errors['{{ field_name }}'] track by $index">
+       [[ error ]]
+     </div>
+    </span>
+      {% if help_text %}
+      <p ng-show="!$root.patientValidator.showErrors('{{ field_name }}')" class="help-block">
+        {% trans help_text %}
+      </p>
+    {% endif %}
+    {% if include_admin_link %}
+      {% if user.is_superuser or user.is_staff %}
+      <p class="help-block">
+        {% blocktrans %}
+          If the option is not present, you can add it <a href="{{ admin_url }}">here</a>
+        {% endblocktrans %}
+      </p>
+      {% endif %}
+    {% endif %}
+    </div>
+  </span>
+</div>
