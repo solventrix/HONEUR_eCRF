@@ -339,6 +339,35 @@ angular.module('opal.services').service('ValidationRules', function(Validators) 
 				]
 			},
 		},
+		mm_past_medical_history: {
+			previous_neoplasm: {
+				errors: [
+					[Validators.afterDateOfBirth, "{% trans "Must be after the date of birth" %}"],
+				]
+			},
+			chronic_renal_insufficiency_diagnosis_date: {
+				errors: [
+					[Validators.afterDateOfBirth, "{% trans "Must be after the date of birth" %}"],
+				]
+			},
+			monoclonal_pathology_of_uncertain_meaning_date: {
+				errors: [
+					[Validators.afterDateOfBirth, "{% trans "Must be after the date of birth" %}"],
+				]
+			},
+		},
+		bone_disease: {
+			start_date: {
+				errors: [
+					[Validators.required, "{% trans "Start date is required" %}"],
+				]
+			},
+			end_date: {
+				errors: [
+					[Validators.sameOrAfterInstanceField('start_date'), "{% trans "Start date cannot be before the end date" %}"],
+				]
+			}
+		},
 		mm_regimen: {
 			hospital: {
 				errors: [
@@ -400,6 +429,13 @@ angular.module('opal.services').service('ValidationRules', function(Validators) 
 				errors: [
 					[Validators.required, "{% trans "Response is required" %}"],
 					[Validators.validateInOptions, "{% trans "is not in the options available" %}"]
+				]
+			}
+		},
+		lab_test: {
+			glomerular_filtration_formula_date: {
+				errors: [
+					[Validators.afterDateOfBirth, "{% trans "Must be after the date of birth" %}"],
 				]
 			}
 		},
