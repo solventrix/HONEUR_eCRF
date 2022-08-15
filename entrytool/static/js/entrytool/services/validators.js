@@ -427,5 +427,21 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 				return true;
 			}
 		},
+		validateInOptions: function(value, instance, episode, patient, apiName, fieldName, schema, lookuplists){
+			if(!value){
+				return false;
+			}
+			var subRecordSchema = _.findWhere(schema[apiName].fields, {name: fieldName});
+			if(subRecordSchema.enum){
+				return !_.contains(subRecordSchema.enum, value)
+			}
+
+			var lookupListName = subRecordSchema.lookup_list;
+			if(lookupListName){
+				return !_.contains(lookuplists[lookupListName], value)
+			}
+
+			return false;
+		}
 	}
 });

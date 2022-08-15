@@ -10,13 +10,16 @@
     <label class="radio-inline" ng-repeat='item in ["Yes", "No", "Unknown"]'>
       <input type="radio" name="smm" value="[[ item]]" ng-change="editing.mm_diagnosis_details.smm_history_date = null; $root.patientValidator.validatesubrecord('mm_diagnosis_details', editing.mm_diagnosis_details, the_episode)" ng-model="editing.mm_diagnosis_details.smm_history"> [[ item | translate ]]
     </label>
-    <div class="row" ng-show="$root.patientValidator.showErrors('smm_history')" ng-class="{'has-error': $root.patientValidator.showErrors('smm_history')}">
-      <div class="col-md-12">
-        <span class="help-block" >
-          {% trans "History of SMM is required" %}
+    <span
+    class="help-block" ng-show="$root.patientValidator.showErrors('smm_history')"
+    >
+      <div ng-repeat="error in $root.patientValidator.errors['smm_history'] track by $index">
+        <span ng-show="['Yes', 'No', 'Unknown'].indexOf(editing.mm_diagnosis_details.smm_history) === -1">
+          [[ editing.mm_diagnosis_details.smm_history ]]
         </span>
+        [[ error ]]
       </div>
-    </div>
+    </span>
   </div>
   <div ng-show="editing.mm_diagnosis_details.smm_history == 'Yes'" class="col-sm-4">
     {% custom_datepicker label=_("Date") field="MMDiagnosisDetails.smm_history_date" %}

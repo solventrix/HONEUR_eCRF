@@ -1,5 +1,5 @@
 angular.module('opal.services').factory('ValidatePatient', function(
-	$q, recordLoader, ValidateField
+	$q, recordLoader, Referencedata, ValidateField
 ) {
 	"use strict";
 	/*
@@ -10,7 +10,7 @@ angular.module('opal.services').factory('ValidatePatient', function(
 	* now been resolved.
 	*/
 
-	var _validatePatient = function(schema, patient){
+	var _validatePatient = function(schema, lookuplists, patient){
 		var errors = []
 		_.each(patient, function(model, modelApiName){
 			if(!_.isArray(model)){
@@ -39,7 +39,9 @@ angular.module('opal.services').factory('ValidatePatient', function(
 									episodeSubrecord[field["name"]],
 									episodeSubrecord,
 									episode,
-									patient
+									patient,
+									schema,
+									lookuplists
 								).errors;
 
 								if(errorMessages.length){
@@ -86,8 +88,10 @@ angular.module('opal.services').factory('ValidatePatient', function(
 	return {
 		validatePatient: function(patient){
 			var deferred = $q.defer();
-			recordLoader.load().then(function(schema){
-				var errors = _validatePatient(schema, patient, deferred);
+			$q.all([recordLoader.load(), Referencedata.load()]).then(function(loadResults){
+				var schema = loadResults[0];
+				var lookuplists = loadResults[1];
+				var errors = _validatePatient(schema,lookuplists, patient);
 				updatePatientLoadIfRequired(patient, errors).then(function(){
 					deferred.resolve(errors);
 				})
