@@ -85,6 +85,13 @@ describe("Validators", function () {
 			expect(Validators.validateDateOfDiagnosisAgainstResponse(two_days_ago, null, null, patient)).toBe(false);
 		});
 
+		it("should return false there is not response date", function(){
+			patient.episodes = [episode]
+			spyOn(EntrytoolHelper, 'getEpisodeResponse').and.returnValue([{response_date: null}]);
+			expect(Validators.validateDateOfDiagnosisAgainstResponse(two_days_ago, null, null, patient)).toBe(false);
+		});
+
+
 		it("should return false if it is the same day as a response", function(){
 			patient.episodes = [episode]
 			spyOn(EntrytoolHelper, 'getEpisodeResponse').and.returnValue([{response_date: yesterday}]);
