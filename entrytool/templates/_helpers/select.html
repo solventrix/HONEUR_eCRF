@@ -8,7 +8,7 @@
     </label>
     {% endif %}
     <div class="{% ifequal style "horizontal" %}col-sm-8{% endifequal %}">
-      <select {% if autofocus %}autofocus {% endif %}name="[[ {{ element_name }} ]]" class="form-control" ng-model="{{ model }}" ng-change="$root.patientValidator.validatesubrecord('{{ model_api_name }}', {{ subrecord }}, the_episode)">
+      <select {% if autofocus %}autofocus {% endif %}name="[[ {{ element_name }} ]]" class="form-control" ng-model="{{ model }}" ng-change="{% if change %}{{ change }}{% else %}$root.patientValidator.validatesubrecord('{{ model_api_name }}', {{ subrecord }}, the_episode){% endif %}">
         {% if default_null %}
         <option value="" selected>---------</option>
         {% endif %}
@@ -25,7 +25,10 @@
     class="help-block" ng-show="$root.patientValidator.showErrors('{{ field_name }}')"
     >
      <div ng-repeat="error in $root.patientValidator.errors['{{ field_name }}'] track by $index">
-       [[ error ]]
+      <span ng-show="{{ lookuplist }}.indexOf({{ model }}) === -1">
+        [[ {{ model }} ]]
+      </span>
+        [[ error ]]
      </div>
     </span>
       {% if help_text %}

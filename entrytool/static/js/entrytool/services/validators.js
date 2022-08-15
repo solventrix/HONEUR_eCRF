@@ -408,6 +408,25 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 			}
 			return false;
 		},
+		sameOrAfterInstanceField: function(instanceField){
+			/*
+			* Takes the name of a field on the instance, returns
+			* true if the field on the instance is before the val.
+			* e.g.
+			* for BoneDisease.end_date you could add the validator rule
+			* sameOrAfterInstanceField('start_date')
+			*/
+			return function(val, instance){
+				if(!val || !instance[instanceField]){
+					return false
+				}
+				var today = moment();
+				if(toMomentFilter(instance[instanceField]).isAfter(today, "d")){
+					return true;
+				}
+				return false;
+			}
+		},
 		validateResponseToRegimens: function(val, instance, episode){
 			/*
 			* From the perspective of a response_date, validates that there
@@ -427,5 +446,21 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 				return true;
 			}
 		},
+		validateInOptions: function(value, instance, episode, patient, apiName, fieldName, schema, lookuplists){
+			if(!value){
+				return false;
+			}
+			var subRecordSchema = _.findWhere(schema[apiName].fields, {name: fieldName});
+			if(subRecordSchema.enum){
+				return !_.contains(subRecordSchema.enum, value)
+			}
+
+			var lookupListName = subRecordSchema.lookup_list;
+			if(lookupListName){
+				return !_.contains(lookuplists[lookupListName], value)
+			}
+
+			return false;
+		}
 	}
 });

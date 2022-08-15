@@ -27,7 +27,7 @@
                datepicker-options="{startingDay: 1}"
                ng-focus="{{ formname }}[{{ element_name }} + '_open']=true"
                close-text="Close"
-               ng-change="$root.patientValidator.validatesubrecord('{{ model_api_name }}', {{ subrecord }}, the_episode)"
+               ng-change="{% if change %}{{ change }}{% else %}$root.patientValidator.validatesubrecord('{{ model_api_name }}', {{ subrecord }}, the_episode){% endif %}"
                />
      {% if user_options %}
          <span class="input-group-btn">

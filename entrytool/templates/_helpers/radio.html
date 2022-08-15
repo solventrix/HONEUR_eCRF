@@ -9,7 +9,11 @@
     <div class="row" >
       <div class="col-md-12">
       <label class="radio-inline" ng-repeat="item in {{ lookuplist }}">
+        {% if change %}
+        <input ng-change="{{ change }}" class="" type="radio" name="[[ {{ element_name }} ]]" value="[[ item ]]" ng-model="{{ model }}">
+        {% else %}
         <input ng-change="$root.patientValidator.validatesubrecord('{{ model_api_name }}', {{ subrecord }}, the_episode)" class="" type="radio" name="[[ {{ element_name }} ]]" value="[[ item ]]" ng-model="{{ model }}">
+        {% endif %}
         [[ item | translate ]]
       </label>
       </div>
@@ -25,6 +29,9 @@
   class="help-block" ng-show="$root.patientValidator.showErrors('{{ field_name }}')"
   >
    <div ng-repeat="error in $root.patientValidator.errors['{{ field_name }}'] track by $index">
+    <span ng-show="{{ lookuplist }}.indexOf({{ model }}) === -1">
+      [[ {{ model }} ]]
+    </span>
      [[ error ]]
    </div>
   </span>

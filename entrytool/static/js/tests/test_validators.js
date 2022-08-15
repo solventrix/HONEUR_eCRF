@@ -722,6 +722,88 @@ describe("Validators", function () {
 		})
 	});
 
+	describe('validateInOptions', function(){
+		var enum_schema;
+		var lookup_list_schema;
+		var lookuplists;
+		var apiName;
+		var fieldName;
 
+		beforeEach(function(){
+			apiName = "diagnosis";
+			fieldName = "some_test";
+			lookup_list_schema = {
+				diagnosis: {
+					fields: [{
+						name: "some_test",
+						lookup_list: ["letters"]
+					}]
+				}
+			};
+			enum_schema = {
+				diagnosis: {
+					fields: [{
+						name: "some_test",
+						enum: ["a", "b", "c"],
+					}]
+				}
+			};
+			lookuplists = {
+				letters: ["a", "b", "c"]
+			};
+		});
 
+		it('should return false if the value is not populated', function(){
+			expect(Validators.validateInOptions(
+				null, null, null, null, apiName, fieldName, enum_schema, lookuplists
+			)).toBe(false);
+		});
+
+		it("should return false if the value is in the enum", function(){
+			expect(Validators.validateInOptions(
+				"a", null, null, null, apiName, fieldName, enum_schema, lookuplists
+			)).toBe(false);
+		});
+
+		it("should return false if the value is in the lookuplist", function(){
+			expect(Validators.validateInOptions(
+				"a", null, null, null, apiName, fieldName, lookup_list_schema, lookuplists
+			)).toBe(false);
+		});
+
+		it("should return true if the value is not in the enum", function(){
+			expect(Validators.validateInOptions(
+				"d", null, null, null, apiName, fieldName, enum_schema, lookuplists
+			)).toBe(true);
+		});
+
+		it("should return true if the value is not in the lookuplist", function(){
+			expect(Validators.validateInOptions(
+				"d", null, null, null, apiName, fieldName, lookup_list_schema, lookuplists
+			)).toBe(true);
+		});
+	});
+
+	describe('sameOrAfterInstanceField', function(){
+		it("should return false if the val isn't populated", function(){
+			expect(Validators.sameOrAfterInstanceField('end_date')(null, {end_date: two_days_ago})).toBe(false);
+		});
+
+		it("should return false if the instance field isn't populated", function(){
+			expect(Validators.sameOrAfterInstanceField('end_date')(two_days_ago, {end_date: null})).toBe(false);
+		});
+
+		it("should return false if the val is the same as the instance field", function(){
+			expect(Validators.sameOrAfterInstanceField('end_date')(two_days_ago, {end_date: moment(two_days_ago)})).toBe(false);
+		});
+
+		it("should return false if the val is after the instance field", function(){
+			expect(Validators.sameOrAfterInstanceField('end_date')(two_days_ago, {end_date: two_weeks_ago})).toBe(false);
+		});
+
+		it("should return true if the val is before the instance field", function(){
+			expect(Validators.sameOrAfterInstanceField('end_date')(two_weeks_ago, {end_date: two_days_ago})).toBe(false);
+		});
+
+	})
 });

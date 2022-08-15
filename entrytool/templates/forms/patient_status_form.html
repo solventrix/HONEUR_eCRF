@@ -1,4 +1,5 @@
 {% load forms %}
+{% load custom_forms %}
 {% checkbox field="PatientStatus.deceased" change='editing.patient_status.death_date=null; editing.patient_status.death_cause=null;' %}
 {% datepicker field="PatientStatus.death_date" show='editing.patient_status.deceased' %}
 {% select field="PatientStatus.death_cause" show='editing.patient_status.deceased'  %}
