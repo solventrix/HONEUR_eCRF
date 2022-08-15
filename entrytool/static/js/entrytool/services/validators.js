@@ -420,8 +420,7 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 				if(!val || !instance[instanceField]){
 					return false
 				}
-				var today = moment();
-				if(toMomentFilter(instance[instanceField]).isAfter(today, "d")){
+				if(toMomentFilter(instance[instanceField]).isAfter(toMomentFilter(val), "d")){
 					return true;
 				}
 				return false;
