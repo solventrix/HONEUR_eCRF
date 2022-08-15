@@ -1,79 +1,68 @@
-import csv
-from plugins.data_load.load_utils import (
-    cast_date, get_and_check, get_and_check_ll
-)
-from opal.models import Patient, Gender
-from plugins.conditions.cll import episode_categories
-from entrytool.models import PatientStatus
+from opal.models import Patient
+from ..conditions.cll.models import CLLDiagnosisDetails
+from plugins.data_load import base_loader
+from entrytool.models import Demographics, PatientStatus
 
 
-# field -> csv column title mapping
-field_map = dict(
-    # Demographics fields
-    date_of_birth="date_of_birth",
-    external_identifier="Hospital_patient_ID",
-    sex="Gender",
+class DemographicsLoader(base_loader.Loader):
+    def __init__(self, *args, category):
+        super().__init__(*args)
+        self.category = category
 
-    # Patient status fields
-    death_date="date_of_death",
-    death_cause="cause_of_death",
-
-    # CLL diagnosis details
-    hospital="Hospital",
-    diag_date="date_of_diagnosis",
-)
-
-
-def load_data(file_name):
-    with open(file_name, encoding="utf-8-sig") as f:
-        demographics_saved = 0
-        rows = list(csv.DictReader(f))
-        for row in rows:
-            # skip empty rows
-            if not any(row.values()):
-                continue
-            external_identifier = row[field_map["external_identifier"]].strip()
-            if external_identifier:
+    def get_and_check_external_identifier(self, column):
+        value = self.row[column]
+        try:
+            if not value:
+                raise ValueError(f"No external identifier found for {value}")
+            if value:
                 patients = Patient.objects.filter(
-                    demographics__external_identifier=external_identifier
+                    demographics__external_identifier=value
                 )
                 if patients.exists():
-                    raise ValueError(
-                        "Patient {} already exists".format(external_identifier)
-                    )
-            date_of_birth = cast_date(row[field_map["date_of_birth"]])
-            sex = get_and_check_ll(row[field_map["sex"]], Gender)
-
-            patient_status = {
-                "death_date": cast_date(row[field_map["death_date"]]),
-                "death_cause": get_and_check(
-                    row[field_map["death_cause"]], PatientStatus.DEATH_CAUSES
+                    raise ValueError("Patient {} already exists".format(value))
+        except Exception as err:
+            self.errors.append(
+                dict(
+                    file=self.file_name,
+                    row=self.idx,
+                    column=column,
+                    value=value,
+                    exception=err,
                 )
-            }
-            patient = Patient.objects.create()
-            episode = patient.create_episode(
-                category_name=episode_categories.CLLCondition.display_name
             )
-            patient_detail = patient.patientstatus_set.get()
-            for i, v in patient_status.items():
-                setattr(patient_detail, i, v)
-            patient_detail.set_consistency_token()
-            patient_detail.save()
+            return ""
+        return self.check_and_get_string(Demographics, "hospital_number", column)
 
-            diagnosis_details = episode.clldiagnosisdetails_set.get()
-            diagnosis_details_mapping = {
-                "diag_date": cast_date(row[field_map["diag_date"]]),
-                "hospital": row[field_map["hospital"]],
-            }
-            for i, v in diagnosis_details_mapping.items():
-                setattr(diagnosis_details, i, v)
-            diagnosis_details.set_consistency_token()
-            diagnosis_details.save()
+    def load_row(self, row):
+        if not (any(row.values())):
+            return
+        external_identifier = self.get_and_check_external_identifier(
+            "Hospital_patient_ID"
+        )
+        if not external_identifier:
+            return
+        patient = Patient.objects.create()
+        demographics = patient.demographics()
+        demographics.date_of_birth = self.check_and_get_date("date_of_birth")
+        demographics.hospital_number = external_identifier
+        demographics.sex = self.check_and_get_string(Demographics, "sex", "Gender")
+        demographics.set_consistency_token()
+        demographics.save()
 
-            demographics = patient.demographics()
-            demographics.date_of_birth = date_of_birth
-            demographics.external_identifier = external_identifier
-            demographics.sex = sex
-            demographics.set_consistency_token()
-            demographics.save()
-            demographics_saved += 1
+        episode = patient.create_episode(category_name=self.category.display_name)
+
+        patient_status = patient.patientstatus_set.get()
+        patient_status.death_date = self.check_and_get_date("date_of_death")
+        patient_status.death_cause = self.check_and_get_string(
+            PatientStatus, "death_cause", "cause_of_death"
+        )
+        patient_status.set_consistency_token()
+        patient_status.save()
+
+        diagnosis_details = episode.clldiagnosisdetails_set.get()
+        diagnosis_details.diag_date = self.check_and_get_date("date_of_diagnosis")
+        diagnosis_details.hospital = self.check_and_get_string(
+            CLLDiagnosisDetails, "hospital", "Hospital"
+        )
+        diagnosis_details.set_consistency_token()
+        diagnosis_details.save()

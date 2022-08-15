@@ -10,11 +10,11 @@ def cast_date(some_str):
         return None
     try:
         return datetime.datetime.strptime(some_str, "%d/%m/%Y").date()
-    except:
+    except Exception:
         return datetime.datetime.strptime(some_str, "%Y-%m-%d").date()
 
 
-def get_and_check(row_value, choices):
+def match_to_choice_if_possible(row_value, choices):
     row_value = row_value.strip()
     if not row_value:
         return None
@@ -22,13 +22,10 @@ def get_and_check(row_value, choices):
         result = c[0]
         if result.lower() == row_value.lower():
             return result
-    return row_value
-    raise ValueError(
-        "{} not in {}".format(row_value, [i[0] for i in choices])
-    )
+    return ""
 
 
-def get_and_check_ll(row_value, ll):
+def get_from_ll(row_value, ll):
     row_value = row_value.strip()
     if not row_value:
         return
@@ -38,15 +35,7 @@ def get_and_check_ll(row_value, ll):
     if result.exists():
         return result.get().name
     else:
-        return row_value
-        raise ValueError("{} not in {}".format(row_value, ll))
-
-
-def int_or_none(row_value):
-    row_value = row_value.strip()
-    if not row_value:
-        return
-    return int(row_value)
+        return ""
 
 
 def float_or_none(row_value):

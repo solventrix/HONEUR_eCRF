@@ -1,13 +1,9 @@
 import os
+import traceback
 from django.core.management.base import BaseCommand
 from django.db import transaction
 from plugins.data_load import load_demographics, load_followup, load_lot
-
-LOAD_MAPPING = {
-    "demographics.csv": load_demographics.load_data,
-    "lot.csv": load_lot.load_data,
-    "follow_ups.csv": load_followup.load_data,
-}
+from plugins.conditions.cll import episode_categories
 
 
 class Command(BaseCommand):
@@ -19,12 +15,34 @@ class Command(BaseCommand):
 
     @transaction.atomic()
     def handle(self, *args, **options):
-        provided_files = os.listdir(options["folder"])
+        folder = options["folder"]
+        files = os.listdir(options["folder"])
 
-        for file_name in LOAD_MAPPING.keys():
-            if file_name not in provided_files:
+        for file_name in ["demographics.csv", "lot.csv", "follow_ups.csv"]:
+            if file_name not in files:
                 raise ValueError(f'Unable to find {file_name} in {options["folder"]}')
 
-        for file_name, loader in LOAD_MAPPING.items():
-            full_file_path = os.path.join(options["folder"], file_name)
-            loader(full_file_path)
+        demographics_loader = load_demographics.DemographicsLoader(
+            os.path.join(folder, "demographics.csv"),
+            category=episode_categories.CLLCondition,
+        )
+        demographics_loader.load_rows()
+
+        load_lot_loader = load_lot.LOTLoader(os.path.join(folder, "lot.csv"))
+        load_lot_loader.load_rows()
+
+        load_followup_loader = load_followup.FollowUpLoader(
+            os.path.join(folder, "follow_ups.csv")
+        )
+        load_followup_loader.load_rows()
+
+        errors = (
+            demographics_loader.errors
+            + load_lot_loader.errors
+            + load_followup_loader.errors
+        )
+
+        if errors:
+            for error in errors:
+                self.stderr.write(str(error))
+            raise ValueError("Unable to process files, rolling back the transaction")
