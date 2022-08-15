@@ -497,7 +497,11 @@ class MMResponse(models.EpisodeSubrecord):
         verbose_name=_("MRD Technique")
     )
     response = fields.CharField(
-        max_length=50, choices=RESPONSES, verbose_name=_("Response")
+        blank=True,
+        null=True,
+        max_length=50,
+        choices=RESPONSES,
+        verbose_name=_("Response")
     )
 
 

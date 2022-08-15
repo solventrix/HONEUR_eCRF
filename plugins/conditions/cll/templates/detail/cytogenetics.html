@@ -1,5 +1,5 @@
 {% load i18n %}
-<div class="follow-up-table" ng-show="episode.cytogenetics.length > 0">
+<div class="cytogenetics-table" ng-show="episode.cytogenetics.length > 0">
   <div class="col-md-12">
     <div class="row header-row display-label">
       <div class="col-sm-2 header"></div>
@@ -19,16 +19,16 @@
       >
 
     </div>
-    <div class="row table-row" >
+    <div class="row table-row" ng-class="{'imported-validation-error': honeurPatientDetailCtrl.hasError(episode.id, '{{  models.Cytogenetics.get_api_name }}', item.id)}">
       <div class="col-sm-2 first-column text-right">
-        [[ item.hospital | translate ]] [[ item.cytogenetic_date | displayDate ]] &nbsp;   
-        <i ng-click="episode.recordEditor.editItem('{{ models.Cytogenetics.get_api_name }}', item)" class="fa fa-pencil edit pointer"></i>
+        [[ item.hospital | translate ]] [[ item.cytogenetic_date | displayDate ]] &nbsp;
+        <i ng-click="honeurPatientDetailCtrl.editItem('{{ models.Cytogenetics.get_api_name }}', item, episode)" class="fa fa-pencil edit pointer"></i>
       </div>
       <div class="col-sm-2 column">[[ item.del17p ]]</div>
       <div class="col-sm-2 column">[[ item.ighv_rearrangement ]]</div>
       <div class="col-sm-2 column">[[ item.del11q ]]</div>
       <div class="col-sm-2 column">[[ item.tp53_mutation ]]</div>
-      <div class="col-sm-2 column">[[ item.karyotype ]]</div>  
+      <div class="col-sm-2 column">[[ item.karyotype ]]</div>
       </div>
     </div>
   </div>

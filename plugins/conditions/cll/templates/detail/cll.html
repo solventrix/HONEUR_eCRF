@@ -75,7 +75,7 @@
                 {% trans "Additional Characteristics" %}
                 <span class="pull-right pointer edit">
                   <a
-                    ng-click="episode.recordEditor.newItem('{{ models.AdditionalCharacteristics.get_api_name }}')"
+                    ng-click="honeurPatientDetailCtrl.newItem('{{ models.AdditionalCharacteristics.get_api_name }}', episode)"
                   >
                     <i class="fa fa-plus-circle edit pointer"></i>
                   </a>
@@ -98,7 +98,7 @@
                 {% trans "Cytogenetics" %}
                 <span class="pull-right pointer edit">
                   <a
-                    ng-click="episode.recordEditor.newItem('{{ models.Cytogenetics.get_api_name }}')"
+                    ng-click="honeurPatientDetailCtrl.newItem('{{ models.Cytogenetics.get_api_name }}', episode)"
                   >
                     <i class="fa fa-plus-circle edit pointer"></i>
                   </a>
@@ -121,7 +121,7 @@
             {% trans "Quality Of Life 5Q" %}
             <span class="pull-right pointer edit">
               <a
-                ng-click="episode.recordEditor.newItem('{{ models.QualityOfLife5Q.get_api_name }}')"
+                ng-click="honeurPatientDetailCtrl.newItem('{{ models.QualityOfLife5Q.get_api_name }}', episode)"
               >
                 <i class="fa fa-plus-circle edit pointer"></i>
               </a>
@@ -130,7 +130,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-12">{% include "detail/qol_5q.html" %}</div>
+        <div class="col-md-6">{% include "detail/qol_5q.html" %}</div>
       </div>
     </section>
   </div>
