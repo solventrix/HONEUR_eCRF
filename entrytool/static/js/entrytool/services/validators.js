@@ -72,7 +72,8 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 			var error = false;
 			_.each(patient.episodes, function(episode){
 				_.each(EntrytoolHelper.getEpisodeRegimen(episode), function(regimen){
-					if(regimen.start_date.isBefore(toMomentFilter(val), "d")){
+					var regimenDate = regimen.start_date || regimen.end_date;
+					if(regimenDate && regimenDate.isBefore(toMomentFilter(val), "d")){
 						error = true;
 					}
 				});
@@ -152,7 +153,7 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 		validateRegimenToOtherLOTRegimens: function (val, instance, episode, patient){
 			/*
 			 * If LOT 1 has a regimen starts 1 Jan - > 1 Feb, and 1 Sep -> 1 Oct
-			 * LOT 2 cannot have a regiment 1 Mar -> 1 Apr
+			 * LOT 2 cannot have a regimen 1 Mar -> 1 Apr
 			 */
 			if(!val){
 				return false;

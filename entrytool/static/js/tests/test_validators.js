@@ -41,6 +41,12 @@ describe("Validators", function () {
 			expect(Validators.validateDateOfDiagnosisAgainstRegimen(two_days_ago, null, null, patient)).toBe(false);
 		});
 
+		it("should return false there is a regiment but it has no start date or end date", function(){
+			patient.episodes = [episode]
+			spyOn(EntrytoolHelper, 'getEpisodeRegimen').and.returnValue([{}]);
+			expect(Validators.validateDateOfDiagnosisAgainstRegimen(two_days_ago, null, null, patient)).toBe(false);
+		});
+
 		it("should return false if it is the same day as a regimen", function(){
 			patient.episodes = [episode]
 			spyOn(EntrytoolHelper, 'getEpisodeRegimen').and.returnValue([{start_date: yesterday}]);
@@ -50,6 +56,12 @@ describe("Validators", function () {
 		it("should return true if there is a regimen before the date of diagnosis", function(){
 			patient.episodes = [episode]
 			spyOn(EntrytoolHelper, 'getEpisodeRegimen').and.returnValue([{start_date: two_days_ago}]);
+			expect(Validators.validateDateOfDiagnosisAgainstRegimen(yesterday, null, null, patient)).toBe(true);
+		});
+
+		it('should return true if there is no start date but the end date is before', function(){
+			patient.episodes = [episode]
+			spyOn(EntrytoolHelper, 'getEpisodeRegimen').and.returnValue([{end_date: two_days_ago}]);
 			expect(Validators.validateDateOfDiagnosisAgainstRegimen(yesterday, null, null, patient)).toBe(true);
 		});
 	});
