@@ -784,6 +784,26 @@ describe("Validators", function () {
 		});
 	});
 
+	describe('sameOrAfterInstanceField', function(){
+		it("should return false if the val isn't populated", function(){
+			expect(Validators.sameOrAfterInstanceField('end_date')(null, {end_date: two_days_ago})).toBe(false);
+		});
 
+		it("should return false if the instance field isn't populated", function(){
+			expect(Validators.sameOrAfterInstanceField('end_date')(two_days_ago, {end_date: null})).toBe(false);
+		});
 
+		it("should return false if the val is the same as the instance field", function(){
+			expect(Validators.sameOrAfterInstanceField('end_date')(two_days_ago, {end_date: moment(two_days_ago)})).toBe(false);
+		});
+
+		it("should return false if the val is after the instance field", function(){
+			expect(Validators.sameOrAfterInstanceField('end_date')(two_days_ago, {end_date: two_weeks_ago})).toBe(false);
+		});
+
+		it("should return true if the val is before the instance field", function(){
+			expect(Validators.sameOrAfterInstanceField('end_date')(two_weeks_ago, {end_date: two_days_ago})).toBe(false);
+		});
+
+	})
 });
