@@ -771,6 +771,54 @@ describe("Validators", function () {
 			)).toBe(false);
 		});
 
+		it("should return false if the value is a string that can be cast to an int and the enums are ints", function(){
+			enum_schema = {
+				diagnosis: {
+					fields: [{
+						name: "some_test",
+						enum: [1, 2, 3],
+					}]
+				}
+			}
+			expect(Validators.validateInOptions(
+				"1", null, null, null, apiName, fieldName, enum_schema, lookuplists
+			)).toBe(false);
+		});
+
+		it("should return true if the value is an int but the enums are strings", function(){
+			enum_schema = {
+				diagnosis: {
+					fields: [{
+						name: "some_test",
+						enum: ["1", "2", "3"],
+					}]
+				}
+			}
+			expect(Validators.validateInOptions(
+				1, null, null, null, apiName, fieldName, enum_schema, lookuplists
+			)).toBe(true);
+		});
+
+		it("should return false if the value is an empty string", function(){
+			expect(Validators.validateInOptions(
+				"", null, null, null, apiName, fieldName, enum_schema, lookuplists
+			)).toBe(false);
+		});
+
+		it("should return true if the value is not in the enum and is 0", function(){
+			enum_schema = {
+				diagnosis: {
+					fields: [{
+						name: "some_test",
+						enum: [1, 2, 3],
+					}]
+				}
+			}
+			expect(Validators.validateInOptions(
+				0, null, null, null, apiName, fieldName, enum_schema, lookuplists
+			)).toBe(true);
+		});
+
 		it("should return true if the value is not in the enum", function(){
 			expect(Validators.validateInOptions(
 				"d", null, null, null, apiName, fieldName, enum_schema, lookuplists

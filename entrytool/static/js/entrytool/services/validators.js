@@ -446,11 +446,18 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 			}
 		},
 		validateInOptions: function(value, instance, episode, patient, apiName, fieldName, schema, lookuplists){
-			if(!value){
+			if(_.isNull(value) || _.isUndefined(value)){
 				return false;
+			}
+			if(_.isString(value) && !value.length){
+				return false
 			}
 			var subRecordSchema = _.findWhere(schema[apiName].fields, {name: fieldName});
 			if(subRecordSchema.enum){
+				// if the subrecord schema are ints, parse the value to an int
+				if(_.isNumber(subRecordSchema.enum[0])){
+					value = parseInt(value);
+				}
 				return !_.contains(subRecordSchema.enum, value)
 			}
 
