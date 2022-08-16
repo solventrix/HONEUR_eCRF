@@ -2,7 +2,6 @@
 
 
 
-
 <div class="panel panel-default">
   <div class="panel-heading">
     <h3>
@@ -11,7 +10,7 @@
          ng-click="patient.recordEditor.editItem('patient_status', patient.patient_status[0])"></i>
     </h3>
   </div>
-  <div class='help-block' ng-show="!(patient.patient_status[0].lost_to_follow_up || patient.patient_status.deceased)">
+  <div class='help-block' ng-show="!(patient.patient_status[0].lost_to_follow_up || patient.patient_status[0].deceased)">
   Report patient death or lost to follow up here.
   </div>
   <ul class="list-group">
