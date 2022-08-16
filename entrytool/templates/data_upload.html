@@ -134,8 +134,8 @@
                           [[ uploadError.short_description ]]
                         </td>
                         <td>
-                          <a class="orange-link" ng-show="!uploadError.showTraceback" ng-click="uploadError.showTraceback=true">Show Traceback</a>
-                          <a class="orange-link" ng-show="uploadError.showTraceback" ng-click="uploadError.showTraceback=true">Hide Traceback</a>
+                          <a class="orange-link pointer" ng-show="!uploadError.showTraceback" ng-click="uploadError.showTraceback=true">Show Traceback</a>
+                          <a class="orange-link pointer" ng-show="uploadError.showTraceback" ng-click="uploadError.showTraceback=false">Hide Traceback</a>
                         </td>
                       </tr>
                       <tr ng-show="uploadError.showTraceback" ng-repeat-end>
