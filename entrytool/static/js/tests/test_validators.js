@@ -784,7 +784,7 @@ describe("Validators", function () {
 		});
 	});
 
-	fdescribe('sameOrAfterInstanceField', function(){
+	describe('sameOrAfterInstanceField', function(){
 		it("should return false if the val isn't populated", function(){
 			expect(Validators.sameOrAfterInstanceField('end_date')(null, {end_date: two_days_ago})).toBe(false);
 		});
