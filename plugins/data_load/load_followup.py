@@ -19,7 +19,9 @@ class FollowUpLoader(base_loader.Loader):
             category_name=episode_categories.CLLCondition.display_name
         )
         additional_characteristics = AdditionalCharacteristics(episode=episode)
-        additional_characteristics.characteristic_date = self.check_and_get_date("followup_date")
+        additional_characteristics.characteristic_date = self.check_and_get_date(
+            "followup_date"
+        )
         additional_characteristics.LDH = self.check_and_get_float("LDH")
         additional_characteristics.beta2m = self.check_and_get_float("beta2m")
         additional_characteristics.set_consistency_token()
