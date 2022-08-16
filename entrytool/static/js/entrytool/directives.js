@@ -1,6 +1,19 @@
 !(function () {
   "use strict";
 
+  directives.directive("selectFile", function() {
+    return {
+      require: "ngModel",
+      link: function postLink(scope,elem,attrs,ngModel) {
+        elem.on("change", function(e) {
+          var formData = new FormData();
+          formData.push(elem[0].files);
+          ngModel.$setViewValue(formData);
+        });
+      }
+    }
+  });
+
   directives.directive("dateAfter", function ($parse, toMomentFilter) {
     /*
 
