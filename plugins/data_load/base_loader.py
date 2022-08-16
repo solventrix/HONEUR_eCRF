@@ -5,6 +5,7 @@ from plugins.data_load.load_utils import (
 from opal.models import Patient
 from entrytool.models import Demographics
 from opal.core.fields import ForeignKeyOrFreeText
+import traceback
 
 
 class Loader():
@@ -129,6 +130,21 @@ class Loader():
                 column=column,
                 value=value,
                 exception=err
+            ))
+        return result
+
+    def parse_errors(self):
+        result = []
+        for error in self.errors:
+            result.append(dict(
+                file=error["file"],
+                row=error["row"],
+                column=error["column"],
+                value=error["value"],
+                short_description=str(error["exception"]),
+                traceback="\n".join(traceback.format_tb(
+                    error["exception"].__traceback__
+                ))
             ))
         return result
 

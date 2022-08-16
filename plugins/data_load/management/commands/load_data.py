@@ -12,6 +12,12 @@ class Command(BaseCommand):
             "folder",
             help="Specify a folder with a demographics.csv, follow_ups.csv and lot.csv",
         )
+        parser.add_argument(
+            '--verbose',
+            help="Print the full stack trace of the errors",
+            action="store_true",
+            dest="verbose"
+        )
 
     @transaction.atomic()
     def handle(self, *args, **options):
@@ -37,12 +43,16 @@ class Command(BaseCommand):
         load_followup_loader.load_rows()
 
         errors = (
-            demographics_loader.errors
-            + load_lot_loader.errors
-            + load_followup_loader.errors
+            demographics_loader.parse_errors()
+            + load_lot_loader.parse_errors()
+            + load_followup_loader.parse_errors()
         )
 
         if errors:
             for error in errors:
-                self.stderr.write(str(error))
+                to_print = error
+                if not options["verbose"]:
+                    to_print = {i: v for i, v in error.items() if not i == "traceback"}
+                else:
+                    self.stderr.write(str(to_print))
             raise ValueError("Unable to process files, rolling back the transaction")
