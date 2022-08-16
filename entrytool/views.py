@@ -94,7 +94,9 @@ class OrphonedRecords(TemplateView):
         and have not been updated since self.since
         """
         qs = Patient.objects.all().exclude(
-            Q(patientstatus__deceased=True) | Q(patientstatus__lost_to_follow_up=True)
+            Q(patientstatus__deceased=True) |
+            Q(patientstatus__lost_to_follow_up=True) |
+            Q(patientstatus__discharged=True)
         )
         max_fields = []
         for subrecord in subrecords.subrecords():
