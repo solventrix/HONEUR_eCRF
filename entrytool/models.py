@@ -132,6 +132,9 @@ class PatientLoad(models.PatientSubrecord):
     has_errors = fields.BooleanField(
         default=False, verbose_name=_("Has Errors"),
     )
+    data_quality_completed = fields.BooleanField(
+        default=False, verbose_name=_("Data Quality Completed")
+    )
 
     class Meta:
         verbose_name = _("Patient Load")
