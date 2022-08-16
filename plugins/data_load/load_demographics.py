@@ -1,7 +1,7 @@
 from opal.models import Patient
 from ..conditions.cll.models import CLLDiagnosisDetails
 from plugins.data_load import base_loader
-from entrytool.models import Demographics, PatientStatus
+from entrytool.models import Demographics, PatientLoad, PatientStatus
 
 
 class DemographicsLoader(base_loader.Loader):
@@ -49,6 +49,9 @@ class DemographicsLoader(base_loader.Loader):
         demographics.set_consistency_token()
         demographics.save()
 
+        patient.patientload_set.update(
+            source=PatientLoad.LOADED_FROM_FILE
+        )
         episode = patient.create_episode(category_name=self.category.display_name)
 
         patient_status = patient.patientstatus_set.get()
