@@ -1,4 +1,5 @@
 from rest_framework import status
+from plugins.data_load import load_data
 from opal.core.api import LoginRequiredViewset
 from opal.models import Patient, Episode
 from opal.core.api import OPALRouter, patient_from_pk, episode_from_pk
@@ -65,6 +66,15 @@ class PatientsWithErrors(LoginRequiredViewset):
         ).values_list('id', flat=True)))
 
 
+class UploadFromFilePath(LoginRequiredViewset):
+    basename = "upload_from_file_path"
+
+    def create(self, request):
+        folder = request.data["folder"]
+        errors = load_data.load_data(folder)
+        return json_response(errors)
+
+
 entrytool_router = OPALRouter()
 entrytool_router.register(
     NewLineOfTreatmentEpisode.basename, NewLineOfTreatmentEpisode
@@ -77,4 +87,7 @@ entrytool_router.register(
 )
 entrytool_router.register(
     PatientsWithErrors.basename, PatientsWithErrors
+)
+entrytool_router.register(
+    UploadFromFilePath.basename, UploadFromFilePath
 )

@@ -142,9 +142,9 @@ class Loader():
                 column=error["column"],
                 value=error["value"],
                 short_description=str(error["exception"]),
-                traceback="\n".join(traceback.format_tb(
-                    error["exception"].__traceback__
-                ))
+                traceback=traceback.format_tb(
+                    error["exception"].__traceback__, limit=10
+                )
             ))
         return result
 
