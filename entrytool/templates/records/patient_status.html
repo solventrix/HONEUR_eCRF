@@ -2,7 +2,6 @@
 
 
 
-
 <div class="panel panel-default">
   <div class="panel-heading">
     <h3>
@@ -11,11 +10,9 @@
          ng-click="patient.recordEditor.editItem('patient_status', patient.patient_status[0])"></i>
     </h3>
   </div>
-  <div class='help-block' ng-show="!(patient.patient_status[0].lost_to_follow_up || patient.patient_status.deceased)">
-  Report patient death or lost to follow up here.
+  <div class='help-block' ng-show="!(patient.patient_status[0].lost_to_follow_up || patient.patient_status[0].deceased)">
+  {% trans "Report patient death or lost to follow up here." %}
   </div>
-  <ul class="list-group">
-    <li class="list-group-patient.patient_status[0]">
       <div class="row">
    <div class="col-md-6">
     <span ng-show="patient.patient_status[0].lost_to_follow_up_date" class="display-label">{% trans "Last Seen" %}</span>
@@ -39,7 +36,4 @@
     </span>
   </div>
 </div>
-    </li>
-  </ul>
-  {% block footer %}{% endblock %}
 </div>
