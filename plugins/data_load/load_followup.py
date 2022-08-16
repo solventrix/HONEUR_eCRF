@@ -1,4 +1,6 @@
-from entrytool.models import FollowUp
+from unicodedata import category
+from plugins.conditions.cll.models import AdditionalCharacteristics
+from plugins.conditions.cll import episode_categories
 from plugins.data_load import base_loader
 
 
@@ -13,10 +15,12 @@ class FollowUpLoader(base_loader.Loader):
         if not patient:
             return
 
-        follow_up = FollowUp(patient=patient)
-        follow_up.follow_up_date = self.check_and_get_date("followup_date")
-        follow_up.LDH = self.check_and_get_float("LDH")
-        follow_up.beta2m = self.check_and_get_float("beta2m")
-        follow_up.albumin = self.check_and_get_float("albumin")
-        follow_up.set_consistency_token()
-        follow_up.save()
+        episode = patient.episode_set.get(
+            category_name=episode_categories.CLLCondition.display_name
+        )
+        additional_characteristics = AdditionalCharacteristics(episode=episode)
+        additional_characteristics.characteristic_date = self.check_and_get_date("followup_date")
+        additional_characteristics.LDH = self.check_and_get_float("LDH")
+        additional_characteristics.beta2m = self.check_and_get_float("beta2m")
+        additional_characteristics.set_consistency_token()
+        additional_characteristics.save()
