@@ -1,4 +1,4 @@
-angular.module('opal.controllers').controller("HoneurPatientDetailCtrl", function($scope, $rootScope, ValidatePatient, EntryToolRecordEditor){
+angular.module('opal.controllers').controller("HoneurPatientDetailCtrl", function($scope, $rootScope, $modal, $q, UserProfile, ValidatePatient, EntryToolRecordEditor){
 	"use strict";
 	var self = this;
 
@@ -54,5 +54,48 @@ angular.module('opal.controllers').controller("HoneurPatientDetailCtrl", functio
 		})
 		return result;
 	}
+
+
+	this.showDataQualityCompleted = function(){
+		if(self._erroringSubrecords.length){
+			var episode = $scope.patient.episodes[0]
+			if(!episode.patient_load[0].data_quality_completed){
+				return true
+			}
+		}
+		return false;
+	}
+
+	this.openDataQualityCompletedModal = function(){
+		var deferred = $q.defer();
+		UserProfile.load().then(function(profile){
+			var episode = $scope.patient.episodes[0];
+			if(profile.readonly){
+					deferred.resolve();
+			}
+			else{
+				var modal_opts = {
+						backdrop: 'static',
+						templateUrl: "entrytool/templates/modals/data_quality_completed.html",
+						controller: "DataQualityCompletedCtrl",
+						resolve: {
+								item: episode.patient_load[0],
+						}
+				};
+
+				var modal = $modal.open(modal_opts);
+
+				modal.result.then(function(result) {
+					$q.when(result).then(function(x){
+						$rootScope.state = 'normal';
+						deferred.resolve(result);
+					});
+				});
+			}
+		});
+		return deferred.promise;
+
+	};
+
 	this.checkPatient();
 });

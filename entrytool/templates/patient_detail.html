@@ -18,6 +18,7 @@
         <div class="panel-heading patient-detail-heading">
           <h2>
             {% trans "Patient" %} [[ patient.id ]] ([[ episode.category_name ]])
+            <a ng-show="honeurPatientDetailCtrl.showDataQualityCompleted()" ng-click="honeurPatientDetailCtrl.openDataQualityCompletedModal()" class="btn btn-primary content-offset-left-10">Data Quality Completed</a>
           </h2>
         </div>
         <div class="panel-body">
