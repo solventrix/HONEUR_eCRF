@@ -33,6 +33,7 @@ class Loader():
             self.errors.append(dict(
                 file=self.file_name,
                 row=self.idx,
+                value=value,
                 column=column,
                 exception=err
             ))
