@@ -6,7 +6,7 @@ from django.urls import path, include
 from django.views.i18n import JavaScriptCatalog
 from . import views
 
-from entrytool import api
+from entrytool import api, views
 
 admin.autodiscover()
 
@@ -23,6 +23,7 @@ urlpatterns = [
         JavaScriptCatalog.as_view(domain="django"),
         name="javascript-catalog",
     ),
+    path('orphoned_records/', views.OrphonedRecords.as_view())
 ]
 
 urlpatterns += opatterns

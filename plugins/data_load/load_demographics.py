@@ -59,6 +59,8 @@ class DemographicsLoader(base_loader.Loader):
         patient_status.death_cause = self.check_and_get_string(
             PatientStatus, "death_cause", "cause_of_death"
         )
+        if patient_status.death_date or patient_status.death_cause:
+            patient_status.deceased = True
         patient_status.set_consistency_token()
         patient_status.save()
 

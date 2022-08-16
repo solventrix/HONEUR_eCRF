@@ -20,6 +20,7 @@ class Application(application.OpalApplication):
         "js/entrytool/services/validators.js",
         "js/entrytool/services/entrytool_record_editor.js",
         "js/entrytool/services/data_upload_loader.js",
+        "js/entrytool/controllers/empty_controller.js",
         "js/entrytool/controllers/lot_manager.js",
         "js/entrytool/controllers/delete_lot.js",
         "js/entrytool/controllers/patient_validator.js",
@@ -52,7 +53,12 @@ class Application(application.OpalApplication):
                         href='/#/data_upload',
                         display=_('Data Upload'),
                         activepattern='/#/data_upload'
-                    )
+                    ),
+                    menus.MenuItem(
+                        href='/#/orphoned_records',
+                        display=_('Orphoned Records'),
+                        activepattern='/#/orphoned_records'
+                    ),
                ]
                 if user.is_staff:
                     menuitems.append(
