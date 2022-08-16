@@ -3,5 +3,6 @@
 {% checkbox field="PatientStatus.deceased" change='editing.patient_status.death_date=null; editing.patient_status.death_cause=null;' %}
 {% datepicker field="PatientStatus.death_date" show='editing.patient_status.deceased' %}
 {% select field="PatientStatus.death_cause" show='editing.patient_status.deceased'  %}
-{% checkbox field="PatientStatus.lost_to_follow_up" change='editing.patient_status.lost_to_follow_up_date=null;'%}
+{% checkbox field="PatientStatus.lost_to_follow_up" change='editing.patient_status.lost_to_follow_up_date=null;' %}
 {% datepicker field="PatientStatus.lost_to_follow_up_date" show='editing.patient_status.lost_to_follow_up' %}
+{% checkbox field="PatientStatus.discharged" %}

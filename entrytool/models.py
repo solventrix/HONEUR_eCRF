@@ -56,6 +56,7 @@ class PatientStatus(models.PatientSubrecord):
     )
     deceased = fields.NullBooleanField(verbose_name=_("Deceased"), blank=True, null= True)
     lost_to_follow_up = fields.NullBooleanField(verbose_name=_("Lost to Follow-Up"), null = True, blank = True)
+    discharged = fields.NullBooleanField(verbose_name=_("Discharged"), blank=True, null= True)
     death_date = fields.DateField(
         null=True, verbose_name=_("Date of Death"), blank=True
     )
@@ -109,7 +110,6 @@ class PatientLoad(models.PatientSubrecord):
     or created by the front end.
     """
     _is_singleton = True
-
     LOADED_FROM_FILE = "Loaded From File"
     CREATED_FROM_UI = "Created From UI"
 
