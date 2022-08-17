@@ -135,6 +135,7 @@ class PatientLoad(models.PatientSubrecord):
     data_quality_completed = fields.BooleanField(
         default=False, verbose_name=_("Data Quality Completed")
     )
+    data_quality_completed_date = fields.DateField(blank=True, null=True)
 
     class Meta:
         verbose_name = _("Patient Load")

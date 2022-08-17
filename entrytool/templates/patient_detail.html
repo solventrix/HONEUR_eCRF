@@ -18,7 +18,12 @@
         <div class="panel-heading patient-detail-heading">
           <h2>
             {% trans "Patient" %} [[ patient.id ]] ([[ episode.category_name ]])
-            <a ng-show="honeurPatientDetailCtrl.showDataQualityCompleted()" ng-click="honeurPatientDetailCtrl.openDataQualityCompletedModal()" class="btn btn-primary content-offset-left-10">Data Quality Completed</a>
+            <a style="float: right" ng-show="honeurPatientDetailCtrl.showDataQualityCompleted()" ng-click="honeurPatientDetailCtrl.openDataQualityCompletedModal()" class="btn btn-primary content-offset-left-10">Data Quality Reviewed</a>
+            <div style="float: right" class="text-muted" ng-show="!honeurPatientDetailCtrl.showDataQualityCompleted()" style="float: right">
+              <small style="font-size: 14px; text-transform: none;">
+                Validation errors reviewed <span ng-show="patient.episodes[0].patient_load[0].data_quality_completed_date">[[ patient.episodes[0].patient_load[0].data_quality_completed_date | displayDate ]]</span>
+              </small>
+            </div>
           </h2>
         </div>
         <div class="panel-body">

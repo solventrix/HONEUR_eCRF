@@ -66,6 +66,8 @@ angular.module('opal.controllers').controller("HoneurPatientDetailCtrl", functio
 		return false;
 	}
 
+
+
 	this.openDataQualityCompletedModal = function(){
 		var deferred = $q.defer();
 		UserProfile.load().then(function(profile){
