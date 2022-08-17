@@ -23,7 +23,7 @@ urlpatterns = [
         JavaScriptCatalog.as_view(domain="django"),
         name="javascript-catalog",
     ),
-    path('orphoned_records/', views.OrphonedRecords.as_view())
+    path('orphaned_records/', views.OrphanedRecords.as_view())
 ]
 
 urlpatterns += opatterns

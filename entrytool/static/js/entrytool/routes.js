@@ -28,11 +28,11 @@
 			  }
 			})
 
-			$routeProvider.when('/orphoned_records',  {
+			$routeProvider.when('/orphaned_records',  {
 			  controller: 'EmptyCtrl',
 			  templateUrl: function(params){
 				params["cache_bust"] = Date.now();
-				return '/orphoned_records/' + '?' + $.param(params);
+				return '/orphaned_records/' + '?' + $.param(params);
 			  }
 			})
 		 }]);

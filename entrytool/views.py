@@ -50,15 +50,15 @@ class AngularLocale(TemplateView):
         return self.render_to_response(ctx, content_type="text/javascript")
 
 
-class OrphonedRecords(TemplateView):
-    template_name = "patient_lists/orphoned_records.html"
+class OrphanedRecords(TemplateView):
+    template_name = "patient_lists/orphaned_records.html"
 
     @property
     def since(self):
         """
-        Anything older than this date is considered orphoned
+        Anything older than this date is considered orphaned
         """
-        return datetime.date.today() - datetime.timedelta(90)
+        return datetime.date.today() - datetime.timedelta(180)
 
     def get_date_fields(self, subrecord):
         """

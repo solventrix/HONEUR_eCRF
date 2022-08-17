@@ -55,9 +55,9 @@ class Application(application.OpalApplication):
                         activepattern='/#/data_upload'
                     ),
                     menus.MenuItem(
-                        href='/#/orphoned_records',
-                        display=_('Orphoned Records'),
-                        activepattern='/#/orphoned_records'
+                        href='/#/orphaned_records',
+                        display=_('Orphaned Records'),
+                        activepattern='/#/orphaned_records'
                     ),
                ]
                 if user.is_staff:
