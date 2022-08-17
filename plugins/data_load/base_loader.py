@@ -1,4 +1,5 @@
 import csv
+import os
 from plugins.data_load.load_utils import (
     cast_date, match_to_choice_if_possible, get_from_ll
 )
@@ -138,7 +139,7 @@ class Loader():
         result = []
         for error in self.errors:
             result.append(dict(
-                file=error["file"],
+                file=os.path.basename(error["file"]),
                 row=error["row"],
                 column=error["column"],
                 value=error["value"],
