@@ -1,5 +1,4 @@
 from opal.models import Patient
-from ..conditions.cll.models import CLLDiagnosisDetails
 from plugins.data_load import base_loader
 from entrytool.models import Demographics, PatientLoad, PatientStatus
 
@@ -16,10 +15,10 @@ class DemographicsLoader(base_loader.Loader):
                 raise ValueError(f"No external identifier found for {value}")
             if value:
                 patients = Patient.objects.filter(
-                    demographics__external_identifier=value
+                    demographics__hospital_number=value
                 )
                 if patients.exists():
-                    raise ValueError("Patient {} already exists".format(value))
+                    raise ValueError("Hospital number {} already exists".format(value))
         except Exception as err:
             self.errors.append(
                 dict(
