@@ -82,7 +82,7 @@ angular.module('opal.services').service('ValidationRules', function(Validators) 
 			},
 			regimen: {
 				errors: [
-					[Validators.requiredForCategory('CLL'), "{% trans "Regimen is required" %}"],
+					[Validators.cll_regimen_required, "{% trans "Regimen is required" %}"],
 					[Validators.validateInOptions, "{% trans "is not in the options available" %}"]
 				]
 			},
