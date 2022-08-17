@@ -172,7 +172,7 @@
                     <span ng-show="patientsWithErrors.length === 1">
                       {% trans "patient" %}
                     </span>
-                    <span ng-show="patientsWithErrors.length > 1">
+                    <span ng-show="patientsWithErrors.length !== 1">
                       {% trans "patients" %}
                     </span>
                     {% trans "With Errors" %}
