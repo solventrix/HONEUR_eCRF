@@ -64,8 +64,5 @@ class DemographicsLoader(base_loader.Loader):
 
         diagnosis_details = episode.clldiagnosisdetails_set.get()
         diagnosis_details.diag_date = self.check_and_get_date("date_of_diagnosis")
-        diagnosis_details.hospital = self.check_and_get_string(
-            CLLDiagnosisDetails, "hospital", "Hospital"
-        )
         diagnosis_details.set_consistency_token()
         diagnosis_details.save()
