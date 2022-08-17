@@ -37,7 +37,7 @@
                       <span ng-show="unvalidatedPatients.length === validaterPointer">
                         {% trans "All patients have been validated." %}
                         <p class="content-offset-10">
-                          <a ng-click="initialUnvalidatedCount=0" class="btn btn-small btn-primary">{% trans "Upload Patient Data" %}</a>
+                          <a ng-click="initialUnvalidatedCount=0; folder=''" class="btn btn-small btn-primary">{% trans "Upload Patient Data" %}</a>
                         </p>
                       </span>
                     </h4>
