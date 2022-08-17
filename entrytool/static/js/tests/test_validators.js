@@ -607,11 +607,15 @@ describe("Validators", function () {
 			expect(Validators.required(0)).toBe(false);
 		});
 
+		it('should return true if the value is an empty string', function(){
+			expect(Validators.required("")).toBe(true);
+		});
+
 		it('should return true if the value is null', function(){
 			expect(Validators.required(null)).toBe(true);
 		});
 
-		it('should return false if the value is undefined', function(){
+		it('should return true if the value is undefined', function(){
 			expect(Validators.required(undefined)).toBe(true);
 		});
 	});
