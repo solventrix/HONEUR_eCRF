@@ -62,7 +62,7 @@ class PatientsWithErrors(LoginRequiredViewset):
             patientload__validated=True,
             patientload__has_errors=True,
             patientload__source=models.PatientLoad.LOADED_FROM_FILE,
-            patientload__data_quality_completed=False
+            patientload__data_quality_reviewed=False
         ).values_list('id', flat=True)))
 
 

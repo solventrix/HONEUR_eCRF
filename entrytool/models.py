@@ -132,10 +132,10 @@ class PatientLoad(models.PatientSubrecord):
     has_errors = fields.BooleanField(
         default=False, verbose_name=_("Has Errors"),
     )
-    data_quality_completed = fields.BooleanField(
-        default=False, verbose_name=_("Data Quality Completed")
+    data_quality_reviewed = fields.BooleanField(
+        default=False, verbose_name=_("Data Quality Reviewed")
     )
-    data_quality_completed_date = fields.DateField(blank=True, null=True)
+    data_quality_reviewed_date = fields.DateField(blank=True, null=True)
 
     class Meta:
         verbose_name = _("Patient Load")

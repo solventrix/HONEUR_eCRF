@@ -56,10 +56,10 @@ angular.module('opal.controllers').controller("HoneurPatientDetailCtrl", functio
 	}
 
 
-	this.showDataQualityCompleted = function(){
+	this.showDataQualityReviewed = function(){
 		if(self._erroringSubrecords.length){
 			var episode = $scope.patient.episodes[0]
-			if(!episode.patient_load[0].data_quality_completed){
+			if(!episode.patient_load[0].data_quality_reviewed){
 				return true
 			}
 		}
@@ -68,7 +68,7 @@ angular.module('opal.controllers').controller("HoneurPatientDetailCtrl", functio
 
 
 
-	this.openDataQualityCompletedModal = function(){
+	this.openDataQualityReviewedModal = function(){
 		var deferred = $q.defer();
 		UserProfile.load().then(function(profile){
 			var episode = $scope.patient.episodes[0];
@@ -78,8 +78,8 @@ angular.module('opal.controllers').controller("HoneurPatientDetailCtrl", functio
 			else{
 				var modal_opts = {
 						backdrop: 'static',
-						templateUrl: "entrytool/templates/modals/data_quality_completed.html",
-						controller: "DataQualityCompletedCtrl",
+						templateUrl: "entrytool/templates/modals/data_quality_reviewed.html",
+						controller: "DataQualityReviewedCtrl",
 						resolve: {
 								item: episode.patient_load[0],
 						}

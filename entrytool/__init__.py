@@ -21,7 +21,7 @@ class Application(application.OpalApplication):
         "js/entrytool/services/entrytool_record_editor.js",
         "js/entrytool/services/data_upload_loader.js",
         "js/entrytool/controllers/lot_manager.js",
-        "js/entrytool/controllers/data_quality_completed_ctrl.js",
+        "js/entrytool/controllers/data_quality_reviewed_ctrl.js",
         "js/entrytool/controllers/delete_lot.js",
         "js/entrytool/controllers/patient_validator.js",
         "js/entrytool/controllers/data_uploader.js",
