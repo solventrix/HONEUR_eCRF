@@ -95,8 +95,7 @@ class OrphanedRecords(TemplateView):
         """
         qs = Patient.objects.all().exclude(
             Q(patientstatus__deceased=True) |
-            Q(patientstatus__lost_to_follow_up=True) |
-            Q(patientstatus__discharged=True)
+            Q(patientstatus__lost_to_follow_up=True)
         )
         max_fields = []
         for subrecord in subrecords.subrecords():

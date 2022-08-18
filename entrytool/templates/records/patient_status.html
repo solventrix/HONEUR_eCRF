@@ -11,7 +11,7 @@
   </div>
   <div
     class="help-block"
-    ng-show="!(episode.patient_status[0].lost_to_follow_up || episode.patient_status[0].deceased || episode.patient_status[0].discharged)"
+    ng-show="!(episode.patient_status[0].lost_to_follow_up || episode.patient_status[0].deceased)"
   >
     {% trans "Report patient death or lost to follow up here." %}
   </div>
@@ -48,22 +48,6 @@
           >
             [[ episode.patient_status[0].death_date | displayDate ]] ([[
             episode.patient_status[0].death_cause | translate ]])
-          </span>
-        </div>
-      </div>
-            <div class="row">
-        <div class="col-md-6">
-          <span
-            ng-show="episode.patient_status[0].discharged"
-          >
-            <span class="display-label">{% trans "Discharged" %}</span>
-          </span>
-        </div>
-        <div class="col-md-6">
-          <span
-            ng-show="episode.patient_status[0].discharged"
-          >
-            {% trans "Patient Discharged" %}
           </span>
         </div>
       </div>
