@@ -70,7 +70,7 @@ class UploadFromFilePath(LoginRequiredViewset):
     basename = "upload_from_file_path"
 
     def create(self, request):
-        folder = request.data["folder"]
+        folder = request.FILES.get('folder')
         errors = load_data.load_data(folder)
         return json_response(errors)
 

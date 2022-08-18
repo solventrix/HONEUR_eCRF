@@ -56,15 +56,12 @@
               <div class="panel-body">
                 <div class="row">
                   <div class="col-md-6 col-md-offset-3">
-                    <form ng-submit="submit(folder)">
-                      <input type="text" autofocus="" name="upload_path" placeholder="{% trans "Folder location" %}" ng-model="folder" class="form-control" autocomplete="off">
-
+                    <form form-submit form-field='folder' url='/entrytool/v0.1/upload_from_file_path/' call-back="formSubmitCallback">
+                      <input type="file" id="folder" autofocus="" name="upload_path" placeholder="{% trans "Folder location" %}" ng-model="folder" class="form-control" autocomplete="off">
                     <p class="help-text text-muted content-offset-10">
                       Location of the folder containing data to upload
                     </p>
-                    <div class="text-center">
-                      <a ng-click="submit(folder)" class="btn btn-small btn-primary content-offset-10">{% trans "Upload" %}</a>
-                    </div>
+                    <input type="submit" value="Submit">
                   </div>
                 </div>
               </div>
