@@ -19,7 +19,7 @@ class Command(BaseCommand):
     @transaction.atomic()
     def handle(self, *args, **options):
         folder = options["zipped_folder"]
-        errors = load_data.load_from_zipfile(folder)
+        errors = load_data.load_data(folder)
 
         if errors:
             for error in errors:

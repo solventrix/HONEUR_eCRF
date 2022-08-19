@@ -73,7 +73,7 @@ class UploadFromFilePath(LoginRequiredViewset):
 
     def create(self, request):
         folder = request.FILES.get('file')
-        errors = load_data.load_from_zipfile(folder)
+        errors = load_data.load_data(folder)
         return json_response(errors)
 
 
