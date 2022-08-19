@@ -16,13 +16,17 @@ class Loader():
         self.idx = 1
         self.row = None
 
-    def load_rows(self):
-        with open(self.file_name, encoding="utf-8-sig") as f:
-            rows = list(csv.DictReader(f))
-            for idx, row in enumerate(rows):
-                self.idx += 1
-                self.row = row
-                self.load_row(row)
+    def load_rows(self, data):
+        rows = list(csv.DictReader(data))
+        for row in rows:
+            self.idx += 1
+            self.row = row
+            self.load_row(row)
+        return self.errors
+
+    def load_rows_from_file(self, file_name):
+        with open(file_name, encoding="utf-8-sig") as f:
+            self.load_rows_from_data(f)
         return self.errors
 
     def check_and_get_date(self, column):

@@ -101,27 +101,5 @@ angular
       }
     }
 
-    // $scope.submit = function(folder){
-    //     $http({
-    //       url: '/entrytool/v0.1/upload_from_file_path/',
-    //       method: "POST",
-    //       data: folder,
-    //       headers: {'Content-Type': undefined}
-    //     }).success(function (response) {
-    //         if(response.data.length){
-    //           loading = false;
-    //           $scope.uploadErrors = response.data
-    //         }
-    //         else{
-    //           $scope.validatingPatients = true;
-    //           DataUploadLoader.unValidatedPatients().then(function(responseData){
-    //             loading = false;
-    //             $scope.unvalidatedPatients = responseData;
-    //             $scope.initialUnvalidatedCount = $scope.unvalidatedPatients.length;
-    //             process();
-    //           });
-    //         }
-    //     });
-    // }
     init();
   });
