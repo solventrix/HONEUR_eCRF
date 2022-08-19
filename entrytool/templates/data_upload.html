@@ -56,12 +56,23 @@
               <div class="panel-body">
                 <div class="row">
                   <div class="col-md-6 col-md-offset-3">
-                    <form form-submit form-field='folder' url='/entrytool/v0.1/upload_from_file_path/' call-back="formSubmitCallback">
-                      <input type="file" id="folder" autofocus="" name="upload_path" placeholder="{% trans "Folder location" %}" ng-model="folder" class="form-control" autocomplete="off">
-                    <p class="help-text text-muted content-offset-10">
-                      Location of the folder containing data to upload
-                    </p>
-                    <input type="submit" value="Submit">
+                    <form form-submit form-field='folder' url='/entrytool/v0.1/upload_from_file_path/' on-submit="setLoading" on-success="formSubmitCallback">
+                      <label class="file">
+                        <input type="file" id="file">
+                        <span id="faux-file-field" data-initial-content="{% trans "Upload a zip file" %}"></span>
+                      </label>
+                      <p class="faux-file-help-text">
+                        {% trans "A zipfile containing demographics.csv, lot.csv and treatments.csv" %}
+                      </p>
+                      <p class="faux-file-error-text text-danger">
+                        {% trans "Please add a zip file containing demographics.csv, lot.csv and treatments.csv" %}
+                      </p>
+                      <div class="row">
+                        <div class="col-md-12 text-center">
+                          <button class="btn btn-small btn-primary" type="submit">Upload</button>
+                        </div>
+                      </div>
+                    </form>
                   </div>
                 </div>
               </div>

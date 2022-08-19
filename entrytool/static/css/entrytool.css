@@ -314,4 +314,70 @@ h1 img {
 .no-top-border {
   border-top: none;
 }
+
+.file {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  height: 34px;
+}
+
+.file input {
+  min-width: 400px;
+  margin: 0;
+  filter: alpha(opacity=0);
+  opacity: 0;
+}
+
+#faux-file-field {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 100;
+  height: 34px;
+  padding: 6px 12px;
+  line-height: 1.5;
+  color: #555;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+#faux-file-field:after {
+  content: attr(data-content);
+  color: #666;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+#faux-file-field:before {
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  bottom: -1px;
+  z-index: 6;
+  display: block;
+  text-transform: uppercase;
+  font-weight: 400;
+  content: "Browse";
+  height: 34px;
+  padding: .5rem 1rem;
+  line-height: 1.5;
+  color: white;
+  background-color: #002562;
+  border: .075rem solid #ddd;
+  border-radius: 0 .25rem .25rem 0;
+}
+
+.faux-file-error-text, .error .faux-file-help-text {
+  display: none;
+}
+
+.faux-file-help-text, .error .faux-file-error-text {
+  display: inline-block;
+}
 /*# sourceMappingURL=entrytool.css.map */

@@ -23,7 +23,7 @@ angular
 
     // the number of patients we have currently validated
     $scope.validaterPointer = 0;
-    var loading = false;
+    $scope.loading = false;
 
     $scope.states = {
       LOADING: "LOADING",
@@ -33,7 +33,7 @@ angular
     }
 
     $scope.getState = function(){
-      if(loading){
+      if($scope.loading){
         return $scope.states.LOADING
       }
       if($scope.uploadErrors.length){
@@ -85,15 +85,19 @@ angular
       });
     }
 
+    $scope.setLoading = function(){
+      $scope.loading = true;
+    }
+
     $scope.formSubmitCallback = function(response){
       if(response.data.length){
-        loading = false;
+        $scope.loading = false;
         $scope.uploadErrors = response.data
       }
       else{
         $scope.validatingPatients = true;
         DataUploadLoader.unValidatedPatients().then(function(responseData){
-          loading = false;
+          $scope.loading = false;
           $scope.unvalidatedPatients = responseData;
           $scope.initialUnvalidatedCount = $scope.unvalidatedPatients.length;
           process();
