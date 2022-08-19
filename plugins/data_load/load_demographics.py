@@ -16,7 +16,7 @@ class DemographicsLoader(base_loader.Loader):
                 raise ValueError(f"No external identifier found for {value}")
             if value:
                 patients = Patient.objects.filter(
-                    demographics__external_identifier=value
+                    demographics__hospital_number=value
                 )
                 if patients.exists():
                     raise ValueError("Patient {} already exists".format(value))
