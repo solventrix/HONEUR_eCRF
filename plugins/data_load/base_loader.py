@@ -3,6 +3,7 @@ import os
 from plugins.data_load.load_utils import (
     cast_date, match_to_choice_if_possible, get_from_ll
 )
+from django.utils.translation import gettext as _
 from opal.models import Patient
 from entrytool.models import Demographics
 from opal.core.fields import ForeignKeyOrFreeText
@@ -35,11 +36,13 @@ class Loader():
         try:
             some_dt = cast_date(value)
         except Exception as err:
+            description = _("Unable to parse %s into a date" % value)
             self.errors.append(dict(
                 file=self.file_name,
                 row=self.idx,
                 value=value,
                 column=column,
+                short_description=description,
                 exception=err
             ))
         return some_dt
@@ -54,7 +57,10 @@ class Loader():
             max_length = field.max_length
             if len(value) > max_length:
                 raise ValueError(
-                    f'Field is {len(value)} long and should be less than {max_length}'
+                    _('Field is %(len_value)d long and should be less than %(max_length)d' % {
+                        "len_value": len(value),
+                        "max_length": max_length
+                    })
                 )
         return value
 
@@ -77,7 +83,10 @@ class Loader():
                 max_length = field.max_length
                 if len(result) > max_length:
                     raise ValueError(
-                        f'Field is {len(value)} long and should be less than {max_length}'
+                        _('Field is %(len_value)d long and should be less than %(max_length)d' %{
+                            "len_value": len(result),
+                            "max_length": max_length
+                        })
                     )
 
         except Exception as err:
@@ -86,6 +95,7 @@ class Loader():
                 row=self.idx,
                 column=column,
                 value=value,
+                short_description=str(err),
                 exception=err
             ))
         return result
@@ -95,7 +105,7 @@ class Loader():
         try:
             if not value:
                 raise ValueError(
-                    f"No external identifier found"
+                    _("No external identifier found")
                 )
         except Exception as err:
             self.errors.append(dict(
@@ -103,6 +113,7 @@ class Loader():
                 row=self.idx,
                 column=column,
                 value=value,
+                short_description=str(err),
                 exception=err
             ))
             return
@@ -120,6 +131,9 @@ class Loader():
                 row=self.idx,
                 column=column,
                 value=value,
+                short_description=_(
+                    'Uable to find a patient with external identifier %s' % value
+                ),
                 exception=err
             ))
         return patient
@@ -135,6 +149,9 @@ class Loader():
                 row=self.idx,
                 column=column,
                 value=value,
+                short_description=_(
+                    'Unable to parse %s to a float' % value
+                ),
                 exception=err
             ))
         return result
@@ -147,7 +164,7 @@ class Loader():
                 row=error["row"],
                 column=error["column"],
                 value=error["value"],
-                short_description=str(error["exception"]),
+                short_description=error["short_description"],
                 traceback=traceback.format_tb(
                     error["exception"].__traceback__, limit=10
                 )
