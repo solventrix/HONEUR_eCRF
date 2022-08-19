@@ -1,15 +1,12 @@
-import os
-import traceback
 from django.core.management.base import BaseCommand
 from django.db import transaction
-from plugins.data_load import load_demographics, load_followup, load_lot
-from plugins.conditions.cll import episode_categories
+from plugins.data_load import load_data
 
 
 class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument(
-            "folder",
+            "zipped_folder",
             help="Specify a folder with a demographics.csv, follow_ups.csv and lot.csv",
         )
         parser.add_argument(
@@ -21,32 +18,8 @@ class Command(BaseCommand):
 
     @transaction.atomic()
     def handle(self, *args, **options):
-        folder = options["folder"]
-        files = os.listdir(options["folder"])
-
-        for file_name in ["demographics.csv", "lot.csv", "follow_ups.csv"]:
-            if file_name not in files:
-                raise ValueError(f'Unable to find {file_name} in {options["folder"]}')
-
-        demographics_loader = load_demographics.DemographicsLoader(
-            os.path.join(folder, "demographics.csv"),
-            category=episode_categories.CLLCondition,
-        )
-        demographics_loader.load_rows()
-
-        load_lot_loader = load_lot.LOTLoader(os.path.join(folder, "lot.csv"))
-        load_lot_loader.load_rows()
-
-        load_followup_loader = load_followup.FollowUpLoader(
-            os.path.join(folder, "follow_ups.csv")
-        )
-        load_followup_loader.load_rows()
-
-        errors = (
-            demographics_loader.parse_errors()
-            + load_lot_loader.parse_errors()
-            + load_followup_loader.parse_errors()
-        )
+        folder = options["zipped_folder"]
+        errors = load_data.load_from_zipfile(folder)
 
         if errors:
             for error in errors:

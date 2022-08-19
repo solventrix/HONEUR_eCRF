@@ -1,4 +1,5 @@
 from rest_framework import status
+from rest_framework.parsers import FileUploadParser
 from plugins.data_load import load_data
 from opal.core.api import LoginRequiredViewset
 from opal.models import Patient, Episode
@@ -67,11 +68,12 @@ class PatientsWithErrors(LoginRequiredViewset):
 
 
 class UploadFromFilePath(LoginRequiredViewset):
+    parser_classes = [FileUploadParser]
     basename = "upload_from_file_path"
 
     def create(self, request):
-        folder = request.FILES.get('folder')
-        errors = load_data.load_data(folder)
+        folder = request.FILES.get('file')
+        errors = load_data.load_from_zipfile(folder)
         return json_response(errors)
 
 

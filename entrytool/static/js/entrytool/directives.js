@@ -11,12 +11,16 @@ directives.directive("formSubmit", function($http){
 			*/
 			$(element).on('submit', function(){
 				var formData = new FormData();
-				formData.append(attrs.formField, $($(element).find('input')[0]).prop('files')[0]);
+				var file = $($(element).find('input')[0]).prop('files')[0]
+				formData.append('file', file);
 				$http({
 					url: attrs.url,
+					headers: {
+						'Content-Disposition': "attachment; filename=" + file.name
+					},
 					method: "POST",
 					data: formData,
-					headers: {'Content-Type': "application/zip"}
+					// headers: {'Content-Type': "multipart/form-data"}
 				}).then(function(response){
 					scope.callBack()(response);
 				});
