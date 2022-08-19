@@ -22,7 +22,10 @@ class Command(BaseCommand):
         errors = load_data.load_data(folder)
 
         if errors:
-            for error in errors:
+            if "top_level_errors" in errors:
+                for error in errors["top_level_errors"]:
+                    self.stderr.write(error)
+            for error in errors.get("row_errors", []):
                 self.stderr.write("Error")
                 for title, value in error.items():
                     if title == "traceback":

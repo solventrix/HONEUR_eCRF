@@ -1,5 +1,7 @@
 import os
 import zipfile
+import chardet
+from django.utils.translation import gettext as _
 from io import TextIOWrapper
 
 from django.db import transaction
@@ -13,21 +15,45 @@ class LoadError(Exception):
 
 def load_data(folder):
     errors = []
-    if not zipfile.is_zipfile(folder):
-        raise ValueError(f'{folder} is not a zip file')
     try:
         with transaction.atomic():
             errors = _load_data(folder)
-            if errors:
+            if errors["top_level_errors"] or errors["row_errors"]:
                 raise LoadError("rolling back transaction")
     except LoadError:
         pass
     return errors
 
 
+def is_utf8(zipfile, file_name):
+    detect_report = chardet.detect(zipfile.read(file_name))
+    encoding = detect_report['encoding']
+    if encoding.lower() == 'utf-8' or encoding.lower() == 'utf-8-sig':
+        if detect_report['confidence'] >= 0.99:
+            return True
+    return False
+
+
+def get_encoding(zipfile, file_name):
+    detect_report = chardet.detect(zipfile.read(file_name))
+    return detect_report['encoding']
+
+
 def _load_data(folder):
+
+    # These are errors like not being able to read the file
+    # or a missing file etc
+    top_level_errors = []
+
     if not zipfile.is_zipfile(folder):
-        raise ValueError(f'{folder} is not a zip file')
+        # note f-strings are not yet supported by xgettext
+        top_level_errors.append(
+            _('%s is not a zip file' % folder)
+        )
+        return {
+            "top_level_errors": top_level_errors,
+            "row_errors": []
+        }
 
     expected_file_names = [
         "demographics.csv", "lot.csv", "follow_ups.csv"
@@ -45,26 +71,59 @@ def _load_data(folder):
                 i for i in name_list if os.path.basename(i) == expected_file_name
             ]
             if not found_files:
-                raise ValueError(
-                    f'Unable to find {expected_file_name} in {folder}'
+                top_level_errors.append(
+                    _('Unable to find %(expected_file_name)s in %(folder)s' % {
+                        'expected_file_name': expected_file_name, 'folder': folder
+                    })
                 )
             else:
+                if not is_utf8(zipped_folder, found_files[0]):
+                    top_level_errors.append(
+                        _('%s is not utf-8 encoded' % expected_file_name)
+                    )
                 file_map[expected_file_name] = found_files[0]
+
+        if top_level_errors:
+            return {
+                "top_level_errors": top_level_errors,
+                "row_errors": []
+            }
 
         with zipped_folder.open(file_map["demographics.csv"]) as ftl:
             demographics_loader = load_demographics.DemographicsLoader(
                 "demographics.csv", category=episode_categories.CLLCondition,
             )
-            demographics_loader.load_rows(TextIOWrapper(ftl, "utf-8-sig"))
+            demographics_loader.load_rows(
+                TextIOWrapper(ftl, get_encoding(
+                    zipped_folder, file_map["demographics.csv"])
+                )
+            )
         with zipped_folder.open(file_map["lot.csv"]) as ftl:
             load_lot_loader = load_lot.LOTLoader("lot.csv")
-            load_lot_loader.load_rows(TextIOWrapper(ftl, "utf-8-sig"))
+            load_lot_loader.load_rows(
+                TextIOWrapper(ftl, get_encoding(
+                    zipped_folder, file_map["lot.csv"])
+                )
+            )
         with zipped_folder.open(file_map["follow_ups.csv"]) as ftl:
             load_followup_loader = load_followup.FollowUpLoader("follow_ups.csv")
-            load_followup_loader.load_rows(TextIOWrapper(ftl, "utf-8-sig"))
+            load_followup_loader.load_rows(
+                TextIOWrapper(ftl, get_encoding(
+                    zipped_folder, file_map["follow_ups.csv"])
+                )
+            )
 
-    return (
+    errors = (
         demographics_loader.parse_errors()
         + load_lot_loader.parse_errors()
         + load_followup_loader.parse_errors()
     )
+    if errors:
+        return {
+            "top_level_errors": [],
+            "row_errors": errors,
+        }
+    return {
+        "top_level_errors": [],
+        "row_errors": []
+    }

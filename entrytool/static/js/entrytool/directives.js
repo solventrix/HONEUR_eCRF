@@ -17,6 +17,7 @@ directives.directive("formSubmit", function($http){
 			var input = $(element).find('input');
 
 			var init = function(){
+				input.val(null);
 				$(element).removeClass('error');
 				fauxField.attr('data-content', fauxField.attr('data-initial-content'));
 			}

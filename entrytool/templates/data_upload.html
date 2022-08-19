@@ -99,17 +99,25 @@
             <!-- Display errors -->
             <div ng-show="getState() === states.UPLOAD_ISSUES" class="panel content-offset-below">
               <div class="panel-heading">
-                <h3 span ng-show="uploadErrors.length > 1">
-                  [[ uploadErrors.length ]] {% trans "errors found in this upload" %}
+                <h3 span ng-show="errorCount() > 1">
+                  [[ errorCount() ]] {% trans "errors found in this upload" %}
                 </h3>
-                <h3 span ng-show="uploadErrors.length === 1">
-                  [[ uploadErrors.length ]] {% trans "error found in this upload" %}
+                <h3 span ng-show="errorCount()=== 1">
+                  [[ errorCount() ]] {% trans "error found in this upload" %}
                 </h3>
               </div>
               <div class="panel-body">
                 <div class="row">
                   <div class="col-md-12">
-                    <table class="table">
+                    <div class="row">
+                      <div class="col-md-12 content-offset-25">
+                        <p ng-repeat="error in uploadErrors.top_level_errors">
+                          [[ error ]]
+                        </p>
+                      </div>
+                    </div>
+
+                    <table ng-show="uploadErrors.row_errors.length" class="table">
                       <th>
                         {% trans "File" %}
                       </th>
@@ -126,7 +134,7 @@
                         {% trans "Description" %}
                       </th>
                       <th></th>
-                      <tr ng-repeat-start="uploadError in uploadErrors">
+                      <tr ng-repeat-start="uploadError in uploadErrors.row_errors">
                         <td>
                           [[ uploadError.file ]]
                         </td>
@@ -162,7 +170,7 @@
                           {% trans "No patients have been saved." %}
                         </h3>
                         <p class="content-offset-10">
-                          <a ng-click="uploadErrors=[]; folder=''" class="btn btn-small btn-primary">{% trans "Upload Patient Data" %}</a>
+                          <a ng-click="reset()" class="btn btn-small btn-primary">{% trans "Upload Patient Data" %}</a>
                         </p>
                       </span>
                     </div>

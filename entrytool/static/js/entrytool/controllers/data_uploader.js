@@ -9,7 +9,10 @@ angular
     $scope.unvalidatedPatients = unValidatedPatients;
 
     // a list of issues with the upload, e.g. a date not formatting correctly
-    $scope.uploadErrors = [];
+    $scope.uploadErrors = {
+      top_level_errors: [],
+      row_errors: [],
+    };
 
     // a list of patient ids with errors
     $scope.patientsWithErrors = patientsWithErrors;
@@ -36,7 +39,7 @@ angular
       if($scope.loading){
         return $scope.states.LOADING
       }
-      if($scope.uploadErrors.length){
+      if($scope.errorCount()){
         return $scope.states.UPLOAD_ISSUES
       }
       if($scope.initialUnvalidatedCount){
@@ -89,8 +92,19 @@ angular
       $scope.loading = true;
     }
 
+    $scope.errorCount = function(){
+      return $scope.uploadErrors.top_level_errors.length + $scope.uploadErrors.row_errors.length
+    }
+
+    $scope.reset = function(){
+      $scope.uploadErrors = {
+        top_level_errors: [],
+        row_errors: [],
+      };
+    }
+
     $scope.formSubmitCallback = function(response){
-      if(response.data.length){
+      if(response.data.top_level_errors.length || response.data.row_errors.length){
         $scope.loading = false;
         $scope.uploadErrors = response.data
       }
