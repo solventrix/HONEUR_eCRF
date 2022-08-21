@@ -24,16 +24,7 @@ class DemographicsLoader(base_loader.Loader):
                 if patients.exists():
                     raise ValueError(_("Patient %s already exists" % value))
         except Exception as err:
-            self.errors.append(
-                dict(
-                    file=self.file_name,
-                    row=self.idx,
-                    column=column,
-                    value=value,
-                    short_description=str(err),
-                    exception=err,
-                )
-            )
+            self.add_error(column, value, str(err))
             return ""
         return self.check_and_get_string(Demographics, "hospital_number", column)
 

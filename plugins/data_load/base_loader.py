@@ -7,15 +7,35 @@ from django.utils.translation import gettext as _
 from opal.models import Patient
 from entrytool.models import Demographics
 from opal.core.fields import ForeignKeyOrFreeText
-import traceback
+import traceback as py_traceback
 
 
-class Loader():
+class Loader:
     def __init__(self, file_name):
         self.file_name = file_name
         self.errors = []
         self.idx = 1
         self.row = None
+
+    def add_error(self, column, value, short_description):
+        """
+        A utility method that adds an error row, it takes a column,
+        value and short description and pulls the file and row number
+        off the object. It populates the traceback from traceback.format_exc()
+        """
+        exception_stack = py_traceback.format_exc()
+        if exception_stack:
+            traceback = [i for i in exception_stack.split("\n") if i][1:]
+        else:
+            traceback = []
+        self.errors.append(dict(
+            file=self.file_name,
+            row=self.idx,
+            value=value,
+            column=column,
+            short_description=short_description,
+            traceback=traceback
+        ))
 
     def load_rows(self, data):
         rows = list(csv.DictReader(data))
@@ -35,16 +55,9 @@ class Loader():
         some_dt = None
         try:
             some_dt = cast_date(value)
-        except Exception as err:
+        except Exception:
             description = _("Unable to parse %s into a date" % value)
-            self.errors.append(dict(
-                file=self.file_name,
-                row=self.idx,
-                value=value,
-                column=column,
-                short_description=description,
-                exception=err
-            ))
+            self.add_error(column, value, description)
         return some_dt
 
     def _check_fk_or_ft(self, model, field_name, value):
@@ -90,14 +103,7 @@ class Loader():
                     )
 
         except Exception as err:
-            self.errors.append(dict(
-                file=self.file_name,
-                row=self.idx,
-                column=column,
-                value=value,
-                short_description=str(err),
-                exception=err
-            ))
+            self.add_error(column, value, str(err))
         return result
 
     def check_and_get_patient_from_external_identifier(self, column):
@@ -108,14 +114,7 @@ class Loader():
                     _("No external identifier found")
                 )
         except Exception as err:
-            self.errors.append(dict(
-                file=self.file_name,
-                row=self.idx,
-                column=column,
-                value=value,
-                short_description=str(err),
-                exception=err
-            ))
+            self.add_error(column, value, str(err))
             return
         hospital_number = self.check_and_get_string(
             Demographics, 'hospital_number', column
@@ -125,16 +124,9 @@ class Loader():
             patient = Patient.objects.get(
                 demographics__hospital_number=hospital_number
             )
-        except Exception as err:
-            self.errors.append(dict(
-                file=self.file_name,
-                row=self.idx,
-                column=column,
-                value=value,
-                short_description=_(
-                    'Uable to find a patient with external identifier %s' % value
-                ),
-                exception=err
+        except Exception:
+            self.add_error(column, value, _(
+                'Uable to find a patient with external identifier %s' % value
             ))
         return patient
 
@@ -143,33 +135,16 @@ class Loader():
         result = None
         try:
             result = float(value)
-        except Exception as err:
-            self.errors.append(dict(
-                file=self.file_name,
-                row=self.idx,
-                column=column,
-                value=value,
-                short_description=_(
-                    'Unable to parse %s to a float' % value
-                ),
-                exception=err
+        except Exception:
+            self.add_error(column, value, _(
+                'Unable to parse %s to a float' % value
             ))
         return result
 
-    def parse_errors(self):
-        result = []
-        for error in self.errors:
-            result.append(dict(
-                file=os.path.basename(error["file"]),
-                row=error["row"],
-                column=error["column"],
-                value=error["value"],
-                short_description=error["short_description"],
-                traceback=traceback.format_tb(
-                    error["exception"].__traceback__, limit=10
-                )
-            ))
-        return result
+    def format_traceback(self, traceback):
+        if traceback:
+            return [i for i in traceback.split("\n") if i][1:]
+        return []
 
     def load_row(self, row):
         raise NotImplementedError('Please implement this')

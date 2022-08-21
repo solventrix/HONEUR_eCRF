@@ -114,9 +114,9 @@ def _load_data(folder):
             )
 
     errors = (
-        demographics_loader.parse_errors()
-        + load_lot_loader.parse_errors()
-        + load_followup_loader.parse_errors()
+        demographics_loader.errors
+        + load_lot_loader.errors
+        + load_followup_loader.errors
     )
     if errors:
         return {

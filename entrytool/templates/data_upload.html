@@ -157,7 +157,7 @@
                       </tr>
                       <tr ng-show="uploadError.showTraceback" ng-repeat-end>
                         <td class="no-top-border" colspan="6">
-                          <p ng-repeat="errLine in uploadError.traceback ">
+                          <p ng-repeat="errLine in uploadError.traceback track by $index">
                             [[ errLine ]]
                           </p>
                         </td>
