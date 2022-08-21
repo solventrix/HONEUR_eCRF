@@ -1,5 +1,4 @@
 import csv
-import os
 from plugins.data_load.load_utils import (
     cast_date, match_to_choice_if_possible, get_from_ll
 )
