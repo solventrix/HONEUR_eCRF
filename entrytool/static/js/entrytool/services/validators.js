@@ -61,6 +61,19 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 		return withinParams
 	}
 
+	var required = function(someVal){
+		if(_.isNull(someVal)){
+			return true;
+		}
+		if(_.isUndefined(someVal)){
+			return true;
+		}
+		if(_.isString(someVal) && !someVal.length){
+			return true;
+		}
+		return false
+	}
+
 	return {
 		validateDateOfDiagnosisAgainstRegimen: function(val, instance, episode, patient){
 			/*
@@ -353,10 +366,10 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 			if(instance.smm_history !== 'Yes'){
 				return true;
 			}
-			return !(_.isNull(val) || _.isUndefined(val));
+			return !required(val);
 		},
 		required: function(val){
-			return !(_.isNull(val) || _.isUndefined(val));
+			return !required(val);
 		},
 		requiredForCategory: function(categoryName){
 			return function(val, instance, episode){
@@ -366,7 +379,7 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 				* if the category is MM
 				*/
 				if(episode.category_name === categoryName){
-					return !(_.isNull(val) || _.isUndefined(val));
+					return !required(val);
 				}
 				return true;
 			}
