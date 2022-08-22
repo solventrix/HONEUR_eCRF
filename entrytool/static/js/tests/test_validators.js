@@ -319,18 +319,18 @@ describe("Validators", function () {
 			}
 			var regimen_1 = {
 				id: 1,
-				start_date: today.subtract(22),
-				end_date: today.subtract(20)
+				start_date: moment().subtract(22, "d"),
+				end_date: moment().subtract(20, "d")
 			}
 			var regimen_2 = {
 				id: 2,
-				start_date: today.subtract(12),
-				end_date: today.subtract(10)
+				start_date: moment().subtract(12, "d"),
+				end_date: moment().subtract(10, "d")
 			}
 			var regimen_3 = {
 				id: 3,
-				start_date: today.subtract(7),
-				end_date: today.subtract(5)
+				start_date: moment().subtract(7, "d"),
+				end_date: moment().subtract(5, "d")
 			}
 			patient.episodes = [episode, episode_2];
 			spyOn(EntrytoolHelper, 'getEpisodeRegimen').and.returnValues([regimen_2], [regimen_1, regimen_3]);
@@ -373,7 +373,7 @@ describe("Validators", function () {
 			}
 			var regimen_2 = {
 				id: 2,
-				start_date: today.subtract(12),
+				start_date: moment().subtract(12, "d"),
 				end_date: moment().subtract(10, "d")
 			}
 			var regimen_3 = {
@@ -399,7 +399,7 @@ describe("Validators", function () {
 			}
 			var regimen_2 = {
 				id: 2,
-				start_date: today.subtract(12),
+				start_date: moment().subtract(12, "d"),
 				end_date: moment().subtract(10, "d")
 			}
 			var regimen_3 = {
