@@ -10,7 +10,7 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 	*    * The episode the subrecord is connected to
 	*   * The patient the episode is conntected to
 	*
-	* It returns true if it the validor should fail.
+	* It returns false if the validator should fail.
 	*/
 
 	var episodeRegimenMinMaxDates = function (episode) {
@@ -18,17 +18,26 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 	};
 
 	var getRegimenMinMaxDate = function(regimen){
-		// returns the first start date and the last end date
-		// note end date may be null;
-		// pluck the regimen start dates, sort them and return the first
-		var episodeMin = _.pluck(regimen, "start_date").sort()[0];
-		var episodeMax = null;
-		// regimen end date is not required, remove the nulls and
-		// make sure any of them are populated
-		var episodeMaxVals = _.compact(_.pluck(regimen, "end_date"));
-		if (episodeMaxVals.length) {
-			episodeMax = _.sortBy(episodeMaxVals).reverse()[0];
+		var startDates = _.compact(_.map(regimen, function(r){
+			if(r.start_date){
+				return r.start_date
+			}
+			return r.end_date
+		}));
+
+		var endDates = _.compact(_.map(regimen, function(r){
+			if(r.end_date){
+				return r.end_date
+			}
+			return r.start_date
+		}));
+
+		if(!startDates.length){
+			return [null, null];
 		}
+
+		var episodeMin = _.sortBy(startDates)[0]
+		var episodeMax = _.sortBy(endDates).reverse()[0]
 		return [episodeMin, episodeMax];
 	}
 
@@ -61,20 +70,32 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 		return withinParams
 	}
 
+	var required = function(val){
+		/*
+		* Returns ture if val is not undefined and val is not null
+		*/
+			if(!_.isUndefined(val)){
+			if(!_.isNull(val)){
+				return true
+			}
+		}
+		return false;
+	}
+
 	return {
 		validateDateOfDiagnosisAgainstRegimen: function(val, instance, episode, patient){
 			/*
 			* Returns true if there is a regimen start date before the date of diagnosis
 			*/
 			if(!val){
-				return false;
+				return true;
 			}
-			var error = false;
+			var error = true;
 			_.each(patient.episodes, function(episode){
 				_.each(EntrytoolHelper.getEpisodeRegimen(episode), function(regimen){
 					var regimenDate = regimen.start_date || regimen.end_date;
 					if(regimenDate && regimenDate.isBefore(toMomentFilter(val), "d")){
-						error = true;
+						error = false;
 					}
 				});
 			})
@@ -85,16 +106,16 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 			* Returns true if there is a response date the date of diagnosis
 			*/
 			if(!val){
-				return false;
+				return true;
 			}
-			var error = false;
+			var error = true;
 			_.each(patient.episodes, function(episode){
 				_.each(EntrytoolHelper.getEpisodeResponse(episode), function(response){
 					if(!response.response_date){
 						return;
 					}
 					if(response.response_date.isBefore(toMomentFilter(val), "d")){
-						error = true;
+						error = false;
 					}
 				});
 			})
@@ -105,13 +126,13 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 			* Date of diagnosis must be below all SCT/Regimen/response dates.
 			*/
 			if(!val){
-				return false;
+				return true;
 			}
-			var error = false;
+			var error = true;
 			_.each(patient.episodes, function(episode){
 				_.each(episode.sct, function(sct){
 					if(sct.sct_date.isBefore(toMomentFilter(val), "d")){
-						error = true;
+						error = false;
 					}
 				});
 			})
@@ -128,7 +149,7 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 			 * Returns true if the field is between start/end of two
 			 * regimen dates and is not the same regimen
 			 */
-			var error = false;
+			var error = true;
 			if (!fieldValue) {
 				return error;
 			}
@@ -138,13 +159,13 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 					if (r.id !== instance.id) {
 						if(r.start_date && r.end_date) {
 							if(val.isSame(r.start_date, "d")){
-								error = true;
+								error = false;
 							}
 							if(val.isSame(r.end_date, "d")){
-								error = true;
+								error = false;
 							}
 							if(val.isAfter(r.start_date, "d") && val.isBefore(r.end_date, "d")){
-								error = true
+								error = false
 							}
 						}
 					}
@@ -159,7 +180,7 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 			 * LOT 2 cannot have a regimen 1 Mar -> 1 Apr
 			 */
 			if(!val){
-				return false;
+				return true;
 			}
 			var min = toMomentFilter(instance.start_date);
 			var max = toMomentFilter(instance.end_date);
@@ -169,7 +190,6 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 			if(instance.id){
 				thisEpisodesRegimen = _.filter(thisEpisodesRegimen, function(r){ return r.id !== instance.id });
 			}
-
 			if(thisEpisodesRegimen.length){
 				var ourEpisodeMinMax = getRegimenMinMaxDate(thisEpisodesRegimen);
 
@@ -193,9 +213,8 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 				if(!max){
 					max = min;
 				}
-
 				if(!min && !max){
-					return false
+					return true
 				}
 			}
 
@@ -220,26 +239,14 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 				if(!episodeMin){
 					episodeMin = episodeMax;
 				}
-
-				// other episode ends before our episode starts
-				if(episodeMax && episodeMax.isBefore(min, "d")){
-					return;
+				if(!episodeMax){
+					episodeMax = episodeMin;
 				}
-				// other episode does not have a start but starts before our episode starts
-				if(!episodeMax && episodeMin.isBefore(min, "d")){
-					return;
+				if(episodeMin.isBefore(min, "d") && episodeMax.isAfter(max, "d")){
+					error = true;
 				}
-				// our episode ends before other episode starts
-				if(max && max.isBefore(episodeMin, "d")){
-					return;
-				}
-				// our episode has no end but starts before other episode starts
-				if(!max && min.isBefore(episodeMin, "d")){
-					return;
-				}
-				error = true;
 			});
-			return error;
+			return !error;
 		},
 		validateRegimenToResponses: function(val, instance, episode){
 			/*
@@ -248,13 +255,13 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 			* or the regimen in the form.
 			*/
 		 if(!val){
-				return false;
+				return true;
 		 }
 
 		 var responses = EntrytoolHelper.getEpisodeResponse(episode);
 
 		 if(!responses.length){
-			return false;
+			return true;
 		 }
 			var withinRegimen = false;
 			_.each(responses, function(response){
@@ -265,10 +272,8 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 					}
 				}
 			});
-			if(!withinRegimen){
-				return true
-			}
-			return false;
+
+			return withinRegimen;
 		},
 		validateOnlyOneOpenRegimen: function(val, regimenInstance, episode, patient){
 			/*
@@ -285,9 +290,9 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 			// if there is a val then there is an end date for this
 			// regimen and we don't need to check the other episodes
 			if(val){
-				return false;
+				return true;
 			}
-			var otherOpenEndRegimenExists = false
+			var otherOpenEndRegimenExists = true
 			_.each(patient.episodes, function(episode){
 				var regimen = EntrytoolHelper.getEpisodeRegimen(episode);
 				var regimenWithNoEndDate = _.filter(regimen, function(r){
@@ -300,7 +305,7 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 					}
 				});
 				if(regimenWithNoEndDate.length){
-					otherOpenEndRegimenExists = true
+					otherOpenEndRegimenExists = false
 				}
 			});
 			return otherOpenEndRegimenExists;
@@ -308,58 +313,58 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 		sameOrAfterDiagnosisDate: function(val, instance, episode, patient, fieldName, modelApiName){
 			var diagnosis = EntrytoolHelper.getDiagnosis(patient);
 			if(!diagnosis){
-				return false;
+				return true;
 			}
 			var diagnosisDate = diagnosis.diag_date;
 			if(!val || !diagnosisDate){
-				return false;
-			}
-			if(diagnosisDate.isAfter(val, "d")){
 				return true;
 			}
-			return false;
+			if(diagnosisDate.isAfter(val, "d")){
+				return false;
+			}
+			return true;
 		},
 		sameOrBeforeDiagnosisDate: function(val, instance, episode, patient, fieldName, modelApiName){
 			var diagnosis = EntrytoolHelper.getDiagnosis(patient);
 			if(!diagnosis){
-				return false;
+				return true;
 			}
 			var diagnosisDate = diagnosis.diag_date;
 			if(!val || !diagnosisDate){
-				return false;
-			}
-			if(diagnosisDate.isBefore(val, "d")){
 				return true;
 			}
-			return false;
+			if(diagnosisDate.isBefore(val, "d")){
+				return false;
+			}
+			return true;
 		},
 		afterDateOfBirth: function(val, instance, episode, patient, fieldName, modelApiName){
 			var dateOfBirth = episode.demographics[0].date_of_birth;
 			if(val && dateOfBirth){
 				if(dateOfBirth.isAfter(val, "d")){
-					return true;
+					return false;
 				}
 			}
-			return false;
+			return true;
 		},
 		endDateSameOrAfterRegimenStartDate: function(val, instance){
 			var startDate = instance.start_date;
 			var endDate = instance.end_date;
 			if(endDate && startDate){
 				if(toMomentFilter(startDate).isAfter(toMomentFilter(endDate), "d")){
-					return true;
+					return false;
 				}
 			}
-			return false;
+			return true;
 		},
 		requiredIfSMM: function(val, instance){
 			if(instance.smm_history !== 'Yes'){
-				return false;
+				return true;
 			}
-			return _.isNull(val) || _.isUndefined(val)
+			return required(val)
 		},
 		required: function(val){
-			return _.isNull(val) || _.isUndefined(val);
+			return required(val)
 		},
 		requiredForCategory: function(categoryName){
 			return function(val, instance, episode){
@@ -369,44 +374,44 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 				* if the category is MM
 				*/
 				if(episode.category_name === categoryName){
-					return _.isNull(val) || _.isUndefined(val);
+					return required(val)
 				}
-				return false;
+				return true;
 			}
 		},
 		lessThanOrEqualTo: function(amount){
 			return function(val){
 				if(_.isNumber(val) && val > amount){
-					return true;
+					return false;
 				}
-				return false;
+				return true;
 			}
 		},
 		greaterThanOrEqualTo: function(amount){
 			return function(val){
 				if(_.isNumber(val) && val < amount){
-					return true;
+					return false;
 				}
-				return false;
+				return true;
 			}
 		},
 		maxLength: function(amount){
 			return function(val){
 				if(val && val.length > amount){
-					return true;
+					return false;
 				}
-				return false;
+				return true;
 			}
 		},
 		noFuture: function(val){
 			if(!val){
-				return false
+				return true
 			}
 			var today = moment();
 			if(toMomentFilter(val).isAfter(today, "d")){
-				return true;
+				return false;
 			}
-			return false;
+			return true;
 		},
 		sameOrAfterInstanceField: function(instanceField){
 			/*
@@ -418,12 +423,12 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 			*/
 			return function(val, instance){
 				if(!val || !instance[instanceField]){
-					return false
+					return true
 				}
 				if(toMomentFilter(instance[instanceField]).isAfter(toMomentFilter(val), "d")){
-					return true;
+					return false;
 				}
-				return false;
+				return true;
 			}
 		},
 		validateResponseToRegimens: function(val, instance, episode){
@@ -432,7 +437,7 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 			* is a regimen related to it.
 			*/
 			if(!val){
-				return false;
+				return true;
 			}
 			var withinRegimen = false;
 			_.each(EntrytoolHelper.getEpisodeRegimen(episode), function(regimen){
@@ -441,25 +446,28 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 					withinRegimen = true;
 				}
 			});
-			if(!withinRegimen){
-				return true;
-			}
+			return withinRegimen
 		},
 		validateInOptions: function(value, instance, episode, patient, apiName, fieldName, schema, lookuplists){
+			/*
+			* If a model field has choices or is connected to a lookup list
+			* this makes sure that the value in the field is within the
+			* choices/lookup list
+			*/
 			if(!value){
-				return false;
+				return true;
 			}
 			var subRecordSchema = _.findWhere(schema[apiName].fields, {name: fieldName});
 			if(subRecordSchema.enum){
-				return !_.contains(subRecordSchema.enum, value)
+				return _.contains(subRecordSchema.enum, value)
 			}
 
 			var lookupListName = subRecordSchema.lookup_list;
 			if(lookupListName){
-				return !_.contains(lookuplists[lookupListName], value)
+				return _.contains(lookuplists[lookupListName], value)
 			}
 
-			return false;
+			return true;
 		}
 	}
 });
