@@ -17,19 +17,14 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 		return getRegimenMinMaxDate(EntrytoolHelper.getEpisodeRegimen(episode));
 	};
 
-	var getRegimenMinMaxDate = function(regimen){
-		// returns the first start date and the last end date
-		// note end date may be null;
-		// pluck the regimen start dates, sort them and return the first
-		var episodeMin = _.pluck(regimen, "start_date").sort()[0];
-		var episodeMax = null;
-		// regimen end date is not required, remove the nulls and
-		// make sure any of them are populated
-		var episodeMaxVals = _.compact(_.pluck(regimen, "end_date"));
-		if (episodeMaxVals.length) {
-			episodeMax = _.sortBy(episodeMaxVals).reverse()[0];
+	var getRegimenMinMaxDate = function(regimenList){
+		var dates = _.compact(_.flatten([_.pluck(regimenList, 'start_date'), _.pluck(regimenList, 'end_date')]))
+		if(dates.length == 0){
+			return [null, null]
 		}
-		return [episodeMin, episodeMax];
+		// convert to dates for sorting because moments don't sort nicely
+		dates = _.sortBy(dates, function(x){ return x.toDate() });
+		return [_.first(dates), _.last(dates)]
 	}
 
 	var responseDateWithRegimen = function(fieldValue, regimen){
@@ -174,48 +169,37 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 			if(!val){
 				return true;
 			}
-			var min = toMomentFilter(instance.start_date);
-			var max = toMomentFilter(instance.end_date);
+
+			var instanceMin = toMomentFilter(instance.start_date);
+			var instanceMax = toMomentFilter(instance.end_date);
+			var episodeRange = [instanceMin, instanceMax]
 			var thisEpisodesRegimen = EntrytoolHelper.getEpisodeRegimen(episode)
 
 			// exclude this regimen's id if it exists
 			if(instance.id){
 				thisEpisodesRegimen = _.filter(thisEpisodesRegimen, function(r){ return r.id !== instance.id });
 			}
+
 			if(thisEpisodesRegimen.length){
-				var ourEpisodeMinMax = getRegimenMinMaxDate(thisEpisodesRegimen);
-
-				if(!min && ourEpisodeMinMax[0]){
-					min = ourEpisodeMinMax[0];
-				}
-				else if(ourEpisodeMinMax[0] && ourEpisodeMinMax[0].isBefore(min, "d")){
-					min = ourEpisodeMinMax[0];
-				}
-
-				if(!max){
-					max = ourEpisodeMinMax[1];
-				}
-				else if (ourEpisodeMinMax[1] && ourEpisodeMinMax[1].isAfter(max, "d")){
-					max = ourEpisodeMinMax[1];
-				}
-
-				if(!min){
-					min = max;
-				}
-				if(!max){
-					max = min;
-				}
-				if(!min && !max){
-					return true
-				}
+				episodeRange = episodeRange.concat(getRegimenMinMaxDate(thisEpisodesRegimen))
 			}
+
+			// convert to dates for sorting because moments don't sort nicely
+			var episodeRegimenDates = _.sortBy(_.compact(episodeRange), function(x){ return x.toDate() });
+
+			// if there are no dates on the episode or mentioned then this
+			// rule is not invalidated
+			if(!episodeRange.length){
+				return true;
+			}
+
+			// this gives us the full range of the episode regimen start -> end editted or not
+			var min = _.first(episodeRegimenDates);
+			var max = _.last(episodeRegimenDates);
 
 			var error = false;
 
 			_.each(patient.episodes, function (otherEpisode) {
-				if (error) {
-					return;
-				}
 				// ignore this episode
 				if (episode.id === otherEpisode.id) {
 					return;
@@ -229,27 +213,9 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 					return;
 				}
 
-				if(!episodeMin){
-					episodeMin = episodeMax;
+				if(episodeMin.isBefore(min, "d") && episodeMax.isAfter(max, "d")){
+					error = true;
 				}
-
-				// other episode ends before our episode starts
-				if(episodeMax && episodeMax.isBefore(min, "d")){
-					return;
-				}
-				// other episode does not have a start but starts before our episode starts
-				if(!episodeMax && episodeMin.isBefore(min, "d")){
-					return;
-				}
-				// our episode ends before other episode starts
-				if(max && max.isBefore(episodeMin, "d")){
-					return;
-				}
-				// our episode has no end but starts before other episode starts
-				if(!max && min.isBefore(episodeMin, "d")){
-					return;
-				}
-				error = true;
 			});
 			return !error;
 		},

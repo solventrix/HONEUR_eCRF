@@ -363,7 +363,8 @@ describe("Validators", function () {
 			expect(Validators.validateRegimenToOtherLOTRegimens(regimen_2.start_date, regimen_2, episode, patient)).toBe(true);
 		});
 
-		it('should return true if there is only an end date on one of the other episodes that surround it', function(){			episode.id = 2
+		it('should return true if there is only an end date on one of the other episodes that surround it', function(){
+			episode.id = 2
 			var episode_2 = {
 				id: 3
 			}
@@ -383,13 +384,14 @@ describe("Validators", function () {
 			}
 			patient.episodes = [episode, episode_2];
 			spyOn(EntrytoolHelper, 'getEpisodeRegimen').and.returnValues(
-				[regimen_1, regimen_2],
-				[regimen_3]
+				[regimen_1, regimen_3],
+				[regimen_2]
 			);
 			expect(Validators.validateRegimenToOtherLOTRegimens(regimen_2.start_date, regimen_2, episode, patient)).toBe(true);
 		});
 
-		it('should return true if there is only an start date on one of the other episodes that surround it', function(){			episode.id = 2
+		it('should return true if there is only an start date on one of the other episodes that surround it', function(){
+			episode.id = 2
 			var episode_2 = {
 				id: 3
 			}
@@ -409,8 +411,8 @@ describe("Validators", function () {
 			}
 			patient.episodes = [episode, episode_2];
 			spyOn(EntrytoolHelper, 'getEpisodeRegimen').and.returnValues(
-				[regimen_1, regimen_2],
-				[regimen_3]
+				[regimen_1, regimen_3],
+				[regimen_2]
 			);
 			expect(Validators.validateRegimenToOtherLOTRegimens(regimen_2.start_date, regimen_2, episode, patient)).toBe(true);
 		});
