@@ -53,6 +53,14 @@ This ensures reference data in the database contains all the values required.
 
 Production deployments would not be expected to run sqlite, which is only suited to development environments. Example configuration for PostgreSQL can be found in the [Django documentation](https://docs.djangoproject.com/en/2.2/ref/settings/#std:setting-HOST). The section on [deploying Django](https://docs.djangoproject.com/en/3.1/howto/deployment/) will also be helpful.
 
+
+## Application structure
+
+The application has a logical structure between the core application logic in the `entrytool` directory and the condition specific logic that sits in `plugins/conditions/$condition_name`
+
+For example general data models live in `entrytool/models.py` while condition specific logic for the MM condition live in `plugins/conditions/mm/models.py`.
+
+
 ## Customising the look and feel of the application
 
 The visual style of the application is defined in the template files as HTML structure and Bootstrap CSS classes and in the application specific css. We use [Sass](https://sass-lang.com/) compiled to css in order to take advantage of features such as variables for colors.
@@ -63,6 +71,7 @@ Changes to CSS should be made in the file `entrytool/static/css/entrytool.scss` 
 
 This will watch for changes to the scss file and compile them to css whenever the scss file is
 saved. Once you are happy with your changes, commit the updated css, scss and css.map files together.
+
 
 ### Making edit buttons permanently visible
 
@@ -77,6 +86,52 @@ To make editing controls permanently visible, uncomment this line in the `.scss`
         // display:block
     }
 ```
+
+
+## Adding front end functionality
+
+The front end is provided by [angular.js](https://angularjs.org/).
+
+The simplest way to add logic to the front end is with the controller as syntax. This allows the injection of an [angular controller](https://docs.angularjs.org/guide/controller) into the template without polluting the global name space.
+
+Then register the controller with the plugin so that it will be sent over to the browser and minimised when we move our code to production.
+
+Finally add the controller to your html.
+
+For example to add a button that triggers a js alert only in the cll condition that we would do the following.
+
+### 1. Create your controller
+Create a file called `plugins/conditions/cll/static/js/cll/controllers/alertCtrl.js`
+
+populate it with the below
+```
+angular.module('opal.controllers').controller( "AlertCtrl", function(){
+  "use strict"
+  this.shout = function(){ alert('hello')}
+});
+```
+
+### 2. Register the controller with the plugin
+In `plugins/conditions/cll/plugin.py` by chang the CLLPlugin definition to look like
+```
+class CLLPlugin(plugins.OpalPlugin):
+    javascripts = {
+        'opal.controllers': [
+            'js/cll/controllers/alertCtrl.js'
+        ]
+    }
+```
+
+### 3. Add your controller to the html
+In `plugins/conditions/cll/templates/detail/cll.html` add the lines
+```
+<div ng-controller="AlertCtrl as alertCtrl">
+<button class="btn" ng-click="alertCtrl.shout()">Shout</button>
+</div>
+```
+
+When you refresh the page, clicking the button will trigger a javascript alert.
+
 
 ## Customising the fields in the application
 
@@ -102,12 +157,12 @@ We should also ensure that there are no display artefacts related to the field. 
 
 #### Adding a field to a model
 
-First we will need to find the model declaration in `entrytool/modelspy` and add a new field declaration to the model. This process is extensively documented by Django itself and many other examples can be seen within the `models.py` file itself. Once the field has been declared in the models.py file we should update the database to match:
+First we will need to find the model declaration in `entrytool/models.py` and add a new field declaration to the model. This process is extensively documented by Django itself and many other examples can be seen within the `models.py` file itself. Once the field has been declared in the models.py file we should update the database to match:
 
 1. `python manage.py makemigrations`
 2. `python manage.py migrate`
 
-We will now need to add a widget for our field to the form for this model. This will be located in a file with a name based on the name of the model at `entrytool/templates/forms/$MODELNAME_form.html`. We then add a template tag matching the widget we would like - for instance to add a text box `{% input field=“$MODELNAME.$FIELDNAME” %}. You can see many examples in the form templates within this application, and additional documentation is available on the Opal website.
+We will now need to add a widget for our field to the form for this model. This will be located in a file with a name based on the name of the model at `entrytool/templates/forms/$MODELNAME_form.html`. We then add a template tag matching the widget we would like - for instance to add a text box `{% input field=“$MODELNAME.$FIELDNAME” %}`. You can see many examples in the form templates within this application, and additional documentation is available on the Opal website.
 
 We will now be required to update the display template for the model to include this data in the patient detail display. The display template for a model is found in a file based on the name of the model at `entrytool/templates/records/$MODELNAME.html`. Display data is rendered via Javascript in the browser, so uses the square bracket syntax. Display templates will have a variable named `item` which contains the data for the instance of the model we are rendering. You can display a field with for instance:
 
@@ -117,7 +172,7 @@ We will now be required to update the display template for the model to include 
 
 #### Adding a new set of data to lines of treatment
 
-Adding an entirely new set of data will require creating a new model in `entrytool.models.py`. This is a python class the inherits from `opal.models.EpisodeSubrecord` that generates a new table in the database. This process is documented extensively by Django, Opal specific alterations (mostly additional properties that are available) are documented in the Opal documentation, and the models `SCT`, `Regimen`, and `Response provide examples within this application.
+Adding an entirely new set of data will require creating a new model in `entrytool.models.py`. This is a python class the inherits from `opal.models.EpisodeSubrecord` that generates a new table in the database. This process is documented extensively by Django, Opal specific alterations (mostly additional properties that are available) are documented in the Opal documentation, and the models `SCT`, `Regimen`, and `Response` provide examples within this application.
 
 Once the model is created the database needs to be updated:
 
@@ -136,7 +191,7 @@ models themselves, or in the form templates.
 Some of this validation - for instance fields being required is implemented within Opal,
 while some is implemented with custom form widgets as part of the entrytool application.
 
-### Num ber validation
+### Number validation
 We sometimes wish to validate that a number is more or less
 than a number. this can be done using the `{% number %}` templatetag.
 
@@ -293,6 +348,48 @@ Most translatable strings are configured by wrapping their declaration in a gett
 Rendering translated variables in javascript rendered portions of the page (values rendered with `[[ variable ]]` syntax) can be achieved using the `translate` filter.
 
 Our custom `makemessages` command includes translatable strings from Opal itself in the message files for this application as well as data held in lookuplist tables.
+
+## Creating new conditions
+
+Conditions such as CLL and MM exist in plugins/conditions. They are (opal plugins)[https://opal.openhealthcare.org.uk/docs/guides/plugins/] which is a django app with some opal features attached.
+
+Each has their own episode category detail template which located at `/plugins/conditions/$condition_name/templates/detail/$condition_name.html` which is the page you see when you go to a patient with that condition.
+
+Each can have their own database models, including opal subrecords such as the `MMFollowUp` in `plugins/conditions/mm/models.py`.
+
+Each can define their own static files which are located in `/plugins/conditions/$condition_name/static/` for example javscript files would be located in `/plugins/conditions/$condition_name/static/$condition_name/js`
+
+
+### Scaffolding
+
+The create_condition management command will create you a condition ie `python manage.py create_condition { your condition nane }`
+
+To register your condition with the app you also have to add it the path to it in the `entrytool/settings.py` file in the section `INSTALLED_APPS`.
+
+Whether a condition is included in INSTALLED_APPS determines whether a user can add a patient with that condition through the UI.
+
+for example if I wanted to create a condition for hodgkins lymphoma I would run
+
+`python manage.py create_condition hl`
+
+Then go to `entrytool.settings.py`
+and add it to the bottom of `INSTALLED APPS` like so...
+
+```
+INSTALLED_APPS = [
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    ...
+    "entrytool",
+    "plugins.conditions.cll",
+    "plugins.conditions.mm",
+    "plugins.conditions.hl",
+    # 'languages',
+    "django.contrib.admin",
+]
+```
+
 
 ## Managing multiple customised versions
 
