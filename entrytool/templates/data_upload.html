@@ -69,7 +69,7 @@
                       </p>
                       <div class="row">
                         <div class="col-md-12 text-center">
-                          <button class="btn btn-small btn-primary" type="submit">Upload</button>
+                          <button class="btn btn-small btn-primary" type="submit">{% trans "Upload" %}</button>
                         </div>
                       </div>
                     </form>
@@ -151,8 +151,8 @@
                           [[ uploadError.short_description ]]
                         </td>
                         <td>
-                          <a class="orange-link pointer" ng-show="!uploadError.showTraceback" ng-click="uploadError.showTraceback=true">Show Traceback</a>
-                          <a class="orange-link pointer" ng-show="uploadError.showTraceback" ng-click="uploadError.showTraceback=false">Hide Traceback</a>
+                          <a class="orange-link pointer" ng-show="!uploadError.showTraceback" ng-click="uploadError.showTraceback=true">{% trans "Show Traceback" %}</a>
+                          <a class="orange-link pointer" ng-show="uploadError.showTraceback" ng-click="uploadError.showTraceback=false">{% trans "Hide Traceback" %}</a>
                         </td>
                       </tr>
                       <tr ng-show="uploadError.showTraceback" ng-repeat-end>
