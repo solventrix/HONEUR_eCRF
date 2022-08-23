@@ -374,9 +374,11 @@ angular.module('opal.services').service('ValidationRules', function(Validators) 
 		},
 		mm_response: {
 			progression_date: {
-				[Validators.sameOrAfterDiagnosisDate,  "{% trans "The response should be after the date of diagnosis" %}"],
-				[Validators.noFuture, "{% trans "The response date is in the future" %}"]
-			}
+				errors: [
+					[Validators.sameOrAfterDiagnosisDate, "{% trans "The response should be after the date of diagnosis" %}"],
+					[Validators.noFuture, "{% trans "The response date is in the future" %}"]
+				]
+			},
 			response_date: {
 				errors: [
 					[Validators.sameOrAfterDiagnosisDate,  "{% trans "The response should be after the date of diagnosis" %}"],
