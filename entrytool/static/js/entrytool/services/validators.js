@@ -62,16 +62,19 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 	}
 
 	var required = function(someVal){
+		/*
+		* Returns true if someVal is not null/undefined/an empty string
+		*/
 		if(_.isNull(someVal)){
-			return true;
+			return false;
 		}
 		if(_.isUndefined(someVal)){
-			return true;
+			return false;
 		}
 		if(_.isString(someVal) && !someVal.length){
-			return true;
+			return false;
 		}
-		return false
+		return true
 	}
 
 	return {
@@ -366,10 +369,10 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 			if(instance.smm_history !== 'Yes'){
 				return true;
 			}
-			return !required(val);
+			return required(val);
 		},
 		required: function(val){
-			return !required(val);
+			return required(val);
 		},
 		requiredForCategory: function(categoryName){
 			return function(val, instance, episode){
@@ -379,7 +382,7 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 				* if the category is MM
 				*/
 				if(episode.category_name === categoryName){
-					return !required(val);
+					return required(val);
 				}
 				return true;
 			}
