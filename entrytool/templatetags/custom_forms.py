@@ -1,6 +1,7 @@
 """
 Templatetags for form/modal helpers
 """
+from contextlib import contextmanager
 import json
 from django import template
 from django.db import models
@@ -12,16 +13,23 @@ from opal.templatetags.forms import get_style
 
 register = template.Library()
 
+
+def honour_context(*args, **kwargs):
+    model, field = forms._model_and_field_from_path(kwargs["field"])
+    context = {}
+    context["model_api_name"] = model.get_api_name()
+    context["field_name"] = field.name
+    context["subrecord"] = f"editing.{context['model_api_name']}"
+    return context
+
+
 @register.inclusion_tag('_helpers/custom_datepicker.html')
 def custom_datepicker(*args, **kwargs):
     kwargs["datepicker"] = True
     context = forms._input(*args, **kwargs)
     if 'mindate' in kwargs:
         context['mindate'] = kwargs['mindate']
-    model, _ = forms._model_and_field_from_path(kwargs["field"])
-
-    context["model_name"] = "editing.{}".format(model.get_api_name())
-
+    model, field = forms._model_and_field_from_path(kwargs["field"])
     context["date_after"] = kwargs.pop("date_after", "")
     context["date_after_diff"] = kwargs.pop("date_after_diff", "")
     context["date_after_message"] = kwargs.pop("date_after_message", "")
@@ -39,6 +47,7 @@ def custom_datepicker(*args, **kwargs):
     # or in the future.
     context['before_death'] = kwargs.pop('before_death', True)
     context['no_future'] = kwargs.pop('no_future', True)
+    context.update(honour_context(*args, **kwargs))
     return context
 
 
@@ -67,4 +76,26 @@ def number(*args, **kwargs):
             warn_min_condition, warn_max_condition
         )
     context["min_max_warning"] = warning
+    context.update(honour_context(*args, **kwargs))
+    return context
+
+
+@register.inclusion_tag('_helpers/radio.html')
+def radio(*args, **kwargs):
+    context = forms._radio(*args, **kwargs)
+    context.update(honour_context(*args, **kwargs))
+    return context
+
+
+@register.inclusion_tag('_helpers/select.html')
+def select(*args, **kwargs):
+    context = forms.select(*args, **kwargs)
+    context.update(honour_context(*args, **kwargs))
+    return context
+
+
+@register.inclusion_tag('_helpers/input.html')
+def input(*args, **kwargs):
+    context = forms.input(*args, **kwargs)
+    context.update(honour_context(*args, **kwargs))
     return context

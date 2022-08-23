@@ -1,0 +1,78 @@
+{% load i18n %}
+<div class="outer-container">
+  <div class="container content-offset">
+    <div class="panel panel-primary panel-container">
+      <!-- Default panel contents -->
+      <div class="panel-heading">
+        <h2>
+          {% trans "Import Patients" %}
+        </h2>
+      </div>
+      <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+          <div class="panel-body">
+            <div class="panel">
+              <div class="panel-heading">
+                <h3>
+                  {% trans "Unvalidated Patients" %}
+                </h3>
+              </div>
+              <div class="panel-body">
+                <div class="row">
+                  <div class="col-md-10 col-md-offset-1">
+                    <h4>
+                      <span class="red" ng-hide="unvalidatedPatients.length === validaterPointer">
+                        [[ initialUnvalidatedCount ]]
+                        <span ng-show="initialUnvalidatedCount === 1">
+                        {% trans "patient" %}
+                        </span>
+                        <span ng-show="initialUnvalidatedCount > 1">
+                          {% trans "patients" %}
+                        </span> {% trans "to be validated."%}
+                        <br>
+                        {% trans "Validating" %} [[ validaterPointer+1 ]]/[[ initialUnvalidatedCount ]]
+                      </span>
+                      <span ng-show="unvalidatedPatients.length === validaterPointer">
+                        {% trans "All patients have been validated." %}
+                      </span>
+                    </h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel">
+              <div class="panel-heading">
+                <h3>
+                  <span ng-show="patientsWithErrors.length">[[ patientsWithErrors.length ]]</span>
+                    <span ng-show="patientsWithErrors.length === 1">
+                      {% trans "patient" %}
+                    </span>
+                    <span ng-show="patientsWithErrors.length > 1">
+                      {% trans "patients" %}
+                    </span>
+                    {% trans "With Errors" %}
+                </h3>
+              </div>
+              <div class="panel-body">
+                <div ng-hide="patientsWithErrors.length" class="row">
+                  <div class="col-md-10 col-md-offset-1">
+                    <h4 class="text-muted">
+                      {% trans "There are no patients with errors" %}
+                    </h4>
+                  </div>
+                </div>
+                <div class="row" ng-repeat="patientId in patientsWithErrors">
+                  <div class="col-md-10 col-md-offset-1">
+                    <h4>
+                      <a href="/#/patient/[[ patientId ]]" class="orange-link">{% trans "Patient" %} [[ patientId ]]</a>
+                    </h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

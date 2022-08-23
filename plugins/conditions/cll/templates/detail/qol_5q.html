@@ -1,13 +1,13 @@
 {% load i18n %}
-<div class="follow-up-table" ng-show="episode.quality_of_life5q.length > 0">
+<div class="additional-charecteristics-table" ng-show="episode.quality_of_life5q.length > 0">
   <div class="col-md-12">
     <div class="row header-row display-label">
-      <div class="col-sm-1 header"></div>
-      <div class="col-sm-1 header">{% trans "Mobility" %}</div>
-      <div class="col-sm-1 header">{% trans "Selfcare" %}</div>
-      <div class="col-sm-1 header">{% trans "Usual Activities" %}</div>
-      <div class="col-sm-1 header">{% trans "Pain/Discomfort" %}</div>
-      <div class="col-sm-1 header">{% trans "Anxiety/Depression" %}</div>
+      <div class="col-sm-2 header"></div>
+      <div class="col-sm-2 header">{% trans "Mobility" %}</div>
+      <div class="col-sm-2 header">{% trans "Selfcare" %}</div>
+      <div class="col-sm-2 header">{% trans "Usual Activities" %}</div>
+      <div class="col-sm-2 header">{% trans "Pain/Discomfort" %}</div>
+      <div class="col-sm-2 header">{% trans "Anxiety/Depression" %}</div>
     </div>
   </div>
 
@@ -19,17 +19,17 @@
       >
 
     </div>
-    <div class="row table-row" >
-      <div class="col-sm-1 first-column text-right">
+    <div class="row table-row" ng-class="{'imported-validation-error': honeurPatientDetailCtrl.hasError(episode.id, '{{  models.QualityOfLife5Q.get_api_name }}', item.id)}" >
+      <div class="col-sm-2 first-column text-right">
         [[ item.hospital | translate ]] [[ item.q5_date | displayDate ]] &nbsp;
-        <i ng-click="episode.recordEditor.editItem('{{ models.QualityOfLife5Q.get_api_name }}', item)" class="fa fa-pencil edit pointer"></i>
+        <i ng-click="honeurPatientDetailCtrl.editItem('{{ models.QualityOfLife5Q.get_api_name }}', item, episode)" class="fa fa-pencil edit pointer"></i>
       </div>
-      <div class="col-sm-1 column">[[ item.q5_mobility ]]</div>
-      <div class="col-sm-1 column">[[ item.q5_selfcare ]]</div>
-      <div class="col-sm-1 column">[[ item.q5_usual_activities ]]</div>
-      <div class="col-sm-1 column">[[ item.q5_pain_discomfort ]]</div>
-      <div class="col-sm-1 column">[[ item.q5_anxiety_depression ]]</div>
-        
+      <div class="col-sm-2 column">[[ item.q5_mobility ]]</div>
+      <div class="col-sm-2 column">[[ item.q5_selfcare ]]</div>
+      <div class="col-sm-2 column">[[ item.q5_usual_activities ]]</div>
+      <div class="col-sm-2 column">[[ item.q5_pain_discomfort ]]</div>
+      <div class="col-sm-2 column">[[ item.q5_anxiety_depression ]]</div>
+
       </div>
     </div>
   </div>

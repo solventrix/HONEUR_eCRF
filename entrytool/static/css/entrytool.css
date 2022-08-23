@@ -1,3 +1,7 @@
+.content-offset-below-25 {
+  margin-bottom: 25px;
+}
+
 .entry-tool .panel-heading i.edit,
 .entry-tool .list-group-item i.edit,
 .entry-tool .list-group-item i.delete {
@@ -16,6 +20,37 @@
   color: inherit;
 }
 
+.entry-tool .additional-charecteristics-table, .entry-tool .cytogenetics-table, .entry-tool .additional-charecteristics-table {
+  text-align: center;
+  margin-left: 20px;
+}
+
+.entry-tool .additional-charecteristics-table .table-row, .entry-tool .cytogenetics-table .table-row, .entry-tool .additional-charecteristics-table .table-row {
+  margin-bottom: 1px;
+}
+
+.entry-tool .additional-charecteristics-table .column, .entry-tool .cytogenetics-table .column, .entry-tool .additional-charecteristics-table .column {
+  border-top: 1px solid #dee2e6;
+}
+
+.entry-tool .additional-charecteristics-table .column, .entry-tool .additional-charecteristics-table .header, .entry-tool .cytogenetics-table .column, .entry-tool .cytogenetics-table .header, .entry-tool .additional-charecteristics-table .column, .entry-tool .additional-charecteristics-table .header {
+  margin-top: -1px;
+  padding: 8px;
+}
+
+.entry-tool .additional-charecteristics-table .first-column, .entry-tool .cytogenetics-table .first-column, .entry-tool .additional-charecteristics-table .first-column {
+  padding: 8px;
+  margin-top: -9px;
+}
+
+.entry-tool .additional-charecteristics-table .column.last-column, .entry-tool .cytogenetics-table .column.last-column, .entry-tool .additional-charecteristics-table .column.last-column {
+  padding: 4px 4px 8px 4px;
+}
+
+.entry-tool .additional-charecteristics-table .column.last-column .fa, .entry-tool .cytogenetics-table .column.last-column .fa, .entry-tool .additional-charecteristics-table .column.last-column .fa {
+  padding-top: 6px;
+}
+
 .entry-tool .follow-up-table {
   text-align: center;
 }
@@ -24,8 +59,26 @@
   border-top: 1px solid #dee2e6;
 }
 
-.entry-tool .follow-up-table .column, .entry-tool .follow-up-table .first-column, .entry-tool .follow-up-table .header {
+.entry-tool .follow-up-table .column, .entry-tool .follow-up-table .header {
+  margin-top: 1px;
   padding: 8px;
+}
+
+.entry-tool .follow-up-table .first-column {
+  padding: 8px;
+  margin-top: 2px;
+}
+
+.entry-tool .follow-up-table .column.last-column {
+  padding: 4px 4px 8px 4px;
+}
+
+.entry-tool .follow-up-table .column.last-column .fa {
+  padding-top: 6px;
+}
+
+.red {
+  color: #ff3309;
 }
 
 .padding0 {
@@ -248,5 +301,13 @@ h1 img {
 
 .mm-table i {
   font-size: 12px;
+}
+
+.has-error p.help-block {
+  color: #737373;
+}
+
+.imported-validation-error {
+  background-color: #C07A7A;
 }
 /*# sourceMappingURL=entrytool.css.map */
