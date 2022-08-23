@@ -33,7 +33,7 @@
     </span>
       {% if help_text %}
       <p ng-show="!$root.patientValidator.showErrors('{{ field_name }}')" class="help-block">
-        {% trans help_text %}
+        {{ help_text }}
       </p>
     {% endif %}
     </div>
