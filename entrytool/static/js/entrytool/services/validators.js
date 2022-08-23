@@ -75,7 +75,7 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 	}
 
 	return {
-		validateDateOfDiagnosisAgainstRegimen: function(val, instance, episode, patient){
+		dateOfDiagnosisAgainstRegimen: function(val, instance, episode, patient){
 			/*
 			* Returns true if there is a regimen start date before the date of diagnosis
 			*/
@@ -93,7 +93,7 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 			})
 			return error;
 		},
-		validateDateOfDiagnosisAgainstResponse: function(val, instance, episode, patient){
+		dateOfDiagnosisAgainstResponse: function(val, instance, episode, patient){
 			/*
 			* Returns true if there is a response date the date of diagnosis
 			*/
@@ -113,7 +113,7 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 			})
 			return error;
 		},
-		validateDateOfDiagnosisAgainstSCT: function(val, instance, episode, patient, fieldName, modelApiName){
+		dateOfDiagnosisAgainstSCT: function(val, instance, episode, patient, fieldName, modelApiName){
 			/*
 			* Date of diagnosis must be below all SCT/Regimen/response dates.
 			*/
@@ -130,7 +130,7 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 			})
 			return error;
 		},
-		validateNotBetweenRegimenDates: function (
+		notBetweenRegimenDates: function (
 			fieldValue,
 			instance,
 			episode,
@@ -166,7 +166,7 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 
 			return error;
 		},
-		validateRegimenToOtherLOTRegimens: function (val, instance, episode, patient){
+		regimenToOtherLOTRegimens: function (val, instance, episode, patient){
 			/*
 			 * If LOT 1 has a regimen starts 1 Jan - > 1 Feb, and 1 Sep -> 1 Oct
 			 * LOT 2 cannot have a regimen 1 Mar -> 1 Apr
@@ -253,7 +253,7 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 			});
 			return !error;
 		},
-		validateRegimenToResponses: function(val, instance, episode){
+		regimenToResponses: function(val, instance, episode){
 			/*
 			* From the perspective of a regimen, validates that the
 			* responses are connected to either other regimens
@@ -280,7 +280,7 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 
 			return withinRegimen;
 		},
-		validateOnlyOneOpenRegimen: function(val, regimenInstance, episode, patient){
+		onlyOneOpenRegimen: function(val, regimenInstance, episode, patient){
 			/*
 			* There can only be one regimen with no end date, if the user
 			* is trying to save a regimen with no end date and there
@@ -436,7 +436,7 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 				return true;
 			}
 		},
-		validateResponseToRegimens: function(val, instance, episode){
+		responseToRegimens: function(val, instance, episode){
 			/*
 			* From the perspective of a response_date, validates that there
 			* is a regimen related to it.
@@ -453,7 +453,7 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 			});
 			return withinRegimen
 		},
-		validateInOptions: function(value, instance, episode, patient, apiName, fieldName, schema, lookuplists){
+		inOptions: function(value, instance, episode, patient, apiName, fieldName, schema, lookuplists){
 			/*
 			* If a model field has choices or is connected to a lookup list
 			* this makes sure that the value in the field is within the
