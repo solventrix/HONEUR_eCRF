@@ -1,4 +1,4 @@
-angular.module('opal.controllers').controller("HoneurPatientDetailCtrl", function($scope, $rootScope, ValidatePatient, EntryToolRecordEditor){
+angular.module('opal.controllers').controller("HoneurPatientDetailCtrl", function($scope, $rootScope, $modal, $q, UserProfile, ValidatePatient){
 	"use strict";
 	var self = this;
 
@@ -9,21 +9,28 @@ angular.module('opal.controllers').controller("HoneurPatientDetailCtrl", functio
 
 	this.editItem = function(item_name, item, episode){
 		/*
-		* Wraps edit item to clean the patient validator after a subrecord has
-		* been saved.
+		* Wraps edit item to validate before hand and
+		* clean the patient validator and check the patient
+		* after saving
 		*/
-		var recordEditor = new EntryToolRecordEditor($rootScope.patientValidator, episode);
-		return recordEditor.editItem(item_name, item).then(function(){
-			if(self._erroringSubrecords.length){
-				self.checkPatient();
-			}
+		$rootScope.patientValidator.validatesubrecord(item_name, item, episode).then(function(){
+			episode.recordEditor.editItem(item_name, item).then(function(){
+				$rootScope.patientValidator.clean();
+				if(self._erroringSubrecords.length){
+					self.checkPatient();
+				}
+			});
 		});
 	}
 
 	this.newItem = function(item_name, episode){
-		var recordEditor = new EntryToolRecordEditor($rootScope.patientValidator, episode);
-		return recordEditor.newItem(item_name)
-	}
+		episode.recordEditor.newItem(item_name).then(function(){
+			$rootScope.patientValidator.clean();
+			if(self._erroringSubrecords.length){
+				self.checkPatient();
+			}
+		});
+	};
 
 	this.checkPatient = function(){
 		/*
@@ -54,5 +61,50 @@ angular.module('opal.controllers').controller("HoneurPatientDetailCtrl", functio
 		})
 		return result;
 	}
+
+
+	this.showDataQualityReviewed = function(){
+		if(self._erroringSubrecords.length){
+			var episode = $scope.patient.episodes[0]
+			if(!episode.patient_load[0].data_quality_reviewed){
+				return true
+			}
+		}
+		return false;
+	}
+
+
+
+	this.openDataQualityReviewedModal = function(){
+		var deferred = $q.defer();
+		UserProfile.load().then(function(profile){
+			var episode = $scope.patient.episodes[0];
+			if(profile.readonly){
+					deferred.resolve();
+			}
+			else{
+				var modal_opts = {
+						backdrop: 'static',
+						templateUrl: "entrytool/templates/modals/data_quality_reviewed.html",
+						controller: "DataQualityReviewedCtrl",
+						resolve: {
+								item: episode.patient_load[0],
+						}
+				};
+
+				var modal = $modal.open(modal_opts);
+
+				modal.result.then(function(result) {
+					$q.when(result).then(function(x){
+						$rootScope.state = 'normal';
+						deferred.resolve(result);
+					});
+				});
+			}
+		});
+		return deferred.promise;
+
+	};
+
 	this.checkPatient();
 });

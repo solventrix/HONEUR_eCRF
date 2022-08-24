@@ -1,0 +1,28 @@
+{% load i18n %}
+<div class="modal-header">
+  <!-- <button type="button" class="close" ng-click="cancel()">×</button> -->
+  <h3>
+    {% trans "Data Quality Reviewed" %}
+    ({% trans "Patient" %} [[ item.episode.demographics[0].patient_id ]])
+    </span>
+  </h3>
+</div>
+<div class="modal-body" >
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <p class="lead">
+        {% trans "Where imported patient records are as complete as possible despite validation errors, you may remove them from the list of patients with errors by marking them as reviewed." %}
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <a href="" ng-click="save()" class="one-click-only btn btn-primary">
+        {% trans "Reviewed" %}
+      </a>
+  </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-cancel" ng-click="cancel()">{% trans "Cancel" %}</button>
+</div>
