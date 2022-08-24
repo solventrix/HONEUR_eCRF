@@ -70,13 +70,13 @@ class PatientsWithErrors(LoginRequiredViewset):
         return json_response([i.id for i in sorted_by_newest])
 
 
-class UploadFromFilePath(LoginRequiredViewset):
+class UploadFromZip(LoginRequiredViewset):
     parser_classes = [FileUploadParser]
-    basename = "upload_from_file_path"
+    basename = "upload_from_zip"
 
     def create(self, request):
-        folder = request.FILES.get('file')
-        errors = load_data.load_data(folder)
+        zipfile = request.FILES.get('file')
+        errors = load_data.load_data(zipfile)
         return json_response(errors)
 
 
@@ -94,5 +94,5 @@ entrytool_router.register(
     PatientsWithErrors.basename, PatientsWithErrors
 )
 entrytool_router.register(
-    UploadFromFilePath.basename, UploadFromFilePath
+    UploadFromZip.basename, UploadFromZip
 )
