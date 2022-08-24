@@ -13,11 +13,11 @@ class LoadError(Exception):
     pass
 
 
-def load_data(folder):
-    errors = []
+def load_data(zipfile):
+    errors = {}
     try:
         with transaction.atomic():
-            errors = _load_data(folder)
+            errors = _load_data(zipflie)
             if errors["top_level_errors"] or errors["row_errors"]:
                 raise LoadError("rolling back transaction")
     except LoadError:
@@ -39,15 +39,15 @@ def get_encoding(zipfile, file_name):
     return detect_report['encoding']
 
 
-def _load_data(folder):
+def _load_data(zipfile):
 
     # These are errors like not being able to read the file
     # or a missing file etc
     top_level_errors = []
-    if not zipfile.is_zipfile(folder):
+    if not zipfile.is_zipfile(zipfile):
         # note f-strings are not yet supported by xgettext
         top_level_errors.append(
-            _('%s is not a zip file' % folder)
+            _('%s is not a zip file' % zipfile)
         )
         return {
             "top_level_errors": top_level_errors,
@@ -58,7 +58,7 @@ def _load_data(folder):
         "demographics.csv", "lot.csv", "follow_ups.csv"
     ]
 
-    with zipfile.ZipFile(folder) as zipped_folder:
+    with zipfile.ZipFile(zipfile) as zipped_folder:
         name_list = zipped_folder.namelist()
         # zipping a file can the file in with the folder path
         # ie the dummydata folder zipped, would have the
