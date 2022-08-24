@@ -298,6 +298,10 @@ LOCALE_PATHS = [
     os.path.join(BASE_DIR, 'locale')
 ]
 
+# A patient who has not been updated in {LOST_TO_FOLLOW_UP_DAYS_SINCE} days
+# will appear on the Lost To Follow-Up page
+LOST_TO_FOLLOW_UP_DAYS_SINCE = 180
+
 
 try:
     from entrytool.local_settings import *
