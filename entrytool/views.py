@@ -1,5 +1,5 @@
 import datetime
-from re import I
+from django.conf import settings
 from django.views.generic import TemplateView
 from django.utils.translation import get_language
 from django.db.models import Q, Max, DateField, DateTimeField
@@ -58,7 +58,9 @@ class LostToFollowup(TemplateView):
         """
         Anything older than this date is considered orphaned
         """
-        return datetime.date.today() - datetime.timedelta(180)
+        return datetime.date.today() - datetime.timedelta(
+            settings.LOST_TO_FOLLOW_UP_DAYS_SINCE
+        )
 
     def get_date_fields(self, subrecord):
         """
@@ -126,4 +128,5 @@ class LostToFollowup(TemplateView):
         """
         ctx = super().get_context_data(*args, **kwargs)
         ctx["object_list"] = self.get_patient_list
+        ctx["days_since"] = settings.LOST_TO_FOLLOW_UP_DAYS_SINCE
         return ctx
