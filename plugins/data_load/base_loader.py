@@ -55,7 +55,7 @@ class Loader:
         try:
             some_dt = cast_date(value)
         except Exception:
-            description = _("Unable to parse %s into a date" % value)
+            description = _("Unable to parse %s into a date with the formats dd/mm/yyyy or yyyy-mm-dd" % value)
             self.add_error(column, value, description)
         return some_dt
 
