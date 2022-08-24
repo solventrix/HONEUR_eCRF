@@ -85,7 +85,6 @@ class Loader:
             field = getattr(model, field_name)
             if isinstance(field, ForeignKeyOrFreeText):
                 result = self._check_fk_or_ft(model, field_name, value)
-                result = get_from_ll(value, field.foreign_model)
             else:
                 field = model._meta.get_field(field_name)
                 if field.choices:
