@@ -44,7 +44,6 @@ def _load_data(folder):
     # These are errors like not being able to read the file
     # or a missing file etc
     top_level_errors = []
-    import ipdb; ipdb.set_trace()
     if not zipfile.is_zipfile(folder):
         # note f-strings are not yet supported by xgettext
         top_level_errors.append(
