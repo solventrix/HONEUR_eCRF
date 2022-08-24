@@ -13,8 +13,8 @@ angular.module('opal.services').service('ValidateField', function(ValidationRule
 					_.each(alertFunctions, function(validator_and_error){
 						var validator = validator_and_error[0];
 						var error = validator_and_error[1];
-						var issue = validator(value, instance, episode, patient, apiName, fieldName, schema, lookuplists);
-						if(issue){
+						var isValid = validator(value, instance, episode, patient, apiName, fieldName, schema, lookuplists);
+						if(!isValid){
 							result[alertType].push(error);
 						}
 					});

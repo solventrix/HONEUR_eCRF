@@ -24,11 +24,11 @@
         [[ item.hospital | translate ]] [[ item.cytogenetic_date | displayDate ]] &nbsp;
         <i ng-click="honeurPatientDetailCtrl.editItem('{{ models.Cytogenetics.get_api_name }}', item, episode)" class="fa fa-pencil edit pointer"></i>
       </div>
-      <div class="col-sm-2 column">[[ item.del17p ]]</div>
-      <div class="col-sm-2 column">[[ item.ighv_rearrangement ]]</div>
-      <div class="col-sm-2 column">[[ item.del11q ]]</div>
-      <div class="col-sm-2 column">[[ item.tp53_mutation ]]</div>
-      <div class="col-sm-2 column">[[ item.karyotype ]]</div>
+      <div class="col-sm-2 column">[[ item.del17p | translate ]]</div>
+      <div class="col-sm-2 column">[[ item.ighv_rearrangement | translate ]]</div>
+      <div class="col-sm-2 column">[[ item.del11q | translate ]]</div>
+      <div class="col-sm-2 column">[[ item.tp53_mutation | translate ]]</div>
+      <div class="col-sm-2 column">[[ item.karyotyp | translate ]]</div>
       </div>
     </div>
   </div>
