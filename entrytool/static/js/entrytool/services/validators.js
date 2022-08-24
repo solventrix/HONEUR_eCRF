@@ -17,19 +17,16 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 		return getRegimenMinMaxDate(EntrytoolHelper.getEpisodeRegimen(episode));
 	};
 
-	var getRegimenMinMaxDate = function(regimen){
+	var getRegimenMinMaxDate = function(regimen_list){
 		// returns the first start date and the last end date
 		// note end date may be null;
 		// pluck the regimen start dates, sort them and return the first
-		var episodeMin = _.sortBy(_.pluck(regimen, "start_date"), function(dt){return dt.toDate()})[0];
-		var episodeMax = null;
-		// regimen end date is not required, remove the nulls and
-		// make sure any of them are populated
-		var episodeMaxVals = _.compact(_.pluck(regimen, "end_date"));
-		if (episodeMaxVals.length) {
-			episodeMax = _.sortBy(episodeMaxVals, function(dt){return dt.toDate()}).reverse()[0];
+		var dates = _.compact(_.flatten([_.pluck(regimen_list, "start_date"), _.pluck(regimen_list, "end_date")]));
+		if(dates.length == 0){
+			return []
 		}
-		return [episodeMin, episodeMax];
+		var sortedDates = _.sortBy(dates, function(dt){return dt.toDate()})
+		return [_.first(sortedDates), _.last(sortedDates)]
 	}
 
 	var responseDateWithRegimen = function(fieldValue, regimen){
@@ -177,41 +174,24 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 			if(!val){
 				return true;
 			}
-			var min = toMomentFilter(instance.start_date);
-			var max = toMomentFilter(instance.end_date);
-			var thisEpisodesRegimen = EntrytoolHelper.getEpisodeRegimen(episode)
 
-			// exclude this regimen's id if it exists
+			var thisEpisodesRegimen = EntrytoolHelper.getEpisodeRegimen(episode);
+
+			// exclude the saved version of this regimen if it exists
 			if(instance.id){
 				thisEpisodesRegimen = _.filter(thisEpisodesRegimen, function(r){ return r.id !== instance.id });
 			}
-			if(thisEpisodesRegimen.length){
-				var ourEpisodeMinMax = getRegimenMinMaxDate(thisEpisodesRegimen);
 
-				if(!min && ourEpisodeMinMax[0]){
-					min = ourEpisodeMinMax[0];
-				}
-				else if(ourEpisodeMinMax[0] && ourEpisodeMinMax[0].isBefore(min, "d")){
-					min = ourEpisodeMinMax[0];
-				}
+			thisEpisodesRegimen.push(instance);
 
-				if(!max){
-					max = ourEpisodeMinMax[1];
-				}
-				else if (ourEpisodeMinMax[1] && ourEpisodeMinMax[1].isAfter(max, "d")){
-					max = ourEpisodeMinMax[1];
-				}
+			var thisEpisodesMinMax = getRegimenMinMaxDate(thisEpisodesRegimen);
 
-				if(!min){
-					min = max;
-				}
-				if(!max){
-					max = min;
-				}
-				if(!min && !max){
-					return true
-				}
+			if(thisEpisodesMinMax.length === 0){
+				return true;
 			}
+
+			var min = _.first(thisEpisodesMinMax);
+			var max = _.last(thisEpisodesMinMax);
 
 			var error = false;
 
@@ -225,34 +205,25 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 				}
 
 				var episodeMinMax = episodeRegimenMinMaxDates(otherEpisode);
-				var episodeMin = episodeMinMax[0];
-				var episodeMax = episodeMinMax[1];
-				if(!episodeMin && !episodeMax){
-					// the other episode has no regimen
-					return;
+				if(episodeMinMax.length === 0){
+					return
+				}
+				var episodeMin = _.first(episodeMinMax);
+				var episodeMax = _.last(episodeMinMax);
+
+				// e.g.
+				// this episode min 1 Jul, max 5 Jul should return an error
+				// other episode min 3 Jul, other episode Max 10 Jul
+				if(min.isBefore(episodeMin) && max.isAfter(episodeMin)){
+					error = true
 				}
 
-				if(!episodeMin){
-					episodeMin = episodeMax;
+				// e.g.
+				// this episode 8 Jul, max 12 Jul
+				// other episode min 3 Jul, other episode max 10 Jul
+				if(max.isBefore(episodeMax) && max.isAfter(episodeMin)){
+					error = true
 				}
-
-				// other episode ends before our episode starts
-				if(episodeMax && episodeMax.isBefore(min, "d")){
-					return;
-				}
-				// other episode does not have a start but starts before our episode starts
-				if(!episodeMax && episodeMin.isBefore(min, "d")){
-					return;
-				}
-				// our episode ends before other episode starts
-				if(max && max.isBefore(episodeMin, "d")){
-					return;
-				}
-				// our episode has no end but starts before other episode starts
-				if(!max && min.isBefore(episodeMin, "d")){
-					return;
-				}
-				error = true;
 			});
 			return !error;
 		},

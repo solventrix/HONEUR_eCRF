@@ -337,7 +337,111 @@ describe("Validators", function () {
 			expect(Validators.regimenToOtherLOTRegimens(regimen_2.start_date, regimen_2, episode, patient)).toBe(false);
 		});
 
-		it('should return true if there is only an end date and another episode surrounds it', function(){			episode.id = 2
+		it('should return false if there is an overlap at the start', function(){
+				// e.g.
+				// this episode min 1 Jul, max 5 Jul should return an error
+				// other episode min 3 Jul, other episode Max 10 Jul
+				episode.id = 2
+				var episode_2 = {
+					id: 3
+				}
+				var regimen_1 = {
+					id: 1,
+					start_date: moment("01-07-2020", "DD-MM-YYYY"),
+					end_date: moment("05-07-2020", "DD-MM-YYYY")
+				}
+				var regimen_2 = {
+					id: 3,
+					start_date: moment("03-07-2020", "DD-MM-YYYY"),
+					end_date: moment("04-07-2020", "DD-MM-YYYY")
+				}
+				var regimen_3 = {
+					id: 2,
+					start_date: moment("09-07-2020", "DD-MM-YYYY"),
+					end_date: moment("10-07-2020", "DD-MM-YYYY")
+				}
+				patient.episodes = [episode, episode_2];
+				spyOn(EntrytoolHelper, 'getEpisodeRegimen').and.returnValues([regimen_1], [regimen_2, regimen_3]);
+				expect(Validators.regimenToOtherLOTRegimens(regimen_1.start_date, regimen_1, episode, patient)).toBe(false);
+		});
+
+		it('should return false if there is an overlap at the end', function(){
+			// e.g.
+			// this episode 8 Jul, max 12 Jul
+			// other episode min 3 Jul, other episode max 10 Jul
+			episode.id = 2
+			var episode_2 = {
+				id: 3
+			}
+			var regimen_1 = {
+				id: 1,
+				start_date: moment("08-07-2020", "DD-MM-YYYY"),
+				end_date: moment("10-07-2020", "DD-MM-YYYY")
+			}
+			var regimen_2 = {
+				id: 3,
+				start_date: moment("03-07-2020", "DD-MM-YYYY"),
+				end_date: moment("04-07-2020", "DD-MM-YYYY")
+			}
+			var regimen_3 = {
+				id: 2,
+				start_date: moment("10-07-2020", "DD-MM-YYYY"),
+				end_date: moment("11-07-2020", "DD-MM-YYYY")
+			}
+			patient.episodes = [episode, episode_2];
+			spyOn(EntrytoolHelper, 'getEpisodeRegimen').and.returnValues([regimen_1], [regimen_2, regimen_3]);
+			expect(Validators.regimenToOtherLOTRegimens(regimen_1.start_date, regimen_1, episode, patient)).toBe(false);
+		});
+
+		it('should return false if there is a single other episode date in the middle of this episode', function(){
+			// e.g.
+			// this episode 8 Jul, max 12 Jul
+			// other episode min 9 Jul
+			episode.id = 2
+			var episode_2 = {
+				id: 3
+			}
+			var regimen_1 = {
+				id: 1,
+				start_date: moment("08-07-2020", "DD-MM-YYYY"),
+				end_date: moment("12-07-2020", "DD-MM-YYYY")
+			}
+			var regimen_2 = {
+				id: 3,
+				start_date: moment("09-07-2020", "DD-MM-YYYY"),
+			}
+			patient.episodes = [episode, episode_2];
+			spyOn(EntrytoolHelper, 'getEpisodeRegimen').and.returnValues([regimen_1], [regimen_2]);
+			expect(Validators.regimenToOtherLOTRegimens(regimen_1.start_date, regimen_1, episode, patient)).toBe(false);
+		});
+
+		it('should return false if there is single date on the episode in the middle of another episode', function(){
+			// e.g.e
+			// this episode 9 Jul
+			// other episode 8 Jul, max 12 Jul
+			episode.id = 2
+			var episode_2 = {
+				id: 3
+			}
+			var regimen_1 = {
+				id: 1,
+				start_date: moment("09-07-2020", "DD-MM-YYYY"),
+			}
+			var regimen_2 = {
+				id: 3,
+				start_date: moment("03-07-2020", "DD-MM-YYYY"),
+			}
+			var regimen_3 = {
+				id: 2,
+				start_date: moment("10-07-2020", "DD-MM-YYYY"),
+			}
+			patient.episodes = [episode, episode_2];
+			spyOn(EntrytoolHelper, 'getEpisodeRegimen').and.returnValues([regimen_1], [regimen_2, regimen_3]);
+			expect(Validators.regimenToOtherLOTRegimens(regimen_1.start_date, regimen_1, episode, patient)).toBe(false);
+		});
+
+		it('should return true if there is only an end date and another episode surrounds it', function(){
+			episode.id = 2
 			var episode_2 = {
 				id: 3
 			}
