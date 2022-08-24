@@ -598,12 +598,12 @@ describe("Validators", function () {
 	});
 
 	describe('CLLRegimenRequired', function(){
-		it('should return false for an empty regimen if the category is not Treatment', function(){
-			expect(Validators.CLLRegimenRequired(undefined, {category: 'Other'})).toBe(false);
+		it('should return true for an empty regimen if the category is not Treatment', function(){
+			expect(Validators.CLLRegimenRequired(undefined, {category: 'Other'})).toBe(true);
 		});
 
-		it('should return true for an empty regimen if the category is Treatment', function(){
-			expect(Validators.CLLRegimenRequired(undefined, {category: 'Treatment'})).toBe(true);
+		it('should return false for an empty regimen if the category is Treatment', function(){
+			expect(Validators.CLLRegimenRequired(undefined, {category: 'Treatment'})).toBe(false);
 		});
 	});
 
