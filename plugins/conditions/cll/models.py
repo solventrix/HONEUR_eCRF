@@ -111,7 +111,7 @@ class QualityOfLife5Q(models.EpisodeSubrecord):
         verbose_name=_("Date of Questionnaire"), blank=True, null=True
     )
 
-    Q5_OPTIONS = ((1, "1"), (2, "2"), (3, "3"), (4, "4"), (5, "5"))
+    Q5_OPTIONS = (("1", "1"), ("2", "2"), ("3", "3"), ("4", "4"), ("5", "5"))
 
     q5_mobility = fields.FloatField(
         blank=True, null=True, choices=Q5_OPTIONS, verbose_name=_("Mobility")

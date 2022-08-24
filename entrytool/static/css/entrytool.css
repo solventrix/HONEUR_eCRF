@@ -2,6 +2,10 @@
   margin-bottom: 25px;
 }
 
+.content-offset-left-10 {
+  margin-left: 10px;
+}
+
 .entry-tool .panel-heading i.edit,
 .entry-tool .list-group-item i.edit,
 .entry-tool .list-group-item i.delete {
@@ -225,11 +229,17 @@ h1 img {
   text-transform: uppercase;
   letter-spacing: 0.2rem;
   border-radius: 0px;
+  color: white;
 }
 
 .btn-primary:hover, .btn-primary:focus {
+  color: white;
   background-color: #0794e0;
   border-color: #0794e0;
+}
+
+.panel.panel-primary .panel-heading a.btn-primary:hover {
+  color: white;
 }
 
 .btn-cancel, .btn-secondary, .btn {

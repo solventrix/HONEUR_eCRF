@@ -12,6 +12,10 @@ $janssen-blue-light : rgb(7,148,224);
     margin-bottom: 25px;
 }
 
+.content-offset-left-10{
+    margin-left: 10px
+}
+
 .entry-tool{
     .panel-heading i.edit,
     .list-group-item i.edit,
@@ -230,11 +234,19 @@ h1 img {
   text-transform: uppercase;
   letter-spacing: 0.2rem;
   border-radius: 0px;
+  color: white;
 
   &:hover, &:focus{
+    color: white;
     background-color: $janssen-blue-light;
     border-color: $janssen-blue-light;
   }
+}
+
+// primary buttons in the headers e.g. the data quality completed button
+// should have white text on hover.
+.panel.panel-primary .panel-heading a.btn-primary:hover{
+    color: white;
 }
 
 .btn-cancel, .btn-secondary, .btn {

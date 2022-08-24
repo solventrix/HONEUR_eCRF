@@ -65,7 +65,6 @@ class PatientsWithErrors(LoginRequiredViewset):
             patientload__has_errors=True,
             patientload__source=models.PatientLoad.LOADED_FROM_FILE
         )
-
         sorted_by_newest = models.sort_by_newest_to_oldest(patient_qs)
         return json_response([i.id for i in sorted_by_newest])
 

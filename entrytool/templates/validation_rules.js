@@ -27,7 +27,7 @@ angular.module('opal.services').service('ValidationRules', function(Validators) 
 			sex: {
 				errors: [
 					[Validators.required, "{% trans "Sex is required" %}"],
-					[Validators.validateInOptions, "{% trans "is not in the options available" %}"]
+					[Validators.inOptions, "{% trans "is not in the options available" %}"]
 				]
 			}
 		},
@@ -40,7 +40,7 @@ angular.module('opal.services').service('ValidationRules', function(Validators) 
 			},
 			death_cause: {
 				errors: [
-					[Validators.validateInOptions, "{% trans "is not in the options available" %}"]
+					[Validators.inOptions, "{% trans "is not in the options available" %}"]
 				]
 			}
 		},
@@ -49,15 +49,15 @@ angular.module('opal.services').service('ValidationRules', function(Validators) 
 		cll_diagnosis_details: {
 			hospital: {
 				errors: [
-					[Validators.validateInOptions, "{% trans "is not in the options available" %}"]
+					[Validators.inOptions, "{% trans "is not in the options available" %}"]
 				]
 			},
 			diag_date: {
 				errors: [
 					[Validators.requiredForCategory('CLL'), "{% trans "Diagnosis date is required" %}"],
-					[Validators.validateDateOfDiagnosisAgainstRegimen, "{% trans "Date of diagnosis is after a regimen start date" %}"],
-					[Validators.validateDateOfDiagnosisAgainstResponse, "{% trans "Date of diagnosis is after a response date" %}"],
-					[Validators.validateDateOfDiagnosisAgainstSCT, "{% trans "Date of diagnosis is after the date of a stem cell transplant " %}"],
+					[Validators.dateOfDiagnosisAgainstRegimen, "{% trans "Date of diagnosis is after a regimen start date" %}"],
+					[Validators.dateOfDiagnosisAgainstResponse, "{% trans "Date of diagnosis is after a response date" %}"],
+					[Validators.dateOfDiagnosisAgainstSCT, "{% trans "Date of diagnosis is after the date of a stem cell transplant " %}"],
 					[Validators.afterDateOfBirth, "{% trans "Date of diagnosis is before the date of birth" %}"],
 					[Validators.noFuture, "{% trans "Date of diagnosis cannot be in the future" %}"]
 				]
@@ -65,53 +65,53 @@ angular.module('opal.services').service('ValidationRules', function(Validators) 
 			binet_stage: {
 				errors: [
 					[Validators.requiredForCategory('CLL'), "{% trans "Binet stage is required" %}"],
-					[Validators.validateInOptions, "{% trans "is not in the options available" %}"]
+					[Validators.inOptions, "{% trans "is not in the options available" %}"]
 				]
 			}
 		},
 		cll_regimen: {
 			category: {
 				errors: [
-					[Validators.validateInOptions, "{% trans "is not in the options available" %}"]
+					[Validators.inOptions, "{% trans "is not in the options available" %}"]
 				]
 			},
 			hospital: {
 				errors: [
-					[Validators.validateInOptions, "{% trans "is not in the options available" %}"]
+					[Validators.inOptions, "{% trans "is not in the options available" %}"]
 				]
 			},
 			regimen: {
 				errors: [
-					[Validators.requiredForCategory('CLL'), "{% trans "Regimen is required" %}"],
-					[Validators.validateInOptions, "{% trans "is not in the options available" %}"]
+					[Validators.CLLRegimenRequired, "{% trans "Regimen is required" %}"],
+					[Validators.inOptions, "{% trans "is not in the options available" %}"]
 				]
 			},
 			start_date: {
 				errors: [
 					[Validators.required, "{% trans "Start date is required" %}"],
 					[Validators.sameOrAfterDiagnosisDate, "{% trans "Start Date must be after the patient date of diagnosiss" %}"],
-					[Validators.validateNotBetweenRegimenDates, "{% trans "The regimen cannot overlap with another regimen" %}"],
-					[Validators.validateRegimenToOtherLOTRegimens,  "{% trans "This regimen overlaps with another line of treatment" %}"],
+					[Validators.notBetweenRegimenDates, "{% trans "The regimen cannot overlap with another regimen" %}"],
+					[Validators.regimenToOtherLOTRegimens,  "{% trans "This regimen overlaps with another line of treatment" %}"],
 					[Validators.endDateSameOrAfterRegimenStartDate, "{% trans "The end date should be after the start date" %}"],
 				],
 				warnings: [
-					[Validators.validateRegimenToResponses, "{% trans "A response date is not connected to a regimen" %}"]
+					[Validators.regimenToResponses, "{% trans "A response date is not connected to a regimen" %}"]
 				]
 			},
 			end_date: {
 				errors: [
-					[Validators.validateNotBetweenRegimenDates, "{% trans "The regimen cannot overlap with another regimen" %}"],
-					[Validators.validateRegimenToOtherLOTRegimens,  "{% trans "This regimen overlaps with another line of treatment" %}"],
+					[Validators.notBetweenRegimenDates, "{% trans "The regimen cannot overlap with another regimen" %}"],
+					[Validators.regimenToOtherLOTRegimens,  "{% trans "This regimen overlaps with another line of treatment" %}"],
 					[Validators.endDateSameOrAfterRegimenStartDate, "{% trans "End Date must be after the start date" %}"],
-					[Validators.validateOnlyOneOpenRegimen, "{% trans "There can only be one open regimen at a time" %}"]
+					[Validators.onlyOneOpenRegimen, "{% trans "There can only be one open regimen at a time" %}"]
 				],
 				warnings: [
-					[Validators.validateRegimenToResponses, "{% trans "A response date is not connected to a regimen" %}"]
+					[Validators.regimenToResponses, "{% trans "A response date is not connected to a regimen" %}"]
 				]
 			},
 			stop_reason: {
 				errors: [
-					[Validators.validateInOptions, "{% trans "is not in the options available" %}"]
+					[Validators.inOptions, "{% trans "is not in the options available" %}"]
 				]
 			},
 		},
@@ -126,7 +126,7 @@ angular.module('opal.services').service('ValidationRules', function(Validators) 
 			response: {
 				errors: [
 					[Validators.required, "{% trans "Response is required" %}"],
-					[Validators.validateInOptions, "{% trans "is not in the options available" %}"]
+					[Validators.inOptions, "{% trans "is not in the options available" %}"]
 				]
 			}
 		},
@@ -139,7 +139,7 @@ angular.module('opal.services').service('ValidationRules', function(Validators) 
 			},
 			ecog_score: {
 				errors: [
-					[Validators.validateInOptions, "{% trans "is not in the options available" %}"]
+					[Validators.inOptions, "{% trans "is not in the options available" %}"]
 				],
 			},
 			cirs_score: {
@@ -168,7 +168,7 @@ angular.module('opal.services').service('ValidationRules', function(Validators) 
 			},
 			bulky_disease: {
 				errors: [
-					[Validators.validateInOptions, "{% trans "is not in the options available" %}"]
+					[Validators.inOptions, "{% trans "is not in the options available" %}"]
 				],
 			}
 		},
@@ -181,27 +181,27 @@ angular.module('opal.services').service('ValidationRules', function(Validators) 
 			},
 			del17p: {
 				errors: [
-					[Validators.validateInOptions, "{% trans "is not in the options available" %}"]
+					[Validators.inOptions, "{% trans "is not in the options available" %}"]
 				],
 			},
 			ighv_rearrangement: {
 				errors: [
-					[Validators.validateInOptions, "{% trans "is not in the options available" %}"]
+					[Validators.inOptions, "{% trans "is not in the options available" %}"]
 				],
 			},
 			del11q: {
 				errors: [
-					[Validators.validateInOptions, "{% trans "is not in the options available" %}"]
+					[Validators.inOptions, "{% trans "is not in the options available" %}"]
 				],
 			},
 			tp53_mutation: {
 				errors: [
-					[Validators.validateInOptions, "{% trans "is not in the options available" %}"]
+					[Validators.inOptions, "{% trans "is not in the options available" %}"]
 				],
 			},
 			karyotype: {
 				errors: [
-					[Validators.validateInOptions, "{% trans "is not in the options available" %}"]
+					[Validators.inOptions, "{% trans "is not in the options available" %}"]
 				],
 			},
 		},
@@ -214,39 +214,39 @@ angular.module('opal.services').service('ValidationRules', function(Validators) 
 			},
 			q5_mobility: {
 				errors: [
-					[Validators.validateInOptions, "{% trans "is not in the options available" %}"]
+					[Validators.inOptions, "{% trans "is not in the options available" %}"]
 				]
 			},
 			q5_selfcare: {
 				errors: [
-					[Validators.validateInOptions, "{% trans "is not in the options available" %}"]
+					[Validators.inOptions, "{% trans "is not in the options available" %}"]
 				]
 			},
 			q5_usual_activities: {
 				errors: [
-					[Validators.validateInOptions, "{% trans "is not in the options available" %}"]
+					[Validators.inOptions, "{% trans "is not in the options available" %}"]
 				]
 			},
 			q5_pain_discomfort: {
 				errors: [
-					[Validators.validateInOptions, "{% trans "is not in the options available" %}"]
+					[Validators.inOptions, "{% trans "is not in the options available" %}"]
 				]
 			},
 			q5_anxiety_depression: {
 				errors: [
-					[Validators.validateInOptions, "{% trans "is not in the options available" %}"]
+					[Validators.inOptions, "{% trans "is not in the options available" %}"]
 				]
 			},
 		},
 		sct: {
 			sct_type: {
 				errors: [
-					[Validators.validateInOptions, "{% trans "is not in the options available" %}"]
+					[Validators.inOptions, "{% trans "is not in the options available" %}"]
 				]
 			},
 			hospital: {
 				errors: [
-					[Validators.validateInOptions, "{% trans "is not in the options available" %}"]
+					[Validators.inOptions, "{% trans "is not in the options available" %}"]
 				]
 			},
 			sct_date: {
@@ -261,22 +261,22 @@ angular.module('opal.services').service('ValidationRules', function(Validators) 
 			diag_date: {
 				errors: [
 					[Validators.requiredForCategory('MM'), "{% trans "Diagnosis date is required" %}"],
-					[Validators.validateDateOfDiagnosisAgainstRegimen, "{% trans "Date of diagnosis is after a regimen start date" %}"],
-					[Validators.validateDateOfDiagnosisAgainstResponse, "{% trans "Date of diagnosis is after a response date" %}"],
-					[Validators.validateDateOfDiagnosisAgainstSCT, "{% trans "Date of diagnosis is after the date of a stem cell transplant " %}"],
+					[Validators.dateOfDiagnosisAgainstRegimen, "{% trans "Date of diagnosis is after a regimen start date" %}"],
+					[Validators.dateOfDiagnosisAgainstResponse, "{% trans "Date of diagnosis is after a response date" %}"],
+					[Validators.dateOfDiagnosisAgainstSCT, "{% trans "Date of diagnosis is after the date of a stem cell transplant " %}"],
 					[Validators.afterDateOfBirth, "{% trans "Date of diagnosis is before the date of birth" %}"],
 					[Validators.noFuture, "{% trans "Date of diagnosis cannot be in the future" %}"]
 				]
 			},
 			hospital: {
 				errors: [
-					[Validators.validateInOptions, "{% trans "is not in the options available" %}"]
+					[Validators.inOptions, "{% trans "is not in the options available" %}"]
 				]
 			},
 			smm_history: {
 				errors: [
 					[Validators.requiredForCategory('MM'), "{% trans "History of SMM is required" %}"],
-					[Validators.validateInOptions, "{% trans "is not in the options available" %}"]
+					[Validators.inOptions, "{% trans "is not in the options available" %}"]
 				]
 			},
 			smm_history_date: {
@@ -287,88 +287,88 @@ angular.module('opal.services').service('ValidationRules', function(Validators) 
 			},
 			mgus_history: {
 				errors: [
-					[Validators.validateInOptions, "{% trans "is not in the options available" %}"]
+					[Validators.inOptions, "{% trans "is not in the options available" %}"]
 				]
 			},
 			iss_stage: {
 				errors: [
-					[Validators.validateInOptions, "{% trans "is not in the options available" %}"]
+					[Validators.inOptions, "{% trans "is not in the options available" %}"]
 				]
 			},
 			ds_stage: {
 				errors: [
-					[Validators.validateInOptions, "{% trans "is not in the options available" %}"]
+					[Validators.inOptions, "{% trans "is not in the options available" %}"]
 				]
 			},
 			pp_type: {
 				errors: [
-					[Validators.validateInOptions, "{% trans "is not in the options available" %}"]
+					[Validators.inOptions, "{% trans "is not in the options available" %}"]
 				]
 			},
 			del_17p: {
 				errors: [
-					[Validators.validateInOptions, "{% trans "is not in the options available" %}"]
+					[Validators.inOptions, "{% trans "is not in the options available" %}"]
 				]
 			},
 			del_13: {
 				errors: [
-					[Validators.validateInOptions, "{% trans "is not in the options available" %}"]
+					[Validators.inOptions, "{% trans "is not in the options available" %}"]
 				]
 			},
 			t4_14: {
 				errors: [
-					[Validators.validateInOptions, "{% trans "is not in the options available" %}"]
+					[Validators.inOptions, "{% trans "is not in the options available" %}"]
 				]
 			},
 			t4_16: {
 				errors: [
-					[Validators.validateInOptions, "{% trans "is not in the options available" %}"]
+					[Validators.inOptions, "{% trans "is not in the options available" %}"]
 				]
 			},
 		},
 		mm_regimen: {
 			hospital: {
 				errors: [
-					[Validators.validateInOptions, "{% trans "is not in the options available" %}"]
+					[Validators.inOptions, "{% trans "is not in the options available" %}"]
 				]
 			},
 			regimen: {
 				errors: [
 					[Validators.requiredForCategory('MM'), "{% trans "Regimen is required" %}"],
-					[Validators.validateInOptions, "{% trans "is not in the options available" %}"]
+					[Validators.inOptions, "{% trans "is not in the options available" %}"]
 				]
 			},
 			category: {
 				errors: [
-					[Validators.validateInOptions, "{% trans "is not in the options available" %}"]
+					[Validators.inOptions, "{% trans "is not in the options available" %}"]
 				]
 			},
 			start_date: {
 				errors: [
 					[Validators.required, "{% trans "Start date is required" %}"],
 					[Validators.sameOrAfterDiagnosisDate, "{% trans "Start Date must be after the patient date of diagnosiss" %}"],
-					[Validators.validateNotBetweenRegimenDates, "{% trans "The regimen cannot overlap with another regimen" %}"],
-					[Validators.validateRegimenToOtherLOTRegimens,  "{% trans "This regimen overlaps with another line of treatment" %}"],
+					[Validators.notBetweenRegimenDates, "{% trans "The regimen cannot overlap with another regimen" %}"],
+					[Validators.regimenToOtherLOTRegimens,  "{% trans "This regimen overlaps with another line of treatment" %}"],
 					[Validators.endDateSameOrAfterRegimenStartDate, "{% trans "The end date should be after the start date" %}"],
 				],
 				warnings: [
-					[Validators.validateRegimenToResponses, "{% trans "A response date is not connected to a regimen" %}"]
+					[Validators.regimenToResponses, "{% trans "A response date is not connected to a regimen" %}"]
 				]
 			},
 			end_date: {
 				errors: [
-					[Validators.validateNotBetweenRegimenDates, "{% trans "The regimen cannot overlap with another regimen" %}"],
-					[Validators.validateRegimenToOtherLOTRegimens,  "{% trans "This regimen overlaps with another line of treatment" %}"],
+					[Validators.notBetweenRegimenDates, "{% trans "The regimen cannot overlap with another regimen" %}"],
+					[Validators.regimenToOtherLOTRegimens,  "{% trans "This regimen overlaps with another line of treatment" %}"],
 					[Validators.endDateSameOrAfterRegimenStartDate, "{% trans "End Date must be after the start date" %}"],
-					[Validators.validateOnlyOneOpenRegimen, "{% trans "There can only be one open regimen at a time" %}"]
+					[Validators.onlyOneOpenRegimen, "{% trans "There can only be one open regimen at a time" %}"]
 				],
 				warnings: [
-					[Validators.validateRegimenToResponses, "{% trans "A response date is not connected to a regimen" %}"]
+					[Validators.regimenToResponses, "{% trans "A response date is not connected to a regimen" %}"]
 				]
 			},
 			stop_reason: {
 				errors: [
-					[Validators.validateInOptions, "{% trans "is not in the options available" %}"]
+					[Validators.inOptions, "{% trans "is not in the options available" %}"]
 				]
 			}
 		},
@@ -380,13 +380,13 @@ angular.module('opal.services').service('ValidationRules', function(Validators) 
 					[Validators.noFuture, "{% trans "The response date is in the future" %}"]
 				],
 				warnings: [
-					[Validators.validateResponseToRegimens,  "{% trans "No regimen is connected to this response" %}"]
+					[Validators.responseToRegimens,  "{% trans "No regimen is connected to this response" %}"]
 				]
 			},
 			response: {
 				errors: [
 					[Validators.required, "{% trans "Response is required" %}"],
-					[Validators.validateInOptions, "{% trans "is not in the options available" %}"]
+					[Validators.inOptions, "{% trans "is not in the options available" %}"]
 				]
 			}
 		},
@@ -400,7 +400,7 @@ angular.module('opal.services').service('ValidationRules', function(Validators) 
 			hospital: {
 				errors: [
 					[Validators.required, "{% trans "Hospital is required" %}"],
-					[Validators.validateInOptions, "{% trans "is not in the options available" %}"]
+					[Validators.inOptions, "{% trans "is not in the options available" %}"]
 				]
 			},
 			LDH: {
