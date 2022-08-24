@@ -94,5 +94,5 @@ entrytool_router.register(
     PatientsWithErrors.basename, PatientsWithErrors
 )
 entrytool_router.register(
-    UploadFromFilePath.basename, UploadFromZip
+    UploadFromZip.basename, UploadFromZip
 )
