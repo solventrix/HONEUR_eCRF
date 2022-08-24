@@ -13,7 +13,7 @@
           <div class="panel-body">
 
             <!-- Validating patients -->
-            <div ng-show="getState() === states.VALIDATING" class="panel content-offset-below">
+            <div ng-show="showSection(uploadSections.VALIDATING)" class="panel content-offset-below">
               <div class="panel-heading">
                 <h3>
                   {% trans "Unvalidated Patients" %}
@@ -47,7 +47,7 @@
             </div>
 
             <!-- Upload form -->
-            <div ng-show="getState() === states.UPLOAD_FORM" class="panel content-offset-below">
+            <div ng-show="showSection(uploadSections.UPLOAD_FORM)" class="panel content-offset-below">
               <div class="panel-heading">
                     <h3>
                       {% trans "Upload Patient Data" %}
@@ -79,7 +79,7 @@
             </div>
 
             <!-- Loading -->
-            <div ng-show="getState() === states.LOADING" class="panel content-offset-below">
+            <div ng-show="showSection(uploadSections.LOADING)" class="panel content-offset-below">
               <div class="panel-heading">
                 <h3>
                   {% trans "Processing Data Upload" %}
@@ -97,7 +97,7 @@
             </div>
 
             <!-- Display errors -->
-            <div ng-show="getState() === states.UPLOAD_ISSUES" class="panel content-offset-below">
+            <div ng-show="showSection(uploadSections.UPLOAD_ISSUES)" class="panel content-offset-below">
               <div class="panel-heading">
                 <h3 span ng-show="errorCount() > 1">
                   [[ errorCount() ]] {% trans "errors found in this upload" %}
