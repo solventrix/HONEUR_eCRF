@@ -28,6 +28,9 @@ angular
     $scope.validaterPointer = 0;
     $scope.loading = false;
 
+    // true if we get an error response from the server
+    $scope.unableToProcessFile = false;
+
     //
     // The template has four panels to display the UI for uploading
     // data - only one should be visible at any time
@@ -36,7 +39,8 @@ angular
       LOADING: "LOADING",
       VALIDATING: "VALIDATING",
       UPLOAD_ISSUES: "UPLOAD_ISSUES",
-      UPLOAD_FORM: "UPLOAD_FORM"
+      UPLOAD_FORM: "UPLOAD_FORM",
+      FAILED_TO_UPLOAD: "FAILED_TO_UPLOAD"
     }
 
     //
@@ -46,6 +50,9 @@ angular
     $scope.showSection = function(name){
       if($scope.loading){
           return $scope.uploadSections.LOADING == name;
+      }
+      if($scope.unableToProcessFile){
+        return $scope.uploadSections.FAILED_TO_UPLOAD == name;
       }
       if($scope.errorCount()){
           return $scope.uploadSections.UPLOAD_ISSUES == name;
@@ -112,6 +119,8 @@ angular
         top_level_errors: [],
         row_errors: [],
       };
+      $scope.loading = false;
+      $scope.unableToProcessFile = false;
     }
 
     $scope.formSubmitCallback = function(response){
@@ -128,6 +137,11 @@ angular
           process();
         });
       }
+    }
+
+    $scope.formFailedCallback = function(){
+      $scope.loading = false;
+      $scope.unableToProcessFile = true;
     }
 
     init();

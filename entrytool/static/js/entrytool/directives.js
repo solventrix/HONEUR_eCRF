@@ -3,6 +3,7 @@ directives.directive("formSubmit", function($http){
     scope: {
 			onSubmit: '&onSubmit',
 			onSuccess: '&onSuccess',
+			onFail: '&onFail',
 		},
     link: function(scope, element, attrs){
 			"use strict";
@@ -47,6 +48,8 @@ directives.directive("formSubmit", function($http){
 				}).then(function(response){
 						init();
 						scope.onSuccess()(response);
+				}, function(err){
+					  scope.onFail()(err);
 				});
 			});
 
