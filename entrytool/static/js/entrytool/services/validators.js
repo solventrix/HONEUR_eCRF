@@ -374,6 +374,15 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 		required: function(val){
 			return required(val);
 		},
+		CLLRegimenRequired: function(val, instance){
+			/*
+			* Regimen is not required if the instance category is not treatment
+			*/
+			if(instance.category !== 'Treatment'){
+				return true;
+			}
+			return required(val);
+		},
 		requiredForCategory: function(categoryName){
 			return function(val, instance, episode){
 				/*

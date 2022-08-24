@@ -1,8 +1,8 @@
 {% load forms %}
 {% load custom_forms %}
 {% load i18n %}
-{% select field="CLLRegimen.hospital" help_text=_('Location where regimen was administered') %}
-{% select field="CLLRegimen.category" change='editing.cll_regimen.regimen=null;' help_text=_('Initial watch and wait period should not be logged as treatment line') %}
+{% select field="CLLRegimen.hospital" help_text=_("Location where regimen was administered") %}
+{% select field="CLLRegimen.category" change="editing.cll_regimen.regimen=''; $root.patientValidator.validatesubrecord('cll_regimen', editing.cll_regimen, the_episode);" help_text=_("Initial watch and wait period should not be logged as treatment line") %}
 <div ng-if="editing.cll_regimen.category == 'Treatment'">
   {% select field="CLLRegimen.regimen" help_text=_("If you cannot find the appropriate regimen description in the drop down list,  please add a new regimen by clicking the \"Admin\" button, and then the \"Add\" button next to Regimen List. Please also refer to the instruction book.") %}
   {% checkbox field="CLLRegimen.indefinite_duration" %}
