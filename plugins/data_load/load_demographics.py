@@ -1,3 +1,4 @@
+from django.utils.translation import gettext as _
 from opal.models import Patient
 from ..conditions.cll.models import CLLDiagnosisDetails
 from plugins.data_load import base_loader
@@ -13,23 +14,17 @@ class DemographicsLoader(base_loader.Loader):
         value = self.row[column]
         try:
             if not value:
-                raise ValueError(f"No external identifier found for {value}")
+                raise ValueError(
+                    _("No external identifier found for %s" % value)
+                )
             if value:
                 patients = Patient.objects.filter(
-                    demographics__external_identifier=value
+                    demographics__hospital_number=value
                 )
                 if patients.exists():
-                    raise ValueError("Patient {} already exists".format(value))
+                    raise ValueError(_("Patient %s already exists" % value))
         except Exception as err:
-            self.errors.append(
-                dict(
-                    file=self.file_name,
-                    row=self.idx,
-                    column=column,
-                    value=value,
-                    exception=err,
-                )
-            )
+            self.add_error(column, value, str(err))
             return ""
         return self.check_and_get_string(Demographics, "hospital_number", column)
 

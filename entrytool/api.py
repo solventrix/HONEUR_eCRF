@@ -1,4 +1,6 @@
 from rest_framework import status
+from rest_framework.parsers import FileUploadParser
+from plugins.data_load import load_data
 from opal.core.api import LoginRequiredViewset
 from opal.models import Patient, Episode
 from opal.core.api import OPALRouter, patient_from_pk, episode_from_pk
@@ -58,12 +60,23 @@ class PatientsWithErrors(LoginRequiredViewset):
     basename = "patients_with_errors"
 
     def list(self, request):
-        return json_response(list(Patient.objects.filter(
+        patient_qs = Patient.objects.filter(
             patientload__validated=True,
             patientload__has_errors=True,
-            patientload__source=models.PatientLoad.LOADED_FROM_FILE,
-            patientload__data_quality_reviewed=False
-        ).values_list('id', flat=True)))
+            patientload__source=models.PatientLoad.LOADED_FROM_FILE
+        )
+        sorted_by_newest = models.sort_by_newest_to_oldest(patient_qs)
+        return json_response([i.id for i in sorted_by_newest])
+
+
+class UploadFromZip(LoginRequiredViewset):
+    parser_classes = [FileUploadParser]
+    basename = "upload_from_zip"
+
+    def create(self, request):
+        zipfile = request.FILES.get('file')
+        errors = load_data.load_data(zipfile)
+        return json_response(errors)
 
 
 entrytool_router = OPALRouter()
@@ -78,4 +91,7 @@ entrytool_router.register(
 )
 entrytool_router.register(
     PatientsWithErrors.basename, PatientsWithErrors
+)
+entrytool_router.register(
+    UploadFromZip.basename, UploadFromZip
 )

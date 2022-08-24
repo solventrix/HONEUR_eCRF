@@ -61,6 +61,9 @@ class LOTLoader(base_loader.Loader):
             regimen.regimen = self.check_and_get_string(
                 cll_models.CLLRegimen, "regimen", "Regimen"
             )
+            # if there is a regimen then the category is treatment
+            if regimen.regimen:
+                regimen.category = "Treatment"
             regimen.start_date = self.check_and_get_date("Start_date")
             regimen.end_date = self.check_and_get_date("end_date")
             regimen.set_consistency_token()

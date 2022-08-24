@@ -1,10 +1,11 @@
-from unicodedata import category
 from plugins.conditions.cll.models import AdditionalCharacteristics
 from plugins.conditions.cll import episode_categories
 from plugins.data_load import base_loader
 
 
 class FollowUpLoader(base_loader.Loader):
+
+
     def load_row(self, row):
         if not (any(row.values())):
             return
