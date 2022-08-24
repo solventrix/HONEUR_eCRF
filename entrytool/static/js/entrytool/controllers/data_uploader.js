@@ -28,24 +28,32 @@ angular
     $scope.validaterPointer = 0;
     $scope.loading = false;
 
-    $scope.states = {
+    //
+    // The template has four panels to display the UI for uploading
+    // data - only one should be visible at any time
+    //
+    $scope.uploadSections = {
       LOADING: "LOADING",
       VALIDATING: "VALIDATING",
       UPLOAD_ISSUES: "UPLOAD_ISSUES",
       UPLOAD_FORM: "UPLOAD_FORM"
     }
 
-    $scope.getState = function(){
+    //
+    // This function avoids the need to check multiple flags
+    // in the template ng-show expressions
+    //
+    $scope.showSection = function(name){
       if($scope.loading){
-        return $scope.states.LOADING
+          return $scope.uploadSections.LOADING == name;
       }
       if($scope.errorCount()){
-        return $scope.states.UPLOAD_ISSUES
+          return $scope.uploadSections.UPLOAD_ISSUES == name;
       }
       if($scope.initialUnvalidatedCount){
-        return $scope.states.VALIDATING;
+        return $scope.uploadSections.VALIDATING == name;
       }
-      return $scope.states.UPLOAD_FORM;
+      return $scope.uploadSections.UPLOAD_FORM == name;
     }
 
     var init = function(){
