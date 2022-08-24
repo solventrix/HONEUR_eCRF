@@ -4,12 +4,12 @@ describe("ValidatorField", function () {
 	var ValidationRules, ValidateField;
 
 	describe('validate', function(){
-		it("should return a {warnings: message} if a validator for a field.warning returns true", function(){
+		it("should return a {warnings: message} if a validator for a field.warning returns false", function(){
 			ValidationRules = {
 				diagnosis: {
 					diag_date: {
 						warnings: [
-							[function(){ return true }, "warning"]
+							[function(){ return false }, "warning"]
 						]
 					}
 				}
@@ -25,12 +25,12 @@ describe("ValidatorField", function () {
 			expect(result).toEqual(expected);
 		});
 
-		it("should return a {errors: message} if a validator for a field.error returns a true", function(){
+		it("should return a {errors: message} if a validator for a field.error returns a false", function(){
 			ValidationRules = {
 				diagnosis: {
 					diag_date: {
 						errors: [
-							[function(){ return true }, "errors"]
+							[function(){ return false }, "errors"]
 						]
 					}
 				}
@@ -88,12 +88,12 @@ describe("ValidatorField", function () {
 			expect(result).toEqual(expected);
 		});
 
-		it("should return a result with empty arrays if validators for an alert type return false", function(){
+		it("should return a result with empty arrays if validators for an alert type return true", function(){
 			ValidationRules = {
 				diagnosis: {
 					diag_date: {
 						errors: [
-							[function(){ return false }, "errors"]
+							[function(){ return true }, "errors"]
 						]
 					}
 				}
@@ -124,7 +124,7 @@ describe("ValidatorField", function () {
 									instancePassedIn = instance === "instance";
 									episodePassedIn = episode === "episode";
 									patientPassedIn = patient === "patient";
-									return false;
+									return true;
 								}, "errors"
 							]
 						]
