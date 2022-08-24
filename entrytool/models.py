@@ -2,10 +2,11 @@
 entrytool models.
 """
 from django.db.models import fields
+from opal.core import subrecords
+from django.db.models import Max, DateField, DateTimeField
 
 from opal import models
 from opal.core import lookuplists
-from opal.core.fields import ForeignKeyOrFreeText
 from django.utils.translation import gettext_lazy as _
 
 
@@ -136,3 +137,66 @@ class PatientLoad(models.PatientSubrecord):
     class Meta:
         verbose_name = _("Patient Load")
         verbose_name_plural = _("Patient Loads")
+
+
+def get_date_fields(subrecord):
+    """
+    Returns the names of date or datetime fields on the subrecord
+    excluding the created/updated timestamps
+    """
+    fields = subrecord._meta.get_fields()
+    date_fields = []
+    for field in fields:
+        if isinstance(field, (DateTimeField, DateField,)):
+            if field.name == 'created' or field.name == 'updated':
+                continue
+            date_fields.append(field.name)
+    return date_fields
+
+
+def get_max_date(patient, max_fields):
+    """
+    Given a list of annotated max_date fields on the patient
+    return the most recent
+    """
+    max_dates = [
+        getattr(patient, max_field) for max_field in max_fields
+        if getattr(patient, max_field)
+    ]
+    if len(max_dates) == 1:
+        return max_dates[0]
+    return max(max_dates)
+
+
+def sort_by_newest_to_oldest(patients):
+    """
+    Takes a queryset
+
+    Annotates with all the dates connected with the patient
+    excluding created/updated
+
+    Returns a list of patients ordered by newest to oldest.
+    """
+    max_fields = []
+    for subrecord in subrecords.subrecords():
+        if subrecord == PatientStatus:
+            continue
+        date_fields = get_date_fields(subrecord)
+        for date_field in date_fields:
+            if issubclass(subrecord, models.EpisodeSubrecord):
+                field = f"episode__{subrecord.__name__.lower()}__{date_field}"
+            else:
+                field = f"{subrecord.__name__.lower()}__{date_field}"
+            max_field = f"max_{field}"
+            patients = patients.annotate(**{max_field: Max(field)})
+            max_fields.append(max_field)
+
+    max_date_and_patient = [
+        (get_max_date(patient, max_fields), patient) for
+        patient in patients
+    ]
+    return [
+        i[1] for i in sorted(
+            max_date_and_patient, key=lambda x: x[0], reverse=True
+        )
+    ]

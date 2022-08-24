@@ -64,10 +64,7 @@ angular
       * update the pointer and the patientWithErrors if necessary.
       */
       var deferred = $q.defer()
-      patientLoader(unvalidatedPatientId).then(ValidatePatient.validatePatient).then(function(errors){
-        if(errors.length){
-          $scope.patientsWithErrors.push(unvalidatedPatientId)
-        }
+      patientLoader(unvalidatedPatientId).then(ValidatePatient.validatePatient).then(function(){
         $scope.validaterPointer += 1;
         deferred.resolve()
       });
@@ -85,6 +82,12 @@ angular
       _.each($scope.unvalidatedPatients, function(unvalidatedPatientId){
         // chain the promises so that we resolve them one after another
         promise = promise.then(function(){ return processPatientId(unvalidatedPatientId)});
+      });
+
+      promise = promise.then(function(){
+        DataUploadLoader.patientsWithErrors().then(function(patientsWithErrors){
+          $scope.patientsWithErrors = patientsWithErrors;
+        });
       });
     }
 

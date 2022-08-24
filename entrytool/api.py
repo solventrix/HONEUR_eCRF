@@ -60,11 +60,14 @@ class PatientsWithErrors(LoginRequiredViewset):
     basename = "patients_with_errors"
 
     def list(self, request):
-        return json_response(list(Patient.objects.filter(
+        patient_qs = Patient.objects.filter(
             patientload__validated=True,
             patientload__has_errors=True,
             patientload__source=models.PatientLoad.LOADED_FROM_FILE
-        ).values_list('id', flat=True)))
+        )
+
+        sorted_by_newest = models.sort_by_newest_to_oldest(patient_qs)
+        return json_response([i.id for i in sorted_by_newest])
 
 
 class UploadFromFilePath(LoginRequiredViewset):
