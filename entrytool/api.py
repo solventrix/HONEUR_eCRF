@@ -1,4 +1,4 @@
-from rest_framework import status
+from rest_framework import status, pagination, generics
 from rest_framework.parsers import FileUploadParser
 from plugins.data_load import load_data
 from opal.core.api import LoginRequiredViewset
@@ -56,17 +56,37 @@ class UnvalidatedPatients(LoginRequiredViewset):
         ).values_list('id', flat=True)))
 
 
-class PatientsWithErrors(LoginRequiredViewset):
-    basename = "patients_with_errors"
+class PatientsWithErrorsPaginator(pagination.PageNumberPagination):
+    page_size = 6
 
-    def list(self, request):
-        patient_qs = Patient.objects.filter(
+    def get_paginated_response(self, data):
+        # This get's used by the opal js Paginator service
+        # that expects total_count, total_pages and page_number
+        return json_response({
+            'total_count': self.page.paginator.count,
+            'total_pages': self.page.paginator.num_pages,
+            'page_number': self.page.number,
+            'results': data
+        })
+
+
+class PatientsWithErrors(LoginRequiredViewset, generics.GenericAPIView):
+    basename = "patients_with_errors"
+    pagination_class = PatientsWithErrorsPaginator
+
+    def get_queryset(self):
+        return Patient.objects.filter(
             patientload__validated=True,
             patientload__has_errors=True,
             patientload__source=models.PatientLoad.LOADED_FROM_FILE
         )
-        sorted_by_newest = models.sort_by_newest_to_oldest(patient_qs)
-        return json_response([i.id for i in sorted_by_newest])
+
+    def list(self, request):
+        qs = self.get_queryset()
+        sorted_by_newest = models.sort_by_newest_to_oldest(qs)
+        page = self.paginate_queryset(sorted_by_newest)
+        data = [i.id for i in page]
+        return self.get_paginated_response(data)
 
 
 class UploadFromZip(LoginRequiredViewset):

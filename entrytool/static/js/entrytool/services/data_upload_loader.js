@@ -7,7 +7,7 @@ angular.module('opal.services').factory('DataUploadLoader', function($http) {
 		},
 		patientsWithErrors: function(){
 			return $http.get('/entrytool/v0.1/patients_with_errors/').then(function(response){
-				return response.data;
+				return response.data.results;
 			});
 		}
 	}
