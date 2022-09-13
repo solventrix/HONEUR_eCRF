@@ -84,6 +84,7 @@ class PatientsWithErrors(LoginRequiredViewset, generics.GenericAPIView):
     def list(self, request):
         qs = self.get_queryset()
         sorted_by_newest = models.sort_by_newest_to_oldest(qs)
+        # Not actually a queryset but DRF also accepts a list
         page = self.paginate_queryset(sorted_by_newest)
         data = [i.id for i in page]
         return self.get_paginated_response(data)
