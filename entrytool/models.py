@@ -1,6 +1,7 @@
 """
 entrytool models.
 """
+import datetime
 from django.db.models import fields
 from opal.core import subrecords
 from django.db.models import Max, DateField, DateTimeField
@@ -169,6 +170,8 @@ def get_max_date(patient, max_fields):
     ]
     if len(max_dates) == 1:
         return max_dates[0]
+    elif len(max_dates) == 0:
+        return None
     return max(max_dates)
 
 
@@ -201,6 +204,8 @@ def sort_by_newest_to_oldest(patients):
     ]
     return [
         i[1] for i in sorted(
-            max_date_and_patient, key=lambda x: x[0], reverse=True
+            max_date_and_patient,
+            key=lambda x: x[0] or datetime.datetime.min.date(),
+            reverse=True
         )
     ]
