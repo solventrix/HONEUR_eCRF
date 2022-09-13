@@ -390,4 +390,15 @@ h1 img {
 .faux-file-help-text, .error .faux-file-error-text {
   display: inline-block;
 }
+
+.pagination > li > a:hover,
+.pagination > li > a:active
+.pagination > li > a:focus {
+  color: #002562;
+}
+
+.pagination > li > a {
+  color: #002562;
+  cursor: pointer;
+}
 /*# sourceMappingURL=entrytool.css.map */
