@@ -1,6 +1,6 @@
 {% load i18n %}
 <div class="form-group">
-  <label class="control-label col-sm-3">Condition</label>
+  <label class="control-label col-sm-3">{% trans "Condition" %}</label>
   <div class="col-md-8" ng-class="{'has-error': form.$submitted && form.condition.$error.required}">
     <select name="condition" required class="form-control" ng-model="editing.episode_category">
       <option value="" selected>---------</option>
