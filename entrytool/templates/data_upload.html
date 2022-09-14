@@ -59,6 +59,7 @@
                     <form form-submit form-field='folder' url='/entrytool/v0.1/upload_from_zip/' on-submit="setLoading" on-success="formSubmitCallback" on-fail="formFailedCallback">
                       <label class="file">
                         <input type="file" id="file">
+                        <span id="faux-file-label">{% trans "Browse" %}</span>
                         <span id="faux-file-field" data-initial-content="{% trans "Upload a zip file" %}"></span>
                       </label>
                       <p class="faux-file-help-text">
