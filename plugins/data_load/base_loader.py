@@ -124,7 +124,7 @@ class Loader:
             )
         except Exception:
             self.add_error(column, value, _(
-                'Uable to find a patient with external identifier %s' % value
+                'Unable to find a patient with external identifier %s' % value
             ))
         return patient
 
