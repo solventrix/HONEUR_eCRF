@@ -404,3 +404,15 @@ h1 img {
 .faux-file-help-text, .error .faux-file-error-text{
     display: inline-block;
 }
+
+
+.pagination > li > a:hover,
+.pagination > li > a:active
+.pagination > li > a:focus {
+    color: $janssen-blue;
+}
+
+.pagination > li > a{
+    color: $janssen-blue;
+    cursor: pointer;
+}
