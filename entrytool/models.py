@@ -16,6 +16,10 @@ class Demographics(models.Demographics):
         verbose_name=_("External Identifier")
     )
 
+    class Meta:
+        verbose_name = _("Demographics")
+        verbose_name_plural = _("Demographics")
+
 
 class Hospital(lookuplists.LookupList):
     class Meta:
