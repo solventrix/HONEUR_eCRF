@@ -23,14 +23,14 @@ angular
 
     // a list of patient ids with errors
     $scope.patientsWithErrors = patientsWithErrors.results;
-    $scope.paginator = new Paginator(
+    $scope.patientErrorsPaginator = new Paginator(
       $scope.newPage, patientsWithErrors
     )
 
     $scope.newPage = function(pageNum){
       DataUploadLoader.patientsWithErrors(pageNum).then(function(patientsWithErrors){
         $scope.patientsWithErrors = patientsWithErrors.results;
-        $scope.paginator = new Paginator(
+        $scope.patientErrorsPaginator = new Paginator(
           $scope.newPage, patientsWithErrors
         );
       })
@@ -124,7 +124,7 @@ angular
       promise = promise.then(function(){
         DataUploadLoader.patientsWithErrors().then(function(patientsWithErrors){
           $scope.patientsWithErrors = patientsWithErrors.results;
-          $scope.paginator = new Paginator(
+          $scope.patientErrorsPaginator = new Paginator(
             $scope.newPage, patientsWithErrors
           );
         });
