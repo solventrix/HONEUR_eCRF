@@ -57,7 +57,7 @@ class UnvalidatedPatients(LoginRequiredViewset):
 
 
 class PatientsWithErrorsPaginator(pagination.PageNumberPagination):
-    page_size = 6
+    page_size = 20
 
     def get_paginated_response(self, data):
         # This get's used by the opal js Paginator service
