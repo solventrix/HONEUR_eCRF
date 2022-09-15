@@ -24,6 +24,23 @@ class MMDiagnosisDetails(models.EpisodeSubrecord):
 
     CHOICES = (("Yes", _("Yes")), ("No", _("No")), ("Unknown", _("Unknown")))
 
+    HEAVY_CHAIN_OPTIONS = (
+        ("IgG", _("IgG"),),
+        ("IgD", _("IgD"),),
+        ("IgA", _("IgA"),),
+        ("IgM", _("IgM"),),
+        ("IgE", _("IgE"),),
+        ("No Heavy Chain", _("No Heavy Chain"),),
+        ("Other", _("Other"),),
+    )
+
+    LIGHT_CHAIN_OPTIONS = (
+        ('Kappa', _('Kappa')),
+        ('Lambda', _('Lambda')),
+        ('Non-Secretory', _('Non-Secretory')),
+        ('No Light Chain', _('No Light Chain'))
+    )
+
     R_ISS_STAGES = (
         ("Stage I", _("Stage I")),
         ("Stage II", _("Stage II")),
@@ -39,6 +56,20 @@ class MMDiagnosisDetails(models.EpisodeSubrecord):
     hospital = models.ForeignKeyOrFreeText(Hospital, verbose_name=_("Hospital"))
     diag_date = fields.DateField(
         blank=False, null=True, verbose_name=_("Date of Diagnosis")
+    )
+    heavy_chain_type = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=HEAVY_CHAIN_OPTIONS,
+        verbose_name=_("Heavy chain type")
+    )
+    light_chain_type = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=LIGHT_CHAIN_OPTIONS,
+        verbose_name=_("Light chain type")
     )
     smm_history = fields.CharField(
         blank=True, null=True,max_length=10, choices=CHOICES, verbose_name=_("History of SMM")
@@ -122,11 +153,10 @@ class MMResponse(models.EpisodeSubrecord):
         ("Progressive disease", _("Progressive disease")),
         ("Response unknown/NA", _("Response unknown/NA")),
     )
-    response_date = fields.DateField(
-        verbose_name=_("Response Date"),
-        blank=True,
-        null=True,
+    progression_date = fields.DateField(
+        blank=True, null=True, verbose_name=_("Progression Date")
     )
+    response_date = fields.DateField(verbose_name=_("Response Date"))
     response = fields.CharField(
         blank=True,
         null=True,
@@ -184,3 +214,180 @@ def delete_stem_cells(sender, instance, **kwargs):
 post_save.connect(
     delete_stem_cells, sender=MMStemCellTransplantEligibility
 )
+
+
+class LabTest(models.EpisodeSubrecord):
+    _sort = "date"
+    _icon = "fa fa-stethoscope"
+
+    class Meta:
+        verbose_name = _("Lab Tests")
+        verbose_name_plural = _("Lab Tests")
+
+    HEAVY_CHAIN_OPTIONS = (
+        ("IgG", _("IgG"),),
+        ("IgD", _("IgD"),),
+        ("IgA", _("IgA"),),
+        ("IgM", _("IgM"),),
+        ("IgE", _("IgE"),),
+        ("No Heavy Chain", _("No Heavy Chain"),),
+        ("Other", _("Other"),),
+    )
+
+    LIGHT_CHAIN_OPTIONS = (
+        ('Kappa', _('Kappa')),
+        ('Lambda', _('Lambda')),
+        ('Non-Secretory', _('Non-Secretory')),
+        ('No Light Chain', _('No Light Chain'))
+    )
+
+    hospital = models.ForeignKeyOrFreeText(Hospital, verbose_name=_("Hospital"))
+    date = fields.DateField(verbose_name=_("Date"))
+
+    LDH = fields.FloatField(blank=True, null=True, verbose_name=_("LDH"))
+    beta2m = fields.FloatField(blank=True, null=True, verbose_name=_("beta2m"))
+    albumin = fields.FloatField(blank=True, null=True, verbose_name=_("Albumin"))
+    # mg/dL, min 0.5, max 20
+    creatinine = fields.FloatField(
+        blank=True,
+        null=True,
+        max_length=256,
+        verbose_name=_("Creatinine Clearance")
+    )
+
+    # mg/dL, min 6.5, max 25
+    calcium = fields.FloatField(
+        blank=True,
+        null=True,
+        max_length=256,
+        verbose_name=_("Calcium")
+    )
+    mprotein_urine = fields.FloatField(blank=True, null=True, verbose_name=_("MProtein Urine"))
+    mprotein_serum = fields.FloatField(blank=True, null=True ,verbose_name=("MProtein Serum"))
+    mprotein_24h = fields.FloatField(blank=True, null=True, verbose_name=_("Mprotein in 24 hour"))
+
+    igg_count = fields.FloatField(blank=True, null=True, verbose_name="IgG Count")
+    igd_count = fields.FloatField(blank=True, null=True, verbose_name="IgD Count")
+    iga_count = fields.FloatField(blank=True, null=True, verbose_name="IgA Count")
+    igm_count = fields.FloatField(blank=True, null=True, verbose_name="IgM Count")
+    ige_count = fields.FloatField(blank=True, null=True, verbose_name="IgE Count")
+
+    heavy_chain_type = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=HEAVY_CHAIN_OPTIONS,
+        verbose_name=_("Heavy Chain Type")
+    )
+    # I don't think we need this but...
+    heavy_chain_type_other = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        verbose_name=_("Heavy Chain Type Other")
+    )
+    light_chain_type = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=LIGHT_CHAIN_OPTIONS,
+        verbose_name=_("Light Chain Type")
+    )
+
+    lambda_light_chain_count = fields.FloatField(
+        blank=True,
+        null=True,
+        max_length=256,
+        verbose_name=_("Lambda Count")
+    )
+    kappa_light_chain_count = fields.FloatField(
+        blank=True,
+        null=True,
+        max_length=256,
+        verbose_name=_("Kappa Count")
+    )
+    kappa_lambda_ratio = fields.FloatField(
+        blank=True,
+        null=True,
+        max_length=256,
+        verbose_name=_("Kappa Lambda Ratio")
+    )
+
+
+class MMCytogenetics(models.EpisodeSubrecord):
+    class Meta:
+        verbose_name = _("Cytogenetics")
+        verbose_name_plural = _("Cytogenetics")
+
+    CHOICES = (
+        ("Positive", _("Positive")),
+        ("Negative", _("Negative")),
+        ("Unknown", _("Unknown")),
+    )
+
+    CHOICES_IGHV = (
+        ("Mutated", _("Mutated")),
+        ("Non-mutated", _("Non-mutated")),
+        ("Unknown", _("Unknown")),
+    )
+
+    hospital = models.ForeignKeyOrFreeText(Hospital, verbose_name=_("Hospital"))
+    date = fields.DateField(blank=True, null=True, verbose_name=_("Date"))
+
+    tp_53 = fields.CharField(
+        max_length=10,
+        blank=True,
+        null=True,
+        choices=CHOICES,
+        verbose_name=_("tp 53")
+    )
+    t4_14 = fields.CharField(
+        max_length=10,
+        blank=True,
+        null=True,
+        choices=CHOICES,
+        verbose_name=_("t4;14")
+    )
+    t4_14_haploid_karyotype = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=CHOICES,
+        verbose_name=_("t(4;14) Haploid Karyotype")
+    )
+    t4_14_16 = fields.CharField(
+        max_length=10,
+        blank=True,
+        null=True,
+        choices=CHOICES,
+        verbose_name=_("t14;16")
+    )
+    t4_14_not_effected = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=CHOICES,
+        verbose_name=_("t(4;14) Not Effected")
+    )
+    t11_14 = fields.CharField(
+        max_length=10,
+        blank=True,
+        null=True,
+        choices=CHOICES,
+        verbose_name=_("t(11;14)")
+    )
+    del1p = fields.CharField(
+        max_length=10, choices=CHOICES, verbose_name=_("del 1p")
+    )
+
+    del_17p = fields.CharField(
+        max_length=10, choices=CHOICES, verbose_name=_("del 17p")
+    )
+
+    ighv = fields.CharField(
+        max_length=25,
+        null=True,
+        blank=True,
+        choices=CHOICES,
+        verbose_name=_("IGHV"),
+    )

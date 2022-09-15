@@ -1,0 +1,17 @@
+{% load forms %}
+{% load custom_forms %}
+{% custom_datepicker field="LabTest.date" date_after="the_episode.demographics[0].date_of_birth" date_after_message=_("Lab test date must be after the patient's birth date") %}
+{% select field="LabTest.hospital" required=True %}
+{% input field="LabTest.kappa_light_chain_count" %}
+{% input field="LabTest.lambda_light_chain_count" %}
+{% input field="LabTest.kappa_lambda_ratio" %}
+{% number field="LabTest.iga_count" %}
+{% number field="LabTest.igg_count" %}
+{% number field="LabTest.igm_count" %}
+{% number field="LabTest.igd_count" %}
+{% number field="LabTest.ige_count" %}
+
+{% number field="LabTest.creatinine" min_value="0.5" max_value="20" unit="mg/dL" %}
+{% number field="LabTest.mprotein_24h" min_value="0" max_value="1000" unit="mg/24h" %}
+{% number field="LabTest.calcium" min_value="6.5" max_value="25" unit="mg/dL" %}
+{% number field="LabTest.beta2m" min_value="0" max_value="1000" unit="mg/L" %}

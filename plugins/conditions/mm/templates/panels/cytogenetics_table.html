@@ -1,0 +1,64 @@
+{% load i18n %}
+
+<div class="row">
+  <div class="col-md-11 col-md-offset-1">
+    <div class="panel panel-default record-panel">
+      <div class="panel-heading">
+        <h3>
+          {{ models.MMCytogenetics.get_display_name }}
+          <span class="pull-right pointer edit">
+            <a
+             ng-click="episode.recordEditor.newItem('{{ models.MMCytogenetics.get_api_name }}')"
+            >
+              <i class="fa fa-plus-circle edit pointer"></i>
+            </a>
+        </h3>
+      </div>
+        <table class="table mm-table" ng-show="episode.mm_cytogenetics.length > 0">
+          <tr>
+            <th class="first-column no-border"></th>
+            <th>
+              {% trans "tp 53" %}
+            </th>
+            <th>
+              {% trans "del 17p" %}
+            </th>
+            <th>
+              {% trans "t4;14" %}
+            </th>
+            <th>
+              {% trans "t14;16" %}
+            </th>
+            <th>
+              {% trans "IGHV" %}
+            </th>
+            <th>
+            </th>
+          </tr>
+          <tr ng-repeat="item in episode.mm_cytogenetics | orderBy: '-date' as mm_cytogeneticss">
+            <td class="first-column no-border">
+              [[ item.hospital | translate ]] <br> [[ item.date | displayDate ]]
+            </td>
+            <td>
+              [[ item.tp_53 ]]
+            </td>
+            <td>
+              [[ item.del_17p ]]
+            </td>
+            <td>
+              [[ item.t4_14 ]]
+            </td>
+            <td>
+              [[ item.t4_14_16 ]]
+            </td>
+            <td>
+              [[ item.ighv ]]
+            </td>
+            <td class="no-border last-column">
+              <i ng-click="episode.recordEditor.editItem('{{ models.MMCytogenetics.get_api_name }}', item)" class="fa fa-pencil edit pointer"></i>
+            </td>
+          </tr>
+        </table>
+    </div>
+  </div>
+</div>

@@ -7,7 +7,7 @@
     {% record_panel models.MMDiagnosisDetails full_width=True noentries=_("Please complete details for this patient to continue.") %}
   </div>
   <section ng-show="episode.mm_diagnosis_details[0].consistency_token">
-    <div class="col-md-3">{% include 'records/patient_status.html' %}</div>
+    <div class="col-md-4">{% include 'records/patient_status.html' %}</div>
   </section>
 </div>
 <section ng-show="episode.mm_diagnosis_details[0].consistency_token">
@@ -44,7 +44,7 @@
           <div class="col-md-4">
             {% record_panel models.MMRegimen %}
           </div>
-          <div class="col-md-3">
+          <div class="col-md-4">
             {% record_panel models.MMResponse %}
           </div>
           <div class="col-md-4">
@@ -62,65 +62,9 @@
     <div class="panel-heading">
       <h3>
         {% trans "Follow Ups" %}
-        <span class="pull-right pointer edit">
-          <a
-            ng-click="honeurPatientDetailCtrl.newItem('{{ models.MMFollowUp.get_api_name }}', episode)"
-          >
-            <i class="fa fa-plus-circle edit pointer"></i>
-          </a>
-        </span>
       </h3>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-12">
-      <div class="follow-up-table" ng-show="episode.mm_follow_up.length > 0">
-        <div class="col-md-12">
-          <div class="row header-row display-label">
-            <div class="col-sm-3 header"></div>
-            <div class="col-sm-1 header">{% trans "LDH" %}<br/>(u/L)</div>
-            <div class="col-sm-1 header">{% trans "Beta2m" %}<br/>(mg/dL)</div>
-            <div class="col-sm-1 header">{% trans "Albumin" %}<br/>(g/dL)</div>
-            <div class="col-sm-1 header">{% trans "M Protein Serum" %}<br/>(mg/dL)</div>
-            <div class="col-sm-1 header">{% trans "M Protein Urine" %}<br/>(mg/dL)</div>
-            <div class="col-sm-1 header">{% trans "M Protein In 24 hour Urine" %}<br/>(mg/24h)</div>
-          </div>
-        </div>
-        <div ng-repeat="item in episode.mm_follow_up | orderBy: '-mm_follow_up_date' as followups">
-          <div
-            ng-show="$index === 0 || followups[$index-1].hospital !== item.hospital"
-            class="row"
-            >
-
-          </div>
-          <div class="row table-row">
-            <div class="col-sm-2 col-sm-offset-1 first-column text-right" ng-class="{'imported-validation-error': honeurPatientDetailCtrl.hasError(episode.id, '{{  models.MMFollowUp.get_api_name }}', item.id)}">
-              [[ item.hospital | translate ]] [[ item.follow_up_date | displayDate ]]
-            </div>
-            <div class="col-sm-1 column" ng-class="{'imported-validation-error': honeurPatientDetailCtrl.hasError(episode.id, '{{  models.MMFollowUp.get_api_name }}', item.id)}">
-              [[ item.LDH ]]
-            </div>
-            <div class="col-sm-1 column" ng-class="{'imported-validation-error': honeurPatientDetailCtrl.hasError(episode.id, '{{  models.MMFollowUp.get_api_name }}', item.id)}">
-              [[ item.beta2m ]]
-            </div>
-            <div class="col-sm-1 column" ng-class="{'imported-validation-error': honeurPatientDetailCtrl.hasError(episode.id, '{{  models.MMFollowUp.get_api_name }}', item.id)}">
-              [[ item.albumin ]]
-            </div>
-            <div class="col-sm-1 column" ng-class="{'imported-validation-error': honeurPatientDetailCtrl.hasError(episode.id, '{{  models.MMFollowUp.get_api_name }}', item.id)}">
-              [[ item.mprotein_serum ]]
-            </div>>
-            <div class="col-sm-1 column" ng-class="{'imported-validation-error': honeurPatientDetailCtrl.hasError(episode.id, '{{  models.MMFollowUp.get_api_name }}', item.id)}">
-              [[ item.mprotein_urine ]]
-            </div>
-            <div class="col-sm-1 column" ng-class="{'imported-validation-error': honeurPatientDetailCtrl.hasError(episode.id, '{{  models.MMFollowUp.get_api_name }}', item.id)}">
-              [[ item.mprotein_24h ]]
-            </div>
-            <div class="col-sm-1 text-left column last-column" ng-class="{'imported-validation-error': honeurPatientDetailCtrl.hasError(episode.id, '{{  models.MMFollowUp.get_api_name }}', item.id)}">
-              <i ng-click="honeurPatientDetailCtrl.editItem('{{ models.MMFollowUp.get_api_name }}', episode.{{ models.MMFollowUp.get_api_name }}[0], episode)" class="fa fa-pencil edit pointer"></i>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  {% include "panels/lab_test_table.html" %}
+  {% include "panels/cytogenetics_table.html" %}
 </section>

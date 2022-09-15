@@ -2,32 +2,6 @@
 {% load custom_forms %}
 {% load i18n %}
 {% custom_datepicker field="MMDiagnosisDetails.diag_date" validator="diagnosis_date" date_after="the_episode.demographics[0].date_of_birth" date_after_message=_("Date of diagnosis must be after the patient's birth date") required=True %}
-<div class="form-group" >
-  <label for="" class="control-label col-sm-3">
-    {% trans "History of SMM" %}
-  </label>
-  <div class="col-sm-3" ng-class="{'has-error': $root.patientValidator.showErrors('smm_history')}">
-    <label class="radio-inline" ng-repeat='item in ["Yes", "No", "Unknown"]'>
-      <input type="radio" name="smm" value="[[ item]]" ng-change="editing.mm_diagnosis_details.smm_history_date = null; $root.patientValidator.validatesubrecord('mm_diagnosis_details', editing.mm_diagnosis_details, the_episode)" ng-model="editing.mm_diagnosis_details.smm_history"> [[ item | translate ]]
-    </label>
-    <span
-    class="help-block" ng-show="$root.patientValidator.showErrors('smm_history')"
-    >
-      <div ng-repeat="error in $root.patientValidator.errors['smm_history'] track by $index">
-        <span ng-show="['Yes', 'No', 'Unknown'].indexOf(editing.mm_diagnosis_details.smm_history) === -1">
-          [[ editing.mm_diagnosis_details.smm_history ]]
-        </span>
-        [[ error ]]
-      </div>
-    </span>
-  </div>
-  <div ng-show="editing.mm_diagnosis_details.smm_history == 'Yes'" class="col-sm-4">
-    {% custom_datepicker label=_("Date") field="MMDiagnosisDetails.smm_history_date" %}
-  </div>
-</div>
-
+{% select field="MMDiagnosisDetails.heavy_chain_type" %}
+{% select field="MMDiagnosisDetails.light_chain_type" %}
 {% radio field="MMDiagnosisDetails.iss_stage" %}
-{% radio field="MMDiagnosisDetails.ds_stage" %}
-{% radio field="MMDiagnosisDetails.del_17p" %}
-{% radio field="MMDiagnosisDetails.del_13" %}
-{% radio field="MMDiagnosisDetails.t4_14" %}
