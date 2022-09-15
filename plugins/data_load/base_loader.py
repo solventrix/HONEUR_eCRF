@@ -55,7 +55,7 @@ class Loader:
         try:
             some_dt = cast_date(value)
         except Exception:
-            description = _("Unable to parse %s into a date with the formats dd/mm/yyyy or yyyy-mm-dd" % value)
+            description = _("Unable to parse %s into a date with the formats dd/mm/yyyy or yyyy-mm-dd") % value
             self.add_error(column, value, description)
         return some_dt
 
@@ -94,11 +94,10 @@ class Loader:
                 max_length = field.max_length
                 if len(result) > max_length:
                     raise ValueError(
-                        _('Field is %(len_value)d long and should be less than %(max_length)d' %{
+                        _('Field is %(len_value)d long and should be less than %(max_length)d') % {
                             "len_value": len(result),
                             "max_length": max_length
                         })
-                    )
 
         except Exception as err:
             self.add_error(column, value, str(err))
@@ -123,9 +122,11 @@ class Loader:
                 demographics__hospital_number=hospital_number
             )
         except Exception:
-            self.add_error(column, value, _(
-                'Uable to find a patient with external identifier %s' % value
-            ))
+            self.add_error(
+                column,
+                value,
+                _('Unable to find a patient with external identifier %s') % value
+            )
         return patient
 
     def check_and_get_float(self, column):
@@ -134,9 +135,7 @@ class Loader:
         try:
             result = float(value)
         except Exception:
-            self.add_error(column, value, _(
-                'Unable to parse %s to a float' % value
-            ))
+            self.add_error(column, value, _('Unable to parse %s to a float') % value)
         return result
 
     def format_traceback(self, traceback):

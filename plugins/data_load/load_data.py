@@ -71,9 +71,9 @@ def _load_data(zipfile):
             ]
             if not found_files:
                 top_level_errors.append(
-                    _('Unable to find %(expected_file_name)s in %(zipfile)s' % {
+                    _('Unable to find %(expected_file_name)s in %(zipfile)s') % {
                         'expected_file_name': expected_file_name, 'zipfile': zipfile
-                    })
+                    }
                 )
             else:
                 if not is_utf8(zipped_folder, found_files[0]):

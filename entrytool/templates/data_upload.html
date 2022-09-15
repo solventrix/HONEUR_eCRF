@@ -213,18 +213,18 @@
             <div class="panel">
               <div class="panel-heading">
                 <h3>
-                  <span ng-show="patientsWithErrors.length">[[ patientsWithErrors.length ]]</span>
-                    <span ng-show="patientsWithErrors.length === 1">
+                  <span ng-show="patientErrorsPaginator.totalCount">[[ patientErrorsPaginator.totalCount ]]</span>
+                    <span ng-show="patientErrorsPaginator.totalCount === 1">
                       {% trans "patient" %}
                     </span>
-                    <span ng-show="patientsWithErrors.length > 1">
+                    <span ng-show="patientErrorsPaginator.totalCount > 1">
                       {% trans "patients" %}
                     </span>
                     {% trans "With Errors" %}
                 </h3>
               </div>
               <div class="panel-body">
-                <div ng-hide="patientsWithErrors.length" class="row">
+                <div ng-hide="patientErrorsPaginator.totalCount" class="row">
                   <div class="col-md-10 col-md-offset-1 text-center">
                     <h4 class="text-muted text-center">
                       {% trans "There are no patients with errors" %}
@@ -236,6 +236,23 @@
                     <h4>
                       <a href="/#/patient/[[ patientId ]]" class="orange-link">{% trans "Patient" %} [[ patientId ]]</a>
                     </h4>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-8 col-sm-push-2" ng-show="patientErrorsPaginator.totalPages.length > 1">
+                    <nav class="text-center">
+                      <ul class="pagination">
+                        <li ng-if="patientErrorsPaginator.hasPrevious">
+                          <a ng-click="patientErrorsPaginator.goPrevious()"><i class="fa fa-caret-left"></i></a>
+                        </li>
+                        <li ng-repeat="pageNum in patientErrorsPaginator.totalPages" ng-class="{active: patientErrorsPaginator.pageNumber == pageNum }">
+                          <a ng-click="newPage(pageNum)">[[ pageNum ]]</a>
+                        </li>
+                        <li ng-if="patientErrorsPaginator.hasNext">
+                          <a ng-click="patientErrorsPaginator.goNext()"><i class="fa fa-caret-right"></i></a>
+                        </li>
+                      </ul>
+                    </nav>
                   </div>
                 </div>
               </div>

@@ -15,14 +15,14 @@ class DemographicsLoader(base_loader.Loader):
         try:
             if not value:
                 raise ValueError(
-                    _("No external identifier found for %s" % value)
+                    _("No external identifier found for %s") % value
                 )
             if value:
                 patients = Patient.objects.filter(
                     demographics__hospital_number=value
                 )
                 if patients.exists():
-                    raise ValueError(_("Patient %s already exists" % value))
+                    raise ValueError(_("Patient %s already exists") % value)
         except Exception as err:
             self.add_error(column, value, str(err))
             return ""
