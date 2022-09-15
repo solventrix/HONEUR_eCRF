@@ -6,8 +6,8 @@ from plugins.data_load import load_data
 class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument(
-            "folder",
-            help="Specify a folder with a demographics.csv, follow_ups.csv and lot.csv",
+            "file",
+            help="Specify a file with the data to load",
         )
         parser.add_argument(
             '--verbose',
@@ -18,8 +18,8 @@ class Command(BaseCommand):
 
     @transaction.atomic()
     def handle(self, *args, **options):
-        folder = options["folder"]
-        errors = load_data.load_data(folder)
+        file = options["file"]
+        errors = load_data.load_data(file)
 
         if errors:
             if "top_level_errors" in errors:
