@@ -87,6 +87,8 @@ class LostToFollowup(TemplateView):
         ]
         if len(max_dates) == 1:
             return max_dates[0]
+        if len(max_dates) == 0:
+            return None
         return max(max_dates)
 
     def get_patient_list(self):
@@ -120,7 +122,9 @@ class LostToFollowup(TemplateView):
             (self.get_max_date(patient, max_fields), patient.id,) for
             patient in qs
         ]
-        return sorted(max_date_and_patient_id, key=lambda x: x[0])
+        min_date = datetime.datetime.min.date()
+        # if there is no max date, then use the lowest possible date
+        return sorted(max_date_and_patient_id, key=lambda x: x[0] or min_date)
 
     def get_context_data(self, *args, **kwargs):
         """
