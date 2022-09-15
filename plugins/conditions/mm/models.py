@@ -145,10 +145,10 @@ class MMFollowUp(models.EpisodeSubrecord):
         blank=True, null=True, verbose_name=_("MProtein Urine")
     )
     mprotein_serum = fields.FloatField(
-        blank=True, null=True, verbose_name=("MProtein Serum")
+        blank=True, null=True, verbose_name=_("MProtein Serum")
     )
     mprotein_24h = fields.FloatField(
-        blank=True, null=True, verbose_name=_("Mprotein in 24 hour urine")
+        blank=True, null=True, verbose_name=_("Mprotein In 24 Hour Urine")
     )
 
     class Meta:
