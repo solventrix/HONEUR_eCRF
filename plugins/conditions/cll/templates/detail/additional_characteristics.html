@@ -1,5 +1,5 @@
 {% load i18n %}
-<div class="follow-up-table" ng-show="episode.additional_characteristics.length > 0">
+<div class="additional-charecteristics-table" ng-show="episode.additional_characteristics.length > 0">
   <div class="col-md-12">
     <div class="row header-row display-label">
       <div class="col-sm-2 header"></div>
@@ -20,17 +20,29 @@
       >
 
     </div>
-    <div class="row table-row" >
+    <div class="row table-row"  ng-class="{'imported-validation-error': honeurPatientDetailCtrl.hasError(episode.id, '{{  models.AdditionalCharacteristics.get_api_name }}', item.id)}">
       <div class="col-sm-2 first-column text-right">
         [[ item.hospital | translate ]] [[ item.characteristic_date | displayDate ]] &nbsp;
-        <i ng-click="episode.recordEditor.editItem('{{ models.AdditionalCharacteristics.get_api_name }}', item)" class="fa fa-pencil edit pointer"></i>
+        <i ng-click="honeurPatientDetailCtrl.editItem('{{ models.AdditionalCharacteristics.get_api_name }}', item, episode)" class="fa fa-pencil edit pointer"></i>
       </div>
-      <div class="col-sm-1 column">[[ item.ecog_score ]]</div>
-      <div class="col-sm-1 column">[[ item.cirs_score ]]</div>
-      <div class="col-sm-2 column">[[ item.creatinine_clearance ]]</div>
-      <div class="col-sm-2 column">[[ item.LDH ]]</div>
-      <div class="col-sm-2 column">[[ item.beta2m ]]</div>
-      <div class="col-sm-2 column">[[ item.bulky_disease ]]</div>
+      <div class="col-sm-1 column">
+        [[ item.ecog_score ]]
+      </div>
+      <div class="col-sm-1 column">
+        [[ item.cirs_score ]]
+      </div>
+      <div class="col-sm-2 column">
+        [[ item.creatinine_clearance ]]
+      </div>
+      <div class="col-sm-2 column">
+        [[ item.LDH ]]
+      </div>
+      <div class="col-sm-2 column">
+        [[ item.beta2m ]]
+      </div>
+      <div class="col-sm-2 column">
+        [[ item.bulky_disease | translate ]]
       </div>
     </div>
   </div>
+</div>

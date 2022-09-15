@@ -1,4 +1,3 @@
-from calendar import c
 from django.db.models.signals import post_save
 from django.utils.translation import gettext_lazy as _
 from django.db import models as fields
@@ -497,7 +496,11 @@ class MMResponse(models.EpisodeSubrecord):
         verbose_name=_("MRD Technique")
     )
     response = fields.CharField(
-        max_length=50, choices=RESPONSES, verbose_name=_("Response")
+        blank=True,
+        null=True,
+        max_length=50,
+        choices=RESPONSES,
+        verbose_name=_("Response")
     )
 
 
@@ -514,9 +517,37 @@ class RadiotherapyInduction(models.EpisodeSubrecord):
     )
 
 
+class MMFollowUp(models.EpisodeSubrecord):
+    _sort = "followup_date"
+    _icon = "fa fa-stethoscope"
+    hospital = models.ForeignKeyOrFreeText(Hospital, verbose_name=_("Hospital"))
+    follow_up_date = fields.DateField(
+        verbose_name=_("Visit date"), blank=True, null=True
+    )
+
+    LDH = fields.FloatField(blank=True, null=True, verbose_name=_("LDH"))
+    beta2m = fields.FloatField(blank=True, null=True, verbose_name=_("beta2m"))
+    albumin = fields.FloatField(blank=True, null=True, verbose_name=_("Albumin"))
+    mprotein_urine = fields.FloatField(
+        blank=True, null=True, verbose_name=_("MProtein Urine")
+    )
+    mprotein_serum = fields.FloatField(
+        blank=True, null=True, verbose_name=_("MProtein Serum")
+    )
+    mprotein_24h = fields.FloatField(
+        blank=True, null=True, verbose_name=_("Mprotein In 24 Hour Urine")
+    )
+
+    class Meta:
+        verbose_name = _("Follow-up")
+        verbose_name_plural = _("Follow-ups")
+
+
 class MMStemCellTransplantEligibility(models.EpisodeSubrecord):
     _is_singleton = True
-    eligible_for_stem_cell_transplant = fields.BooleanField(default=False)
+    eligible_for_stem_cell_transplant = fields.BooleanField(
+        default=False, verbose_name=_("Eligible For Stem Cell Transplant")
+    )
 
     class Meta:
         verbose_name = _("Stem Cell Transplant Eligibility")
