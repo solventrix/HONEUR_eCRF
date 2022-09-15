@@ -145,10 +145,10 @@ class MMFollowUp(models.EpisodeSubrecord):
         blank=True, null=True, verbose_name=_("MProtein Urine")
     )
     mprotein_serum = fields.FloatField(
-        blank=True, null=True, verbose_name=("MProtein Serum")
+        blank=True, null=True, verbose_name=_("MProtein Serum")
     )
     mprotein_24h = fields.FloatField(
-        blank=True, null=True, verbose_name=_("Mprotein in 24 hour urine")
+        blank=True, null=True, verbose_name=_("Mprotein In 24 Hour Urine")
     )
 
     class Meta:
@@ -158,7 +158,9 @@ class MMFollowUp(models.EpisodeSubrecord):
 
 class MMStemCellTransplantEligibility(models.EpisodeSubrecord):
     _is_singleton = True
-    eligable_for_stem_cell_transplant = fields.BooleanField(default=False)
+    eligible_for_stem_cell_transplant = fields.BooleanField(
+        default=False, verbose_name=_("Eligible For Stem Cell Transplant")
+    )
 
     class Meta:
         verbose_name = _("Stem Cell Transplant Eligibility")

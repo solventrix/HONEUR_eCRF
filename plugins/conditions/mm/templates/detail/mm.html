@@ -48,8 +48,8 @@
             {% record_panel models.MMResponse %}
           </div>
           <div class="col-md-4">
-            {% include 'panels/stem_cell_eligability.html' %}
-            <span ng-show="episode.mm_stem_cell_transplant_eligibility[0].eligable_for_stem_cell_transplant">
+            {% include 'panels/stem_cell_eligibility.html' %}
+            <span ng-show="episode.mm_stem_cell_transplant_eligibility[0].eligible_for_stem_cell_transplant">
               {% record_panel models.SCT %}
             </span>
           </div>
@@ -83,7 +83,7 @@
             <div class="col-sm-1 header">{% trans "Albumin" %}<br/>(g/dL)</div>
             <div class="col-sm-1 header">{% trans "M Protein Serum" %}<br/>(mg/dL)</div>
             <div class="col-sm-1 header">{% trans "M Protein Urine" %}<br/>(mg/dL)</div>
-            <div class="col-sm-1 header">{% trans "M Protein in 24 hour Urine" %}<br/>(mg/24h)</div>
+            <div class="col-sm-1 header">{% trans "M Protein In 24 hour Urine" %}<br/>(mg/24h)</div>
           </div>
         </div>
         <div ng-repeat="item in episode.mm_follow_up | orderBy: '-mm_follow_up_date' as followups">
