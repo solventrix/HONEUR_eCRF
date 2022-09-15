@@ -364,16 +364,15 @@ h1 img {
   font-weight: 400;
 }
 
-#faux-file-field:before {
+#faux-file-label {
   position: absolute;
-  top: -1px;
+  top: 0;
   right: -1px;
   bottom: -1px;
-  z-index: 6;
+  z-index: 101;
   display: block;
   text-transform: uppercase;
   font-weight: 400;
-  content: "Browse";
   height: 34px;
   padding: .5rem 1rem;
   line-height: 1.5;
