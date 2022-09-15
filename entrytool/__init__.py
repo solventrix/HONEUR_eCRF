@@ -51,11 +51,6 @@ class Application(application.OpalApplication):
                         href=reverse("logout"), display=_('Log Out'), index=1000
                     ),
                     menus.MenuItem(
-                        href='/#/data_upload',
-                        display=_('Data Upload'),
-                        activepattern='/#/data_upload'
-                    ),
-                    menus.MenuItem(
                         href='/#/lost_to_followup',
                         display=_('Reports'),
                         activepattern='/#/lost_to_followup'
