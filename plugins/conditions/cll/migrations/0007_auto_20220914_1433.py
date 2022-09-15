@@ -3,6 +3,38 @@
 from django.db import migrations, models
 
 
+TRANSLATION_MAPPING = {
+    "CR": "Complete Remission",
+    "PD": "Progressive Disease",
+    "PR": "Partial Response",
+    "SD": "Stable Disease",
+}
+
+
+def forwards(apps, schema_editor):
+    BestResponse = apps.get_model(
+        'cll', 'BestResponse'
+    )
+    for old, new in TRANSLATION_MAPPING.items():
+        BestResponse.objects.filter(
+            response=old
+        ).update(
+            response=new
+        )
+
+
+def backwards(apps, schema_editor):
+    BestResponse = apps.get_model(
+        'cll', 'BestResponse'
+    )
+    for old, new in TRANSLATION_MAPPING.items():
+        BestResponse.objects.filter(
+            response=new
+        ).update(
+            response=old
+        )
+
+
 class Migration(migrations.Migration):
 
     dependencies = [
@@ -15,4 +47,5 @@ class Migration(migrations.Migration):
             name='response',
             field=models.CharField(choices=[('Complete Remission', 'Complete Remission'), ('Progressive Disease', 'Progressive Disease'), ('Partial Response', 'Partial Response'), ('Stable Disease', 'Stable Disease'), ('Unknown', 'Unknown')], max_length=50, verbose_name='Best Response'),
         ),
+        migrations.RunPython(forwards, reverse_code=backwards),
     ]
