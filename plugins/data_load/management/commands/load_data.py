@@ -6,7 +6,7 @@ from plugins.data_load import load_data
 class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument(
-            "zipped_folder",
+            "folder",
             help="Specify a folder with a demographics.csv, follow_ups.csv and lot.csv",
         )
         parser.add_argument(
@@ -18,7 +18,7 @@ class Command(BaseCommand):
 
     @transaction.atomic()
     def handle(self, *args, **options):
-        folder = options["zipped_folder"]
+        folder = options["folder"]
         errors = load_data.load_data(folder)
 
         if errors:
