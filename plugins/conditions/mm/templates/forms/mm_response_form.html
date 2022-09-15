@@ -1,5 +1,5 @@
 {% load forms %}
 {% load custom_forms %}
-{% custom_datepicker field="MMResponse.progression_date" date_after="$root.patientValidator.entrytool_helper.getDiagnosis($root.patientValidator.patient).diagnosis_date" date_after_diff="0" date_after_message=_("The progression should be after the date of diagnosis") validator="response_date" %}
-{% custom_datepicker field="MMResponse.response_date" date_after="$root.patientValidator.entrytool_helper.getDiagnosis($root.patientValidator.patient).diag_date" date_after_diff="0" date_after_message=_("The response should be after the date of diagnosis") validator="response_date" required=True %}
+{% custom_datepicker field="MMResponse.progression_date" %}
+{% custom_datepicker field="MMResponse.response_date" %}
 {% select field="MMResponse.response" %}
