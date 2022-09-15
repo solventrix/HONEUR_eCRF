@@ -90,9 +90,9 @@ class PatientsWithErrors(LoginRequiredViewset, generics.GenericAPIView):
         return self.get_paginated_response(data)
 
 
-class UploadFromZip(LoginRequiredViewset):
+class UploadFromFile(LoginRequiredViewset):
     parser_classes = [FileUploadParser]
-    basename = "upload_from_zip"
+    basename = "upload_from_file"
 
     def create(self, request):
         zipfile = request.FILES.get('file')
@@ -114,5 +114,5 @@ entrytool_router.register(
     PatientsWithErrors.basename, PatientsWithErrors
 )
 entrytool_router.register(
-    UploadFromZip.basename, UploadFromZip
+    UploadFromFile.basename, UploadFromFile
 )
