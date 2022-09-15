@@ -73,23 +73,4 @@ class Migration(migrations.Migration):
             },
             bases=(opal.models.UpdatesFromDictMixin, opal.models.ToDictMixin, models.Model),
         ),
-        migrations.RemoveField(
-            model_name='mmfollowup',
-            name='created_by',
-        ),
-        migrations.RemoveField(
-            model_name='mmfollowup',
-            name='episode',
-        ),
-        migrations.RemoveField(
-            model_name='mmfollowup',
-            name='hospital_fk',
-        ),
-        migrations.RemoveField(
-            model_name='mmfollowup',
-            name='updated_by',
-        ),
-        migrations.DeleteModel(
-            name='MMFollowUp',
-        ),
     ]
