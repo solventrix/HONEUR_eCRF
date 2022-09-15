@@ -168,7 +168,9 @@ class MMFollowUp(models.EpisodeSubrecord):
 
 class MMStemCellTransplantEligibility(models.EpisodeSubrecord):
     _is_singleton = True
-    eligable_for_stem_cell_transplant = fields.BooleanField(default=False)
+    eligible_for_stem_cell_transplant = fields.BooleanField(
+        default=False, verbose_name=_("Eligible For Stem Cell Transplant")
+    )
 
     class Meta:
         verbose_name = _("Stem Cell Transplant Eligibility")
