@@ -1,7 +1,14 @@
 angular
   .module("opal.controllers")
   .controller("DataUploader", function (
-    $scope, $q, patientLoader, $http, ValidatePatient, unValidatedPatients, patientsWithErrors, DataUploadLoader
+    $scope,
+    $q,
+    patientLoader,
+    ValidatePatient,
+    unValidatedPatients,
+    patientsWithErrors,
+    DataUploadLoader,
+    Paginator
   ) {
     "use strict";
 
@@ -15,7 +22,22 @@ angular
     };
 
     // a list of patient ids with errors
-    $scope.patientsWithErrors = patientsWithErrors;
+    $scope.patientsWithErrors = patientsWithErrors.results;
+    $scope.patientErrorsPaginator = new Paginator(
+      $scope.newPage, patientsWithErrors
+    )
+
+    $scope.newPage = function(pageNum){
+      DataUploadLoader.patientsWithErrors(pageNum).then(function(patientsWithErrors){
+        $scope.patientsWithErrors = patientsWithErrors.results;
+        $scope.patientErrorsPaginator = new Paginator(
+          $scope.newPage, patientsWithErrors
+        );
+      })
+    }
+
+    // number of pages
+    $scope.patientsWithErrorsPageCount = patientsWithErrors.total_pages;
 
     // the initial number of unvalidated patients
     $scope.initialUnvalidatedCount = 0;
@@ -55,7 +77,7 @@ angular
         return $scope.uploadSections.FAILED_TO_UPLOAD == name;
       }
       if($scope.errorCount()){
-          return $scope.uploadSections.UPLOAD_ISSUES == name;
+        return $scope.uploadSections.UPLOAD_ISSUES == name;
       }
       if($scope.initialUnvalidatedCount){
         return $scope.uploadSections.VALIDATING == name;
@@ -101,7 +123,10 @@ angular
 
       promise = promise.then(function(){
         DataUploadLoader.patientsWithErrors().then(function(patientsWithErrors){
-          $scope.patientsWithErrors = patientsWithErrors;
+          $scope.patientsWithErrors = patientsWithErrors.results;
+          $scope.patientErrorsPaginator = new Paginator(
+            $scope.newPage, patientsWithErrors
+          );
         });
       });
     }

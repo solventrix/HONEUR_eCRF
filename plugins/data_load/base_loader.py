@@ -122,8 +122,10 @@ class Loader:
                 demographics__hospital_number=hospital_number
             )
         except Exception:
-            self.add_error(column, value,
-                _('Uable to find a patient with external identifier %s') % value
+            self.add_error(
+                column,
+                value,
+                _('Unable to find a patient with external identifier %s') % value
             )
         return patient
 
