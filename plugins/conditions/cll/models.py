@@ -87,10 +87,10 @@ class BestResponse(models.EpisodeSubrecord):
     _sort = "response_date"
     order_by = "-response_date"
     RESPONSES_IWCLL = (
-        ("CR", _("Complete Remission")),
-        ("PD", _("Progressive Disease")),
-        ("PR", _("Partial Response")),
-        ("SD", _("Stable Disease")),
+        ("Complete Remission", _("Complete Remission")),
+        ("Progressive Disease", _("Progressive Disease")),
+        ("Partial Response", _("Partial Response")),
+        ("Stable Disease", _("Stable Disease")),
         ("Unknown", _("Unknown")),
     )
     response_date = fields.DateField(verbose_name=_("Response Date"))
