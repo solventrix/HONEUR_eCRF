@@ -1,7 +1,7 @@
 {% load forms %}
 {% load custom_forms %}
 {% load i18n %}
-{% custom_datepicker field="LabTest.date" date_after="the_episode.demographics[0].date_of_birth" date_after_message=_("The date must be after the patient's birth date") required=True %}
+{% custom_datepicker field="LabTest.date" %}
 {% input field="LabTest.pcr" %}
 {% input field="LabTest.circulating_plasma_cells" %}
 {% input field="LabTest.troponine" %}
@@ -21,5 +21,5 @@
 {% input field="LabTest.ldh_type" %}
 {% radio field="LabTest.glomerular_filtration_formula" %}
 {% input field="LabTest.glomerular_filtration" %}
-{% custom_datepicker field="LabTest.glomerular_filtration_formula_date" date_after="the_episode.demographics[0].date_of_birth" date_after_message=_("The date must be after the patient's birth date") %}
+{% custom_datepicker field="LabTest.glomerular_filtration_formula_date" %}
 {% textarea field="LabTest.filter_formula_description" %}

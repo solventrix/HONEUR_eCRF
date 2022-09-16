@@ -485,6 +485,50 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 			}
 
 			return true;
-		}
+		},
+		endDateSameOrAfterBoneDiseaseStartDate: function(value, instance){
+			var startDate = instance.start_date;
+			var endDate = instance.end_date;
+			if(endDate && startDate){
+				if(toMomentFilter(startDate).isAfter(toMomentFilter(endDate), "d")){
+					return false;
+				}
+			}
+			return true;
+		},
+		requiredIfRegimenTypeNotWatchAndWait: function(val, instance){
+			if(!instance.category){
+				return true;
+			}
+			if(instance.category === 'Watch and wait'){
+				return true;
+			}
+			return required(val);
+		},
+		uniqueCondition: function(val, instance, episode){
+			if(val ==='Other' || val === 'Infection'){
+				// we don't validate other or infection
+				return
+			}
+			var valid = true;
+			_.each(episode.comorbidity, function(c){
+				if(!instance.id || c.id !== instance.id){
+					if(c.condition === instance.condition){
+						valid = false
+					}
+				}
+			});
+			return valid
+		},
+		endDateSameOrAfterRadioTherapyStartDate: function(value, instance){
+			var startDate = instance.start_date;
+			var endDate = instance.end_date;
+			if(endDate && startDate){
+				if(toMomentFilter(startDate).isAfter(toMomentFilter(endDate), "d")){
+					return false;
+				}
+			}
+			return true;
+		},
 	}
 });
