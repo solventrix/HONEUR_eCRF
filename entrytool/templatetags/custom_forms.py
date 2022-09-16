@@ -71,6 +71,7 @@ def custom_select(*args, **kwargs):
         lookup_list = field.foreign_model
         app = lookup_list._meta.app_label
         ctx["admin_url"] = reverse(f"admin:{app}_{lookup_list.__name__.lower()}_changelist")
+    ctx.update(honour_context(*args, **kwargs))
     return ctx
 
 

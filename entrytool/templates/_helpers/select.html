@@ -1,5 +1,5 @@
 {% load forms %}
-{% load i18n admin_urls %}
+{% load i18n %}
 <div class="form-group" {% if visibility %} {{ visibility|safe }} {% endif %} >
   <span ng-class="{'has-error': $root.patientValidator.showErrors('{{ field_name }}')}">
     {% if label %}
@@ -35,7 +35,6 @@
       <p ng-show="!$root.patientValidator.showErrors('{{ field_name }}')" class="help-block">
         {{ help_text }}
       </p>
-      {% endif %}
     {% endif %}
     </div>
   </span>
