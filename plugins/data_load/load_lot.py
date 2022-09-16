@@ -1,6 +1,5 @@
 from entrytool import episode_categories
 from entrytool.models import SCT
-from plugins.conditions.cll import models as cll_models
 from plugins.data_load import base_loader
 
 
@@ -55,28 +54,6 @@ class LOTLoader(base_loader.Loader):
                     lot_number,
                 )
             ] = episode
-
-        if self.row["Regimen"] or self.row["Start_date"] or self.row["end_date"]:
-            regimen = cll_models.CLLRegimen(episode=episode)
-            regimen.regimen = self.check_and_get_string(
-                cll_models.CLLRegimen, "regimen", "Regimen"
-            )
-            # if there is a regimen then the category is treatment
-            if regimen.regimen:
-                regimen.category = "Treatment"
-            regimen.start_date = self.check_and_get_date("Start_date")
-            regimen.end_date = self.check_and_get_date("end_date")
-            regimen.set_consistency_token()
-            regimen.save()
-
-        if self.row["response_date"] or self.row["response"]:
-            response = cll_models.BestResponse(episode=episode)
-            response.response_date = self.check_and_get_date("response_date")
-            response.response = self.check_and_get_string(
-                cll_models.BestResponse, "response", "response"
-            )
-            response.set_consistency_token()
-            response.save()
 
         if self.row["SCT_date"] or self.row["SCT_type"]:
             sct = SCT(episode=episode)

@@ -1,6 +1,5 @@
 from django.utils.translation import gettext as _
 from opal.models import Patient
-from ..conditions.cll.models import CLLDiagnosisDetails
 from plugins.data_load import base_loader
 from entrytool.models import Demographics, PatientLoad, PatientStatus
 
@@ -57,7 +56,7 @@ class DemographicsLoader(base_loader.Loader):
         patient_status.set_consistency_token()
         patient_status.save()
 
-        diagnosis_details = episode.clldiagnosisdetails_set.get()
+        diagnosis_details = episode.mmdiagnosisdetails_set.get()
         diagnosis_details.diag_date = self.check_and_get_date("date_of_diagnosis")
         diagnosis_details.set_consistency_token()
         diagnosis_details.save()

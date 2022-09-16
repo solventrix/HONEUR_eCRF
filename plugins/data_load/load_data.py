@@ -6,7 +6,7 @@ from io import TextIOWrapper
 
 from django.db import transaction
 from plugins.data_load import load_demographics, load_followup, load_lot
-from plugins.conditions.cll import episode_categories
+from plugins.conditions.mm import episode_categories
 
 
 class LoadError(Exception):
@@ -90,7 +90,7 @@ def _load_data(zipfile):
 
         with zipped_folder.open(file_map["demographics.csv"]) as ftl:
             demographics_loader = load_demographics.DemographicsLoader(
-                "demographics.csv", category=episode_categories.CLLCondition,
+                "demographics.csv", category=episode_categories.MMCondition,
             )
             demographics_loader.load_rows(
                 TextIOWrapper(ftl, get_encoding(
