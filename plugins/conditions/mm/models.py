@@ -60,7 +60,7 @@ class MMDiagnosisDetails(models.EpisodeSubrecord):
         ("Very Symptomatic", _("Very Symptomatic"),),
     )
 
-    diagnosis_date = fields.DateField(
+    diag_date = fields.DateField(
         blank=True, null=True, verbose_name=_("Date Of Diagnosis")
     )
     date_of_first_centre_visit = fields.DateField(
