@@ -134,3 +134,8 @@ class LostToFollowup(TemplateView):
         ctx["object_list"] = self.get_patient_list
         ctx["days_since"] = settings.LOST_TO_FOLLOW_UP_DAYS_SINCE
         return ctx
+
+
+class DataUpload(TemplateView):
+    def get_template_names(self, *args, **kwargs):
+        return settings.UPLOAD_FROM_FILE_TEMPLATE
