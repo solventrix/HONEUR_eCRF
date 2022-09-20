@@ -14,7 +14,6 @@ from opal.models import Patient
 import os
 
 
-
 def check_files(file_directory):
     """
     Check that we (case insensitively) have all the files
@@ -123,9 +122,9 @@ def create_datos_demographics(patient, episode, demographics_data):
     demographics.save()
 
 
-def set_subliassification(diagnosis_details, subclassification):
+def set_sub_classification(diagnosis_details, subclassification):
     """
-    Takes in sublassification and sets heavy_chain_type and light_chain_type
+    Takes in sub classification and sets heavy_chain_type and light_chain_type
 
     Usually of the form MM{heavy chain type}{light chain type} e.g.  MMIgGKappa
     """
@@ -182,7 +181,7 @@ def create_datos_enfermedad(episode, file_name, data, clinical_date, lab_test_da
         subrecord_name, field = subrecord_name_and_field
         if subrecord_name == "MMDiagnosisDetails":
             if field == 'subclassification':
-                set_subliassification(diagnosis_details, value)
+                set_sub_classification(diagnosis_details, value)
             else:
                 set_field(diagnosis_details, field, value)
         elif subrecord_name == "ClinicalPresentation":
