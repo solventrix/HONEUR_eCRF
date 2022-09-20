@@ -8,12 +8,12 @@
 </span>
 <div ng-if="editing.mm_regimen.category && editing.mm_regimen.category !== 'Watch and wait'">
   {% custom_select field="MMRegimen.regimen" include_admin_link=True user=request.user %}
-  {% input field="MMRegimen.nbCycles" required=False %}
+  {% input field="MMRegimen.nbCycles" %}
 </div>
 {% custom_datepicker field="MMRegimen.start_date" %}
 {% custom_datepicker field="MMRegimen.end_date" %}
 <div ng-if="editing.mm_regimen.end_date">
-  {% select field="MMRegimen.stop_reason" required=False %}
+  {% select field="MMRegimen.stop_reason" %}
   <div ng-if="editing.mm_regimen.stop_reason === 'Other'">
     {% textarea label=_("Details") field="MMRegimen.stop_reason_details" %}
   </div>

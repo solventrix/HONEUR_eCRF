@@ -313,10 +313,92 @@ angular.module('opal.services').service('ValidationRules', function(Validators) 
 				errors: [
 					[Validators.inOptions, "{% trans "is not in the options available" %}"]
 				]
-			}
+			},
+			gah_score: {
+				errors: [
+					[Validators.lessThanOrEqualTo(94), "{% trans "GAH is too high" %}"],
+					[Validators.greaterThanOrEqualTo(0), "{% trans "GAH is too low" %}"],
+				]
+			},
+			imwg_scale: {
+				errors: [
+					[Validators.lessThanOrEqualTo(8), "{% trans "IMWG is too high" %}"],
+					[Validators.greaterThanOrEqualTo(1), "{% trans "IMWG is too low" %}"],
+				]
+			},
+			icc_scale: {
+				errors: [
+					[Validators.lessThanOrEqualTo(31), "{% trans "ICC is too high" %}"],
+					[Validators.greaterThanOrEqualTo(0), "{% trans "ICC is too low" %}"],
+				]
+			},
+		},
+		mm_patient_status: {
+			status: {
+				errors: [
+					[Validators.inOptions, "{% trans "is not in the options available" %}"]
+				]
+			},
+			cause_of_death: {
+				errors: [
+					[Validators.inOptions, "{% trans "is not in the options available" %}"]
+				]
+			},
+		},
+		mm_past_medical_history: {
+			previous_neoplasm: {
+				errors: [
+					[Validators.inOptions, "{% trans "is not in the options available" %}"]
+				]
+			},
+			previous_neoplasm_date_of_diagnosis: {
+				errors: [
+					[Validators.afterDateOfBirth, "{% trans "Date must be after the date of birth" %}"],
+				]
+			},
+			chronic_renal_insufficiency: {
+				errors: [
+					[Validators.inOptions, "{% trans "is not in the options available" %}"]
+				]
+			},
+			chronic_renal_insufficiency_diagnosis_date: {
+				errors: [
+					[Validators.afterDateOfBirth, "{% trans "Date must be after the date of birth" %}"],
+				]
+			},
+			monoclonal_pathology_of_uncertain_meaning: {
+				errors: [
+					[Validators.inOptions, "{% trans "is not in the options available" %}"]
+				]
+			},
+			monoclonal_pathology_of_uncertain_meaning_date: {
+				errors: [
+					[Validators.afterDateOfBirth, "{% trans "Date must be after the date of birth" %}"],
+				]
+			},
+			symtomatic_multiple_myeloma: {
+				errors: [
+					[Validators.inOptions, "{% trans "is not in the options available" %}"]
+				]
+			},
+			asymtomatic_multiple_myeloma: {
+				errors: [
+					[Validators.inOptions, "{% trans "is not in the options available" %}"]
+				]
+			},
+			external_pasmocytoma: {
+				errors: [
+					[Validators.inOptions, "{% trans "is not in the options available" %}"]
+				]
+			},
 		},
 		mm_regimen: {
 			hospital: {
+				errors: [
+					[Validators.inOptions, "{% trans "is not in the options available" %}"]
+				]
+			},
+			category: {
 				errors: [
 					[Validators.inOptions, "{% trans "is not in the options available" %}"]
 				]
@@ -449,6 +531,11 @@ angular.module('opal.services').service('ValidationRules', function(Validators) 
 			},
 		},
 		bone_disease: {
+			treatment_type: {
+				errors: [
+					[Validators.inOptions, "{% trans "is not in the options available" %}"]
+				]
+			},
 			start_date: {
 				errors: [
 					[Validators.required, "{% trans "Start date is required" %}"],

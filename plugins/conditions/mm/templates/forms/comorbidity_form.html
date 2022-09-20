@@ -1,6 +1,6 @@
 {% load forms %}
 {% load custom_forms %}
-{% custom_select field="Comorbidity.condition" validator="comorbidity_condition" %}
+{% custom_select field="Comorbidity.condition" %}
 {% input field="Comorbidity.other_condition_name" %}
 <span ng-show="editing.comorbidity.condition === 'Infection'">
 {% select field="Comorbidity.infection_type" %}
