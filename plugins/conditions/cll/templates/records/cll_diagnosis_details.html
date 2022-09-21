@@ -1,0 +1,42 @@
+{% load i18n %}
+<div class="row">
+  <div class="col-md-6">
+    <span class="display-label">{% trans "Date of Diagnosis" %}</span>
+  </div>
+  <div class="col-md-6">
+    [[ item.diag_date | displayDate ]]
+  </div>
+
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <span class="display-label">{% trans "Binet Stage" %}</span>
+  </div>
+  <div class="col-md-6">
+    [[ item.binet_stage | translate ]]
+  </div>
+</div>
+<div class="row">
+   <div class="col-md-6">
+    <span ng-show="item.lost_to_follow_up_date" class="display-label">{% trans "Last Seen" %}</span>
+  </div>
+  <div class="col-md-6">
+    <span ng-show="item.lost_to_follow_up_date">
+    [[ item.lost_to_follow_up_date | displayDate ]]
+    </span>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <span ng-show="item.death_date || item.death_cause">
+      <span class="display-label">{% trans "Death details" %}</span>
+    </span>
+  </div>
+  <div class="col-md-6">
+    <span ng-show="item.death_date || item.death_cause">
+      [[ item.death_date | displayDate ]] ([[ item.death_cause | translate ]])
+    </span>
+  </div>
+</div>

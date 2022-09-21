@@ -4,6 +4,7 @@ angular
     $scope,
     $rootScope,
     toMomentFilter,
+    EntrytoolHelper,
     $injector
   ) {
     "use strict";
@@ -12,6 +13,7 @@ angular
 
     var PatientValidator = function () {
       var self = this;
+      self.entrytool_helper = EntrytoolHelper;
 
       this.createValidator = function (fieldName, errorTypeToFunctionList) {
         /*
@@ -68,7 +70,7 @@ angular
           return error;
         }
         _.each(self.patient.episodes, function (episode) {
-          _.each(episode.regimen, function (r) {
+          _.each(EntrytoolHelper.getEpisodeRegimen(episode), function (r) {
             if (r.id !== instance.id) {
               if (r.start_date && r.end_date) {
                 if (fieldValue >= r.start_date && fieldValue <= r.end_date) {
@@ -102,7 +104,7 @@ angular
           return;
         }
         _.each(self.patient.episodes, function (episode) {
-          _.each(episode.regimen, function (r) {
+          _.each(EntrytoolHelper.getEpisodeRegimen(episode), function (r) {
             if (r.id !== instance.id) {
               if (r.start_date && r.end_date) {
                 if (
@@ -122,7 +124,7 @@ angular
 
       var responseDateWithRegimen = function(fieldValue, regimen){
         /*
-        * An adverse event date can be start_date - 30 days or
+        * A response date can be start_date - 30 days or
         * end_date + 30 days and anything in between.
         */
         var allowedStartDate = moment(regimen.start_date,).add(-30, "d")
@@ -148,7 +150,7 @@ angular
         * is a regimen related to it.
         */
         var withinRegimen = false;
-        _.each(episode.regimen, function(regimen){
+        _.each(EntrytoolHelper.getEpisodeRegimen(episode), function(regimen){
           var within = responseDateWithRegimen(val, regimen);
           if(within){
             withinRegimen = true;
@@ -165,15 +167,15 @@ angular
         * responses are connected to either other regimens
         * or the regimen in the form.
         */
-       if(!val || !episode.response.length){
+       if(!val || !EntrytoolHelper.getEpisodeResponse(episode).length){
           return;
        }
         var withinRegimen = false;
         // we may be editing things so ignore version of regimen
         // we are using that is attatched to the episode.
-        var regimens = _.reject(episode.regimen, {id: instance.id});
+        var regimens = _.reject(EntrytoolHelper.getEpisodeRegimen(episode), {id: instance.id, episode_id: instance.episode_id});
         regimens.push(instance);
-        _.each(episode.response, function(response){
+        _.each(EntrytoolHelper.getEpisodeResponse(episode), function(response){
           if(response.response_date){
             _.each(regimens, function(regimen){
               var within = responseDateWithRegimen(response.response_date, regimen);
@@ -188,82 +190,13 @@ angular
         }
       }
 
-      var adverseEventDateWithinRegimen = function(fieldValue, regimen){
-        /*
-        * An adverse event date can be start_date or
-        * end_date + 30 days and anything in between.
-        */
-        var allowedStartDate = regimen.start_date;
-        var allowedEndDate = null;
-        var withinParams = false;
-        if(regimen.end_date){
-          allowedEndDate = moment(regimen.end_date).add(30, "d")
-          if(fieldValue >= allowedStartDate && fieldValue <= allowedEndDate){
-            withinParams = true;
-          }
-        }
-        else{
-          if(fieldValue >= allowedStartDate){
-            withinParams = true
-          }
-        }
-        return withinParams
-      }
-
-      var validateAdverseEventToRegimen = function(val, instance, episode){
-        /*
-        * From the perspective of an adverse event date, validates that there
-        * is a response related to it.
-        */
-       var withinRegimen = false;
-       _.each(episode.regimen, function(regimen){
-         var within = adverseEventDateWithinRegimen(val, regimen);
-         if(within){
-           withinRegimen = true;
-         }
-       });
-       if(!withinRegimen){
-         return VALDATION_ERRORS.NO_REGIMEN_ADVERSE;
-       }
-      }
-
-      var validateRegimenToAdverseEvents = function(val, instance, episode){
-        /*
-        * From the perspective of regimens, validates that
-        * there are no AEs that are not connected
-        */
-       if(!val || !episode.adverse_event.length){
-        return;
-      }
-       var withinRegimen = false;
-       // we may be editing things so ignore version of regimen
-       // we are using that is attatched to the episode.
-       var regimens = _.reject(episode.regimen, {id: instance.id});
-       regimens.push(instance);
-       _.each(episode.adverse_event, function(adverse_event){
-         if(adverse_event.ae_date){
-           _.each(regimens, function(regimen){
-             var within = adverseEventDateWithinRegimen(adverse_event.ae_date, regimen);
-             if(within){
-               withinRegimen = true;
-             }
-           });
-         }
-       });
-       if(!withinRegimen){
-        return VALDATION_ERRORS.NO_ADVERSE_REGIMEN;
-       }
-      }
-
       var validateDateOfDiagnosis = function(val, instance, episode){
         /*
         * Date of diagnosis must be below all SCT/Regimen/response dates.
-        * We don't need to validate against ae date as this is included
-        * in the ae -> regimen date validation (it has to be after)
         */
         var error_msg = null;
         _.each(self.patient.episodes, function(episode){
-          _.each(episode.regimen, function(regimen){
+          _.each(EntrytoolHelper.getEpisodeRegimen(episode), function(regimen){
             if(regimen.start_date < val){
               error_msg = VALDATION_ERRORS.DIAGNOSIS_OVER_REGIMEN_START
             }
@@ -286,7 +219,7 @@ angular
 
         var error_msg = null;
         _.each(self.patient.episodes, function(episode){
-          _.each(episode.response, function(response){
+          _.each(EntrytoolHelper.getEpisodeResponse(episode), function(response){
             if(response.response_date < val){
               error_msg = VALDATION_ERRORS.DIAGNOSIS_OVER_RESPONSE;
             }
@@ -297,22 +230,60 @@ angular
         }
       };
 
+      self.validateOnlyOneOpenRegimen = function(regimenInstance){
+        /*
+        * There can only be one regimen with no end date, if the user
+        * is trying to save a regimen with no end date and there
+        * already exists another with no end date, flag it as an error.
+        *
+        * Note this is a special case of validation as it exists as part of an
+        * ng-required not ng-change like the rest of the validation.
+        *
+        * It returns false if there is no error or true if there is an error
+        */
+
+        // if there is a val then there is an end date for this
+        // regimen and we don't need to check the other episodes
+        if(regimenInstance.end_date){
+          return
+        }
+        var otherOpenEndRegimenExists = false
+        _.each(self.patient.episodes, function(episode){
+          var regimen = EntrytoolHelper.getEpisodeRegimen(episode);
+          var regimenWithNoEndDate = _.filter(regimen, function(r){
+            if(!r.end_date){
+              // ignore the current instance
+              if(regimenInstance.id && regimenInstance.id === r.id){
+                return false
+              }
+              return true
+            }
+          });
+          if(regimenWithNoEndDate.length){
+            otherOpenEndRegimenExists = true
+          }
+        });
+        return otherOpenEndRegimenExists;
+      }
+
       var episodeRegimenMinMaxDates = function (episode) {
+        return getRegimenMinMaxDate(EntrytoolHelper.getEpisodeRegimen(episode));
+      };
+
+      var getRegimenMinMaxDate = function(regimen){
         // returns the first start date and the last end date
         // note end date may be null;
-
         // pluck the regimen start dates, sort them and return the first
-        var episodeMin = _.pluck(episode.regimen, "start_date").sort()[0];
-
+        var episodeMin = _.pluck(regimen, "start_date").sort()[0];
         var episodeMax = null;
         // regimen end date is not required, remove the nulls and
         // make sure any of them are populated
-        var episodeMaxVals = _.compact(_.pluck(episode.regimen, "end_date"));
+        var episodeMaxVals = _.compact(_.pluck(regimen, "end_date"));
         if (episodeMaxVals.length) {
           episodeMax = _.sortBy(episodeMaxVals).reverse()[0];
         }
         return [episodeMin, episodeMax];
-      };
+      }
 
       var validateRegimenToOtherLOTRegimens = function (
         val,
@@ -326,9 +297,15 @@ angular
         // check vs the instance dates as these may have changed.
         var min = toMomentFilter(instance.start_date);
         var max = toMomentFilter(instance.end_date);
+        var thisEpisodesRegimen = EntrytoolHelper.getEpisodeRegimen(episode)
 
-        if(episode.regimen.length){
-          var ourEpisodeMinMax = episodeRegimenMinMaxDates(episode);
+        // exclude this regimen's id if it exists
+        if(instance.id){
+          thisEpisodesRegimen = _.filter(thisEpisodesRegimen, function(r){ return r.id !== instance.id });
+        }
+
+        if(thisEpisodesRegimen.length){
+          var ourEpisodeMinMax = getRegimenMinMaxDate(thisEpisodesRegimen);
           if(ourEpisodeMinMax[0].isBefore(min, "d")){
             min = ourEpisodeMinMax[0];
           }
@@ -350,7 +327,7 @@ angular
           if (episode.id === otherEpisode.id) {
             return;
           }
-          if (!otherEpisode.regimen.length) {
+          if (!EntrytoolHelper.getEpisodeRegimen(otherEpisode).length) {
             return;
           }
           var episodeMinMax = episodeRegimenMinMaxDates(otherEpisode);
@@ -392,23 +369,18 @@ angular
         this.createValidator(
           "regimen_start", {
             errors: [validateRegimenDateBetween, validateRegimenSurrounds, validateRegimenToOtherLOTRegimens],
-            warnings: [validateRegimenToResponses, validateRegimenToAdverseEvents]
+            warnings: [validateRegimenToResponses]
           }
         )
         this.createValidator(
           "regimen_end", {
             errors: [validateRegimenDateBetween, validateRegimenSurrounds, validateRegimenToOtherLOTRegimens],
-            warnings: [validateRegimenToResponses, validateRegimenToAdverseEvents]
+            warnings: [validateRegimenToResponses]
           }
         );
         this.createValidator(
           "response_date", {
             warnings: [validateResponseToRegimens]
-          }
-        );
-        this.createValidator(
-          "ae_date", {
-            warnings: [validateAdverseEventToRegimen]
           }
         );
         this.createValidator(

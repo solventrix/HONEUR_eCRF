@@ -117,7 +117,7 @@ We will now be required to update the display template for the model to include 
 
 #### Adding a new set of data to lines of treatment
 
-Adding an entirely new set of data will require creating a new model in `entrytool.models.py`. This is a python class the inherits from `opal.models.EpisodeSubrecord` that generates a new table in the database. This process is documented extensively by Django, Opal specific alterations (mostly additional properties that are available) are documented in the Opal documentation, and the models `SCT`, `Regimen`, `Response` and `AdverseEvent` provide examples within this application.
+Adding an entirely new set of data will require creating a new model in `entrytool.models.py`. This is a python class the inherits from `opal.models.EpisodeSubrecord` that generates a new table in the database. This process is documented extensively by Django, Opal specific alterations (mostly additional properties that are available) are documented in the Opal documentation, and the models `SCT`, `Regimen`, and `Response provide examples within this application.
 
 Once the model is created the database needs to be updated:
 
@@ -174,13 +174,10 @@ The same options are also available for date_before.
 For example:
 
 ```
-{% custom_datepicker field="AdverseEvent.ae_date"
-   date_after="the_episode.regimen[0].start_date"
-   date_after_message=_("Adverse event must be on or after the regimen start date")
+{% custom_datepicker field="SCT.sct_date"
+   date_after="the_episode.mll_regimen[0].start_date"
+   date_after_message=_("The SCT should be after the regimen start date")
    date_after_diff="0"
-   date_before="the_episode.regimen[0].end_date"
-   date_before_message=_("Adverse event must be before 30 days after the regimen end date")
-   date_before_diff="31"
    required=True %}
 ```
 
@@ -240,85 +237,6 @@ for row in rows:
     follow_up.wcc = int_or_none(row['wcc'])
     follow_up.save()
 ```
-
-## Alternative Follow up page.
-
-The follow up page at the moment works well for 8-10 follow up fields. There are currently 8, so this allows room. Should you wish to have a deployment with more than 8 fields. An alternative display might look like the below. This displays the fields vertically and the
-date stamps of the last 8 results at the top. This loses the ability to see more than 8
-results in the history, but gains the ability for any number of fields.
-
-To replace this change the template file `entrytool/detail/followups.html` to the below text.
-
-
-```
-{% load i18n %}
-<div class="follow-up-table" ng-show="episode.follow_up.length > 0">
-<span ng-repeat="item in [episode.follow_up[]] | orderBy: '-follow_up_date' as follow_ups"></span>
-  <div class="col-md-12">
-    <div class="row header-row display-label">
-      <div class="col-sm-3 header"></div>
-      <div ng-show="$index < episode.follow_up.length" class="col-sm-1 header" ng-repeat="not_used in [].constructor(8) track by $index">
-        <span ng-show="$index < follow_ups.follow_up.length">
-          [[ follow_ups[$index].hospital | translate ]]
-          <br />
-          [[ follow_ups[$index].follow_up_date | displayDate ]]
-          <br>
-          <i style="font-size: 14px;" ng-click="episode.recordEditor.editItem('{{ models.FollowUp.get_api_name }}', follow_ups[$index])" class="fa fa-pencil edit pointer"></i>
-        </span>
-      </div>
-    </div>
-    <div class="row table-row" >
-      <div class="col-sm-3 first-column text-right">{% trans "LDH" %}</div>
-      <div class="col-sm-1 column" ng-repeat="not_used in [].constructor(8) track by $index">
-        [[ follow_ups[$index].LDH ]]
-      </div>
-    </div>
-    <div class="row table-row" >
-      <div class="col-sm-3 first-column text-right">{% trans "Beta2m" %}</div>
-      <div class="col-sm-1 column" ng-repeat="not_used in [].constructor(8) track by $index">
-        [[ follow_ups[$index].beta2m ]]
-      </div>
-    </div>
-    <div class="row table-row" >
-      <div class="col-sm-3 first-column text-right">{% trans "Albumin" %}</div>
-      <div class="col-sm-1 column" ng-repeat="not_used in [].constructor(8) track by $index">
-        [[ follow_ups[$index].albumin ]]
-      </div>
-    </div>
-    <div class="row table-row" >
-      <div class="col-sm-3 first-column text-right">{% trans "Creatinin" %}</div>
-      <div class="col-sm-1 column" ng-repeat="not_used in [].constructor(8) track by $index">
-        [[ follow_ups[$index].creatinin ]]
-      </div>
-    </div>
-    <div class="row table-row" >
-      <div class="col-sm-3 first-column text-right">{% trans "MCV" %}</div>
-      <div class="col-sm-1 column" ng-repeat="not_used in [].constructor(8) track by $index">
-        [[ follow_ups[$index].MCV ]]
-      </div>
-    </div>
-    <div class="row table-row" >
-      <div class="col-sm-3 first-column text-right">{% trans "Hb" %}</div>
-      <div class="col-sm-1 column" ng-repeat="not_used in [].constructor(8) track by $index">
-        [[ follow_ups[$index].Hb ]]
-      </div>
-    </div>
-    <div class="row table-row" >
-      <div class="col-sm-3 first-column text-right">&#922;/&#923; Ratio</div>
-      <div class="col-sm-1 column" ng-repeat="not_used in [].constructor(8) track by $index">
-        [[ follow_ups[$index].kappa_lambda_ratio ]]
-      </div>
-    </div>
-    <div class="row table-row" >
-      <div class="col-sm-3 first-column text-right">{% trans "Bone Lesions" %}</div>
-      <div class="col-sm-1 column" ng-repeat="not_used in [].constructor(8) track by $index">
-        [[ follow_ups[$index].bone_lesions ]]
-      </div>
-    </div>
-  </div>
-</div>
-```
-
 
 
 ## Customisation of search results

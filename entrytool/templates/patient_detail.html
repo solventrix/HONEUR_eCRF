@@ -2,167 +2,35 @@
 <div ng-show="patient == null" class="container-fluid content-offset">
   <h1 class="text-center content-offset">{% trans "Patient not found" %}</h1>
   <p class="lead text-center content-offset">
-    {% trans "We're sorry but we couldn't find the patient you're looking for."
-    %}
+    {% trans "We're sorry but we couldn't find the patient you're looking for." %}
     <br />
     {% trans "Perhaps try searching for them instead?" %}
   </p>
 </div>
-<div
-  class="
-    entry-tool
-    container-fluid
-    content-offset
-    {%
-    block
-    container_classes
-    %}{%
-    endblock
-    %}
-  "
-  ng-hide="patient == null"
->
-  <div
-    class="
-      panel panel-primary panel-container
-      patient-detail
-      {%
-      block
-      panel_classes
-      %}{%
-      endblock
-      %}
-    "
-  >
-    <!-- Default panel contents -->
-    <div class="panel-heading patient-detail-heading">
-      <h2>
-        {% block heading %}{% trans "Patient" %} [[ patient.id ]]{% endblock %}
-      </h2>
-    </div>
-
-    <div class="panel-body {% block panel_body_classes %}{% endblock %}">
-      <div ng-controller="PatientValidator"></div>
-      <div class="row">
-        {% block content %}
-        <div class="col-md-12 padding0">
-          <div class="row">
-            <div class="col-md-12">{% include "detail/default.html" %}</div>
-          </div>
-
-          <section ng-show="patient.patient_details[0].consistency_token">
-            <!-- Treatment lines, follow ups -->
-
-            <!-- Line of treatments -->
-            <section
-              ng-controller="LineOfTreatmentManager as lineOfTreatmentManager"
-            >
-              <div class="panel mb6">
-                <div class="panel-heading">
-                  <h3>
-                    {% trans "Lines Of Treatment" %}
-                    <span class="pull-right pointer edit">
-                      <a
-                        ng-click="lineOfTreatmentManager.canEdit() && lineOfTreatmentManager.create(patient)"
-                      >
-                        <i class="fa fa-plus-circle edit pointer"></i>
-                      </a>
-                    </span>
-                  </h3>
-                </div>
-              </div>
-              <div class="help-block">
-                Line of treatment is defined as: time from first treatment after diagnosis or progression till start of treatment after subsequent progression
-              </div>
-              <div class="help-block">
-                Info: you might be confused by the treatment line order when adding a new line. After you save, they will be in the correct order.
-              </div>
-              <div
-                class="row"
-                ng-repeat="episode in patient.episodes | filter: { category_name: 'Treatment Line' } | orderBy:lineOfTreatmentManager.lineOfTreatmentOrder:true as lot_episodes"
-              >
-                <div class="col-md-12 inline-panels">
-                  {% include "detail/treatmentline.html" %}
-                </div>
-              </div>
-            </section>
-
-
-          <div class="row">
-            <div class="col-md-6">
-            <div class="panel mb6">
-              <div class="panel-heading">
-                <h3>
-                  {% trans "Additional Characteristics" %}
-                  <span class="pull-right pointer edit">
-                    <a
-                      ng-click="episode.recordEditor.newItem('{{ models.AdditionalCharacteristics.get_api_name }}')"
-                    >
-                      <i class="fa fa-plus-circle edit pointer"></i>
-                    </a>
-                  </span>
-                </h3>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">
-                {% include "detail/additional_characteristics.html" %}
-              </div>
-            </div>
-          </div>
-
-            <!-- Cytogenetics -->
-            <div class="col-md-6">
-            <div class="panel mb6">
-              <div class="panel-heading">
-                <h3>
-                  {% trans "Cytogenetics" %}
-                  <span class="pull-right pointer edit">
-                    <a
-                      ng-click="episode.recordEditor.newItem('{{ models.Cytogenetics.get_api_name }}')"
-                    >
-                      <i class="fa fa-plus-circle edit pointer"></i>
-                    </a>
-                  </span>
-                </h3>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">
-                {% include "detail/cytogenetics.html" %}
-              </div>
-            </div>
-          </div>
-            </div>
-           
-
-            <!-- QOL_5Q -->
-            <div class="panel mb6">
-                <div class="panel-heading">
-                  <h3>
-                    {% trans "Quality Of Life 5Q" %}
-                    <span class="pull-right pointer edit">
-                      <a ng-click="episode.recordEditor.newItem('{{ models.QualityOfLife5Q.get_api_name }}')">
-                        <i class="fa fa-plus-circle edit pointer"></i>
-                      </a>
-                    </span>
-                  </h3>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-12">
-                  {% include "detail/qol_5q.html" %}
-                </div>
-              </div>
-
-
-          </section>
+<div ng-controller="PatientValidator"></div>
+<div ng-controller="HoneurPatientDetailCtrl as honeurPatientDetailCtrl">
+  <div ng-repeat="episode in patient.episodes">
+    {% for episode_category in episode_categories %}
+    {% if episode_category.detail_template and not episode_category.display_name == 'Inpatient' %}
+    <div ng-show='episode.category_name === "{{ episode_category.display_name }}"' class="entry-tool container-fluid content-offset">
+      <div class=" panel panel-primary panel-container patient-detail">
+        <!-- Default panel contents -->
+        <div class="panel-heading patient-detail-heading">
+          <h2>
+            {% trans "Patient" %} [[ patient.id ]] ([[ episode.category_name ]])
+          </h2>
         </div>
-        {% endblock content %}
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-12 padding0">
+              {% include episode_category.detail_template %}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <!-- Panel body -->
+    {% endif %}
+    {% endfor %}
   </div>
-  <!-- Panel -->
 </div>
 <!-- Container -->

@@ -2,7 +2,6 @@
 
 
 
-
 <div class="panel panel-default">
   <div class="panel-heading">
     <h3>
@@ -11,16 +10,14 @@
          ng-click="patient.recordEditor.editItem('patient_status', patient.patient_status[0])"></i>
     </h3>
   </div>
-  <div class='help-block' ng-show="!(patient.patient_status[0].lost_to_follow_up || patient.patient_status.deceased)">
-  Report patient death or lost to follow up here.
+  <div class='help-block' ng-show="!(patient.patient_status[0].lost_to_follow_up || patient.patient_status[0].deceased)">
+  {% trans "Report patient death or lost to follow up here." %}
   </div>
-  <ul class="list-group">
-    <li class="list-group-patient.patient_status[0]">
       <div class="row">
-   <div class="col-md-2">
+   <div class="col-md-6">
     <span ng-show="patient.patient_status[0].lost_to_follow_up_date" class="display-label">{% trans "Last Seen" %}</span>
   </div>
-  <div class="col-md-2">
+  <div class="col-md-6">
     <span ng-show="patient.patient_status[0].lost_to_follow_up_date">
     [[ patient.patient_status[0].lost_to_follow_up_date | displayDate ]]
     </span>
@@ -28,18 +25,15 @@
 </div>
 
 <div class="row">
-  <div class="col-md-2">
+  <div class="col-md-6">
     <span ng-show="patient.patient_status[0].death_date || patient.patient_status[0].death_cause">
       <span class="display-label">{% trans "Death details" %}</span>
     </span>
   </div>
-  <div class="col-md-2">
+  <div class="col-md-6">
     <span ng-show="patient.patient_status[0].death_date || patient.patient_status[0].death_cause">
       [[ patient.patient_status[0].death_date | displayDate ]] ([[ patient.patient_status[0].death_cause | translate ]])
     </span>
   </div>
 </div>
-    </li>
-  </ul>
-  {% block footer %}{% endblock %}
 </div>
