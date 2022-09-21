@@ -17,7 +17,7 @@
 
           $routeProvider.when('/data_upload', {
             controller: 'DataUploader',
-            templateUrl: 'data_upload',
+            templateUrl: '/templates/data_upload.html',
             resolve: {
               unValidatedPatients: function(DataUploadLoader){
                 return DataUploadLoader.unValidatedPatients()

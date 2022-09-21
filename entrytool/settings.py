@@ -302,14 +302,6 @@ LOCALE_PATHS = [
 # will appear on the Lost To Follow-Up page
 LOST_TO_FOLLOW_UP_DAYS_SINCE = 180
 
-# The function called by entrytool.api.create
-# manage.py load_data.
-# It takes the file and then returns the errors
-UPLOAD_FROM_FILE_FUNCTION = 'plugins.data_load.load_data.load_data'
-
-# The parameters for the data upload
-# The template loaded by the front end
-UPLOAD_FROM_FILE_TEMPLATE = 'data_upload.html'
 
 # The function called by entrytool.api.create
 # that takes the file and then returns the errors
