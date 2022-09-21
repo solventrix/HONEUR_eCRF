@@ -143,6 +143,9 @@ class MMRegimen(models.EpisodeSubrecord):
     stop_reason = ForeignKeyOrFreeText(
         MMStopReason, verbose_name=_("Reason for Regimen Stop")
     )
+    end_treatment_reason = fields.TextField(
+        blank=True, default="", verbose_name=_("End Treatment Reason")
+    )
 
     class Meta:
         verbose_name = _("Regimen")
