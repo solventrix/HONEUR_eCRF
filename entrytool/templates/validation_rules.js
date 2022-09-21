@@ -42,7 +42,17 @@ angular.module('opal.services').service('ValidationRules', function(Validators) 
 				errors: [
 					[Validators.inOptions, "{% trans "is not in the options available" %}"]
 				]
-			}
+			},
+			status: {
+				errors: [
+					[Validators.maxLength(256), "{% trans "Maximum length is 255" %}"]
+				]
+			},
+			physician: {
+				errors: [
+					[Validators.maxLength(256), "{% trans "Maximum length is 255" %}"]
+				]
+			},
 		},
 
 		// CLL Condition

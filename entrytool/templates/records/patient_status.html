@@ -9,28 +9,41 @@
       ></i>
     </h3>
   </div>
-  <div
-    class="help-block"
-    ng-show="!(episode.patient_status[0].lost_to_follow_up || episode.patient_status[0].deceased)"
-  >
-    {% trans "Report patient death or lost to follow up here." %}
-  </div>
   <ul class="list-group">
     <li
       ng-class="{'imported-validation-error': honeurPatientDetailCtrl.hasError(episode.id, 'patient_status', episode.patient_status[0].id)}"
     >
-      <div class="row">
+    <div class="row"  ng-show="episode.patient_status[0].physician">
+      <div class="col-md-6">
+        <span
+          class="display-label"
+          >{% trans "Physician" %}</span
+        >
+      </div>
+      <div class="col-md-6">
+        [[ episode.patient_status[0].physician ]]
+      </div>
+    </div>
+    <div class="row"  ng-show="episode.patient_status[0].status">
+      <div class="col-md-6">
+        <span
+          class="display-label"
+          >{% trans "Status" %}</span
+        >
+      </div>
+      <div class="col-md-6">
+        [[ episode.patient_status[0].status ]]
+      </div>
+    </div>
+      <div class="row"  ng-show="episode.patient_status[0].lost_to_follow_up_date">
         <div class="col-md-6">
           <span
-            ng-show="episode.patient_status[0].lost_to_follow_up_date"
             class="display-label"
-            >{% trans "Last Seen" %}</span
+            >{% trans "Lost to Follow-Up" %}</span
           >
         </div>
         <div class="col-md-6">
-          <span ng-show="episode.patient_status[0].lost_to_follow_up_date">
-            [[ episode.patient_status[0].lost_to_follow_up_date | displayDate ]]
-          </span>
+          [[ episode.patient_status[0].lost_to_follow_up_date | displayDate ]]
         </div>
       </div>
 

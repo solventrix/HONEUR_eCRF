@@ -47,6 +47,11 @@ class MMDiagnosisDetails(models.EpisodeSubrecord):
         ("Stage III", _("Stage III")),
         ("Unknown", _("Unknown")),
     )
+    R_ISS_AT_ED_CHOICES = (
+        ('I', _("I")),
+        ('II', _("II")),
+        ('III', _("III")),
+    )
     PP_TYPE_CHOICES = (
         ("IgG", _("IgG")),
         ("IgA", _("IgA")),
@@ -85,6 +90,9 @@ class MMDiagnosisDetails(models.EpisodeSubrecord):
     )
     iss_stage = fields.CharField(
         blank=True, null=True, max_length=10, choices=R_ISS_STAGES, verbose_name=_("ISS Stage")
+    )
+    r_iss_stage = fields.CharField(
+        blank=True, null=True, max_length=10, choices=R_ISS_AT_ED_CHOICES, verbose_name=_("r-ISS at ED")
     )
     ds_stage = fields.CharField(
         blank=True, null=True, max_length=10, choices=R_ISS_STAGES, verbose_name=_("DS Stage")
@@ -126,6 +134,9 @@ class MMRegimen(models.EpisodeSubrecord):
     )
     end_date = fields.DateField(verbose_name=_("End Date"), blank=True, null=True)
     regimen = ForeignKeyOrFreeText(MMRegimenList, verbose_name=_("Regimen"))
+    radiotherapy = fields.BooleanField(
+        default=False, verbose_name=_("Radiotherapy")
+    )
     category = fields.CharField(
         max_length=40, choices=REGIMEN_TYPES, verbose_name=_("Regimen Type")
     )
