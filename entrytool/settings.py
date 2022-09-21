@@ -309,7 +309,7 @@ UPLOAD_FROM_FILE_TEMPLATE = 'data_upload.html'
 
 # The function called by entrytool.api.create
 # that takes the file and then returns the errors
-UPLOAD_FROM_FILE_FUNCTION = 'plugins.data_load.load_data.load_data'
+UPLOAD_FROM_FILE_FUNCTION = 'plugins.conditions.mm.load_data.load_data'
 
 try:
     from entrytool.local_settings import *
