@@ -10,14 +10,22 @@ from django.urls import reverse
 
 
 class Application(application.OpalApplication):
-    javascripts   = [
+    javascripts = [
         'js/entrytool/routes.js',
         "js/entrytool/directives.js",
         'js/entrytool/filters.js',
         "js/entrytool/services/entrytool_helper.js",
+        "js/entrytool/services/validate_patient.js",
+        "js/entrytool/services/validate_field.js",
+        "js/entrytool/services/validators.js",
+        "js/entrytool/services/entrytool_record_editor.js",
+        "js/entrytool/services/data_upload_loader.js",
+        "js/entrytool/controllers/empty_controller.js",
         "js/entrytool/controllers/lot_manager.js",
         "js/entrytool/controllers/delete_lot.js",
         "js/entrytool/controllers/patient_validator.js",
+        "js/entrytool/controllers/data_uploader.js",
+        "js/entrytool/controllers/data_quality_reviewed_ctrl.js",
         "js/entrytool/controllers/honeur_patient_detail_ctrl.js",
         "js/entrytool/moment_lang.js",
     ]
@@ -41,7 +49,12 @@ class Application(application.OpalApplication):
                     ),
                     menus.MenuItem(
                         href=reverse("logout"), display=_('Log Out'), index=1000
-                    )
+                    ),
+                    menus.MenuItem(
+                        href='/#/lost_to_followup',
+                        display=_('Reports'),
+                        activepattern='/#/lost_to_followup'
+                    ),
                 ]
                 if user.is_staff:
                     menuitems.append(
@@ -50,6 +63,5 @@ class Application(application.OpalApplication):
                             index=999
                         )
                     )
-
 
         return menuitems

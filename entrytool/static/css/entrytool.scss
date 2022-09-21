@@ -7,6 +7,15 @@ $red2 : rgb(255, 101, 9);
 $janssen-blue : rgb(0,37,98);
 $janssen-blue-light : rgb(7,148,224);
 
+
+.content-offset-below-25{
+    margin-bottom: 25px;
+}
+
+.content-offset-left-10{
+    margin-left: 10px
+}
+
 .entry-tool{
     .panel-heading i.edit,
     .list-group-item i.edit,
@@ -24,18 +33,59 @@ $janssen-blue-light : rgb(7,148,224);
         color: inherit;
     }
 
+    .additional-charecteristics-table, .cytogenetics-table, .additional-charecteristics-table{
+        text-align: center;
+        margin-left: 20px;
+
+        .table-row{
+            margin-bottom: 1px;
+        }
+
+        .column{
+            border-top: 1px solid #dee2e6;
+        }
+        .column, .header{
+            margin-top: -1px;
+            padding: 8px;
+        }
+        .first-column{
+            padding: 8px;
+            margin-top: -9px;
+        }
+        .column.last-column{
+            padding: 4px 4px 8px 4px;
+            .fa{
+                padding-top: 6px;
+            }
+        }
+    }
+
     .follow-up-table{
         text-align: center;
         .column{
             border-top: 1px solid #dee2e6;
         }
-        .column, .first-column, .header{
+        .column, .header{
+            margin-top: 1px;
             padding: 8px;
+        }
+        .first-column{
+            padding: 8px;
+            margin-top: 2px;
+        }
+        .column.last-column{
+            padding: 4px 4px 8px 4px;
+            .fa{
+                padding-top: 6px;
+            }
         }
     }
 }
 
 
+.red{
+    color: $red;
+}
 // utility
 
 .padding0 {
@@ -184,11 +234,19 @@ h1 img {
   text-transform: uppercase;
   letter-spacing: 0.2rem;
   border-radius: 0px;
+  color: white;
 
   &:hover, &:focus{
+    color: white;
     background-color: $janssen-blue-light;
     border-color: $janssen-blue-light;
   }
+}
+
+// primary buttons in the headers e.g. the data quality completed button
+// should have white text on hover.
+.panel.panel-primary .panel-heading a.btn-primary:hover{
+    color: white;
 }
 
 .btn-cancel, .btn-secondary, .btn {
@@ -246,4 +304,114 @@ h1 img {
             display: block;
         }
     }
+}
+
+.mm-table{
+    td, th{
+        text-align: center;
+    }
+    td.first-column, th.first-column{
+        text-align: left;
+        width: 100px;
+    }
+    td.last-column{
+        text-align: right;
+        padding-right: 16px;
+    }
+
+    .no-border{
+        border: none;
+    }
+    i{
+        font-size: 12px;
+    }
+}
+
+.has-error p.help-block{
+    color: #737373;
+}
+
+.imported-validation-error{
+    background-color: #C07A7A;
+}
+
+.no-top-border{
+    border-top: none
+}
+
+.file {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    height: 34px;
+}
+
+.file input {
+    min-width: 400px;
+    margin: 0;
+    filter: alpha(opacity=0);
+    opacity: 0;
+}
+
+#faux-file-field {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 100;
+    height: 34px;
+    padding: 6px 12px;
+    line-height: 1.5;
+    color: #555;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#faux-file-field:after {
+    content: attr(data-content);
+    color: #666;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+#faux-file-label {
+    position: absolute;
+    top: 0;
+    right: -1px;
+    bottom: -1px;
+    z-index: 101;
+    display: block;
+    text-transform: uppercase;
+    font-weight: 400;
+    height: 34px;
+    padding: .5rem 1rem;
+    line-height: 1.5;
+    color: white;
+    background-color: $janssen-blue;
+    border: .075rem solid #ddd;
+    border-radius: 0 .25rem .25rem 0;
+}
+
+.faux-file-error-text, .error .faux-file-help-text{
+    display: none;
+}
+
+.faux-file-help-text, .error .faux-file-error-text{
+    display: inline-block;
+}
+
+
+.pagination > li > a:hover,
+.pagination > li > a:active
+.pagination > li > a:focus {
+    color: $janssen-blue;
+}
+
+.pagination > li > a{
+    color: $janssen-blue;
+    cursor: pointer;
 }

@@ -1,39 +1,56 @@
 {% load i18n %}
-
-
-
 <div class="panel panel-default">
   <div class="panel-heading">
     <h3>
       {{ models.PatientStatus.get_display_name }}
-      <i class="fa fa-pencil edit pull-right pointer"
-         ng-click="patient.recordEditor.editItem('patient_status', patient.patient_status[0])"></i>
+      <i
+        class="fa fa-pencil edit pull-right pointer"
+        ng-click="honeurPatientDetailCtrl.editItem('patient_status', episode.patient_status[0], episode)"
+      ></i>
     </h3>
   </div>
-  <div class='help-block' ng-show="!(patient.patient_status[0].lost_to_follow_up || patient.patient_status[0].deceased)">
-  {% trans "Report patient death or lost to follow up here." %}
+  <div
+    class="help-block"
+    ng-show="!(episode.patient_status[0].lost_to_follow_up || episode.patient_status[0].deceased)"
+  >
+    {% trans "Report patient death or lost to follow up here." %}
   </div>
+  <ul class="list-group">
+    <li
+      ng-class="{'imported-validation-error': honeurPatientDetailCtrl.hasError(episode.id, 'patient_status', episode.patient_status[0].id)}"
+    >
       <div class="row">
-   <div class="col-md-6">
-    <span ng-show="patient.patient_status[0].lost_to_follow_up_date" class="display-label">{% trans "Last Seen" %}</span>
-  </div>
-  <div class="col-md-6">
-    <span ng-show="patient.patient_status[0].lost_to_follow_up_date">
-    [[ patient.patient_status[0].lost_to_follow_up_date | displayDate ]]
-    </span>
-  </div>
-</div>
+        <div class="col-md-6">
+          <span
+            ng-show="episode.patient_status[0].lost_to_follow_up_date"
+            class="display-label"
+            >{% trans "Last Seen" %}</span
+          >
+        </div>
+        <div class="col-md-6">
+          <span ng-show="episode.patient_status[0].lost_to_follow_up_date">
+            [[ episode.patient_status[0].lost_to_follow_up_date | displayDate ]]
+          </span>
+        </div>
+      </div>
 
-<div class="row">
-  <div class="col-md-6">
-    <span ng-show="patient.patient_status[0].death_date || patient.patient_status[0].death_cause">
-      <span class="display-label">{% trans "Death details" %}</span>
-    </span>
-  </div>
-  <div class="col-md-6">
-    <span ng-show="patient.patient_status[0].death_date || patient.patient_status[0].death_cause">
-      [[ patient.patient_status[0].death_date | displayDate ]] ([[ patient.patient_status[0].death_cause | translate ]])
-    </span>
-  </div>
-</div>
+      <div class="row">
+        <div class="col-md-6">
+          <span
+            ng-show="episode.patient_status[0].death_date || episode.patient_status[0].death_cause"
+          >
+            <span class="display-label">{% trans "Death details" %}</span>
+          </span>
+        </div>
+        <div class="col-md-6">
+          <span
+            ng-show="episode.patient_status[0].death_date || episode.patient_status[0].death_cause"
+          >
+            [[ episode.patient_status[0].death_date | displayDate ]] ([[
+            episode.patient_status[0].death_cause | translate ]])
+          </span>
+        </div>
+      </div>
+    </li>
+  </ul>
 </div>

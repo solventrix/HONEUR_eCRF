@@ -1,7 +1,7 @@
 {% load forms %}
 {% load custom_forms %}
 {% load i18n %}
-{% custom_datepicker field="Cytogenetics.cytogenetic_date" label=_("Date")  date_after="the_episode.demographics[0].date_of_birth" date_after_message=_("Date of measurement must be after date of birth")%}
+{% custom_datepicker field="Cytogenetics.cytogenetic_date" label=_("Date") %}
 {% radio field="Cytogenetics.del17p" %}
 {% radio field="Cytogenetics.ighv_rearrangement" %}
 {% radio field="Cytogenetics.del11q" %}

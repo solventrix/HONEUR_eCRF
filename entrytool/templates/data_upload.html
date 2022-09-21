@@ -1,0 +1,267 @@
+{% load i18n %}
+<div class="outer-container">
+  <div class="container content-offset">
+    <div class="panel panel-primary panel-container">
+      <!-- Default panel contents -->
+      <div class="panel-heading">
+        <h2>
+          {% trans "Data Upload" %}
+        </h2>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <div class="panel-body">
+
+            <!-- Validating patients -->
+            <div ng-show="showSection(uploadSections.VALIDATING)" class="panel content-offset-below">
+              <div class="panel-heading">
+                <h3>
+                  {% trans "Unvalidated Patients" %}
+                </h3>
+              </div>
+              <div class="panel-body">
+                <div class="row">
+                  <div class="col-md-10">
+                    <h4>
+                      <span class="red" ng-hide="unvalidatedPatients.length === validaterPointer">
+                        [[ initialUnvalidatedCount ]]
+                        <span ng-show="initialUnvalidatedCount === 1">
+                        {% trans "patient" %}
+                        </span>
+                        <span ng-show="initialUnvalidatedCount > 1">
+                          {% trans "patients" %}
+                        </span> {% trans "to be validated."%}
+                        <br>
+                        {% trans "Validating" %} [[ validaterPointer+1 ]]/[[ initialUnvalidatedCount ]]
+                      </span>
+                      <span ng-show="unvalidatedPatients.length === validaterPointer">
+                        {% trans "All patients have been validated." %}
+                        <p class="content-offset-10">
+                          <a ng-click="initialUnvalidatedCount=0" class="btn btn-small btn-primary">{% trans "Upload Patient Data" %}</a>
+                        </p>
+                      </span>
+                    </h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Upload form -->
+            <div ng-show="showSection(uploadSections.UPLOAD_FORM)" class="panel content-offset-below">
+              <div class="panel-heading">
+                    <h3>
+                      {% trans "Upload Patient Data" %}
+                    </h3>
+              </div>
+              <div class="panel-body">
+                <div class="row">
+                  <div class="col-md-6 col-md-offset-3">
+                    <form form-submit form-field='folder' url='/entrytool/v0.1/upload_from_file/' on-submit="setLoading" on-success="formSubmitCallback" on-fail="formFailedCallback">
+                      <label class="file">
+                        <input type="file" id="file">
+                        <span id="faux-file-label">{% trans "Browse" %}</span>
+                        <span id="faux-file-field" data-initial-content="{% trans "Upload a zip file" %}"></span>
+                      </label>
+                      <p class="faux-file-help-text">
+                        {% trans "A zipfile containing demographics.csv, lot.csv and treatments.csv" %}
+                      </p>
+                      <p class="faux-file-error-text text-danger">
+                        {% trans "Please add a zip file containing demographics.csv, lot.csv and treatments.csv" %}
+                      </p>
+                      <div class="row">
+                        <div class="col-md-12 text-center">
+                          <button class="btn btn-small btn-primary" type="submit">{% trans "Upload" %}</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Loading -->
+            <div ng-show="showSection(uploadSections.LOADING)" class="panel content-offset-below">
+              <div class="panel-heading">
+                <h3>
+                  {% trans "Processing Data Upload" %}
+                </h3>
+              </div>
+              <div class="panel-body">
+                <div class="row">
+                  <div class="col-md-10 col-md-offset-1">
+                    <h2 class="text-center text-muted">
+                      <i class="fa fa-cog fa-spin" ></i>
+                    </h2>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Failed to upload -->
+            <div ng-show="showSection(uploadSections.FAILED_TO_UPLOAD)" class="panel content-offset-below">
+              <div class="panel-heading">
+                <h3>
+                  {% trans "File upload error" %}
+                </h3>
+              </div>
+              <div class="panel-body">
+                <div class="row">
+                  <div class="col-md-12">
+                    <p class="content-offset-25">
+                    {% trans "We are unable to process the file" %}
+                    </p>
+                    <div class="text-center content-offset">
+                      <span ng-show="unvalidatedPatients.length === validaterPointer">
+                        <h3>
+                          {% trans "No patients have been saved." %}
+                        </h3>
+                        <p class="content-offset-10">
+                          <a ng-click="reset()" class="btn btn-small btn-primary">{% trans "Upload Patient Data" %}</a>
+                        </p>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Display errors -->
+            <div ng-show="showSection(uploadSections.UPLOAD_ISSUES)" class="panel content-offset-below">
+              <div class="panel-heading">
+                <h3 span ng-show="errorCount() > 1">
+                  [[ errorCount() ]] {% trans "errors found in this upload" %}
+                </h3>
+                <h3 span ng-show="errorCount()=== 1">
+                  [[ errorCount() ]] {% trans "error found in this upload" %}
+                </h3>
+              </div>
+              <div class="panel-body">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="row">
+                      <div class="col-md-12 content-offset-25">
+                        <p ng-repeat="error in uploadErrors.top_level_errors">
+                          [[ error ]]
+                        </p>
+                      </div>
+                    </div>
+
+                    <table ng-show="uploadErrors.row_errors.length" class="table">
+                      <th>
+                        {% trans "File" %}
+                      </th>
+                      <th>
+                        {% trans "Row" %}
+                      </th>
+                      <th>
+                        {% trans "Column" %}
+                      </th>
+                      <th>
+                        {% trans "Value" %}
+                      </th>
+                      <th>
+                        {% trans "Description" %}
+                      </th>
+                      <th></th>
+                      <tr ng-repeat-start="uploadError in uploadErrors.row_errors">
+                        <td>
+                          [[ uploadError.file ]]
+                        </td>
+                        <td>
+                          [[ uploadError.row ]]
+                        </td>
+                        <td>
+                          [[ uploadError.column ]]
+                        </td>
+                        <td>
+                          [[ uploadError.value ]]
+                        </td>
+                        <td>
+                          [[ uploadError.short_description ]]
+                        </td>
+                        <td>
+                          <a class="orange-link pointer" ng-show="!uploadError.showTraceback" ng-click="uploadError.showTraceback=true">{% trans "Show Traceback" %}</a>
+                          <a class="orange-link pointer" ng-show="uploadError.showTraceback" ng-click="uploadError.showTraceback=false">{% trans "Hide Traceback" %}</a>
+                        </td>
+                      </tr>
+                      <tr ng-show="uploadError.showTraceback" ng-repeat-end>
+                        <td class="no-top-border" colspan="6">
+                          <p ng-repeat="errLine in uploadError.traceback track by $index">
+                            [[ errLine ]]
+                          </p>
+                        </td>
+                      </tr>
+                    </tr>
+                    </table>
+                    <div class="text-center content-offset">
+                      <span ng-show="unvalidatedPatients.length === validaterPointer">
+                        <h3>
+                          {% trans "No patients have been saved." %}
+                        </h3>
+                        <p class="content-offset-10">
+                          <a ng-click="reset()" class="btn btn-small btn-primary">{% trans "Upload Patient Data" %}</a>
+                        </p>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+            <div class="panel">
+              <div class="panel-heading">
+                <h3>
+                  <span ng-show="patientErrorsPaginator.totalCount">[[ patientErrorsPaginator.totalCount ]]</span>
+                    <span ng-show="patientErrorsPaginator.totalCount === 1">
+                      {% trans "patient" %}
+                    </span>
+                    <span ng-show="patientErrorsPaginator.totalCount > 1">
+                      {% trans "patients" %}
+                    </span>
+                    {% trans "With Errors" %}
+                </h3>
+              </div>
+              <div class="panel-body">
+                <div ng-hide="patientErrorsPaginator.totalCount" class="row">
+                  <div class="col-md-10 col-md-offset-1 text-center">
+                    <h4 class="text-muted text-center">
+                      {% trans "There are no patients with errors" %}
+                    </h4>
+                  </div>
+                </div>
+                <div class="row" ng-repeat="patientId in patientsWithErrors">
+                  <div class="col-md-10">
+                    <h4>
+                      <a href="/#/patient/[[ patientId ]]" class="orange-link">{% trans "Patient" %} [[ patientId ]]</a>
+                    </h4>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-8 col-sm-push-2" ng-show="patientErrorsPaginator.totalPages.length > 1">
+                    <nav class="text-center">
+                      <ul class="pagination">
+                        <li ng-if="patientErrorsPaginator.hasPrevious">
+                          <a ng-click="patientErrorsPaginator.goPrevious()"><i class="fa fa-caret-left"></i></a>
+                        </li>
+                        <li ng-repeat="pageNum in patientErrorsPaginator.totalPages" ng-class="{active: patientErrorsPaginator.pageNumber == pageNum }">
+                          <a ng-click="newPage(pageNum)">[[ pageNum ]]</a>
+                        </li>
+                        <li ng-if="patientErrorsPaginator.hasNext">
+                          <a ng-click="patientErrorsPaginator.goNext()"><i class="fa fa-caret-right"></i></a>
+                        </li>
+                      </ul>
+                    </nav>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
