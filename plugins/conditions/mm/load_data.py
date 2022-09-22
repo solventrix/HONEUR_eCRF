@@ -28,17 +28,6 @@ def cast_date(value):
         return datetime.datetime.strptime(value, "%d/%m/%Y").date()
 
 
-def is_utf8(file_name):
-    is_utf8 = False
-    with open(file_name, mode='rb') as f:
-        detect_report = chardet.detect(f.read())
-        encoding = detect_report['encoding']
-        if encoding.lower() == 'utf-8' or encoding.lower() == 'utf-8-sig':
-            if detect_report['confidence'] >= 0.95:
-                is_utf8 = True
-    return is_utf8
-
-
 def is_field_type(subrecord, field_name, field_type):
     # An isinstance for django fields
     if field_type == ForeignKeyOrFreeText:
@@ -192,11 +181,6 @@ def check_files(tmpDirectory, zip_file_name):
                 _('Unable to find %(expected_file_name)s in %(zipfile)s') % {
                     'expected_file_name': missing_name, 'zipfile': zip_file_name
                 }
-            )
-    for found_name in found_names:
-        if not is_utf8(os.path.join(tmpDirectory, found_name)):
-            top_level_errors.append(
-                _('%s is not utf-8 encoded' % found_name)
             )
     return top_level_errors
 
