@@ -127,6 +127,20 @@ class ZaragosaLoader(Loader):
             self.add_error(column, value, str(err))
         return result
 
+
+    def check_and_get_hospital_number(self, row, column, file_name, idx):
+        value = row[column]
+        if entrytool_models.Demographics.objects.filter(hospital_number=value).exists():
+            self.file_name = file_name
+            self.idx = idx
+            try:
+                raise ValueError(_("Patient %s already exists") % value)
+            except Exception as err:
+                self.add_error(column, value, str(err))
+                return ""
+        return value
+
+
     def check_and_set_field(self, subrecord, field, value, column, file_name, idx):
         if not value:
             return
@@ -189,7 +203,7 @@ def check_files(tmpDirectory, zip_file_name):
 
 def create_patient_episode(patient_number):
     patient = Patient.objects.create()
-    patient.demographics().hospital_number = f"old {patient_number}"
+    patient.demographics_set.update(hospital_number=patient_number)
     mm_episode = patient.episode_set.create(
         category_name=episode_categories.MM.display_name
     )
@@ -923,10 +937,15 @@ def load_data(zipped_folder):
         demographics_rows = get_data(
             os.path.join(tmp_directory, "datos demograficos.csv")
         )
+        loader = ZaragosaLoader()
         for idx, row in enumerate(demographics_rows):
-            patient_number = row["c�digo de paciente"]
+            patient_number = loader.check_and_get_hospital_number(
+                row, "c�digo de paciente", "datos demograficos.csv", idx
+            )
+            if not patient_number:
+                continue
             patient, mm_episode = create_patient_episode(patient_number)
-            loader = ZaragosaLoader()
+
             create_datos_demographics(patient, mm_episode, row, idx, loader)
             idx, enfermedad_1_data = get_patient_data_from_file(
                 tmp_directory, "datos enfermedad 1.csv", patient_number
