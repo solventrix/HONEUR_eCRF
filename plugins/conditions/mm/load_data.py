@@ -1,5 +1,7 @@
 import datetime
 import csv
+import tempfile
+import shutil
 from operator import indexOf
 import zipfile as zipfile_py
 import chardet
@@ -27,13 +29,15 @@ def cast_date(value):
         return datetime.datetime.strptime(value, "%d/%m/%Y").date()
 
 
-def is_utf8(zipfile, file_name):
-    detect_report = chardet.detect(zipfile.read(file_name))
-    encoding = detect_report['encoding']
-    if encoding.lower() == 'utf-8' or encoding.lower() == 'utf-8-sig':
-        if detect_report['confidence'] >= 0.95:
-            return True
-    return False
+def is_utf8(file_name):
+    is_utf8 = False
+    with open(file_name, mode='rb') as f:
+        detect_report = chardet.detect(f.read())
+        encoding = detect_report['encoding']
+        if encoding.lower() == 'utf-8' or encoding.lower() == 'utf-8-sig':
+            if detect_report['confidence'] >= 0.95:
+                is_utf8 = True
+    return is_utf8
 
 
 def is_field_type(subrecord, field_name, field_type):
@@ -156,7 +160,7 @@ class ZaragosaLoader(Loader):
             setattr(subrecord, field, value)
 
 
-def check_files(zipfile):
+def check_files(tmpDirectory, zip_file_name):
     """
     Check that we (case insensitively) have all the files
     that we need to load in the provided zip file.
@@ -164,31 +168,23 @@ def check_files(zipfile):
     Returns the error structure if the file is found to be
     incomplete.
     """
-    expected_file_names = set([i[0].lower() for i in FIELD_MAPPING])
-    top_level_errors = []
-    with zipfile_py.ZipFile(zipfile) as zipped_folder:
-        name_list = zipped_folder.namelist()
-        for expected_file_name in expected_file_names:
-            found_files = [
-                i for i in name_list if os.path.basename(i) == expected_file_name
-            ]
-            if not found_files:
-                top_level_errors.append(
-                    _('Unable to find %(expected_file_name)s in %(zipfile)s') % {
-                        'expected_file_name': expected_file_name, 'zipfile': zipfile
-                    }
-                )
-            else:
-                if not is_utf8(zipped_folder, found_files[0]):
-                    top_level_errors.append(
-                        _('%s is not utf-8 encoded' % expected_file_name)
-                    )
 
-    if top_level_errors:
-        return {
-            "top_level_errors": top_level_errors,
-            "row_errors": []
-        }
+    expected_file_names = set([i[0].lower() for i in FIELD_MAPPING])
+    found_names = set(os.listdir(tmpDirectory))
+    missing_names = list(expected_file_names - found_names)
+    top_level_errors = []
+    if len(missing_names) > 0:
+        for missing_name in missing_names:
+            top_level_errors.append(
+                _('Unable to find %(expected_file_name)s in %(zipfile)s') % {
+                    'expected_file_name': missing_name, 'zipfile': zip_file_name
+                }
+            )
+    for found_name in found_names:
+        if not is_utf8(os.path.join(tmpDirectory, found_name)):
+            top_level_errors.append(
+                _('%s is not utf-8 encoded' % found_name)
+            )
 
 
 def create_patient_episode(patient_number):
@@ -870,22 +866,14 @@ def populate_mprotein_measurements_from_treatment(episode, file_name, iterator, 
         populate_fields_on_model(m_protein, file_name, m_protein_mesurements, data, loader, idx)
 
 
-def get_data(zipfile, file_name):
-    with zipfile_py.ZipFile(zipfile) as zipped_folder:
-        to_read = [
-            i.filename for i in zipped_folder.filelist
-            if os.path.basename(i.filename) == file_name
-        ][0]
-        with zipped_folder.open(to_read) as ftl:
-            f = TextIOWrapper(ftl, get_encoding(
-                zipped_folder, to_read)
-            )
-            rows = list(csv.DictReader(f))
+def get_data(_file_to_read):
+    with open(_file_to_read) as file_to_read:
+        rows = rows = list(csv.DictReader(file_to_read))
     return rows
 
 
-def get_patient_data_from_file(zipped_folder, file_name, patient_number):
-    all_rows = get_data(zipped_folder, file_name)
+def get_patient_data_from_file(tmp_directory, file_name, patient_number):
+    all_rows = get_data(os.path.join(tmp_directory, file_name))
     if "c�digo de paciente" in all_rows[0]:
         patient_number_field = "c�digo de paciente"
     else:
@@ -898,64 +886,97 @@ def get_patient_data_from_file(zipped_folder, file_name, patient_number):
             )
 
 
+def extract_files(zipped_folder, tmp_directory):
+    """
+    Extracts the zipped_folder into the tmp_directory.
+    Copies all csvs into the zipped_folder into the top level
+    tmp_directory and deletes directories.
+
+    e.g.
+    If you were extracting zaragosa.zip which contained
+    demographics.csv into tmp directory tmp_dir.
+    It would create tmp_dir/zaragosa/demographics.csv
+    It would then copy demographics.csv into tmp_dir/demographics.csv
+    It would then remove tmp_dir/zargosa
+    """
+    with zipfile_py.ZipFile(zipped_folder) as zfolder:
+        zfolder.extractall(tmp_directory)
+        name_list = zfolder.namelist()
+        for name in name_list:
+            if not name.endswith('.csv'):
+                continue
+            shutil.copy(
+                os.path.join(tmp_directory, name),
+                os.path.join(tmp_directory, os.path.basename(name))
+            )
+        for name in name_list:
+            full_name = os.path.join(tmp_directory, name)
+            if os.path.isdir(full_name):
+                shutil.rmtree(full_name)
+
+
 @transaction.atomic
 def load_data(zipped_folder):
-    errors = check_files(zipped_folder)
-    if errors:
-        return errors
+    with tempfile.TemporaryDirectory() as tmp_directory:
+        extract_files(zipped_folder, tmp_directory)
+        errors = check_files(tmp_directory, zipped_folder)
+        if errors:
+            return errors
 
-    demographics_rows = get_data(zipped_folder, "datos demograficos.csv")
-    for idx, row in enumerate(demographics_rows):
-        patient_number = row["c�digo de paciente"]
-        patient, mm_episode = create_patient_episode(patient_number)
-        loader = ZaragosaLoader()
-        create_datos_demographics(patient, mm_episode, row, idx, loader)
-        idx, enfermedad_1_data = get_patient_data_from_file(
-            zipped_folder, "datos enfermedad 1.csv", patient_number
+        demographics_rows = get_data(
+            os.path.join(tmp_directory, "datos demograficos.csv")
         )
-        create_datos_enfermedad(
-            mm_episode,
-            "datos enfermedad 1.csv",
-            enfermedad_1_data,
-            loader,
-            idx,
-            lab_test_date=translate_date(enfermedad_1_data["fecha_diagnostico_1"]),
-            clinical_date=translate_date(enfermedad_1_data["fecha_diagnostico_1"]),
-        )
-        for i in range(2, 7):
-            idx, enfermedad_data = get_patient_data_from_file(
-                zipped_folder, f"datos enfermedad {i}.csv", patient_number,
+        for idx, row in enumerate(demographics_rows):
+            patient_number = row["c�digo de paciente"]
+            patient, mm_episode = create_patient_episode(patient_number)
+            loader = ZaragosaLoader()
+            create_datos_demographics(patient, mm_episode, row, idx, loader)
+            idx, enfermedad_1_data = get_patient_data_from_file(
+                tmp_directory, "datos enfermedad 1.csv", patient_number
             )
             create_datos_enfermedad(
                 mm_episode,
-                f"datos enfermedad {i}.csv",
-                enfermedad_data,
+                "datos enfermedad 1.csv",
+                enfermedad_1_data,
                 loader,
                 idx,
-                lab_test_date=translate_date(
-                    enfermedad_data[f"recaida_biologica_fecha_{i}"]
-                ),
-                clinical_date=translate_date(
-                    enfermedad_data[f"recaida_clinica_fecha_{i}"]
-                ),
+                lab_test_date=translate_date(enfermedad_1_data["fecha_diagnostico_1"]),
+                clinical_date=translate_date(enfermedad_1_data["fecha_diagnostico_1"]),
             )
-            idx, actual_data = get_patient_data_from_file(
-                zipped_folder, "situacion actual.csv", patient_number
-            )
-            create_situation_actual(mm_episode, actual_data, loader, idx)
-        for iterator in range(1, 7):
-            file_name = f"tratamiento {iterator}.csv"
-            idx, tratamiento = get_patient_data_from_file(
-                zipped_folder, file_name, patient_number
-            )
-            if treatment_populated(file_name, tratamiento):
-                lot_episode = patient.episode_set.create(
-                    category_name=lot_episode_categories.LineOfTreatmentEpisode.display_name
+            for i in range(2, 7):
+                idx, enfermedad_data = get_patient_data_from_file(
+                    tmp_directory, f"datos enfermedad {i}.csv", patient_number,
                 )
-                create_tratiemento(lot_episode, iterator, tratamiento, loader, idx)
-            populate_mprotein_measurements_from_treatment(
-                mm_episode, file_name, iterator, tratamiento, loader, idx
-            )
+                create_datos_enfermedad(
+                    mm_episode,
+                    f"datos enfermedad {i}.csv",
+                    enfermedad_data,
+                    loader,
+                    idx,
+                    lab_test_date=translate_date(
+                        enfermedad_data[f"recaida_biologica_fecha_{i}"]
+                    ),
+                    clinical_date=translate_date(
+                        enfermedad_data[f"recaida_clinica_fecha_{i}"]
+                    ),
+                )
+                idx, actual_data = get_patient_data_from_file(
+                    tmp_directory, "situacion actual.csv", patient_number
+                )
+                create_situation_actual(mm_episode, actual_data, loader, idx)
+            for iterator in range(1, 7):
+                file_name = f"tratamiento {iterator}.csv"
+                idx, tratamiento = get_patient_data_from_file(
+                    tmp_directory, file_name, patient_number
+                )
+                if treatment_populated(file_name, tratamiento):
+                    lot_episode = patient.episode_set.create(
+                        category_name=lot_episode_categories.LineOfTreatmentEpisode.display_name
+                    )
+                    create_tratiemento(lot_episode, iterator, tratamiento, loader, idx)
+                populate_mprotein_measurements_from_treatment(
+                    mm_episode, file_name, iterator, tratamiento, loader, idx
+                )
     errors = loader.errors
     if errors:
         return {
