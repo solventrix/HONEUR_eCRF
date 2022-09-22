@@ -224,7 +224,6 @@ def create_datos_demographics(patient, episode, demographics_data, row_idx, load
     for key, data in demographics_data.items():
         subrecord_name_and_field = get_field_mapping("datos demograficos.csv", key)
         if not subrecord_name_and_field:
-            print(f"skipping datos demogrpahics {key}")
             continue
         subrecord_name, field = subrecord_name_and_field
         if subrecord_name == "MMDiagnosisDetails":
@@ -310,7 +309,6 @@ def create_datos_enfermedad(
     for key, value in data.items():
         subrecord_name_and_field = get_field_mapping(file_name, key)
         if not subrecord_name_and_field:
-            print(f"skipping datos enfermedad {key}")
             continue
         subrecord_name, field = subrecord_name_and_field
         if subrecord_name == "MMDiagnosisDetails":
@@ -378,7 +376,6 @@ def create_situation_actual(episode, data, loader, idx):
     for key, value in data.items():
         subrecord_name_and_field = get_field_mapping(file_name, key)
         if not subrecord_name_and_field:
-            print(f"skipping datos situation actual {key}")
             continue
         _, field = subrecord_name_and_field
         loader.check_and_set_field(patient_status, field, value, key, file_name, idx)
