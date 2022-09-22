@@ -5,7 +5,6 @@ import shutil
 from operator import indexOf
 import zipfile as zipfile_py
 import chardet
-from io import TextIOWrapper
 from django.utils.translation import gettext as _
 from django.db.models import DateField, FloatField, CharField, IntegerField, BigIntegerField
 from django.db import transaction
@@ -16,7 +15,7 @@ from entrytool import models as entrytool_models
 from opal.core.fields import ForeignKeyOrFreeText
 from plugins.data_load.base_loader import Loader
 from plugins.data_load.load_utils import match_to_choice_if_possible, get_from_ll
-from plugins.data_load.load_data import get_encoding
+from plugins.data_load.load_data import LoadError
 from plugins.conditions.mm.management.commands.field_mapping import FIELD_MAPPING
 from plugins.conditions.mm.management.commands.translations import TRANSLATIONS
 from opal.models import Patient
@@ -199,6 +198,7 @@ def check_files(tmpDirectory, zip_file_name):
             top_level_errors.append(
                 _('%s is not utf-8 encoded' % found_name)
             )
+    return top_level_errors
 
 
 def create_patient_episode(patient_number):
@@ -920,19 +920,21 @@ def extract_files(zipped_folder, tmp_directory):
                 os.path.join(tmp_directory, name),
                 os.path.join(tmp_directory, os.path.basename(name))
             )
-        for name in name_list:
+        for name in os.listdir(tmp_directory):
             full_name = os.path.join(tmp_directory, name)
-            if os.path.isdir(full_name):
+            if not full_name.endswith(".csv"):
                 shutil.rmtree(full_name)
 
 
-@transaction.atomic
-def load_data(zipped_folder):
+def _load_data(zipped_folder):
     with tempfile.TemporaryDirectory() as tmp_directory:
         extract_files(zipped_folder, tmp_directory)
         errors = check_files(tmp_directory, zipped_folder)
         if errors:
-            return errors
+            return {
+                "top_level_errors": errors,
+                "row_errors": [],
+            }
 
         demographics_rows = get_data(
             os.path.join(tmp_directory, "datos demograficos.csv")
@@ -1003,3 +1005,15 @@ def load_data(zipped_folder):
         "top_level_errors": [],
         "row_errors": []
     }
+
+
+def load_data(zipfile):
+    errors = {}
+    try:
+        with transaction.atomic():
+            errors = _load_data(zipfile)
+            if errors["top_level_errors"] or errors["row_errors"]:
+                raise LoadError("rolling back transaction")
+    except LoadError:
+        pass
+    return errors
