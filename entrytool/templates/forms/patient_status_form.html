@@ -1,5 +1,8 @@
 {% load forms %}
 {% load custom_forms %}
+{% input field="PatientStatus.physician" %}
+{% input field="PatientStatus.status" %}
+{% datepicker field="PatientStatus.date_of_last_contact" %}
 {% checkbox field="PatientStatus.deceased" change='editing.patient_status.death_date=null; editing.patient_status.death_cause=null;' %}
 {% datepicker field="PatientStatus.death_date" show='editing.patient_status.deceased' %}
 {% select field="PatientStatus.death_cause" show='editing.patient_status.deceased'  %}
