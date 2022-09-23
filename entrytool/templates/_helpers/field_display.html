@@ -1,4 +1,8 @@
+{% if is_number %}
+<span ng-show="item.{{ field_name }} || item.{{ field_name }} === 0">
+{% else %}
 <span ng-show="item.{{ field_name }}">
+{% endif %}
   <div class="row display-row">
     <div class="col-md-7">
       <span class="display-label">{{ label }}</span>

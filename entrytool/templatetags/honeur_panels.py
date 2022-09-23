@@ -13,6 +13,14 @@ def is_boolean(field):
     return isinstance(field, (models.BooleanField, models.NullBooleanField,))
 
 
+def is_number(field):
+    return isinstance(field, (
+        models.IntegerField,
+        models.BigIntegerField,
+        models.FloatField,
+        models.DecimalField,
+    ))
+
 @register.inclusion_tag('_helpers/record_panel.html', takes_context=True)
 def record_panel(
     context,
@@ -32,4 +40,5 @@ def field_display(context, model_field):
     ctx["label"] = model._get_field_title(field_name)
     ctx["field_name"] = field_name
     ctx["is_date"] = is_date(field)
+    ctx["is_number"] = is_number(field)
     return ctx
