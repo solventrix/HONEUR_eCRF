@@ -92,7 +92,7 @@ class MMDiagnosisDetails(models.EpisodeSubrecord):
         blank=True, null=True, max_length=10, choices=R_ISS_STAGES, verbose_name=_("ISS Stage")
     )
     r_iss_stage = fields.CharField(
-        blank=True, null=True, max_length=10, choices=R_ISS_AT_ED_CHOICES, verbose_name=_("r-ISS at ED")
+        blank=True, null=True, max_length=10, choices=R_ISS_AT_ED_CHOICES, verbose_name=_("R ISS Stage")
     )
     ds_stage = fields.CharField(
         blank=True, null=True, max_length=10, choices=R_ISS_STAGES, verbose_name=_("DS Stage")
