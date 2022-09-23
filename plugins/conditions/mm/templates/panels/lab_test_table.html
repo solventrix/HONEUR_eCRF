@@ -7,7 +7,7 @@
           {% trans "Lab Tests" %}
           <span class="pull-right pointer edit">
             <a
-             ng-click="episode.recordEditor.newItem('{{ models.LabTest.get_api_name }}')"
+             ng-click="honeurPatientDetailCtrl.newItem('{{ models.LabTest.get_api_name }}', episode)"
             >
               <i class="fa fa-plus-circle edit pointer"></i>
             </a>
@@ -45,7 +45,7 @@
           <td>[[ item.calcium ]]</td>
           <td>[[ item.beta2m ]]</td>
           <td class="no-border last-column">
-            <i ng-click="episode.recordEditor.editItem('{{ models.LabTest.get_api_name }}', item)" class="fa fa-pencil edit pointer"></i>
+            <i ng-click="honeurPatientDetailCtrl.editItem('{{ models.LabTest.get_api_name }}', item, episode)" class="fa fa-pencil edit pointer"></i>
           </td>
         </tr>
       </table>
