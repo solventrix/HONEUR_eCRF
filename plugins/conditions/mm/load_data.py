@@ -182,15 +182,15 @@ class CologneLoader(BaseLoader):
         if deceased_status:
             patient_status.deceased = True
             if deceased_status == "mit":
-                patient_status.deah_cause = "Complications of Disease"
+                patient_status.death_cause = "Complications of Disease"
             elif deceased_status == "an":
-                patient_status.deah_cause = "Disease"
+                patient_status.death_cause = "Disease"
             elif deceased_status == "unbekannt":
-                patient_status.deah_cause = "Other"
+                patient_status.death_cause = "Other"
             else:
                 # If we don't know what it, put it on the model
                 # and it will be flagged as an error by the validation
-                patient_status.deah_cause = deceased_status
+                patient_status.death_cause = deceased_status
             patient_status.death_date = date_of_last_contact_or_date_of_death
         patient_status.set_consistency_token()
         patient_status.save()
