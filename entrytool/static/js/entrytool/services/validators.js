@@ -126,7 +126,7 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 			var error = true;
 			_.each(patient.episodes, function(episode){
 				_.each(episode.sct, function(sct){
-					if(sct.sct_date.isBefore(toMomentFilter(val), "d")){
+					if(sct.sct_date && sct.sct_date.isBefore(toMomentFilter(val), "d")){
 						error = false;
 					}
 				});
