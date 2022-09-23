@@ -1,5 +1,6 @@
 import io
 import datetime
+import csv
 from django.utils.translation import gettext as _
 from opal.models import Patient
 from entrytool import models as entry_models
@@ -122,6 +123,15 @@ class CologneLoader(BaseLoader):
                 )
                 lot_episode.sct_set.create()
 
+    def load_rows(self, data):
+        rows = list(csv.DictReader(data))
+        for _row in rows:
+            row = {k.strip().lower(): v for k, v in _row.items()}
+            self.idx += 1
+            self.row = row
+            self.load_row(row)
+        return self.errors
+
     def load_row(self, data):
         hospital_number = self.get_and_check_external_identifier("patienten-nr.")
         if not hospital_number:
@@ -180,7 +190,7 @@ class CologneLoader(BaseLoader):
         diagnosis.diag_date = diag_date
 
         high_risk_cytogenic = self.row[
-            "hochrisiko zytogen. (a) del17p, b) t(4;14), 3) t(14;16) "
+            "hochrisiko zytogen. (a) del17p, b) t(4;14), 3) t(14;16)"
         ].strip()
         if not high_risk_cytogenic == "nein":
             if "t(4;14)" in high_risk_cytogenic:
@@ -200,7 +210,7 @@ class CologneLoader(BaseLoader):
 
             if len(other):
                 self.unknown_value(
-                    "hochrisiko zytogen. (a) del17p, b) t(4;14), 3) t(14;16) ",
+                    "hochrisiko zytogen. (a) del17p, b) t(4;14), 3) t(14;16)",
                     expected_values=["del17p", "t(4;14)", "t(14;16)"],
                 )
         r_iss_bei_ed = self.row["r-iss bei ed"]
@@ -229,7 +239,7 @@ class CologneLoader(BaseLoader):
             start_date_column="datum beginn 1.-linie",
             end_date_column="datum ende 1.-linie",
             category_column="art der 1st-line",
-            regimen_column="erhaltungs-therapie ",
+            regimen_column="erhaltungs-therapie",
             end_treatment_reason_column="keine therapie 2. linie grund",
         )
 
@@ -238,7 +248,7 @@ class CologneLoader(BaseLoader):
             start_date_column="datum beginn 2. linie2",
             end_date_column="datum ende 2. linie",
             category_column="art 2. linie2",
-            regimen_column="erhaltungstherapie 2. linie ",
+            regimen_column="erhaltungstherapie 2. linie",
             end_treatment_reason_column="keine therapie 3. line grund2",
         )
 
@@ -253,23 +263,23 @@ class CologneLoader(BaseLoader):
         self.create_line_of_treatment(
             patient,
             start_date_column="datum beginn 4. linie",
-            end_date_column="datum ende 4. linie ",
+            end_date_column="datum ende 4. linie",
             category_column="art der 4.linie",
-            end_treatment_reason_column="keine 5. linie  grund ",
+            end_treatment_reason_column="keine 5. linie  grund",
         )
 
         self.create_line_of_treatment(
             patient,
-            start_date_column="datum beginn 5. linie ",
-            end_date_column="datum ende 5. linie ",
+            start_date_column="datum beginn 5. linie",
+            end_date_column="datum ende 5. linie",
             category_column="art der 5. linie",
-            end_treatment_reason_column="warum keine 6. linie ",
+            end_treatment_reason_column="warum keine 6. linie",
         )
 
         self.create_line_of_treatment(
             patient,
-            start_date_column="datum beginn 6. linie ",
-            end_date_column="datum ende 6. linie ",
+            start_date_column="datum beginn 6. linie",
+            end_date_column="datum ende 6. linie",
             category_column="art der 6. linie",
         )
 
