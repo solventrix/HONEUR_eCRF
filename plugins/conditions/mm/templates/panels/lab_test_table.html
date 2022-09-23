@@ -30,7 +30,7 @@
           <th>{% trans "Beta2m" %}</th>
           <th></th>
         </tr>
-        <tr ng-repeat="item in episode.lab_test | orderBy: '-date' as lab_tests">
+        <tr ng-class="{'imported-validation-error': honeurPatientDetailCtrl.hasError(episode.id, 'lab_test', item.id)}"  ng-repeat="item in episode.lab_test | orderBy: '-date' as lab_tests">
           <td class="first-column no-border">[[ item.hospital | translate ]] <br>[[ item.date | displayDate ]]</td>
           <td>[[ item.kappa_light_chain_count ]]</td>
           <td>[[ item.lambda_light_chain_count ]]</td>
