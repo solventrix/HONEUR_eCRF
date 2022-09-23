@@ -21,15 +21,15 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 		// returns the first start date and the last end date
 		// note end date may be null;
 		// pluck the regimen start dates, sort them and return the first
-		var episodeMin = _.sortBy(_.pluck(regimen, "start_date"), function(dt){return dt.toDate()})[0];
-		var episodeMax = null;
-		// regimen end date is not required, remove the nulls and
-		// make sure any of them are populated
-		var episodeMaxVals = _.compact(_.pluck(regimen, "end_date"));
-		if (episodeMaxVals.length) {
-			episodeMax = _.sortBy(episodeMaxVals, function(dt){return dt.toDate()}).reverse()[0];
+		var startDates = _.compact(_.pluck(regimen, "start_date"));
+		var endDates = _.compact(_.pluck(regimen, "end_date"))
+		var dates = startDates.concat(endDates);
+		if(dates.length){
+			return [dates[0], _.last(dates)]
 		}
-		return [episodeMin, episodeMax];
+		else{
+			return [null, null];
+		}
 	}
 
 	var responseDateWithRegimen = function(fieldValue, regimen){
@@ -126,7 +126,7 @@ angular.module('opal.services').service('Validators', function(EntrytoolHelper, 
 			var error = true;
 			_.each(patient.episodes, function(episode){
 				_.each(episode.sct, function(sct){
-					if(sct.sct_date.isBefore(toMomentFilter(val), "d")){
+					if(sct.sct_date && sct.sct_date.isBefore(toMomentFilter(val), "d")){
 						error = false;
 					}
 				});
