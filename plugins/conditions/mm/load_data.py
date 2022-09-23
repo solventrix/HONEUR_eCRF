@@ -188,6 +188,9 @@ def check_files(tmpDirectory, zip_file_name):
 def create_patient_episode(patient_number):
     patient = Patient.objects.create()
     patient.demographics_set.update(hospital_number=patient_number)
+    patient.patientload_set.update(
+        source=entrytool_models.PatientLoad.LOADED_FROM_FILE
+    )
     mm_episode = patient.episode_set.create(
         category_name=episode_categories.MM.display_name
     )
