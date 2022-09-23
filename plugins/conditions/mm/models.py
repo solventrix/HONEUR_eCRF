@@ -256,7 +256,7 @@ class LabTest(models.EpisodeSubrecord):
     )
 
     hospital = models.ForeignKeyOrFreeText(Hospital, verbose_name=_("Hospital"))
-    date = fields.DateField(verbose_name=_("Date"))
+    date = fields.DateField(verbose_name=_("Date"), blank=True, null=True)
 
     LDH = fields.FloatField(blank=True, null=True, verbose_name=_("LDH"))
     beta2m = fields.FloatField(blank=True, null=True, verbose_name=_("beta2m"))
