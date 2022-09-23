@@ -397,7 +397,7 @@ angular.module('opal.services').service('ValidationRules', function(Validators) 
 		lab_test: {
 			date: {
 				errors: [
-					[Validators.afterDateOfBirth, "{% trans "Lab test date is before the date of birth" %}"]
+					[Validators.afterDateOfBirth, "{% trans "Lab test date is before the date of birth" %}"],
 					[Validators.required, "{% trans "Date is required" %}"]
 				]
 			},
