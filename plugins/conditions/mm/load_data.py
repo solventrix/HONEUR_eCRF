@@ -115,13 +115,22 @@ class CologneLoader(BaseLoader):
             regimen.end_date = end_date
             regimen.category = category
             regimen.regimen = regimen_val
-            regimen.end_treatment_reason = end_treatment_reason
+            if end_treatment_reason:
+                regimen.end_treatment_reason = end_treatment_reason
+            regimen.set_consistency_token()
+            regimen.save()
 
             if "SCT" in category:
                 lot_episode.mmstemcelltransplanteligibility_set.update(
                     eligible_for_stem_cell_transplant=True
                 )
-                lot_episode.sct_set.create()
+                eligible = lot_episode.mmstemcelltransplanteligibility_set.get()
+                eligible.eligible_for_stem_cell_transplant = True
+                eligible.set_consistency_token()
+                eligible.save()
+                sct = lot_episode.sct_set.create()
+                sct.set_consistency_token()
+                sct.save()
 
     def load_rows(self, data):
         rows = list(csv.DictReader(data))
@@ -156,6 +165,7 @@ class CologneLoader(BaseLoader):
         demographics.hospital_number = hospital_number
         demographics.date_of_birth = date_of_birth
         demographics.sex = gender
+        demographics.set_consistency_token()
         demographics.save()
 
         # ==== Patient Status ====
@@ -234,9 +244,11 @@ class CologneLoader(BaseLoader):
         beta2m = self.check_and_get_float("ß2m mg/l (<3,5 oder >5,5mg/l)")
         albumin = self.check_and_get_float("albumin g/l (>35g/dl = normal)")
         if ldh is not None or beta2m is not None or albumin is not None:
-            mm_models.LabTest.objects.create(
+            lab_test = mm_models.LabTest.objects.create(
                 LDH=ldh, beta2m=beta2m, albumin=albumin, episode=episode
             )
+            lab_test.set_consistency_token()
+            lab_test.save()
 
         # === Line Of Treatments ===
         self.create_line_of_treatment(
