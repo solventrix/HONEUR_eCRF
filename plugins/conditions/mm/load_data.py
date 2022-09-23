@@ -144,6 +144,9 @@ class CologneLoader(BaseLoader):
         elif gender_string == "m":
             gender = "Male"
         patient = Patient.objects.create()
+        patient.patientload_set.update(
+            source=entry_models.PatientLoad.LOADED_FROM_FILE
+        )
         episode = patient.episode_set.create(
             category_name=episode_categories.MM.display_name
         )
@@ -179,6 +182,7 @@ class CologneLoader(BaseLoader):
                 # and it will be flagged as an error by the validation
                 patient_status.deah_cause = deceased_status
             patient_status.death_date = date_of_last_contact_or_date_of_death
+        patient_status.set_consistency_token()
         patient_status.save()
 
         # ==== Diagnosis ====
@@ -222,6 +226,7 @@ class CologneLoader(BaseLoader):
         if iss_mm_ed == "-":
             iss_mm_ed = None
         diagnosis.iss_stage = iss_mm_ed
+        diagnosis.set_consistency_token()
         diagnosis.save()
 
         # ==== Lab Tests ====
