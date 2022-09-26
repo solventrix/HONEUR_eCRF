@@ -33,7 +33,7 @@ def record_panel(
 
 
 @register.inclusion_tag('_helpers/field_display.html', takes_context=True)
-def field_display(context, model_field):
+def field_display(context, model_field, **kwargs):
     _, field_name = model_field.split('.')
     model, field = forms._model_and_field_from_path(model_field)
     ctx = {}

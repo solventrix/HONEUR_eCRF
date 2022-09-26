@@ -1,25 +1,44 @@
 {% load forms %}
 {% load custom_forms %}
 {% load i18n %}
-{% custom_datepicker field="LabTest.date" %}
-{% input field="LabTest.pcr" %}
-{% input field="LabTest.circulating_plasma_cells" %}
-{% input field="LabTest.troponine" %}
-{% input field="LabTest.total_proteins" %}
-{% input field="LabTest.platelets" %}
-{% input field="LabTest.beta_2_microglobulin" %}
-{% input field="LabTest.alkaline_phosphatase" %}
-{% input field="LabTest.albumin" %}
-{% input field="LabTest.creatinine" %}
-{% input field="LabTest.calcium" %}
-{% input field="LabTest.hemoglobin" %}
-{% input field="LabTest.proteinuria" %}
-{% input field="LabTest.proteinuria_g24" %}
-{% input field="LabTest.leucocytes" %}
-{% input field="LabTest.nt_pro_bnp" %}
-{% input field="LabTest.ldh" %}
-{% input field="LabTest.ldh_type" %}
-{% radio field="LabTest.glomerular_filtration_formula" %}
-{% input field="LabTest.glomerular_filtration" %}
-{% custom_datepicker field="LabTest.glomerular_filtration_formula_date" %}
-{% textarea field="LabTest.filter_formula_description" %}
+<div class="row">
+  <div class="col-md-9 col-md-offset-3">
+    <h3 class="content-offset-10">{% trans "Blood Count" %}</h3>
+  </div>
+</div>
+{% number field="LabTest.hemoglobin" unit="g/dl" %}
+{% number field="LabTest.leucocytes" unit="10&sup3;/mm&sup3;" %}
+{% number field="LabTest.neutrophils" unit="10&sup3;/mm&sup3;" %}
+{% number field="LabTest.platelets" unit="10&sup3;/mm&sup3;" %}
+
+<div class="row">
+  <div class="col-md-9 col-md-offset-3">
+    <h3 class="content-offset">{% trans "Biochemistry" %}</h3>
+  </div>
+</div>
+{% number field="LabTest.creatinine" unit="mg/dL" %}
+{% number field="LabTest.total_proteins" unit="g/dL" %}
+{% number field="LabTest.albumin" unit="g/dL" %}
+{% number field="LabTest.alkaline_phosphatase" unit="U/L" %}
+{% number field="LabTest.ldh" unit="U/L" %}
+
+{% number field="LabTest.calcium" unit="mg/dL" %}
+{% number field="LabTest.pcr" unit="mg/L" %}
+{% number field="LabTest.troponine" unit="ng/L" %}
+{% number field="LabTest.nt_pro_bnp" unit="ng/L" %}
+{% number field="LabTest.glomerular_filtration" unit="mL/min/1.73 m/mm&sup2;" %}
+
+<div class="row">
+  <div class="col-md-9 col-md-offset-3">
+    <h3 class="content-offset">{% trans "Immunology" %}</h3>
+  </div>
+</div>
+{% number field="LabTest.beta_2_microglobulin" unit="mcg/mL" %}
+
+<div class="row">
+  <div class="col-md-9 col-md-offset-3">
+    <h3 class="content-offset">{% trans "Urine" %}</h3>
+  </div>
+</div>
+{% number field="LabTest.proteinuria" unit="mg/dl" %}
+{% number field="LabTest.proteinuria_g24" unit="g/24h" %}

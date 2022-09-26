@@ -1,12 +1,23 @@
 {% load honeur_panels %}
-{% field_display "MProteinMesurements.date" %}
-{% field_display "MProteinMesurements.serum_amount" %}
-{% field_display "MProteinMesurements.heavy_chain_type" %}
-{% field_display "MProteinMesurements.heavy_chain_type_other" %}
-{% field_display "MProteinMesurements.light_chain_type" %}
-{% field_display "MProteinMesurements.lambda_light_chain_count" %}
+{% load i18n %}
+{% with label_size="col-md-9" value_size="col-md-3" %}
+<h4 ng-if="
+  (item.serum_amount !== null && item.serum_amount !== undefined) ||
+  (item.lambda_light_chain_count !== null && item.lambda_light_chain_count !== undefined) ||
+  (item.kappa_light_chain_count !== null && item.kappa_light_chain_count !== undefined) ||
+  (item.kappa_lambda_ratio !== null && item.kappa_lambda_ratio !== undefined)
+">{% trans "In Peripheral Blood" %}</h4>
+{% field_display "MProteinMesurements.serum_amount" unit="g/dL" %}
+{% field_display "MProteinMesurements.lambda_light_chain_count"  unit="mg/L" %}
+{% field_display "MProteinMesurements.kappa_light_chain_count" unit="mg/L" %}
 {% field_display "MProteinMesurements.kappa_lambda_ratio" %}
-{% field_display "MProteinMesurements.urinary_monoclonal_count" %}
-{% field_display "MProteinMesurements.plasma_cells_in_bone_marrow" %}
-{% field_display "MProteinMesurements.freelite_count" %}
-{% field_display "MProteinMesurements.heavylite_count" %}
+
+<h4 ng-if="
+  (item.urinary_monoclonal_count !== null && item.urinary_monoclonal_count !== undefined)
+">{% trans "In Urine" %}</h4>
+{% field_display "MProteinMesurements.urinary_monoclonal_count" unit="g/24h" %}
+<h4 ng-if="
+  (item.plasma_cells_in_bone_marrow !== null && item.plasma_cells_in_bone_marrow !== undefined)
+">{% trans "In Bone Marrow" %}</h4>
+{% field_display "MProteinMesurements.plasma_cells_in_bone_marrow" unit="%" %}
+{% endwith %}
