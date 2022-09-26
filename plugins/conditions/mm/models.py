@@ -157,6 +157,9 @@ class MMPatientStatus(models.PatientSubrecord):
         ("Lost", _("Lost"),),
         ("Alive", _("Alive"),),
     )
+    last_seen = fields.DateField(
+        blank=True, null=True, verbose_name=_("Last Seen")
+    )
     status = fields.CharField(
         blank=True,
         null=True,

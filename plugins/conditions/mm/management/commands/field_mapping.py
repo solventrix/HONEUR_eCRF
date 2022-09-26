@@ -1127,6 +1127,7 @@ FIELD_MAPPING = {
         "infection_type",
     ),
     ("datos enfermedad 6.csv", "troponina_6"): ("LabTest", "troponine"),
+    ("situacion actual.csv", "fecha_estatus"): ("MMPatientStatus", "last_seen"),
     ("situacion actual.csv", "causa_muerte"): ("MMPatientStatus", "cause_of_death"),
     ("situacion actual.csv", "causa_muerte_otros"): (
         "MMPatientStatus",
