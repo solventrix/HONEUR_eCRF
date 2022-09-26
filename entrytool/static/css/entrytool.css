@@ -415,4 +415,15 @@ h1 img {
   color: #002562;
   cursor: pointer;
 }
+
+.record-panel h4 {
+  font-size: 14px;
+  font-weight: 800;
+  margin-top: 25px;
+  margin-bottom: 0;
+}
+
+.record-panel h4:first-of-type {
+  margin-top: 0;
+}
 /*# sourceMappingURL=entrytool.css.map */

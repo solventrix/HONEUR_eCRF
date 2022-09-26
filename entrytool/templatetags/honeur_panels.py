@@ -33,7 +33,7 @@ def record_panel(
 
 
 @register.inclusion_tag('_helpers/field_display.html', takes_context=True)
-def field_display(context, model_field):
+def field_display(context, model_field, **kwargs):
     _, field_name = model_field.split('.')
     model, field = forms._model_and_field_from_path(model_field)
     ctx = {}
@@ -41,4 +41,7 @@ def field_display(context, model_field):
     ctx["field_name"] = field_name
     ctx["is_date"] = is_date(field)
     ctx["is_number"] = is_number(field)
+    ctx["label_size"] = kwargs.get("label_size", context.get("label_size", "col-md-5"))
+    ctx["value_size"] = kwargs.get("value_size", context.get("value_size", "col-md-7"))
+    ctx["unit"] = kwargs.get("unit")
     return ctx

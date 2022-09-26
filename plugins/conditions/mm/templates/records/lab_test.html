@@ -1,22 +1,49 @@
 {% load honeur_panels %}
-{% field_display "LabTest.date" %}
-{% field_display "LabTest.pcr" %}
-{% field_display "LabTest.circulating_plasma_cells" %}
-{% field_display "LabTest.troponine" %}
-{% field_display "LabTest.total_proteins" %}
-{% field_display "LabTest.platelets" %}
-{% field_display "LabTest.beta_2_microglobulin" %}
-{% field_display "LabTest.alkaline_phosphatase" %}
-{% field_display "LabTest.albumin" %}
-{% field_display "LabTest.calcium" %}
-{% field_display "LabTest.hemoglobin" %}
-{% field_display "LabTest.proteinuria" %}
-{% field_display "LabTest.proteinuria_g24" %}
-{% field_display "LabTest.leucocytes" %}
-{% field_display "LabTest.nt_pro_bnp" %}
-{% field_display "LabTest.ldh" %}
-{% field_display "LabTest.ldh_type" %}
-{% field_display "LabTest.glomerular_filtration" %}
-{% field_display "LabTest.glomerular_filtration_formula" %}
-{% field_display "LabTest.glomerular_filtration_formula_date" %}
-{% field_display "LabTest.filter_formula_description" %}
+{% load i18n %}
+<h4 ng-if="
+  (item.hemoglobin !== null && item.hemoglobin !== undefined) ||
+  (item.leucocytes !== null && item.leucocytes !== undefined) ||
+  (item.neutrophils !== null && item.neutrophils !== undefined) ||
+  (item.platelets !== null && item.platelets !== undefined)
+">{% trans "Blood Count" %}</h4>
+{% field_display "LabTest.hemoglobin" unit="g/dl" %}
+{% field_display "LabTest.leucocytes" unit="10&sup3;/mm&sup3;" %}
+{% field_display "LabTest.neutrophils" unit="10&sup3;/mm&sup3;" %}
+{% field_display "LabTest.platelets" unit="10&sup3;/mm&sup3;" %}
+
+<h4 ng-if="
+  (item.creatinine !== null && item.creatinine !== undefined) ||
+  (item.total_proteins !== null && item.total_proteins !== undefined) ||
+  (item.albumin !== null && item.albumin !== undefined) ||
+  (item.alkaline_phosphatase !== null && item.alkaline_phosphatase !== undefined) ||
+  (item.ldh !== null && item.ldh !== undefined) ||
+  (item.calcium !== null && item.calcium !== undefined) ||
+  (item.pcr !== null && item.pcr !== undefined) ||
+  (item.troponine !== null && item.troponine !== undefined) ||
+  (item.nt_pro_bnp !== null && item.nt_pro_bnp !== undefined) ||
+  (item.glomerular_filtration !== null && item.glomerular_filtration !== undefined)
+">
+  {% trans "Biochemistry" %}</h4>
+{% field_display "LabTest.creatinine" unit="mg/dL" %}
+{% field_display "LabTest.total_proteins" unit="g/dL" %}
+{% field_display "LabTest.albumin" unit="g/dL" %}
+{% field_display "LabTest.alkaline_phosphatase" unit="U/L" %}
+{% field_display "LabTest.ldh" unit="U/L" %}
+
+{% field_display "LabTest.calcium" unit="mg/dL" %}
+{% field_display "LabTest.pcr" unit="mg/L" %}
+{% field_display "LabTest.troponine" unit="ng/L" %}
+{% field_display "LabTest.nt_pro_bnp" unit="ng/L" %}
+{% field_display "LabTest.glomerular_filtration" unit="mL/min/1.73 m/mm&sup2;" %}
+
+<h4 ng-if="
+  (item.beta_2_microglobulin !== null && item.hembeta_2_microglobulinoglobin !== undefined)
+">{% trans "Immunology" %}</h4>
+{% field_display "LabTest.beta_2_microglobulin" unit="mcg/mL" %}
+
+<h4 ng-if="
+(item.proteinuria !== null && item.proteinuria !== undefined) ||
+(item.proteinuria_g24 !== null && item.proteinuria_g24 !== undefined)
+">{% trans "Urine" %}</h4>
+{% field_display "LabTest.proteinuria" unit="mg/dl" %}
+{% field_display "LabTest.proteinuria_g24" unit="g/24h" %}

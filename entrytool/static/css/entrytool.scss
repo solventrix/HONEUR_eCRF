@@ -433,3 +433,17 @@ h1 img {
     color: $janssen-blue;
     cursor: pointer;
 }
+
+
+.record-panel{
+    h4{
+        font-size: 14px;
+        font-weight: 800;
+        margin-top: 25px;
+        margin-bottom: 0;
+    }
+    h4:first-of-type{
+        margin-top: 0;
+    }
+
+}

@@ -292,28 +292,62 @@ def create_datos_enfermedad(
         episode=episode, date=clinical_date
     )
     clinical_presentation_populated = False
-    lab_test = models.LabTest(episode=episode, date=lab_test_date)
+    lab_test = models.LabTest(episode=episode)
     lab_test.set_consistency_token()
     lab_test_populated = False
     cytogenetics = models.Cytogenetics(episode=episode, date=lab_test_date)
     cytogenetics.set_consistency_token()
     cytogenetics_populated = False
+    immunofixation = models.Immunofixation(episode=episode)
+    immunofixation_populated = False
     imaging = models.Imaging(episode=episode, date=clinical_date)
     imaging.set_consistency_token()
     imaging_populated = False
     mproteinmesurements = models.MProteinMesurements(
-        episode=episode, date=lab_test_date
+        episode=episode
     )
     mproteinmesurements.set_consistency_token()
     mproteinmesurements_populated = False
 
     for key, value in data.items():
         subrecord_name_and_field = get_field_mapping(file_name, key)
+        if key.lower().startswith('tipo_cadena_pesada_otros_'):
+            if value.lower() == "igm":
+                immunofixation.monoclonal_ig_m_protein_serum = models.Immunofixation.POSITIVE
+                immunofixation_populated = True
+        elif key.lower().startswith('tipo_cadena_pesada_'):
+            value = value.lower()
+            if value == 'igg':
+                immunofixation.monoclonal_ig_g_protein_serum = models.Immunofixation.POSITIVE
+                immunofixation_populated = True
+            elif value == 'iga':
+                immunofixation.monoclonal_ig_a_protein_serum = models.Immunofixation.POSITIVE
+                immunofixation_populated = True
+            elif value == 'sincadenapesada':
+                immunofixation.monoclonal_ig_g_protein_serum = models.Immunofixation.NEGATIVE
+                immunofixation.monoclonal_ig_a_protein_serum = models.Immunofixation.NEGATIVE
+                immunofixation.monoclonal_ig_m_protein_serum = models.Immunofixation.NEGATIVE
+                immunofixation_populated = True
+            elif value == 'igd' or value == 'otros':
+                # no field has been prescribed for these values
+                continue
+
+        if key.lower().startswith('tipo_cadena_ligera_'):
+            value = value.lower()
+            if value == 'kappa':
+                immunofixation.monoclonal_kappa_chain_serum = models.Immunofixation.POSITIVE
+            elif value == 'lambda':
+                immunofixation.monoclonal_lambda_chain_serum = models.Immunofixation.POSITIVE
+
+
+            # SinCadenaPesada
+
         if not subrecord_name_and_field:
             continue
         subrecord_name, field = subrecord_name_and_field
         if subrecord_name == "MMDiagnosisDetails":
             if field == "subclassification":
+                immunofixation
                 heavy_chain_type, light_chain_type = get_sub_classification(value)
                 loader.check_and_set_field(
                     diagnosis_details,
@@ -369,6 +403,9 @@ def create_datos_enfermedad(
         imaging.save()
     if mproteinmesurements_populated:
         mproteinmesurements.save()
+
+    if immunofixation_populated:
+        immunofixation.save()
 
 
 def create_situation_actual(episode, data, loader, idx):
@@ -849,16 +886,7 @@ def populate_mprotein_measurements_from_treatment(episode, file_name, iterator, 
             "tratamiento_recaida_fecha_inicio_{iterator}",
             "tratamiento_recaida_fecha_fin_{iterator}",
         ]
-        # We don't have a date to use so we will use the highest
-        # treatment date (start or end) available
-        dates = [translate_date(data.get(i)) for i in date_fields if data.get(i)]
-        protein_date = None
-        if len(dates):
-            if len(dates) == 1:
-                protein_date = dates[0]
-            protein_date = sorted(dates)[-1]
         m_protein = models.MProteinMesurements(
-            date=protein_date,
             episode=episode,
         )
         populate_fields_on_model(m_protein, file_name, m_protein_mesurements, data, loader, idx)
