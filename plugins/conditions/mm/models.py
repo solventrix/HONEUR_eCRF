@@ -830,9 +830,11 @@ class MProteinMesurements(models.EpisodeSubrecord):
 
 
 class Immunofixation(models.EpisodeSubrecord):
+    POSITIVE = "Positive"
+    NEGATIVE = "Negative"
     IMMUNOFIXATION_CHOICES = (
-        ("Positive", _('Positive'),),
-        ("Negative", _('Negative'),),
+        (POSITIVE, _('Positive'),),
+        (NEGATIVE, _('Negative'),),
         ("Unrealized", _('Unrealized'),),
     )
     monoclonal_ig_g_protein_serum = fields.CharField(
