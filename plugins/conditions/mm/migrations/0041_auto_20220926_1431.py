@@ -15,9 +15,4 @@ class Migration(migrations.Migration):
             name='last_seen',
             field=models.DateField(blank=True, null=True, verbose_name='Last Seen'),
         ),
-        migrations.AlterField(
-            model_name='mproteinmesurements',
-            name='plasma_cells_in_bone_marrow',
-            field=models.FloatField(blank=True, max_length=256, null=True, verbose_name='Plasma Cells In Bone Marrow'),
-        ),
     ]
