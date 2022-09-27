@@ -4,11 +4,11 @@
     <h3>
       {{ models.Demographics.get_display_name }}
       <i class="fa fa-pencil edit pull-right pointer"
-         ng-click="patient.recordEditor.editItem('demographics', patient.demographics[0])"></i>
+         ng-click="honeurPatientDetailCtrl.editItem('demographics', episode.demographics[0], episode)"></i>
     </h3>
   </div>
   <ul class="list-group">
-    <li class="list-group-item">
+    <li class="list-group-item" ng-class="{'imported-validation-error': honeurPatientDetailCtrl.hasError(episode.id, 'demographics', episode.demographics[0].id)}">
       <div class="row">
         <div class="col-md-6">
           <span class="display-label">{% trans "ID" %}</span>
@@ -17,12 +17,12 @@
           [[ patient.id ]]
         </div>
       </div>
-      <div ng-show="patient.demographics[0].hospital_number" class="row">
+      <div class="row">
         <div class="col-md-6">
           <span class="display-label">{% trans "External Identifier" %}</span>
         </div>
         <div class="col-md-6">
-          [[ patient.demographics[0].hospital_number]]
+          [[ episode.demographics[0].hospital_number]]
         </div>
       </div>
       <div class="row">
@@ -30,7 +30,7 @@
           <span class="display-label">{% trans "Birth Date" %}</span>
         </div>
         <div class="col-md-6">
-          [[ patient.demographics[0].date_of_birth | displayDate ]]
+          [[ episode.demographics[0].date_of_birth | displayDate ]]
         </div>
       </div>
       <div class="row">
@@ -38,7 +38,7 @@
           <span class="display-label">{% trans "Sex" %}</span>
         </div>
         <div class="col-md-6">
-          [[ patient.demographics[0].sex | translate ]]
+          [[ episode.demographics[0].sex | translate ]]
         </div>
       </div>
     </li>

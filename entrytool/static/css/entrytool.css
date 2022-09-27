@@ -1,25 +1,88 @@
+.content-offset-below-25 {
+  margin-bottom: 25px;
+}
+
+.content-offset-left-10 {
+  margin-left: 10px;
+}
+
 .entry-tool .panel-heading i.edit,
 .entry-tool .list-group-item i.edit,
 .entry-tool .list-group-item i.delete {
   display: block;
 }
+
 .entry-tool .edit a i {
   color: #1a1a1a;
 }
+
 .entry-tool a.disabled {
   opacity: 0.5;
 }
+
 .entry-tool a.disabled:hover {
   color: inherit;
 }
+
+.entry-tool .additional-charecteristics-table, .entry-tool .cytogenetics-table, .entry-tool .additional-charecteristics-table {
+  text-align: center;
+  margin-left: 20px;
+}
+
+.entry-tool .additional-charecteristics-table .table-row, .entry-tool .cytogenetics-table .table-row, .entry-tool .additional-charecteristics-table .table-row {
+  margin-bottom: 1px;
+}
+
+.entry-tool .additional-charecteristics-table .column, .entry-tool .cytogenetics-table .column, .entry-tool .additional-charecteristics-table .column {
+  border-top: 1px solid #dee2e6;
+}
+
+.entry-tool .additional-charecteristics-table .column, .entry-tool .additional-charecteristics-table .header, .entry-tool .cytogenetics-table .column, .entry-tool .cytogenetics-table .header, .entry-tool .additional-charecteristics-table .column, .entry-tool .additional-charecteristics-table .header {
+  margin-top: -1px;
+  padding: 8px;
+}
+
+.entry-tool .additional-charecteristics-table .first-column, .entry-tool .cytogenetics-table .first-column, .entry-tool .additional-charecteristics-table .first-column {
+  padding: 8px;
+  margin-top: -9px;
+}
+
+.entry-tool .additional-charecteristics-table .column.last-column, .entry-tool .cytogenetics-table .column.last-column, .entry-tool .additional-charecteristics-table .column.last-column {
+  padding: 4px 4px 8px 4px;
+}
+
+.entry-tool .additional-charecteristics-table .column.last-column .fa, .entry-tool .cytogenetics-table .column.last-column .fa, .entry-tool .additional-charecteristics-table .column.last-column .fa {
+  padding-top: 6px;
+}
+
 .entry-tool .follow-up-table {
   text-align: center;
 }
+
 .entry-tool .follow-up-table .column {
   border-top: 1px solid #dee2e6;
 }
-.entry-tool .follow-up-table .column, .entry-tool .follow-up-table .first-column, .entry-tool .follow-up-table .header {
+
+.entry-tool .follow-up-table .column, .entry-tool .follow-up-table .header {
+  margin-top: 1px;
   padding: 8px;
+}
+
+.entry-tool .follow-up-table .first-column {
+  padding: 8px;
+  margin-top: 2px;
+}
+
+.entry-tool .follow-up-table .column.last-column {
+  padding: 4px 4px 8px 4px;
+}
+
+.entry-tool .follow-up-table .column.last-column .fa {
+  padding-top: 6px;
+}
+
+.red {
+  color: #ff3309;
 }
 
 .padding0 {
@@ -105,7 +168,8 @@ h1 img {
 
 .ngProgressLiteBar {
   background-color: #0794e0;
-  box-shadow: 0 0 10px 0;
+  -webkit-box-shadow: 0 0 10px 0;
+          box-shadow: 0 0 10px 0;
   /* Inherits the font color */
   top: 50px;
 }
@@ -116,7 +180,8 @@ h1 img {
 
 .panel {
   border: none;
-  box-shadow: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
 
 .panel.panel-primary .panel-heading {
@@ -164,10 +229,17 @@ h1 img {
   text-transform: uppercase;
   letter-spacing: 0.2rem;
   border-radius: 0px;
+  color: white;
 }
+
 .btn-primary:hover, .btn-primary:focus {
+  color: white;
   background-color: #0794e0;
   border-color: #0794e0;
+}
+
+.panel.panel-primary .panel-heading a.btn-primary:hover {
+  color: white;
 }
 
 .btn-cancel, .btn-secondary, .btn {
@@ -214,8 +286,118 @@ h1 img {
 .number .warning-block {
   display: none;
 }
+
 .number.warning .warning-block {
   display: block;
 }
 
+.mm-table td, .mm-table th {
+  text-align: center;
+}
+
+.mm-table td.first-column, .mm-table th.first-column {
+  text-align: left;
+  width: 100px;
+}
+
+.mm-table td.last-column {
+  text-align: right;
+  padding-right: 16px;
+}
+
+.mm-table .no-border {
+  border: none;
+}
+
+.mm-table i {
+  font-size: 12px;
+}
+
+.has-error p.help-block {
+  color: #737373;
+}
+
+.imported-validation-error {
+  background-color: #C07A7A;
+}
+
+.no-top-border {
+  border-top: none;
+}
+
+.file {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  height: 34px;
+}
+
+.file input {
+  min-width: 400px;
+  margin: 0;
+  filter: alpha(opacity=0);
+  opacity: 0;
+}
+
+#faux-file-field {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 100;
+  height: 34px;
+  padding: 6px 12px;
+  line-height: 1.5;
+  color: #555;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+#faux-file-field:after {
+  content: attr(data-content);
+  color: #666;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+#faux-file-label {
+  position: absolute;
+  top: 0;
+  right: -1px;
+  bottom: -1px;
+  z-index: 101;
+  display: block;
+  text-transform: uppercase;
+  font-weight: 400;
+  height: 34px;
+  padding: .5rem 1rem;
+  line-height: 1.5;
+  color: white;
+  background-color: #002562;
+  border: .075rem solid #ddd;
+  border-radius: 0 .25rem .25rem 0;
+}
+
+.faux-file-error-text, .error .faux-file-help-text {
+  display: none;
+}
+
+.faux-file-help-text, .error .faux-file-error-text {
+  display: inline-block;
+}
+
+.pagination > li > a:hover,
+.pagination > li > a:active
+.pagination > li > a:focus {
+  color: #002562;
+}
+
+.pagination > li > a {
+  color: #002562;
+  cursor: pointer;
+}
 /*# sourceMappingURL=entrytool.css.map */
