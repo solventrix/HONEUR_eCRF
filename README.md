@@ -223,7 +223,7 @@ the UI.
 
 This information is contained within a datastructue as follows:
 
-```
+```python
 {
     # Errors related to the files themselves e.g. Not a zipfile / encoding / missing files
     "top_level_errors": ["Strings containing errors", "These should not be related to data"],
