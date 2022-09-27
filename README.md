@@ -33,6 +33,9 @@ python manage.py createopalsuperuser
 
 To add a user you must have a user account with relevant privileges.
 
+You can create an initial user using the `create opalsuperuser` management
+command noted in the installation section.
+
 1. Log in to the application
 2. Click the Admin button
 3. In the AUTHENTICATION AND AUTHORIZATION heading click the Add button next on the Users row.
@@ -52,6 +55,14 @@ In addition to standard Django deployment management commands (e.g. `collectstat
 This ensures reference data in the database contains all the values required.
 
 Production deployments would not be expected to run sqlite, which is only suited to development environments. Example configuration for PostgreSQL can be found in the [Django documentation](https://docs.djangoproject.com/en/2.2/ref/settings/#std:setting-HOST). The section on [deploying Django](https://docs.djangoproject.com/en/3.1/howto/deployment/) will also be helpful.
+
+Where installations are expected to include the load of initial data via file
+upload, it may be useful to consider the configuration of timeout parameters
+for both web and application servers.
+
+This functionality currently processes data uploads in a HTTP request, for
+large files this may exceed the default process timeout for either http or
+application server.
 
 ## Customising the look and feel of the application
 
@@ -126,118 +137,109 @@ Once the model is created the database needs to be updated:
 
 We can then create form and display templates for this model by running `python manage.py scaffold entrytool` this will create the templates in `entrytool/templates/records/$MODELNAME.html` and `entrytool/templates/forms/$MODELNAME_form.html`. These can be edited to adjust widgets in use, or refine the layout of individual records. The other templates in the folders `entrytool/templates/records/` and `entrytool/templates/forms` should serve as an example of how these can be adjusted.
 
-The new model will then need to be added to the line of treatment template at `entrytool/templates/detail/treatmentline.html` with a new record panel declaration `{% record_panel models.$MODELNAME %}`. The location of this panel relative to the others can be adjusted by editing this template’s layout as defined by the Bootstrap css classes e.g. `row` and `col-md$X`. The bootstrap website has extensive documentation for creating layouts using these classes, and this application contains many examples.
+The new model will then need to be added to the line of treatment template at
+`entrytool/templates/detail/treatmentline.html` with a new record panel declaration
+`{% record_panel models.$MODELNAME %}`. The location of this panel relative to the
+others can be adjusted by editing this template’s layout as defined by the Bootstrap
+css classes e.g. `row` and `col-md$X`. The bootstrap website has extensive
+documentation for creating layouts using these classes, and this application contains
+many examples.
 
 ## Data Validation
 
-Most simple data validation is done via expressing the rules on either the
-models themselves, or in the form templates.
+Data validation is defined as a set of validation rules in javascript.
+These are found in the file `entrytool/templates/validation_rules.js`
 
-Some of this validation - for instance fields being required is implemented within Opal,
-while some is implemented with custom form widgets as part of the entrytool application.
+This Angular service returns an object that maps fields in the application
+to javascript functions and error messages to display when validation is failed.
 
-### Num ber validation
-We sometimes wish to validate that a number is more or less
-than a number. this can be done using the `{% number %}` templatetag.
+For example, the validation for `entrytool.models.PatientStatus` reads as follows:
 
-Min validation is done with the `min_value` argument, Max_validation is done with the `max_value` argument.
-
-We can also warn a user if a number is outside the usual bounds. This will not error but display a warning message. This is done with the `warn_min` and `warn_max` arguments.
-
-for example
-
+```javascript
+patient_status: {
+    death_date: {
+        errors: [
+	    [Validators.afterDateOfBirth,  "{% trans "Date of death is before the date of birth" %}"],
+	    [Validators.noFuture, "{% trans "Date of death cannot be in the future" %}"]
+		]
+	},
+    death_cause: {
+	errors: [
+            [Validators.inOptions, "{% trans "is not in the options available" %}"]
+		]
+	}
+}
 ```
-{% number min_value="0" warn_min="5", max_value="100" warn_max="95"}
-```
 
+This architecture allows us to define validation once, and use it for both
+validating data loaded from file, and data in forms.
 
+A number of reusable validation functions have been written in the service
+`Validators`, but it is also possible to write any arbitrary code for more
+esoteric requirements.
 
-### Relative Date Validation
+The implementation of these validators can be reviewed at
+`entrytool/static/js/services/validators.js`
+
+### Required fields
+
+`Validators.required` will ensure that this field is entered.
+
+### Maximum length
+
+For character fields, `Validators.maxLength(255)` would ensure a maximum lentgth
+of 255 characters.
+
+### Categorical variables
+
+`Validators.inOptions` requires a value to be in the values declared by the field,
+whether this is using Django choices, or a lookuplist. This is useful for data
+imported from file that may not have these exact values.
+
+### Relative date validation
 
 We sometimes wish to validate that a date is before, or after another date.
 
-For instance that an end date is after a start date.
+`Validators.aferDateOfBirth` will raise a validation error if the date this
+validator is declared against is after the date of birth for this patient.
 
-For simple cases, this can be done using the `{% custom_datepicker %}` templatetag.
+`Validators.noFuture` ensures that the value of a field is not greater than
+the current date - for instance a date of death should not be in the future.
 
-Date validation requires two arguments:
-
-* `date_after` a javascript reference to the other date value that we would like to validate against
-* `date_after_message` a string that should be displayed when the date entered is invalid. Wrap it in an an `_()` method call to make sure that it is translated.
-
-An optional third argument allows for an offset to be specified
-
-* `date_after_diff` which is a number that will be used as an offset when validating
-
-The same options are also available for date_before.
-
-For example:
-
-```
-{% custom_datepicker field="SCT.sct_date"
-   date_after="the_episode.mll_regimen[0].start_date"
-   date_after_message=_("The SCT should be after the regimen start date")
-   date_after_diff="0"
-   required=True %}
-```
 
 ## Batch Imports
 
-It is possible to import data into the system using a batch file load. This is currently implemented as a series of Django management commands that process and save CSV files. The standard implementation expects 3 files, covering demographics, lines of treatment, and follow up visits/lab measurements. Patients are connected by the hospital number column (headed `Hospital_patient_ID`).
+Imports from file are supported via an upload page in the application.
 
-These importers can be run using the following commands:
+Thus far there is no known standardised file format for importing data.
+
+Accordingly we have implemented an API for receiving files to process and
+returning error information to the user, and some example importers without
+attempting to define a formal importer API.
+
+The setting `UPLOAD_FROM_FILE_FUNCTION` refers to a callable that takes
+a file like object and returns error information that is displayed by
+the UI.
+
+This information is contained within a datastructue as follows:
 
 ```
-python manage.py load_demographics $PATH_TO_FILE
-python manage.py load_lot $PATH_TO_FILE
-python manage.py load_followup $PATH_TO_FILE
+{
+    # Errors related to the files themselves e.g. Not a zipfile / encoding / missing files
+    "top_level_errors": ["Strings containing errors", "These should not be related to data"],
+
+    # Errors about individual data points in the uploaded data
+    "row_errors":[
+
+       "file" : "name_of_the_file_data_is_in.csv",
+       "row"  : 3, # Row on which the data in question is located
+       "value": "?", # The value in question at this cell
+       "column": "date_of_death", # The header row of this column
+       "short_description", "? Is not a date", # The problem with this cell
+       "traceback" "..." # The full python traceback for this error
+    ]
+}
 ```
-
-### Altering the importers
-
-Simple alterations to the importers can be made by altering the field mappings at the top of each file. This is a variable named `field_map` which contains a python dictionary specifying the model field that each column name from the CSV that relates to.
-
-#### Adding a new field to an importer
-
-Should we wish to add an entire new field to an importer, we would first need to add that field to the application itself. This is covered in the section on customisation elsewhere in this document.
-
-For this example we will assume that a new field `wcc` has been added to the `FollowUpVisit` model that records the white cell count for the patient at that time. The importer can also be adjusted to add that field. We would first alter our CSV files by adding a new column, headed `wcc` with those values.
-
-Next we would add that field to the `field_map` variable in `entrytool/management/commands/load_followup.py` using `wcc=“wcc”` - a dictionary key and a string representing the header value.
-
-Finally we add the new field to the Follow up creation - in this case a variable named `followup_fields` that contains a mapping of field names to values for individual rows in the CSV just before they are saved. We would add to this dictionary using a string representing the model field name (“wcc”) mapping to the value we would like to use. The row from the CSV is stored in the variable `follow_up_row` which is a python dictionary that can be accessed using the CSV headers as keys. We use our `field_map` variable to source these.
-
-We may also like to do some data sanitisation and cast the CSV data to an appropriate type at this stage - a group of utility functions for this exist in the module `entrytool.load_utils`. In this instance we would be likely to use the `float_or_none` function. The line we would add to the `followup_fields` dictionary would be something like:
-
-`”wcc”: float_or_none(follow_up_row[field_map[“wcc”]]),`
-
-#### Adding a new reading to follow ups that already exist
-
-Although we have not written a management command for this task explicitly, the import script for this would likely be short and simple to create. The basic version would require 10 lines of python, plus some boilerplate required by Django. Using our example of adding White Cell Count from above, should we wish to add this to existing follow up entries, we would generate a CSV containing the fields `external_identifier`, `date`, `wcc`.
-
-Django management commands are python files in the directory `entrytool/management/commands` and contain a class inheriting from `BaseCommand`. The command runs the code in the `handle` method. A simple management command to print a CSV is available as an example in the file `entrytool/management/commands/print_csv.py`.
-
-To add WCC readings to existing follow ups we would create a new management command using this as a template - a file named `entrytool/management/commands/load_wcc.py`. We must then alter our process_rows method to:
-
-* Find the correct followup
-* Save the new reading
-
-This code might read as follows:
-
-```python
-from entrytool.models import FollowUp, Demographics
-from entrytool.load_utils import cast_date, int_or_none
-
-for row in rows:
-    patient = Demographics.objects.get(
-        external_identifier=row['external_identifier']).patient
-    follow_up = FollowUp.objects.get(
-        patient=patient, follow_up_date=cast_date(row['date'])
-    )
-    follow_up.wcc = int_or_none(row['wcc'])
-    follow_up.save()
-```
-
 
 ## Customisation of search results
 
@@ -278,7 +280,7 @@ Internationalisation is achieved using the Django/Gettext internationalisation t
 
 To generate a messages file for a locale, run
 
-`python manage.py makemessages -l $LANGUAGE_CODE`
+`python manage.py makemessages --extension=js,py,html -l $LANGUAGE_CODE`
 
 If you have edited message files and need to compile the results, run
 
