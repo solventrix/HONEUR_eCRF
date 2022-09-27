@@ -416,11 +416,18 @@ h1 img {
   cursor: pointer;
 }
 
+.modal-subheader {
+  text-transform: uppercase;
+  margin-top: 25px;
+  margin-bottom: 7px;
+}
+
 .record-panel h4 {
   font-size: 14px;
-  font-weight: 800;
   margin-top: 25px;
-  margin-bottom: 0;
+  margin-bottom: 7px;
+  text-transform: uppercase;
+  text-decoration: underline;
 }
 
 .record-panel h4:first-of-type {

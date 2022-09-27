@@ -3,7 +3,7 @@
 {% load i18n %}
 <div class="row">
   <div class="col-md-9 col-md-offset-3">
-    <h3 class="content-offset-10">{% trans "In peripheral blood:" %}</h3>
+    <h3 class="modal-subheader content-offset-10">{% trans "In peripheral blood:" %}</h3>
   </div>
 </div>
 {% number field="MProteinMesurements.serum_amount" unit="g/dL" %}
@@ -12,13 +12,13 @@
 {% number field="MProteinMesurements.kappa_lambda_ratio" %}
 <div class="row">
   <div class="col-md-9 col-md-offset-3">
-    <h3>{% trans "In Urine" %}</h3>
+    <h3 class="modal-subheader">{% trans "In Urine" %}</h3>
   </div>
 </div>
 {% number field="MProteinMesurements.urinary_monoclonal_count" unit="g/24h" %}
 <div class="row">
   <div class="col-md-9 col-md-offset-3">
-    <h3>{% trans "In Bone Marrow" %}</h3>
+    <h3 class="modal-subheader">{% trans "In Bone Marrow" %}</h3>
   </div>
 </div>
 {% number field="MProteinMesurements.plasma_cells_in_bone_marrow" unit="%" %}
