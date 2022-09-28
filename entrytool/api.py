@@ -1,7 +1,6 @@
-from django.utils.module_loading import import_string
-from django.conf import settings
 from rest_framework import status, pagination, generics
 from rest_framework.parsers import FileUploadParser
+from plugins.data_load import load_data
 from opal.core.api import LoginRequiredViewset
 from opal.models import Patient, Episode
 from opal.core.api import OPALRouter, patient_from_pk, episode_from_pk
@@ -97,8 +96,7 @@ class UploadFromFile(LoginRequiredViewset):
 
     def create(self, request):
         zipfile = request.FILES.get('file')
-        load_data = import_string(settings.UPLOAD_FROM_FILE_FUNCTION)
-        errors = load_data(zipfile)
+        errors = load_data.load_data(zipfile)
         return json_response(errors)
 
 
