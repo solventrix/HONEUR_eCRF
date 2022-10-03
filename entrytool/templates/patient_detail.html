@@ -19,7 +19,7 @@
           <h2>
             {% trans "Patient" %} [[ patient.id ]] ([[ episode.category_name ]])
             <a ng-show="honeurPatientDetailCtrl.showDataQualityReviewed()" ng-click="honeurPatientDetailCtrl.openDataQualityReviewedModal()" class="btn btn-primary content-offset-left-10 pull-right">{% trans "Data Quality Reviewed" %}</a>
-            <div class="text-muted pull-right" ng-show="!honeurPatientDetailCtrl.showDataQualityReviewed()" >
+            <div class="text-muted pull-right" ng-show="!honeurPatientDetailCtrl.showDataQualityReviewed() && patient.episodes[0].patient_load[0].source === 'Loaded From File'" >
               <small style="font-size: 14px; text-transform: none;">
                 {% trans "Validation errors reviewed" %} <span ng-show="patient.episodes[0].patient_load[0].data_quality_reviewed_date">[[ patient.episodes[0].patient_load[0].data_quality_reviewed_date | displayDate ]]</span>
               </small>
