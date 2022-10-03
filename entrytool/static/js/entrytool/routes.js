@@ -11,10 +11,16 @@
                controller: 'WelcomeCtrl',
                templateUrl: '/templates/welcome.html'}
                               )
-
-
           $routeProvider.when('/#/patient',  {
             controller: 'AddEpisodeCtrl'}
-                            )                   
+                            )
+
+          $routeProvider.when('/lost_to_followup',  {
+            controller: 'EmptyCtrl',
+            templateUrl: function(params){
+            params["cache_bust"] = Date.now();
+            return '/lost_to_followup/' + '?' + $.param(params);
+            }
+          })
        }]);
 })();

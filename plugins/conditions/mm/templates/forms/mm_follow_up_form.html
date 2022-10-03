@@ -1,0 +1,10 @@
+{% load forms %}
+{% load custom_forms %}
+{% custom_datepicker field="MMFollowUp.follow_up_date" %}
+{% select field="MMFollowUp.hospital" %}
+{% number field="MMFollowUp.LDH" unit="L" %}
+{% number field="MMFollowUp.beta2m" unit="mg/L" %}
+{% number field="MMFollowUp.albumin" unit="g/dL" %}
+{% number field="MMFollowUp.mprotein_serum" unit="mg/dL" %}
+{% number field="MMFollowUp.mprotein_urine" unit="mg/dL" %}
+{% number field="MMFollowUp.mprotein_24h" unit="mg/24h" %}

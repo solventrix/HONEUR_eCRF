@@ -12,8 +12,8 @@
       </i>
     </h3>
   </div>
-  <ul ng-show="episode.{{ models.MMStemCellTransplantEligibility.get_api_name }}[0].eligable_for_stem_cell_transplant" class="list-group">
-    <li ng-repeat="item in episode.{{ models.MMStemCellTransplantEligibility.get_api_name }}" class="list-group-item" ng-show="episode.{{ models.MMStemCellTransplantEligibility.get_api_name }}.length && episode.{{ models.MMStemCellTransplantEligibility.get_api_name }}[0].eligable_for_stem_cell_transplant">
+  <ul ng-show="episode.{{ models.MMStemCellTransplantEligibility.get_api_name }}[0].eligible_for_stem_cell_transplant" class="list-group">
+    <li ng-repeat="item in episode.{{ models.MMStemCellTransplantEligibility.get_api_name }}" class="list-group-item" ng-show="episode.{{ models.MMStemCellTransplantEligibility.get_api_name }}.length && episode.{{ models.MMStemCellTransplantEligibility.get_api_name }}[0].eligible_for_stem_cell_transplant">
     <div class="row">
       <div class="col-md-9">
         {% include models.MMStemCellTransplantEligibility.get_detail_template %}

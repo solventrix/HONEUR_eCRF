@@ -37,7 +37,11 @@ class CLLDiagnosisDetails(models.EpisodeSubrecord):
     )
 
     binet_stage = fields.CharField(
-        max_length=100, choices=BINET_STAGES, verbose_name=_("Binet Stage")
+        max_length=100,
+        choices=BINET_STAGES,
+        verbose_name=_("Binet Stage"),
+        blank=True,
+        null=True
     )
 
     class Meta:
@@ -61,7 +65,7 @@ class CLLRegimen(models.EpisodeSubrecord):
         blank=True,
     )
     start_date = fields.DateField(
-        verbose_name=_("Start Date"),
+        verbose_name=_("Start Date"), blank=True, null=True
     )
     end_date = fields.DateField(verbose_name=_("End Date"), blank=True, null=True)
     regimen = ForeignKeyOrFreeText(CLLRegimenList, verbose_name=_("Regimen"))
@@ -87,13 +91,15 @@ class BestResponse(models.EpisodeSubrecord):
     _sort = "response_date"
     order_by = "-response_date"
     RESPONSES_IWCLL = (
-        ("CR", _("Complete Remission")),
-        ("PD", _("Progressive Disease")),
-        ("PR", _("Partial Response")),
-        ("SD", _("Stable Disease")),
+        ("Complete Remission", _("Complete Remission")),
+        ("Progressive Disease", _("Progressive Disease")),
+        ("Partial Response", _("Partial Response")),
+        ("Stable Disease", _("Stable Disease")),
         ("Unknown", _("Unknown")),
     )
-    response_date = fields.DateField(verbose_name=_("Response Date"))
+    response_date = fields.DateField(
+        verbose_name=_("Response Date"), blank=True, null=True
+    )
     response = fields.CharField(
         max_length=50, choices=RESPONSES_IWCLL, verbose_name=_("Best Response")
     )
@@ -101,9 +107,11 @@ class BestResponse(models.EpisodeSubrecord):
 
 class QualityOfLife5Q(models.EpisodeSubrecord):
     _sort = "q5_date"
-    q5_date = fields.DateField(verbose_name=_("Date of Questionnaire"))
+    q5_date = fields.DateField(
+        verbose_name=_("Date of Questionnaire"), blank=True, null=True
+    )
 
-    Q5_OPTIONS = ((1, "1"), (2, "2"), (3, "3"), (4, "4"), (5, "5"))
+    Q5_OPTIONS = (("1", "1"), ("2", "2"), ("3", "3"), ("4", "4"), ("5", "5"))
 
     q5_mobility = fields.FloatField(
         blank=True, null=True, choices=Q5_OPTIONS, verbose_name=_("Mobility")
@@ -124,7 +132,9 @@ class QualityOfLife5Q(models.EpisodeSubrecord):
 
 class AdditionalCharacteristics(models.EpisodeSubrecord):
     _sort = "characteristic_date"
-    characteristic_date = fields.DateField(verbose_name=_("Date of measurement"))
+    characteristic_date = fields.DateField(
+        verbose_name=_("Date of measurement"), blank=True, null=True
+    )
 
     CHOICES = (("Yes", _("Yes")), ("No", _("No")), ("Unknown", _("Unknown")))
     ECOG_CHOICES = ((0, "0"), (1, "1"), (2, "2"), (3, "3"), (4, "4"))
@@ -151,7 +161,9 @@ class AdditionalCharacteristics(models.EpisodeSubrecord):
 
 class Cytogenetics(models.EpisodeSubrecord):
     _sort = "cytogenetic_date"
-    cytogenetic_date = fields.DateField(verbose_name=_("Cytogenetic Date"))
+    cytogenetic_date = fields.DateField(
+        verbose_name=_("Cytogenetic Date"), blank=True, null=True
+    )
 
     CHOICES = (("Yes", _("Yes")), ("No", _("No")), ("Unknown", _("Unknown")))
     CHOICES_IGHV = (

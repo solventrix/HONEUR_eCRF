@@ -56,7 +56,6 @@ INSTALLED_APPS = [
     "django.contrib.sites",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "axes",
     "statici18n",
     "rest_framework",
     "rest_framework.authtoken",
@@ -68,9 +67,10 @@ INSTALLED_APPS = [
     #    "opal.core.referencedata",
     "entrytool",
     "plugins.conditions.cll",
-    "plugins.conditions.mm",
+    # "plugins.conditions.mm",
     # 'languages',
     "django.contrib.admin",
+    "plugins.data_load"
 ]
 
 MIDDLEWARE = (
@@ -134,23 +134,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "entrytool.wsgi.application"
 
-# Database
-# https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 try:
+    # This is for heroku deployments
+    # if you're not on heroku, this will raise an error
     import dj_database_url
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.postgresql",
-            "NAME": os.environ['OPAL_DB_NAME'],
-            "USER": os.environ['OPAL_DB_USER'],
-            "PASSWORD": os.environ['OPAL_DB_PASSWORD'],
-            "HOST": os.environ['OPAL_DB_HOST'],
-            "PORT": os.environ['OPAL_DB_PORT'],
-            'OPTIONS': {
-                'options': '-c search_path=opal'
-            },
-        }
-    }
+    DATABASES = {'default': dj_database_url.config()}
 except ImportError:
     DATABASES = {
         "default": {
@@ -249,10 +237,6 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 CSRF_COOKIE_NAME = "XSRF-TOKEN"
 CSRF_FAILURE_VIEW = "opal.views.csrf_failure"
 
-# ========== THIRD PARTY ==========
-# Django Axes
-AXES_LOCK_OUT_AT_FAILURE = False
-
 # Rest Framework
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
@@ -313,6 +297,10 @@ if os.environ.get('HEROKU_SLUG_COMMIT'):
 LOCALE_PATHS = [
     os.path.join(BASE_DIR, 'locale')
 ]
+
+# A patient who has not been updated in {LOST_TO_FOLLOW_UP_DAYS_SINCE} days
+# will appear on the Lost To Follow-Up page
+LOST_TO_FOLLOW_UP_DAYS_SINCE = 180
 
 
 try:
