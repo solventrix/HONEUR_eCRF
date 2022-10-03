@@ -33,7 +33,9 @@ class SCT(models.EpisodeSubrecord):
     )
     order_by = "-sct_date"
 
-    sct_date = fields.DateField(verbose_name=_("Date of SCT"))
+    sct_date = fields.DateField(
+        verbose_name=_("Date of SCT"), blank=True, null=True
+    )
     hospital = models.ForeignKeyOrFreeText(
         Hospital, verbose_name=_("Hospital")
     )
@@ -41,7 +43,8 @@ class SCT(models.EpisodeSubrecord):
         max_length=12,
         verbose_name=_("Type of SCT"),
         choices=SCT_TYPES,
-        null=True
+        null=True,
+        blank=True
     )
 
     class Meta:
