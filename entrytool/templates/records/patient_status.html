@@ -68,8 +68,8 @@
           <span
             ng-show="episode.patient_status[0].death_date || episode.patient_status[0].death_cause"
           >
-            [[ episode.patient_status[0].death_date | displayDate ]] ([[
-            episode.patient_status[0].death_cause | translate ]])
+            [[ episode.patient_status[0].death_date | displayDate ]]
+            <span ng-show="episode.patient_status[0].death_cause">([[ episode.patient_status[0].death_cause | translate ]])</span>
           </span>
         </div>
       </div>

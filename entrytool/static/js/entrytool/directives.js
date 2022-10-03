@@ -41,7 +41,8 @@ directives.directive("formSubmit", function($http){
 				$http({
 					url: attrs.url,
 					headers: {
-						'Content-Disposition': "attachment; filename=" + file.name
+						'Content-Disposition': "attachment; filename=" + file.name,
+						'Content-Type': undefined
 					},
 					method: "POST",
 					data: formData,
