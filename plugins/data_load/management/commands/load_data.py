@@ -1,7 +1,6 @@
 from django.core.management.base import BaseCommand
-from django.utils.module_loading import import_string
-from django.conf import settings
 from django.db import transaction
+from plugins.data_load import load_data
 
 
 class Command(BaseCommand):
@@ -20,8 +19,7 @@ class Command(BaseCommand):
     @transaction.atomic()
     def handle(self, *args, **options):
         file = options["file"]
-        load_data = import_string(settings.UPLOAD_FROM_FILE_FUNCTION)
-        errors = load_data(file)
+        errors = load_data.load_data(file)
 
         if errors:
             if "top_level_errors" in errors:

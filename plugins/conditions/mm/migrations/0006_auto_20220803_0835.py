@@ -7,7 +7,6 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('entrytool', '0046_auto_20220803_0751'),
         ('mm', '0005_auto_20220803_0751'),
     ]
 
