@@ -41,11 +41,16 @@ class MMDiagnosisDetails(models.EpisodeSubrecord):
         ('No Light Chain', _('No Light Chain'))
     )
 
-    R_ISS_STAGES = (
+    ISS_STAGES = (
         ("Stage I", _("Stage I")),
         ("Stage II", _("Stage II")),
         ("Stage III", _("Stage III")),
         ("Unknown", _("Unknown")),
+    )
+    R_ISS_STAGES = (
+        ('I', _("I")),
+        ('II', _("II")),
+        ('III', _("III")),
     )
     PP_TYPE_CHOICES = (
         ("IgG", _("IgG")),
@@ -84,10 +89,13 @@ class MMDiagnosisDetails(models.EpisodeSubrecord):
         blank=True, null=True, verbose_name=_("Date of MGUS Diagnosis")
     )
     iss_stage = fields.CharField(
-        blank=True, null=True, max_length=10, choices=R_ISS_STAGES, verbose_name=_("ISS Stage")
+        blank=True, null=True, max_length=10, choices=ISS_STAGES, verbose_name=_("ISS Stage")
+    )
+    r_iss_stage = fields.CharField(
+        blank=True, null=True, max_length=10, choices=R_ISS_STAGES, verbose_name=_("R ISS Stage")
     )
     ds_stage = fields.CharField(
-        blank=True, null=True, max_length=10, choices=R_ISS_STAGES, verbose_name=_("DS Stage")
+        blank=True, null=True, max_length=10, choices=ISS_STAGES, verbose_name=_("DS Stage")
     )
     pp_type = fields.CharField(
         blank=True, null=True, max_length=50, choices=PP_TYPE_CHOICES, verbose_name=_("PP Type")
@@ -126,11 +134,17 @@ class MMRegimen(models.EpisodeSubrecord):
     )
     end_date = fields.DateField(verbose_name=_("End Date"), blank=True, null=True)
     regimen = ForeignKeyOrFreeText(MMRegimenList, verbose_name=_("Regimen"))
+    radiotherapy = fields.BooleanField(
+        default=False, verbose_name=_("Radiotherapy")
+    )
     category = fields.CharField(
         max_length=40, choices=REGIMEN_TYPES, verbose_name=_("Regimen Type")
     )
     stop_reason = ForeignKeyOrFreeText(
         MMStopReason, verbose_name=_("Reason for Regimen Stop")
+    )
+    end_treatment_reason = fields.TextField(
+        blank=True, default="", verbose_name=_("End Treatment Reason")
     )
 
     class Meta:
@@ -216,7 +230,7 @@ class LabTest(models.EpisodeSubrecord):
     )
 
     hospital = models.ForeignKeyOrFreeText(Hospital, verbose_name=_("Hospital"))
-    date = fields.DateField(verbose_name=_("Date"))
+    date = fields.DateField(verbose_name=_("Date"), blank=True, null=True)
 
     LDH = fields.FloatField(blank=True, null=True, verbose_name=_("LDH"))
     beta2m = fields.FloatField(blank=True, null=True, verbose_name=_("beta2m"))

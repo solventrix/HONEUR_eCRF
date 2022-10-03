@@ -33,7 +33,7 @@ class SCT(models.EpisodeSubrecord):
     )
     order_by = "-sct_date"
 
-    sct_date = fields.DateField(verbose_name=_("Date of SCT"))
+    sct_date = fields.DateField(verbose_name=_("Date of SCT"), blank=True, null=True)
     hospital = models.ForeignKeyOrFreeText(
         Hospital, verbose_name=_("Hospital")
     )
@@ -56,8 +56,17 @@ class PatientStatus(models.PatientSubrecord):
         ("Complications of Disease", _("Complications of Disease")),
         ("Other", _("Other"))
     )
+    physician = fields.CharField(
+        null=True, blank=True, max_length=256, verbose_name=_("Physician")
+    )
+    status = fields.CharField(
+        null=True, blank=True, max_length=256, verbose_name=_("Status")
+    )
     deceased = fields.NullBooleanField(verbose_name=_("Deceased"), blank=True, null= True)
     lost_to_follow_up = fields.NullBooleanField(verbose_name=_("Lost to Follow-Up"), null = True, blank = True)
+    date_of_last_contact = fields.DateField(
+        null=True, verbose_name=_("Date of Last Contact"), blank=True
+    )
     death_date = fields.DateField(
         null=True, verbose_name=_("Date of Death"), blank=True
     )

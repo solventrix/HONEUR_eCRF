@@ -104,6 +104,10 @@ class BestResponse(models.EpisodeSubrecord):
         max_length=50, choices=RESPONSES_IWCLL, verbose_name=_("Best Response")
     )
 
+    class Meta:
+        verbose_name = _("Best response")
+        verbose_name_plural = _("Best responses")
+
 
 class QualityOfLife5Q(models.EpisodeSubrecord):
     _sort = "q5_date"
