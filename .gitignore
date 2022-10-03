@@ -8,3 +8,5 @@ libpeerconnection.log
 .sass-cache
 .DS_Store
 entrytool/local_settings.py
+*.csv
+*.zip

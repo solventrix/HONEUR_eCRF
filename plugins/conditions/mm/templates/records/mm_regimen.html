@@ -1,77 +1,87 @@
 {% load i18n %}
 <div class="row" ng-show="item.hospital">
-  <div class="col-md-5">
+  <div class="col-md-7">
     <span class="display-label">
       {% trans "Hospital" %}
     </span>
   </div>
-  <div class="col-md-7">
+  <div class="col-md-5">
     [[ item.hospital | translate ]]
   </div>
 </div>
 
 <div class="row" ng-show="item.nbCycles">
-  <div class="col-md-5">
+  <div class="col-md-7">
     <span class="display-label">
       {% trans "Cycles" %}
     </span>
   </div>
-  <div class="col-md-7">
+  <div class="col-md-5">
     [[ item.nbCycles ]]
   </div>
 </div>
 
 <div class="row" ng-show="item.regimen">
-  <div class="col-md-5">
+  <div class="col-md-7">
     <span class="display-label">
       {% trans "Regimen" %}
     </span>
   </div>
-  <div class="col-md-7">
+  <div class="col-md-5">
     [[ item.regimen | translate ]]
   </div>
 </div>
 
 <div class="row" ng-show="item.category">
-  <div class="col-md-5">
+  <div class="col-md-7">
     <span class="display-label">
       {% trans "Type" %}
     </span>
   </div>
-  <div class="col-md-7">
+  <div class="col-md-5">
     [[ item.category | translate ]]
   </div>
 </div>
 
 <div class="row" ng-show="item.start_date">
-  <div class="col-md-5">
+  <div class="col-md-7">
     <span class="display-label">
       {% trans "Start" %}
     </span>
   </div>
-  <div class="col-md-7">
+  <div class="col-md-5">
     [[ item.start_date | displayDate ]]
   </div>
 </div>
 
 <div class="row" ng-show="item.end_date">
-  <div class="col-md-5">
+  <div class="col-md-7">
     <span class="display-label">
       {% trans "End" %}
     </span>
   </div>
-  <div class="col-md-7">
+  <div class="col-md-5">
     [[ item.end_date | displayDate ]]
   </div>
 </div>
 
 <div class="row" ng-show="item.stop_reason">
-  <div class="col-md-5">
+  <div class="col-md-7">
     <span class="display-label">
-      {% trans "Reason" %}
+      {% trans "Stop Reason" %}
     </span>
   </div>
-  <div class="col-md-7">
+  <div class="col-md-5">
     [[ item.stop_reason|translate ]]
+  </div>
+</div>
+<div class="row" ng-show="item.end_treatment_reason">
+  <div class="col-md-7">
+    <span class="display-label">
+      {% trans "End Treatment Reason" %}
+    </span>
+  </div>
+  <div class="col-md-5">
+    [[ item.end_treatment_reason|translate ]]
   </div>
 </div>

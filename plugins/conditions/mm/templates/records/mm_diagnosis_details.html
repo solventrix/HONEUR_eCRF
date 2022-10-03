@@ -7,13 +7,22 @@
     [[ item.diag_date | displayDate ]]
   </div>
 </div>
+
 <div class="row">
   <div class="col-md-6">
-    <span class="display-label">{% trans "History of SMM" %}</span>
+    <span class="display-label">{% trans "Heavy Chain Type" %}</span>
   </div>
   <div class="col-md-6">
-    [[ item.smm_history | translate ]]
-    <span ng-show="item.smm_history_date">([[ item.smm_history_date | displayDate ]])</span>
+    [[ item.heavy_chain_type | translate ]]
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <span class="display-label">{% trans "Light Chain Type" %}</span>
+  </div>
+  <div class="col-md-6">
+    [[ item.light_chain_type | translate ]]
   </div>
 </div>
 <div class="row">
@@ -26,33 +35,9 @@
 </div>
 <div class="row">
   <div class="col-md-6">
-    <span class="display-label">{% trans "DS Stage" %}</span>
+    <span class="display-label">{% trans "R ISS Stage" %}</span>
   </div>
   <div class="col-md-6">
-    [[ item.ds_stage | translate ]]
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-6">
-    <span class="display-label">{% trans "Del(17p)" %}</span>
-  </div>
-  <div class="col-md-6">
-    [[ item.del_17p | translate ]]
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-6">
-    <span class="display-label">del13</span>
-  </div>
-  <div class="col-md-6">
-    [[ item.del_13 | translate ]]
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-6">
-    <span class="display-label">t(4;14)</span>
-  </div>
-  <div class="col-md-6">
-    [[ item.t4_14 | translate ]]
+    [[ item.r_iss_stage | translate ]]
   </div>
 </div>

@@ -1,8 +1,33 @@
-<span ng-show="item.response_date">
-    [[ item.response_date | displayDate ]]
-   <br />
-</span>
-<span ng-show="item.response">
-    [[ item.response | translate ]]
-   <br />
-</span>
+{% load i18n %}
+<div class="row" ng-show="item.progression_date">
+    <div class="col-md-6">
+        <span class="display-label">
+        {% trans "Progression Date" %}
+        </span>
+    </div>
+    <div class="col-md-6">
+        [[ item.progression_date | displayDate ]]
+    </div>
+</div>
+
+<div class="row" ng-show="item.response_date">
+    <div class="col-md-6">
+        <span class="display-label">
+        {% trans "Response Date" %}
+        </span>
+    </div>
+    <div class="col-md-6">
+        [[ item.response_date | displayDate ]]
+    </div>
+</div>
+
+<div class="row" ng-show="item.response">
+    <div class="col-md-6">
+        <span class="display-label">
+        {% trans "Response" %}
+        </span>
+    </div>
+    <div class="col-md-6">
+        [[ item.response | translate ]]
+    </div>
+</div>
