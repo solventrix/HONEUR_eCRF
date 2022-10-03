@@ -869,23 +869,10 @@ def populate_mprotein_measurements_from_treatment(episode, file_name, iterator, 
     m_protein_mesurements = [
         f"cuant_cadena_ligera_lambda_{iterator}",
         f"cociente_kappa_lambda_{iterator}",
-        f"tipo_cadena_pesada_{iterator}",
-        f"tipo_cadena_pesada_otros_{iterator}",
         f"cuant_cadena_ligera_kappa_{iterator}",
         f"cuant_monoclonal_serico_{iterator}",
-        f"tipo_cadena_ligera_{iterator}",
     ]
     if any([data.get(i) for i in m_protein_mesurements if not data.get(i) == "0"]):
-        date_fields = [
-            "tratamiento_induccion_fecha_inicio_{iterator}",
-            "tratamiento_induccion_fecha_fin_{iterator}",
-            "radioterapia_induccion_fecha_inicio_{iterator}",
-            "radioterapia_induccion_fecha_fin_{iterator}",
-            "tratamiento_mantenimiento_fecha_fin_{iterator}",
-            "tratamiento_mantenimiento_fecha_inicio_{iterator}",
-            "tratamiento_recaida_fecha_inicio_{iterator}",
-            "tratamiento_recaida_fecha_fin_{iterator}",
-        ]
         m_protein = models.MProteinMesurements(
             episode=episode,
         )
