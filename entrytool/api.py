@@ -1,7 +1,7 @@
 from django.utils.module_loading import import_string
 from django.conf import settings
 from rest_framework import status, pagination, generics
-from rest_framework.parsers import FileUploadParser
+from rest_framework.parsers import MultiPartParser
 from opal.core.api import LoginRequiredViewset
 from opal.models import Patient, Episode
 from opal.core.api import OPALRouter, patient_from_pk, episode_from_pk
@@ -92,7 +92,7 @@ class PatientsWithErrors(LoginRequiredViewset, generics.GenericAPIView):
 
 
 class UploadFromFile(LoginRequiredViewset):
-    parser_classes = [FileUploadParser]
+    parser_classes = [MultiPartParser]
     basename = "upload_from_file"
 
     def create(self, request):
