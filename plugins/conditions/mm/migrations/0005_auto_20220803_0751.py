@@ -10,7 +10,6 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('entrytool', '0046_auto_20220803_0751'),
         ('opal', '0042_auto_20220421_1545'),
         ('mm', '0004_merge_20220802_1632'),
     ]
@@ -72,24 +71,5 @@ class Migration(migrations.Migration):
                 'verbose_name_plural': 'Cytogenetics',
             },
             bases=(opal.models.UpdatesFromDictMixin, opal.models.ToDictMixin, models.Model),
-        ),
-        migrations.RemoveField(
-            model_name='mmfollowup',
-            name='created_by',
-        ),
-        migrations.RemoveField(
-            model_name='mmfollowup',
-            name='episode',
-        ),
-        migrations.RemoveField(
-            model_name='mmfollowup',
-            name='hospital_fk',
-        ),
-        migrations.RemoveField(
-            model_name='mmfollowup',
-            name='updated_by',
-        ),
-        migrations.DeleteModel(
-            name='MMFollowUp',
         ),
     ]

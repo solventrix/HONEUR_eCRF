@@ -42,7 +42,17 @@ angular.module('opal.services').service('ValidationRules', function(Validators) 
 				errors: [
 					[Validators.inOptions, "{% trans "is not in the options available" %}"]
 				]
-			}
+			},
+			status: {
+				errors: [
+					[Validators.maxLength(256), "{% trans "Maximum length is 255" %}"]
+				]
+			},
+			physician: {
+				errors: [
+					[Validators.maxLength(256), "{% trans "Maximum length is 255" %}"]
+				]
+			},
 		},
 
 		// CLL Condition
@@ -273,18 +283,6 @@ angular.module('opal.services').service('ValidationRules', function(Validators) 
 					[Validators.inOptions, "{% trans "is not in the options available" %}"]
 				]
 			},
-			smm_history: {
-				errors: [
-					[Validators.requiredForCategory('MM'), "{% trans "History of SMM is required" %}"],
-					[Validators.inOptions, "{% trans "is not in the options available" %}"]
-				]
-			},
-			smm_history_date: {
-				errors: [
-					[Validators.requiredIfSMM, "{% trans "Date is required" %}"],
-					[Validators.sameOrBeforeDiagnosisDate, "{% trans "Date must be before the date of diagnosis" %}"],
-				]
-			},
 			mgus_history: {
 				errors: [
 					[Validators.inOptions, "{% trans "is not in the options available" %}"]
@@ -373,6 +371,12 @@ angular.module('opal.services').service('ValidationRules', function(Validators) 
 			}
 		},
 		mm_response: {
+			progression_date: {
+				errors: [
+					[Validators.sameOrAfterDiagnosisDate,  "{% trans "The response should be after the date of diagnosis" %}"],
+					[Validators.noFuture, "{% trans "The response date is in the future" %}"]
+				]
+			},
 			response_date: {
 				errors: [
 					[Validators.sameOrAfterDiagnosisDate,  "{% trans "The response should be after the date of diagnosis" %}"],
@@ -389,6 +393,76 @@ angular.module('opal.services').service('ValidationRules', function(Validators) 
 					[Validators.inOptions, "{% trans "is not in the options available" %}"]
 				]
 			}
+		},
+		lab_test: {
+			date: {
+				errors: [
+					[Validators.afterDateOfBirth, "{% trans "Lab test date is before the date of birth" %}"]
+				]
+			},
+			hospital: {
+				errors: [
+					[Validators.inOptions, "{% trans "is not in the options available" %}"],
+					[Validators.required, "{% trans "Hospital is required" %}"],
+				]
+			},
+			creatinine: {
+				errors: [
+					[Validators.greaterThanOrEqualTo(0.5),  "{% trans "Creatinine is too low" %}"],
+					[Validators.lessThanOrEqualTo(20),  "{% trans "Creatinine is too high" %}"]
+				]
+			},
+			mprotein_24h: {
+				errors: [
+					[Validators.greaterThanOrEqualTo(0),  "{% trans "Mprotein in 24 hour is too low" %}"],
+					[Validators.lessThanOrEqualTo(1000),  "{% trans "Mprotein in 24 hour  is too high" %}"]
+				]
+			},
+			calcium: {
+				errors: [
+					[Validators.greaterThanOrEqualTo(6.5),  "{% trans "Calcium is too low" %}"],
+					[Validators.lessThanOrEqualTo(25),  "{% trans "Calcium is too high" %}"]
+				]
+			},
+			beta2m: {
+				errors: [
+					[Validators.greaterThanOrEqualTo(6.5),  "{% trans "beta2m is too low" %}"],
+					[Validators.lessThanOrEqualTo(25),  "{% trans "beta2m is too high" %}"]
+				]
+			},
+		},
+		mm_cytogenetics: {
+			hospital: {
+				errors: [
+					[Validators.required, "{% trans "Hospital is required" %}"],
+					[Validators.inOptions, "{% trans "is not in the options available" %}"]
+				]
+			},
+			tp_53: {
+				errors: [
+					[Validators.inOptions, "{% trans "is not in the options available" %}"]
+				]
+			},
+			del_17p: {
+				errors: [
+					[Validators.inOptions, "{% trans "is not in the options available" %}"]
+				]
+			},
+			t4_14: {
+				errors: [
+					[Validators.inOptions, "{% trans "is not in the options available" %}"]
+				]
+			},
+			t4_14_16: {
+				errors: [
+					[Validators.inOptions, "{% trans "is not in the options available" %}"]
+				]
+			},
+			ighv: {
+				errors: [
+					[Validators.inOptions, "{% trans "is not in the options available" %}"]
+				]
+			},
 		},
 		mm_follow_up: {
 			follow_up_date: {
