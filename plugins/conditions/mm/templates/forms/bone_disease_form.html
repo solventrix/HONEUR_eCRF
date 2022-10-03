@@ -7,7 +7,7 @@
   {% input field="BoneDisease.bisphosphonate_treatment" %}
 </span>
 {% input field="BoneDisease.nb_cycles" %}
-{% custom_datepicker field="BoneDisease.start_date" required=True %}
-{% custom_datepicker field="BoneDisease.end_date" date_after="editing.bone_disease.start_date" date_after_diff="0" date_after_message=_("End Date must be after the start date") %}
+{% custom_datepicker field="BoneDisease.start_date" %}
+{% custom_datepicker field="BoneDisease.end_date" %}
 {% datepicker field="BoneDisease.vertebroplasty_kyphoplasty_date" %}
 {% textarea field="BoneDisease.vertebroplasty_kyphoplasty_description" %}

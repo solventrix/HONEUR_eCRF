@@ -1,0 +1,45 @@
+{% load i18n %}
+<div class="outer-container">
+  <div class="container content-offset">
+    <div class="panel panel-primary panel-container">
+      <!-- Default panel contents -->
+      <div class="panel-heading">
+        <h2>
+          {% trans "Potentially Lost To Follow-Up" %}
+        </h2>
+      </div>
+      <div class="panel-body">
+        <div class="row content-offset-below-25 content-offset-25">
+          <div class="col-md-6 col-md-offset-3">
+            <div class="panel">
+              <div class="panel-heading text-center">
+                <h4><strong>{{ object_list|length }}</strong> {% trans "Patients" %}</h4>
+              </div>
+              <div class="panel-body">
+                <p style="text-transform: none; color: #999;" class="help-text content-offset-below-25">
+                  {% blocktrans %}
+                  This report shows patients who have had no diagnosis, treatment or observations recorded
+                  in the last {{ days_since }} days. The report excludes patients who are deceased, discharged
+                  or lost to followup.  This can be amended in the Patient Status panel
+                  {% endblocktrans %}
+                </p>
+                {% for max_date, patient_id in object_list %}
+                <div class="row">
+                  <div class="col-md-6 col-md-offset-3">
+                    <h4>
+                      <a href="/#/patient/{{ patient_id }}" class="orange-link">{% trans "Patient" %} [[ {{ patient_id }} ]]</a>
+                      <small>
+                        {% trans "Last updated" %} {{ max_date|date:"j M Y" }}
+                      </small>
+                    </h4>
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

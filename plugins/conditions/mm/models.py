@@ -1,4 +1,3 @@
-from calendar import c
 from django.db.models.signals import post_save
 from django.utils.translation import gettext_lazy as _
 from django.db import models as fields
@@ -61,7 +60,7 @@ class MMDiagnosisDetails(models.EpisodeSubrecord):
         ("Very Symptomatic", _("Very Symptomatic"),),
     )
 
-    diagnosis_date = fields.DateField(
+    diag_date = fields.DateField(
         blank=True, null=True, verbose_name=_("Date Of Diagnosis")
     )
     date_of_first_centre_visit = fields.DateField(
@@ -157,6 +156,9 @@ class MMPatientStatus(models.PatientSubrecord):
         ("Dead", _("Dead"),),
         ("Lost", _("Lost"),),
         ("Alive", _("Alive"),),
+    )
+    last_seen = fields.DateField(
+        blank=True, null=True, verbose_name=_("Last Seen")
     )
     status = fields.CharField(
         blank=True,
@@ -497,7 +499,11 @@ class MMResponse(models.EpisodeSubrecord):
         verbose_name=_("MRD Technique")
     )
     response = fields.CharField(
-        max_length=50, choices=RESPONSES, verbose_name=_("Response")
+        blank=True,
+        null=True,
+        max_length=50,
+        choices=RESPONSES,
+        verbose_name=_("Response")
     )
 
 
@@ -514,9 +520,37 @@ class RadiotherapyInduction(models.EpisodeSubrecord):
     )
 
 
+class MMFollowUp(models.EpisodeSubrecord):
+    _sort = "followup_date"
+    _icon = "fa fa-stethoscope"
+    hospital = models.ForeignKeyOrFreeText(Hospital, verbose_name=_("Hospital"))
+    follow_up_date = fields.DateField(
+        verbose_name=_("Visit date"), blank=True, null=True
+    )
+
+    LDH = fields.FloatField(blank=True, null=True, verbose_name=_("LDH"))
+    beta2m = fields.FloatField(blank=True, null=True, verbose_name=_("beta2m"))
+    albumin = fields.FloatField(blank=True, null=True, verbose_name=_("Albumin"))
+    mprotein_urine = fields.FloatField(
+        blank=True, null=True, verbose_name=_("MProtein Urine")
+    )
+    mprotein_serum = fields.FloatField(
+        blank=True, null=True, verbose_name=_("MProtein Serum")
+    )
+    mprotein_24h = fields.FloatField(
+        blank=True, null=True, verbose_name=_("Mprotein In 24 Hour Urine")
+    )
+
+    class Meta:
+        verbose_name = _("Follow-up")
+        verbose_name_plural = _("Follow-ups")
+
+
 class MMStemCellTransplantEligibility(models.EpisodeSubrecord):
     _is_singleton = True
-    eligible_for_stem_cell_transplant = fields.BooleanField(default=False)
+    eligible_for_stem_cell_transplant = fields.BooleanField(
+        default=False, verbose_name=_("Eligible For Stem Cell Transplant")
+    )
 
     class Meta:
         verbose_name = _("Stem Cell Transplant Eligibility")
@@ -538,43 +572,66 @@ class LabTest(models.EpisodeSubrecord):
         verbose_name = _("Lab Tests")
         verbose_name_plural = _("Lab Tests")
 
-    GLOMERULAR_FILTRATION_FORMULA = (
-        ("MDRD", _("MDRD"),),
-        ("CKD-EPI", _("CKD-EPI"),),
-        ("Other", _("Other"),),
-    )
+    # BLOOD COUNT
 
-    date = fields.DateField(blank=True, null=True, verbose_name=_("Date"))
-
-    # mg/L min 3 max 30
-    pcr = fields.FloatField(blank=True, null=True, verbose_name=_("PCR"))
-
-    # x109/L
-    circulating_plasma_cells = fields.FloatField(
+    # g/dl
+    hemoglobin = fields.FloatField(
         blank=True,
         null=True,
         max_length=256,
-        verbose_name=_("Circulating Plasma Cells")
+        verbose_name=_("Hemoglobin")
     )
 
-    # Troponine I, ng/L, min 0 max 350
-    troponine = fields.FloatField(blank=True, null=True, verbose_name=_("Troponine"))
-    total_proteins = fields.FloatField(blank=True, null=True, verbose_name=_("Total Proteins"))
-
-    platelets = fields.IntegerField(blank=True, null=True, verbose_name=_("Platelets"))
-
-    # mg/L min 1.5 max 20
-    beta_2_microglobulin = fields.FloatField(
+    # 10^3 /mm^3 min 1 max 100
+    leucocytes = fields.FloatField(
         blank=True,
         null=True,
         max_length=256,
-        verbose_name=_("Beta 2 Microglobulin")
+        verbose_name=_("Leucocytes")
     )
-    alkaline_phosphatase = fields.FloatField(
+
+    # 10^3 /mm^3
+    neutrophils = fields.FloatField(
         blank=True,
         null=True,
-        verbose_name=_("Alkaline Phosphatase")
+        max_length=256,
+        verbose_name=_("Neutrophils")
     )
+
+    # 10^3 /mm^3
+    lymphocytes = fields.FloatField(
+        blank=True,
+        null=True,
+        max_length=256,
+        verbose_name=_("Lymphocytes")
+    )
+
+    # 10^3 /mm^3
+    platelets = fields.FloatField(
+        blank=True,
+        null=True,
+        max_length=256,
+        verbose_name=_("Platelets")
+    )
+
+    ### BIOCHEMISTRY
+
+    # mg/dL, min 0.5, max 20
+    creatinine = fields.FloatField(
+        blank=True,
+        null=True,
+        max_length=256,
+        verbose_name=_("Creatinine")
+    )
+
+    # g/dL
+    total_proteins = fields.FloatField(
+        blank=True,
+        null=True,
+        max_length=256,
+        verbose_name=_("Total proteins")
+    )
+
     # g/dL min 1 max 5.5
     albumin = fields.FloatField(
         blank=True,
@@ -583,12 +640,16 @@ class LabTest(models.EpisodeSubrecord):
         verbose_name=_("Albumin")
     )
 
-    # mg/dL, min 0.5, max 20
-    creatinine = fields.FloatField(
+    # U/L
+    alkaline_phosphatase = fields.FloatField(
         blank=True,
         null=True,
-        max_length=256,
-        verbose_name=_("Creatinine")
+        verbose_name=_("Alkaline Phosphatase")
+    )
+
+    # U/L
+    ldh = fields.IntegerField(
+        blank=True, null=True, verbose_name=_("LDH")
     )
 
     # mg/dL, min 6.5, max 25
@@ -599,57 +660,15 @@ class LabTest(models.EpisodeSubrecord):
         verbose_name=_("Calcium")
     )
 
-    hemoglobin = fields.FloatField(
-        blank=True,
-        null=True,
-        max_length=256,
-        verbose_name=_("Hemoglobin")
-    )
+    # mg/L min 3 max 30
+    pcr = fields.FloatField(blank=True, null=True, verbose_name=_("PCR"))
 
-    proteinuria = fields.FloatField(
-        blank=True,
-        null=True,
-        max_length=256,
-        verbose_name=_("Proteinuria")
-    )
-    proteinuria_g24 = fields.FloatField(
-        blank=True,
-        null=True,
-        max_length=256,
-        verbose_name=_("Proteinuria gr/24")
-    )
+    # Troponine I, ng/L, min 0 max 350
+    troponine = fields.FloatField(blank=True, null=True, verbose_name=_("Troponine"))
 
-    # x109/L min 1 max 100
-    leucocytes = fields.FloatField(
-        blank=True,
-        null=True,
-        max_length=256,
-        verbose_name=_("Leucocytes")
-    )
-
+    # ng/L
     nt_pro_bnp = fields.IntegerField(
         blank=True, null=True, verbose_name=_("NT-proBNP")
-    )
-
-    ldh = fields.IntegerField(
-        blank=True, null=True, verbose_name=_("LDH")
-    )
-    ldh_type = fields.CharField(
-        blank=True,
-        null=True,
-        max_length=256,
-        verbose_name=_("LDH Type")
-    )
-
-    glomerular_filtration_formula_date = fields.DateField(
-        blank=True, null=True, verbose_name=_("Glomerular Filtration Formula Date")
-    )
-    glomerular_filtration_formula = fields.CharField(
-        blank=True,
-        null=True,
-        max_length=256,
-        choices=GLOMERULAR_FILTRATION_FORMULA,
-        verbose_name=_("Glomerular Filtration Formula")
     )
 
     # mL/min, min 5 max 102
@@ -660,8 +679,30 @@ class LabTest(models.EpisodeSubrecord):
         verbose_name=_("Glomerular Filtration")
     )
 
-    filter_formula_description = fields.TextField(
-        blank=True, default="", verbose_name=_("Filter Formula Description")
+    ### Immunology
+
+    # mg/L min 1.5 max 20
+    beta_2_microglobulin = fields.FloatField(
+        blank=True,
+        null=True,
+        max_length=256,
+        verbose_name=_("Beta 2 Microglobulin")
+    )
+
+    ### Urine
+    # mg/dl
+    proteinuria = fields.FloatField(
+        blank=True,
+        null=True,
+        max_length=256,
+        verbose_name=_("Proteinuria")
+    )
+    # g/24h
+    proteinuria_g24 = fields.FloatField(
+        blank=True,
+        null=True,
+        max_length=256,
+        verbose_name=_("Proteinuria gr/24")
     )
 
 
@@ -747,34 +788,12 @@ class Imaging(models.EpisodeSubrecord):
 
 
 class MProteinMesurements(models.EpisodeSubrecord):
-    date = fields.DateField(blank=True, null=True, verbose_name=_("Date"))
-
+    # g/dL
     serum_amount = fields.FloatField(
         blank=True,
         null=True,
         max_length=256,
         verbose_name=_("Monoclonal serum amount")
-    )
-    heavy_chain_type = fields.CharField(
-        blank=True,
-        null=True,
-        max_length=256,
-        choices=HEAVY_CHAIN_OPTIONS,
-        verbose_name=_("Heavy Chain Type")
-    )
-    # I don't think we need this but...
-    heavy_chain_type_other = fields.CharField(
-        blank=True,
-        null=True,
-        max_length=256,
-        verbose_name=_("Heavy Chain Type Other")
-    )
-    light_chain_type = fields.CharField(
-        blank=True,
-        null=True,
-        max_length=256,
-        choices=LIGHT_CHAIN_OPTIONS,
-        verbose_name=_("Light Chain Type")
     )
 
     lambda_light_chain_count = fields.FloatField(
@@ -796,6 +815,7 @@ class MProteinMesurements(models.EpisodeSubrecord):
         verbose_name=_("Kappa Lambda Ratio")
     )
 
+    # In urine
     urinary_monoclonal_count = fields.FloatField(
         blank=True,
         null=True,
@@ -803,23 +823,67 @@ class MProteinMesurements(models.EpisodeSubrecord):
         verbose_name=_("Urinary Monoclonal Count gr/24")
     )
 
+    # In bone marrow
     plasma_cells_in_bone_marrow = fields.FloatField(
         blank=True,
         null=True,
         max_length=256,
-        verbose_name=_("Plasma Cells In Bone Marrow %")
+        verbose_name=_("Plasma Cells In Bone Marrow")
     )
-    freelite_count = fields.FloatField(
+
+
+class Immunofixation(models.EpisodeSubrecord):
+    POSITIVE = "Positive"
+    NEGATIVE = "Negative"
+    IMMUNOFIXATION_CHOICES = (
+        (POSITIVE, _('Positive'),),
+        (NEGATIVE, _('Negative'),),
+        ("Unrealized", _('Unrealized'),),
+    )
+    monoclonal_ig_g_protein_serum = fields.CharField(
         blank=True,
         null=True,
         max_length=256,
-        verbose_name=_("Freelite Count")
+        choices=IMMUNOFIXATION_CHOICES,
+        verbose_name="Monoclonal IgG Protein (Serum)"
     )
-    heavylite_count = fields.FloatField(
+    monoclonal_ig_a_protein_serum = fields.CharField(
         blank=True,
         null=True,
         max_length=256,
-        verbose_name=_("Heavylite Count")
+        choices=IMMUNOFIXATION_CHOICES,
+        verbose_name="Monoclonal IgA Protein (Serum)"
+    )
+    monoclonal_ig_m_protein_serum = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=IMMUNOFIXATION_CHOICES,
+        verbose_name="Monoclonal IgM Protein (Serum)"
+    )
+    monoclonal_kappa_chain_serum = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=IMMUNOFIXATION_CHOICES,
+        verbose_name="Monoclonal Kappa chain (Serum)"
+    )
+    monoclonal_lambda_chain_serum = fields.CharField(
+        blank=True,
+        null=True,
+        max_length=256,
+        choices=IMMUNOFIXATION_CHOICES,
+        verbose_name="Monoclonal Lambda chain (Serum)"
+    )
+    immunifixaction_profile_serum = fields.TextField(
+        blank=True,
+        null=True,
+        verbose_name="Immunifixaction Profile (Serum)"
+    )
+    immunifixaction_profile_urine = fields.TextField(
+        blank=True,
+        null=True,
+        verbose_name="Immunifixaction Profile (Urine)"
     )
 
 

@@ -1,10 +1,10 @@
 {% load forms %}
 {% load custom_forms %}
 {% load i18n%}
-{% custom_datepicker field="AdditionalCharacteristics.characteristic_date" label=_("Date")  date_after="the_episode.demographics[0].date_of_birth" date_after_message=_("Date of measurement must be after date of bir")%}
+{% custom_datepicker field="AdditionalCharacteristics.characteristic_date" label=_("Date") %}
 {% radio field="AdditionalCharacteristics.ecog_score" %}
-{% number field="AdditionalCharacteristics.cirs_score" min_value="0" max_value="56"%}
-{% number field="AdditionalCharacteristics.creatinine_clearance" min_value="0" unit="mL/min" %}
-{% number field="AdditionalCharacteristics.LDH" min_value="0" unit="U" label=_("LDH")%}
-{% number field="AdditionalCharacteristics.beta2m" min_value="0" warn_max="25" unit="mg/dL" label=_("Beta-2-Microglobulin")%}
-{% radio field="AdditionalCharacteristics.bulky_disease" label=_("Bulky disease >5cm")%}
+{% number field="AdditionalCharacteristics.cirs_score" %}
+{% number field="AdditionalCharacteristics.creatinine_clearance" unit="mL/min" %}
+{% number field="AdditionalCharacteristics.LDH" unit="U" label=_("LDH")%}
+{% number field="AdditionalCharacteristics.beta2m" unit="mg/dL" label=_("Beta-2-Microglobulin")%}
+{% radio field="AdditionalCharacteristics.bulky_disease" label=_("Bulky disease > 5cm")%}

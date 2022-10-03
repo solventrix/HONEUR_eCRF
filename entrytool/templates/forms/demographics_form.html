@@ -1,6 +1,5 @@
 {% load forms %}
 {% load custom_forms %}
-{% input field="Demographics.hospital_number" label=_("External Identifier") required=True %}
-{% date_of_birth_field field="Demographics.date_of_birth" required=True %}
-{% select field="Demographics.sex" required=True %}
-{% textarea field="Demographics.comments" %}
+{% input field="Demographics.hospital_number" label=_("External Identifier") %}
+{% date_of_birth_field field="Demographics.date_of_birth" %}
+{% select field="Demographics.sex" %}

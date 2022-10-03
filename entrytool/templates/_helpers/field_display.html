@@ -1,13 +1,22 @@
+{% if is_number %}
+<span ng-show="item.{{ field_name }} || item.{{ field_name }} === 0">
+{% else %}
 <span ng-show="item.{{ field_name }}">
+{% endif %}
   <div class="row display-row">
-    <div class="col-md-7">
+    <div class="{{ label_size }}">
       <span class="display-label">{{ label }}</span>
     </div>
-    <div class="col-md-5">
+    <div class="{{ value_size }}">
       {% if is_date %}
         [[ item.{{ field_name }}  | displayDate ]]
       {% else %}
         [[ item.{{ field_name }} | translate ]]
+      {% endif %}
+      {% if unit %}
+      <span class="small">
+        {{ unit }}
+      </span>
       {% endif %}
     </div>
   </div>

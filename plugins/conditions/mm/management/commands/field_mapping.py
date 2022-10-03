@@ -76,10 +76,6 @@ FIELD_MAPPING = {
         "MProteinMesurements",
         "plasma_cells_in_bone_marrow",
     ),
-    ("datos enfermedad 1.csv", "celulasplasmaticascirculantes_1"): (
-        "LabTest",
-        "circulating_plasma_cells",
-    ),
     ("datos enfermedad 1.csv", "cociente_kappa_lambda_1"): (
         "MProteinMesurements",
         "kappa_lambda_ratio",
@@ -174,11 +170,7 @@ FIELD_MAPPING = {
     ),
     ("datos enfermedad 1.csv", "fecha_diagnostico_1"): (
         "MMDiagnosisDetails",
-        "diagnosis_date",
-    ),
-    ("datos enfermedad 1.csv", "fecha_formular_filtrado_glomerular_1"): (
-        "LabTest",
-        "glomerular_filtration_formula_date",
+        "diag_date",
     ),
     ("datos enfermedad 1.csv", "fecha_primera_visita_centro_1"): (
         "MMDiagnosisDetails",
@@ -192,25 +184,9 @@ FIELD_MAPPING = {
         "LabTest",
         "glomerular_filtration",
     ),
-    ("datos enfermedad 1.csv", "formulafiltradodescribir_1"): (
-        "LabTest",
-        "filter_formula_description",
-    ),
-    ("datos enfermedad 1.csv", "formulafiltradoglomerular_1"): (
-        "LabTest",
-        "glomerular_filtration_formula",
-    ),
     ("datos enfermedad 1.csv", "fosfatasa_alcalina_1"): (
         "LabTest",
         "alkaline_phosphatase",
-    ),
-    ("datos enfermedad 1.csv", "freelite_cuant_1"): (
-        "MProteinMesurements",
-        "freelite_count",
-    ),
-    ("datos enfermedad 1.csv", "heavylite_cuant_1"): (
-        "MProteinMesurements",
-        "heavylite_count",
     ),
     ("datos enfermedad 1.csv", "hemoglobina_1"): ("LabTest", "hemoglobin"),
     ("datos enfermedad 1.csv", "hipercalcemia_pres_clinica_1"): (
@@ -222,7 +198,6 @@ FIELD_MAPPING = {
         "renal_failure",
     ),
     ("datos enfermedad 1.csv", "ldh_1"): ("LabTest", "ldh"),
-    ("datos enfermedad 1.csv", "ldhtype_1"): ("LabTest", "ldh_type"),
     ("datos enfermedad 1.csv", "leucocitos_1"): ("LabTest", "leucocytes"),
     ("datos enfermedad 1.csv", "microorg_pc_foco_1"): (
         "ClinicalPresentation",
@@ -273,18 +248,6 @@ FIELD_MAPPING = {
     ("datos enfermedad 1.csv", "tac_1"): ("Imaging", "ct_scan"),
     ("datos enfermedad 1.csv", "tac_describir_1"): ("Imaging", "ct_scan_description"),
     ("datos enfermedad 1.csv", "talla_diagnostico_1"): ("MMDiagnosisDetails", "height"),
-    ("datos enfermedad 1.csv", "tipo_cadena_ligera_1"): (
-        "MProteinMesurements",
-        "light_chain_type",
-    ),
-    ("datos enfermedad 1.csv", "tipo_cadena_pesada_1"): (
-        "MProteinMesurements",
-        "heavy_chain_type",
-    ),
-    ("datos enfermedad 1.csv", "tipo_cadena_pesada_otros_1"): (
-        "MProteinMesurements",
-        "heavy_chain_type_other",
-    ),
     ("datos enfermedad 1.csv", "tipo_infeccion_pres_clinica_1"): (
         "ClinicalPresentation",
         "infection_type",
@@ -303,10 +266,6 @@ FIELD_MAPPING = {
     ("datos enfermedad 2.csv", "celulas_plasmat_medula_2"): (
         "MProteinMesurements",
         "plasma_cells_in_bone_marrow",
-    ),
-    ("datos enfermedad 2.csv", "celulasplasmaticascirculantes_2"): (
-        "LabTest",
-        "circulating_plasma_cells",
     ),
     ("datos enfermedad 2.csv", "cociente_kappa_lambda_2"): (
         "MProteinMesurements",
@@ -398,10 +357,6 @@ FIELD_MAPPING = {
         "Cytogenetics",
         "t4_14_not_effected",
     ),
-    ("datos enfermedad 2.csv", "fecha_formular_filtrado_glomerular_2"): (
-        "LabTest",
-        "glomerular_filtration_formula_date",
-    ),
     ("datos enfermedad 2.csv", "fecha_primera_visita_centro_2"): (
         "MMDiagnosisDetails",
         "date_of_first_centre_visit",
@@ -414,25 +369,9 @@ FIELD_MAPPING = {
         "LabTest",
         "glomerular_filtration",
     ),
-    ("datos enfermedad 2.csv", "formulafiltradodescribir_2"): (
-        "LabTest",
-        "filter_formula_description",
-    ),
-    ("datos enfermedad 2.csv", "formulafiltradoglomerular_2"): (
-        "LabTest",
-        "glomerular_filtration_formula",
-    ),
     ("datos enfermedad 2.csv", "fosfatasa_alcalina_2"): (
         "LabTest",
         "alkaline_phosphatase",
-    ),
-    ("datos enfermedad 2.csv", "freelite_cuant_2"): (
-        "MProteinMesurements",
-        "freelite_count",
-    ),
-    ("datos enfermedad 2.csv", "heavylite_cuant_2"): (
-        "MProteinMesurements",
-        "heavylite_count",
     ),
     ("datos enfermedad 2.csv", "hemoglobina_2"): ("LabTest", "hemoglobin"),
     ("datos enfermedad 2.csv", "hipercalcemia_pres_clinica_2"): (
@@ -444,7 +383,6 @@ FIELD_MAPPING = {
         "renal_failure",
     ),
     ("datos enfermedad 2.csv", "ldh_2"): ("LabTest", "ldh"),
-    ("datos enfermedad 2.csv", "ldhtype_2"): ("LabTest", "ldh_type"),
     ("datos enfermedad 2.csv", "leucocitos_2"): ("LabTest", "leucocytes"),
     ("datos enfermedad 2.csv", "microorg_pc_foco_2"): (
         "ClinicalPresentation",
@@ -485,18 +423,6 @@ FIELD_MAPPING = {
     ),
     ("datos enfermedad 2.csv", "tac_2"): ("Imaging", "ct_scan"),
     ("datos enfermedad 2.csv", "tac_describir_2"): ("Imaging", "ct_scan_description"),
-    ("datos enfermedad 2.csv", "tipo_cadena_ligera_2"): (
-        "MProteinMesurements",
-        "light_chain_type",
-    ),
-    ("datos enfermedad 2.csv", "tipo_cadena_pesada_2"): (
-        "MProteinMesurements",
-        "heavy_chain_type",
-    ),
-    ("datos enfermedad 2.csv", "tipo_cadena_pesada_otros_2"): (
-        "MProteinMesurements",
-        "heavy_chain_type_other",
-    ),
     ("datos enfermedad 2.csv", "tipo_infeccion_pres_clinica_2"): (
         "ClinicalPresentation",
         "infection_type",
@@ -515,10 +441,6 @@ FIELD_MAPPING = {
     ("datos enfermedad 3.csv", "celulas_plasmat_medula_3"): (
         "MProteinMesurements",
         "plasma_cells_in_bone_marrow",
-    ),
-    ("datos enfermedad 3.csv", "celulasplasmaticascirculantes_3"): (
-        "LabTest",
-        "circulating_plasma_cells",
     ),
     ("datos enfermedad 3.csv", "cociente_kappa_lambda_3"): (
         "MProteinMesurements",
@@ -610,10 +532,6 @@ FIELD_MAPPING = {
         "Cytogenetics",
         "t4_14_not_effected",
     ),
-    ("datos enfermedad 3.csv", "fecha_formular_filtrado_glomerular_3"): (
-        "LabTest",
-        "glomerular_filtration_formula_date",
-    ),
     ("datos enfermedad 3.csv", "fecha_primera_visita_centro_3"): (
         "MMDiagnosisDetails",
         "date_of_first_centre_visit",
@@ -626,25 +544,9 @@ FIELD_MAPPING = {
         "LabTest",
         "glomerular_filtration",
     ),
-    ("datos enfermedad 3.csv", "formulafiltradodescribir_3"): (
-        "LabTest",
-        "filter_formula_description",
-    ),
-    ("datos enfermedad 3.csv", "formulafiltradoglomerular_3"): (
-        "LabTest",
-        "glomerular_filtration_formula",
-    ),
     ("datos enfermedad 3.csv", "fosfatasa_alcalina_3"): (
         "LabTest",
         "alkaline_phosphatase",
-    ),
-    ("datos enfermedad 3.csv", "freelite_cuant_3"): (
-        "MProteinMesurements",
-        "freelite_count",
-    ),
-    ("datos enfermedad 3.csv", "heavylite_cuant_3"): (
-        "MProteinMesurements",
-        "heavylite_count",
     ),
     ("datos enfermedad 3.csv", "hemoglobina_3"): ("LabTest", "hemoglobin"),
     ("datos enfermedad 3.csv", "hipercalcemia_pres_clinica_3"): (
@@ -656,7 +558,6 @@ FIELD_MAPPING = {
         "renal_failure",
     ),
     ("datos enfermedad 3.csv", "ldh_3"): ("LabTest", "ldh"),
-    ("datos enfermedad 3.csv", "ldhtype_3"): ("LabTest", "ldh_type"),
     ("datos enfermedad 3.csv", "leucocitos_3"): ("LabTest", "leucocytes"),
     ("datos enfermedad 3.csv", "microorg_pc_foco_3"): (
         "ClinicalPresentation",
@@ -697,18 +598,6 @@ FIELD_MAPPING = {
     ),
     ("datos enfermedad 3.csv", "tac_3"): ("Imaging", "ct_scan"),
     ("datos enfermedad 3.csv", "tac_describir_3"): ("Imaging", "ct_scan_description"),
-    ("datos enfermedad 3.csv", "tipo_cadena_ligera_3"): (
-        "MProteinMesurements",
-        "light_chain_type",
-    ),
-    ("datos enfermedad 3.csv", "tipo_cadena_pesada_3"): (
-        "MProteinMesurements",
-        "heavy_chain_type",
-    ),
-    ("datos enfermedad 3.csv", "tipo_cadena_pesada_otros_3"): (
-        "MProteinMesurements",
-        "heavy_chain_type_other",
-    ),
     ("datos enfermedad 3.csv", "tipo_infeccion_pres_clinica_3"): (
         "ClinicalPresentation",
         "infection_type",
@@ -727,10 +616,6 @@ FIELD_MAPPING = {
     ("datos enfermedad 4.csv", "celulas_plasmat_medula_4"): (
         "MProteinMesurements",
         "plasma_cells_in_bone_marrow",
-    ),
-    ("datos enfermedad 4.csv", "celulasplasmaticascirculantes_4"): (
-        "LabTest",
-        "circulating_plasma_cells",
     ),
     ("datos enfermedad 4.csv", "cociente_kappa_lambda_4"): (
         "MProteinMesurements",
@@ -822,10 +707,6 @@ FIELD_MAPPING = {
         "Cytogenetics",
         "t4_14_not_effected",
     ),
-    ("datos enfermedad 4.csv", "fecha_formular_filtrado_glomerular_4"): (
-        "LabTest",
-        "glomerular_filtration_formula_date",
-    ),
     ("datos enfermedad 4.csv", "fecha_primera_visita_centro_4"): (
         "MMDiagnosisDetails",
         "date_of_first_centre_visit",
@@ -838,25 +719,9 @@ FIELD_MAPPING = {
         "LabTest",
         "glomerular_filtration",
     ),
-    ("datos enfermedad 4.csv", "formulafiltradodescribir_4"): (
-        "LabTest",
-        "filter_formula_description",
-    ),
-    ("datos enfermedad 4.csv", "formulafiltradoglomerular_4"): (
-        "LabTest",
-        "glomerular_filtration_formula",
-    ),
     ("datos enfermedad 4.csv", "fosfatasa_alcalina_4"): (
         "LabTest",
         "alkaline_phosphatase",
-    ),
-    ("datos enfermedad 4.csv", "freelite_cuant_4"): (
-        "MProteinMesurements",
-        "freelite_count",
-    ),
-    ("datos enfermedad 4.csv", "heavylite_cuant_4"): (
-        "MProteinMesurements",
-        "heavylite_count",
     ),
     ("datos enfermedad 4.csv", "hemoglobina_4"): ("LabTest", "hemoglobin"),
     ("datos enfermedad 4.csv", "hipercalcemia_pres_clinica_4"): (
@@ -868,7 +733,6 @@ FIELD_MAPPING = {
         "renal_failure",
     ),
     ("datos enfermedad 4.csv", "ldh_4"): ("LabTest", "ldh"),
-    ("datos enfermedad 4.csv", "ldhtype_4"): ("LabTest", "ldh_type"),
     ("datos enfermedad 4.csv", "leucocitos_4"): ("LabTest", "leucocytes"),
     ("datos enfermedad 4.csv", "microorg_pc_foco_4"): (
         "ClinicalPresentation",
@@ -908,18 +772,6 @@ FIELD_MAPPING = {
     ),
     ("datos enfermedad 4.csv", "tac_4"): ("Imaging", "ct_scan"),
     ("datos enfermedad 4.csv", "tac_describir_4"): ("Imaging", "ct_scan_description"),
-    ("datos enfermedad 4.csv", "tipo_cadena_ligera_4"): (
-        "MProteinMesurements",
-        "light_chain_type",
-    ),
-    ("datos enfermedad 4.csv", "tipo_cadena_pesada_4"): (
-        "MProteinMesurements",
-        "heavy_chain_type",
-    ),
-    ("datos enfermedad 4.csv", "tipo_cadena_pesada_otros_4"): (
-        "MProteinMesurements",
-        "heavy_chain_type_other",
-    ),
     ("datos enfermedad 4.csv", "tipo_infeccion_pres_clinica_4"): (
         "ClinicalPresentation",
         "infection_type",
@@ -938,10 +790,6 @@ FIELD_MAPPING = {
     ("datos enfermedad 5.csv", "celulas_plasmat_medula_5"): (
         "MProteinMesurements",
         "plasma_cells_in_bone_marrow",
-    ),
-    ("datos enfermedad 5.csv", "celulasplasmaticascirculantes_5"): (
-        "LabTest",
-        "circulating_plasma_cells",
     ),
     ("datos enfermedad 5.csv", "cociente_kappa_lambda_5"): (
         "MProteinMesurements",
@@ -1033,10 +881,6 @@ FIELD_MAPPING = {
         "Cytogenetics",
         "t4_14_not_effected",
     ),
-    ("datos enfermedad 5.csv", "fecha_formular_filtrado_glomerular_5"): (
-        "LabTest",
-        "glomerular_filtration_formula_date",
-    ),
     ("datos enfermedad 5.csv", "fecha_primera_visita_centro_5"): (
         "MMDiagnosisDetails",
         "date_of_first_centre_visit",
@@ -1049,25 +893,9 @@ FIELD_MAPPING = {
         "LabTest",
         "glomerular_filtration",
     ),
-    ("datos enfermedad 5.csv", "formulafiltradodescribir_5"): (
-        "LabTest",
-        "filter_formula_description",
-    ),
-    ("datos enfermedad 5.csv", "formulafiltradoglomerular_5"): (
-        "LabTest",
-        "glomerular_filtration_formula",
-    ),
     ("datos enfermedad 5.csv", "fosfatasa_alcalina_5"): (
         "LabTest",
         "alkaline_phosphatase",
-    ),
-    ("datos enfermedad 5.csv", "freelite_cuant_5"): (
-        "MProteinMesurements",
-        "freelite_count",
-    ),
-    ("datos enfermedad 5.csv", "heavylite_cuant_5"): (
-        "MProteinMesurements",
-        "heavylite_count",
     ),
     ("datos enfermedad 5.csv", "hemoglobina_5"): ("LabTest", "hemoglobin"),
     ("datos enfermedad 5.csv", "hipercalcemia_pres_clinica_5"): (
@@ -1079,7 +907,6 @@ FIELD_MAPPING = {
         "renal_failure",
     ),
     ("datos enfermedad 5.csv", "ldh_5"): ("LabTest", "ldh"),
-    ("datos enfermedad 5.csv", "ldhtype_5"): ("LabTest", "ldh_type"),
     ("datos enfermedad 5.csv", "leucocitos_5"): ("LabTest", "leucocytes"),
     ("datos enfermedad 5.csv", "microorg_pc_foco_5"): (
         "ClinicalPresentation",
@@ -1120,18 +947,6 @@ FIELD_MAPPING = {
     ),
     ("datos enfermedad 5.csv", "tac_5"): ("Imaging", "ct_scan"),
     ("datos enfermedad 5.csv", "tac_describir_5"): ("Imaging", "ct_scan_description"),
-    ("datos enfermedad 5.csv", "tipo_cadena_ligera_5"): (
-        "MProteinMesurements",
-        "light_chain_type",
-    ),
-    ("datos enfermedad 5.csv", "tipo_cadena_pesada_5"): (
-        "MProteinMesurements",
-        "heavy_chain_type",
-    ),
-    ("datos enfermedad 5.csv", "tipo_cadena_pesada_otros_5"): (
-        "MProteinMesurements",
-        "heavy_chain_type_other",
-    ),
     ("datos enfermedad 5.csv", "tipo_infeccion_pres_clinica_5"): (
         "ClinicalPresentation",
         "infection_type",
@@ -1150,10 +965,6 @@ FIELD_MAPPING = {
     ("datos enfermedad 6.csv", "celulas_plasmat_medula_6"): (
         "MProteinMesurements",
         "plasma_cells_in_bone_marrow",
-    ),
-    ("datos enfermedad 6.csv", "celulasplasmaticascirculantes_6"): (
-        "LabTest",
-        "circulating_plasma_cells",
     ),
     ("datos enfermedad 6.csv", "cociente_kappa_lambda_6"): (
         "MProteinMesurements",
@@ -1245,10 +1056,6 @@ FIELD_MAPPING = {
         "Cytogenetics",
         "t4_14_not_effected",
     ),
-    ("datos enfermedad 6.csv", "fecha_formular_filtrado_glomerular_6"): (
-        "LabTest",
-        "glomerular_filtration_formula_date",
-    ),
     ("datos enfermedad 6.csv", "fecha_primera_visita_centro_6"): (
         "MMDiagnosisDetails",
         "date_of_first_centre_visit",
@@ -1261,25 +1068,9 @@ FIELD_MAPPING = {
         "LabTest",
         "glomerular_filtration",
     ),
-    ("datos enfermedad 6.csv", "formulafiltradodescribir_6"): (
-        "LabTest",
-        "filter_formula_description",
-    ),
-    ("datos enfermedad 6.csv", "formulafiltradoglomerular_6"): (
-        "LabTest",
-        "glomerular_filtration_formula",
-    ),
     ("datos enfermedad 6.csv", "fosfatasa_alcalina_6"): (
         "LabTest",
         "alkaline_phosphatase",
-    ),
-    ("datos enfermedad 6.csv", "freelite_cuant_6"): (
-        "MProteinMesurements",
-        "freelite_count",
-    ),
-    ("datos enfermedad 6.csv", "heavylite_cuant_6"): (
-        "MProteinMesurements",
-        "heavylite_count",
     ),
     ("datos enfermedad 6.csv", "hemoglobina_6"): ("LabTest", "hemoglobin"),
     ("datos enfermedad 6.csv", "hipercalcemia_pres_clinica_6"): (
@@ -1291,7 +1082,6 @@ FIELD_MAPPING = {
         "renal_failure",
     ),
     ("datos enfermedad 6.csv", "ldh_6"): ("LabTest", "ldh"),
-    ("datos enfermedad 6.csv", "ldhtype_6"): ("LabTest", "ldh_type"),
     ("datos enfermedad 6.csv", "leucocitos_6"): ("LabTest", "leucocytes"),
     ("datos enfermedad 6.csv", "microorg_pc_foco_6"): (
         "ClinicalPresentation",
@@ -1332,23 +1122,12 @@ FIELD_MAPPING = {
     ),
     ("datos enfermedad 6.csv", "tac_6"): ("Imaging", "ct_scan"),
     ("datos enfermedad 6.csv", "tac_describir_6"): ("Imaging", "ct_scan_description"),
-    ("datos enfermedad 6.csv", "tipo_cadena_ligera_6"): (
-        "MProteinMesurements",
-        "light_chain_type",
-    ),
-    ("datos enfermedad 6.csv", "tipo_cadena_pesada_6"): (
-        "MProteinMesurements",
-        "heavy_chain_type",
-    ),
-    ("datos enfermedad 6.csv", "tipo_cadena_pesada_otros_6"): (
-        "MProteinMesurements",
-        "heavy_chain_type_other",
-    ),
     ("datos enfermedad 6.csv", "tipo_infeccion_pres_clinica_6"): (
         "ClinicalPresentation",
         "infection_type",
     ),
     ("datos enfermedad 6.csv", "troponina_6"): ("LabTest", "troponine"),
+    ("situacion actual.csv", "fecha_estatus"): ("MMPatientStatus", "last_seen"),
     ("situacion actual.csv", "causa_muerte"): ("MMPatientStatus", "cause_of_death"),
     ("situacion actual.csv", "causa_muerte_otros"): (
         "MMPatientStatus",
@@ -1846,18 +1625,6 @@ FIELD_MAPPING = {
         "response",
     ),
     ("tratamiento 2.csv", "tecnica_emr2_2"): ("MMResponse", "mrd_technique"),
-    ("tratamiento 2.csv", "tipo_cadena_ligera_2"): (
-        "MProteinMesurements",
-        "light_chain_type",
-    ),
-    ("tratamiento 2.csv", "tipo_cadena_pesada_2"): (
-        "MProteinMesurements",
-        "heavy_chain_type",
-    ),
-    ("tratamiento 2.csv", "tipo_cadena_pesada_otros_2"): (
-        "MProteinMesurements",
-        "heavy_chain_type_other",
-    ),
     ("tratamiento 2.csv", "tipo_infeccion_comentarios_induccion_2"): (
         "Comorbidity",
         "details",
@@ -2077,18 +1844,6 @@ FIELD_MAPPING = {
         "response_date",
     ),
     ("tratamiento 3.csv", "tecnica_emr2_3"): ("MMResponse", "mrd_technique"),
-    ("tratamiento 3.csv", "tipo_cadena_ligera_3"): (
-        "MProteinMesurements",
-        "light_chain_type",
-    ),
-    ("tratamiento 3.csv", "tipo_cadena_pesada_3"): (
-        "MProteinMesurements",
-        "heavy_chain_type",
-    ),
-    ("tratamiento 3.csv", "tipo_cadena_pesada_otros_3"): (
-        "MProteinMesurements",
-        "heavy_chain_type_other",
-    ),
     (
         "tratamiento 3.csv",
         "tipo_tratamiento_enfermedad_osea_bisfosfonatos_induccion_3",
@@ -2283,18 +2038,6 @@ FIELD_MAPPING = {
         "MMResponse",
         "response_date",
     ),
-    ("tratamiento 4.csv", "tipo_cadena_ligera_4"): (
-        "MProteinMesurements",
-        "light_chain_type",
-    ),
-    ("tratamiento 4.csv", "tipo_cadena_pesada_4"): (
-        "MProteinMesurements",
-        "heavy_chain_type",
-    ),
-    ("tratamiento 4.csv", "tipo_cadena_pesada_otros_4"): (
-        "MProteinMesurements",
-        "heavy_chain_type_other",
-    ),
     ("tratamiento 4.csv", "tipo_infeccion_documentada_foco_induccion_4"): (
         "Comorbidity",
         "infection_source",
@@ -2478,18 +2221,6 @@ FIELD_MAPPING = {
         "response_date",
     ),
     ("tratamiento 5.csv", "tecnica_emr2_5"): ("MMResponse", "mrd_technique"),
-    ("tratamiento 5.csv", "tipo_cadena_ligera_5"): (
-        "MProteinMesurements",
-        "light_chain_type",
-    ),
-    ("tratamiento 5.csv", "tipo_cadena_pesada_5"): (
-        "MProteinMesurements",
-        "heavy_chain_type",
-    ),
-    ("tratamiento 5.csv", "tipo_cadena_pesada_otros_5"): (
-        "MProteinMesurements",
-        "heavy_chain_type_other",
-    ),
     ("tratamiento 5.csv", "tipo_infeccion_documentada_foco_induccion_5"): (
         "Comorbidity",
         "infection_source",
@@ -2679,18 +2410,6 @@ FIELD_MAPPING = {
     ("tratamiento 6.csv", "respuesta_despues_mantenimiento_fecha_6"): (
         "MMResponse",
         "response_date",
-    ),
-    ("tratamiento 6.csv", "tipo_cadena_ligera_6"): (
-        "MProteinMesurements",
-        "light_chain_type",
-    ),
-    ("tratamiento 6.csv", "tipo_cadena_pesada_6"): (
-        "MProteinMesurements",
-        "heavy_chain_type",
-    ),
-    ("tratamiento 6.csv", "tipo_cadena_pesada_otros_6"): (
-        "MProteinMesurements",
-        "heavy_chain_type_other",
     ),
     ("tratamiento 6.csv", "tipo_infeccion_documentada_foco_induccion_6"): (
         "Comorbidity",

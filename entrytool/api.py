@@ -1,8 +1,12 @@
-from rest_framework import status
+from django.utils.module_loading import import_string
+from django.conf import settings
+from rest_framework import status, pagination, generics
+from rest_framework.parsers import FileUploadParser
 from opal.core.api import LoginRequiredViewset
 from opal.models import Patient, Episode
 from opal.core.api import OPALRouter, patient_from_pk, episode_from_pk
 from opal.core.views import json_response
+from entrytool import models
 from entrytool.episode_categories import LineOfTreatmentEpisode
 
 
@@ -43,10 +47,74 @@ class DeleteLineOfTreatmentEpisode(LoginRequiredViewset):
         return json_response(True)
 
 
+class UnvalidatedPatients(LoginRequiredViewset):
+    basename = "unvalidated_patients"
+
+    def list(self, request):
+        return json_response(list(Patient.objects.filter(
+            patientload__validated=False,
+            patientload__source=models.PatientLoad.LOADED_FROM_FILE
+        ).values_list('id', flat=True)))
+
+
+class PatientsWithErrorsPaginator(pagination.PageNumberPagination):
+    page_size = 20
+
+    def get_paginated_response(self, data):
+        # This get's used by the opal js Paginator service
+        # that expects total_count, total_pages and page_number
+        return json_response({
+            'total_count': self.page.paginator.count,
+            'total_pages': self.page.paginator.num_pages,
+            'page_number': self.page.number,
+            'results': data
+        })
+
+
+class PatientsWithErrors(LoginRequiredViewset, generics.GenericAPIView):
+    basename = "patients_with_errors"
+    pagination_class = PatientsWithErrorsPaginator
+
+    def get_queryset(self):
+        return Patient.objects.filter(
+            patientload__validated=True,
+            patientload__has_errors=True,
+            patientload__source=models.PatientLoad.LOADED_FROM_FILE
+        )
+
+    def list(self, request):
+        qs = self.get_queryset()
+        sorted_by_newest = models.sort_by_newest_to_oldest(qs)
+        # Not actually a queryset but DRF also accepts a list
+        page = self.paginate_queryset(sorted_by_newest)
+        data = [i.id for i in page]
+        return self.get_paginated_response(data)
+
+
+class UploadFromFile(LoginRequiredViewset):
+    parser_classes = [FileUploadParser]
+    basename = "upload_from_file"
+
+    def create(self, request):
+        zipfile = request.FILES.get('file')
+        load_data = import_string(settings.UPLOAD_FROM_FILE_FUNCTION)
+        errors = load_data(zipfile)
+        return json_response(errors)
+
+
 entrytool_router = OPALRouter()
 entrytool_router.register(
     NewLineOfTreatmentEpisode.basename, NewLineOfTreatmentEpisode
 )
 entrytool_router.register(
     DeleteLineOfTreatmentEpisode.basename, DeleteLineOfTreatmentEpisode
+)
+entrytool_router.register(
+    UnvalidatedPatients.basename, UnvalidatedPatients
+)
+entrytool_router.register(
+    PatientsWithErrors.basename, PatientsWithErrors
+)
+entrytool_router.register(
+    UploadFromFile.basename, UploadFromFile
 )

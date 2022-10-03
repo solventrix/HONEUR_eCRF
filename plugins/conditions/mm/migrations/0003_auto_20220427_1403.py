@@ -223,22 +223,6 @@ class Migration(migrations.Migration):
             bases=(opal.models.UpdatesFromDictMixin, opal.models.ToDictMixin, models.Model),
         ),
         migrations.RemoveField(
-            model_name='mmfollowup',
-            name='created_by',
-        ),
-        migrations.RemoveField(
-            model_name='mmfollowup',
-            name='episode',
-        ),
-        migrations.RemoveField(
-            model_name='mmfollowup',
-            name='hospital_fk',
-        ),
-        migrations.RemoveField(
-            model_name='mmfollowup',
-            name='updated_by',
-        ),
-        migrations.RemoveField(
             model_name='mmdiagnosisdetails',
             name='del_13',
         ),
@@ -473,8 +457,5 @@ class Migration(migrations.Migration):
             model_name='mmresponse',
             name='response_date',
             field=models.DateField(blank=True, null=True, verbose_name='Response Date'),
-        ),
-        migrations.DeleteModel(
-            name='MMFollowUp',
         ),
     ]

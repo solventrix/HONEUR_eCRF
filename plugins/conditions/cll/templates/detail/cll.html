@@ -32,13 +32,17 @@
           </div>
         </div>
         <div class="help-block">
+          {% blocktrans %}
           Line of treatment is defined as: time from first treatment after
           diagnosis or progression till start of treatment after subsequent
           progression
+          {% endblocktrans %}
         </div>
         <div class="help-block">
+          {% blocktrans %}
           Info: you might be confused by the treatment line order when adding a
           new line. After you save, they will be in the correct order.
+          {% endblocktrans %}
         </div>
         <div
           class="row"
@@ -75,7 +79,7 @@
                 {% trans "Additional Characteristics" %}
                 <span class="pull-right pointer edit">
                   <a
-                    ng-click="episode.recordEditor.newItem('{{ models.AdditionalCharacteristics.get_api_name }}')"
+                    ng-click="honeurPatientDetailCtrl.newItem('{{ models.AdditionalCharacteristics.get_api_name }}', episode)"
                   >
                     <i class="fa fa-plus-circle edit pointer"></i>
                   </a>
@@ -98,7 +102,7 @@
                 {% trans "Cytogenetics" %}
                 <span class="pull-right pointer edit">
                   <a
-                    ng-click="episode.recordEditor.newItem('{{ models.Cytogenetics.get_api_name }}')"
+                    ng-click="honeurPatientDetailCtrl.newItem('{{ models.Cytogenetics.get_api_name }}', episode)"
                   >
                     <i class="fa fa-plus-circle edit pointer"></i>
                   </a>
@@ -121,7 +125,7 @@
             {% trans "Quality Of Life 5Q" %}
             <span class="pull-right pointer edit">
               <a
-                ng-click="episode.recordEditor.newItem('{{ models.QualityOfLife5Q.get_api_name }}')"
+                ng-click="honeurPatientDetailCtrl.newItem('{{ models.QualityOfLife5Q.get_api_name }}', episode)"
               >
                 <i class="fa fa-plus-circle edit pointer"></i>
               </a>
@@ -130,7 +134,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-md-12">{% include "detail/qol_5q.html" %}</div>
+        <div class="col-md-6">{% include "detail/qol_5q.html" %}</div>
       </div>
     </section>
   </div>

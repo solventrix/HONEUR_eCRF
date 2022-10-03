@@ -70,6 +70,7 @@ INSTALLED_APPS = [
     "plugins.conditions.mm",
     # 'languages',
     "django.contrib.admin",
+    "plugins.data_load"
 ]
 
 MIDDLEWARE = (
@@ -133,42 +134,25 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "entrytool.wsgi.application"
 
-# Database
-# set the ON_HEROKU variable for deployment to heroku
-# heroku config:set ON_HEROKU=True
-if os.environ.get("ON_HEROKU"):
+try:
+    # This is for heroku deployments
+    # if you're not on heroku, this will raise an error
     import dj_database_url
     DATABASES = {'default': dj_database_url.config()}
-else:
-    try:
-        # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
-        DATABASES = {
-            "default": {
-                "ENGINE": "django.db.backends.postgresql",
-                "NAME": os.environ['OPAL_DB_NAME'],
-                "USER": os.environ['OPAL_DB_USER'],
-                "PASSWORD": os.environ['OPAL_DB_PASSWORD'],
-                "HOST": os.environ['OPAL_DB_HOST'],
-                "PORT": os.environ['OPAL_DB_PORT'],
-                'OPTIONS': {
-                    'options': '-c search_path=opal'
-                },
-            }
+except ImportError:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": os.environ['OPAL_DB_NAME'],
+            "USER": os.environ['OPAL_DB_USER'],
+            "PASSWORD": os.environ['OPAL_DB_PASSWORD'],
+            "HOST": os.environ['OPAL_DB_HOST'],
+            "PORT": os.environ['OPAL_DB_PORT'],
+            'OPTIONS': {
+                'options': '-c search_path=opal'
+            },
         }
-    except ImportError:
-        DATABASES = {
-            "default": {
-                "ENGINE": "django.db.backends.postgresql",
-                "NAME": os.environ['OPAL_DB_NAME'],
-                "USER": os.environ['OPAL_DB_USER'],
-                "PASSWORD": os.environ['OPAL_DB_PASSWORD'],
-                "HOST": os.environ['OPAL_DB_HOST'],
-                "PORT": os.environ['OPAL_DB_PORT'],
-                'OPTIONS': {
-                    'options': '-c search_path=opal'
-                },
-            }
-        }
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
@@ -195,7 +179,7 @@ LANGUAGES = (
     ("he", _("Hebrew")),
 )
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = os.environ.get('LANGUAGE_CODE', "en-us")
 TIME_ZONE = "UTC"
 USE_I18N = True
 USE_L10N = True
@@ -314,6 +298,14 @@ LOCALE_PATHS = [
     os.path.join(BASE_DIR, 'locale')
 ]
 
+# A patient who has not been updated in {LOST_TO_FOLLOW_UP_DAYS_SINCE} days
+# will appear on the Lost To Follow-Up page
+LOST_TO_FOLLOW_UP_DAYS_SINCE = 180
+
+
+# The function called by entrytool.api.create
+# that takes the file and then returns the errors
+UPLOAD_FROM_FILE_FUNCTION = 'plugins.conditions.mm.load_data.load_data'
 
 try:
     from entrytool.local_settings import *

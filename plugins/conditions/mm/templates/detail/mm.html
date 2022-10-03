@@ -85,7 +85,7 @@
         {% comment %}
         <span class="pull-right pointer edit">
           <a
-            ng-click="episode.recordEditor.newItem('{{ models.MMFollowUp.get_api_name }}')"
+            ng-click="honeurPatientDetailCtrl.newItem('{{ models.MMFollowUp.get_api_name }}', episode)"
           >
             <i class="fa fa-plus-circle edit pointer"></i>
           </a>
@@ -113,6 +113,9 @@
   <div class="row">
     <div class="col-md-6">
         {% record_panel models.Cytogenetics %}
+    </div>
+    <div class="col-md-6">
+        {% record_panel models.Immunofixation %}
     </div>
   </div>
 </section>
