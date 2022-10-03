@@ -41,13 +41,13 @@ class MMDiagnosisDetails(models.EpisodeSubrecord):
         ('No Light Chain', _('No Light Chain'))
     )
 
-    R_ISS_STAGES = (
+    ISS_STAGES = (
         ("Stage I", _("Stage I")),
         ("Stage II", _("Stage II")),
         ("Stage III", _("Stage III")),
         ("Unknown", _("Unknown")),
     )
-    R_ISS_AT_ED_CHOICES = (
+    R_ISS_STAGES = (
         ('I', _("I")),
         ('II', _("II")),
         ('III', _("III")),
@@ -89,13 +89,13 @@ class MMDiagnosisDetails(models.EpisodeSubrecord):
         blank=True, null=True, verbose_name=_("Date of MGUS Diagnosis")
     )
     iss_stage = fields.CharField(
-        blank=True, null=True, max_length=10, choices=R_ISS_STAGES, verbose_name=_("ISS Stage")
+        blank=True, null=True, max_length=10, choices=ISS_STAGES, verbose_name=_("ISS Stage")
     )
     r_iss_stage = fields.CharField(
-        blank=True, null=True, max_length=10, choices=R_ISS_AT_ED_CHOICES, verbose_name=_("R ISS Stage")
+        blank=True, null=True, max_length=10, choices=R_ISS_STAGES, verbose_name=_("R ISS Stage")
     )
     ds_stage = fields.CharField(
-        blank=True, null=True, max_length=10, choices=R_ISS_STAGES, verbose_name=_("DS Stage")
+        blank=True, null=True, max_length=10, choices=ISS_STAGES, verbose_name=_("DS Stage")
     )
     pp_type = fields.CharField(
         blank=True, null=True, max_length=50, choices=PP_TYPE_CHOICES, verbose_name=_("PP Type")
