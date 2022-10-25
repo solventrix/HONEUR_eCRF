@@ -134,13 +134,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "entrytool.wsgi.application"
 
-try:
-    # This is for heroku deployments
-    # if you're not on heroku, this will raise an error
-    import dj_database_url
-    DATABASES = {'default': dj_database_url.config()}
-except ImportError:
-    DATABASES = {
+DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql",
             "NAME": os.environ['OPAL_DB_NAME'],
@@ -153,6 +147,7 @@ except ImportError:
             },
         }
     }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
