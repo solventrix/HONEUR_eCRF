@@ -10,7 +10,6 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('opal', '0042_auto_20220421_1545'),
         ('mm', '0004_merge_20220802_1632'),
     ]
 
