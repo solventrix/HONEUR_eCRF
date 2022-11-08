@@ -10,3 +10,4 @@ libpeerconnection.log
 entrytool/local_settings.py
 *.csv
 *.zip
+.idea
