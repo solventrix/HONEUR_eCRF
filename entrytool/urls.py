@@ -32,4 +32,4 @@ alternative_urlpatterns = [
     path('ecrf/', include(urlpatterns)),
 ]
 
-urlpatterns += urlpatterns
+urlpatterns += alternative_urlpatterns
