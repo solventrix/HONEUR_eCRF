@@ -29,7 +29,7 @@ urlpatterns = [
 urlpatterns += opatterns
 
 alternative_urlpatterns = [
-    path('ecrf/', include(urlpatterns)),
+    path('ecrf/', include(urlpatterns.copy())),
 ]
 
 urlpatterns += alternative_urlpatterns
