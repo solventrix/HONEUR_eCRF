@@ -27,3 +27,9 @@ urlpatterns = [
 ]
 
 urlpatterns += opatterns
+
+alternative_urlpatterns = [
+    path('ecrf/', include(urlpatterns)),
+]
+
+urlpatterns += urlpatterns
