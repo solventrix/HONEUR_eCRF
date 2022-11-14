@@ -282,6 +282,8 @@ OPAL_DEFAULT_SEARCH_FIELDS = [
 OPAL_BRAND_NAME = "Data Entry Tool"
 VERSION_NUMBER = "0.2"
 
+FORCE_SCRIPT_NAME = "/ecrf"
+
 if os.environ.get('HEROKU_SLUG_COMMIT'):
     VERSION_NUMBER = '{} ({})'.format(VERSION_NUMBER, os.environ.get('HEROKU_SLUG_COMMIT'))
 
