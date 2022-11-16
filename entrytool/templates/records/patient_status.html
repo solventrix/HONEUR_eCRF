@@ -9,15 +9,12 @@
       ></i>
     </h3>
   </div>
-<<<<<<< HEAD
   <div
     class="help-block"
     ng-show="!(episode.patient_status[0].lost_to_follow_up || episode.patient_status[0].deceased)"
   >
     {% trans "Report patient death or lost to follow up here." %}
   </div>
-=======
->>>>>>> 1a9937fd69a5778f561fd9d0687dee8129f049b3
   <ul class="list-group">
     <li
       ng-class="{'imported-validation-error': honeurPatientDetailCtrl.hasError(episode.id, 'patient_status', episode.patient_status[0].id)}"
