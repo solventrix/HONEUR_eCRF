@@ -20,6 +20,8 @@ COMPRESS_ENABLED = False
 #ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".honeur.org"]
 ALLOWED_HOSTS = ["*"]
 
+LOGOUT_REDIRECT_URL = '/ecrf'
+
 def str2bool(v):
     if not v: return False
     return v.lower() in ("true", "1")
