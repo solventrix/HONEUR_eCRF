@@ -16,34 +16,22 @@
       <table class="table  mm-table" ng-show="episode.lab_test.length > 0">
         <tr>
           <th></th>
-          <th>{% trans "Kappa Count" %}</th>
-          <th>{% trans "Lambda Count" %}</th>
-          <th>{% trans "Kappa Lambda Ratio" %}</th>
-          <th>{% trans "IgA Count" %}</th>
-          <th>{% trans "IgG Count" %}</th>
-          <th>{% trans "IgM Count" %}</th>
-          <th>{% trans "IgD Count" %}</th>
-          <th>{% trans "IgE Count" %}</th>
+          <th>{% trans "Beta2m" %} (mg/L)</th>
+          <th>{% trans "Calcium" %} (mg/DL)</th>
+          <th>{% trans "Albumin" %} (g/L)</th>
+          <th>{% trans "LDH" %} (u/L)</th>
           <th>{% trans "Creatinine Clearance" %}</th>
           <th>{% trans "M Protein in 24 hour" %}</th>
-          <th>{% trans "Calcium" %}</th>
-          <th>{% trans "Beta2m" %}</th>
           <th></th>
         </tr>
         <tr ng-class="{'imported-validation-error': honeurPatientDetailCtrl.hasError(episode.id, 'lab_test', item.id)}"  ng-repeat="item in episode.lab_test | orderBy: '-date' as lab_tests">
           <td class="first-column no-border">[[ item.hospital | translate ]] <br>[[ item.date | displayDate ]]</td>
-          <td>[[ item.kappa_light_chain_count ]]</td>
-          <td>[[ item.lambda_light_chain_count ]]</td>
-          <td>[[ item.kappa_lambda_ratio ]]</td>
-          <td>[[ item.iga_count ]]</td>
-          <td>[[ item.igg_count ]]</td>
-          <td>[[ item.igm_count ]]</td>
-          <td>[[ item.igd_count ]]</td>
-          <td>[[ item.ige_count ]]</td>
+          <td>[[ item.beta2m ]] </td>
+          <td>[[ item.calcium ]]</td>
+          <td>[[ item.albumin ]]</td>
+          <td>[[ item.LDH ]]</td>
           <td>[[ item.creatinine ]]</td>
           <td>[[ item.mprotein_24h ]]</td>
-          <td>[[ item.calcium ]]</td>
-          <td>[[ item.beta2m ]]</td>
           <td class="no-border last-column">
             <i ng-click="honeurPatientDetailCtrl.editItem('{{ models.LabTest.get_api_name }}', item, episode)" class="fa fa-pencil edit pointer"></i>
           </td>
