@@ -80,47 +80,50 @@ class CologneLoader(BaseLoader):
             self.add_error(column, value, _("Unable to convert %s to a number") % value)
         return result
 
-    def create_line_of_treatment(
+    def create_treatment_line(
         self,
         patient,
         start_date_column,
         end_date_column,
-        category_column,
-        regimen_column=None,
+        regimen_column,
+        maintenance_column=None,
         end_treatment_reason_column=None,
-    ):
+    ): 
         start_date = self.check_and_get_date(start_date_column)
         if self.row[end_date_column].strip() in ("ongoing", "entfällt", "unbekannt"):
             end_date = None
         else:
             end_date = self.check_and_get_date(end_date_column)
-        category = self.check_and_get_string(
-            mm_models.MMRegimen, "category", category_column
-        )
+        # category = self.check_and_get_string(
+        #     mm_models.MMRegimen, "category", category_column
+        # )
         regimen_val = None
         if regimen_column:
             regimen_val = self.check_and_get_string(
-                mm_models.MMRegimen, "category", regimen_column
+                mm_models.MMRegimen, "regimen", regimen_column
             )
         end_treatment_reason = None
         if end_treatment_reason_column:
             end_treatment_reason = self.row[end_treatment_reason_column]
 
-        if any([start_date, end_date, category, regimen_val, end_treatment_reason]):
+        if any([start_date, end_date, regimen_val, end_treatment_reason]):
             lot_episode = patient.episode_set.create(
                 category_name=LineOfTreatmentEpisode.display_name
             )
-            regimen = lot_episode.mmregimen_set.create()
-            regimen.start_date = start_date
-            regimen.end_date = end_date
-            regimen.category = category
-            regimen.regimen = regimen_val
-            if end_treatment_reason:
-                regimen.end_treatment_reason = end_treatment_reason
-            regimen.set_consistency_token()
-            regimen.save()
+            
 
-            if "SCT" in category:
+            if maintenance_column:
+                maintenance_regimen = lot_episode.mmregimen_set.create()
+                maintenance_regimen.start_date = start_date
+                maintenance_regimen.end_date = end_date
+                maintenance_regimen.regimen = self.check_and_get_string(
+                                                mm_models.MMRegimen, "regimen", maintenance_column 
+                                            ) 
+                maintenance_regimen.category = "Maintenance"
+                maintenance_regimen.set_consistency_token()
+                maintenance_regimen.save()    
+
+            if "SCT" in regimen_val:
                 lot_episode.mmstemcelltransplanteligibility_set.update(
                     eligible_for_stem_cell_transplant=True
                 )
@@ -129,9 +132,36 @@ class CologneLoader(BaseLoader):
                 eligible.set_consistency_token()
                 eligible.save()
                 sct = lot_episode.sct_set.create()
+                sct.sct_type = "Unknown"
                 sct.set_consistency_token()
                 sct.save()
 
+                ## Add Melphalan exposure as conditioning
+                melphalan_regimen = lot_episode.mmregimen_set.create()
+                melphalan_regimen.start_date = start_date
+                melphalan_regimen.end_date = end_date
+                melphalan_regimen.regimen = "Melphalan" 
+                melphalan_regimen.category = "Conditioning"
+                melphalan_regimen.set_consistency_token()
+                melphalan_regimen.save()    
+
+                ## Add VCD induction
+                vcd_regimen = lot_episode.mmregimen_set.create()
+                vcd_regimen.start_date = start_date
+                vcd_regimen.end_date = end_date
+                vcd_regimen.regimen = "VCD" 
+                vcd_regimen.category = "Induction"
+                vcd_regimen.set_consistency_token()
+                vcd_regimen.save()
+            else: 
+                regimen = lot_episode.mmregimen_set.create()
+                regimen.start_date = start_date
+                regimen.end_date = end_date
+                regimen.regimen = regimen_val
+                if end_treatment_reason:
+                    regimen.end_treatment_reason = end_treatment_reason
+                regimen.set_consistency_token()
+                regimen.save()
     def load_rows(self, data):
         rows = list(csv.DictReader(data))
         for _row in rows:
@@ -247,57 +277,78 @@ class CologneLoader(BaseLoader):
             lab_test = mm_models.LabTest.objects.create(
                 LDH=ldh, beta2m=beta2m, albumin=albumin, episode=episode
             )
+            lab_test.date = diag_date
+            lab_test.hospital = "MVZ Koln"
             lab_test.set_consistency_token()
             lab_test.save()
 
         # === Line Of Treatments ===
-        self.create_line_of_treatment(
+
+        # Frontline
+        self.create_treatment_line(
             patient,
             start_date_column="datum beginn 1.-linie",
             end_date_column="datum ende 1.-linie",
-            category_column="art der 1st-line",
-            regimen_column="erhaltungs-therapie",
+            regimen_column="art der 1st-line",
+            maintenance_column="erhaltungs-therapie",
             end_treatment_reason_column="keine therapie 2. linie grund",
         )
-
-        self.create_line_of_treatment(
+        # self.create_line_of_treatment(
+        #     patient,
+        #     start_date_column="datum beginn 1.-linie",
+        #     end_date_column="datum ende 1.-linie",
+        #     category_column="art der 1st-line",
+        #     regimen_column="erhaltungs-therapie",
+        #     end_treatment_reason_column="keine therapie 2. linie grund",
+        # )
+        # 2nd line
+        self.create_treatment_line(
             patient,
             start_date_column="datum beginn 2. linie2",
             end_date_column="datum ende 2. linie",
-            category_column="art 2. linie2",
-            regimen_column="erhaltungstherapie 2. linie",
+            regimen_column="art 2. linie2",
+            maintenance_column="erhaltungstherapie 2. linie",
             end_treatment_reason_column="keine therapie 3. line grund2",
-        )
+        ) 
+        # self.create_line_of_treatment(
+        #     patient,
+        #     start_date_column="datum beginn 2. linie2",
+        #     end_date_column="datum ende 2. linie",
+        #     category_column="art 2. linie2",
+        #     regimen_column="erhaltungstherapie 2. linie",
+        #     end_treatment_reason_column="keine therapie 3. line grund2",
+        # )
 
-        self.create_line_of_treatment(
+        self.create_treatment_line(
             patient,
             start_date_column="datum beginn 3. linie2",
             end_date_column="datum beginn 3. linie2",
-            category_column="art 3. linie",
+            regimen_column="art 3. linie",
             end_treatment_reason_column="keine therapie 4. line grund2",
         )
+        
 
-        self.create_line_of_treatment(
+        self.create_treatment_line(
             patient,
             start_date_column="datum beginn 4. linie",
             end_date_column="datum ende 4. linie",
-            category_column="art der 4.linie",
+            regimen_column="art der 4.linie",
             end_treatment_reason_column="keine 5. linie  grund",
         )
 
-        self.create_line_of_treatment(
+        self.create_treatment_line(
             patient,
             start_date_column="datum beginn 5. linie",
             end_date_column="datum ende 5. linie",
-            category_column="art der 5. linie",
+            regimen_column="art der 5. linie",
             end_treatment_reason_column="warum keine 6. linie",
         )
 
-        self.create_line_of_treatment(
+        self.create_treatment_line(
             patient,
             start_date_column="datum beginn 6. linie",
             end_date_column="datum ende 6. linie",
-            category_column="art der 6. linie",
+            regimen_column="art der 6. linie",
         )
 
 
