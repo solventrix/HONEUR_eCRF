@@ -1,37 +1,130 @@
 {
   "mmregimenlist": [
-{
-  "name": "Ibrutinib"
-},
-{
-  "name": "Ibrutinib.Rituximab"
-},
-{
-  "name": "Rituximab Erhaltung"
-},
-{
-  "name": "Bendamustine.Vincristine.Prednison"
-},
-{
-  "name": "Venetoclax.Obinutuzumab"
-},
-{
-  "name": "Bendamustine.Rituximab"
-},
-{
-  "name": "Rituximab.Fludarabine.Cyclophospahmid (R-FC)"
-},
-{
-  "name": "Chlorambucil.Obinotuzumab"
-},
-{
-  "name": "Venetoclax.Decitabine"
-},
-{
-  "name": "Vincristine"
-},
-{
-  "name": "Bendamustine.Dexamethason"
-}
+    {
+    "name": "VCD"
+    },
+    {
+    "name": "Vd"
+    },
+    {
+    "name": "VMd"
+    },
+    {
+    "name": "VCd"
+    },
+    {
+    "name": "VM"
+    },
+    {
+    "name": "MP"
+    },
+    {
+    "name": "VRd"
+    },
+    {
+    "name": "Mel"
+    },
+    {
+    "name": "MP-Thal"
+    },
+    {
+    "name": "Rd"
+    },
+    {
+    "name": "V-Dox-d"
+    },
+    {
+    "name": "Dara-Vd"
+    },
+    {
+    "name": "MP-Vinc"
+    },
+    {
+    "name": "V"
+    },
+    {
+    "name": "Thal"
+    },
+    {
+    "name": "Vinc-Dox-d"
+    },
+    {
+    "name": "V-Benda-Pred"
+    },
+    {
+    "name": "Benda-P"
+    },
+    {
+    "name": "KRd"
+    },
+    {
+    "name": "Dara mono"
+    },
+    {
+    "name": "DRd"
+    },
+    {
+    "name": "Td"
+    },
+    {
+    "name": "Kd"
+    },
+    {
+    "name": "VDd"
+    },
+    {
+    "name": "VAD"
+    },
+    {
+    "name": "Cyclo-Rd"
+    },
+    {
+    "name": "VCD+R"
+    },
+    {
+    "name": "Cyclo-Dex"
+    },
+    {
+    "name": "Pd"
+    },
+    {
+    "name": "Benda mono"
+    },
+    {
+    "name": "Benda-Vd+Panobinostat"
+    },
+    {
+    "name": "VRDara"
+    },
+    {
+    "name": "Cyclo-Pom"
+    },
+    {
+    "name": "PAD"
+    },
+    {
+    "name": "Aza"
+    },
+    {
+    "name": "Ped"
+    },
+    {
+    "name": "P"
+    },
+    {
+    "name": "Benda-d"
+    },
+    {
+    "name": "K"
+    },
+    {
+    "name": "BR"
+    },
+    {
+    "name": "PCd"
+    },
+    {
+    "name": "R"
+    }
   ]
 }

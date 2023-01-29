@@ -2,6 +2,12 @@
 {% load custom_forms %}
 {% custom_datepicker field="LabTest.date" %}
 {% select field="LabTest.hospital" %}
+
+{% number field="LabTest.beta2m" unit="mg/L" %}
+{% number field="LabTest.calcium"  unit="mg/dL" %}
+{% number field="LabTest.albumin" unit="g/L"%}
+{% number field="LabTest.LDH" unit="u/L" %}
+
 {% input field="LabTest.kappa_light_chain_count" %}
 {% input field="LabTest.lambda_light_chain_count" %}
 {% input field="LabTest.kappa_lambda_ratio" %}
@@ -13,5 +19,4 @@
 
 {% number field="LabTest.creatinine" unit="mg/dL" %}
 {% number field="LabTest.mprotein_24h" unit="mg/24h" %}
-{% number field="LabTest.calcium"  unit="mg/dL" %}
-{% number field="LabTest.beta2m" unit="mg/L" %}
+

@@ -427,10 +427,18 @@ angular.module('opal.services').service('ValidationRules', function(Validators) 
 			},
 			beta2m: {
 				errors: [
-					[Validators.greaterThanOrEqualTo(6.5),  "{% trans "beta2m is too low" %}"],
+					[Validators.greaterThanOrEqualTo(0),  "{% trans "beta2m is too low" %}"],
 					[Validators.lessThanOrEqualTo(25),  "{% trans "beta2m is too high" %}"]
 				]
 			},
+			LDH: {
+				errors: [
+					[Validators.greaterThanOrEqualTo(0), "{%trans "LDH is too low" %}"]]
+			},
+			albumin: {
+				errors: [
+					[Validators.greaterThanOrEqualTo(0), "{%trans "Albumin is too low" %}"]]
+			}
 		},
 		mm_cytogenetics: {
 			hospital: {
