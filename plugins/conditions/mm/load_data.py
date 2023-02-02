@@ -163,7 +163,10 @@ class CologneLoader(BaseLoader):
                 regimen.set_consistency_token()
                 regimen.save()
     def load_rows(self, data):
-        rows = list(csv.DictReader(data))
+        pos = data.tell()
+        dialect = csv.Sniffer().sniff(data.readline())
+        data.seek(pos)
+        rows = list(csv.DictReader(data, dialect = dialect))
         for _row in rows:
             row = {k.strip().lower(): v for k, v in _row.items()}
             self.idx += 1
