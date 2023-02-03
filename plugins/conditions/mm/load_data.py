@@ -1,6 +1,7 @@
 import io
 import datetime
 import csv
+import logging
 from django.utils.translation import gettext as _
 from opal.models import Patient
 from entrytool import models as entry_models
@@ -17,10 +18,12 @@ class CologneLoader(BaseLoader):
         value = self.row[column]
         try:
             if not value:
+                logging.error(f"No external identifier found for {value}")
                 raise ValueError(_("No external identifier found for %s") % value)
             if value:
                 patients = Patient.objects.filter(demographics__hospital_number=value)
                 if patients.exists():
+                    logging.error(f"Patient {value} already exists")
                     raise ValueError(_("Patient %s already exists") % value)
         except Exception as err:
             self.add_error(column, value, str(err))
@@ -38,6 +41,7 @@ class CologneLoader(BaseLoader):
         try:
             some_dt = datetime.datetime.strptime(value, "%d.%m.%Y").date()
         except Exception:
+            logging.error(f"Unable to convert {value} into a date with the format dd.mm.yyyy")
             description = (
                 _("Unable to convert %s into a date with the format dd.mm.yyyy") % value
             )
@@ -49,8 +53,10 @@ class CologneLoader(BaseLoader):
         try:
             if not value == "MM":
                 if not value:
+                    logging.error("Diagnosis is not defined")
                     raise ValueError(_("Diagnosis is not defined"))
                 else:
+                    logging.error(f"{value} is not a recognised diagnosis")
                     raise ValueError(_("%s is not a recognised diagnosis"))
         except ValueError as err:
             self.add_error("tatsächliche diagnose überprüft", value, str(err))
@@ -58,6 +64,7 @@ class CologneLoader(BaseLoader):
     def unknown_value(self, column, expected_values):
         expected_values = ", ".join(expected_values)
         try:
+            logging.error(f"Unexpected value {self.row[column]}")
             raise ValueError(
                 _("Unexpected value %(value)s, expected one of %(expected_values)s")
                 % {"value": self.row[column], "expected_values": expected_values}
@@ -77,6 +84,7 @@ class CologneLoader(BaseLoader):
         try:
             result = float(value)
         except Exception:
+            logging.error(f"Unable to convert {value} to a number")
             self.add_error(column, value, _("Unable to convert %s to a number") % value)
         return result
 
@@ -365,12 +373,29 @@ def _load_data(csv_file):
 
 
 def load_data(csv_file):
+    logging.info(f"Load CSV file {csv_file}")
     errors = {}
     try:
         with transaction.atomic():
             errors = _load_data(csv_file)
             if errors["top_level_errors"] or errors["row_errors"]:
+                log_errors(errors)
                 raise LoadError("rolling back transaction")
     except LoadError:
         pass
     return errors
+
+
+def log_errors(errors):
+    if not errors:
+        logging.debug("No errors to log")
+    else:
+        if errors["top_level_errors"]:
+            logging.error("top_level_errors: ")
+            for error in errors["top_level_errors"]:
+                logging.error(error)
+        if errors["row_errors"]:
+            logging.error("row_errors: ")
+            for error in errors["row_errors"]:
+                logging.error(error)
+
