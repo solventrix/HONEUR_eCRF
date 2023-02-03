@@ -19,6 +19,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         logger = logging.getLogger(__name__)
         file = options["file"]
+        logger.info(f"Load data from {file}")
         errors = load_data.load_data(file)
 
         if errors:
@@ -39,4 +40,5 @@ class Command(BaseCommand):
                     else:
                         logger.error(f"{title.title()}: {value}")
                 logger.error("")
+            logger.error("Unable to process files, rolling back the transaction")
             raise ValueError("Unable to process files, rolling back the transaction")
