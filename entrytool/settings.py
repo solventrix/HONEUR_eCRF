@@ -3,6 +3,11 @@ import os
 
 from django.utils.translation import gettext_lazy as _
 
+
+def str2bool(v):
+    if not v: return False
+    return v.lower() in ("true", "1")
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_PATH = os.path.realpath(os.path.dirname(__file__))
@@ -14,16 +19,32 @@ PROJECT_PATH = os.path.realpath(os.path.dirname(__file__))
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = os.environ['OPAL_SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', 'False').lower() in ('true', '1')
+DEBUG = str2bool(os.environ.get('DEBUG', 'false'))
 COMPRESS_ENABLED = False
 
 #ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".honeur.org"]
 ALLOWED_HOSTS = ["*"]
 
-def str2bool(v):
-    if not v: return False
-    return v.lower() in ("true", "1")
-
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': os.getenv('DJANGO_ROOT_LOG_LEVEL', 'WARNING'),
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
+            'propagate': False,
+        },
+    },
+}
 
 auth_backends = ['django.contrib.auth.backends.ModelBackend', ]
 
