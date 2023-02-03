@@ -1,8 +1,7 @@
 from django.core.management.base import BaseCommand
 from django.db import transaction
 from plugins.data_load import load_data
-
-
+import logging
 class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument(
@@ -18,25 +17,26 @@ class Command(BaseCommand):
 
     @transaction.atomic()
     def handle(self, *args, **options):
+        logger = logging.getLogger(__name__)
         file = options["file"]
         errors = load_data.load_data(file)
 
         if errors:
             if "top_level_errors" in errors:
                 for error in errors["top_level_errors"]:
-                    self.stderr.write(error)
+                    logger.error(error)
             for error in errors.get("row_errors", []):
-                self.stderr.write("Error")
+                logger.error("Error")
                 for title, value in error.items():
                     if title == "traceback":
                         if not options["verbose"]:
                             continue
                         else:
-                            self.stderr.write("Traceback")
+                            logger.error("Traceback")
                             for row in value:
                                 for line in row.split("\n"):
-                                    self.stderr.write(line)
+                                    logger.error(line)
                     else:
-                        self.stderr.write(f"{title.title()}: {value}")
-                self.stderr.write("")
+                        logger.error(f"{title.title()}: {value}")
+                logger.error("")
             raise ValueError("Unable to process files, rolling back the transaction")
