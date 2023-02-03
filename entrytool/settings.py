@@ -14,7 +14,7 @@ PROJECT_PATH = os.path.realpath(os.path.dirname(__file__))
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = os.environ['OPAL_SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', False).lower() in ('true', '1')
+DEBUG = os.environ.get('DEBUG', 'False').lower() in ('true', '1')
 COMPRESS_ENABLED = False
 
 #ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".honeur.org"]
