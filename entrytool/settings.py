@@ -25,6 +25,8 @@ COMPRESS_ENABLED = False
 #ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".honeur.org"]
 ALLOWED_HOSTS = ["*"]
 
+LOGOUT_REDIRECT_URL = '/ecrf'
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,

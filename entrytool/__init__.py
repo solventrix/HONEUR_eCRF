@@ -8,6 +8,7 @@ from entrytool import episode_categories
 from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
 
+CONTEXT_PATH = "/ecrf"
 
 class Application(application.OpalApplication):
     javascripts = [
@@ -43,28 +44,28 @@ class Application(application.OpalApplication):
             if user.is_authenticated:
                 menuitems = [
                     menus.MenuItem(
-                        href='/pathway/#/add_patient',
+                        href=f'{CONTEXT_PATH}/pathway/#/add_patient',
                         display=_('Add Patient'),
-                        activepattern='/pathway/#/add_patient'
+                        activepattern=f'{CONTEXT_PATH}/pathway/#/add_patient'
                     ),
                     menus.MenuItem(
                         href=reverse("logout"), display=_('Log Out'), index=1000
                     ),
                     menus.MenuItem(
-                        href='/#/data_upload',
+                        href=f'{CONTEXT_PATH}/#/data_upload',
                         display=_('Data Upload'),
-                        activepattern='/#/data_upload'
+                        activepattern=f'{CONTEXT_PATH}/#/data_upload'
                     ),
                     menus.MenuItem(
-                        href='/#/lost_to_followup',
+                        href=f'{CONTEXT_PATH}/#/lost_to_followup',
                         display=_('Reports'),
-                        activepattern='/#/lost_to_followup'
+                        activepattern=f'{CONTEXT_PATH}/#/lost_to_followup'
                     ),
                 ]
                 if user.is_staff:
                     menuitems.append(
                         menus.MenuItem(
-                            href="/admin/", display=_("Admin"),
+                            href=f'{CONTEXT_PATH}/admin/', display=_("Admin"),
                             index=999
                         )
                     )
