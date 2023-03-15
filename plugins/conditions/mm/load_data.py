@@ -881,7 +881,10 @@ def populate_mprotein_measurements_from_treatment(episode, file_name, iterator, 
 
 def get_data(_file_to_read):
     with open(_file_to_read) as file_to_read:
-        rows = rows = list(csv.DictReader(file_to_read))
+        pos = file_to_read.tell()
+        dialect = csv.Sniffer().sniff(file_to_read.readline())
+        file_to_read.seek(pos)
+        rows = list(csv.DictReader(file_to_read, dialect = dialect))
     return rows
 
 
