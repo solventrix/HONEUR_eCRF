@@ -890,10 +890,10 @@ def get_data(_file_to_read):
 
 def get_patient_data_from_file(tmp_directory, file_name, patient_number):
     all_rows = get_data(os.path.join(tmp_directory, file_name))
-    if "c�digo de paciente" in all_rows[0]:
-        patient_number_field = "c�digo de paciente"
+    if "código de paciente" in all_rows[0]:
+        patient_number_field = "código de paciente"
     else:
-        patient_number_field = "C�digo de Paciente"
+        patient_number_field = "Código de Paciente"
     for idx, row in enumerate(all_rows):
         if row[patient_number_field] == patient_number:
             return (
@@ -947,7 +947,7 @@ def _load_data(zipped_folder):
         loader = ZaragosaLoader()
         for idx, row in enumerate(demographics_rows):
             patient_number = loader.check_and_get_hospital_number(
-                row, "c�digo de paciente", "datos demograficos.csv", idx
+                row, "código de paciente", "datos demograficos.csv", idx
             )
             if not patient_number:
                 continue
