@@ -4,7 +4,7 @@ FIELD_MAPPING = {
         "previous_hospital",
     ),
     ("datos demograficos.csv", "comentarios"): ("Demographics", "comments"),
-    ("datos demograficos.csv", "c�digo de paciente"): (
+    ("datos demograficos.csv", "código de paciente"): (
         "Demographics",
         "hospital_number",
     ),

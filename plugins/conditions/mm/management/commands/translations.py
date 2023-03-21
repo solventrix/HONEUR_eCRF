@@ -14,7 +14,7 @@ TRANSLATIONS = [
     ("", "Bone Marrow"),
     ("", "Bone Marrow And Peripheral Bloods"),
     ("", "Both"),
-    ("PorFinalizaci�nDeCiclosProgramados", "By End Of Scheduled Cycles"),
+    ("PorFinalizaciónDeCiclosProgramados", "By End Of Scheduled Cycles"),
     ("", "CKD-EPI"),
     ("", "Clinical Relapse"),
     ("", "Clinically Documented Infection"),
@@ -114,7 +114,6 @@ TRANSLATIONS = [
     ("MuySintomatico", "Very Symptomatic"),
     ("Si", "Yes"),
     ("Sí", "Yes"),
-    ("S�", "Yes"),
     ("Toxicidad", "Toxicity"),
     ("Cero", "Zero"),
 ]
