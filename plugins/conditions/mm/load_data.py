@@ -20,6 +20,7 @@ from plugins.conditions.mm.management.commands.field_mapping import FIELD_MAPPIN
 from plugins.conditions.mm.management.commands.translations import TRANSLATIONS
 from opal.models import Patient
 import os
+import logging
 
 
 def cast_date(value):
@@ -947,14 +948,17 @@ def _load_data(zipped_folder):
         )
         loader = ZaragosaLoader()
         for idx, row in enumerate(demographics_rows):
+            logger = logging.getLogger(__name__)
             patient_number = loader.check_and_get_hospital_number(
                 row, "código de paciente", "datos demograficos.csv", idx
             )
+            logger.info('Processing patient with ID {}'.format(patient_number))
             if not patient_number:
                 continue
             patient, mm_episode = create_patient_episode(patient_number)
 
             create_datos_demographics(patient, mm_episode, row, idx, loader)
+            logger.info('Processing enfermedad 1')
             idx, enfermedad_1_data = get_patient_data_from_file(
                 tmp_directory, "datos enfermedad 1.csv", patient_number
             )
@@ -969,6 +973,7 @@ def _load_data(zipped_folder):
                     clinical_date=translate_date(enfermedad_1_data["fecha_diagnostico_1"]),
                 )
             for i in range(2, 7):
+                logger.info('Processing enfermedad {}'.format(i))
                 idx, enfermedad_data = get_patient_data_from_file(
                     tmp_directory, f"datos enfermedad {i}.csv", patient_number,
                 )
@@ -986,12 +991,14 @@ def _load_data(zipped_folder):
                             enfermedad_data[f"recaida_clinica_fecha_{i}"]
                         ),
                     )
+                logger.info('Processing situacion actual')
                 idx, actual_data = get_patient_data_from_file(
                     tmp_directory, "situacion actual.csv", patient_number
                 )
                 if idx!= -1:
                     create_situation_actual(mm_episode, actual_data, loader, idx)
             for iterator in range(1, 7):
+                logger.info('Processing tratamiento []'.format(i))
                 file_name = f"tratamiento {iterator}.csv"
                 idx, tratamiento = get_patient_data_from_file(
                     tmp_directory, file_name, patient_number
