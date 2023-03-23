@@ -20,6 +20,7 @@ from plugins.conditions.mm.management.commands.field_mapping import FIELD_MAPPIN
 from plugins.conditions.mm.management.commands.translations import TRANSLATIONS
 from opal.models import Patient
 import os
+import logging
 
 
 def cast_date(value):
@@ -880,7 +881,7 @@ def populate_mprotein_measurements_from_treatment(episode, file_name, iterator, 
 
 
 def get_data(_file_to_read):
-    with open(_file_to_read) as file_to_read:
+    with open(_file_to_read, encoding = 'utf-8-sig') as file_to_read:
         pos = file_to_read.tell()
         dialect = csv.Sniffer().sniff(file_to_read.readline())
         file_to_read.seek(pos)
@@ -900,6 +901,7 @@ def get_patient_data_from_file(tmp_directory, file_name, patient_number):
                 idx,
                 {k.lower(): v for k, v in row.items()},
             )
+    return -1,0
 
 
 def extract_files(zipped_folder, tmp_directory):
@@ -946,60 +948,70 @@ def _load_data(zipped_folder):
         )
         loader = ZaragosaLoader()
         for idx, row in enumerate(demographics_rows):
+            logger = logging.getLogger(__name__)
             patient_number = loader.check_and_get_hospital_number(
                 row, "código de paciente", "datos demograficos.csv", idx
             )
+            logger.info('Processing patient with ID {}'.format(patient_number))
             if not patient_number:
                 continue
             patient, mm_episode = create_patient_episode(patient_number)
 
             create_datos_demographics(patient, mm_episode, row, idx, loader)
+            logger.info('Processing enfermedad 1')
             idx, enfermedad_1_data = get_patient_data_from_file(
                 tmp_directory, "datos enfermedad 1.csv", patient_number
             )
-            create_datos_enfermedad(
-                mm_episode,
-                "datos enfermedad 1.csv",
-                enfermedad_1_data,
-                loader,
-                idx,
-                lab_test_date=translate_date(enfermedad_1_data["fecha_diagnostico_1"]),
-                clinical_date=translate_date(enfermedad_1_data["fecha_diagnostico_1"]),
-            )
+            if idx!=-1:
+                create_datos_enfermedad(
+                    mm_episode,
+                    "datos enfermedad 1.csv",
+                    enfermedad_1_data,
+                    loader,
+                    idx,
+                    lab_test_date=translate_date(enfermedad_1_data["fecha_diagnostico_1"]),
+                    clinical_date=translate_date(enfermedad_1_data["fecha_diagnostico_1"]),
+                )
             for i in range(2, 7):
+                logger.info('Processing enfermedad {}'.format(i))
                 idx, enfermedad_data = get_patient_data_from_file(
                     tmp_directory, f"datos enfermedad {i}.csv", patient_number,
                 )
-                create_datos_enfermedad(
-                    mm_episode,
-                    f"datos enfermedad {i}.csv",
-                    enfermedad_data,
-                    loader,
-                    idx,
-                    lab_test_date=translate_date(
-                        enfermedad_data[f"recaida_biologica_fecha_{i}"]
-                    ),
-                    clinical_date=translate_date(
-                        enfermedad_data[f"recaida_clinica_fecha_{i}"]
-                    ),
-                )
+                if idx != -1:
+                    create_datos_enfermedad(
+                        mm_episode,
+                        f"datos enfermedad {i}.csv",
+                        enfermedad_data,
+                        loader,
+                        idx,
+                        lab_test_date=translate_date(
+                            enfermedad_data[f"recaida_biologica_fecha_{i}"]
+                        ),
+                        clinical_date=translate_date(
+                            enfermedad_data[f"recaida_clinica_fecha_{i}"]
+                        ),
+                    )
+                logger.info('Processing situacion actual')
                 idx, actual_data = get_patient_data_from_file(
                     tmp_directory, "situacion actual.csv", patient_number
                 )
-                create_situation_actual(mm_episode, actual_data, loader, idx)
+                if idx!= -1:
+                    create_situation_actual(mm_episode, actual_data, loader, idx)
             for iterator in range(1, 7):
+                logger.info('Processing tratamiento []'.format(i))
                 file_name = f"tratamiento {iterator}.csv"
                 idx, tratamiento = get_patient_data_from_file(
                     tmp_directory, file_name, patient_number
                 )
-                if treatment_populated(file_name, tratamiento):
-                    lot_episode = patient.episode_set.create(
-                        category_name=lot_episode_categories.LineOfTreatmentEpisode.display_name
+                if idx != -1:
+                    if treatment_populated(file_name, tratamiento):
+                        lot_episode = patient.episode_set.create(
+                            category_name=lot_episode_categories.LineOfTreatmentEpisode.display_name
+                        )
+                        create_tratiemento(lot_episode, iterator, tratamiento, loader, idx)
+                    populate_mprotein_measurements_from_treatment(
+                        mm_episode, file_name, iterator, tratamiento, loader, idx
                     )
-                    create_tratiemento(lot_episode, iterator, tratamiento, loader, idx)
-                populate_mprotein_measurements_from_treatment(
-                    mm_episode, file_name, iterator, tratamiento, loader, idx
-                )
     errors = loader.errors
     if errors:
         return {

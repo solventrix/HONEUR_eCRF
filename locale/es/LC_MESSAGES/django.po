@@ -645,8 +645,9 @@ msgid ""
 "      "
 msgstr ""
 "\n"
-" Si la opción no está presente, puede añadirla <a href=“%(admin_url)s”>aquì</"
-"a> "
+"       Si la opción no está presente, puede añadirla <a href=\"%(admin_url)s"
+"\">aquì</a>\n"
+"      "
 
 #: entrytool/templates/angular_locale.html:4
 msgid "zero"
