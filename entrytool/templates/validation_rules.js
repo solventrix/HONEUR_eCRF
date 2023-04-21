@@ -663,6 +663,14 @@ angular.module('opal.services').service('ValidationRules', function(Validators) 
 				]
 			},
 		},
+		immunofixation: {
+			date: {
+				errors: [
+					[Validators.required, "{% trans "Date is required" %}"],
+					[Validators.afterDateOfBirth, "{% trans "Date must be after the date of birth" %}"],
+				]
+			},
+		},
 		cytogenetics: {
 			t4_14: {
 				errors: [
