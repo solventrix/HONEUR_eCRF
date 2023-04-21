@@ -572,6 +572,8 @@ class LabTest(models.EpisodeSubrecord):
         verbose_name = _("Lab Tests")
         verbose_name_plural = _("Lab Tests")
 
+    date = fields.DateField(blank=True, null=True, verbose_name=_("Date"))
+
     # BLOOD COUNT
 
     # g/dl
