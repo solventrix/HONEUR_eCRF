@@ -833,6 +833,7 @@ class MProteinMesurements(models.EpisodeSubrecord):
 
 
 class Immunofixation(models.EpisodeSubrecord):
+    date = fields.DateField(blank=True, null=True, verbose_name=_("Date"))
     POSITIVE = "Positive"
     NEGATIVE = "Negative"
     IMMUNOFIXATION_CHOICES = (
