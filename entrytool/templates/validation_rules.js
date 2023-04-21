@@ -530,6 +530,14 @@ angular.module('opal.services').service('ValidationRules', function(Validators) 
 				],
 			},
 		},
+		m_protein_mesurements: {
+			date: {
+				errors: [
+					[Validators.required, "{% trans "Date is required" %}"],
+					[Validators.afterDateOfBirth, "{% trans "Date must be after the date of birth" %}"],
+				]
+			},
+		},
 		bone_disease: {
 			treatment_type: {
 				errors: [
