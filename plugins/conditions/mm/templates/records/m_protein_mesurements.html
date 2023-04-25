@@ -1,6 +1,7 @@
 {% load honeur_panels %}
 {% load i18n %}
 {% with label_size="col-md-9" value_size="col-md-3" %}
+{% field_display "MProteinMesurements.date" %}
 <h4 ng-if="
   (item.serum_amount !== null && item.serum_amount !== undefined) ||
   (item.lambda_light_chain_count !== null && item.lambda_light_chain_count !== undefined) ||

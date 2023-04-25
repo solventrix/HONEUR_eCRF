@@ -572,6 +572,8 @@ class LabTest(models.EpisodeSubrecord):
         verbose_name = _("Lab Tests")
         verbose_name_plural = _("Lab Tests")
 
+    date = fields.DateField(blank=True, null=True, verbose_name=_("Date"))
+
     # BLOOD COUNT
 
     # g/dl
@@ -788,6 +790,7 @@ class Imaging(models.EpisodeSubrecord):
 
 
 class MProteinMesurements(models.EpisodeSubrecord):
+    date = fields.DateField(blank=True, null=True, verbose_name=_("Date"))
     # g/dL
     serum_amount = fields.FloatField(
         blank=True,
@@ -833,6 +836,7 @@ class MProteinMesurements(models.EpisodeSubrecord):
 
 
 class Immunofixation(models.EpisodeSubrecord):
+    date = fields.DateField(blank=True, null=True, verbose_name=_("Date"))
     POSITIVE = "Positive"
     NEGATIVE = "Negative"
     IMMUNOFIXATION_CHOICES = (
