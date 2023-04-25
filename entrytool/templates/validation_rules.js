@@ -680,6 +680,12 @@ angular.module('opal.services').service('ValidationRules', function(Validators) 
 			},
 		},
 		cytogenetics: {
+			date: {
+				errors: [
+					[Validators.required, "{% trans "Date is required" %}"],
+					[Validators.afterDateOfBirth, "{% trans "Date must be after the date of birth" %}"],
+				]
+			},
 			t4_14: {
 				errors: [
 					[Validators.inOptions, "{% trans "is not in the options available" %}"]
