@@ -292,6 +292,7 @@ def create_datos_enfermedad(
     clinical_presentation = models.ClinicalPresentation(
         episode=episode, date=clinical_date
     )
+    clinical_presentation.set_consistency_token()
     clinical_presentation_populated = False
     lab_test = models.LabTest(episode=episode)
     lab_test.set_consistency_token()
@@ -300,6 +301,7 @@ def create_datos_enfermedad(
     cytogenetics.set_consistency_token()
     cytogenetics_populated = False
     immunofixation = models.Immunofixation(episode=episode)
+    immunofixation.set_consistency_token()
     immunofixation_populated = False
     imaging = models.Imaging(episode=episode, date=clinical_date)
     imaging.set_consistency_token()
@@ -337,8 +339,10 @@ def create_datos_enfermedad(
             value = value.lower()
             if value == 'kappa':
                 immunofixation.monoclonal_kappa_chain_serum = models.Immunofixation.POSITIVE
+                immunofixation_populated = True
             elif value == 'lambda':
                 immunofixation.monoclonal_lambda_chain_serum = models.Immunofixation.POSITIVE
+                immunofixation_populated = True
 
 
             # SinCadenaPesada
